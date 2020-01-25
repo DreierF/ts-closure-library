@@ -1,0 +1,20 @@
+export namespace TagBlacklist {
+    export const APPLET: boolean;
+    export const AUDIO: boolean;
+    export const BASE: boolean;
+    export const BGSOUND: boolean;
+    export const EMBED: boolean;
+    export const FORM: boolean;
+    export const IFRAME: boolean;
+    export const ISINDEX: boolean;
+    export const KEYGEN: boolean;
+    export const LAYER: boolean;
+    export const LINK: boolean;
+    export const META: boolean;
+    export const OBJECT: boolean;
+    export const SCRIPT: boolean;
+    export const SVG: boolean;
+    export const STYLE: boolean;
+    export const TEMPLATE: boolean;
+    export const VIDEO: boolean;
+}

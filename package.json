@@ -1,0 +1,10 @@
+{
+  "name": "ts-closure-library",
+  "version": "2019.11.11.0",
+  "description": "A stripped down fork of the closure library that has been converted to ES6 Modules in order to work without the google closure compiler and ships with Typescript declaration files",
+  "main": "lib/google.js",
+  "typings": "lib/google.d.ts",
+  "author": { "name" : "Florian Dreier" },
+  "contributors": [{"name": "Daniel Veihelmann"}],
+  "license": "Apache-2.0"
+}
