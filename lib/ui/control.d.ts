@@ -911,7 +911,7 @@ export class ControlRenderer<CONTROL> {
      * If opt_includedClass is provided, return only the combined classes that have
      * all members contained in classes AND include opt_includedClass as well.
      * opt_includedClass is added to classes as well.
-     * @param {IArrayLike<string>} classes Array-like thing of classes to
+     * @param {ArrayLike<string>} classes Array-like thing of classes to
      *     return matching combined classes for.
      * @param {?string=} opt_includedClass If provided, get only the combined
      *     classes that include this one.
@@ -919,7 +919,7 @@ export class ControlRenderer<CONTROL> {
      *     applied.
      * @private
      */
-    getAppliedCombinedClassNames_(classes: any, opt_includedClass?: string): string[];
+    getAppliedCombinedClassNames_(classes: ArrayLike<string>, opt_includedClass?: string): string[];
     /**
      * Takes a bit mask of {@link State}s, and returns an array
      * of the appropriate class names representing the given state, suitable to be

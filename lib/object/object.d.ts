@@ -260,14 +260,14 @@ export function getSuperClass(constructor: new () => any): any;
  * Example usage: getValueByKeys(jsonObj, 'foo', 'entries', 3)
  *
  * @param {!Object} obj An object to get the value from.  Can be array-like.
- * @param {...(string|number|!IArrayLike<number|string>)}
+ * @param {...(string|number|!ArrayLike<number|string>)}
  *     var_args A number of keys
  *     (as strings, or numbers, for array-like objects).  Can also be
  *     specified as a single array of keys.
  * @return {*} The resulting value.  If, at any point, the value for a key
  *     in the current object is null or undefined, returns undefined.
  */
-export function getValueByKeys(obj: any, ...args: any[]): any;
+export function getValueByKeys(obj: any, ...args: (string | number | ArrayLike<string | number>)[]): any;
 /**
  * Returns the values of the object/map/hash.
  *

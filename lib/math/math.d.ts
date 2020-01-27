@@ -104,8 +104,8 @@ export function log10Floor(num: number): number;
  *
  * Returns the longest possible array that is subarray of both of given arrays.
  *
- * @param {IArrayLike<S>} array1 First array of objects.
- * @param {IArrayLike<T>} array2 Second array of objects.
+ * @param {ArrayLike<S>} array1 First array of objects.
+ * @param {ArrayLike<T>} array2 Second array of objects.
  * @param {Function=} opt_compareFn Function that acts as a custom comparator
  *     for the array ojects. Function should return true if objects are equal,
  *     otherwise false.
@@ -118,7 +118,7 @@ export function log10Floor(num: number): number;
  *     length of the list.
  * @template S,T
  */
-export function longestCommonSubsequence<S, T>(array1: any, array2: any, opt_compareFn?: Function, opt_collectorFn?: Function): (S | T)[];
+export function longestCommonSubsequence<S, T>(array1: ArrayLike<S>, array2: ArrayLike<T>, opt_compareFn?: Function, opt_collectorFn?: Function): (S | T)[];
 /**
  * The % operator in JavaScript returns the remainder of a / b, but differs from
  * some other languages in that the result will have the same sign as the

@@ -170,12 +170,12 @@ export function buildFromEncodedParts(opt_scheme?: string, opt_userInfo?: string
  * Builds a query data string from a sequence of alternating keys and values.
  * Currently generates "&key&" for empty args.
  *
- * @param {!IArrayLike<string|QueryValue>} keysAndValues
+ * @param {!ArrayLike<string|QueryValue>} keysAndValues
  *     Alternating keys and values. See the QueryArray typedef.
  * @param {number=} opt_startIndex A start offset into the arary, defaults to 0.
  * @return {string} The encoded query string, in the form 'a=1&b=2'.
  */
-export function buildQueryData(keysAndValues: any, opt_startIndex?: number): string;
+export function buildQueryData(keysAndValues: ArrayLike<any>, opt_startIndex?: number): string;
 /**
  * Builds a query data string from a map.
  * Currently generates "&key&" for empty args.

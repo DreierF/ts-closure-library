@@ -145,9 +145,9 @@ export class ButtonSet extends UiMap<any, any> {
     getButton(key: string): Element;
     /**
      * Returns all the HTML Button elements in the button set container.
-     * @return {!IArrayLike<!Element>} A live NodeList of the buttons.
+     * @return {!ArrayLike<!Element>} A live NodeList of the buttons.
      */
-    getAllButtons(): any;
+    getAllButtons(): ArrayLike<Element>;
     /**
      * Enables or disables a button in this set by key. If the button is not found,
      * does nothing.

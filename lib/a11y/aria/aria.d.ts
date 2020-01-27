@@ -3,10 +3,10 @@
  * semantics is well supported by most screen readers.
  * Only to be used internally by the ARIA library in goog.a11y.aria.*.
  * @param {!Element} element The element to assert an ARIA role set.
- * @param {!IArrayLike<string>} allowedRoles The child roles of
+ * @param {!ArrayLike<string>} allowedRoles The child roles of
  * the roles.
  */
-export function assertRoleIsSetInternalUtil(element: Element, allowedRoles: any): void;
+export function assertRoleIsSetInternalUtil(element: Element, allowedRoles: ArrayLike<string>): void;
 /**
  * Returns the activedescendant element for the input element by
  * using the activedescendant ARIA property of the given element.
@@ -64,10 +64,10 @@ export function getStateString(element: Element, stateName: string): string;
  * Only to be used internally by the ARIA library in goog.a11y.aria.*.
  * @param {!Element} element DOM node to get state from.
  * @param {!State} stateName State name.
- * @return {!IArrayLike<string>} string Array
+ * @return {!ArrayLike<string>} string Array
  *     value of the state attribute.
  */
-export function getStringArrayStateInternalUtil(element: Element, stateName: string): any;
+export function getStringArrayStateInternalUtil(element: Element, stateName: string): ArrayLike<string>;
 /**
  * Returns true if element has an ARIA state/property, false otherwise.
  * @param {!Element} element The element to get the ARIA state for.

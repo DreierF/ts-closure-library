@@ -23,12 +23,12 @@ export function add(element: Element, className: string): void;
 /**
  * Convenience method to add a number of class names at once.
  * @param {?Element} element The element to which to add classes.
- * @param {IArrayLike<string>} classesToAdd An array-like object
+ * @param {ArrayLike<string>} classesToAdd An array-like object
  * containing a collection of class names to add to the element.
  * This method may throw a DOM exception if classesToAdd contains invalid
  * or empty class names.
  */
-export function addAll(element: Element, classesToAdd: any): void;
+export function addAll(element: Element, classesToAdd: ArrayLike<string>): void;
 /**
  * Adds and removes a class of an element.  Unlike
  * {@link swap}, this method adds the classToAdd regardless
@@ -63,18 +63,18 @@ export function enable(element: Element, className: string, enabled: boolean): v
  * method may throw a DOM exception for an invalid or empty class name if
  * DOMTokenList is used.
  * @param {!Element} element DOM node to add or remove the class on.
- * @param {?IArrayLike<string>} classesToEnable An array-like object
+ * @param {?ArrayLike<string>} classesToEnable An array-like object
  *     containing a collection of class names to add or remove from the element.
  * @param {boolean} enabled Whether to add or remove the classes (true adds,
  *     false removes).
  */
-export function enableAll(element: Element, classesToEnable: any, enabled: boolean): void;
+export function enableAll(element: Element, classesToEnable: ArrayLike<string>, enabled: boolean): void;
 /**
  * Gets an array-like object of class names on an element.
  * @param {?Element} element DOM node to get the classes of.
- * @return {!IArrayLike<?>} Class names on `element`.
+ * @return {!ArrayLike<?>} Class names on `element`.
  */
-export function get(element: Element): any;
+export function get(element: Element): ArrayLike<any>;
 /**
  * Removes a class from an element.  This method may throw a DOM exception
  * for an invalid or empty class name if DOMTokenList is used.
@@ -87,12 +87,12 @@ export function remove(element: Element, className: string): void;
  * repeatedly calling `remove` if you want to remove
  * a large set of class names at once.
  * @param {?Element} element The element from which to remove classes.
- * @param {IArrayLike<string>} classesToRemove An array-like object
+ * @param {ArrayLike<string>} classesToRemove An array-like object
  * containing a collection of class names to remove from the element.
  * This method may throw a DOM exception if classesToRemove contains invalid
  * or empty class names.
  */
-export function removeAll(element: Element, classesToRemove: any): void;
+export function removeAll(element: Element, classesToRemove: ArrayLike<string>): void;
 /**
  * Sets the entire class name of an element.
  * @param {?Element} element DOM node to set class of.

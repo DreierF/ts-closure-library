@@ -183,9 +183,9 @@ export class Component extends EventsEventTarget {
      * Returns an array of all the elements in this component's DOM with the
      * provided className.
      * @param {string} className The name of the class to look for.
-     * @return {!IArrayLike<!Element>} The items found with the class name provided.
+     * @return {!ArrayLike<!Element>} The items found with the class name provided.
      */
-    getElementsByClass(className: string): any;
+    getElementsByClass(className: string): ArrayLike<Element>;
     /**
      * Returns the first element in this component's DOM with the provided
      * className.
