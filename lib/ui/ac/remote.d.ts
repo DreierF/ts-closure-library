@@ -21,8 +21,9 @@ export class Remote extends AutoComplete {
      *     to false.
      * @param {boolean=} opt_useSimilar Whether to use similar matches; e.g.
      *     "gost" => "ghost".
+     * @param {RemoteArrayMatcher=} opt_matcher
      */
-    constructor(url: string, input: Element, opt_multi?: boolean, opt_useSimilar?: boolean);
+    constructor(url: string, input: Element, opt_multi?: boolean, opt_useSimilar?: boolean, opt_matcher?: RemoteArrayMatcher);
     matcher_: RemoteArrayMatcher;
     /**
      * Set whether or not standard highlighting should be used when rendering rows.

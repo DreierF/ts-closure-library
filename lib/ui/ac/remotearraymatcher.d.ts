@@ -7,7 +7,7 @@
  *     similarity matches for the input token against the dictionary.
  *     The value is sent to the server as the 'use_similar' query param which is
  *     either "1" (opt_noSimilar==false) or "0" (opt_noSimilar==true).
- *     XmlHttpFactory used to retrieve the matches.
+ * XmlHttpFactory used to retrieve the matches.
  * @extends {Disposable}
  */
 export class RemoteArrayMatcher extends Disposable {
@@ -19,10 +19,9 @@ export class RemoteArrayMatcher extends Disposable {
      *     similarity matches for the input token against the dictionary.
      *     The value is sent to the server as the 'use_similar' query param which is
      *     either "1" (opt_noSimilar==false) or "0" (opt_noSimilar==true).
-     * @param {NetXmlHttpFactory=} opt_xmlHttpFactory Specify the
-     *     XmlHttpFactory used to retrieve the matches.
+     * XmlHttpFactory used to retrieve the matches.
      */
-    constructor(url: string, opt_noSimilar?: boolean, opt_xmlHttpFactory?: NetXmlHttpFactory);
+    constructor(url: string, opt_noSimilar?: boolean);
     /**
      * The HTTP send method (GET, POST) to use when making the ajax call.
      * @type {string}
@@ -62,12 +61,12 @@ export class RemoteArrayMatcher extends Disposable {
      */
     useSimilar_: boolean;
     /**
-     * The XhrIo object used for making remote requests.  When a new request
+     * Used for making remote requests.  When a new request
      * is made, the current one is aborted and the new one sent.
-     * @type {?XhrIo}
+     * @type {!XMLHttpRequest}
      * @private
      */
-    xhr_: XhrIo | null;
+    xhr_: XMLHttpRequest;
     /**
      * Set the send method ("GET", "POST").
      * @param {string} method The send method; default: GET.
@@ -148,6 +147,4 @@ export class RemoteArrayMatcher extends Disposable {
 import { Disposable } from "../../disposable/disposable.js";
 import { Map as StructsMap } from "../../structs/map.js";
 import { Key } from "../../events/eventhandler.js";
-import { XhrIo } from "../../net/xhrio.js";
 import { Event as EventsEvent } from "../../events/event.js";
-import { XmlHttpFactory as NetXmlHttpFactory } from "../../net/xmlhttpfactory.js";
