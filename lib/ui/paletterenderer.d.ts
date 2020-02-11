@@ -107,6 +107,7 @@ export class PaletteRenderer extends ControlRenderer<UiPalette> {
     selectCell(palette: UiPalette, node: Node, select: boolean): void;
 }
 export namespace PaletteRenderer {
+    export const instance_: PaletteRenderer | null;
     export const cellId_: number;
     export const CSS_CLASS: string;
     export const GRID_WIDTH_ATTRIBUTE: string;

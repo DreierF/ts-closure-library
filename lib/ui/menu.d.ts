@@ -346,6 +346,7 @@ export class MenuRenderer extends ContainerRenderer {
     initializeDom(container: any): void;
 }
 export namespace MenuRenderer {
+    export const instance_: MenuRenderer | null;
     const CSS_CLASS_1: string;
     export { CSS_CLASS_1 as CSS_CLASS };
 }

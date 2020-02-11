@@ -52,6 +52,7 @@ export class TextareaRenderer extends ControlRenderer<UiTextarea> {
     setContent(element: any, value: any): void;
 }
 export namespace TextareaRenderer {
+    export const instance_: TextareaRenderer | null;
     export const CSS_CLASS: string;
 }
 import { Textarea as UiTextarea } from "./textarea.js";

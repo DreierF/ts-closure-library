@@ -981,6 +981,7 @@ export class ControlRenderer<CONTROL> {
     stateByClass_: Object | null;
 }
 export namespace ControlRenderer {
+    export const instance_: undefined | ControlRenderer;
     export const CSS_CLASS: string;
     export const IE6_CLASS_COMBINATIONS: Array<Array<string>>;
     export const ariaAttributeMap_: any;

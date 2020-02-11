@@ -8,6 +8,7 @@
 export class MenuSeparatorRenderer extends ControlRenderer<UiMenuSeparator> {
 }
 export namespace MenuSeparatorRenderer {
+    export const instance_: MenuSeparatorRenderer | null;
     export const CSS_CLASS: string;
 }
 import { MenuSeparator as UiMenuSeparator } from "./menuseparator.js";

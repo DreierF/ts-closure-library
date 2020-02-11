@@ -104,6 +104,7 @@ export class MenuItemRenderer extends ControlRenderer<UiMenuItem> {
     setEnableCheckBoxStructure(item: Control<any>, element: Element, enable: boolean): void;
 }
 export namespace MenuItemRenderer {
+    export const instance_: MenuItemRenderer | null;
     export const CSS_CLASS: string;
     export namespace CompositeCssClassIndex_ {
         export const HOVER: number;

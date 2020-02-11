@@ -621,6 +621,7 @@ export class ContainerRenderer {
     getDefaultOrientation(): string;
 }
 export namespace ContainerRenderer {
+    export const instance_: undefined | ContainerRenderer;
     export const CSS_CLASS: string;
 }
 export namespace EventType {
