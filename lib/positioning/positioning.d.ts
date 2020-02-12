@@ -188,7 +188,7 @@ export function positionAtAnchor(anchorElement: Element, anchorElementCorner: Co
  *     movableElement. Defaults to the current size.
  * @return {?OverflowStatus} Status bitmap.
  */
-export function positionAtCoordinate(absolutePos: Coordinate, movableElement: Element, movableElementCorner: Corner, opt_margin?: Box, opt_viewport?: Box, opt_overflow?: number, opt_preferredSize?: Size): {
+export function positionAtCoordinate(absolutePos: Coordinate, movableElement: Element, movableElementCorner: Corner, opt_margin?: Box, opt_viewport?: Box, opt_overflow?: number, opt_preferredSize?: Size): number|null {
     NONE: number;
     ADJUSTED_X: number;
     ADJUSTED_Y: number;

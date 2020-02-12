@@ -14,7 +14,7 @@ export class HTML5WebStorage extends IterableMechanism {
      *
      * @param {?Storage} storage The Web storage object.
      */
-    constructor(storage: Storage);
+    constructor(storage: Storage|null);
     /**
      * The web storage object (window.localStorage or window.sessionStorage).
      * @private {Storage}

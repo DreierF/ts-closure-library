@@ -1084,7 +1084,7 @@ export function hasListener(obj: EventTarget | Listenable, opt_type?: string | E
  * @template T,EVENTOBJ
  * @suppress{checkTypes}
  */
-export function listen<T, EVENTOBJ>(src: EventTarget | Listenable, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => any, opt_options?: boolean | AddEventListenerOptions, opt_handler?: T): number | ListenableKey;
+export function listen<T, EVENTOBJ>(src: EventTarget | Listenable, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => boolean|void, opt_options?: boolean | AddEventListenerOptions, opt_handler?: T): number | ListenableKey;
 /**
  * Adds an event listener for a specific event on a native event
  * target (such as a DOM element) or an object that has implemented
@@ -1111,7 +1111,7 @@ export function listen<T, EVENTOBJ>(src: EventTarget | Listenable, type: string 
  * @template T,EVENTOBJ
  * @suppress{checkTypes}
  */
-export function listenOnce<T, EVENTOBJ>(src: EventTarget | Listenable, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => any, opt_options?: boolean | AddEventListenerOptions, opt_handler?: T): number | ListenableKey;
+export function listenOnce<T, EVENTOBJ>(src: EventTarget | Listenable, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => boolean|void, opt_options?: boolean | AddEventListenerOptions, opt_handler?: T): number | ListenableKey;
 /**
  * Adds an event listener with a specific event wrapper on a DOM Node or an
  * object that has implemented {@link Listenable}. A listener can

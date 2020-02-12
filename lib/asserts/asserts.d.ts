@@ -224,7 +224,7 @@ export function assertString(value: any, opt_message?: string, ...args: any[]): 
  * @throws {AssertionError} Failure.
  * @closurePrimitive {asserts.fail}
  */
-export function fail(opt_message?: string, ...args: any[]): void;
+export function fail(opt_message?: string, ...args: any[]): never;
 /**
  * Sets a custom error handler that can be used to customize the behavior of
  * assertion failures, for example by turning all assertion failures into log
