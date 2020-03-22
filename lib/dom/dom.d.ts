@@ -155,7 +155,7 @@ export class DomHelper {
      * @template T
      * @template R := cond(isUnknown(T), 'Element', T) =:
      */
-    getElementsByTagName<T, R>(tagName: TagName<T>, opt_parent?: Element | Document): any;
+    getElementsByTagName<T>(tagName: TagName<T>, opt_parent?: Element | Document): NodeListOf<T>;
     /**
      * Looks up elements by both tag and class name, using browser native functions
      * (`querySelectorAll`, `getElementsByTagName` or
@@ -403,7 +403,7 @@ export class DomHelper {
      * @return {!(Array<!Element>|NodeList<!Element>)} An array or array-like list
      *     of just the element children of the given element.
      */
-    getChildren(element: Element): any;
+    getChildren(element: Element): ArrayLike<Element>;
     /**
      * Returns the first child node that is an element.
      * @param {?Node} node The node to get the first child element of.
@@ -970,7 +970,7 @@ export function getCanvasContext2D(canvas: HTMLCanvasElement | OffscreenCanvas):
  * @return {!(Array<!Element>|NodeList<!Element>)} An array or array-like list
  *     of just the element children of the given element.
  */
-export function getChildren(element: Element): any;
+export function getChildren(element: Element): ArrayLike<Element>;
 /**
  * Gets the document object being used by the dom library.
  * @return {!Document} Document object.
@@ -1058,7 +1058,7 @@ export function getElementsByClass(className: string, opt_el?: Element | Documen
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function getElementsByTagName<T, R>(tagName: TagName<T>, opt_parent?: Element | Document): any;
+export function getElementsByTagName<T>(tagName: TagName<T>, opt_parent?: Element | Document): NodeListOf<T>;
 /**
  * Looks up elements by both tag and class name, using browser native functions
  * (`querySelectorAll`, `getElementsByTagName` or
