@@ -40,7 +40,7 @@ export class Prompt extends Dialog {
      * @param {DomHelper=} opt_domHelper Optional DOM helper; see {@link
      *    Component} for semantics.
      */
-    constructor(promptTitle: string, promptBody: string | SafeHtml, callback: Function, opt_defaultValue?: string, opt_class?: string, opt_useIframeForIE?: boolean, opt_domHelper?: goog_dom.DomHelper);
+    constructor(promptTitle: string, promptBody: string | SafeHtml, callback: Function | null, opt_defaultValue?: string | undefined, opt_class?: string | undefined, opt_useIframeForIE?: boolean | undefined, opt_domHelper?: goog_dom.DomHelper | undefined);
     /**
      * Callback function which is invoked with the response to the prompt
      * @type {?Function}
@@ -110,7 +110,7 @@ export class Prompt extends Dialog {
      * @return {?HTMLInputElement|?HTMLTextAreaElement} The user input element. May
      *     be null if the Prompt has not been rendered.
      */
-    getInputElement(): HTMLInputElement | HTMLTextAreaElement;
+    getInputElement(): HTMLInputElement | HTMLTextAreaElement | null;
     /**
      * Sets an input decorator function.  This function will be called in
      * #enterDocument and will be passed the input element.  This is useful for
@@ -165,7 +165,7 @@ export class Prompt extends Dialog {
      * @param {?DialogEvent} e The dialog's selection event.
      * @private
      */
-    onPromptExit_(e: DialogEvent): void;
+    onPromptExit_(e: DialogEvent | null): void;
     actualEventTarget_: Prompt;
 }
 import { Dialog } from "./dialog.js";

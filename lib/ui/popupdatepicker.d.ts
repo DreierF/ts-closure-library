@@ -20,7 +20,7 @@ export class PopupDatePicker extends Component {
      *     enables the use of a custom date-picker instance.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(opt_datePicker?: Ui_DatePicker, opt_domHelper?: DomHelper);
+    constructor(opt_datePicker?: Ui_DatePicker | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * Instance of a date picker control.
      * @type {Ui_DatePicker?}
@@ -35,7 +35,7 @@ export class PopupDatePicker extends Component {
     popup_: UiPopup | null;
     /**
      * Reference to the element that triggered the last popup.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     lastTarget_: Element | null;
@@ -62,35 +62,35 @@ export class PopupDatePicker extends Component {
     /**
      * @return {?Ui_DatePicker} The date picker instance.
      */
-    getDatePicker(): Ui_DatePicker;
+    getDatePicker(): Ui_DatePicker | null;
     /**
      * @return {?UiPopup} The popup instance.
      */
-    getPopup(): UiPopup;
+    getPopup(): UiPopup | null;
     /**
      * @return {DateDate?} The selected date, if any.  See
      *     Ui_DatePicker.getDate().
      */
-    getDate(): DateDate;
+    getDate(): DateDate | null;
     /**
      * Sets the selected date.  See Ui_DatePicker.setDate().
      * @param {DateDate?} date The date to select.
      */
-    setDate(date: DateDate): void;
+    setDate(date: DateDate | null): void;
     /**
      * @return {?Element} The last element that triggered the popup.
      */
-    getLastTarget(): Element;
+    getLastTarget(): Element | null;
     /**
      * Attaches the popup date picker to an element.
      * @param {?Element} element The element to attach to.
      */
-    attach(element: Element): void;
+    attach(element: Element | null): void;
     /**
      * Detatches the popup date picker from an element.
      * @param {?Element} element The element to detach from.
      */
-    detach(element: Element): void;
+    detach(element: Element | null): void;
     /**
      * Sets whether the date picker can automatically move focus to its key event
      * target when it is set to visible.
@@ -120,13 +120,13 @@ export class PopupDatePicker extends Component {
      * @param {boolean=} opt_keepDate Whether to keep the date picker's current
      *     date. If false, the date is set to null. Defaults to false.
      */
-    showPopup(element: Element, opt_keepDate?: boolean): void;
+    showPopup(element: Element | null, opt_keepDate?: boolean | undefined): void;
     /**
      * Handles click events on the targets and shows the date picker.
      * @param {?EventsEvent} event The click event.
      * @private
      */
-    showPopup_(event: EventsEvent): void;
+    showPopup_(event: EventsEvent | null): void;
     /**
      * Hides this popup.
      */

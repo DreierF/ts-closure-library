@@ -14,7 +14,7 @@ export class ArrayMatcher {
      * @param {boolean=} opt_noSimilar if true, do not do similarity matches for the
      *     input token against the dictionary.
      */
-    constructor(rows: any[], opt_noSimilar?: boolean);
+    constructor(rows: any[], opt_noSimilar?: boolean | undefined);
     rows_: any[];
     useSimilar_: boolean;
     /**
@@ -29,7 +29,7 @@ export class ArrayMatcher {
      * @param {?Function} matchHandler callback to execute after matching.
      * @param {string=} opt_fullString The full string from the input box.
      */
-    requestMatchingRows(token: string, maxMatches: number, matchHandler: Function, opt_fullString?: string): void;
+    requestMatchingRows(token: string, maxMatches: number, matchHandler: Function | null, opt_fullString?: string | undefined): void;
     /**
      * Matches the token against the start of words in the row.
      * @param {string} token Token to match.

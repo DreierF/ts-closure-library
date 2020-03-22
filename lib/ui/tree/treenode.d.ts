@@ -30,11 +30,11 @@ export class BaseNode extends Component {
      *    default config will be used.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(content: string | SafeHtml, opt_config?: any, opt_domHelper?: DomHelper);
+    constructor(content: string | SafeHtml, opt_config?: any, opt_domHelper?: DomHelper | undefined);
     /**
      * @deprecated Use {@link #removeChild}.
      */
-    remove: (childNode: string | Component, opt_unrender?: boolean) => BaseNode;
+    remove: (childNode: string | Component, opt_unrender?: boolean | undefined) => BaseNode;
     /**
      * The configuration for the tree.
      * @type {?Object}
@@ -61,7 +61,7 @@ export class BaseNode extends Component {
      * Tooltip for the tree item
      * @private {?string}
      */
-    toolTip_: string;
+    toolTip_: string | null;
     /**
      * HTML that can appear after the label (so not inside the anchor).
      * @private {!SafeHtml}
@@ -102,7 +102,7 @@ export class BaseNode extends Component {
      *    end.
      * @return {!BaseNode} The added child.
      */
-    add(child: BaseNode, opt_before?: BaseNode): BaseNode;
+    add(child: BaseNode | null, opt_before?: BaseNode | undefined): BaseNode;
     /**
      * Removes a child. The caller is responsible for disposing the node.
      * @param {Component|string} childNode The child to remove. Must be a
@@ -111,7 +111,7 @@ export class BaseNode extends Component {
      * @return {!BaseNode} The child that was removed.
      * @override
      */
-    removeChild(childNode: string | Component, opt_unrender?: boolean): BaseNode;
+    removeChild(childNode: string | Component, opt_unrender?: boolean | undefined): BaseNode;
     /**
      * Handler for setting focus asynchronously.
      * @private
@@ -122,7 +122,7 @@ export class BaseNode extends Component {
      * @return {?TreeControl}
      * @abstract
      */
-    getTree(): TreeTreeControl;
+    getTree(): TreeTreeControl | null;
     /**
      * Returns the depth of the node in the tree. Should not be overridden.
      * @return {number} The non-negative depth of this node (the root is zero).
@@ -147,13 +147,13 @@ export class BaseNode extends Component {
      * @return {boolean} True if the node is a descendant of this node, false
      *    otherwise.
      */
-    contains(node: BaseNode): boolean;
+    contains(node: BaseNode | null): boolean;
     /**
      * @param {number} index 0-based index.
      * @return {?BaseNode} The child at the given index; null if none.
      * @override
      */
-    getChildAt(index: number): BaseNode;
+    getChildAt(index: number): BaseNode | null;
     /**
      * Returns the children of this node.
      * @return {!Array<!BaseNode>} The children.
@@ -162,19 +162,19 @@ export class BaseNode extends Component {
     /**
      * @return {?BaseNode} The first child of this node.
      */
-    getFirstChild(): BaseNode;
+    getFirstChild(): BaseNode | null;
     /**
      * @return {?BaseNode} The last child of this node.
      */
-    getLastChild(): BaseNode;
+    getLastChild(): BaseNode | null;
     /**
      * @return {?BaseNode} The previous sibling of this node.
      */
-    getPreviousSibling(): BaseNode;
+    getPreviousSibling(): BaseNode | null;
     /**
      * @return {?BaseNode} The next sibling of this node.
      */
-    getNextSibling(): BaseNode;
+    getNextSibling(): BaseNode | null;
     /**
      * @return {boolean} Whether the node is the last sibling.
      */
@@ -332,36 +332,36 @@ export class BaseNode extends Component {
      * @return {?Element} The row is the div that is used to draw the node without
      *     the children.
      */
-    getRowElement(): Element;
+    getRowElement(): Element | null;
     /**
      * @return {?Element} The expanded icon element.
      * @protected
      */
-    getExpandIconElement(): Element;
+    getExpandIconElement(): Element | null;
     /**
      * @return {?Element} The icon element.
      * @protected
      */
-    getIconElement(): Element;
+    getIconElement(): Element | null;
     /**
      * @return {?Element} The label element.
      */
-    getLabelElement(): Element;
+    getLabelElement(): Element | null;
     /**
      * @return {?Element} The element after the label.
      */
-    getAfterLabelElement(): Element;
+    getAfterLabelElement(): Element | null;
     /**
      * @return {?Element} The div containing the children.
      * @protected
      */
-    getChildrenElement(): Element;
+    getChildrenElement(): Element | null;
     /**
      * Sets the icon class for the node.
      * @param {string} s The icon class.
      */
     setIconClass(s: string): void;
-    iconClass_: string;
+    iconClass_: string | undefined;
     /**
      * Gets the icon class for the node.
      * @return {string} s The icon source.
@@ -372,7 +372,7 @@ export class BaseNode extends Component {
      * @param {string} s The expanded icon class.
      */
     setExpandedIconClass(s: string): void;
-    expandedIconClass_: string;
+    expandedIconClass_: string | undefined;
     /**
      * Gets the icon class for when the node is expanded.
      * @return {string} The class.
@@ -414,7 +414,7 @@ export class BaseNode extends Component {
      * Returns the text of the tooltip.
      * @return {?string} The tooltip text.
      */
-    getToolTip(): string;
+    getToolTip(): string | null;
     /**
      * Updates the row styles.
      */
@@ -459,20 +459,20 @@ export class BaseNode extends Component {
      * @override
      * @return {?BaseNode}
      */
-    getParent(): BaseNode;
+    getParent(): BaseNode | null;
     /**
      * @return {?BaseNode} The last shown descendant.
      */
-    getLastShownDescendant(): BaseNode;
+    getLastShownDescendant(): BaseNode | null;
     /**
      * @return {?BaseNode} The next node to show or null if there isn't
      *     a next node to show.
      */
-    getNextShownNode(): BaseNode;
+    getNextShownNode(): BaseNode | null;
     /**
      * @return {?BaseNode} The previous node to show.
      */
-    getPreviousShownNode(): BaseNode;
+    getPreviousShownNode(): BaseNode | null;
     /**
      * @return {*} Data set by the client.
      * @deprecated Use {@link #getModel} instead.
@@ -492,7 +492,7 @@ export class BaseNode extends Component {
      * Internal method that is used to set the tree control on the node.
      * @param {?TreeControl} tree The tree control.
      */
-    setTreeInternal(tree: TreeTreeControl): void;
+    setTreeInternal(tree: TreeTreeControl | null): void;
     actualEventTarget_: BaseNode;
 }
 export namespace BaseNode {
@@ -556,7 +556,7 @@ export class TreeNode extends BaseNode {
      *    will be used.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(content: string | SafeHtml, opt_config?: any, opt_domHelper?: DomHelper);
+    constructor(content: string | SafeHtml, opt_config?: any, opt_domHelper?: DomHelper | undefined);
 }
 import { Component } from "../component.js";
 import { SafeHtml } from "../../html/safehtml.js";

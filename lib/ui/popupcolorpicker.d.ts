@@ -19,7 +19,7 @@ export class PopupColorPicker extends Component {
      * @param {ColorPicker=} opt_colorPicker Optional color picker to use
      *     for this popup.
      */
-    constructor(opt_domHelper?: DomHelper, opt_colorPicker?: ColorPicker);
+    constructor(opt_domHelper?: DomHelper | undefined, opt_colorPicker?: ColorPicker | undefined);
     /**
      * Whether the color picker is initialized.
      * @type {boolean}
@@ -52,7 +52,7 @@ export class PopupColorPicker extends Component {
     popupCorner_: Corner | null;
     /**
      * Reference to the element that triggered the last popup.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     lastTarget_: Element | null;
@@ -90,7 +90,7 @@ export class PopupColorPicker extends Component {
     /**
      * @return {?ColorPicker} The color picker instance.
      */
-    getColorPicker(): ColorPicker;
+    getColorPicker(): ColorPicker | null;
     /**
      * Returns whether the Popup dismisses itself when the user clicks outside of
      * it.
@@ -112,7 +112,7 @@ export class PopupColorPicker extends Component {
      * @return {?Element} The DOM element for autohide, or null if it hasn't been
      *     set.
      */
-    getAutoHideRegion(): Element;
+    getAutoHideRegion(): Element | null;
     /**
      * Sets the region inside which the Popup dismisses itself when the user
      * clicks - must be called after the Popup has been created (in createDom()),
@@ -120,7 +120,7 @@ export class PopupColorPicker extends Component {
      *
      * @param {?Element} element The DOM element for autohide.
      */
-    setAutoHideRegion(element: Element): void;
+    setAutoHideRegion(element: Element | null): void;
     /**
      * Returns the {@link PopupBase} from this picker. Returns null if the
      * popup has not yet been created.
@@ -130,27 +130,27 @@ export class PopupColorPicker extends Component {
      *
      * @return {PopupBase?} The popup or null if it hasn't been created.
      */
-    getPopup(): PopupBase;
+    getPopup(): PopupBase | null;
     /**
      * @return {?Element} The last element that triggered the popup.
      */
-    getLastTarget(): Element;
+    getLastTarget(): Element | null;
     /**
      * Attaches the popup color picker to an element.
      * @param {?Element} element The element to attach to.
      */
-    attach(element: Element): void;
+    attach(element: Element | null): void;
     /**
      * Detatches the popup color picker from an element.
      * @param {?Element} element The element to detach from.
      */
-    detach(element: Element): void;
+    detach(element: Element | null): void;
     /**
      * Gets the color that is currently selected in this color picker.
      * @return {?string} The hex string of the color selected, or null if no
      *     color is selected.
      */
-    getSelectedColor(): string;
+    getSelectedColor(): string | null;
     /**
      * Sets whether the color picker can accept focus.
      * @param {boolean} focusable True iff the color picker can accept focus.
@@ -203,13 +203,13 @@ export class PopupColorPicker extends Component {
      * @param {?Corner} corner The corner of the popup which is
      *     pinned to the attaching element.
      */
-    setPinnedCorner(corner: Corner): void;
+    setPinnedCorner(corner: Corner | null): void;
     /**
      * Sets which corner of the attaching element this popup shows up.
      * @param {?Corner} corner The corner of the attaching element
      *     where to show the popup.
      */
-    setPopupCorner(corner: Corner): void;
+    setPopupCorner(corner: Corner | null): void;
     /**
      * Sets whether the popup shows up on hover. By default, appears on click.
      * @param {boolean} showOnHover True if popup should appear on hover.
@@ -220,13 +220,13 @@ export class PopupColorPicker extends Component {
      * @param {?EventsBrowserEvent} e The browser event.
      * @private
      */
-    show_(e: EventsBrowserEvent): void;
+    show_(e: EventsBrowserEvent | null): void;
     /**
      * Handles the color change event.
      * @param {?EventsEvent} e The event.
      * @private
      */
-    onColorPicked_(e: EventsEvent): void;
+    onColorPicked_(e: EventsEvent | null): void;
     actualEventTarget_: PopupColorPicker;
 }
 import { Component } from "./component.js";

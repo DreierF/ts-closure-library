@@ -42,7 +42,7 @@ export class Component extends EventsEventTarget {
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      * @suppress {underscore}
      */
-    constructor(opt_domHelper?: goog_dom.DomHelper);
+    constructor(opt_domHelper?: goog_dom.DomHelper | undefined);
     /**
      * Generator for unique IDs.
      * @type {?IdGenerator}
@@ -62,14 +62,14 @@ export class Component extends EventsEventTarget {
      * been set by calling {@link #setRightToLeft} explicitly.
      * @private {?boolean}
      */
-    rightToLeft_: boolean;
+    rightToLeft_: boolean | null;
     /**
      * Unique ID of the component, lazily initialized in {@link
      * Component#getId} if needed.  This property is strictly private and
      * must not be accessed directly outside of this class!
      * @private {?string}
      */
-    id_: string;
+    id_: string | null;
     /**
      * Whether the component is in the document.
      * @private {boolean}
@@ -77,7 +77,7 @@ export class Component extends EventsEventTarget {
     inDocument_: boolean;
     /**
      * The DOM element for the component.
-     * @private {?Element}
+     * @private {Element|null}
      */
     element_: any;
     /**
@@ -98,14 +98,14 @@ export class Component extends EventsEventTarget {
      * strictly private and must not be accessed directly outside of this class!
      * @private {Component?}
      */
-    parent_: Component;
+    parent_: any;
     /**
      * Array of child components.  Lazily initialized on first use.  Must be kept
      * in sync with `childIndex_`.  This property is strictly private and
      * must not be accessed directly outside of this class!
      * @private {?Array<?Component>}
      */
-    children_: any[];
+    children_: any[] | null;
     /**
      * Map of child component IDs to child components.  Used for constant-time
      * random access to child components by ID.  Lazily initialized on first use.
@@ -119,7 +119,7 @@ export class Component extends EventsEventTarget {
      *
      * @private {?Object}
      */
-    childIndex_: {};
+    childIndex_: {} | null;
     /**
      * Flag used to keep track of whether a component decorated an already
      * existing element or whether it created the DOM itself.
@@ -157,7 +157,7 @@ export class Component extends EventsEventTarget {
      * Gets the component's element.
      * @return {?Element} The element for the component.
      */
-    getElement(): Element;
+    getElement(): Element | null;
     /**
      * Gets the component's element. This differs from getElement in that
      * it assumes that the element exists (i.e. the component has been
@@ -178,7 +178,7 @@ export class Component extends EventsEventTarget {
      *
      * @param {?Element} element Root element for the component.
      */
-    setElementInternal(element: Element): void;
+    setElementInternal(element: Element | null): void;
     /**
      * Returns an array of all the elements in this component's DOM with the
      * provided className.
@@ -192,7 +192,7 @@ export class Component extends EventsEventTarget {
      * @param {string} className The name of the class to look for.
      * @return {?Element} The first item with the class name provided.
      */
-    getElementByClass(className: string): Element;
+    getElementByClass(className: string): Element | null;
     /**
      * Similar to `getElementByClass` except that it expects the
      * element to be present in the dom thus returning a required value. Otherwise,
@@ -220,12 +220,12 @@ export class Component extends EventsEventTarget {
      * @see Component#removeChildAt
      * @param {?Component} parent The parent component.
      */
-    setParent(parent: Component): void;
+    setParent(parent: Component | null): void;
     /**
      * Returns the component's parent, if any.
      * @return {?Component} The parent component.
      */
-    getParent(): Component;
+    getParent(): Component | null;
     /**
      * Overrides {@link EventsEventTarget#setParentEventTarget} to throw an
      * error if the parent component is set, and the argument is not the parent.
@@ -262,7 +262,7 @@ export class Component extends EventsEventTarget {
      * @param {Element=} opt_parentElement Optional parent element to render the
      *    component into.
      */
-    render(opt_parentElement?: Element): void;
+    render(opt_parentElement?: Element | undefined): void;
     /**
      * Renders the component before another element. The other element should be in
      * the document already.
@@ -271,7 +271,7 @@ export class Component extends EventsEventTarget {
      *
      * @param {?Node} sibling Node to render the component before.
      */
-    renderBefore(sibling: Node): void;
+    renderBefore(sibling: Node | null): void;
     /**
      * Renders the component.  If a parent element is supplied, the component's
      * element will be appended to it.  If there is no optional parent element and
@@ -290,7 +290,7 @@ export class Component extends EventsEventTarget {
      *    be rendered.  If left out the node is appended to the parent element.
      * @private
      */
-    render_(opt_parentElement?: Element, opt_beforeNode?: Node): void;
+    render_(opt_parentElement?: Element | undefined, opt_beforeNode?: Node | undefined): void;
     /**
      * Decorates the element for the UI component. If the element is in the
      * document, the enterDocument method will be called.
@@ -300,14 +300,14 @@ export class Component extends EventsEventTarget {
      *
      * @param {?Element} element Element to decorate.
      */
-    decorate(element: Element): void;
+    decorate(element: Element | null): void;
     /**
      * Determines if a given element can be decorated by this type of component.
      * This method should be overridden by inheriting objects.
      * @param {?Element} element Element to decorate.
      * @return {boolean} True if the element can be decorated, false otherwise.
      */
-    canDecorate(element: Element): boolean;
+    canDecorate(element: Element | null): boolean;
     /**
      * @return {boolean} Whether the component was decorated.
      */
@@ -320,7 +320,7 @@ export class Component extends EventsEventTarget {
      * @param {?Element} element Element to decorate.
      * @protected
      */
-    decorateInternal(element: Element): void;
+    decorateInternal(element: Element | null): void;
     /**
      * Called when the component's element is known to be in the document. Anything
      * using document.getElementById etc. should be done at this stage.
@@ -383,7 +383,7 @@ export class Component extends EventsEventTarget {
      * @return {?Element} The element with the unique id, or null if it cannot be
      *     found.
      */
-    getElementByFragment(idFragment: string): Element;
+    getElementByFragment(idFragment: string): Element | null;
     /**
      * Adds the specified component as the last child of this component.  See
      * {@link Component#addChildAt} for detailed semantics.
@@ -393,7 +393,7 @@ export class Component extends EventsEventTarget {
      * @param {boolean=} opt_render If true, the child component will be rendered
      *    into the parent.
      */
-    addChild(child: Component, opt_render?: boolean): void;
+    addChild(child: Component | null, opt_render?: boolean | undefined): void;
     /**
      * Adds the specified component as a child of this component at the given
      * 0-based index.
@@ -438,7 +438,7 @@ export class Component extends EventsEventTarget {
      *    into the parent.
      * @return {void} Nada.
      */
-    addChildAt(child: Component, index: number, opt_render?: boolean): void;
+    addChildAt(child: Component | null, index: number, opt_render?: boolean | undefined): void;
     /**
      * Returns the DOM element into which child components are to be rendered,
      * or null if the component itself hasn't been rendered yet.  This default
@@ -446,7 +446,7 @@ export class Component extends EventsEventTarget {
      * complex DOM structures must override this method.
      * @return {?Element} Element to contain child elements (null if none).
      */
-    getContentElement(): Element;
+    getContentElement(): Element | null;
     /**
      * Returns true if the component is rendered right-to-left, false otherwise.
      * The first time this function is invoked, the right-to-left rendering property
@@ -483,13 +483,13 @@ export class Component extends EventsEventTarget {
      * @param {string} id Child component ID.
      * @return {?Component} The child with the given ID; null if none.
      */
-    getChild(id: string): Component;
+    getChild(id: string): Component | null;
     /**
      * Returns the child at the given index, or null if the index is out of bounds.
      * @param {number} index 0-based index.
      * @return {?Component} The child at the given index; null if none.
      */
-    getChildAt(index: number): Component;
+    getChildAt(index: number): Component | null;
     /**
      * Calls the given function on each of this component's children in order.  If
      * `opt_obj` is provided, it will be used as the 'this' object in the
@@ -500,14 +500,14 @@ export class Component extends EventsEventTarget {
      * @param {T=} opt_obj Used as the 'this' object in f when called.
      * @template T
      */
-    forEachChild<T>(f: (this: T, arg1: any, arg2: number) => any, opt_obj?: T): void;
+    forEachChild<T>(f: (this: T, arg1: any, arg2: number) => any, opt_obj?: T | undefined): void;
     /**
      * Returns the 0-based index of the given child component, or -1 if no such
      * child is found.
      * @param {?Component} child The child component.
      * @return {number} 0-based index of the child component; -1 if not found.
      */
-    indexOfChild(child: Component): number;
+    indexOfChild(child: Component | null): number;
     /**
      * Removes the given child from this component, and returns it.  Throws an error
      * if the argument is invalid or if the specified child isn't found in the
@@ -526,7 +526,7 @@ export class Component extends EventsEventTarget {
      *    removed child component, and detaches its DOM from the document.
      * @return {?Component} The removed component, if any.
      */
-    removeChild(child: string | Component, opt_unrender?: boolean): Component;
+    removeChild(child: string | Component | null, opt_unrender?: boolean | undefined): Component | null;
     /**
      * Removes the child at the given index from this component, and returns it.
      * Throws an error if the argument is out of bounds, or if the specified child
@@ -539,7 +539,7 @@ export class Component extends EventsEventTarget {
      *    removed child component, and detaches its DOM from the document.
      * @return {?Component} The removed component, if any.
      */
-    removeChildAt(index: number, opt_unrender?: boolean): Component;
+    removeChildAt(index: number, opt_unrender?: boolean | undefined): Component | null;
     /**
      * Removes every child component attached to this one and returns them.
      *
@@ -548,7 +548,7 @@ export class Component extends EventsEventTarget {
      *    removed child components, and detaches their DOM from the document.
      * @return {!Array<Component>} The removed components if any.
      */
-    removeChildren(opt_unrender?: boolean): Component[];
+    removeChildren(opt_unrender?: boolean | undefined): Component[];
     /**
      * Returns whether this component should listen for PointerEvent types rather
      * than MouseEvent types. This allows supporting drag gestures for touch/stylus

@@ -4,7 +4,7 @@
  * @return {number} The position where the selection ends or 0 if it was
  *     unable to find the position or no selection exists.
  */
-export function getEnd(textfield: Element): number;
+export function getEnd(textfield: Element | null): number;
 /**
  * Returns the start and end points of the selection inside a textarea or a
  * text input.
@@ -15,7 +15,7 @@ export function getEnd(textfield: Element): number;
  *     difference between an element that has no selection and one where
  *     it starts and ends at 0.
  */
-export function getEndPoints(textfield: Element): number[];
+export function getEndPoints(textfield: Element | null): number[];
 /**
  * Return the place where the selection starts inside a textarea or a text
  * input
@@ -25,26 +25,26 @@ export function getEndPoints(textfield: Element): number[];
  *     reliably tell the difference between an element that has no selection and
  *     one where it starts at 0.
  */
-export function getStart(textfield: Element): number;
+export function getStart(textfield: Element | null): number;
 /**
  * Returns the selected text inside a textarea or a text input
  * @param {?Element} textfield A textarea or text input.
  * @return {string} The selected text.
  */
-export function getText(textfield: Element): string;
+export function getText(textfield: Element | null): string;
 /**
  * Sets the cursor position within a textfield.
  * @param {?Element} textfield A textarea or text input.
  * @param {number} pos The position within the text field.
  */
-export function setCursorPosition(textfield: Element, pos: number): void;
+export function setCursorPosition(textfield: Element | null, pos: number): void;
 /**
  * Sets the place where the selection should end inside a text area or a text
  * input
  * @param {?Element} textfield A textarea or text input.
  * @param {number} pos The position to end the selection at.
  */
-export function setEnd(textfield: Element, pos: number): void;
+export function setEnd(textfield: Element | null, pos: number): void;
 /**
  * @fileoverview Utilities for working with selections in input boxes and text
  * areas.
@@ -57,10 +57,10 @@ export function setEnd(textfield: Element, pos: number): void;
  * @param {?Element} textfield A textarea or text input.
  * @param {number} pos The position to set the start of the selection at.
  */
-export function setStart(textfield: Element, pos: number): void;
+export function setStart(textfield: Element | null, pos: number): void;
 /**
  * Sets the selected text inside a textarea or a text input
  * @param {?Element} textfield A textarea or text input.
  * @param {string} text The text to change the selection to.
  */
-export function setText(textfield: Element, text: string): void;
+export function setText(textfield: Element | null, text: string): void;

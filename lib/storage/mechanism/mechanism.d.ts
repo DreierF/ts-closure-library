@@ -24,7 +24,7 @@ export class Mechanism {
      * @return {?string} The corresponding value, null if not found.
      * @abstract
      */
-    get(key: string): string;
+    get(key: string): string | null;
     /**
      * Remove a key and its value.
      *

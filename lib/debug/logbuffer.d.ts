@@ -40,7 +40,7 @@ export class LogBuffer {
      * @param {string} loggerName The name of the source logger.
      * @return {!DebugLogRecord} The log record.
      */
-    addRecord(level: Level, msg: string, loggerName: string): DebugLogRecord;
+    addRecord(level: Level | null, msg: string, loggerName: string): DebugLogRecord;
     /**
      * Removes all buffered log records.
      */

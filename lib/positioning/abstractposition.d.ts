@@ -16,7 +16,7 @@ export class AbstractPosition {
      * @param {Size=} opt_preferredSize PreferredSize of the
      *     movableElement.
      */
-    reposition(movableElement: Element, corner: Corner, opt_margin?: Box, opt_preferredSize?: Size): void;
+    reposition(movableElement: Element | null, corner: Corner | null, opt_margin?: Box | undefined, opt_preferredSize?: Size | undefined): void;
 }
 import { Corner } from "./positioning.js";
 import { Box } from "../math/box.js";

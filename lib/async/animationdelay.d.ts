@@ -43,7 +43,7 @@ export class AnimationDelay<THIS> extends Disposable {
      * @param {THIS=} opt_handler The object scope to invoke the function in.
      * @template THIS
      */
-    constructor(listener: (this: THIS, arg1: number) => any, opt_window?: Window, opt_handler?: THIS);
+    constructor(listener: (this: THIS, arg1: number) => any, opt_window?: Window | undefined, opt_handler?: THIS | undefined);
     /**
      * Identifier of the active delay timeout, or event listener,
      * or null when inactive.
@@ -66,7 +66,7 @@ export class AnimationDelay<THIS> extends Disposable {
      * @const
      * @private {(THIS|undefined)}
      */
-    handler_: THIS;
+    handler_: THIS | undefined;
     /**
      * @private {Window}
      */
@@ -114,13 +114,13 @@ export class AnimationDelay<THIS> extends Disposable {
      *     function, or null if not available on this browser.
      * @private
      */
-    getRaf_(): (arg0: (arg0: number) => any) => number;
+    getRaf_(): ((arg0: (arg0: number) => any) => number) | null;
     /**
      * @return {?function(number): undefined} The cancelAnimationFrame function,
      *     or null if not available on this browser.
      * @private
      */
-    getCancelRaf_(): (arg0: number) => undefined;
+    getCancelRaf_(): ((arg0: number) => undefined) | null;
 }
 export namespace AnimationDelay {
     export const TIMEOUT: number;

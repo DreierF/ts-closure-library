@@ -49,7 +49,7 @@ export class FocusHandler extends events.EventTarget {
      * This handles the underlying events and dispatches a new event.
      * @param {?EventsBrowserEvent} e  The underlying browser event.
      */
-    handleEvent(e: EventsBrowserEvent): void;
+    handleEvent(e: EventsBrowserEvent | null): void;
     actualEventTarget_: FocusHandler;
 }
 import * as events from "./eventhandler.js";

@@ -12,7 +12,7 @@ export const ASSUME_NATIVE_PROMISE: boolean;
  *     the provided function.
  * @template THIS
  */
-export function run<THIS>(callback: (this: THIS) => any, opt_context?: THIS): void;
+export function run<THIS>(callback: (this: THIS) => any, opt_context?: THIS | undefined): void;
 export namespace run {
     export const workQueueScheduled_: boolean;
     export const workQueue_: WorkQueue;

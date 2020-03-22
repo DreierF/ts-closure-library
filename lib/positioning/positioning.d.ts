@@ -47,19 +47,19 @@ export namespace OverflowStatus {
  * @return {?Corner} The opposite corner horizontally and
  *     vertically.
  */
-export function flipCorner(corner: Corner): Corner;
+export function flipCorner(corner: Corner | null): Corner | null;
 /**
  * Returns the corner opposite the given one horizontally.
  * @param {?Corner} corner The popup corner used to flip.
  * @return {?Corner} The opposite corner horizontally.
  */
-export function flipCornerHorizontal(corner: Corner): Corner;
+export function flipCornerHorizontal(corner: Corner | null): Corner | null;
 /**
  * Returns the corner opposite the given one vertically.
  * @param {?Corner} corner The popup corner used to flip.
  * @return {?Corner} The opposite corner vertically.
  */
-export function flipCornerVertical(corner: Corner): Corner;
+export function flipCornerVertical(corner: Corner | null): Corner | null;
 /**
  * Returns an absolute corner (top/bottom left/right) given an absolute
  * or relative (top/bottom start/end) corner and the direction of an element.
@@ -69,7 +69,7 @@ export function flipCornerVertical(corner: Corner): Corner;
  *     positioning.
  * @return {?Corner} Effective corner.
  */
-export function getEffectiveCorner(element: Element, corner: Corner): Corner;
+export function getEffectiveCorner(element: Element | null, corner: Corner | null): Corner | null;
 /**
  * Calculates the page offset of the given element's
  * offsetParent. This value can be used to translate any x- and
@@ -103,7 +103,7 @@ export function getOffsetParentPageOffset(movableElement: Element): Coordinate;
  * @return {{rect:!Rect, status:OverflowStatus}}
  *     Object containing the computed position and status bitmap.
  */
-export function getPositionAtCoordinate(absolutePos: Coordinate, elementSize: Size, elementCorner: Corner, opt_margin?: Box, opt_viewport?: Box, opt_overflow?: number): {
+export function getPositionAtCoordinate(absolutePos: Coordinate, elementSize: Size, elementCorner: Corner | null, opt_margin?: Box | undefined, opt_viewport?: Box | undefined, opt_overflow?: number | null | undefined): {
     rect: Rect;
     status: {
         NONE: number;
@@ -154,7 +154,7 @@ export function getPositionAtCoordinate(absolutePos: Coordinate, elementSize: Si
  * @return {?OverflowStatus} Status bitmap,
  *     {@see OverflowStatus}.
  */
-export function positionAtAnchor(anchorElement: Element, anchorElementCorner: Corner, movableElement: Element, movableElementCorner: Corner, opt_offset?: Coordinate, opt_margin?: Box, opt_overflow?: number, opt_preferredSize?: Size, opt_viewport?: Box): {
+export function positionAtAnchor(anchorElement: Element | null, anchorElementCorner: Corner | null, movableElement: Element | null, movableElementCorner: Corner | null, opt_offset?: Coordinate | undefined, opt_margin?: Box | undefined, opt_overflow?: number | null | undefined, opt_preferredSize?: Size | undefined, opt_viewport?: Box | undefined): {
     NONE: number;
     ADJUSTED_X: number;
     ADJUSTED_Y: number;
@@ -165,7 +165,7 @@ export function positionAtAnchor(anchorElement: Element, anchorElementCorner: Co
     FAILED_TOP: number;
     FAILED_BOTTOM: number;
     FAILED_OUTSIDE_VIEWPORT: number;
-};
+} | null;
 /**
  * Positions the specified corner of the movable element at the
  * specified coordinate.
@@ -188,7 +188,7 @@ export function positionAtAnchor(anchorElement: Element, anchorElementCorner: Co
  *     movableElement. Defaults to the current size.
  * @return {?OverflowStatus} Status bitmap.
  */
-export function positionAtCoordinate(absolutePos: Coordinate, movableElement: Element, movableElementCorner: Corner, opt_margin?: Box, opt_viewport?: Box, opt_overflow?: number, opt_preferredSize?: Size): number|null {
+export function positionAtCoordinate(absolutePos: Coordinate | null, movableElement: Element | null, movableElementCorner: Corner | null, opt_margin?: Box | undefined, opt_viewport?: Box | undefined, opt_overflow?: number | null | undefined, opt_preferredSize?: Size | undefined): {
     NONE: number;
     ADJUSTED_X: number;
     ADJUSTED_Y: number;
@@ -199,7 +199,7 @@ export function positionAtCoordinate(absolutePos: Coordinate, movableElement: El
     FAILED_TOP: number;
     FAILED_BOTTOM: number;
     FAILED_OUTSIDE_VIEWPORT: number;
-};
+} | null;
 import { Coordinate } from "../math/coordinate.js";
 import { Size } from "../math/size.js";
 import { Box } from "../math/box.js";

@@ -31,7 +31,7 @@
  * @return {!SafeHtml} The value of html, wrapped in a SafeHtml
  *     object.
  */
-export function safeHtmlFromStringKnownToSatisfyTypeContract(justification: Const, html: string, opt_dir?: number): SafeHtml;
+export function safeHtmlFromStringKnownToSatisfyTypeContract(justification: Const, html: string, opt_dir?: number | null | undefined): SafeHtml;
 /**
  * Performs an "unchecked conversion" to SafeScript from a plain string that is
  * known to satisfy the SafeScript type contract.

@@ -107,7 +107,7 @@ export class BidiFormatter {
      *     matches the context, so that the DOM structure of the output does not
      *     depend on the combination of directionalities. Default: false.
      */
-    constructor(contextDir: number | boolean, opt_alwaysSpan?: boolean);
+    constructor(contextDir: number | boolean | null, opt_alwaysSpan?: boolean | undefined);
     /**
      * The overall directionality of the context in which the formatter is being
      * used.
@@ -126,7 +126,7 @@ export class BidiFormatter {
     /**
      * @return {?Dir} The context directionality.
      */
-    getContextDir(): number;
+    getContextDir(): number | null;
     /**
      * @return {boolean} Whether alwaysSpan is set.
      */
@@ -140,7 +140,7 @@ export class BidiFormatter {
      *     3. A boolean (true = RTL, false = LTR).
      *     4. A null for unknown directionality.
      */
-    setContextDir(contextDir: number | boolean): void;
+    setContextDir(contextDir: number | boolean | null): void;
     /**
      * @param {boolean} alwaysSpan Whether {@link #spanWrap} should always use a
      *     'span' tag, even when the input directionality is neutral or matches the
@@ -157,7 +157,7 @@ export class BidiFormatter {
      *     Default: false.
      * @return {?Dir} Estimated overall directionality of `str`.
      */
-    estimateDirection(str: string, opt_isHtml?: boolean): number;
+    estimateDirection(str: string, opt_isHtml?: boolean | undefined): number | null;
     /**
      * Returns true if two given directionalities are opposite.
      * Note: the implementation is based on the numeric values of the Dir enum.
@@ -167,7 +167,7 @@ export class BidiFormatter {
      * @return {boolean} Whether the directionalities are opposite.
      * @private
      */
-    areDirectionalitiesOpposite_(dir1: number, dir2: number): boolean;
+    areDirectionalitiesOpposite_(dir1: number | null, dir2: number | null): boolean;
     /**
      * Returns a unicode BiDi mark matching the context directionality (LRM or
      * RLM) if `opt_dirReset`, and if either the directionality or the exit
@@ -182,7 +182,7 @@ export class BidiFormatter {
      * @return {string} A unicode BiDi mark or the empty string.
      * @private
      */
-    dirResetIfNeeded_(str: string, dir: number, opt_isHtml?: boolean, opt_dirReset?: boolean): string;
+    dirResetIfNeeded_(str: string, dir: number | null, opt_isHtml?: boolean | undefined, opt_dirReset?: boolean | undefined): string;
     /**
      * Returns "rtl" if `str`'s estimated directionality is RTL, and "ltr" if
      * it is LTR. In case it's NEUTRAL, returns "rtl" if the context directionality
@@ -198,7 +198,7 @@ export class BidiFormatter {
      *     Default: false.
      * @return {string} "rtl" or "ltr", according to the logic described above.
      */
-    dirAttrValue(str: string, opt_isHtml?: boolean): string;
+    dirAttrValue(str: string, opt_isHtml?: boolean | undefined): string;
     /**
      * Returns "rtl" if the given directionality is RTL, and "ltr" if it is LTR. In
      * case it's NEUTRAL, returns "rtl" if the context directionality is RTL, and
@@ -207,7 +207,7 @@ export class BidiFormatter {
      * @param {?Dir} dir A directionality.
      * @return {string} "rtl" or "ltr", according to the logic described above.
      */
-    knownDirAttrValue(dir: number): string;
+    knownDirAttrValue(dir: number | null): string;
     /**
      * Returns 'dir="ltr"' or 'dir="rtl"', depending on `str`'s estimated
      * directionality, if it is not the same as the context directionality.
@@ -219,7 +219,7 @@ export class BidiFormatter {
      * @return {string} 'dir="rtl"' for RTL text in non-RTL context; 'dir="ltr"' for
      *     LTR text in non-LTR context; else, the empty string.
      */
-    dirAttr(str: string, opt_isHtml?: boolean): string;
+    dirAttr(str: string, opt_isHtml?: boolean | undefined): string;
     /**
      * Returns 'dir="ltr"' or 'dir="rtl"', depending on the given directionality, if
      * it is not the same as the context directionality. Otherwise, returns the
@@ -229,7 +229,7 @@ export class BidiFormatter {
      * @return {string} 'dir="rtl"' for RTL text in non-RTL context; 'dir="ltr"' for
      *     LTR text in non-LTR context; else, the empty string.
      */
-    knownDirAttr(dir: number): string;
+    knownDirAttr(dir: number | null): string;
     /**
      * Formats a string of unknown directionality for use in HTML output of the
      * context directionality, so an opposite-directionality string is neither
@@ -251,7 +251,7 @@ export class BidiFormatter {
      *     garbling of whatever may follow `html`. Default: true.
      * @return {!SafeHtml} Input text after applying the processing.
      */
-    spanWrapSafeHtml(html: SafeHtml, opt_dirReset?: boolean): SafeHtml;
+    spanWrapSafeHtml(html: SafeHtml, opt_dirReset?: boolean | undefined): SafeHtml;
     /**
      * Formats a string of given directionality for use in HTML output of the
      * context directionality, so an opposite-directionality string is neither
@@ -273,7 +273,7 @@ export class BidiFormatter {
      *     garbling of whatever may follow `html`. Default: true.
      * @return {!SafeHtml} Input text after applying the processing.
      */
-    spanWrapSafeHtmlWithKnownDir(dir: number, html: SafeHtml, opt_dirReset?: boolean): SafeHtml;
+    spanWrapSafeHtmlWithKnownDir(dir: number | null, html: SafeHtml, opt_dirReset?: boolean | undefined): SafeHtml;
     /**
      * The internal implementation of spanWrapSafeHtmlWithKnownDir for non-null dir,
      * to help the compiler optimize.
@@ -286,7 +286,7 @@ export class BidiFormatter {
      * @return {!SafeHtml} Input text after applying the above processing.
      * @private
      */
-    spanWrapWithKnownDir_(dir: number, html: SafeHtml, opt_dirReset?: boolean): SafeHtml;
+    spanWrapWithKnownDir_(dir: number | null, html: SafeHtml, opt_dirReset?: boolean | undefined): SafeHtml;
     /**
      * Formats a string of unknown directionality for use in plain-text output of
      * the context directionality, so an opposite-directionality string is neither
@@ -315,7 +315,7 @@ export class BidiFormatter {
      *     garbling of whatever may follow `str`. Default: true.
      * @return {string} Input text after applying the above processing.
      */
-    unicodeWrap(str: string, opt_isHtml?: boolean, opt_dirReset?: boolean): string;
+    unicodeWrap(str: string, opt_isHtml?: boolean | undefined, opt_dirReset?: boolean | undefined): string;
     /**
      * Formats a string of given directionality for use in plain-text output of the
      * context directionality, so an opposite-directionality string is neither
@@ -345,7 +345,7 @@ export class BidiFormatter {
      *     garbling of whatever may follow `str`. Default: true.
      * @return {string} Input text after applying the above processing.
      */
-    unicodeWrapWithKnownDir(dir: number, str: string, opt_isHtml?: boolean, opt_dirReset?: boolean): string;
+    unicodeWrapWithKnownDir(dir: number | null, str: string, opt_isHtml?: boolean | undefined, opt_dirReset?: boolean | undefined): string;
     /**
      * The internal implementation of unicodeWrapWithKnownDir for non-null dir, to
      * help the compiler optimize.
@@ -360,7 +360,7 @@ export class BidiFormatter {
      * @return {string} Input text after applying the above processing.
      * @private
      */
-    unicodeWrapWithKnownDir_(dir: number, str: string, opt_isHtml?: boolean, opt_dirReset?: boolean): string;
+    unicodeWrapWithKnownDir_(dir: number | null, str: string, opt_isHtml?: boolean | undefined, opt_dirReset?: boolean | undefined): string;
     /**
      * Returns a Unicode BiDi mark matching the context directionality (LRM or RLM)
      * if the directionality or the exit directionality of `str` are opposite
@@ -372,7 +372,7 @@ export class BidiFormatter {
      * @return {string} A Unicode bidi mark matching the global directionality or
      *     the empty string.
      */
-    markAfter(str: string, opt_isHtml?: boolean): string;
+    markAfter(str: string, opt_isHtml?: boolean | undefined): string;
     /**
      * Returns a Unicode BiDi mark matching the context directionality (LRM or RLM)
      * if the given directionality or the exit directionality of `str` are
@@ -386,7 +386,7 @@ export class BidiFormatter {
      * @return {string} A Unicode bidi mark matching the global directionality or
      *     the empty string.
      */
-    markAfterKnownDir(dir: number, str: string, opt_isHtml?: boolean): string;
+    markAfterKnownDir(dir: number | null, str: string, opt_isHtml?: boolean | undefined): string;
     /**
      * Returns the Unicode BiDi mark matching the context directionality (LRM for
      * LTR context directionality, RLM for RTL context directionality), or the

@@ -34,21 +34,21 @@ export class PaletteRenderer extends ControlRenderer<UiPalette> {
      * @param {?DomHelper} dom DOM helper for document interaction.
      * @return {!Element} Palette table element.
      */
-    createGrid(items: Node[], size: Size, dom: googdom.DomHelper): Element;
+    createGrid(items: Node[], size: Size | null, dom: googdom.DomHelper | null): Element;
     /**
      * Returns a table element (or equivalent) that wraps the given rows.
      * @param {Array<Element>} rows Array of row elements.
      * @param {?DomHelper} dom DOM helper for document interaction.
      * @return {!Element} Palette table element.
      */
-    createTable(rows: Element[], dom: googdom.DomHelper): Element;
+    createTable(rows: Element[], dom: googdom.DomHelper | null): Element;
     /**
      * Returns a table row element (or equivalent) that wraps the given cells.
      * @param {Array<Element>} cells Array of cell elements.
      * @param {?DomHelper} dom DOM helper for document interaction.
      * @return {!Element} Row element.
      */
-    createRow(cells: Element[], dom: googdom.DomHelper): Element;
+    createRow(cells: Element[], dom: googdom.DomHelper | null): Element;
     /**
      * Returns a table cell element (or equivalent) that wraps the given palette
      * item (which must be a DOM node).
@@ -56,7 +56,7 @@ export class PaletteRenderer extends ControlRenderer<UiPalette> {
      * @param {?DomHelper} dom DOM helper for document interaction.
      * @return {!Element} Cell element.
      */
-    createCell(node: string | Node, dom: googdom.DomHelper): Element;
+    createCell(node: string | Node, dom: googdom.DomHelper | null): Element;
     /**
      * Updates the aria label of the cell if it doesn't have one. Descends the DOM
      * and tries to find an aria label for a grid cell from the first child with a
@@ -73,7 +73,7 @@ export class PaletteRenderer extends ControlRenderer<UiPalette> {
      * @return {null} Always null.
      * @override
      */
-    decorate(palette: UiPalette, element: Element): null;
+    decorate(palette: UiPalette | null, element: Element | null): null;
     /**
      * Returns the item corresponding to the given node, or null if the node is
      * neither a palette cell nor part of a palette item.
@@ -81,7 +81,7 @@ export class PaletteRenderer extends ControlRenderer<UiPalette> {
      * @param {?Node} node Node to look for.
      * @return {?Node} The corresponding palette item (null if not found).
      */
-    getContainingItem(palette: UiPalette, node: Node): Node;
+    getContainingItem(palette: UiPalette | null, node: Node | null): Node | null;
     /**
      * Updates the highlight styling of the palette cell containing the given node
      * based on the value of the Boolean argument.
@@ -90,12 +90,12 @@ export class PaletteRenderer extends ControlRenderer<UiPalette> {
      * @param {boolean} highlight If true, the cell is highlighted; otherwise it is
      *     un-highlighted.
      */
-    highlightCell(palette: UiPalette, node: Node, highlight: boolean): void;
+    highlightCell(palette: UiPalette | null, node: Node | null, highlight: boolean): void;
     /**
      * @param {?Node} node Item whose cell is to be returned.
      * @return {?Element} The grid cell for the palette item.
      */
-    getCellForItem(node: Node): Element;
+    getCellForItem(node: Node | null): Element | null;
     /**
      * Updates the selection styling of the palette cell containing the given node
      * based on the value of the Boolean argument.
@@ -104,7 +104,7 @@ export class PaletteRenderer extends ControlRenderer<UiPalette> {
      * @param {boolean} select If true, the cell is selected; otherwise it is
      *     deselected.
      */
-    selectCell(palette: UiPalette, node: Node, select: boolean): void;
+    selectCell(palette: UiPalette | null, node: Node | null, select: boolean): void;
 }
 export namespace PaletteRenderer {
     export const instance_: PaletteRenderer | null;

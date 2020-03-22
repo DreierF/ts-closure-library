@@ -185,7 +185,7 @@ export function base(me: any, opt_methodName?: any, ...args: any[]): any;
  * @template T
  * @suppress {deprecated} See above.
  */
-export function bind<T>(fn: (this: T, ...arg1: any[]) => any, selfObj: T, ...args: any[]): Function;
+export function bind<T>(fn: ((this: T, ...arg1: any[]) => any) | null, selfObj: T, ...args: any[]): Function;
 /**
  * Clones a value. The input may be an Object, Array, or basic type. Objects and
  * arrays will be cloned recursively.
@@ -234,14 +234,14 @@ export function createTrustedTypesPolicy(name: string): any;
  * @return {!Function} The class constructor.
  * @deprecated Use ES6 class syntax instead.
  */
-export function defineClass(superClass: Function, def: {
-    constructor: Function;
+export function defineClass(superClass: Function | null, def: {
+    constructor: Function | undefined;
     statics: any;
 }): Function;
 export namespace defineClass {
     export const OBJECT_PROTOTYPE_FIELDS_: Array<string>;
     export type ClassDescriptor = {
-        constructor: Function;
+        constructor: Function | undefined;
         statics: any;
     };
 }
@@ -327,7 +327,7 @@ export function forwardDeclare(name: string): void;
  * @return {string} The class name or the concatenation of the class name and
  *     the modifier.
  */
-export function getCssName(className: string, opt_modifier?: string): string;
+export function getCssName(className: string, opt_modifier?: string | undefined): string;
 /**
  * Adds a hash code field to an object. The hash code is unique for the
  * given object.
@@ -363,9 +363,9 @@ export function getHashCode(obj: any): number;
  */
 export function getMsg(str: string, opt_values?: {
     [x: string]: string;
-}, opt_options?: {
+} | undefined, opt_options?: {
     html: boolean;
-}): string;
+} | undefined): string;
 /**
  * Gets a localized message. If the message does not have a translation, gives a
  * fallback message.
@@ -405,7 +405,7 @@ export function getObjectByName(name: string, opt_obj?: any): any;
  *     Defaults to global context.
  * @return {string} CSP nonce or empty string if no nonce is present.
  */
-export function getScriptNonce(opt_window?: Window): string;
+export function getScriptNonce(opt_window?: Window | null | undefined): string;
 /**
  * Gets a unique ID for an object. This mutates the object so that further calls
  * with the same object as a parameter returns the same value. The unique ID is
@@ -641,7 +641,7 @@ export function nullFunction(): void;
  * @return {!Function} A partially-applied form of the function partial()
  *     was invoked as a method of.
  */
-export function partial(fn: Function, ...args: any[]): Function;
+export function partial(fn: Function | null, ...args: any[]): Function;
 /**
  * Removes the unique ID from an object. This is useful if the object was
  * previously mutated using `getUid` in which case the mutation is
@@ -679,7 +679,7 @@ export function removeUid(obj: any): void;
  *     options: 'BY_PART', and 'BY_WHOLE'.
  * @see getCssName for a description.
  */
-export function setCssNameMapping(mapping: any, opt_style?: string): void;
+export function setCssNameMapping(mapping: any, opt_style?: string | undefined): void;
 /**
  * Marks that the current file should only be used for testing, and never for
  * live code in production.
@@ -691,7 +691,7 @@ export function setCssNameMapping(mapping: any, opt_style?: string): void;
  * @param {string=} opt_message Optional message to add to the error that's
  *     raised when used in production code.
  */
-export function setTestOnly(opt_message?: string): void;
+export function setTestOnly(opt_message?: string | undefined): void;
 /**
  * Sealing classes breaks the older idiom of assigning properties on the
  * prototype rather than in the constructor. As such, defineClass

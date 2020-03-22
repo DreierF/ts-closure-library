@@ -162,7 +162,7 @@ export namespace SafeStyle {
      * them.
      */
     export type PropertyMap = {
-        [x: string]: string | Const | SafeUrl | (string | Const | SafeUrl)[];
+        [x: string]: string | Const | SafeUrl | (string | Const | SafeUrl)[] | null;
     };
 }
 import { Const } from "../string/const.js";

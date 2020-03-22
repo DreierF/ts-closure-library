@@ -27,7 +27,7 @@ export class TreeControl extends BaseNode {
      *    will be used.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(content: string | SafeHtml, opt_config?: any, opt_domHelper?: DomHelper);
+    constructor(content: string | SafeHtml, opt_config?: any, opt_domHelper?: DomHelper | undefined);
     selectedItem_: any;
     /**
      * Used for typeahead support.
@@ -38,12 +38,12 @@ export class TreeControl extends BaseNode {
      * The object handling keyboard events.
      * @private {?KeyHandler}
      */
-    keyHandler_: KeyHandler;
+    keyHandler_: any;
     /**
      * The object handling focus events.
      * @private {?FocusHandler}
      */
-    focusHandler_: FocusHandler;
+    focusHandler_: any;
     /**
      * Logger
      * @private {?LogLogger}
@@ -98,17 +98,17 @@ export class TreeControl extends BaseNode {
     /** @override */
     setExpanded(expanded: any): void;
     /** @override */
-    getExpandIconElement(): any;
+    getExpandIconElement(): null;
     /**
      * Sets the selected item.
      * @param {?BaseNode} node The item to select.
      */
-    setSelectedItem(node: BaseNode): void;
+    setSelectedItem(node: BaseNode | null): void;
     /**
      * Returns the selected item.
      * @return {?BaseNode} The currently selected item.
      */
-    getSelectedItem(): BaseNode;
+    getSelectedItem(): BaseNode | null;
     /**
      * Sets whether to show lines.
      * @param {boolean} b Whether to show lines.
@@ -179,7 +179,7 @@ export class TreeControl extends BaseNode {
      *     found.
      * @private
      */
-    getNodeFromEvent_(e: EventsBrowserEvent): BaseNode;
+    getNodeFromEvent_(e: EventsBrowserEvent): BaseNode | null;
     /**
      * Creates a new tree node using the same config as the root.
      * @param {string=} opt_content The content of the node label. Strings are
@@ -187,20 +187,20 @@ export class TreeControl extends BaseNode {
      *     omit opt_content and call setSafeHtml on the resulting node.
      * @return {!TreeNode} The new item.
      */
-    createNode(opt_content?: string): TreeNode;
+    createNode(opt_content?: string | undefined): TreeNode;
     /**
      * Allows the caller to notify that the given node has been added or just had
      * been updated in the tree.
      * @param {?BaseNode} node New node being added or existing node
      *    that just had been updated.
      */
-    setNode(node: BaseNode): void;
+    setNode(node: BaseNode | null): void;
     /**
      * Allows the caller to notify that the given node is being removed from the
      * tree.
      * @param {?BaseNode} node Node being removed.
      */
-    removeNode(node: BaseNode): void;
+    removeNode(node: BaseNode | null): void;
     /**
      * Clear the typeahead buffer.
      */
@@ -238,8 +238,6 @@ export namespace TreeControl {
 }
 import { BaseNode } from "./treenode.js";
 import { TypeAhead } from "./typeahead.js";
-import { KeyHandler } from "../../events/keyhandler.js";
-import { FocusHandler } from "../../events/focushandler.js";
 import { BrowserEvent as EventsBrowserEvent } from "../../events/browserevent.js";
 import { TreeNode } from "./treenode.js";
 import { SafeHtml } from "../../html/safehtml.js";

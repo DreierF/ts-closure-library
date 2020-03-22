@@ -54,7 +54,7 @@ export class Md5 extends Hash {
      * @param {number=} opt_offset Offset of the block in the buffer.
      * @private
      */
-    compress_(buf: string | number[] | Uint8Array, opt_offset?: number): void;
+    compress_(buf: string | number[] | Uint8Array, opt_offset?: number | undefined): void;
     /** @override */
     update(bytes: any, opt_length?: any): void;
     /** @override */

@@ -26,7 +26,7 @@ export class MouseWheelEvent extends EventsBrowserEvent {
      * @param {number} deltaY The number of rows the user scrolled in the Y
      *     direction.
      */
-    constructor(detail: number, browserEvent: Event, deltaX: number, deltaY: number);
+    constructor(detail: number, browserEvent: Event | null, deltaX: number, deltaY: number);
     /**
      * The number of lines the user scrolled
      * @type {number}
@@ -83,7 +83,7 @@ export class MouseWheelHandler extends goog_events.EventTarget {
      * @param {boolean=} opt_capture Whether to handle the mouse wheel event in
      *     capture phase.
      */
-    constructor(element: Element | Document, opt_capture?: boolean);
+    constructor(element: Element | Document, opt_capture?: boolean | undefined);
     /**
      * Optional maximum magnitude for x delta on each mousewheel event.
      * @type {number|undefined}
@@ -129,7 +129,7 @@ export class MouseWheelHandler extends goog_events.EventTarget {
      * @param {?EventsBrowserEvent} e The underlying browser event.
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    handleEvent(e: EventsBrowserEvent): void;
+    handleEvent(e: EventsBrowserEvent | null): void;
     actualEventTarget_: MouseWheelHandler;
 }
 export namespace MouseWheelHandler { }

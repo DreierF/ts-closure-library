@@ -32,7 +32,7 @@ export class Delay<THIS> extends Disposable {
      * @param {THIS=} opt_handler The object scope to invoke the function in.
      * @template THIS
      */
-    constructor(listener: (this: THIS) => any, opt_interval?: number, opt_handler?: THIS);
+    constructor(listener: (this: THIS) => any, opt_interval?: number | undefined, opt_handler?: THIS | undefined);
     /**
      * Identifier of the active delay timeout, or 0 when inactive.
      * @type {number}
@@ -69,14 +69,14 @@ export class Delay<THIS> extends Disposable {
      * @param {number=} opt_interval If specified, overrides the object's default
      *     interval with this one (in milliseconds).
      */
-    start(opt_interval?: number): void;
+    start(opt_interval?: number | undefined): void;
     /**
      * Starts the delay timer if it's not already active.
      * @param {number=} opt_interval If specified and the timer is not already
      *     active, overrides the object's default interval with this one (in
      *     milliseconds).
      */
-    startIfNotActive(opt_interval?: number): void;
+    startIfNotActive(opt_interval?: number | undefined): void;
     /**
      * Stops the delay timer if it is active. No action is taken if the timer is not
      * in use.

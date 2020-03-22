@@ -104,7 +104,7 @@ export function equals<K, V>(a: any, b: any): boolean;
  * @return {boolean} false if any element fails the test.
  * @template T,K,V
  */
-export function every<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: any) => boolean, opt_obj?: T): boolean;
+export function every<T, K, V>(obj: any, f: ((this: T, arg1: V, arg2: any, arg3: any) => boolean) | null, opt_obj?: T | undefined): boolean;
 /**
  * Extends an object with another object.
  * This operates 'in-place'; it does not create a new Object.
@@ -140,7 +140,7 @@ export function extend(target: any, ...args: any[]): void;
  *     test are present.
  * @template T,K,V
  */
-export function filter<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: any) => boolean, opt_obj?: T): any;
+export function filter<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: any) => boolean, opt_obj?: T | undefined): any;
 /**
  * Searches an object for an element that satisfies the given condition and
  * returns its key.
@@ -153,7 +153,7 @@ export function filter<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: any, arg3:
  *     returns true or undefined if no such element is found.
  * @template T,K,V
  */
-export function findKey<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: string, arg3: any) => boolean, opt_this?: T): string;
+export function findKey<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: string, arg3: any) => boolean, opt_this?: T | undefined): string | undefined;
 /**
  * Searches an object for an element that satisfies the given condition and
  * returns its value.
@@ -166,7 +166,7 @@ export function findKey<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: string, a
  *     undefined if no such element is found.
  * @template T,K,V
  */
-export function findValue<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: string, arg3: any) => boolean, opt_this?: T): V;
+export function findValue<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: string, arg3: any) => boolean, opt_this?: T | undefined): V;
 /**
  * Calls a function for each element in an object/map/hash.
  *
@@ -177,7 +177,7 @@ export function findValue<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: string,
  * @param {T=} opt_obj This is used as the 'this' object within f.
  * @template T,K,V
  */
-export function forEach<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: any) => any, opt_obj?: T): void;
+export function forEach<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: any) => any, opt_obj?: T | undefined): void;
 /**
  * Returns the value for the given key.
  *
@@ -188,7 +188,7 @@ export function forEach<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: any, arg3
  * @return {V|R|undefined} The value for the given key.
  * @template K,V,R
  */
-export function get<K, V, R>(obj: any, key: string, opt_val?: R): V | R;
+export function get<K, V, R>(obj: any, key: string, opt_val?: R | undefined): V | R | undefined;
 /**
  * Get all properties names on a given Object regardless of enumerability.
  *
@@ -204,7 +204,7 @@ export function get<K, V, R>(obj: any, key: string, opt_val?: R): V | R;
  * @return {!Array<string>}
  * @public
  */
-export function getAllPropertyNames(obj: any, opt_includeObjectPrototype?: boolean, opt_includeFunctionPrototype?: boolean): string[];
+export function getAllPropertyNames(obj: any, opt_includeObjectPrototype?: boolean | undefined, opt_includeFunctionPrototype?: boolean | undefined): string[];
 /**
  * Returns one key from the object map, if any exists.
  * For map literals the returned key will be the first one in most of the
@@ -213,7 +213,7 @@ export function getAllPropertyNames(obj: any, opt_includeObjectPrototype?: boole
  * @param {?Object} obj The object to pick a key from.
  * @return {string|undefined} The key or undefined if the object is empty.
  */
-export function getAnyKey(obj: any): string;
+export function getAnyKey(obj: any): string | undefined;
 /**
  * Returns one value from the object map, if any exists.
  * For map literals the returned value will be the first one in most of the
@@ -223,7 +223,7 @@ export function getAnyKey(obj: any): string;
  * @return {V|undefined} The value or undefined if the object is empty.
  * @template K,V
  */
-export function getAnyValue<K, V>(obj: any): V;
+export function getAnyValue<K, V>(obj: any): V | undefined;
 /**
  * Returns the number of key-value pairs in the object map.
  *
@@ -318,7 +318,7 @@ export function isImmutableView(obj: any): boolean;
  * @return {!Object<K,R>} a new object with the results from f.
  * @template T,K,V,R
  */
-export function map<T, K, V, R>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: any) => R, opt_obj?: T): any;
+export function map<T, K, V, R>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: any) => R, opt_obj?: T | undefined): any;
 /**
  * Removes a key-value pair based on the key.
  *
@@ -376,7 +376,7 @@ export function setWithReturnValueIfNotSet<K, V>(obj: any, key: string, f: () =>
  * @return {boolean} true if any element passes the test.
  * @template T,K,V
  */
-export function some<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: any) => boolean, opt_obj?: T): boolean;
+export function some<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: any) => boolean, opt_obj?: T | undefined): boolean;
 /**
  * Returns a new object in which all the keys and values are interchanged
  * (keys become values and values become keys). If multiple keys map to the

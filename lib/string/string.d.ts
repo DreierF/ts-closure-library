@@ -37,7 +37,7 @@ export namespace Unicode {
  * @return {number} The number, parsed. If the string failed to parse, this
  *     will be NaN.
  */
-declare function _parseInt(value: string | number): number;
+declare function _parseInt(value: string | number | null | undefined): number;
 /**
  * Concatenates string expressions. This is useful
  * since some browsers are very inefficient when it comes to using plus to
@@ -268,7 +268,7 @@ export function hashCode(str: string): number;
  *     characters to occur in your strings, such as if you are escaping HTML.
  * @return {string} An escaped copy of `str`.
  */
-export function htmlEscape(str: string, opt_isLikelyToContainHtmlChars?: boolean): string;
+export function htmlEscape(str: string, opt_isLikelyToContainHtmlChars?: boolean | undefined): string;
 /**
  * String comparison function that handles non-negative integer numbers in a
  * way humans might expect. Using this function, the string 'File 2.jpg' sorts
@@ -410,7 +410,7 @@ export function makeSafe(obj: any): string;
  * @param {boolean=} opt_xml Whether to use XML compatible tags.
  * @return {string} A copy of `str` with converted newlines.
  */
-export function newLineToBr(str: string, opt_xml?: boolean): string;
+export function newLineToBr(str: string, opt_xml?: boolean | undefined): string;
 /**
  * Normalizes spaces in a string, replacing all consecutive spaces and tabs
  * with a single space. Replaces non-breaking space with a space.
@@ -447,7 +447,7 @@ export function numerateCompare(str1: string, str2: string): number;
  * @param {number=} opt_precision The desired precision.
  * @return {string} `num` as a string with the given options.
  */
-export function padNumber(num: number, length: number, opt_precision?: number): string;
+export function padNumber(num: number, length: number, opt_precision?: number | undefined): string;
 /**
  * Preserve spaces that would be otherwise collapsed in HTML by replacing them
  * with non-breaking space Unicode characters.
@@ -623,7 +623,7 @@ export function toSelectorCase(str: string): string;
  *      overridden and must be explicitly included if needed.
  * @return {string} String value in TitleCase form.
  */
-export function toTitleCase(str: string, opt_delimiters?: string): string;
+export function toTitleCase(str: string, opt_delimiters?: string | undefined): string;
 /**
  * Trims white spaces to the left and right of a string.
  * @param {string} str The string to trim.
@@ -652,7 +652,7 @@ export function trimRight(str: string): string;
  *     characters from being cut off in the middle.
  * @return {string} The truncated `str` string.
  */
-export function truncate(str: string, chars: number, opt_protectEscapedCharacters?: boolean): string;
+export function truncate(str: string, chars: number, opt_protectEscapedCharacters?: boolean | undefined): string;
 /**
  * Truncate a string in the middle, adding "..." if necessary,
  * and favoring the beginning of the string.
@@ -665,7 +665,7 @@ export function truncate(str: string, chars: number, opt_protectEscapedCharacter
  *     middle as possible.
  * @return {string} A truncated copy of `str`.
  */
-export function truncateMiddle(str: string, chars: number, opt_protectEscapedCharacters?: boolean, opt_trailingChars?: number): string;
+export function truncateMiddle(str: string, chars: number, opt_protectEscapedCharacters?: boolean | undefined, opt_trailingChars?: number | undefined): string;
 /**
  * Unescapes an HTML string.
  *
@@ -703,5 +703,5 @@ export function urlEncode(str: any): string;
  * @param {boolean=} opt_xml Whether to use XML compatible tags.
  * @return {string} An escaped copy of `str`.
  */
-export function whitespaceEscape(str: string, opt_xml?: boolean): string;
+export function whitespaceEscape(str: string, opt_xml?: boolean | undefined): string;
 export { _parseInt as parseInt };

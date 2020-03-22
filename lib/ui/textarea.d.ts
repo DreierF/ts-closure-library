@@ -31,7 +31,7 @@ export class Textarea extends Control<TextareaRenderer> {
      * @param {DomHelper=} opt_domHelper Optional DOM helper, used for
      *     document interaction.
      */
-    constructor(content: string, opt_renderer?: TextareaRenderer, opt_domHelper?: goog_dom.DomHelper);
+    constructor(content: string, opt_renderer?: TextareaRenderer | undefined, opt_domHelper?: goog_dom.DomHelper | undefined);
     /**
      * True if the resizing function is executing, false otherwise.
      * @type {boolean}
@@ -255,14 +255,14 @@ export class Textarea extends Control<TextareaRenderer> {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    blur_(opt_e?: EventsEvent): void;
+    blur_(opt_e?: EventsEvent | undefined): void;
     /**
      * Resizes the textarea to grow/shrink to match its contents.
      * @param {EventsEvent=} opt_e The browser event.
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    grow_(opt_e?: EventsEvent): void;
+    grow_(opt_e?: EventsEvent | undefined): void;
     /**
      * Resizes the textarea to shrink to fit its contents. The way this works is
      * by increasing the padding of the textarea by 1px (it's important here that
@@ -281,7 +281,7 @@ export class Textarea extends Control<TextareaRenderer> {
      * @param {?EventsBrowserEvent} e The mousedown event.
      * @private
      */
-    mouseUpListener_(e: EventsBrowserEvent): void;
+    mouseUpListener_(e: EventsBrowserEvent | null): void;
     actualEventTarget_: Textarea;
 }
 export namespace Textarea {

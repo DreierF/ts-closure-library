@@ -26,7 +26,7 @@
  * @template K
  * @template V
  */
-export function cache<K, V>(cacheObj: any, key: any, valueFn: (arg0: any) => V, opt_keyFn?: (arg0: any) => K): V;
+export function cache<K, V>(cacheObj: any, key: any, valueFn: (arg0: any) => V, opt_keyFn?: ((arg0: any) => K) | undefined): V;
 /**
  * Check if a property can be accessed without throwing an exception.
  * @param {?Object} obj The owner of the property.

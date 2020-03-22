@@ -28,13 +28,13 @@
 export function alsoAllowAttributes(justification: Const, builder: Builder, attrs: (string | {
     tagName: string;
     attributeName: string;
-    policy: (arg0: string, arg1?: {
-        tagName: string;
-        attributeName: string;
-        cssProperty: string;
-    }, arg2?: {
-        cssStyle: CSSStyleDeclaration;
-    }, arg3?: (arg0: string, arg1?: any, arg2?: any, arg3?: any) => string) => string;
+    policy: ((arg0: string, arg1?: {
+        tagName: string | undefined;
+        attributeName: string | undefined;
+        cssProperty: string | undefined;
+    } | undefined, arg2?: {
+        cssStyle: CSSStyleDeclaration | null | undefined;
+    } | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null) | null;
 })[]): Builder;
 /**
  * @fileoverview Potentially unsafe API for the HTML sanitizer.

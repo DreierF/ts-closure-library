@@ -27,7 +27,7 @@ export class Animation extends TransitionBase {
      * @param {number} duration Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(start: number[], end: number[], duration: number, opt_acc?: Function);
+    constructor(start: number[], end: number[], duration: number, opt_acc?: Function | undefined);
     /**
      * Start point.
      * @type {Array<number>}
@@ -167,7 +167,7 @@ export class AnimationEvent extends EventsEvent {
      * @param {string} type Event type.
      * @param {?Animation} anim An animation object.
      */
-    constructor(type: string, anim: Animation);
+    constructor(type: string, anim: Animation | null);
     /**
      * The current coordinates.
      * @type {Array<number>}

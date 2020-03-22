@@ -26,7 +26,7 @@ export class QueryData {
      * @param {boolean=} opt_ignoreCase If true, ignore the case of the parameter
      *     name in #get.
      */
-    constructor(opt_query?: string, opt_uri?: Uri, opt_ignoreCase?: boolean);
+    constructor(opt_query?: string | null | undefined, opt_uri?: Uri | undefined, opt_ignoreCase?: boolean | undefined);
     /**
      * The map containing name/value or name/array-of-values pairs.
      * May be null if it requires parsing from the query string.
@@ -46,7 +46,7 @@ export class QueryData {
      * Encoded query string, or null if it requires computing from the key map.
      * @private {?string}
      */
-    encodedQuery_: string;
+    encodedQuery_: string | null;
     /**
      * If true, ignore the case of the parameter name in #get.
      * @private {boolean}
@@ -61,7 +61,7 @@ export class QueryData {
     /**
      * @return {?number} The number of parameters.
      */
-    getCount(): number;
+    getCount(): number | null;
     /**
      * Adds a key value pair.
      * @param {string} key Name.
@@ -103,7 +103,7 @@ export class QueryData {
      * @param {SCOPE=} opt_scope The value of "this" inside f.
      * @template SCOPE
      */
-    forEach<SCOPE>(f: (this: SCOPE, arg1: any, arg2: string, arg3: QueryData) => any, opt_scope?: SCOPE): void;
+    forEach<SCOPE>(f: (this: SCOPE, arg1: any, arg2: string, arg3: QueryData) => any, opt_scope?: SCOPE | undefined): void;
     /**
      * Returns all the keys of the parameters. If a key is used multiple times
      * it will be included multiple times in the returned array
@@ -117,7 +117,7 @@ export class QueryData {
      * @param {string=} opt_key The name of the parameter to get the values for.
      * @return {!Array<?>} All the values of the parameters with the given name.
      */
-    getValues(opt_key?: string): any[];
+    getValues(opt_key?: string | undefined): any[];
     /**
      * Sets a key value pair and removes all other keys with the same value.
      *
@@ -269,7 +269,7 @@ export class Uri {
      * @throws URIError If opt_uri is provided and URI is malformed (that is,
      *     if decodeURIComponent fails on any of the URI components).
      */
-    constructor(opt_uri?: any, opt_ignoreCase?: boolean);
+    constructor(opt_uri?: any, opt_ignoreCase?: boolean | undefined);
     /**
      * Scheme such as "http".
      * @private {string}
@@ -310,7 +310,7 @@ export class Uri {
      * @private {boolean}
      */
     ignoreCase_: boolean;
-    queryData_: QueryData;
+    queryData_: any;
     /**
      * @return {string} The string form of the url.
      * @override
@@ -351,7 +351,7 @@ export class Uri {
      * @param {boolean=} opt_decode Optional param for whether to decode new value.
      * @return {!Uri} Reference to this URI object.
      */
-    setScheme(newScheme: string, opt_decode?: boolean): Uri;
+    setScheme(newScheme: string, opt_decode?: boolean | undefined): Uri;
     /**
      * @return {boolean} Whether the scheme has been set.
      */
@@ -368,7 +368,7 @@ export class Uri {
      * @param {boolean=} opt_decode Optional param for whether to decode new value.
      * @return {!Uri} Reference to this URI object.
      */
-    setUserInfo(newUserInfo: string, opt_decode?: boolean): Uri;
+    setUserInfo(newUserInfo: string, opt_decode?: boolean | undefined): Uri;
     /**
      * @return {boolean} Whether the user info has been set.
      */
@@ -385,7 +385,7 @@ export class Uri {
      * @param {boolean=} opt_decode Optional param for whether to decode new value.
      * @return {!Uri} Reference to this URI object.
      */
-    setDomain(newDomain: string, opt_decode?: boolean): Uri;
+    setDomain(newDomain: string, opt_decode?: boolean | undefined): Uri;
     /**
      * @return {boolean} Whether the domain has been set.
      */
@@ -393,7 +393,7 @@ export class Uri {
     /**
      * @return {?number} The port number.
      */
-    getPort(): number;
+    getPort(): number | null;
     /**
      * Sets the port number.
      * @param {*} newPort Port number. Will be explicitly casted to a number.
@@ -416,7 +416,7 @@ export class Uri {
      * @param {boolean=} opt_decode Optional param for whether to decode new value.
      * @return {!Uri} Reference to this URI object.
      */
-    setPath(newPath: string, opt_decode?: boolean): Uri;
+    setPath(newPath: string, opt_decode?: boolean | undefined): Uri;
     /**
      * @return {boolean} Whether the path has been set.
      */
@@ -432,14 +432,14 @@ export class Uri {
      *     Applies only if queryData is a string.
      * @return {!Uri} Reference to this URI object.
      */
-    setQueryData(queryData: string | QueryData, opt_decode?: boolean): Uri;
+    setQueryData(queryData: string | QueryData | undefined, opt_decode?: boolean | undefined): Uri;
     /**
      * Sets the URI query.
      * @param {string} newQuery New query value.
      * @param {boolean=} opt_decode Optional param for whether to decode new value.
      * @return {!Uri} Reference to this URI object.
      */
-    setQuery(newQuery: string, opt_decode?: boolean): Uri;
+    setQuery(newQuery: string, opt_decode?: boolean | undefined): Uri;
     /**
      * @return {string} The encoded URI query, not including the ?.
      */
@@ -500,7 +500,7 @@ export class Uri {
      *     undefined if the given parameter name does not appear in the query
      *     string.
      */
-    getParameterValue(paramName: string): string;
+    getParameterValue(paramName: string): string | undefined;
     /**
      * @return {string} The URI fragment, not including the #.
      */
@@ -513,7 +513,7 @@ export class Uri {
      * @param {boolean=} opt_decode Optional param for whether to decode new value.
      * @return {!Uri} Reference to this URI object.
      */
-    setFragment(newFragment: string, opt_decode?: boolean): Uri;
+    setFragment(newFragment: string, opt_decode?: boolean | undefined): Uri;
     /**
      * @return {boolean} Whether the URI has a fragment set.
      */

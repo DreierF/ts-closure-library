@@ -19,7 +19,7 @@ export class ViewportPosition extends AbstractPosition {
      * @param {number|Coordinate} arg1 Left position or coordinate.
      * @param {number=} opt_arg2 Top position.
      */
-    constructor(arg1: number | Coordinate, opt_arg2?: number);
+    constructor(arg1: number | Coordinate, opt_arg2?: number | undefined);
     coordinate: Coordinate;
 }
 import { AbstractPosition } from "./abstractposition.js";

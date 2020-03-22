@@ -23,7 +23,7 @@ export class ElementWeakMap<T> {
      * @param {!Element} elementKey
      * @return {!Element|undefined}
      */
-    get(elementKey: Element): Element;
+    get(elementKey: Element): Element | undefined;
     /** Clears the map. */
     clear(): void;
 }

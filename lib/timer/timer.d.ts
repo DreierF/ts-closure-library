@@ -20,7 +20,7 @@ export class Timer extends EventsEventTarget {
      *     `setInterval`, `clearTimeout` and `clearInterval`
      *     (e.g., `window`).
      */
-    constructor(opt_interval?: number, opt_timerObject?: any);
+    constructor(opt_interval?: number | undefined, opt_timerObject?: any);
     /**
      * Whether this timer is enabled
      * @type {boolean}

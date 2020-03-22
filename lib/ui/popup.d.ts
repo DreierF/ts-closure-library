@@ -32,7 +32,7 @@ export class Popup extends Ui_PopupBase {
      *     object.
      * @param {boolean=} opt_dontSetElement EDITED: Disables calling of setElement in the constructor.
      */
-    constructor(opt_element?: Element, opt_position?: AbstractPosition, opt_dontSetElement?: boolean);
+    constructor(opt_element?: Element | undefined, opt_position?: AbstractPosition | undefined, opt_dontSetElement?: boolean | undefined);
     /**
      * Margin for the popup used in positioning algorithms.
      *
@@ -52,37 +52,37 @@ export class Popup extends Ui_PopupBase {
      *
      * @private {AbstractPosition|undefined}
      */
-    position_: AbstractPosition;
+    position_: AbstractPosition | undefined;
     /**
      * Returns the corner of the popup to used in the positioning algorithm.
      *
      * @return {?Corner} The popup corner used for positioning.
      */
-    getPinnedCorner(): Corner;
+    getPinnedCorner(): Corner | null;
     /**
      * Sets the corner of the popup to used in the positioning algorithm.
      *
      * @param {?Corner} corner The popup corner used for
      *     positioning.
      */
-    setPinnedCorner(corner: Corner): void;
+    setPinnedCorner(corner: Corner | null): void;
     /**
      * @return {?AbstractPosition} The position helper object
      *     associated with the popup.
      */
-    getPosition(): AbstractPosition;
+    getPosition(): AbstractPosition | null;
     /**
      * Sets the position helper object associated with the popup.
      *
      * @param {?AbstractPosition} position A position helper object.
      */
-    setPosition(position: AbstractPosition): void;
+    setPosition(position: AbstractPosition | null): void;
     /**
      * Returns the margin to place around the popup.
      *
      * @return {Math_Box?} The margin.
      */
-    getMargin(): Math_Box;
+    getMargin(): Math_Box | null;
     /**
      * Sets the margin to place around the popup.
      *
@@ -91,7 +91,7 @@ export class Popup extends Ui_PopupBase {
      * @param {number=} opt_arg3 Bottom value.
      * @param {number=} opt_arg4 Left value.
      */
-    setMargin(arg1: number | Math_Box, opt_arg2?: number, opt_arg3?: number, opt_arg4?: number): void;
+    setMargin(arg1: number | Math_Box | null, opt_arg2?: number | undefined, opt_arg3?: number | undefined, opt_arg4?: number | undefined): void;
     actualEventTarget_: Popup;
 }
 import { PopupBase as Ui_PopupBase } from "./popupbase.js";

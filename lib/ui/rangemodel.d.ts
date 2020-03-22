@@ -99,12 +99,12 @@ export class RangeModel extends EventsEventTarget {
      * value.
      * @return {?number} The maximimum value for the range model.
      */
-    getStep(): number;
+    getStep(): number | null;
     /**
      * Sets the step. The step value is used to determine how to round the value.
      * @param {?number} step  The step size.
      */
-    setStep(step: number): void;
+    setStep(step: number | null): void;
     /**
      * Rounds to the closest step using the minimum value as the base.
      * @param {number} value  The number to round.

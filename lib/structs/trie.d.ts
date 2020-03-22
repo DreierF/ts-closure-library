@@ -24,7 +24,7 @@ export class Trie<VALUE> {
      */
     constructor(opt_trie?: Trie<VALUE> | {
         [x: string]: VALUE;
-    });
+    } | undefined);
     /**
      * This trie's value.  For the base trie, this will be the value of the
      * empty key, if defined.
@@ -42,14 +42,14 @@ export class Trie<VALUE> {
      * @param {string} key The key.
      * @param {?VALUE} value The value.
      */
-    set(key: string, value: VALUE): void;
+    set(key: string, value: VALUE | null): void;
     /**
      * Adds the given key/value pair in the trie.  Throw an exception if the key
      * already exists in the trie.  O(L), where L is the length of the key.
      * @param {string} key The key.
      * @param {?VALUE} value The value.
      */
-    add(key: string, value: VALUE): void;
+    add(key: string, value: VALUE | null): void;
     /**
      * Helper function for set and add.  Adds the given key/value pair to
      * the trie, or, if the key already exists, sets the value of the key. If
@@ -60,7 +60,7 @@ export class Trie<VALUE> {
      * @param {boolean=} opt_add Throw exception if key is already in the trie.
      * @private
      */
-    setOrAdd_(key: string, value: VALUE, opt_add?: boolean): void;
+    setOrAdd_(key: string, value: VALUE | null, opt_add?: boolean | undefined): void;
     /**
      * Adds multiple key/value pairs from another Trie or Object.
      * O(N) where N is the number of nodes in the trie.
@@ -77,7 +77,7 @@ export class Trie<VALUE> {
      * @return {!Trie<VALUE>|undefined}
      * @private
      */
-    getChildNode_(path: string): Trie<VALUE>;
+    getChildNode_(path: string): Trie<VALUE> | undefined;
     /**
      * Retrieves a value from the trie given a key.  O(L), where L is the length of
      * the key.
@@ -85,7 +85,7 @@ export class Trie<VALUE> {
      * @return {VALUE|undefined} The value of the key in the trie, or undefined if
      *     the trie does not contain this key.
      */
-    get(key: string): VALUE;
+    get(key: string): VALUE | undefined;
     /**
      * Retrieves all values from the trie that correspond to prefixes of the given
      * input key. O(L), where L is the length of the key.
@@ -97,7 +97,7 @@ export class Trie<VALUE> {
      * @return {!Object<string, VALUE>} Map of end index of matching prefixes and
      *     corresponding values. Empty if no match found.
      */
-    getKeyAndPrefixes(key: string, opt_keyStartIndex?: number): {
+    getKeyAndPrefixes(key: string, opt_keyStartIndex?: number | null | undefined): {
         [x: string]: VALUE;
     };
     /**
@@ -119,7 +119,7 @@ export class Trie<VALUE> {
      * @param {string=} opt_prefix Find only keys with this optional prefix.
      * @return {!Array<string>} The keys in the trie.
      */
-    getKeys(opt_prefix?: string): string[];
+    getKeys(opt_prefix?: string | undefined): string[];
     /**
      * Private method to get keys from the trie.  Builds the keys as it goes.
      * @param {string} keySoFar The partial key (prefix) traversed so far.
@@ -148,7 +148,7 @@ export class Trie<VALUE> {
      * @param {?VALUE} value A value that may be in the trie.
      * @return {boolean} Whether the trie contains the value.
      */
-    containsValue(value: VALUE): boolean;
+    containsValue(value: VALUE | null): boolean;
     /**
      * Completely empties a trie of all keys and values.  ~O(1)
      */
@@ -159,7 +159,7 @@ export class Trie<VALUE> {
      * @param {string} key A key that should be removed from the trie.
      * @return {?VALUE} The value whose key was removed.
      */
-    remove(key: string): VALUE;
+    remove(key: string): VALUE | null;
     /**
      * Clones a trie and returns a new trie.  O(N), where N is the number of nodes
      * in the trie.

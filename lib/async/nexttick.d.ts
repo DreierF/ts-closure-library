@@ -15,7 +15,7 @@
  *     ensures correctness at the cost of speed. See comments for details.
  * @template SCOPE
  */
-export function nextTick<SCOPE>(callback: (this: SCOPE) => any, opt_context?: SCOPE, opt_useSetImmediate?: boolean): void;
+export function nextTick<SCOPE>(callback: (this: SCOPE) => any, opt_context?: SCOPE | undefined, opt_useSetImmediate?: boolean | undefined): void;
 export namespace nextTick {
     export const setImmediate_: (arg0: () => void) => void;
     export const wrapCallback_: typeof functions.identity;

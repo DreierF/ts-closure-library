@@ -30,7 +30,7 @@ export class Serializer {
      * Class that is used to serialize JSON objects to a string.
      * @param {?Replacer=} opt_replacer Replacer.
      */
-    constructor(opt_replacer?: (this: any, arg1: string, arg2: any) => any);
+    constructor(opt_replacer?: ((this: any, arg1: string, arg2: any) => any) | null | undefined);
     /**
      * @type {Replacer|null|undefined}
      * @private
@@ -113,7 +113,7 @@ export const USE_NATIVE_JSON: boolean;
  */
 export function isValid(s: string): boolean;
 export function parse(arg0: any): any;
-export function serialize(arg0: any, arg1?: (this: any, arg1: string, arg2: any) => any): string;
+export function serialize(arg0: any, arg1?: ((this: any, arg1: string, arg2: any) => any) | null | undefined): string;
 /**
  * Sets an error logger to use if there's a recoverable parsing error and
  * `TRY_NATIVE_JSON` is enabled.

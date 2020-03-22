@@ -15,7 +15,7 @@ export class SelectionModel extends EventsEventTarget {
      * event when a selection is made.
      * @param {Array<Object>=} opt_items Array of items; defaults to empty.
      */
-    constructor(opt_items?: any[]);
+    constructor(opt_items?: any[] | undefined);
     /**
      * The currently selected item (null if none).
      * @type {?Object}
@@ -43,7 +43,7 @@ export class SelectionModel extends EventsEventTarget {
      * the internal selection state of items under its control.
      * @return {?Function} Selection handler function (null if none).
      */
-    getSelectionHandler(): Function;
+    getSelectionHandler(): Function | null;
     /**
      * Sets the selection handler function to be used by the selection model to
      * change the internal selection state of items under its control.  The
@@ -53,7 +53,7 @@ export class SelectionModel extends EventsEventTarget {
      * `setSelected(Boolean)` interface.
      * @param {?Function} handler Selection handler function.
      */
-    setSelectionHandler(handler: Function): void;
+    setSelectionHandler(handler: Function | null): void;
     /**
      * Returns the number of items controlled by the selection model.
      * @return {number} Number of items.
@@ -87,7 +87,7 @@ export class SelectionModel extends EventsEventTarget {
      * {@link #addItem} for each new item.
      * @param {Array<Object>|undefined} items New items to add.
      */
-    addItems(items: any[]): void;
+    addItems(items: any[] | undefined): void;
     /**
      * Adds an item at the end of the list.
      * @param {?Object} item Item to add.

@@ -38,7 +38,7 @@ declare class date_Date {
      * @param {number=} opt_date Date of month, 1 - 31.
      * @see DateTime
      */
-    constructor(opt_year?: number | Date | date_Date, opt_month?: number, opt_date?: number);
+    constructor(opt_year?: number | Date | date_Date | undefined, opt_month?: number | undefined, opt_date?: number | undefined);
     /**
      * First day of week. 0 = Mon, 6 = Sun.
      * @type {number}
@@ -258,7 +258,7 @@ declare class date_Date {
      *
      * @param {?Interval} interval Date interval to add.
      */
-    add(interval: Interval): void;
+    add(interval: Interval | null): void;
     /**
      * Returns ISO 8601 string representation of date.
      *
@@ -268,7 +268,7 @@ declare class date_Date {
      *     in the string.
      * @return {string} ISO 8601 string representation of date.
      */
-    toIsoString(opt_verbose?: boolean, opt_tz?: boolean): string;
+    toIsoString(opt_verbose?: boolean | undefined, opt_tz?: boolean | undefined): string;
     /**
      * Returns ISO 8601 string representation of date according to universal time.
      *
@@ -279,7 +279,7 @@ declare class date_Date {
      * @return {string} ISO 8601 string representation of date according to
      *     universal time.
      */
-    toUTCIsoString(opt_verbose?: boolean, opt_tz?: boolean): string;
+    toUTCIsoString(opt_verbose?: boolean | undefined, opt_tz?: boolean | undefined): string;
     /**
      * Tests whether given date is equal to this Date.
      * Note: This ignores units more precise than days (hours and below)
@@ -348,7 +348,7 @@ export class DateTime extends date_Date {
      */
     constructor(opt_year?: number | {
         getTime: any;
-    }, opt_month?: number, opt_date?: number, opt_hours?: number, opt_minutes?: number, opt_seconds?: number, opt_milliseconds?: number);
+    } | null | undefined, opt_month?: number | undefined, opt_date?: number | undefined, opt_hours?: number | undefined, opt_minutes?: number | undefined, opt_seconds?: number | undefined, opt_milliseconds?: number | undefined);
     /**
      * Returns the hours part of the datetime.
      *
@@ -445,7 +445,7 @@ export class DateTime extends date_Date {
      *     string?.
      * @return {string} XML Schema 2 string representation of date/time.
      */
-    toXmlDateTime(opt_timezone?: boolean): string;
+    toXmlDateTime(opt_timezone?: boolean | undefined): string;
     /**
      * Returns RFC 3339 string representation of datetime in UTC.
      *
@@ -469,14 +469,14 @@ export class DateTime extends date_Date {
      *     goog.i18n.DateTimeFormat.Format.MEDIUM_TIME or
      *     goog.i18n.DateTimeFormat.Format.SHORT_TIME.
      */
-    toUsTimeString(opt_padHours?: boolean, opt_showAmPm?: boolean, opt_omitZeroMinutes?: boolean): string;
+    toUsTimeString(opt_padHours?: boolean | undefined, opt_showAmPm?: boolean | undefined, opt_omitZeroMinutes?: boolean | undefined): string;
     /**
      * Generates time label for the datetime in standard ISO 24-hour time format.
      * E.g., '06:00:00' or '23:30:15'.
      * @param {boolean=} opt_showSeconds Whether to shows seconds. Defaults to TRUE.
      * @return {string} The time label.
      */
-    toIsoTimeString(opt_showSeconds?: boolean): string;
+    toIsoTimeString(opt_showSeconds?: boolean | undefined): string;
     /**
      * @return {!DateTime} A clone of the datetime object.
      * @override
@@ -513,7 +513,7 @@ export class Interval {
      * @param {number=} opt_minutes Minutes.
      * @param {number=} opt_seconds Seconds.
      */
-    constructor(opt_years?: string | number, opt_months?: number, opt_days?: number, opt_hours?: number, opt_minutes?: number, opt_seconds?: number);
+    constructor(opt_years?: string | number | undefined, opt_months?: number | undefined, opt_days?: number | undefined, opt_hours?: number | undefined, opt_minutes?: number | undefined, opt_seconds?: number | undefined);
     /** @type {number} */
     years: number;
     /** @type {number} */
@@ -534,7 +534,7 @@ export class Interval {
      * @return {?string} An XML schema duration in ISO 8601 extended format,
      *     or null if the interval contains both positive and negative fields.
      */
-    toIsoString(opt_verbose?: boolean): string;
+    toIsoString(opt_verbose?: boolean | undefined): string | null;
     /**
      * Tests whether the given interval is equal to this interval.
      * Note, this is a simple field-by-field comparison, it doesn't
@@ -543,7 +543,7 @@ export class Interval {
      * @param {?Interval} other The interval to test.
      * @return {boolean} Whether the intervals are equal.
      */
-    equals(other: Interval): boolean;
+    equals(other: Interval | null): boolean;
     /**
      * @return {!Interval} A clone of the interval object.
      */
@@ -573,7 +573,7 @@ export class Interval {
      *
      * @param {?Interval} interval The Interval to add.
      */
-    add(interval: Interval): void;
+    add(interval: Interval | null): void;
 }
 export namespace Interval {
     export const YEARS: string;
@@ -620,7 +620,7 @@ export function getNumberOfDaysInMonth(year: number, monthNumber: number): numbe
  *     Monday=0, Sunday=6.
  * @return {number} The week number (1-53).
  */
-export function getWeekNumber(year: number, monthNumber: number, date: number, opt_weekDay?: number, opt_firstDayOfWeek?: number): number;
+export function getWeekNumber(year: number, monthNumber: number, date: number, opt_weekDay?: number | undefined, opt_firstDayOfWeek?: number | undefined): number;
 /**
  * Static function for year of the week. ISO 8601 implementation.
  *
@@ -633,7 +633,7 @@ export function getWeekNumber(year: number, monthNumber: number, date: number, o
  *     Monday=0, Sunday=6.
  * @return {number} The four digit year of date.
  */
-export function getYearOfWeek(year: number, monthNumber: number, date: number, opt_weekDay?: number, opt_firstDayOfWeek?: number): number;
+export function getYearOfWeek(year: number, monthNumber: number, date: number, opt_weekDay?: number | undefined, opt_firstDayOfWeek?: number | undefined): number;
 /**
  * Returns whether the given year is a leap year.
  *
@@ -655,21 +655,21 @@ export function isLongIsoYear(year: number): boolean;
  * @param {DateLike=} opt_now The current time.
  * @return {boolean} Whether the dates are on the same day.
  */
-export function isSameDay(date: Date | date_Date, opt_now?: Date | date_Date): boolean;
+export function isSameDay(date: Date | date_Date | null, opt_now?: Date | date_Date | undefined): boolean;
 /**
  * Returns true if the 2 dates are in the same month.
  * @param {?DateLike} date The time to check.
  * @param {DateLike=} opt_now The current time.
  * @return {boolean} Whether the dates are in the same calendar month.
  */
-export function isSameMonth(date: Date | date_Date, opt_now?: Date | date_Date): boolean;
+export function isSameMonth(date: Date | date_Date | null, opt_now?: Date | date_Date | undefined): boolean;
 /**
  * Returns true if the 2 dates are in the same year.
  * @param {?DateLike} date The time to check.
  * @param {DateLike=} opt_now The current time.
  * @return {boolean} Whether the dates are in the same calendar year.
  */
-export function isSameYear(date: Date | date_Date, opt_now?: Date | date_Date): boolean;
+export function isSameYear(date: Date | date_Date | null, opt_now?: Date | date_Date | undefined): boolean;
 /**
  * @param {T} date1 A datelike object.
  * @param {S} date2 Another datelike object.

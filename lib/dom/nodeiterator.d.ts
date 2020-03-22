@@ -74,6 +74,6 @@ export class NodeIterator extends TagIterator {
      *     to the starting node and its children.
      * @param {number=} opt_depth The starting tree depth.
      */
-    constructor(opt_node?: Node, opt_reversed?: boolean, opt_unconstrained?: boolean, opt_depth?: number);
+    constructor(opt_node?: Node | undefined, opt_reversed?: boolean | undefined, opt_unconstrained?: boolean | undefined, opt_depth?: number | undefined);
 }
 import { TagIterator } from "./tagiterator.js";

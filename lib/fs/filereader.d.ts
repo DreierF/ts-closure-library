@@ -44,7 +44,7 @@ declare class fs_FileReader extends EventsEventTarget {
     /**
      * @return {?ReadyState} The current state of the FileReader.
      */
-    getReadyState(): number;
+    getReadyState(): number | null;
     /**
      * @return {*} The result of the file read.
      */
@@ -52,7 +52,7 @@ declare class fs_FileReader extends EventsEventTarget {
     /**
      * @return {?FsError} The error encountered while reading, if any.
      */
-    getError(): FsError;
+    getError(): FsError | null;
     /**
      * Wrap a progress event emitted by the underlying file reader and re-emit it.
      *
@@ -75,7 +75,7 @@ declare class fs_FileReader extends EventsEventTarget {
      * @param {!Blob} blob The blob to read.
      * @param {string=} opt_encoding The name of the encoding to use.
      */
-    readAsText(blob: Blob, opt_encoding?: string): void;
+    readAsText(blob: Blob, opt_encoding?: string | undefined): void;
     /**
      * Starts reading a blob as a data URL.
      * @param {!Blob} blob The blob to read.

@@ -14,12 +14,12 @@ export class HTML5WebStorage extends IterableMechanism {
      *
      * @param {?Storage} storage The Web storage object.
      */
-    constructor(storage: Storage|null);
+    constructor(storage: Storage | null);
     /**
      * The web storage object (window.localStorage or window.sessionStorage).
      * @private {Storage}
      */
-    storage_: Storage;
+    storage_: Storage | null;
     /**
      * Determines whether or not the mechanism is available.
      * It works only if the provided web storage object exists and is enabled.
@@ -30,7 +30,7 @@ export class HTML5WebStorage extends IterableMechanism {
     /** @override */
     set(key: any, value: any): void;
     /** @override */
-    get(key: any): string;
+    get(key: any): string | null;
     /** @override */
     remove(key: any): void;
     /** @override */
@@ -42,7 +42,7 @@ export class HTML5WebStorage extends IterableMechanism {
      * @return {?string} A storage key, or null if the specified index is out of
      *     range.
      */
-    key(index: number): string;
+    key(index: number): string | null;
 }
 export namespace HTML5WebStorage {
     export const STORAGE_AVAILABLE_KEY_: string;

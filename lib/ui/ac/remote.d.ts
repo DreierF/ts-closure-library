@@ -23,7 +23,7 @@ export class Remote extends AutoComplete {
      *     "gost" => "ghost".
      * @param {RemoteArrayMatcher=} opt_matcher
      */
-    constructor(url: string, input: Element, opt_multi?: boolean, opt_useSimilar?: boolean, opt_matcher?: RemoteArrayMatcher);
+    constructor(url: string, input: Element | null, opt_multi?: boolean | undefined, opt_useSimilar?: boolean | undefined, opt_matcher?: RemoteArrayMatcher | undefined);
     matcher_: RemoteArrayMatcher;
     /**
      * Set whether or not standard highlighting should be used when rendering rows.
@@ -34,7 +34,7 @@ export class Remote extends AutoComplete {
      * Gets the attached InputHandler object.
      * @return {?InputHandler} The input handler.
      */
-    getInputHandler(): InputHandler;
+    getInputHandler(): InputHandler | null;
     /**
      * Set the send method ("GET", "POST") for the matcher.
      * @param {string} method The send method; default: GET.

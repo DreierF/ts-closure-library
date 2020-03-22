@@ -54,7 +54,7 @@ export class Disposable {
      * @param {?IDisposable} disposable that will be disposed when
      *     this object is disposed.
      */
-    registerDisposable(disposable: typeof IDisposable): void;
+    registerDisposable(disposable: typeof IDisposable | null): void;
     /**
      * Invokes a callback function when this object is disposed. Callbacks are
      * invoked in the order in which they were added. If a callback is added to
@@ -63,7 +63,7 @@ export class Disposable {
      * @param {T=} opt_scope An optional scope to call the callback in.
      * @template T
      */
-    addOnDisposeCallback<T>(callback: (this: T) => any, opt_scope?: T): void;
+    addOnDisposeCallback<T>(callback: (this: T) => any, opt_scope?: T | undefined): void;
     /**
      * Deletes or nulls out any references to COM objects, DOM nodes, or other
      * disposable objects. Classes that extend `Disposable` should

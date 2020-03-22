@@ -35,5 +35,5 @@ export class RenderOptions {
     /**
      * @return {boolean|undefined} The value of the autoHilite_ flag.
      */
-    getAutoHilite(): boolean;
+    getAutoHilite(): boolean | undefined;
 }

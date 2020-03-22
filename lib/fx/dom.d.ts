@@ -18,7 +18,7 @@ export class BgColorTransform extends PredefinedEffect {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, start: number[], end: number[], time: number, opt_acc?: Function);
+    constructor(element: Element | null, start: number[], end: number[], time: number, opt_acc?: Function | undefined);
     /**
      * Animation event handler that will set the background-color of an element
      */
@@ -41,7 +41,7 @@ export class ColorTransform extends PredefinedEffect {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, start: number[], end: number[], time: number, opt_acc?: Function);
+    constructor(element: Element | null, start: number[], end: number[], time: number, opt_acc?: Function | undefined);
 }
 /**
  * Creates an animation object that fades the opacity of an element between two
@@ -65,7 +65,7 @@ export class Fade extends PredefinedEffect {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, start: number | number[], end: number | number[], time: number, opt_acc?: Function);
+    constructor(element: Element | null, start: number | number[], end: number | number[], time: number, opt_acc?: Function | undefined);
     /**
      * The last opacity we set, or -1 for not set.
      * @private {number}
@@ -99,7 +99,7 @@ export class FadeIn extends Fade {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, time: number, opt_acc?: Function);
+    constructor(element: Element | null, time: number, opt_acc?: Function | undefined);
 }
 /**
  * Sets an element's display to be visible and then fades an element in from
@@ -117,7 +117,7 @@ export class FadeInAndShow extends Fade {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, time: number, opt_acc?: Function);
+    constructor(element: Element | null, time: number, opt_acc?: Function | undefined);
 }
 /**
  * Fades an element out from full opacity to completely transparent.
@@ -133,7 +133,7 @@ export class FadeOut extends Fade {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, time: number, opt_acc?: Function);
+    constructor(element: Element | null, time: number, opt_acc?: Function | undefined);
 }
 /**
  * Fades an element out from full opacity to completely transparent and then
@@ -151,7 +151,7 @@ export class FadeOutAndHide extends Fade {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, time: number, opt_acc?: Function);
+    constructor(element: Element | null, time: number, opt_acc?: Function | undefined);
 }
 /**
  * @fileoverview Predefined DHTML animations such as slide, resize and fade.
@@ -176,7 +176,7 @@ export class PredefinedEffect extends Animation {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, start: number[], end: number[], time: number, opt_acc?: Function);
+    constructor(element: Element | null, start: number[], end: number[], time: number, opt_acc?: Function | undefined);
     /**
      * DOM Node that will be used in the animation
      * @type {?Element}
@@ -193,7 +193,7 @@ export class PredefinedEffect extends Animation {
      *     otherwise.
      */
     isRightToLeft(): boolean;
-    rightToLeft_: boolean;
+    rightToLeft_: boolean | undefined;
     actualEventTarget_: PredefinedEffect;
 }
 /**
@@ -218,7 +218,7 @@ export class Resize extends PredefinedEffect {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, start: number[], end: number[], time: number, opt_acc?: Function);
+    constructor(element: Element | null, start: number[], end: number[], time: number, opt_acc?: Function | undefined);
 }
 /**
  * Creates an animation object that will resize an element between two heights
@@ -240,7 +240,7 @@ export class ResizeHeight extends PredefinedEffect {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, start: number, end: number, time: number, opt_acc?: Function);
+    constructor(element: Element | null, start: number, end: number, time: number, opt_acc?: Function | undefined);
 }
 /**
  * Creates an animation object that will resize an element between two widths
@@ -262,7 +262,7 @@ export class ResizeWidth extends PredefinedEffect {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, start: number, end: number, time: number, opt_acc?: Function);
+    constructor(element: Element | null, start: number, end: number, time: number, opt_acc?: Function | undefined);
 }
 /**
  * Creates an animation object that will scroll an element from A to B.
@@ -284,7 +284,7 @@ export class Scroll extends PredefinedEffect {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, start: number[], end: number[], time: number, opt_acc?: Function);
+    constructor(element: Element | null, start: number[], end: number[], time: number, opt_acc?: Function | undefined);
 }
 /**
  * Creates an animation object that will slide an element from A to B.  (This
@@ -308,7 +308,7 @@ export class Slide extends PredefinedEffect {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, start: number[], end: number[], time: number, opt_acc?: Function);
+    constructor(element: Element | null, start: number[], end: number[], time: number, opt_acc?: Function | undefined);
 }
 /**
  * Slides an element from its current position.
@@ -325,7 +325,10 @@ export class SlideFrom extends Slide {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, end: number[], time: number, opt_acc?: Function);
+    constructor(element: Element | null, end: number[], time: number, opt_acc?: Function | undefined);
+    /** @type {?Array<number>} */
+    startPoint: Array<number> | null;
+    actualEventTarget_: SlideFrom;
 }
 /**
  * Creates an animation object that will slide an element into its final size.
@@ -345,7 +348,7 @@ export class Swipe extends PredefinedEffect {
      * @param {number} time Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(element: Element, start: number[], end: number[], time: number, opt_acc?: Function);
+    constructor(element: Element | null, start: number[], end: number[], time: number, opt_acc?: Function | undefined);
     /**
      * Maximum width for element.
      * @type {number}
@@ -381,6 +384,6 @@ export class Swipe extends PredefinedEffect {
  * @param {EventHandler=} opt_eventHandler Optional event handler
  *     to use when listening for events.
  */
-export function bgColorFadeIn(element: Element, start: number[], time: number, opt_eventHandler?: goog_events.EventHandler<any>): void;
+export function bgColorFadeIn(element: Element | null, start: number[], time: number, opt_eventHandler?: goog_events.EventHandler<any> | undefined): void;
 import { Animation } from "./animation.js";
 import * as goog_events from "../events/eventhandler.js";

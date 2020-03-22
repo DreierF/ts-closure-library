@@ -164,24 +164,24 @@ declare class debug_Logger {
      * Parent Logger.
      * @private {?debug_Logger}
      */
-    parent_: debug_Logger;
+    parent_: debug_Logger | null;
     /**
      * Level that this logger only filters above. Null indicates it should
      * inherit from the parent.
      * @private {?Level}
      */
-    level_: Level;
+    level_: Level | null;
     /**
      * Map of children loggers. The keys are the leaf names of the children and
      * the values are the child loggers.
      * @private {?Object}
      */
-    children_: {};
+    children_: {} | null;
     /**
      * Handlers that are listening to this logger.
      * @private {?Array<?Function>}
      */
-    handlers_: any[];
+    handlers_: any[] | null;
     /**
      * Gets the name of this logger.
      * @return {string} The name of this logger.
@@ -192,14 +192,14 @@ declare class debug_Logger {
      * we want to be able to add logging to the event system.
      * @param {?Function} handler Handler function to add.
      */
-    addHandler(handler: Function): void;
+    addHandler(handler: Function | null): void;
     /**
      * Removes a handler from the logger. This doesn't use the event system because
      * we want to be able to add logging to the event system.
      * @param {?Function} handler Handler function to remove.
      * @return {boolean} Whether the handler was removed.
      */
-    removeHandler(handler: Function): boolean;
+    removeHandler(handler: Function | null): boolean;
     /**
      * Returns the parent of this logger.
      * @return {debug_Logger} The parent logger or null if this is the root.
@@ -220,7 +220,7 @@ declare class debug_Logger {
      *
      * @param {?Level} level The new level.
      */
-    setLevel(level: Level): void;
+    setLevel(level: Level | null): void;
     /**
      * Gets the log level specifying which message levels will be logged by this
      * logger. Message levels lower than this value will be discarded.
@@ -230,12 +230,12 @@ declare class debug_Logger {
      *
      * @return {?Level} The level.
      */
-    getLevel(): Level;
+    getLevel(): Level | null;
     /**
      * Returns the effective level of the logger based on its ancestors' levels.
      * @return {?Level} The level.
      */
-    getEffectiveLevel(): Level;
+    getEffectiveLevel(): Level | null;
     /**
      * Checks if a message of the given level would actually be logged by this
      * logger. This check is based on the Loggers effective level, which may be
@@ -243,7 +243,7 @@ declare class debug_Logger {
      * @param {?Level} level The level to check.
      * @return {boolean} Whether the message would be logged.
      */
-    isLoggable(level: Level): boolean;
+    isLoggable(level: Level | null): boolean;
     /**
      * Logs a message. If the logger is currently enabled for the
      * given message level then the given message is forwarded to all the
@@ -253,7 +253,7 @@ declare class debug_Logger {
      * @param {Error|Object=} opt_exception An exception associated with the
      *     message.
      */
-    log(level: Level, msg: string | (() => string), opt_exception?: any): void;
+    log(level: Level | null, msg: string | (() => string) | null, opt_exception?: any): void;
     /**
      * Creates a new log record and adds the exception (if present) to it.
      * @param {?Level} level One of the level identifiers.
@@ -263,7 +263,7 @@ declare class debug_Logger {
      * @return {!DebugLogRecord} A log record.
      * @suppress {es5Strict}
      */
-    getLogRecord(level: Level, msg: string, opt_exception?: any): DebugLogRecord;
+    getLogRecord(level: Level | null, msg: string, opt_exception?: any): DebugLogRecord;
     /**
      * Logs a message at the Logger.Level.SHOUT level.
      * If the logger is currently enabled for the given message level then the
@@ -271,7 +271,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    shout(msg: string | (() => string), opt_exception?: Error): void;
+    shout(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.SEVERE level.
      * If the logger is currently enabled for the given message level then the
@@ -279,7 +279,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    severe(msg: string | (() => string), opt_exception?: Error): void;
+    severe(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.WARNING level.
      * If the logger is currently enabled for the given message level then the
@@ -287,7 +287,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    warning(msg: string | (() => string), opt_exception?: Error): void;
+    warning(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.INFO level.
      * If the logger is currently enabled for the given message level then the
@@ -295,7 +295,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    info(msg: string | (() => string), opt_exception?: Error): void;
+    info(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.CONFIG level.
      * If the logger is currently enabled for the given message level then the
@@ -303,7 +303,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    config(msg: string | (() => string), opt_exception?: Error): void;
+    config(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.FINE level.
      * If the logger is currently enabled for the given message level then the
@@ -311,7 +311,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    fine(msg: string | (() => string), opt_exception?: Error): void;
+    fine(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.FINER level.
      * If the logger is currently enabled for the given message level then the
@@ -319,7 +319,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    finer(msg: string | (() => string), opt_exception?: Error): void;
+    finer(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.FINEST level.
      * If the logger is currently enabled for the given message level then the
@@ -327,26 +327,26 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    finest(msg: string | (() => string), opt_exception?: Error): void;
+    finest(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a LogRecord. If the logger is currently enabled for the
      * given message level then the given message is forwarded to all the
      * registered output Handler objects.
      * @param {?DebugLogRecord} logRecord A log record to log.
      */
-    logRecord(logRecord: DebugLogRecord): void;
+    logRecord(logRecord: DebugLogRecord | null): void;
     /**
      * Logs a LogRecord.
      * @param {?DebugLogRecord} logRecord A log record to log.
      * @private
      */
-    doLogRecord_(logRecord: DebugLogRecord): void;
+    doLogRecord_(logRecord: DebugLogRecord | null): void;
     /**
      * Calls the handlers for publish.
      * @param {?DebugLogRecord} logRecord The log record to publish.
      * @private
      */
-    callPublish_(logRecord: DebugLogRecord): void;
+    callPublish_(logRecord: DebugLogRecord | null): void;
     /**
      * Sets the parent of this logger. This is used for setting up the logger tree.
      * @param {debug_Logger} parent The parent logger.

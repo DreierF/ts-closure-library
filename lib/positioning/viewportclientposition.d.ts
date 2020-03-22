@@ -17,7 +17,7 @@ export class ViewportClientPosition extends ClientPosition {
      * @param {number=} opt_arg2 Top position if arg1 is a number representing the
      *     left position, ignored otherwise.
      */
-    constructor(arg1: number | Coordinate, opt_arg2?: number);
+    constructor(arg1: number | Coordinate, opt_arg2?: number | undefined);
     /**
      * The last-resort overflow strategy, if the popup fails to fit.
      * @type {number}

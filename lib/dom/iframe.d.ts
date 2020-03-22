@@ -67,7 +67,7 @@ export let BLANK_SOURCE_URL: TrustedResourceUrl;
  * @param {!SafeStyle=} opt_styles CSS styles for the iframe.
  * @return {!HTMLIFrameElement} A completely blank iframe.
  */
-export function createBlank(domHelper: googdom.DomHelper, opt_styles?: SafeStyle): HTMLIFrameElement;
+export function createBlank(domHelper: googdom.DomHelper | null, opt_styles?: SafeStyle | undefined): HTMLIFrameElement;
 /**
  * Creates a same-domain iframe containing preloaded content.
  *
@@ -89,7 +89,7 @@ export function createBlank(domHelper: googdom.DomHelper, opt_styles?: SafeStyle
  * @param {boolean=} opt_quirks Whether to use quirks mode (false by default).
  * @return {!HTMLIFrameElement} An iframe that has the specified contents.
  */
-export function createWithContent(parentElement: Element, opt_headContents?: SafeHtml, opt_bodyContents?: SafeHtml, opt_styles?: SafeStyle, opt_quirks?: boolean): HTMLIFrameElement;
+export function createWithContent(parentElement: Element, opt_headContents?: SafeHtml | undefined, opt_bodyContents?: SafeHtml | undefined, opt_styles?: SafeStyle | undefined, opt_quirks?: boolean | undefined): HTMLIFrameElement;
 /**
  * Writes the contents of a blank iframe that has already been inserted
  * into the document.

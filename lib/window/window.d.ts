@@ -55,7 +55,7 @@ export let DEFAULT_POPUP_WIDTH: number;
  *                  object is a emulated Window object that functions as if
  *                  a cross-origin window has been opened.
  */
-export function open(linkRef: any, opt_options?: any, opt_parentWin?: Window): Window;
+export function open(linkRef: any, opt_options?: any, opt_parentWin?: Window | null | undefined): Window | null;
 /**
  * Opens a new window without any real content in it.
  *
@@ -81,7 +81,7 @@ export function open(linkRef: any, opt_options?: any, opt_parentWin?: Window): W
  *                  null if a popup blocker prevented the window from being
  *                  opened.
  */
-export function openBlank(opt_message?: string, opt_options?: any, opt_parentWin?: Window): Window;
+export function openBlank(opt_message?: string | undefined, opt_options?: any, opt_parentWin?: Window | null | undefined): Window | null;
 /**
  * Raise a help popup window, defaulting to "Google standard" size and name.
  *

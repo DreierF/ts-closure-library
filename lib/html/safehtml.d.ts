@@ -81,9 +81,9 @@ export class SafeHtml {
      * This SafeHtml's directionality, or null if unknown.
      * @private {?Dir}
      */
-    dir_: number;
+    dir_: number | null;
     /** @override */
-    getDirection(): number;
+    getDirection(): number | null;
     /**
      * Returns this SafeHtml's value as string.
      *
@@ -115,7 +115,7 @@ export class SafeHtml {
      * @return {!SafeHtml}
      * @private
      */
-    initSecurityPrivateDoNotAccessOrElse_(html: string, dir: number): SafeHtml;
+    initSecurityPrivateDoNotAccessOrElse_(html: string, dir: number | null): SafeHtml;
 }
 export namespace SafeHtml {
     export const htmlEscape: (textOrHtml: TextOrHtml_) => SafeHtml;
@@ -132,8 +132,8 @@ export namespace SafeHtml {
      */
     export type TextOrHtml_ = string | number | boolean | DirectionalString | TypedString;
     export type AttributeValue = string | number | TypedString | {
-        [x: string]: string | Const | Html_SafeUrl | (string | Const | Html_SafeUrl)[];
-    };
+        [x: string]: string | Const | Html_SafeUrl | (string | Const | Html_SafeUrl)[] | null;
+    } | undefined;
 }
 import { DirectionalString } from "../i18n/bidi.js";
 import { TypedString } from "../string/typedstring.js";

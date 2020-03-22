@@ -183,7 +183,7 @@ declare class Trace_ {
      * @return {number} The identifier for the tracer that should be passed to the
      *     the stopTracer method.
      */
-    startTracer(comment: string, opt_type?: string): number;
+    startTracer(comment: string, opt_type?: string | undefined): number;
     /**
      * Stops a tracer
      * @param {number|undefined|null} id The id of the tracer that is ending.
@@ -192,7 +192,7 @@ declare class Trace_ {
      * @return {?number} The elapsed time for the tracer or null if the tracer
      *    identitifer was not recognized.
      */
-    stopTracer(id: number, opt_silenceThreshold?: number): number;
+    stopTracer(id: number | null | undefined, opt_silenceThreshold?: number | undefined): number | null;
     /**
      * Sets the ActiveX object that can be used to get GC tracing in IE6.
      * @param {?Object} gcTracer GCTracer ActiveX object.
@@ -214,7 +214,7 @@ declare class Trace_ {
      * @param {?number=} opt_timeStamp The timestamp to insert the comment. If not
      *    specified, the current time wil be used.
      */
-    addComment(comment: string, opt_type?: string, opt_timeStamp?: number): void;
+    addComment(comment: string, opt_type?: string | null | undefined, opt_timeStamp?: number | null | undefined): void;
     /**
      * Gets a stat object for a particular type. The stat object is created if it
      * hasn't yet been.
@@ -226,7 +226,7 @@ declare class Trace_ {
         /**
          * @type {string|null|undefined}
          */
-        type: string;
+        type: string | null | undefined;
         /**
          * Number of tracers
          * @type {number}

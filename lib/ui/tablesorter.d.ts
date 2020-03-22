@@ -34,7 +34,7 @@ export class TableSorter extends Component {
      * @param {DomHelper=} opt_domHelper Optional DOM helper, used for
      *     document interaction.
      */
-    constructor(opt_domHelper?: goog_dom.DomHelper);
+    constructor(opt_domHelper?: goog_dom.DomHelper | undefined);
     /**
      * Row number (in <thead>) to use for sorting.
      * @type {number}
@@ -112,7 +112,7 @@ export class TableSorter extends Component {
      * @param {?EventsBrowserEvent} e The click event.
      * @private
      */
-    sort_(e: EventsBrowserEvent): void;
+    sort_(e: EventsBrowserEvent | null): void;
     /**
      * Sort the table contents by the values in the given column.
      * @param {number} column The column to sort by.
@@ -120,7 +120,7 @@ export class TableSorter extends Component {
      * @return {boolean} Whether the sort was executed.
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    sort(column: number, opt_reverse?: boolean): boolean;
+    sort(column: number, opt_reverse?: boolean | undefined): boolean;
     actualEventTarget_: TableSorter;
 }
 export namespace TableSorter {

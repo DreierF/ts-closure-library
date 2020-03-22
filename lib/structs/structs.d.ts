@@ -26,7 +26,7 @@ export function contains(col: any, val: any): boolean;
  * @return {boolean} True if all key-value pairs pass the test.
  * @template T,S
  */
-export function every<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => boolean, opt_obj?: T): boolean;
+export function every<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => boolean, opt_obj?: T | undefined): boolean;
 /**
  * Calls a function for every value in the collection. When a call returns true,
  * adds the value to a new collection (Array is returned by default).
@@ -45,7 +45,7 @@ export function every<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) 
  *     has keys and values a plain old JS object is returned.
  * @template T,S
  */
-export function filter<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => boolean, opt_obj?: T): any;
+export function filter<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => boolean, opt_obj?: T | undefined): any;
 /**
  * Calls a function for each value in a collection. The function takes
  * three arguments; the value, the key and the collection.
@@ -61,7 +61,7 @@ export function filter<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S)
  * @deprecated Use a more specific method, e.g. googarray.forEach,
  *     goog_object.forEach, or for-of.
  */
-export function forEach<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => any, opt_obj?: T): void;
+export function forEach<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => any, opt_obj?: T | undefined): void;
 /**
  * @fileoverview Generics method for collection-like classes and objects.
  *
@@ -83,7 +83,7 @@ export function getCount(col: any): number;
  * @param {?Object} col The collection-like object.
  * @return {!Array|undefined} The keys in the collection.
  */
-export function getKeys(col: any): any[];
+export function getKeys(col: any): any[] | undefined;
 /**
  * Returns the values of the collection-like object.
  * @param {?Object} col The collection-like object.
@@ -112,7 +112,7 @@ export function isEmpty(col: any): boolean;
  *     values a plain old JS object is returned.
  * @template T,S,V
  */
-export function map<T, S, V>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => V, opt_obj?: T): any;
+export function map<T, S, V>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => V, opt_obj?: T | undefined): any;
 /**
  * Calls f for each value in a collection. If any call returns true this returns
  * true (without checking the rest). If all returns false this returns false.
@@ -127,4 +127,4 @@ export function map<T, S, V>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S)
  * @return {boolean} True if any value passes the test.
  * @template T,S
  */
-export function some<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => boolean, opt_obj?: T): boolean;
+export function some<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => boolean, opt_obj?: T | undefined): boolean;

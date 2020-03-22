@@ -82,7 +82,7 @@ export function endsWith(str: string, suffix: string): boolean;
  * @return {string} An escaped copy of `str`.
  * @see goog_strings.htmlEscape
  */
-export function htmlEscape(str: string, opt_isLikelyToContainHtmlChars?: boolean): string;
+export function htmlEscape(str: string, opt_isLikelyToContainHtmlChars?: boolean | undefined): string;
 /**
  * Checks if a string is empty or contains only whitespaces.
  * @param {string} str The string to check.
@@ -97,7 +97,7 @@ export function isEmptyOrWhitespace(str: string): boolean;
  * @return {string} A copy of `str` with converted newlines.
  * @see goog_strings.newLineToBr
  */
-export function newLineToBr(str: string, opt_xml?: boolean): string;
+export function newLineToBr(str: string, opt_xml?: boolean | undefined): string;
 /**
  * @fileoverview String functions called from Closure packages that couldn't
  * depend on each other. Outside Closure, use goog_strings function which
@@ -120,4 +120,4 @@ export function trim(str: any): any;
  * @return {string} An escaped copy of `str`.
  * @see goog_strings.whitespaceEscape
  */
-export function whitespaceEscape(str: string, opt_xml?: boolean): string;
+export function whitespaceEscape(str: string, opt_xml?: boolean | undefined): string;

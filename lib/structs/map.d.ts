@@ -87,7 +87,7 @@ declare class structs_Map<K, V> {
      *     the values contained in each map are identical objects.
      * @return {boolean} Whether the maps are equal.
      */
-    equals(otherMap: structs_Map<any, any>, opt_equalityFn?: (arg0: V, arg1: V) => boolean): boolean;
+    equals(otherMap: structs_Map<any, any>, opt_equalityFn?: ((arg0: V, arg1: V) => boolean) | undefined): boolean;
     /**
      * @return {boolean} Whether the map is empty.
      */
@@ -119,7 +119,7 @@ declare class structs_Map<K, V> {
      * @return {V|DEFAULT} The value for the given key.
      * @template DEFAULT
      */
-    get<DEFAULT>(key: any, opt_val?: DEFAULT): V | DEFAULT;
+    get<DEFAULT>(key: any, opt_val?: DEFAULT | undefined): V | DEFAULT;
     /**
      * Adds a key-value pair to the map.
      * @param {*} key The key.
@@ -138,7 +138,7 @@ declare class structs_Map<K, V> {
      * @param {T=} opt_obj The value of "this" inside f.
      * @template T
      */
-    forEach<T>(f: (this: T, arg1: V, arg2: K, arg3: structs_Map<K, V>) => any, opt_obj?: T): void;
+    forEach<T>(f: (this: T, arg1: V, arg2: K, arg3: structs_Map<K, V>) => any, opt_obj?: T | undefined): void;
     /**
      * Clones a map and returns a new map.
      * @return {!structs_Map} A new map with the same key-value pairs.
@@ -178,7 +178,7 @@ declare class structs_Map<K, V> {
      *     over the values.  The default value is false.
      * @return {!Iterator} An iterator over the values or keys in the map.
      */
-    __iterator__(opt_keys?: boolean): Iterator<any>;
+    __iterator__(opt_keys?: boolean | undefined): Iterator<any>;
 }
 declare namespace structs_Map { }
 import { Iterator } from "../iter/iter.js";

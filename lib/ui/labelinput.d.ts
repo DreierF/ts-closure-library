@@ -26,7 +26,7 @@ export class LabelInput extends Component {
      * @param {string=} opt_label The text to show as the label.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(opt_label?: string, opt_domHelper?: goog_dom.DomHelper);
+    constructor(opt_label?: string | undefined, opt_domHelper?: goog_dom.DomHelper | undefined);
     /**
      * Variable used to store the element value on keydown and restore it on
      * keypress.  See {@link #handleEscapeKeys_}
@@ -89,13 +89,13 @@ export class LabelInput extends Component {
      * @param {?EventsEvent} e The event object passed in to the event handler.
      * @private
      */
-    handleFocus_(e: EventsEvent): void;
+    handleFocus_(e: EventsEvent | null): void;
     /**
      * Handler for the blur event.
      * @param {?EventsEvent} e The event object passed in to the event handler.
      * @private
      */
-    handleBlur_(e: EventsEvent): void;
+    handleBlur_(e: EventsEvent | null): void;
     /**
      * Handler for key events in Firefox.
      *
@@ -113,14 +113,14 @@ export class LabelInput extends Component {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    handleEscapeKeys_(e: EventsBrowserEvent): void;
+    handleEscapeKeys_(e: EventsBrowserEvent | null): void;
     /**
      * Handler for the submit event of the form element.
      * @param {?EventsEvent} e The event object passed in to the event handler.
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    handleFormSubmit_(e: EventsEvent): void;
+    handleFormSubmit_(e: EventsEvent | null): void;
     /**
      * Restore value after submit
      * @private
@@ -133,7 +133,7 @@ export class LabelInput extends Component {
      * @param {?Event} e The event object passed in to the event handler.
      * @private
      */
-    handleWindowLoad_(e: Event): void;
+    handleWindowLoad_(e: Event | null): void;
     /**
      * @return {boolean} Whether the control is currently focused on.
      */

@@ -28,7 +28,7 @@ export class IterableMechanism extends Mechanism {
      * @return {!Iterator} The iterator.
      * @abstract
      */
-    __iterator__(opt_keys?: boolean): goog_iter.Iterator<any>;
+    __iterator__(opt_keys?: boolean | undefined): goog_iter.Iterator<any>;
     /**
      * Remove all key-value pairs.
      *

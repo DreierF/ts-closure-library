@@ -68,7 +68,7 @@ export const ENABLE_ASSERTS: boolean;
  * @throws {AssertionError} When the condition evaluates to false.
  * @closurePrimitive {asserts.truthy}
  */
-export function assert<T>(condition: T, opt_message?: string, ...args: any[]): T;
+export function assert<T>(condition: T, opt_message?: string | undefined, ...args: any[]): T;
 /**
  * Checks if the value is an Array if ENABLE_ASSERTS is true.
  * @param {*} value The value to check.
@@ -78,7 +78,7 @@ export function assert<T>(condition: T, opt_message?: string, ...args: any[]): T
  * @throws {AssertionError} When the value is not an array.
  * @closurePrimitive {asserts.matchesReturn}
  */
-export function assertArray(value: any, opt_message?: string, ...args: any[]): any[];
+export function assertArray(value: any, opt_message?: string | undefined, ...args: any[]): any[];
 /**
  * Checks if the value is a boolean if ENABLE_ASSERTS is true.
  * @param {*} value The value to check.
@@ -89,7 +89,7 @@ export function assertArray(value: any, opt_message?: string, ...args: any[]): a
  * @throws {AssertionError} When the value is not a boolean.
  * @closurePrimitive {asserts.matchesReturn}
  */
-export function assertBoolean(value: any, opt_message?: string, ...args: any[]): boolean;
+export function assertBoolean(value: any, opt_message?: string | undefined, ...args: any[]): boolean;
 /**
  * Checks if the value is a DOM Element if ENABLE_ASSERTS is true.
  * @param {*} value The value to check.
@@ -101,7 +101,7 @@ export function assertBoolean(value: any, opt_message?: string, ...args: any[]):
  * @closurePrimitive {asserts.matchesReturn}
  * @deprecated Use goog.asserts.dom.assertIsElement instead.
  */
-export function assertElement(value: any, opt_message?: string, ...args: any[]): Element;
+export function assertElement(value: any, opt_message?: string | undefined, ...args: any[]): Element;
 /**
  * Checks if `value` is `null` or `undefined` if ENABLE_ASSERTS is
  * true.
@@ -124,7 +124,7 @@ export function assertElement(value: any, opt_message?: string, ...args: any[]):
  * @throws {!AssertionError} When `value` is `null` or `undefined`.
  * @closurePrimitive {asserts.matchesReturn}
  */
-export function assertExists<T, R>(value: T, opt_message?: string, ...args: any[]): R;
+export function assertExists<T, R>(value: T, opt_message?: string | undefined, ...args: any[]): R;
 /**
  * Checks whether the value is a finite number, if ENABLE_ASSERTS
  * is true.
@@ -136,7 +136,7 @@ export function assertExists<T, R>(value: T, opt_message?: string, ...args: any[
  *     a non-finite number such as NaN, Infinity or -Infinity.
  * @return {number} The value initially passed in.
  */
-export function assertFinite(value: any, opt_message?: string, ...args: any[]): number;
+export function assertFinite(value: any, opt_message?: string | undefined, ...args: any[]): number;
 /**
  * Checks if the value is a function if ENABLE_ASSERTS is true.
  * @param {*} value The value to check.
@@ -147,7 +147,7 @@ export function assertFinite(value: any, opt_message?: string, ...args: any[]): 
  * @throws {AssertionError} When the value is not a function.
  * @closurePrimitive {asserts.matchesReturn}
  */
-export function assertFunction(value: any, opt_message?: string, ...args: any[]): Function;
+export function assertFunction(value: any, opt_message?: string | undefined, ...args: any[]): Function;
 /**
  * Checks if the value is an instance of the user-defined type if
  * ENABLE_ASSERTS is true.
@@ -169,7 +169,7 @@ export function assertFunction(value: any, opt_message?: string, ...args: any[])
  * @template T
  * @closurePrimitive {asserts.matchesReturn}
  */
-export function assertInstanceof<T>(value: any, type: new (...arg1: any[]) => T, opt_message?: string, ...args: any[]): T;
+export function assertInstanceof<T>(value: any, type: new (...arg1: any[]) => T, opt_message?: string | undefined, ...args: any[]): T;
 /**
  * Checks if the value is a number if ENABLE_ASSERTS is true.
  * @param {*} value The value to check.
@@ -179,7 +179,7 @@ export function assertInstanceof<T>(value: any, type: new (...arg1: any[]) => T,
  * @throws {AssertionError} When the value is not a number.
  * @closurePrimitive {asserts.matchesReturn}
  */
-export function assertNumber(value: any, opt_message?: string, ...args: any[]): number;
+export function assertNumber(value: any, opt_message?: string | undefined, ...args: any[]): number;
 /**
  * Checks if the value is an Object if ENABLE_ASSERTS is true.
  * @param {*} value The value to check.
@@ -204,7 +204,7 @@ export function assertObjectPrototypeIsIntact(): void;
  * @throws {AssertionError} When the value is not a string.
  * @closurePrimitive {asserts.matchesReturn}
  */
-export function assertString(value: any, opt_message?: string, ...args: any[]): string;
+export function assertString(value: any, opt_message?: string | undefined, ...args: any[]): string;
 /**
  * Fails if ENABLE_ASSERTS is true. This function is useful in case
  * when we want to add a check in the unreachable area like switch-case

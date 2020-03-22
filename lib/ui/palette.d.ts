@@ -37,7 +37,7 @@ export class Palette extends Control<PaletteRenderer> {
      * @param {DomHelper=} opt_domHelper Optional DOM helper, used for
      *     document interaction.
      */
-    constructor(items: Node[], opt_renderer?: PaletteRenderer, opt_domHelper?: goog_dom.DomHelper);
+    constructor(items: Node[], opt_renderer?: PaletteRenderer | undefined, opt_domHelper?: goog_dom.DomHelper | undefined);
     /**
      * Palette dimensions (columns x rows).  If the number of rows is undefined,
      * it is calculated on first use.
@@ -80,12 +80,12 @@ export class Palette extends Control<PaletteRenderer> {
      * Handles selection change events dispatched by the selection model.
      * @param {?EventsEvent} e Selection event to handle.
      */
-    handleSelectionChange(e: EventsEvent): void;
+    handleSelectionChange(e: EventsEvent | null): void;
     /**
      * Returns the size of the palette grid.
      * @return {?Size} Palette size (columns x rows).
      */
-    getSize(): Size;
+    getSize(): Size | null;
     /**
      * Sets the size of the palette grid to the given size.  Callers can either
      * pass a single {@link Size} or a pair of numbers (first the number
@@ -97,7 +97,7 @@ export class Palette extends Control<PaletteRenderer> {
      *     columns.
      * @param {number=} opt_rows The number of rows (optional).
      */
-    setSize(size: number | Size, opt_rows?: number): void;
+    setSize(size: number | Size, opt_rows?: number | undefined): void;
     /**
      * Returns the 0-based index of the currently highlighted palette item, or -1
      * if no item is highlighted.
@@ -109,12 +109,12 @@ export class Palette extends Control<PaletteRenderer> {
      * highlighted.
      * @return {?Node} The highlighted item (undefined if none).
      */
-    getHighlightedItem(): Node;
+    getHighlightedItem(): Node | null;
     /**
      * @return {?Element} The highlighted cell.
      * @private
      */
-    getHighlightedCellElement_(): Element;
+    getHighlightedCellElement_(): Element | null;
     /**
      * Highlights the item at the given 0-based index, or removes the highlight
      * if the argument is -1 or out of range.  Any previously-highlighted item
@@ -127,7 +127,7 @@ export class Palette extends Control<PaletteRenderer> {
      * or invalid.  Any previously-highlighted item will be un-highlighted.
      * @param {Node|undefined} item Item to highlight.
      */
-    setHighlightedItem(item: Node): void;
+    setHighlightedItem(item: Node | undefined): void;
     /**
      * Returns the 0-based index of the currently selected palette item, or -1
      * if no item is selected.
@@ -138,7 +138,7 @@ export class Palette extends Control<PaletteRenderer> {
      * Returns the currently selected palette item, or null if no item is selected.
      * @return {?Node} The selected item (null if none).
      */
-    getSelectedItem(): Node;
+    getSelectedItem(): Node | null;
     /**
      * Selects the item at the given 0-based index, or clears the selection
      * if the argument is -1 or out of range.  Any previously-selected item
@@ -151,7 +151,7 @@ export class Palette extends Control<PaletteRenderer> {
      * invalid.  Any previously-selected item will be deselected.
      * @param {?Node} item Item to select.
      */
-    setSelectedItem(item: Node): void;
+    setSelectedItem(item: Node | null): void;
     /**
      * Private helper; highlights or un-highlights the item at the given index
      * based on the value of the Boolean argument.  This implementation simply
@@ -175,7 +175,7 @@ export class Palette extends Control<PaletteRenderer> {
      *     deselected.
      * @private
      */
-    selectItem_(item: Node, select: boolean): void;
+    selectItem_(item: Node | null, select: boolean): void;
     /**
      * Calculates and updates the size of the palette based on any preset values
      * and the number of palette items.  If there is no preset size, sets the

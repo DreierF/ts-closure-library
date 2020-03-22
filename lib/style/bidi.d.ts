@@ -28,7 +28,7 @@
  *     offsetStart position.
  * @return {number} The offsetStart for that element.
  */
-export function getOffsetStart(element: Element): number;
+export function getOffsetStart(element: Element | null): number;
 /**
  * @fileoverview Bidi utility functions.
  */
@@ -39,7 +39,7 @@ export function getOffsetStart(element: Element): number;
  *     that the element is not scrolled at all (which, in general, is the
  *     left-most position in ltr and the right-most position in rtl).
  */
-export function getScrollLeft(element: Element): number;
+export function getScrollLeft(element: Element | null): number;
 /**
  * Sets the element's left style attribute in LTR or right style attribute in
  * RTL.  Also clears the left attribute in RTL and the right attribute in LTR.
@@ -48,7 +48,7 @@ export function getScrollLeft(element: Element): number;
  * @param {?number} top The top position.  If null only the left/right is set.
  * @param {boolean} isRtl Whether we are in RTL mode.
  */
-export function setPosition(elem: Element, left: number, top: number, isRtl: boolean): void;
+export function setPosition(elem: Element | null, left: number, top: number | null, isRtl: boolean): void;
 /**
  * Sets the element's scrollLeft attribute so it is correctly scrolled by
  * offsetStart pixels.  This takes into account whether the element is RTL and
@@ -60,4 +60,4 @@ export function setPosition(elem: Element, left: number, top: number, isRtl: boo
  * @param {number} offsetStart The number of pixels to scroll the element.
  *     If this value is < 0, 0 is used.
  */
-export function setScrollOffset(element: Element, offsetStart: number): void;
+export function setScrollOffset(element: Element | null, offsetStart: number): void;

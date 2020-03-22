@@ -45,7 +45,7 @@ export class Zippy extends EventsEventTarget {
      * @param {DomHelper=} opt_domHelper An optional DOM helper.
      * @param {Role<string>=} opt_role ARIA role, default TAB.
      */
-    constructor(header: string | Element, opt_content?: string | Element | (() => Element), opt_expanded?: boolean, opt_expandedHeader?: string | Element, opt_domHelper?: goog_dom.DomHelper, opt_role?: any);
+    constructor(header: string | Element | null, opt_content?: string | Element | (() => Element) | undefined, opt_expanded?: boolean | undefined, opt_expandedHeader?: string | Element | undefined, opt_domHelper?: goog_dom.DomHelper | undefined, opt_role?: any);
     /**
      * Whether to listen for and handle mouse events; defaults to true.
      * @type {boolean}
@@ -124,15 +124,15 @@ export class Zippy extends EventsEventTarget {
     /**
      * @return {?Role} The ARIA role to be applied to Zippy element.
      */
-    getAriaRole(): string;
+    getAriaRole(): string | null;
     /**
      * @return {?HTMLElement} The content element.
      */
-    getContentElement(): HTMLElement;
+    getContentElement(): HTMLElement | null;
     /**
      * @return {?Element} The visible header element.
      */
-    getVisibleHeaderElement(): Element;
+    getVisibleHeaderElement(): Element | null;
     /**
      * Expands content pane.
      */
@@ -193,13 +193,13 @@ export class Zippy extends EventsEventTarget {
      * @param {?Element} header The header element.
      * @private
      */
-    enableKeyboardEventsHandling_(header: Element): void;
+    enableKeyboardEventsHandling_(header: Element | null): void;
     /**
      * Enables mouse events handling for the passed header element.
      * @param {?Element} header The header element.
      * @private
      */
-    enableMouseEventsHandling_(header: Element): void;
+    enableMouseEventsHandling_(header: Element | null): void;
     /**
      * KeyDown event handler for header element. Enter and space toggles expanded
      * state.
@@ -241,7 +241,7 @@ export class ZippyEvent extends EventsEvent {
      * @param {boolean} expanded Expanded state.
      * @param {!EventsBrowserEvent=} opt_triggeringEvent
      */
-    constructor(type: string, target: Zippy, expanded: boolean, opt_triggeringEvent?: EventsBrowserEvent);
+    constructor(type: string, target: Zippy | null, expanded: boolean, opt_triggeringEvent?: EventsBrowserEvent | undefined);
     /**
      * The expanded state.
      * @type {boolean}

@@ -38,7 +38,7 @@ export class Menu extends Container<MenuRenderer> {
      * @param {MenuRenderer=} opt_renderer Renderer used to render or
      *     decorate the container; defaults to {@link MenuRenderer}.
      */
-    constructor(opt_domHelper?: _googdom.DomHelper, opt_renderer?: MenuRenderer);
+    constructor(opt_domHelper?: _googdom.DomHelper | undefined, opt_renderer?: MenuRenderer | undefined);
     /**
      * Coordinates of the mousedown event that caused this menu to be made visible.
      * Used to prevent the consequent mouseup event due to a simple click from
@@ -78,7 +78,7 @@ export class Menu extends Container<MenuRenderer> {
      * @return {boolean} Whether the provided element is to be considered inside
      *     the menu.
      */
-    containsElement(element: Element): boolean;
+    containsElement(element: Element | null): boolean;
     /**
      * Adds a new menu item at the end of the menu.
      * @param {MenuHeader|MenuItem|MenuSeparator} item Menu
@@ -115,7 +115,7 @@ export class Menu extends Container<MenuRenderer> {
      *     Reference to the menu item.
      * @deprecated Use {@link #getChildAt} instead.
      */
-    getItemAt(n: number): MenuHeader | MenuItem | MenuSeparator;
+    getItemAt(n: number): MenuHeader | MenuItem | MenuSeparator | null;
     /**
      * Returns the number of items in the menu (including separators).
      * @return {number} The number of items in the menu.
@@ -133,13 +133,13 @@ export class Menu extends Container<MenuRenderer> {
      * @param {number|Coordinate} x Left position or coordinate obj.
      * @param {number=} opt_y Top position.
      */
-    setPosition(x: number | MathCoordinate, opt_y?: number): void;
+    setPosition(x: number | MathCoordinate, opt_y?: number | undefined): void;
     /**
      * Gets the page offset of the menu, or null if the menu isn't visible
      * @return {Coordinate?} Object holding the x-y coordinates of the
      *     menu or null if the menu is not visible.
      */
-    getPosition(): MathCoordinate;
+    getPosition(): MathCoordinate | null;
     /**
      * Sets whether the menu can automatically move focus to its key event target
      * when it is set to visible.
@@ -173,7 +173,7 @@ export class Menu extends Container<MenuRenderer> {
      *     be made visible (ignored if show is false).
      * @suppress {checkTypes}
      */
-    setVisible(show: boolean, opt_force?: boolean, opt_e?: EventsEvent): boolean;
+    setVisible(show: boolean, opt_force?: boolean | undefined, opt_e?: EventsEvent | undefined): boolean;
     /** @override */
     handleEnterItem(e: any): boolean;
     /**
@@ -197,7 +197,7 @@ export class Menu extends Container<MenuRenderer> {
      * @param {?Element} element Element to decorate.
      * @protected
      */
-    decorateContent(element: Element): void;
+    decorateContent(element: Element | null): void;
     actualEventTarget_: Menu;
 }
 export namespace Menu {
@@ -230,7 +230,7 @@ export class MenuItem extends Control<Ui_MenuItemRenderer> {
      *     document interactions.
      * @param {Ui_MenuItemRenderer=} opt_renderer Optional renderer.
      */
-    constructor(content: any, opt_model?: any, opt_domHelper?: _googdom.DomHelper, opt_renderer?: Ui_MenuItemRenderer);
+    constructor(content: any, opt_model?: any, opt_domHelper?: _googdom.DomHelper | undefined, opt_renderer?: Ui_MenuItemRenderer | undefined);
     /**
      * The access key for this menu item. This key allows the user to quickly
      * trigger this item's action with they keyboard. For example, setting the
@@ -283,7 +283,7 @@ export class MenuItem extends Control<Ui_MenuItemRenderer> {
      * @suppress {checkTypes}
      * @return {?string} The keyboard accelerator text, or null if the menu item doesn't have one.
      */
-    getAccelerator(): string;
+    getAccelerator(): string | null;
     /** @override */
     handleMouseUp(e: any): void;
     /** @override */
@@ -293,13 +293,13 @@ export class MenuItem extends Control<Ui_MenuItemRenderer> {
      * action.
      * @param {?KeyCodes} key The key code.
      */
-    setMnemonic(key: KeyCodes): void;
+    setMnemonic(key: KeyCodes | null): void;
     /**
      * Gets the mnemonic key code. The mnemonic is the key associated with this
      * action.
      * @return {?KeyCodes} The key code of the mnemonic key.
      */
-    getMnemonic(): KeyCodes;
+    getMnemonic(): KeyCodes | null;
     /**
      * @override
      */
@@ -308,12 +308,12 @@ export class MenuItem extends Control<Ui_MenuItemRenderer> {
      * @override
      * @return {?Menu}
      */
-    getParent(): Menu;
+    getParent(): Menu | null;
     /**
      * @override
      * @return {?Menu}
      */
-    getParentEventTarget(): Menu;
+    getParentEventTarget(): Menu | null;
     actualEventTarget_: MenuItem;
 }
 export namespace MenuItem {
@@ -334,14 +334,14 @@ export class MenuRenderer extends ContainerRenderer {
      * ContainerRenderer}.
      * @param {string=} opt_ariaRole Optional ARIA role used for the element.
      */
-    constructor(opt_ariaRole?: string);
+    constructor(opt_ariaRole?: string | undefined);
     /**
      * Returns whether the given element is contained in the menu's DOM.
      * @param {?Menu} menu The menu to test.
      * @param {?Element} element The element to test.
      * @return {boolean} Whether the given element is contained in the menu.
      */
-    containsElement(menu: Menu, element: Element): boolean;
+    containsElement(menu: Menu | null, element: Element | null): boolean;
     /** @override */
     initializeDom(container: any): void;
 }

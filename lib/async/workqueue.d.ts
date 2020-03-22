@@ -29,7 +29,7 @@ export class WorkItem {
  */
 export class WorkQueue {
     workHead_: any;
-    workTail_: WorkItem;
+    workTail_: WorkItem | null;
     /**
      * @param {function()} fn
      * @param {Object|null|undefined} scope
@@ -38,16 +38,16 @@ export class WorkQueue {
     /**
      * @return {?WorkItem}
      */
-    remove(): WorkItem;
+    remove(): WorkItem | null;
     /**
      * @param {?WorkItem} item
      */
-    returnUnused(item: WorkItem): void;
+    returnUnused(item: WorkItem | null): void;
     /**
      * @return {?WorkItem}
      * @private
      */
-    getUnusedItem_(): WorkItem;
+    getUnusedItem_(): WorkItem | null;
 }
 export namespace WorkQueue {
     export const freelist_: FreeList<WorkItem>;

@@ -142,7 +142,7 @@ export class DateTimeParse {
      * @param {number=} opt_start The position from where parse should begin.
      * @return {number} How many characters parser advanced.
      */
-    parse(text: string, date: Date | goog_date.Date, opt_start?: number): number;
+    parse(text: string, date: Date | goog_date.Date | null, opt_start?: number | undefined): number;
     /**
      * Parse the given string and fill info into date object. This version will
      * validate the input and make sure it is a valid date/time.
@@ -151,7 +151,7 @@ export class DateTimeParse {
      * @param {number=} opt_start The position from where parse should begin.
      * @return {number} How many characters parser advanced.
      */
-    strictParse(text: string, date: Date | goog_date.Date, opt_start?: number): number;
+    strictParse(text: string, date: Date | goog_date.Date | null, opt_start?: number | undefined): number;
     /**
      * Parse the given string and fill info into date object.
      * @param {string} text The string being parsed.
@@ -162,7 +162,7 @@ export class DateTimeParse {
      * @return {number} How many characters parser advanced.
      * @private
      */
-    internalParse_(text: string, date: Date | goog_date.Date, start: number, validation: boolean): number;
+    internalParse_(text: string, date: Date | goog_date.Date | null, start: number, validation: boolean): number;
     /**
      * Calculate character repeat count in pattern.
      *
@@ -223,57 +223,57 @@ export class DateTimeParse {
          * The date's era.
          * @type {?number}
          */
-        era: number;
+        era: number | null;
         /**
          * The date's year.
          * @type {?number}
          */
-        year: number;
+        year: number | null;
         /**
          * The date's month.
          * @type {?number}
          */
-        month: number;
+        month: number | null;
         /**
          * The date's day of month.
          * @type {?number}
          */
-        day: number;
+        day: number | null;
         /**
          * The date's hour.
          * @type {?number}
          */
-        hours: number;
+        hours: number | null;
         /**
          * The date's before/afternoon denominator.
          * @type {?number}
          */
-        ampm: number;
+        ampm: number | null;
         /**
          * The date's minutes.
          * @type {?number}
          */
-        minutes: number;
+        minutes: number | null;
         /**
          * The date's seconds.
          * @type {?number}
          */
-        seconds: number;
+        seconds: number | null;
         /**
          * The date's milliseconds.
          * @type {?number}
          */
-        milliseconds: number;
+        milliseconds: number | null;
         /**
          * The date's timezone offset.
          * @type {?number}
          */
-        tzOffset: number;
+        tzOffset: number | null;
         /**
          * The date's day of week. Sunday is 0, Saturday is 6.
          * @type {?number}
          */
-        dayOfWeek: number;
+        dayOfWeek: number | null;
         /**
          * 2 digit year special handling. Assuming for example that the
          * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
@@ -290,7 +290,7 @@ export class DateTimeParse {
          * @suppress {checkTypes}
          */
         setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean;
+        ambiguousYear: boolean | undefined;
         /**
          * Based on the fields set, fill a Date object. For those fields that not
          * set, use the passed in date object's value.
@@ -303,7 +303,7 @@ export class DateTimeParse {
          * @private
          * @suppress {checkTypes}
          */
-        calcDate_(date: Date | goog_date.Date, validation: boolean): boolean;
+        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
     }): boolean;
     /**
      * Parse year field. Year field is special because
@@ -326,57 +326,57 @@ export class DateTimeParse {
          * The date's era.
          * @type {?number}
          */
-        era: number;
+        era: number | null;
         /**
          * The date's year.
          * @type {?number}
          */
-        year: number;
+        year: number | null;
         /**
          * The date's month.
          * @type {?number}
          */
-        month: number;
+        month: number | null;
         /**
          * The date's day of month.
          * @type {?number}
          */
-        day: number;
+        day: number | null;
         /**
          * The date's hour.
          * @type {?number}
          */
-        hours: number;
+        hours: number | null;
         /**
          * The date's before/afternoon denominator.
          * @type {?number}
          */
-        ampm: number;
+        ampm: number | null;
         /**
          * The date's minutes.
          * @type {?number}
          */
-        minutes: number;
+        minutes: number | null;
         /**
          * The date's seconds.
          * @type {?number}
          */
-        seconds: number;
+        seconds: number | null;
         /**
          * The date's milliseconds.
          * @type {?number}
          */
-        milliseconds: number;
+        milliseconds: number | null;
         /**
          * The date's timezone offset.
          * @type {?number}
          */
-        tzOffset: number;
+        tzOffset: number | null;
         /**
          * The date's day of week. Sunday is 0, Saturday is 6.
          * @type {?number}
          */
-        dayOfWeek: number;
+        dayOfWeek: number | null;
         /**
          * 2 digit year special handling. Assuming for example that the
          * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
@@ -393,7 +393,7 @@ export class DateTimeParse {
          * @suppress {checkTypes}
          */
         setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean;
+        ambiguousYear: boolean | undefined;
         /**
          * Based on the fields set, fill a Date object. For those fields that not
          * set, use the passed in date object's value.
@@ -406,7 +406,7 @@ export class DateTimeParse {
          * @private
          * @suppress {checkTypes}
          */
-        calcDate_(date: Date | goog_date.Date, validation: boolean): boolean;
+        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
     }): boolean;
     /**
      * Parse Month field.
@@ -425,57 +425,57 @@ export class DateTimeParse {
          * The date's era.
          * @type {?number}
          */
-        era: number;
+        era: number | null;
         /**
          * The date's year.
          * @type {?number}
          */
-        year: number;
+        year: number | null;
         /**
          * The date's month.
          * @type {?number}
          */
-        month: number;
+        month: number | null;
         /**
          * The date's day of month.
          * @type {?number}
          */
-        day: number;
+        day: number | null;
         /**
          * The date's hour.
          * @type {?number}
          */
-        hours: number;
+        hours: number | null;
         /**
          * The date's before/afternoon denominator.
          * @type {?number}
          */
-        ampm: number;
+        ampm: number | null;
         /**
          * The date's minutes.
          * @type {?number}
          */
-        minutes: number;
+        minutes: number | null;
         /**
          * The date's seconds.
          * @type {?number}
          */
-        seconds: number;
+        seconds: number | null;
         /**
          * The date's milliseconds.
          * @type {?number}
          */
-        milliseconds: number;
+        milliseconds: number | null;
         /**
          * The date's timezone offset.
          * @type {?number}
          */
-        tzOffset: number;
+        tzOffset: number | null;
         /**
          * The date's day of week. Sunday is 0, Saturday is 6.
          * @type {?number}
          */
-        dayOfWeek: number;
+        dayOfWeek: number | null;
         /**
          * 2 digit year special handling. Assuming for example that the
          * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
@@ -492,7 +492,7 @@ export class DateTimeParse {
          * @suppress {checkTypes}
          */
         setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean;
+        ambiguousYear: boolean | undefined;
         /**
          * Based on the fields set, fill a Date object. For those fields that not
          * set, use the passed in date object's value.
@@ -505,7 +505,7 @@ export class DateTimeParse {
          * @private
          * @suppress {checkTypes}
          */
-        calcDate_(date: Date | goog_date.Date, validation: boolean): boolean;
+        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
     }, value: number): boolean;
     /**
      * Parse Quarter field.
@@ -524,57 +524,57 @@ export class DateTimeParse {
          * The date's era.
          * @type {?number}
          */
-        era: number;
+        era: number | null;
         /**
          * The date's year.
          * @type {?number}
          */
-        year: number;
+        year: number | null;
         /**
          * The date's month.
          * @type {?number}
          */
-        month: number;
+        month: number | null;
         /**
          * The date's day of month.
          * @type {?number}
          */
-        day: number;
+        day: number | null;
         /**
          * The date's hour.
          * @type {?number}
          */
-        hours: number;
+        hours: number | null;
         /**
          * The date's before/afternoon denominator.
          * @type {?number}
          */
-        ampm: number;
+        ampm: number | null;
         /**
          * The date's minutes.
          * @type {?number}
          */
-        minutes: number;
+        minutes: number | null;
         /**
          * The date's seconds.
          * @type {?number}
          */
-        seconds: number;
+        seconds: number | null;
         /**
          * The date's milliseconds.
          * @type {?number}
          */
-        milliseconds: number;
+        milliseconds: number | null;
         /**
          * The date's timezone offset.
          * @type {?number}
          */
-        tzOffset: number;
+        tzOffset: number | null;
         /**
          * The date's day of week. Sunday is 0, Saturday is 6.
          * @type {?number}
          */
-        dayOfWeek: number;
+        dayOfWeek: number | null;
         /**
          * 2 digit year special handling. Assuming for example that the
          * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
@@ -591,7 +591,7 @@ export class DateTimeParse {
          * @suppress {checkTypes}
          */
         setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean;
+        ambiguousYear: boolean | undefined;
         /**
          * Based on the fields set, fill a Date object. For those fields that not
          * set, use the passed in date object's value.
@@ -604,7 +604,7 @@ export class DateTimeParse {
          * @private
          * @suppress {checkTypes}
          */
-        calcDate_(date: Date | goog_date.Date, validation: boolean): boolean;
+        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
     }, value: number): boolean;
     /**
      * Parse Day of week field.
@@ -620,57 +620,57 @@ export class DateTimeParse {
          * The date's era.
          * @type {?number}
          */
-        era: number;
+        era: number | null;
         /**
          * The date's year.
          * @type {?number}
          */
-        year: number;
+        year: number | null;
         /**
          * The date's month.
          * @type {?number}
          */
-        month: number;
+        month: number | null;
         /**
          * The date's day of month.
          * @type {?number}
          */
-        day: number;
+        day: number | null;
         /**
          * The date's hour.
          * @type {?number}
          */
-        hours: number;
+        hours: number | null;
         /**
          * The date's before/afternoon denominator.
          * @type {?number}
          */
-        ampm: number;
+        ampm: number | null;
         /**
          * The date's minutes.
          * @type {?number}
          */
-        minutes: number;
+        minutes: number | null;
         /**
          * The date's seconds.
          * @type {?number}
          */
-        seconds: number;
+        seconds: number | null;
         /**
          * The date's milliseconds.
          * @type {?number}
          */
-        milliseconds: number;
+        milliseconds: number | null;
         /**
          * The date's timezone offset.
          * @type {?number}
          */
-        tzOffset: number;
+        tzOffset: number | null;
         /**
          * The date's day of week. Sunday is 0, Saturday is 6.
          * @type {?number}
          */
-        dayOfWeek: number;
+        dayOfWeek: number | null;
         /**
          * 2 digit year special handling. Assuming for example that the
          * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
@@ -687,7 +687,7 @@ export class DateTimeParse {
          * @suppress {checkTypes}
          */
         setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean;
+        ambiguousYear: boolean | undefined;
         /**
          * Based on the fields set, fill a Date object. For those fields that not
          * set, use the passed in date object's value.
@@ -700,7 +700,7 @@ export class DateTimeParse {
          * @private
          * @suppress {checkTypes}
          */
-        calcDate_(date: Date | goog_date.Date, validation: boolean): boolean;
+        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
     }): boolean;
     /**
      * Parse fractional seconds field.
@@ -718,57 +718,57 @@ export class DateTimeParse {
          * The date's era.
          * @type {?number}
          */
-        era: number;
+        era: number | null;
         /**
          * The date's year.
          * @type {?number}
          */
-        year: number;
+        year: number | null;
         /**
          * The date's month.
          * @type {?number}
          */
-        month: number;
+        month: number | null;
         /**
          * The date's day of month.
          * @type {?number}
          */
-        day: number;
+        day: number | null;
         /**
          * The date's hour.
          * @type {?number}
          */
-        hours: number;
+        hours: number | null;
         /**
          * The date's before/afternoon denominator.
          * @type {?number}
          */
-        ampm: number;
+        ampm: number | null;
         /**
          * The date's minutes.
          * @type {?number}
          */
-        minutes: number;
+        minutes: number | null;
         /**
          * The date's seconds.
          * @type {?number}
          */
-        seconds: number;
+        seconds: number | null;
         /**
          * The date's milliseconds.
          * @type {?number}
          */
-        milliseconds: number;
+        milliseconds: number | null;
         /**
          * The date's timezone offset.
          * @type {?number}
          */
-        tzOffset: number;
+        tzOffset: number | null;
         /**
          * The date's day of week. Sunday is 0, Saturday is 6.
          * @type {?number}
          */
-        dayOfWeek: number;
+        dayOfWeek: number | null;
         /**
          * 2 digit year special handling. Assuming for example that the
          * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
@@ -785,7 +785,7 @@ export class DateTimeParse {
          * @suppress {checkTypes}
          */
         setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean;
+        ambiguousYear: boolean | undefined;
         /**
          * Based on the fields set, fill a Date object. For those fields that not
          * set, use the passed in date object's value.
@@ -798,7 +798,7 @@ export class DateTimeParse {
          * @private
          * @suppress {checkTypes}
          */
-        calcDate_(date: Date | goog_date.Date, validation: boolean): boolean;
+        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
     }): boolean;
     /**
      * Parse GMT type timezone.
@@ -815,57 +815,57 @@ export class DateTimeParse {
          * The date's era.
          * @type {?number}
          */
-        era: number;
+        era: number | null;
         /**
          * The date's year.
          * @type {?number}
          */
-        year: number;
+        year: number | null;
         /**
          * The date's month.
          * @type {?number}
          */
-        month: number;
+        month: number | null;
         /**
          * The date's day of month.
          * @type {?number}
          */
-        day: number;
+        day: number | null;
         /**
          * The date's hour.
          * @type {?number}
          */
-        hours: number;
+        hours: number | null;
         /**
          * The date's before/afternoon denominator.
          * @type {?number}
          */
-        ampm: number;
+        ampm: number | null;
         /**
          * The date's minutes.
          * @type {?number}
          */
-        minutes: number;
+        minutes: number | null;
         /**
          * The date's seconds.
          * @type {?number}
          */
-        seconds: number;
+        seconds: number | null;
         /**
          * The date's milliseconds.
          * @type {?number}
          */
-        milliseconds: number;
+        milliseconds: number | null;
         /**
          * The date's timezone offset.
          * @type {?number}
          */
-        tzOffset: number;
+        tzOffset: number | null;
         /**
          * The date's day of week. Sunday is 0, Saturday is 6.
          * @type {?number}
          */
-        dayOfWeek: number;
+        dayOfWeek: number | null;
         /**
          * 2 digit year special handling. Assuming for example that the
          * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
@@ -882,7 +882,7 @@ export class DateTimeParse {
          * @suppress {checkTypes}
          */
         setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean;
+        ambiguousYear: boolean | undefined;
         /**
          * Based on the fields set, fill a Date object. For those fields that not
          * set, use the passed in date object's value.
@@ -895,7 +895,7 @@ export class DateTimeParse {
          * @private
          * @suppress {checkTypes}
          */
-        calcDate_(date: Date | goog_date.Date, validation: boolean): boolean;
+        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
     }): boolean;
     /**
      * Parse time zone offset.
@@ -912,57 +912,57 @@ export class DateTimeParse {
          * The date's era.
          * @type {?number}
          */
-        era: number;
+        era: number | null;
         /**
          * The date's year.
          * @type {?number}
          */
-        year: number;
+        year: number | null;
         /**
          * The date's month.
          * @type {?number}
          */
-        month: number;
+        month: number | null;
         /**
          * The date's day of month.
          * @type {?number}
          */
-        day: number;
+        day: number | null;
         /**
          * The date's hour.
          * @type {?number}
          */
-        hours: number;
+        hours: number | null;
         /**
          * The date's before/afternoon denominator.
          * @type {?number}
          */
-        ampm: number;
+        ampm: number | null;
         /**
          * The date's minutes.
          * @type {?number}
          */
-        minutes: number;
+        minutes: number | null;
         /**
          * The date's seconds.
          * @type {?number}
          */
-        seconds: number;
+        seconds: number | null;
         /**
          * The date's milliseconds.
          * @type {?number}
          */
-        milliseconds: number;
+        milliseconds: number | null;
         /**
          * The date's timezone offset.
          * @type {?number}
          */
-        tzOffset: number;
+        tzOffset: number | null;
         /**
          * The date's day of week. Sunday is 0, Saturday is 6.
          * @type {?number}
          */
-        dayOfWeek: number;
+        dayOfWeek: number | null;
         /**
          * 2 digit year special handling. Assuming for example that the
          * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
@@ -979,7 +979,7 @@ export class DateTimeParse {
          * @suppress {checkTypes}
          */
         setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean;
+        ambiguousYear: boolean | undefined;
         /**
          * Based on the fields set, fill a Date object. For those fields that not
          * set, use the passed in date object's value.
@@ -992,7 +992,7 @@ export class DateTimeParse {
          * @private
          * @suppress {checkTypes}
          */
-        calcDate_(date: Date | goog_date.Date, validation: boolean): boolean;
+        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
     }): boolean;
     /**
      * Parse an integer string and return integer value.
@@ -1101,7 +1101,7 @@ declare class MyDate_ {
      * @suppress {checkTypes}
      */
     setTwoDigitYear_(year: number): number;
-    ambiguousYear: boolean;
+    ambiguousYear: boolean | undefined;
     /**
      * Based on the fields set, fill a Date object. For those fields that not
      * set, use the passed in date object's value.
@@ -1114,6 +1114,6 @@ declare class MyDate_ {
      * @private
      * @suppress {checkTypes}
      */
-    calcDate_(date: Date | goog_date.Date, validation: boolean): boolean;
+    calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
 }
 export {};

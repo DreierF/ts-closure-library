@@ -40,13 +40,13 @@ export class Rect {
      * @param {?IRect} rect A Rectangle.
      * @return {boolean} True iff this rectangle intersects with the parameter.
      */
-    intersection(rect: IRect): boolean;
+    intersection(rect: IRect | null): boolean;
     /**
      * Returns whether a rectangle intersects this rectangle.
      * @param {?IRect} rect A rectangle.
      * @return {boolean} Whether rect intersects this rectangle.
      */
-    intersects(rect: IRect): boolean;
+    intersects(rect: IRect | null): boolean;
     /**
      * Computes the difference regions between this rectangle and `rect`. The
      * return value is an array of 0 to 4 rectangles defining the remaining regions
@@ -55,12 +55,12 @@ export class Rect {
      * @return {!Array<!Rect>} An array with 0 to 4 rectangles which
      *     together define the difference area of rectangle a minus rectangle b.
      */
-    difference(rect: IRect): Rect[];
+    difference(rect: IRect | null): Rect[];
     /**
      * Expand this rectangle to also include the area of the given rectangle.
      * @param {?IRect} rect The other rectangle.
      */
-    boundingRect(rect: IRect): void;
+    boundingRect(rect: IRect | null): void;
     /**
      * Tests whether this rectangle entirely contains another rectangle or
      * coordinate.
@@ -128,7 +128,7 @@ export class Rect {
      * @param {number=} opt_ty The value to translate top by.
      * @return {!Rect} This rectangle after translating.
      */
-    translate(tx: number | Coordinate, opt_ty?: number): Rect;
+    translate(tx: number | Coordinate, opt_ty?: number | undefined): Rect;
     /**
      * Scales this rectangle by the given scale factors. The left and width values
      * are scaled by `sx` and the top and height values are scaled by
@@ -138,7 +138,7 @@ export class Rect {
      * @param {number=} opt_sy The scale factor to use for the y dimension.
      * @return {!Rect} This rectangle after scaling.
      */
-    scale(sx: number, opt_sy?: number): Rect;
+    scale(sx: number, opt_sy?: number | undefined): Rect;
 }
 export namespace Rect { }
 import { Box as Math_Box } from "./box.js";

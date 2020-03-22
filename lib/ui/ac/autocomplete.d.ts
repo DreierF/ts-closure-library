@@ -54,7 +54,7 @@ export class AutoComplete extends events.EventTarget {
      *
      * @suppress {underscore}
      */
-    constructor(matcher: any, renderer: Renderer, selectionHandler: any);
+    constructor(matcher: any, renderer: Renderer | null, selectionHandler: any);
     /**
      * The maximum number of matches that should be returned
      * @type {number}
@@ -150,7 +150,7 @@ export class AutoComplete extends events.EventTarget {
     firstRowId_: number;
     /**
      * The target HTML node for displaying.
-     * @type {?Element}
+     * @type {Element|null}
      * @protected
      * @suppress {underscore|visibility}
      */
@@ -195,7 +195,7 @@ export class AutoComplete extends events.EventTarget {
      *     renders/shows/highlights/hides the autocomplete menu.
      *     See constructor documentation for the expected renderer API.
      */
-    getRenderer(): events.EventTarget;
+    getRenderer(): events.EventTarget | null;
     /**
      * Sets the renderer that renders/shows/highlights/hides the autocomplete
      * menu.
@@ -205,12 +205,12 @@ export class AutoComplete extends events.EventTarget {
      * @param {?Renderer} renderer The renderer.
      * @protected
      */
-    setRenderer(renderer: Renderer): void;
+    setRenderer(renderer: Renderer | null): void;
     /**
      * @return {?string} The currently typed token used for completion.
      * @protected
      */
-    getToken(): string;
+    getToken(): string | null;
     /**
      * Sets the current token (without changing the rendered autocompletion).
      *
@@ -220,7 +220,7 @@ export class AutoComplete extends events.EventTarget {
      * @param {?string} token The new token.
      * @protected
      */
-    setTokenInternal(token: string): void;
+    setTokenInternal(token: string | null): void;
     /**
      * @param {number} index The suggestion index, must be within the
      *     interval [0, this.getSuggestionCount()).
@@ -244,7 +244,7 @@ export class AutoComplete extends events.EventTarget {
      * Generic event handler that handles any events this object is listening to.
      * @param {?EventsEvent} e Event Object.
      */
-    handleEvent(e: EventsEvent): void;
+    handleEvent(e: EventsEvent | null): void;
     /**
      * Sets the max number of matches to fetch from the Matcher.
      *
@@ -287,13 +287,13 @@ export class AutoComplete extends events.EventTarget {
      * @param {string=} opt_fullString Optionally, the full string in the input
      *     field.
      */
-    setToken(token: string, opt_fullString?: string): void;
+    setToken(token: string, opt_fullString?: string | undefined): void;
     /**
      * Gets the current target HTML node for displaying autocomplete UI.
      * @return {?Element} The current target HTML node for displaying autocomplete
      *     UI.
      */
-    getTarget(): Element;
+    getTarget(): Element | null;
     /**
      * Sets the current target HTML node for displaying autocomplete UI.
      * Can be an implementation specific definition of how to display UI in relation
@@ -303,7 +303,7 @@ export class AutoComplete extends events.EventTarget {
      * @param {?Element} target The current target HTML node for displaying
      *     autocomplete UI.
      */
-    setTarget(target: Element): void;
+    setTarget(target: Element | null): void;
     /**
      * @return {boolean} Whether the autocomplete's renderer is open.
      */
@@ -391,7 +391,7 @@ export class AutoComplete extends events.EventTarget {
      *     Otherwise a RenderOptions object.
      * @private
      */
-    matchListener_(matchedToken: string, rows: any[], opt_options?: boolean | RenderOptions): void;
+    matchListener_(matchedToken: string, rows: any[], opt_options?: boolean | RenderOptions | undefined): void;
     /**
      * Renders the rows and adds highlighting.
      * @param {!Array<?>} rows Set of data that match the given token.
@@ -399,7 +399,7 @@ export class AutoComplete extends events.EventTarget {
      *     keeps the currently hilited (by index) element hilited. If false not.
      *     Otherwise a RenderOptions object.
      */
-    renderRows(rows: any[], opt_options?: boolean | RenderOptions): void;
+    renderRows(rows: any[], opt_options?: boolean | RenderOptions | undefined): void;
     /**
      * Gets the index corresponding to a particular id.
      * @param {number} id A unique id for the row.
@@ -437,18 +437,18 @@ export class AutoComplete extends events.EventTarget {
      *     interface.
      * @param {?Element} anchorElement The anchor element.
      */
-    attachInputWithAnchor(inputElement: Element, anchorElement: Element): void;
+    attachInputWithAnchor(inputElement: Element | null, anchorElement: Element | null): void;
     /**
      * Forces an update of the display.
      * @param {boolean=} opt_force Whether to force an update.
      */
-    update(opt_force?: boolean): void;
+    update(opt_force?: boolean | undefined): void;
     actualEventTarget_: AutoComplete;
 }
 export namespace AutoComplete {
     export type Matcher = {
-        requestMatchingRows: Function;
-        isRowDisabled: Function;
+        requestMatchingRows: Function | undefined;
+        isRowDisabled: Function | undefined;
     };
 }
 export namespace EventType {

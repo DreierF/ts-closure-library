@@ -120,9 +120,9 @@ export class TrustedResourceUrl {
      */
     cloneWithParams(searchParams: string | {
         [x: string]: any;
-    }, opt_hashParams?: string | {
+    } | null | undefined, opt_hashParams?: string | {
         [x: string]: any;
-    }): TrustedResourceUrl;
+    } | null | undefined): TrustedResourceUrl;
 }
 export namespace TrustedResourceUrl {
     export const FORMAT_MARKER_: RegExp;

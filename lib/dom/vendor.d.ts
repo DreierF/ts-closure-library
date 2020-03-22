@@ -10,7 +10,7 @@ export function getPrefixedEventType(eventType: string): string;
  * @return {?string} A vendor prefixed property name, or null if it does not
  *     exist.
  */
-export function getPrefixedPropertyName(propertyName: string, opt_object?: any): string;
+export function getPrefixedPropertyName(propertyName: string, opt_object?: any): string | null;
 /**
  * @fileoverview Vendor prefix getters.
  */
@@ -20,10 +20,10 @@ export function getPrefixedPropertyName(propertyName: string, opt_object?: any):
  *
  * @return {?string} The JS vendor prefix or null if there is none.
  */
-export function getVendorJsPrefix(): string;
+export function getVendorJsPrefix(): string | null;
 /**
  * Returns the vendor prefix used in CSS properties.
  *
  * @return {?string} The vendor prefix or null if there is none.
  */
-export function getVendorPrefix(): string;
+export function getVendorPrefix(): string | null;

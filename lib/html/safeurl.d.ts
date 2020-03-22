@@ -78,7 +78,7 @@ export class SafeUrl {
      * @param {!Object=} opt_token package-internal implementation detail.
      * @param {string=} opt_content package-internal implementation detail.
      */
-    constructor(opt_token?: any, opt_content?: string);
+    constructor(opt_token?: any, opt_content?: string | undefined);
     /**
      * @override
      * @const

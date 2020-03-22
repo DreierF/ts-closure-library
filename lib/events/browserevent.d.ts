@@ -69,7 +69,7 @@ declare class events_BrowserEvent extends EventsEvent {
      * @param {Event=} opt_e Browser event object.
      * @param {EventTarget=} opt_currentTarget Current target for event.
      */
-    constructor(opt_e?: Event, opt_currentTarget?: EventTarget);
+    constructor(opt_e?: Event | undefined, opt_currentTarget?: EventTarget | undefined);
     /**
      * Target that fired the event.
      * @override
@@ -181,14 +181,14 @@ declare class events_BrowserEvent extends EventsEvent {
      * The browser event object.
      * @private {?Event}
      */
-    event_: Event;
+    event_: Event | null;
     /**
      * Accepts a browser event object and creates a patched, cross browser event
      * object.
      * @param {?Event} e Browser event object.
      * @param {EventTarget=} opt_currentTarget Current target for event.
      */
-    init(e: Event, opt_currentTarget?: EventTarget): void;
+    init(e: Event | null, opt_currentTarget?: EventTarget | undefined): void;
     /**
      * Tests to see which button was pressed during the event. This is really only
      * useful in IE and Gecko browsers. And in IE, it's only useful for
@@ -205,7 +205,7 @@ declare class events_BrowserEvent extends EventsEvent {
      *     to test for.
      * @return {boolean} True if button was pressed.
      */
-    isButton(button: number): boolean;
+    isButton(button: number | null): boolean;
     /**
      * Whether this has an "action"-producing mouse button.
      *
@@ -218,7 +218,7 @@ declare class events_BrowserEvent extends EventsEvent {
     /**
      * @return {?Event} The underlying browser event object.
      */
-    getBrowserEvent(): Event;
+    getBrowserEvent(): Event | null;
 }
 declare namespace events_BrowserEvent {
     export const IEButtonMap: Array<number>;

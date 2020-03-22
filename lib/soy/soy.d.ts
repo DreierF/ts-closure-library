@@ -4,20 +4,20 @@
  */
 export type StrictHtmlTemplate = (arg0?: any, arg1?: typeof IjData | {
     [x: string]: any;
-}) => SanitizedHtml;
+} | null | undefined) => SanitizedHtml;
 /**
  * Type definition for strict Soy templates. Very useful when passing a template
  * as an argument.
  */
 export type StrictTemplate = (arg0?: any, arg1?: typeof IjData | {
     [x: string]: any;
-}) => string | SanitizedContent;
+} | null | undefined) => string | SanitizedContent;
 /**
  * Type definition for text templates.
  */
 export type TextTemplate = (arg0?: any, arg1?: typeof IjData | {
     [x: string]: any;
-}) => string;
+} | null | undefined) => string;
 /**
  * Helper typedef for ij parameters.  This is what soy generates.
  */
@@ -68,7 +68,7 @@ export let TextTemplate: any;
  * @return {!Element} Rendered template contents, wrapped in a parent DIV
  *     element if necessary.
  */
-export function convertToElement(templateResult: SanitizedContent, opt_domHelper?: googdom.DomHelper): Element;
+export function convertToElement(templateResult: SanitizedContent, opt_domHelper?: googdom.DomHelper | null | undefined): Element;
 /**
  * Renders a Soy template into a single node. If the rendered
  * HTML string represents a single node, then that node is returned. Otherwise,
@@ -85,9 +85,9 @@ export function convertToElement(templateResult: SanitizedContent, opt_domHelper
  *     element if necessary.
  * @template ARG_TYPES
  */
-export function renderAsElement<ARG_TYPES>(template: (arg0: ARG_TYPES, arg1?: typeof IjData | {
+export function renderAsElement<ARG_TYPES>(template: ((arg0: ARG_TYPES, arg1?: typeof IjData | {
     [x: string]: any;
-}) => any, opt_templateData?: ARG_TYPES, opt_injectedData?: any, opt_domHelper?: googdom.DomHelper): Element;
+} | null | undefined) => any) | null, opt_templateData?: ARG_TYPES | undefined, opt_injectedData?: any, opt_domHelper?: googdom.DomHelper | undefined): Element;
 /**
  * Renders a Soy template into a single node or a document
  * fragment. If the rendered HTML string represents a single node, then that
@@ -108,7 +108,7 @@ export function renderAsElement<ARG_TYPES>(template: (arg0: ARG_TYPES, arg1?: ty
  * @return {!Node} The resulting node or document fragment.
  * @template ARG_TYPES
  */
-export function renderAsFragment<ARG_TYPES>(template: any, opt_templateData?: ARG_TYPES, opt_injectedData?: any, opt_domHelper?: googdom.DomHelper): Node;
+export function renderAsFragment<ARG_TYPES>(template: any, opt_templateData?: ARG_TYPES | undefined, opt_injectedData?: any, opt_domHelper?: googdom.DomHelper | undefined): Node;
 /**
  * Renders a Soy template and then set the output string as
  * the innerHTML of an element. It is recommended to use this helper function
@@ -123,19 +123,19 @@ export function renderAsFragment<ARG_TYPES>(template: any, opt_templateData?: AR
  * @param {Object=} opt_injectedData The injected data for the template.
  * @template ARG_TYPES
  */
-export function renderElement<ARG_TYPES>(element: Element, template: (arg0: ARG_TYPES, arg1?: typeof IjData | {
+export function renderElement<ARG_TYPES>(element: Element | null, template: ((arg0: ARG_TYPES, arg1?: typeof IjData | {
     [x: string]: any;
-}) => any, opt_templateData?: ARG_TYPES, opt_injectedData?: any): void;
+} | null | undefined) => any) | null, opt_templateData?: ARG_TYPES | undefined, opt_injectedData?: any): void;
 /**
  * Sets the processed template as the innerHTML of an element. It is recommended
  * to use this helper function instead of directly setting innerHTML in your
  * hand-written code, so that it will be easier to audit the code for cross-site
  * scripting vulnerabilities.
  *
- * @param {?Element} element The element whose content we are rendering into.
+ * @param {Element|null} element The element whose content we are rendering into.
  * @param {!SanitizedContent} templateResult The processed
  *     template of kind HTML or TEXT (which will be escaped).
  * @template ARG_TYPES
  */
-export function renderHtml<ARG_TYPES>(element: Element, templateResult: SanitizedContent): void;
+export function renderHtml<ARG_TYPES>(element: Element | null, templateResult: SanitizedContent): void;
 import * as googdom from "../dom/dom.js";

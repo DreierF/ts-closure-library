@@ -236,7 +236,7 @@ export function getNavigator(): any;
 /**
  * @return {?Navigator} The native navigator object.
  */
-export function getNavigatorTyped(): Navigator;
+export function getNavigatorTyped(): Navigator | null;
 /**
  * Returns the userAgent string for the current browser.
  *

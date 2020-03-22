@@ -7,5 +7,5 @@
  * @return {?string} Sanitized property value or null if the property should be
  *     rejected altogether.
  */
-export function sanitizeProperty(propName: string, propValue: string, opt_uriRewriter?: (arg0: string, arg1: string) => SafeUrl): string;
+export function sanitizeProperty(propName: string, propValue: string, opt_uriRewriter?: ((arg0: string, arg1: string) => SafeUrl | null) | undefined): string | null;
 import { SafeUrl } from "../safeurl.js";

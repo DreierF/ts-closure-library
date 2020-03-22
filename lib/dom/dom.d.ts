@@ -10,7 +10,7 @@ export type Appendable = any;
  * @param {string|Element} element Element ID or a DOM node.
  * @return {?Element} The element with the given ID, or the node passed in.
  */
-export function $(element: string | Element): Element;
+export function $(element: string | Element): Element | null;
 /**
  * Looks up elements by both tag and class name, using browser native functions
  * (`querySelectorAll`, `getElementsByTagName` or
@@ -39,7 +39,7 @@ export function $(element: string | Element): Element;
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function $$<T, R>(opt_tag?: string | TagName<T>, opt_class?: string, opt_el?: Element | Document): ArrayLike<R>;
+export function $$<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | undefined): ArrayLike<R>;
 /**
  * Returns a dom node with a set of attributes.  This function accepts varargs
  * for subsequent nodes to be added.  Subsequent nodes will be added to the
@@ -103,7 +103,7 @@ export class DomHelper {
      * @param {Document=} opt_document Document object to associate with this
      *     DOM helper.
      */
-    constructor(opt_document?: Document);
+    constructor(opt_document?: Document | undefined);
     /**
      * Reference to the document object to use
      * @type {!Document}
@@ -115,7 +115,7 @@ export class DomHelper {
      * @param {Node=} opt_node If present, gets the DomHelper for this node.
      * @return {!DomHelper} The DomHelper.
      */
-    getDomHelper(opt_node?: Node): DomHelper;
+    getDomHelper(opt_node?: Node | undefined): DomHelper;
     /**
      * Sets the document object.
      * @param {!Document} document Document object.
@@ -132,7 +132,7 @@ export class DomHelper {
      * @param {string|Element} element Element ID or a DOM node.
      * @return {?Element} The element with the given ID, or the node passed in.
      */
-    getElement(element: string | Element): Element;
+    getElement(element: string | Element): Element | null;
     /**
      * Gets an element by id, asserting that the element is found.
      *
@@ -155,7 +155,7 @@ export class DomHelper {
      * @template T
      * @template R := cond(isUnknown(T), 'Element', T) =:
      */
-    getElementsByTagName<T>(tagName: TagName<T>, opt_parent?: Element | Document): NodeListOf<T>;
+    getElementsByTagName<T>(tagName: TagName<T>, opt_parent?: Element | Document): HTMLCollectionOf<T>;
     /**
      * Looks up elements by both tag and class name, using browser native functions
      * (`querySelectorAll`, `getElementsByTagName` or
@@ -174,34 +174,34 @@ export class DomHelper {
      * @template T
      * @template R := cond(isUnknown(T), 'Element', T) =:
      */
-    getElementsByTagNameAndClass<T, R>(opt_tag?: string | TagName<T>, opt_class?: string, opt_el?: Element | Document): ArrayLike<R>;
+    getElementsByTagNameAndClass<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | undefined): ArrayLike<R>;
     /**
      * Gets the first element matching the tag and the class.
      *
      * @param {(string|?TagName<T>)=} opt_tag Element tag name.
      * @param {?string=} opt_class Optional class name.
      * @param {(Document|Element)=} opt_el Optional element to look in.
-     * @return {?R} Reference to a DOM node. The return type is {?Element} if
+     * @return {?R} Reference to a DOM node. The return type is {Element|null} if
      *     tagName is a string or a more specific type if it is a member of
      *     TagName (e.g. {?HTMLAnchorElement} for TagName.A).
      * @template T
      * @template R := cond(isUnknown(T), 'Element', T) =:
      */
-    getElementByTagNameAndClass<T, R>(opt_tag?: string | TagName<T>, opt_class?: string, opt_el?: Element | Document): R;
+    getElementByTagNameAndClass<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | undefined): R | null;
     /**
      * Returns an array of all the elements with the provided className.
      * @param {string} className the name of the class to look for.
      * @param {Element|Document=} opt_el Optional element to look in.
      * @return {!ArrayLike<!Element>} The items found with the class name provided.
      */
-    getElementsByClass(className: string, opt_el?: Element | Document): ArrayLike<Element>;
+    getElementsByClass(className: string, opt_el?: Element | Document | undefined): ArrayLike<Element>;
     /**
      * Returns the first element we find matching the provided class name.
      * @param {string} className the name of the class to look for.
      * @param {(Element|Document)=} opt_el Optional element to look in.
      * @return {?Element} The first item found with the class name provided.
      */
-    getElementByClass(className: string, opt_el?: Element | Document): Element;
+    getElementByClass(className: string, opt_el?: Element | Document | undefined): Element | null;
     /**
      * Ensures an element with the given className exists, and then returns the
      * first element with the provided className.
@@ -211,20 +211,20 @@ export class DomHelper {
      * @return {!Element} The first item found with the class name provided.
      * @throws {AssertionError} Thrown if no element is found.
      */
-    getRequiredElementByClass(className: string, opt_root?: Element | Document): Element;
+    getRequiredElementByClass(className: string, opt_root?: Element | Document | undefined): Element;
     /**
      * Sets a number of properties on a node.
      * @param {?Element} element DOM node to set properties on.
      * @param {?Object} properties Hash of property:value pairs.
      */
-    setProperties(element: Element, properties: any): void;
+    setProperties(element: Element | null, properties: any): void;
     /**
      * Gets the dimensions of the viewport.
      * @param {Window=} opt_window Optional window element to test. Defaults to
      *     the window of the Dom Helper.
      * @return {!Size} Object with values 'width' and 'height'.
      */
-    getViewportSize(opt_window?: Window): Size;
+    getViewportSize(opt_window?: Window | undefined): Size;
     /**
      * Calculates the height of the document.
      *
@@ -286,7 +286,7 @@ export class DomHelper {
      *     `Unicode.NBSP` characters.
      * @return {!HTMLElement} The created table.
      */
-    createTable(rows: number, columns: number, opt_fillWithNbsp?: boolean): HTMLElement;
+    createTable(rows: number, columns: number, opt_fillWithNbsp?: boolean | undefined): HTMLElement;
     /**
      * Converts an HTML into a node or a document fragment. A single Node is used if
      * `html` only generates a single node. If `html` generates multiple
@@ -323,13 +323,13 @@ export class DomHelper {
      * @param {Document=} opt_doc The document to look in.
      * @return {?Element} The active element.
      */
-    getActiveElement(opt_doc?: Document): Element;
+    getActiveElement(opt_doc?: Document | undefined): Element | null;
     /**
      * Appends a child to a node.
      * @param {?Node} parent Parent.
      * @param {?Node} child Child.
      */
-    appendChild(parent: Node, child: Node): void;
+    appendChild(parent: Node | null, child: Node | null): void;
     /**
      * Appends a node with text or other nodes.
      * @param {!Node} parent The node to append nodes to.
@@ -338,7 +338,7 @@ export class DomHelper {
      *     If this is a string then a text node is appended.
      *     If this is an array like object then fields 0 to length - 1 are appended.
      */
-    append(parent: Node, var_args: any): void;
+    append(parent: Node, ...var_args: any): void;
     /**
      * Determines if the given node can contain children, intended to be used for
      * HTML generation.
@@ -346,26 +346,26 @@ export class DomHelper {
      * @param {?Node} node The node to check.
      * @return {boolean} Whether the node can contain children.
      */
-    canHaveChildren(node: Node): boolean;
+    canHaveChildren(node: Node | null): boolean;
     /**
      * Removes all the child nodes on a DOM node.
      * @param {?Node} node Node to remove children from.
      */
-    removeChildren(node: Node): void;
+    removeChildren(node: Node | null): void;
     /**
      * Inserts a new node before an existing reference node (i.e., as the previous
      * sibling). If the reference node has no parent, then does nothing.
      * @param {?Node} newNode Node to insert.
      * @param {?Node} refNode Reference node to insert before.
      */
-    insertSiblingBefore(newNode: Node, refNode: Node): void;
+    insertSiblingBefore(newNode: Node | null, refNode: Node | null): void;
     /**
      * Inserts a new node after an existing reference node (i.e., as the next
      * sibling). If the reference node has no parent, then does nothing.
      * @param {?Node} newNode Node to insert.
      * @param {?Node} refNode Reference node to insert after.
      */
-    insertSiblingAfter(newNode: Node, refNode: Node): void;
+    insertSiblingAfter(newNode: Node | null, refNode: Node | null): void;
     /**
      * Insert a child at a given index. If index is larger than the number of child
      * nodes that the parent currently has, the node is inserted as the last child
@@ -375,20 +375,20 @@ export class DomHelper {
      * @param {number} index The index at which to insert the new child node. Must
      *     not be negative.
      */
-    insertChildAt(parent: Element, child: Node, index: number): void;
+    insertChildAt(parent: Element | null, child: Node | null, index: number): void;
     /**
      * Removes a node from its parent.
      * @param {?Node} node The node to remove.
      * @return {?Node} The node removed if removed; else, null.
      */
-    removeNode(node: Node): Node;
+    removeNode(node: Node | null): Node | null;
     /**
      * Replaces a node in the DOM tree. Will do nothing if `oldNode` has no
      * parent.
      * @param {?Node} newNode Node to insert.
      * @param {?Node} oldNode Node to replace.
      */
-    replaceNode(newNode: Node, oldNode: Node): void;
+    replaceNode(newNode: Node | null, oldNode: Node | null): void;
     /**
      * Flattens an element. That is, removes it and replace it with its children.
      * @param {?Element} element The element to flatten.
@@ -396,53 +396,53 @@ export class DomHelper {
      *     tree, sans children, or undefined if the element was already not in the
      *     document.
      */
-    flattenElement(element: Element): Element;
+    flattenElement(element: Element | null): Element | undefined;
     /**
      * Returns an array containing just the element children of the given element.
      * @param {?Element} element The element whose element children we want.
      * @return {!(Array<!Element>|NodeList<!Element>)} An array or array-like list
      *     of just the element children of the given element.
      */
-    getChildren(element: Element): ArrayLike<Element>;
+    getChildren(element: Element | null): ArrayLike<Element>;
     /**
      * Returns the first child node that is an element.
      * @param {?Node} node The node to get the first child element of.
      * @return {?Element} The first child node of `node` that is an element.
      */
-    getFirstElementChild(node: Node): Element;
+    getFirstElementChild(node: Node | null): Element | null;
     /**
      * Returns the last child node that is an element.
      * @param {?Node} node The node to get the last child element of.
      * @return {?Element} The last child node of `node` that is an element.
      */
-    getLastElementChild(node: Node): Element;
+    getLastElementChild(node: Node | null): Element | null;
     /**
      * Returns the first next sibling that is an element.
      * @param {?Node} node The node to get the next sibling element of.
      * @return {?Element} The next sibling of `node` that is an element.
      */
-    getNextElementSibling(node: Node): Element;
+    getNextElementSibling(node: Node | null): Element | null;
     /**
      * Returns the first previous sibling that is an element.
      * @param {?Node} node The node to get the previous sibling element of.
      * @return {?Element} The first previous sibling of `node` that is
      *     an element.
      */
-    getPreviousElementSibling(node: Node): Element;
+    getPreviousElementSibling(node: Node | null): Element | null;
     /**
      * Returns the next node in source order from the given node.
      * @param {?Node} node The node.
      * @return {?Node} The next node in the DOM tree, or null if this was the last
      *     node.
      */
-    getNextNode(node: Node): Node;
+    getNextNode(node: Node | null): Node | null;
     /**
      * Returns the previous node in source order from the given node.
      * @param {?Node} node The node.
      * @return {?Node} The previous node in the DOM tree, or null if this was the
      *     first node.
      */
-    getPreviousNode(node: Node): Node;
+    getPreviousNode(node: Node | null): Node | null;
     /**
      * Whether the object looks like a DOM node.
      * @param {?} obj The object being tested for node likeness.
@@ -467,14 +467,14 @@ export class DomHelper {
      * @param {?Element} element The DOM element.
      * @return {?Element} The parent, or null if not an Element.
      */
-    getParentElement(element: Element): Element;
+    getParentElement(element: Element | null): Element | null;
     /**
      * Whether a node contains another node.
      * @param {?Node} parent The node that should contain the other node.
      * @param {?Node} descendant The node to test presence of.
      * @return {boolean} Whether the parent node contains the descendant node.
      */
-    contains(parent: Node, descendant: Node): boolean;
+    contains(parent: Node | null, descendant: Node | null): boolean;
     /**
      * Compares the document order of two nodes, returning 0 if they are the same
      * node, a negative number if node1 is before node2, and a positive number if
@@ -487,7 +487,7 @@ export class DomHelper {
      * @return {number} 0 if the nodes are the same node, a negative number if node1
      *     is before node2, and a positive number if node2 is before node1.
      */
-    compareNodeOrder(node1: Node, node2: Node): number;
+    compareNodeOrder(node1: Node | null, node2: Node | null): number;
     /**
      * Find the deepest common ancestor of the given nodes.
      * @param {...Node} var_args The nodes to find a common ancestor of.
@@ -495,38 +495,38 @@ export class DomHelper {
      *     null will only be returned if two or more of the nodes are from different
      *     documents.
      */
-    findCommonAncestor(var_args: Node): Node;
+    findCommonAncestor(var_args: Node | undefined): Node | null;
     /**
      * Returns the owner document for a node.
      * @param {?Node} node The node to get the document for.
      * @return {!Document} The document owning the node.
      */
-    getOwnerDocument(node: Node): Document;
+    getOwnerDocument(node: Node | null): Document;
     /**
      * Cross browser function for getting the document element of an iframe.
      * @param {?Element} iframe Iframe element.
      * @return {!Document} The frame content document.
      */
-    getFrameContentDocument(iframe: Element): Document;
+    getFrameContentDocument(iframe: Element | null): Document;
     /**
      * Cross browser function for getting the window of a frame or iframe.
      * @param {?Element} frame Frame element.
      * @return {?Window} The window associated with the given frame.
      */
-    getFrameContentWindow(frame: Element): Window;
+    getFrameContentWindow(frame: Element | null): Window | null;
     /**
      * Sets the text content of a node, with cross-browser support.
      * @param {?Node} node The node to change the text content of.
      * @param {string|number} text The value that should replace the node's content.
      */
-    setTextContent(node: Node, text: string | number): void;
+    setTextContent(node: Node | null, text: string | number): void;
     /**
      * Gets the outerHTML of a node, which islike innerHTML, except that it
      * actually contains the HTML of the node itself.
      * @param {?Element} element The element to get the HTML of.
      * @return {string} The outerHTML of the given element.
      */
-    getOuterHtml(element: Element): string;
+    getOuterHtml(element: Element | null): string;
     /**
      * Finds the first descendant node that matches the filter function. This does
      * a depth first search.
@@ -534,7 +534,7 @@ export class DomHelper {
      * @param {function(Node) : boolean} p The filter function.
      * @return {Node|undefined} The found node or undefined if none is found.
      */
-    findNode(root: Node, p: (arg0: Node) => boolean): Node;
+    findNode(root: Node | null, p: (arg0: Node) => boolean): Node | undefined;
     /**
      * Finds all the descendant nodes that matches the filter function. This does a
      * depth first search.
@@ -542,7 +542,7 @@ export class DomHelper {
      * @param {function(Node) : boolean} p The filter function.
      * @return {Array<Node>} The found nodes or an empty array if none are found.
      */
-    findNodes(root: Node, p: (arg0: Node) => boolean): Node[];
+    findNodes(root: Node | null, p: (arg0: Node) => boolean): Node[];
     /**
      * Returns true if the element has a tab index that allows it to receive
      * keyboard focus (tabIndex >= 0), false otherwise.  Note that some elements
@@ -561,7 +561,7 @@ export class DomHelper {
      * @param {boolean} enable Whether to set or remove a tab index on the element
      *     that supports keyboard focus.
      */
-    setFocusableTabIndex(element: Element, enable: boolean): void;
+    setFocusableTabIndex(element: Element | null, enable: boolean): void;
     /**
      * Returns true if the element can be focused, i.e. it has a tab index that
      * allows it to receive keyboard focus (tabIndex >= 0), or it is an element
@@ -581,7 +581,7 @@ export class DomHelper {
      * @param {?Node} node The node from which we are getting content.
      * @return {string} The text content.
      */
-    getTextContent(node: Node): string;
+    getTextContent(node: Node | null): string;
     /**
      * Returns the text length of the text contained in a node, without markup. This
      * is equivalent to the selection length if the node was selected, or the number
@@ -591,7 +591,7 @@ export class DomHelper {
      * @param {?Node} node The node whose text content length is being calculated.
      * @return {number} The length of `node`'s text content.
      */
-    getNodeTextLength(node: Node): number;
+    getNodeTextLength(node: Node | null): number;
     /**
      * Returns the text offset of a node relative to one of its ancestors. The text
      * length is the same as the length calculated by
@@ -601,7 +601,7 @@ export class DomHelper {
      * @param {Node=} opt_offsetParent Defaults to the node's owner document's body.
      * @return {number} The text offset.
      */
-    getNodeTextOffset(node: Node, opt_offsetParent?: Node): number;
+    getNodeTextOffset(node: Node | null, opt_offsetParent?: Node | undefined): number;
     /**
      * Returns the node at a given offset in a parent node.  If an object is
      * provided for the optional third parameter, the node and the remainder of the
@@ -613,7 +613,7 @@ export class DomHelper {
      *     if this object is provided.
      * @return {?Node} The node at the given offset.
      */
-    getNodeAtOffset(parent: Node, offset: number, opt_result?: any): Node;
+    getNodeAtOffset(parent: Node | null, offset: number, opt_result?: any): Node | null;
     /**
      * Returns true if the object is a `NodeList`.  To qualify as a NodeList,
      * the object must have a numeric length property and an item function (which
@@ -634,13 +634,13 @@ export class DomHelper {
      * @param {number=} opt_maxSearchSteps Maximum number of levels to search up the
      *     dom.
      * @return {?R} The first ancestor that matches the passed criteria, or
-     *     null if no match is found. The return type is {?Element} if opt_tag is
+     *     null if no match is found. The return type is {Element|null} if opt_tag is
      *     not a member of TagName or a more specific type if it is (e.g.
      *     {?HTMLAnchorElement} for TagName.A).
      * @template T
      * @template R := cond(isUnknown(T), 'Element', T) =:
      */
-    getAncestorByTagNameAndClass<T_6, R_6>(element: Node, opt_tag?: string | TagName<T_6>, opt_class?: string, opt_maxSearchSteps?: number): R_6;
+    getAncestorByTagNameAndClass<T_6, R_6>(element: Node | null, opt_tag?: string | TagName<T_6> | null | undefined, opt_class?: string | null | undefined, opt_maxSearchSteps?: number | undefined): R_6 | null;
     /**
      * Walks up the DOM hierarchy returning the first ancestor that has the passed
      * class name. If the passed element matches the specified criteria, the
@@ -652,7 +652,7 @@ export class DomHelper {
      * @return {?Element} The first ancestor that matches the passed criteria, or
      *     null if none match.
      */
-    getAncestorByClass(element: Node, className: string, opt_maxSearchSteps?: number): Element;
+    getAncestorByClass(element: Node | null, className: string, opt_maxSearchSteps?: number | undefined): Element | null;
     /**
      * Walks up the DOM hierarchy returning the first ancestor that passes the
      * matcher function.
@@ -667,7 +667,7 @@ export class DomHelper {
      * @return {?Node} DOM node that matched the matcher, or null if there was
      *     no match.
      */
-    getAncestor(element: Node, matcher: (arg0: Node) => boolean, opt_includeNode?: boolean, opt_maxSearchSteps?: number): Node;
+    getAncestor(element: Node | null, matcher: (arg0: Node) => boolean, opt_includeNode?: boolean | undefined, opt_maxSearchSteps?: number | undefined): Node | null;
     /**
      * Gets '2d' context of a canvas. Shortcut for canvas.getContext('2d') with a
      * type information.
@@ -681,7 +681,7 @@ export class DomHelper {
      * @return {?Element} The element with the given ID, or the node passed in.
      * @deprecated Use {@link DomHelper.prototype.getElement} instead.
      */
-    $: (element: string | Element) => Element;
+    $: (element: string | Element) => Element | null;
     /**
      * Alias for `getElementsByTagNameAndClass`.
      * @deprecated Use DomHelper getElementsByTagNameAndClass.
@@ -697,7 +697,7 @@ export class DomHelper {
      * @template T
      * @template R := cond(isUnknown(T), 'Element', T) =:
      */
-    $$: <T, R>(opt_tag?: string | TagName<T>, opt_class?: string, opt_el?: Element | Document) => ArrayLike<R>;
+    $$: <T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | undefined) => ArrayLike<R>;
     /**
      * Alias for `createDom`.
      * @param {string|!TagName<T>} tagName Tag to create.
@@ -731,7 +731,7 @@ export function append(parent: Node, ...args: any[]): void;
  * @param {?Node} parent Parent.
  * @param {?Node} child Child.
  */
-export function appendChild(parent: Node, child: Node): void;
+export function appendChild(parent: Node | null, child: Node | null): void;
 /**
  * Determines if the given node can contain children, intended to be used for
  * HTML generation.
@@ -759,7 +759,7 @@ export function appendChild(parent: Node, child: Node): void;
  * @param {?Node} node The node to check.
  * @return {boolean} Whether the node can contain children.
  */
-export function canHaveChildren(node: Node): boolean;
+export function canHaveChildren(node: Node | null): boolean;
 /**
  * Compares the document order of two nodes, returning 0 if they are the same
  * node, a negative number if node1 is before node2, and a positive number if
@@ -772,7 +772,7 @@ export function canHaveChildren(node: Node): boolean;
  * @return {number} 0 if the nodes are the same node, a negative number if node1
  *     is before node2, and a positive number if node2 is before node1.
  */
-export function compareNodeOrder(node1: Node, node2: Node): number;
+export function compareNodeOrder(node1: Node | null, node2: Node | null): number;
 /**
  * Creates a new Node from constant strings of HTML markup.
  * @param {...!Const} var_args The HTML strings to concatenate then
@@ -786,7 +786,7 @@ export function constHtmlToNode(...args: Const[]): Node;
  * @param {?Node|undefined} descendant The node to test presence of.
  * @return {boolean} Whether the parent node contains the descendant node.
  */
-export function contains(parent: Node, descendant: Node): boolean;
+export function contains(parent: Node | null | undefined, descendant: Node | null | undefined): boolean;
 /**
  * Returns a dom node with a set of attributes.  This function accepts varargs
  * for subsequent nodes to be added.  Subsequent nodes will be added to the
@@ -833,7 +833,7 @@ export function createElement<T, R>(name: string | TagName<T>): R;
  *     `Unicode.NBSP` characters.
  * @return {!Element} The created table.
  */
-export function createTable(rows: number, columns: number, opt_fillWithNbsp?: boolean): Element;
+export function createTable(rows: number, columns: number, opt_fillWithNbsp?: boolean | undefined): Element;
 /**
  * Creates a new text node.
  * @param {number|string} content Content.
@@ -847,7 +847,7 @@ export function createTextNode(content: string | number): Text;
  *     null will only be returned if two or more of the nodes are from different
  *     documents.
  */
-export function findCommonAncestor(...args: Node[]): Node;
+export function findCommonAncestor(...args: Node[]): Node | null;
 /**
  * Finds the first descendant element (excluding `root`) that matches the filter
  * function, using depth first search. Prefer using `querySelector` if the
@@ -855,9 +855,9 @@ export function findCommonAncestor(...args: Node[]): Node;
  *
  * @param {!Element | !Document} root
  * @param {function(!Element): boolean} pred Filter function.
- * @return {?Element} First matching element or null if there is none.
+ * @return {Element|null} First matching element or null if there is none.
  */
-export function findElement(root: Element | Document, pred: (arg0: Element) => boolean): Element;
+export function findElement(root: Element | Document, pred: (arg0: Element) => boolean): Element | null;
 /**
  * Finds all the descendant elements (excluding `root`) that match the filter
  * function, using depth first search. Prefer using `querySelectorAll` if the
@@ -881,7 +881,7 @@ export function findElements(root: Element | Document, pred: (arg0: Element) => 
  * @param {function(Node) : boolean} p The filter function.
  * @return {Node|undefined} The found node or undefined if none is found.
  */
-export function findNode(root: Node, p: (arg0: Node) => boolean): Node;
+export function findNode(root: Node | null, p: (arg0: Node) => boolean): Node | undefined;
 /**
  * Finds all the descendant nodes that match the filter function, using depth
  * first search. This function offers the most general-purpose way
@@ -895,7 +895,7 @@ export function findNode(root: Node, p: (arg0: Node) => boolean): Node;
  * @param {function(Node) : boolean} p The filter function.
  * @return {!Array<!Node>} The found nodes or an empty array if none are found.
  */
-export function findNodes(root: Node, p: (arg0: Node) => boolean): Node[];
+export function findNodes(root: Node | null, p: (arg0: Node) => boolean): Node[];
 /**
  * Flattens an element. That is, removes it and replace it with its children.
  * Does nothing if the element is not in the document.
@@ -904,13 +904,13 @@ export function findNodes(root: Node, p: (arg0: Node) => boolean): Node[];
  *     tree, sans children; or undefined, if the element was not in the document
  *     to begin with.
  */
-export function flattenElement(element: Element): Element;
+export function flattenElement(element: Element | null): Element | undefined;
 /**
  * Determines the active element in the given document.
  * @param {?Document} doc The document to look in.
  * @return {?Element} The active element.
  */
-export function getActiveElement(doc: Document): Element;
+export function getActiveElement(doc: Document | null): Element | null;
 /**
  * Walks up the DOM hierarchy returning the first ancestor that passes the
  * matcher function.
@@ -925,7 +925,7 @@ export function getActiveElement(doc: Document): Element;
  * @return {?Node} DOM node that matched the matcher, or null if there was
  *     no match.
  */
-export function getAncestor(element: Node, matcher: (arg0: Node) => boolean, opt_includeNode?: boolean, opt_maxSearchSteps?: number): Node;
+export function getAncestor(element: Node | null, matcher: (arg0: Node) => boolean, opt_includeNode?: boolean | undefined, opt_maxSearchSteps?: number | undefined): Node | null;
 /**
  * Walks up the DOM hierarchy returning the first ancestor that has the passed
  * class name. If the passed element matches the specified criteria, the
@@ -937,7 +937,7 @@ export function getAncestor(element: Node, matcher: (arg0: Node) => boolean, opt
  * @return {?Element} The first ancestor that matches the passed criteria, or
  *     null if none match.
  */
-export function getAncestorByClass(element: Node, className: string, opt_maxSearchSteps?: number): Element;
+export function getAncestorByClass(element: Node | null, className: string, opt_maxSearchSteps?: number | undefined): Element | null;
 /**
  * Walks up the DOM hierarchy returning the first ancestor that has the passed
  * tag name and/or class name. If the passed element matches the specified
@@ -950,13 +950,13 @@ export function getAncestorByClass(element: Node, className: string, opt_maxSear
  * @param {number=} opt_maxSearchSteps Maximum number of levels to search up the
  *     dom.
  * @return {?R} The first ancestor that matches the passed criteria, or
- *     null if no match is found. The return type is {?Element} if opt_tag is
+ *     null if no match is found. The return type is {Element|null} if opt_tag is
  *     not a member of TagName or a more specific type if it is (e.g.
  *     {?HTMLAnchorElement} for TagName.A).
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function getAncestorByTagNameAndClass<T, R>(element: Node, opt_tag?: string | TagName<T>, opt_class?: string, opt_maxSearchSteps?: number): R;
+export function getAncestorByTagNameAndClass<T, R>(element: Node | null, opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_maxSearchSteps?: number | undefined): R | null;
 /**
  * Gets '2d' context of a canvas. Shortcut for canvas.getContext('2d') with a
  * type information.
@@ -970,7 +970,7 @@ export function getCanvasContext2D(canvas: HTMLCanvasElement | OffscreenCanvas):
  * @return {!(Array<!Element>|NodeList<!Element>)} An array or array-like list
  *     of just the element children of the given element.
  */
-export function getChildren(element: Element): ArrayLike<Element>;
+export function getChildren(element: Element | null): ArrayLike<Element>;
 /**
  * Gets the document object being used by the dom library.
  * @return {!Document} Document object.
@@ -1006,7 +1006,7 @@ export function getDocumentScrollElement(): Element;
  *     element.
  * @return {!DomHelper} The DomHelper.
  */
-export function getDomHelper(opt_element?: Node | Window): DomHelper;
+export function getDomHelper(opt_element?: Node | Window | undefined): DomHelper;
 /**
  * Gets an element from the current document by element id.
  *
@@ -1015,7 +1015,7 @@ export function getDomHelper(opt_element?: Node | Window): DomHelper;
  * @param {string|Element} element Element ID or a DOM node.
  * @return {?Element} The element with the given ID, or the node passed in.
  */
-export function getElement(element: string | Element): Element;
+export function getElement(element: string | Element): Element | null;
 /**
  * Returns the first element with the provided className.
  *
@@ -1023,20 +1023,21 @@ export function getElement(element: string | Element): Element;
  * @param {Element|Document=} opt_el Optional element to look in.
  * @return {?Element} The first item with the class name provided.
  */
-export function getElementByClass(className: string, opt_el?: Element | Document): Element;
+export function getElementByClass(className: string, opt_el?: Element | Document | undefined): Element | null;
 /**
  * Gets the first element matching the tag and the class.
  *
  * @param {(string|?TagName<T>)=} opt_tag Element tag name.
  * @param {?string=} opt_class Optional class name.
  * @param {(Document|Element)=} opt_el Optional element to look in.
- * @return {?R} Reference to a DOM node. The return type is {?Element} if
+ * @return {?R} Reference to a DOM node. The return type is {Element|null} if
  *     tagName is a string or a more specific type if it is a member of
  *     TagName (e.g. {?HTMLAnchorElement} for TagName.A).
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function getElementByTagNameAndClass<T, R>(opt_tag?: string | TagName<T>, opt_class?: string, opt_el?: Element | Document): R;
+export function getElementByTagNameAndClass<T, R>(opt_tag?: string | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): Element | null;
+export function getElementByTagNameAndClass<T>(opt_tag?: TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): T | null;
 /**
  * Returns a static, array-like list of the elements with the provided
  * className.
@@ -1045,7 +1046,7 @@ export function getElementByTagNameAndClass<T, R>(opt_tag?: string | TagName<T>,
  * @param {(Document|Element)=} opt_el Optional element to look in.
  * @return {!ArrayLike<!Element>} The items found with the class name provided.
  */
-export function getElementsByClass(className: string, opt_el?: Element | Document): ArrayLike<Element>;
+export function getElementsByClass(className: string, opt_el?: Element | Document | undefined): ArrayLike<Element>;
 /**
  * Gets elements by tag name.
  * @param {!TagName<T>} tagName
@@ -1058,7 +1059,7 @@ export function getElementsByClass(className: string, opt_el?: Element | Documen
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function getElementsByTagName<T>(tagName: TagName<T>, opt_parent?: Element | Document): NodeListOf<T>;
+export function getElementsByTagName<T>(tagName: TagName<T>, opt_parent?: Element | Document): HTMLCollectionOf<T>;
 /**
  * Looks up elements by both tag and class name, using browser native functions
  * (`querySelectorAll`, `getElementsByTagName` or
@@ -1087,45 +1088,46 @@ export function getElementsByTagName<T>(tagName: TagName<T>, opt_parent?: Elemen
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function getElementsByTagNameAndClass<T, R>(opt_tag?: string | TagName<T>, opt_class?: string, opt_el?: Element | Document): ArrayLike<R>;
+export function getElementsByTagNameAndClass(opt_tag?: string, opt_class?: string, opt_el?: Element | Document | undefined): ArrayLike<Element>;
+export function getElementsByTagNameAndClass<T>(opt_tag?: TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | undefined): ArrayLike<T>;
 /**
  * Returns the first child node that is an element.
  * @param {?Node} node The node to get the first child element of.
  * @return {?Element} The first child node of `node` that is an element.
  */
-export function getFirstElementChild(node: Node): Element;
+export function getFirstElementChild(node: Node | null): Element | null;
 /**
  * Cross-browser function for getting the document element of a frame or iframe.
  * @param {?Element} frame Frame element.
  * @return {!Document} The frame content document.
  */
-export function getFrameContentDocument(frame: Element): Document;
+export function getFrameContentDocument(frame: Element | null): Document;
 /**
  * Cross-browser function for getting the window of a frame or iframe.
  * @param {?Element} frame Frame element.
  * @return {?Window} The window associated with the given frame, or null if none
  *     exists.
  */
-export function getFrameContentWindow(frame: Element): Window;
+export function getFrameContentWindow(frame: Element | null): Window | null;
 /**
  * Returns the last child node that is an element.
  * @param {?Node} node The node to get the last child element of.
  * @return {?Element} The last child node of `node` that is an element.
  */
-export function getLastElementChild(node: Node): Element;
+export function getLastElementChild(node: Node | null): Element | null;
 /**
  * Returns the first next sibling that is an element.
  * @param {?Node} node The node to get the next sibling element of.
  * @return {?Element} The next sibling of `node` that is an element.
  */
-export function getNextElementSibling(node: Node): Element;
+export function getNextElementSibling(node: Node | null): Element | null;
 /**
  * Returns the next node in source order from the given node.
  * @param {?Node} node The node.
  * @return {?Node} The next node in the DOM tree, or null if this was the last
  *     node.
  */
-export function getNextNode(node: Node): Node;
+export function getNextNode(node: Node | null): Node | null;
 /**
  * Returns the node at a given offset in a parent node.  If an object is
  * provided for the optional third parameter, the node and the remainder of the
@@ -1137,7 +1139,7 @@ export function getNextNode(node: Node): Node;
  *     if this object is provided.
  * @return {?Node} The node at the given offset.
  */
-export function getNodeAtOffset(parent: Node, offset: number, opt_result?: any): Node;
+export function getNodeAtOffset(parent: Node | null, offset: number, opt_result?: any): Node | null;
 /**
  * Returns the text length of the text contained in a node, without markup. This
  * is equivalent to the selection length if the node was selected, or the number
@@ -1147,7 +1149,7 @@ export function getNodeAtOffset(parent: Node, offset: number, opt_result?: any):
  * @param {?Node} node The node whose text content length is being calculated.
  * @return {number} The length of `node`'s text content.
  */
-export function getNodeTextLength(node: Node): number;
+export function getNodeTextLength(node: Node | null): number;
 /**
  * Returns the text offset of a node relative to one of its ancestors. The text
  * length is the same as the length calculated by getNodeTextLength.
@@ -1157,14 +1159,14 @@ export function getNodeTextLength(node: Node): number;
  *     be calculated. Defaults to the node's owner document's body.
  * @return {number} The text offset.
  */
-export function getNodeTextOffset(node: Node, opt_offsetParent?: Node): number;
+export function getNodeTextOffset(node: Node | null, opt_offsetParent?: Node | undefined): number;
 /**
  * Gets the outerHTML of a node, which is like innerHTML, except that it
  * actually contains the HTML of the node itself.
  * @param {?Element} element The element to get the HTML of.
  * @return {string} The outerHTML of the given element.
  */
-export function getOuterHtml(element: Element): string;
+export function getOuterHtml(element: Element | null): string;
 /**
  * Returns the owner document for a node.
  * @param {Node|Window} node The node to get the document for.
@@ -1178,13 +1180,14 @@ export function getOwnerDocument(node: Node | Window): Document;
  * @return {!Coordinate} Object with values 'x' and 'y'.
  * @deprecated Use {@link getDocumentScroll} instead.
  */
-export function getPageScroll(opt_window?: Window): Coordinate;
+export function getPageScroll(opt_window?: Window | undefined): Coordinate;
 /**
  * Returns an element's parent, if it's an Element.
  * @param {?Element} element The DOM element.
  * @return {?Element} The parent, or null if not an Element.
+ * @deprecated Use Element.parentElement (or Element.parentNode)
  */
-export function getParentElement(element: Element): Element;
+export function getParentElement(element: Element | null): Element | null;
 /**
  * Gives the current devicePixelRatio.
  *
@@ -1206,14 +1209,14 @@ export function getPixelRatio(): number;
  * @return {?Element} The first previous sibling of `node` that is
  *     an element.
  */
-export function getPreviousElementSibling(node: Node): Element;
+export function getPreviousElementSibling(node: Node | null): Element | null;
 /**
  * Returns the previous node in source order from the given node.
  * @param {?Node} node The node.
  * @return {?Node} The previous node in the DOM tree, or null if this was the
  *     first node.
  */
-export function getPreviousNode(node: Node): Node;
+export function getPreviousNode(node: Node | null): Node | null;
 /**
  * Returns the text content of the current node, without markup.
  *
@@ -1223,7 +1226,7 @@ export function getPreviousNode(node: Node): Node;
  * @param {?Node} node The node from which we are getting content.
  * @return {string} The raw text content.
  */
-export function getRawTextContent(node: Node): string;
+export function getRawTextContent(node: Node | null): string;
 /**
  * Gets an element by id, asserting that the element is found.
  *
@@ -1244,7 +1247,7 @@ export function getRequiredElement(id: string): Element;
  * @return {!Element} The first item with the class name provided.
  * @throws {AssertionError} Thrown if no element is found.
  */
-export function getRequiredElementByClass(className: string, opt_root?: Element | Document): Element;
+export function getRequiredElementByClass(className: string, opt_root?: Element | Document | undefined): Element;
 /**
  * Returns the text content of the current node, without markup and invisible
  * symbols. New lines are stripped and whitespace is collapsed,
@@ -1256,7 +1259,7 @@ export function getRequiredElementByClass(className: string, opt_root?: Element 
  * @param {?Node} node The node from which we are getting content.
  * @return {string} The text content.
  */
-export function getTextContent(node: Node): string;
+export function getTextContent(node: Node | null): string;
 /**
  * Gets the dimensions of the viewport.
  *
@@ -1322,14 +1325,14 @@ export function getTextContent(node: Node): string;
  * @param {Window=} opt_window Optional window element to test.
  * @return {!Size} Object with values 'width' and 'height'.
  */
-export function getViewportSize(opt_window?: Window): Size;
+export function getViewportSize(opt_window?: Window | undefined): Size;
 /**
  * Gets the window object associated with the given document.
  *
  * @param {Document=} opt_doc  Document object to get window for.
  * @return {!Window} The window associated with the given document.
  */
-export function getWindow(opt_doc?: Document): Window;
+export function getWindow(opt_doc?: Document | undefined): Window;
 /**
  * Insert a child at a given index. If index is larger than the number of child
  * nodes that the parent currently has, the node is inserted as the last child
@@ -1339,21 +1342,21 @@ export function getWindow(opt_doc?: Document): Window;
  * @param {number} index The index at which to insert the new child node. Must
  *     not be negative.
  */
-export function insertChildAt(parent: Element, child: Node, index: number): void;
+export function insertChildAt(parent: Element | null, child: Node | null, index: number): void;
 /**
  * Inserts a new node after an existing reference node (i.e. as the next
  * sibling). If the reference node has no parent, then does nothing.
  * @param {?Node} newNode Node to insert.
  * @param {?Node} refNode Reference node to insert after.
  */
-export function insertSiblingAfter(newNode: Node, refNode: Node): void;
+export function insertSiblingAfter(newNode: Node | null, refNode: Node | null): void;
 /**
  * Inserts a new node before an existing reference node (i.e. as the previous
  * sibling). If the reference node has no parent, then does nothing.
  * @param {?Node} newNode Node to insert.
  * @param {?Node} refNode Reference node to insert before.
  */
-export function insertSiblingBefore(newNode: Node, refNode: Node): void;
+export function insertSiblingBefore(newNode: Node | null, refNode: Node | null): void;
 /**
  * Returns true if the browser is in "CSS1-compatible" (standards-compliant)
  * mode, false otherwise.
@@ -1418,20 +1421,20 @@ export function isWindow(obj: any): boolean;
  * Removes all the child nodes on a DOM node.
  * @param {?Node} node Node to remove children from.
  */
-export function removeChildren(node: Node): void;
+export function removeChildren(node: Node | null): void;
 /**
  * Removes a node from its parent.
  * @param {?Node} node The node to remove.
  * @return {?Node} The node removed if removed; else, null.
  */
-export function removeNode(node: Node): Node;
+export function removeNode(node: Node | null): Node | null;
 /**
  * Replaces a node in the DOM tree. Will do nothing if `oldNode` has no
  * parent.
  * @param {?Node} newNode Node to insert.
  * @param {?Node} oldNode Node to replace.
  */
-export function replaceNode(newNode: Node, oldNode: Node): void;
+export function replaceNode(newNode: Node | null, oldNode: Node | null): void;
 /**
  * Converts HTML markup into a node. This is a safe version of
  * `goog.dom.htmlToDocumentFragment` which is now deleted.
@@ -1448,7 +1451,7 @@ export function safeHtmlToNode(html: SafeHtml): Node;
  * @param {boolean} enable Whether to set or remove a tab index on the element
  *     that supports keyboard focus.
  */
-export function setFocusableTabIndex(element: Element, enable: boolean): void;
+export function setFocusableTabIndex(element: Element | null, enable: boolean): void;
 /**
  * Sets multiple properties, and sometimes attributes, on an element. Note that
  * properties are simply object properties on the element instance, while
@@ -1474,13 +1477,13 @@ export function setFocusableTabIndex(element: Element, enable: boolean): void;
  *     Property values can be strings or strings.TypedString values (such as
  *     goog.html.SafeUrl).
  */
-export function setProperties(element: Element, properties: any): void;
+export function setProperties(element: Element | null, properties: any): void;
 /**
  * Sets the text content of a node, with cross-browser support.
  * @param {?Node} node The node to change the text content of.
  * @param {string|number} text The value that should replace the node's content.
  */
-export function setTextContent(node: Node, text: string | number): void;
+export function setTextContent(node: Node | null, text: string | number): void;
 import { TagName } from "./tagname.js";
 import { Size } from "../math/size.js";
 import { SafeHtml } from "../html/safehtml.js";

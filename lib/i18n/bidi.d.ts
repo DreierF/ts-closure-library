@@ -23,7 +23,7 @@ export class DirectionalString {
      * Retrieves this object's known direction (if any).
      * @return {?Dir} The known direction. Null if unknown.
      */
-    getDirection(): number;
+    getDirection(): number | null;
     /**
      * Interface marker of the DirectionalString interface.
      *
@@ -107,7 +107,7 @@ export let RIGHT: string;
  *     Default: false.
  * @return {boolean} Whether this piece of text should be laid out in RTL.
  */
-export function detectRtlDirectionality(str: string, opt_isHtml?: boolean): boolean;
+export function detectRtlDirectionality(str: string, opt_isHtml?: boolean | undefined): boolean;
 /**
  * Check if the exit directionality a piece of text is LTR, i.e. if the last
  * strongly-directional character in the string is LTR.
@@ -116,7 +116,7 @@ export function detectRtlDirectionality(str: string, opt_isHtml?: boolean): bool
  *     Default: false.
  * @return {boolean} Whether LTR exit directionality was detected.
  */
-export function endsWithLtr(str: string, opt_isHtml?: boolean): boolean;
+export function endsWithLtr(str: string, opt_isHtml?: boolean | undefined): boolean;
 /**
  * Check if the exit directionality a piece of text is RTL, i.e. if the last
  * strongly-directional character in the string is RTL.
@@ -125,7 +125,7 @@ export function endsWithLtr(str: string, opt_isHtml?: boolean): boolean;
  *     Default: false.
  * @return {boolean} Whether RTL exit directionality was detected.
  */
-export function endsWithRtl(str: string, opt_isHtml?: boolean): boolean;
+export function endsWithRtl(str: string, opt_isHtml?: boolean | undefined): boolean;
 /**
  * Enforce the html snippet in RTL directionality regardless or overall context.
  * If the html piece was enclosed by tag, dir will be applied to existing
@@ -174,7 +174,7 @@ export function enforceRtlInText(text: string): string;
  *     Default: false.
  * @return {?Dir} Estimated overall directionality of `str`.
  */
-export function estimateDirection(str: string, opt_isHtml?: boolean): number;
+export function estimateDirection(str: string, opt_isHtml?: boolean | undefined): number | null;
 /**
  * Apply bracket guard using LRM and RLM. This is to address the problem of
  * messy bracket display frequently happens in RTL layout.
@@ -186,7 +186,7 @@ export function estimateDirection(str: string, opt_isHtml?: boolean): number;
  *     direction of the UI).
  * @return {string} The processed string, with all bracket guarded.
  */
-export function guardBracketInText(s: string, opt_isRtlContext?: boolean): string;
+export function guardBracketInText(s: string, opt_isRtlContext?: boolean | undefined): string;
 /**
  * Test whether the given string has any LTR characters in it.
  * @param {string} str The given string that need to be tested.
@@ -194,7 +194,7 @@ export function guardBracketInText(s: string, opt_isRtlContext?: boolean): strin
  *     Default: false.
  * @return {boolean} Whether the string contains LTR characters.
  */
-export function hasAnyLtr(str: string, opt_isHtml?: boolean): boolean;
+export function hasAnyLtr(str: string, opt_isHtml?: boolean | undefined): boolean;
 /**
  * Test whether the given string has any RTL characters in it.
  * @param {string} str The given string that need to be tested.
@@ -202,7 +202,7 @@ export function hasAnyLtr(str: string, opt_isHtml?: boolean): boolean;
  *     Default: false.
  * @return {boolean} Whether the string contains RTL characters.
  */
-export function hasAnyRtl(str: string, opt_isHtml?: boolean): boolean;
+export function hasAnyRtl(str: string, opt_isHtml?: boolean | undefined): boolean;
 /**
  * Test whether the given string has any RTL characters in it.
  * @param {string} str The given string that need to be tested.
@@ -225,7 +225,7 @@ export function isLtrChar(str: string): boolean;
  * @return {boolean} Whether LTR exit directionality was detected.
  * @deprecated Use endsWithLtr.
  */
-export function isLtrExitText(str: string, opt_isHtml?: boolean): boolean;
+export function isLtrExitText(str: string, opt_isHtml?: boolean | undefined): boolean;
 /**
  * Check whether the first strongly directional character (if any) is LTR.
  * @param {string} str String being checked.
@@ -235,7 +235,7 @@ export function isLtrExitText(str: string, opt_isHtml?: boolean): boolean;
  *     strongly-directional character method.
  * @deprecated Use startsWithLtr.
  */
-export function isLtrText(str: string, opt_isHtml?: boolean): boolean;
+export function isLtrText(str: string, opt_isHtml?: boolean | undefined): boolean;
 /**
  * Check if the first character in the string is neutral or not.
  * @param {string} str The given string that need to be tested.
@@ -250,7 +250,7 @@ export function isNeutralChar(str: string): boolean;
  *     Default: false.
  * @return {boolean} Whether neutral directionality is detected.
  */
-export function isNeutralText(str: string, opt_isHtml?: boolean): boolean;
+export function isNeutralText(str: string, opt_isHtml?: boolean | undefined): boolean;
 /**
  * Check if the first character in the string is RTL or not.
  * @param {string} str The given string that need to be tested.
@@ -266,7 +266,7 @@ export function isRtlChar(str: string): boolean;
  * @return {boolean} Whether RTL exit directionality was detected.
  * @deprecated Use endsWithRtl.
  */
-export function isRtlExitText(str: string, opt_isHtml?: boolean): boolean;
+export function isRtlExitText(str: string, opt_isHtml?: boolean | undefined): boolean;
 /**
  * Check if a BCP 47 / III language code indicates an RTL language, i.e. either:
  * - a language code explicitly specifying one of the right-to-left scripts,
@@ -300,7 +300,7 @@ export function isRtlLanguage(lang: string): boolean;
  *     strongly-directional character method.
  * @deprecated Use startsWithRtl.
  */
-export function isRtlText(str: string, opt_isHtml?: boolean): boolean;
+export function isRtlText(str: string, opt_isHtml?: boolean | undefined): boolean;
 /**
  * Swap location parameters and 'left'/'right' in CSS specification. The
  * processed string will be suited for RTL layout. Though this function can
@@ -329,7 +329,7 @@ export function normalizeHebrewQuote(str: string): string;
  *     3. A boolean (true = RTL, false = LTR).
  *     4. A null for unknown directionality.
  */
-export function setElementDirAndAlign(element: Element, dir: number | boolean): void;
+export function setElementDirAndAlign(element: Element | null, dir: number | boolean | null): void;
 /**
  * Sets element dir based on estimated directionality of the given text.
  * @param {!Element} element
@@ -344,7 +344,7 @@ export function setElementDirByTextDirectionality(element: Element, text: string
  * @return {boolean} Whether LTR directionality is detected using the first
  *     strongly-directional character method.
  */
-export function startsWithLtr(str: string, opt_isHtml?: boolean): boolean;
+export function startsWithLtr(str: string, opt_isHtml?: boolean | undefined): boolean;
 /**
  * Check whether the first strongly directional character (if any) is RTL.
  * @param {string} str String being checked.
@@ -353,7 +353,7 @@ export function startsWithLtr(str: string, opt_isHtml?: boolean): boolean;
  * @return {boolean} Whether RTL directionality is detected using the first
  *     strongly-directional character method.
  */
-export function startsWithRtl(str: string, opt_isHtml?: boolean): boolean;
+export function startsWithRtl(str: string, opt_isHtml?: boolean | undefined): boolean;
 /**
  * Convert a directionality given in various formats to a Dir
  * constant. Useful for interaction with different standards of directionality
@@ -371,4 +371,4 @@ export function startsWithRtl(str: string, opt_isHtml?: boolean): boolean;
  * @return {?Dir} A Dir constant matching the
  *     given directionality. If given null, returns null (i.e. unknown).
  */
-export function toDir(givenDir: number | boolean, opt_noNeutral?: boolean): number;
+export function toDir(givenDir: number | boolean | null, opt_noNeutral?: boolean | undefined): number | null;

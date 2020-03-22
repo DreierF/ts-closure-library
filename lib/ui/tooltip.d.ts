@@ -25,7 +25,7 @@ export class CursorTooltipPosition extends ViewportPosition {
      * @param {number|!Coordinate} arg1 Left position or coordinate.
      * @param {number=} opt_arg2 Top position.
      */
-    constructor(arg1: number | Coordinate, opt_arg2?: number);
+    constructor(arg1: number | Coordinate, opt_arg2?: number | undefined);
     /**
      * Repositions the popup based on cursor position.
      *
@@ -35,7 +35,7 @@ export class CursorTooltipPosition extends ViewportPosition {
      * @param {Box=} opt_margin A margin specified in pixels.
      * @override
      */
-    reposition(element: Element, popupCorner: goog_positioning.Corner, opt_margin?: Box): void;
+    reposition(element: Element | null, popupCorner: goog_positioning.Corner | null, opt_margin?: Box | undefined): void;
 }
 /**
  * Popup position implementation that positions the popup (the tooltip in this
@@ -58,7 +58,7 @@ export class ElementTooltipPosition extends AnchoredPosition {
      *
      * @param {?Element} element The element to anchor the popup at.
      */
-    constructor(element: Element);
+    constructor(element: Element | null);
     /**
      * Repositions the popup based on element position.
      *
@@ -68,7 +68,7 @@ export class ElementTooltipPosition extends AnchoredPosition {
      * @param {Box=} opt_margin A margin specified in pixels.
      * @override
      */
-    reposition(element: Element, popupCorner: goog_positioning.Corner, opt_margin?: Box): void;
+    reposition(element: Element | null, popupCorner: goog_positioning.Corner | null, opt_margin?: Box | undefined): void;
 }
 export namespace State {
     export const INACTIVE: number;
@@ -101,11 +101,11 @@ export class Tooltip extends Popup {
      * @param {?string=} opt_str Text message to display in tooltip.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(opt_el?: string | Element, opt_str?: string, opt_domHelper?: googdom.DomHelper);
+    constructor(opt_el?: string | Element | undefined, opt_str?: string | null | undefined, opt_domHelper?: googdom.DomHelper | undefined);
     /**
      * Active element reference. Used by the delayed show functionality to keep
      * track of the element the mouse is over or the element with focus.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     activeEl_: Element | null;
@@ -205,17 +205,17 @@ export class Tooltip extends Popup {
      * Keyboard focus event handler for elements inside the tooltip.
      * @private {?FocusHandler}
      */
-    tooltipFocusHandler_: FocusHandler;
+    tooltipFocusHandler_: FocusHandler | null;
     /**
      * Returns the dom helper that is being used on this component.
      * @return {?DomHelper} The dom helper used on this component.
      */
-    getDomHelper(): googdom.DomHelper;
+    getDomHelper(): googdom.DomHelper | null;
     /**
      * @return {?Tooltip} Active tooltip in a child element, or null if none.
      * @protected
      */
-    getChildTooltip(): Tooltip;
+    getChildTooltip(): Tooltip | null;
     /**
      * Attach to element. Tooltip will be displayed when the cursor is over the
      * element or when the element has been active for a few milliseconds.
@@ -231,14 +231,14 @@ export class Tooltip extends Popup {
      *                                reference or string id. If no element is
      *                                specified all are detached.
      */
-    detach(opt_el?: string | Element): void;
+    detach(opt_el?: string | Element | undefined): void;
     /**
      * Detach from element.
      *
      * @param {?Element} el Element to detach from.
      * @private
      */
-    detachElement_(el: Element): void;
+    detachElement_(el: Element | null): void;
     /**
      * Sets delay in milliseconds before tooltip is displayed for an element.
      *
@@ -290,7 +290,7 @@ export class Tooltip extends Popup {
     /**
      * @return {?State} Current state of tooltip.
      */
-    getState(): number;
+    getState(): number | null;
     /**
      * Sets whether tooltip requires the mouse to have moved or the anchor receive
      * focus before the tooltip will be shown.
@@ -303,7 +303,7 @@ export class Tooltip extends Popup {
      * @param {?Coordinate} coord Coordinate being tested.
      * @return {boolean} Whether the coord is in the tooltip.
      */
-    isCoordinateInTooltip(coord: Coordinate): boolean;
+    isCoordinateInTooltip(coord: Coordinate | null): boolean;
     /** @override */
     onHide(): void;
     /**
@@ -314,21 +314,21 @@ export class Tooltip extends Popup {
      * @param {AbstractPosition=} opt_pos Position to display popup
      *     at.
      */
-    maybeShow(el: Element, opt_pos?: AbstractPosition): void;
+    maybeShow(el: Element | null, opt_pos?: AbstractPosition | undefined): void;
     /**
      * @return {?StructsSet} Elements this widget is attached to.
      * @protected
      */
-    getElements(): StructsSet<any>;
+    getElements(): StructsSet<any> | null;
     /**
      * @return {?Element} Active element reference.
      */
-    getActiveElement(): Element;
+    getActiveElement(): Element | null;
     /**
      * @param {?Element} activeEl Active element reference.
      * @protected
      */
-    setActiveElement(activeEl: Element): void;
+    setActiveElement(activeEl: Element | null): void;
     /**
      * Shows tooltip for a specific element.
      *
@@ -336,7 +336,7 @@ export class Tooltip extends Popup {
      * @param {AbstractPosition=} opt_pos Position to display popup
      *     at.
      */
-    showForElement(el: Element, opt_pos?: AbstractPosition): void;
+    showForElement(el: Element | null, opt_pos?: AbstractPosition | undefined): void;
     /**
      * Sets tooltip position and shows it.
      *
@@ -345,13 +345,13 @@ export class Tooltip extends Popup {
      *     at.
      * @private
      */
-    positionAndShow_(el: Element, opt_pos?: AbstractPosition): void;
+    positionAndShow_(el: Element | null, opt_pos?: AbstractPosition | undefined): void;
     /**
      * Called by timer from mouse out handler. Hides tooltip if cursor is still
      * outside element and tooltip, or if a child of tooltip has the focus.
      * @param {?Element|undefined} el Tooltip's anchor when hide timer was started.
      */
-    maybeHide(el: Element): void;
+    maybeHide(el: Element | null | undefined): void;
     /**
      * @return {boolean} Whether tooltip element contains an active child tooltip,
      *     and should thus not be hidden.  When the child tooltip is hidden, it
@@ -364,14 +364,14 @@ export class Tooltip extends Popup {
      * @param {?EventsBrowserEvent} event MOUSEOVER or MOUSEMOVE event.
      * @private
      */
-    saveCursorPosition_(event: EventsBrowserEvent): void;
+    saveCursorPosition_(event: EventsBrowserEvent | null): void;
     /**
      * Handler for mouse over events.
      *
      * @param {?EventsBrowserEvent} event Event object.
      * @protected
      */
-    handleMouseOver(event: EventsBrowserEvent): void;
+    handleMouseOver(event: EventsBrowserEvent | null): void;
     /**
      * Find anchor containing the given element, if any.
      *
@@ -380,21 +380,21 @@ export class Tooltip extends Popup {
      *     or null if not found.
      * @protected
      */
-    getAnchorFromElement(el: Element): Element;
+    getAnchorFromElement(el: Element | null): Element | null;
     /**
      * Handler for mouse move events.
      *
      * @param {?EventsBrowserEvent} event MOUSEMOVE event.
      * @protected
      */
-    handleMouseMove(event: EventsBrowserEvent): void;
+    handleMouseMove(event: EventsBrowserEvent | null): void;
     /**
      * Handler for focus events.
      *
      * @param {?EventsBrowserEvent} event Event object.
      * @protected
      */
-    handleFocus(event: EventsBrowserEvent): void;
+    handleFocus(event: EventsBrowserEvent | null): void;
     /**
      * Return a Position instance for repositioning the tooltip. Override in
      * subclasses to customize the way repositioning is done.
@@ -419,21 +419,21 @@ export class Tooltip extends Popup {
      * @param {?EventsBrowserEvent} event Event object.
      * @protected
      */
-    handleMouseOutAndBlur(event: EventsBrowserEvent): void;
+    handleMouseOutAndBlur(event: EventsBrowserEvent | null): void;
     /**
      * Handler for mouse over events for the tooltip element.
      *
      * @param {?EventsBrowserEvent} event Event object.
      * @protected
      */
-    handleTooltipMouseOver(event: EventsBrowserEvent): void;
+    handleTooltipMouseOver(event: EventsBrowserEvent | null): void;
     /**
      * Handler for mouse out events for the tooltip element.
      *
      * @param {?EventsBrowserEvent} event Event object.
      * @protected
      */
-    handleTooltipMouseOut(event: EventsBrowserEvent): void;
+    handleTooltipMouseOut(event: EventsBrowserEvent | null): void;
     /**
      * Helper method, starts timer that calls maybeShow. Parameters are passed to
      * the maybeShow method.
@@ -443,7 +443,7 @@ export class Tooltip extends Popup {
      *     at.
      * @protected
      */
-    startShowTimer(el: Element, opt_pos?: AbstractPosition): void;
+    startShowTimer(el: Element | null, opt_pos?: AbstractPosition | undefined): void;
     /**
      * Helper method called to clear the show timer.
      *

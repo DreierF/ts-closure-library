@@ -26,7 +26,7 @@ export class AnimatedZippy extends Zippy {
      * @param {DomHelper=} opt_domHelper An optional DOM helper.
      * @param {Role<string>=} opt_role ARIA role, default TAB.
      */
-    constructor(header: string | Element, content: string | Element, opt_expanded?: boolean, opt_domHelper?: googdom.DomHelper, opt_role?: any);
+    constructor(header: string | Element | null, content: string | Element, opt_expanded?: boolean | undefined, opt_domHelper?: googdom.DomHelper | undefined, opt_role?: any);
     /**
      * Duration of expand/collapse animation, in milliseconds.
      * @type {number}
@@ -60,7 +60,7 @@ export class AnimatedZippy extends Zippy {
      * @param {?EventsEvent} e The event.
      * @private
      */
-    onAnimate_(e: EventsEvent): void;
+    onAnimate_(e: EventsEvent | null): void;
     /**
      * Called once the expand/collapse animation has started.
      *

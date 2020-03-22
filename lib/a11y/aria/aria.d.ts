@@ -12,9 +12,9 @@ export function assertRoleIsSetInternalUtil(element: Element, allowedRoles: Arra
  * using the activedescendant ARIA property of the given element.
  * @param {!Element} element DOM node to get activedescendant
  *     element for.
- * @return {?Element} DOM node of the activedescendant, if found.
+ * @return {Element|null} DOM node of the activedescendant, if found.
  */
-export function getActiveDescendant(element: Element): Element;
+export function getActiveDescendant(element: Element): Element | null;
 /**
  * Gets the label of the given element.
  * @param {!Element} element DOM node to get label from.
@@ -26,7 +26,7 @@ export function getLabel(element: Element): string;
  * @param {!Element} element DOM element to get role of.
  * @return {?Role} ARIA Role name.
  */
-export function getRole(element: Element): string;
+export function getRole(element: Element): string | null;
 /**
  * Gets value of specified state or property.
  * @param {!Element} element DOM node to get state from.
@@ -41,7 +41,7 @@ export function getState(element: Element, stateName: string): string;
  * @return {?boolean} Boolean value for the ARIA state value or null if
  *     the state value is not 'true', not 'false', or not set.
  */
-export function getStateBoolean(element: Element, stateName: string): boolean;
+export function getStateBoolean(element: Element, stateName: string): boolean | null;
 /**
  * Gets the number value of an ARIA state/property.
  * @param {!Element} element The element to get the ARIA state for.
@@ -49,7 +49,7 @@ export function getStateBoolean(element: Element, stateName: string): boolean;
  * @return {?number} Number value for the ARIA state value or null if
  *     the state value is not a number or not set.
  */
-export function getStateNumber(element: Element, stateName: string): number;
+export function getStateNumber(element: Element, stateName: string): number | null;
 /**
  * Gets the string value of an ARIA state/property.
  * @param {!Element} element The element to get the ARIA state for.
@@ -57,7 +57,7 @@ export function getStateNumber(element: Element, stateName: string): number;
  * @return {?string} String value for the ARIA state value or null if
  *     the state value is empty string or not set.
  */
-export function getStateString(element: Element, stateName: string): string;
+export function getStateString(element: Element, stateName: string): string | null;
 /**
  * Gets array of strings value of the specified state or
  * property for the element.
@@ -100,9 +100,9 @@ export function removeState(element: Element, stateName: string): void;
  * Sets the activedescendant ARIA property value for an element.
  * If the activeElement is not null, it should have an id set.
  * @param {!Element} element DOM node to set activedescendant ARIA property to.
- * @param {?Element} activeElement DOM node being set as activedescendant.
+ * @param {Element|null} activeElement DOM node being set as activedescendant.
  */
-export function setActiveDescendant(element: Element, activeElement: Element): void;
+export function setActiveDescendant(element: Element, activeElement: Element | null): void;
 /**
  * Sets the label of the given element.
  * @param {!Element} element DOM node to set label to.

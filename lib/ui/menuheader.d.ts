@@ -19,7 +19,7 @@ export class MenuHeader extends Control<Ui_MenuHeaderRenderer> {
      *     document interactions.
      * @param {Ui_MenuHeaderRenderer=} opt_renderer Optional renderer.
      */
-    constructor(content: any, opt_domHelper?: DomHelper, opt_renderer?: Ui_MenuHeaderRenderer);
+    constructor(content: any, opt_domHelper?: DomHelper | undefined, opt_renderer?: Ui_MenuHeaderRenderer | undefined);
 }
 import { MenuHeaderRenderer as Ui_MenuHeaderRenderer } from "./menuheaderrenderer.js";
 import { Control } from "./control.js";

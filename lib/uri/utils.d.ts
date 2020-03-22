@@ -165,7 +165,7 @@ export function appendPath(baseUri: string, path: string): string;
  * @param {?string=} opt_fragment The URI-encoded fragment identifier.
  * @return {string} The fully combined URI.
  */
-export function buildFromEncodedParts(opt_scheme?: string, opt_userInfo?: string, opt_domain?: string, opt_port?: string | number, opt_path?: string, opt_queryData?: string, opt_fragment?: string): string;
+export function buildFromEncodedParts(opt_scheme?: string | null | undefined, opt_userInfo?: string | null | undefined, opt_domain?: string | null | undefined, opt_port?: string | number | null | undefined, opt_path?: string | null | undefined, opt_queryData?: string | null | undefined, opt_fragment?: string | null | undefined): string;
 /**
  * Builds a query data string from a sequence of alternating keys and values.
  * Currently generates "&key&" for empty args.
@@ -175,7 +175,7 @@ export function buildFromEncodedParts(opt_scheme?: string, opt_userInfo?: string
  * @param {number=} opt_startIndex A start offset into the arary, defaults to 0.
  * @return {string} The encoded query string, in the form 'a=1&b=2'.
  */
-export function buildQueryData(keysAndValues: ArrayLike<any>, opt_startIndex?: number): string;
+export function buildQueryData(keysAndValues: ArrayLike<any>, opt_startIndex?: number | undefined): string;
 /**
  * Builds a query data string from a map.
  * Currently generates "&key&" for empty args.
@@ -192,12 +192,12 @@ export function buildQueryDataFromMap(map: {
  * @param {string} uri The URI to examine.
  * @return {?string} The decoded domain, or null if none.
  */
-export function getDomain(uri: string): string;
+export function getDomain(uri: string): string | null;
 /**
  * @param {string} uri The URI to examine.
  * @return {?string} The domain name still encoded, or null if none.
  */
-export function getDomainEncoded(uri: string): string;
+export function getDomainEncoded(uri: string): string | null;
 /**
  * Gets the effective scheme for the URL.  If the URL is relative then the
  * scheme is derived from the page's location.
@@ -210,13 +210,13 @@ export function getEffectiveScheme(uri: string): string;
  * @return {?string} The decoded fragment identifier, or null if none.  Does
  *     not include the hash mark.
  */
-export function getFragment(uri: string): string;
+export function getFragment(uri: string): string | null;
 /**
  * @param {string} uri The URI to examine.
  * @return {?string} The fragment identifier, or null if none.  Does not
  *     include the hash mark itself.
  */
-export function getFragmentEncoded(uri: string): string;
+export function getFragmentEncoded(uri: string): string | null;
 /**
  * Extracts everything up to the port of the URI.
  * @param {string} uri The URI string.
@@ -236,7 +236,7 @@ export function getOrigin(uri: string): string;
  * @return {?string} The first value of the parameter (URI-decoded), or null
  *     if the parameter is not found.
  */
-export function getParamValue(uri: string, keyEncoded: string): string;
+export function getParamValue(uri: string, keyEncoded: string): string | null;
 /**
  * Gets all values of a query parameter.
  * @param {string} uri The URI to process.  May contain a fragment.
@@ -250,7 +250,7 @@ export function getParamValues(uri: string, keyEncoded: string): string[];
  * @return {?string} The decoded path, or null if none.  Includes the leading
  *     slash, if any.
  */
-export function getPath(uri: string): string;
+export function getPath(uri: string): string | null;
 /**
  * Extracts the path of the URL and everything after.
  * @param {string} uri The URI string.
@@ -263,34 +263,34 @@ export function getPathAndAfter(uri: string): string;
  * @return {?string} The path still encoded, or null if none. Includes the
  *     leading slash, if any.
  */
-export function getPathEncoded(uri: string): string;
+export function getPathEncoded(uri: string): string | null;
 /**
  * @param {string} uri The URI to examine.
  * @return {?number} The port number, or null if none.
  */
-export function getPort(uri: string): number;
+export function getPort(uri: string): number | null;
 /**
  * @param {string} uri The URI to examine.
  * @return {?string} The query data still encoded, or null if none.  Does not
  *     include the question mark itself.
  */
-export function getQueryData(uri: string): string;
+export function getQueryData(uri: string): string | null;
 /**
  * @param {string} uri The URI to examine.
  * @return {?string} The protocol or scheme, or null if none.  Does not
  *     include trailing colons or slashes.
  */
-export function getScheme(uri: string): string;
+export function getScheme(uri: string): string | null;
 /**
  * @param {string} uri The URI to examine.
  * @return {?string} The decoded user info, or null if none.
  */
-export function getUserInfo(uri: string): string;
+export function getUserInfo(uri: string): string | null;
 /**
  * @param {string} uri The URI to examine.
  * @return {?string} The user name still encoded, or null if none.
  */
-export function getUserInfoEncoded(uri: string): string;
+export function getUserInfoEncoded(uri: string): string | null;
 /**
  * Determines if the URI contains a specific key.
  *
@@ -356,7 +356,7 @@ export function removeParam(uri: string, keyEncoded: string): string;
  *     Does not include the hash mark itself.
  * @return {string} The URI with the fragment set.
  */
-export function setFragmentEncoded(uri: string, fragment: string): string;
+export function setFragmentEncoded(uri: string, fragment: string | null): string;
 /**
  * Replaces all existing definitions of a parameter with a single definition.
  *
@@ -409,4 +409,4 @@ export function setPath(uri: string, path: string): string;
  *     on the browser's regular expression implementation.  Never null, since
  *     arbitrary strings may still look like path names.
  */
-export function split(uri: string): string[];
+export function split(uri: string): (string | undefined)[];

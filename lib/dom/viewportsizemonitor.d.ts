@@ -56,7 +56,7 @@ export class ViewportSizeMonitor extends events.EventTarget {
      * @param {Window=} opt_window The window to monitor; defaults to the window in
      *    which this code is executing.
      */
-    constructor(opt_window?: Window);
+    constructor(opt_window?: Window | undefined);
     /**
      * The window to monitor. Defaults to the window in which the code is running.
      * @private {Window}
@@ -67,7 +67,7 @@ export class ViewportSizeMonitor extends events.EventTarget {
      * {@link events.listen}.
      * @private {Key}
      */
-    listenerKey_: number | events.ListenableKey;
+    listenerKey_: number | events.ListenableKey | null;
     /**
      * The most recently recorded size of the viewport, in pixels.
      * @private {Size}
@@ -78,7 +78,7 @@ export class ViewportSizeMonitor extends events.EventTarget {
      * return null if no window resize event has been handled yet.
      * @return {?Size} The viewport dimensions, in pixels.
      */
-    getSize(): Size;
+    getSize(): Size | null;
     /**
      * Handles window resize events by measuring the dimensions of the
      * viewport and dispatching a {@link EventType.RESIZE} event if the
@@ -86,7 +86,7 @@ export class ViewportSizeMonitor extends events.EventTarget {
      * @param {?EventsEvent} event The window resize event to handle.
      * @private
      */
-    handleResize_(event: EventsEvent): void;
+    handleResize_(event: EventsEvent | null): void;
     actualEventTarget_: ViewportSizeMonitor;
 }
 export namespace ViewportSizeMonitor {

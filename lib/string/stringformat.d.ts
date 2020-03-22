@@ -17,7 +17,7 @@
  *     be filled with.
  * @return {string} Formatted string.
  */
-export function format(formatString: string, ...args: (string | number)[]): string;
+export function format(formatString: string, ...args: (string | number | undefined)[]): string;
 export namespace format {
     export namespace demuxes_ {
         export function i(value: string, flags: string, width: string, dotp: string, precision: string, type: string, offset: string, wholeString: string): string;

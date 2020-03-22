@@ -50,13 +50,13 @@ export class SimplePool<T> extends Disposable {
      * subclassing this class.
      * @private {?Function}
      */
-    createObjectFn_: Function;
+    createObjectFn_: Function | null;
     /**
      * Function for overriding disposeObject. The avoids a common case requiring
      * subclassing this class.
      * @private {?Function}
      */
-    disposeObjectFn_: Function;
+    disposeObjectFn_: Function | null;
     /**
      * Maximum number of objects allowed
      * @private {number}
@@ -74,14 +74,14 @@ export class SimplePool<T> extends Disposable {
      * @param {?Function} createObjectFn Create object function which returns the
      *     newly created object.
      */
-    setCreateObjectFn(createObjectFn: Function): void;
+    setCreateObjectFn(createObjectFn: Function | null): void;
     /**
      * Sets the `disposeObject` function which is used for disposing of an
      * object in the pool.
      * @param {?Function} disposeObjectFn Dispose object function which takes the
      *     object to dispose as a parameter.
      */
-    setDisposeObjectFn(disposeObjectFn: Function): void;
+    setDisposeObjectFn(disposeObjectFn: Function | null): void;
     /**
      * Gets an unused object from the the pool, if there is one available,
      * otherwise creates a new one.

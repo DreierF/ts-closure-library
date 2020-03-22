@@ -22,7 +22,7 @@ export class AdvancedTooltip extends Tooltip {
      * @param {?string=} opt_str Text message to display in tooltip.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(opt_el?: string | Element, opt_str?: string, opt_domHelper?: DomHelper);
+    constructor(opt_el?: string | Element | undefined, opt_str?: string | null | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * Whether to track the cursor and thereby close the tooltip if it moves away
      * from the tooltip and keep it open if it moves towards it.
@@ -74,12 +74,12 @@ export class AdvancedTooltip extends Tooltip {
      *
      * @param {Box=} opt_box The margin around the tooltip.
      */
-    setHotSpotPadding(opt_box?: Box): void;
+    setHotSpotPadding(opt_box?: Box | undefined): void;
     /**
      * @return {?Box} box The margin around the tooltip where the cursor is
      *     allowed without dismissing the tooltip.
      */
-    getHotSpotPadding(): Box;
+    getHotSpotPadding(): Box | null;
     /**
      * Sets whether to track the cursor and thereby close the tooltip if it moves
      * away from the tooltip and keep it open if it moves towards it.
@@ -121,7 +121,7 @@ export class AdvancedTooltip extends Tooltip {
      *     tooltip whose anchor is a child of this tooltip.
      * @private
      */
-    isCoordinateActive_(coord: Coordinate): boolean;
+    isCoordinateActive_(coord: Coordinate | null): boolean;
     /**
      * Forces the recalculation of the hotspot on the next mouse over event.
      * @deprecated Not ever necessary to call this function. Hot spot is calculated

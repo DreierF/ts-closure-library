@@ -21,7 +21,7 @@ export class DragEvent extends EventsEvent {
      * @param {number=} opt_actY Optional actual y for drag if it has been limited.
      * @param {boolean=} opt_dragCanceled Whether the drag has been canceled.
      */
-    constructor(type: string, dragobj: Dragger, clientX: number, clientY: number, browserEvent: EventsBrowserEvent, opt_actX?: number, opt_actY?: number, opt_dragCanceled?: boolean);
+    constructor(type: string, dragobj: Dragger | null, clientX: number, clientY: number, browserEvent: EventsBrowserEvent | null, opt_actX?: number | undefined, opt_actY?: number | undefined, opt_dragCanceled?: boolean | undefined);
     /**
      * X-coordinate relative to the viewport
      * @type {number}
@@ -94,15 +94,15 @@ export class Dragger extends goog_events.EventTarget {
      *     and height.
      *
      */
-    constructor(target: Element, opt_handle?: Element, opt_limits?: Rect);
+    constructor(target: Element | null, opt_handle?: Element | undefined, opt_limits?: Rect | undefined);
     /**
      * Reference to drag target element.
-     * @type {?Element}
+     * @type {Element|null}
      */
     target: Element | null;
     /**
      * Reference to the handler that initiates the drag.
-     * @type {?Element}
+     * @type {Element|null}
      */
     handle: Element | null;
     /**
@@ -114,7 +114,7 @@ export class Dragger extends goog_events.EventTarget {
      * Reference to a document object to use for the events.
      * @private {Document}
      */
-    document_: Document;
+    document_: any;
     /** @private {!EventHandler} */
     eventHandler_: any;
     /**
@@ -231,7 +231,7 @@ export class Dragger extends goog_events.EventTarget {
      *     enableRightPositioningForRtl(true) is called, then rect is interpreted as
      *     right, top, width, and height.
      */
-    setLimits(limits: Rect): void;
+    setLimits(limits: Rect | null): void;
     /**
      * Sets the distance the user has to drag the element before a drag operation is
      * started.
@@ -252,8 +252,8 @@ export class Dragger extends goog_events.EventTarget {
      * @param {?EventTarget} scrollTarget The event target that dispatches SCROLL
      *     events.
      */
-    setScrollTarget(scrollTarget: EventTarget): void;
-    scrollTarget_: EventTarget;
+    setScrollTarget(scrollTarget: EventTarget | null): void;
+    scrollTarget_: EventTarget | null | undefined;
     /**
      * Enables cancelling of built-in IE drag events.
      * @param {boolean} cancelIeDragStart Whether to enable cancelling of IE
@@ -282,12 +282,12 @@ export class Dragger extends goog_events.EventTarget {
      * @private
      */
     isRightToLeft_(): boolean;
-    rightToLeft_: boolean;
+    rightToLeft_: boolean | undefined;
     /**
      * Event handler that is used to start the drag
      * @param {?EventsBrowserEvent} e Event object.
      */
-    startDrag(e: EventsBrowserEvent): void;
+    startDrag(e: EventsBrowserEvent | null): void;
     /**
      * Sets up event handlers when dragging starts.
      * @protected
@@ -299,7 +299,7 @@ export class Dragger extends goog_events.EventTarget {
      * @return {boolean} False iff preventDefault was called on the DragEvent.
      * @private
      */
-    fireDragStart_(e: EventsBrowserEvent): boolean;
+    fireDragStart_(e: EventsBrowserEvent | null): boolean;
     /**
      * Unregisters the event handlers that are only active during dragging, and
      * releases mouse capture.
@@ -311,18 +311,18 @@ export class Dragger extends goog_events.EventTarget {
      * @param {?EventsBrowserEvent} e Event object.
      * @param {boolean=} opt_dragCanceled Whether the drag has been canceled.
      */
-    endDrag(e: EventsBrowserEvent, opt_dragCanceled?: boolean): void;
+    endDrag(e: EventsBrowserEvent | null, opt_dragCanceled?: boolean | undefined): void;
     /**
      * Event handler that is used to end the drag by cancelling it.
      * @param {?EventsBrowserEvent} e Event object.
      */
-    endDragCancel(e: EventsBrowserEvent): void;
+    endDragCancel(e: EventsBrowserEvent | null): void;
     /**
      * Event handler that is used on mouse / touch move to update the drag
      * @param {?EventsBrowserEvent} e Event object.
      * @private
      */
-    handleMove_(e: EventsBrowserEvent): void;
+    handleMove_(e: EventsBrowserEvent | null): void;
     /**
      * Calculates the drag position.
      *
@@ -337,7 +337,7 @@ export class Dragger extends goog_events.EventTarget {
      * @param {?EventsBrowserEvent} e The event.
      * @private
      */
-    onScroll_(e: EventsBrowserEvent): void;
+    onScroll_(e: EventsBrowserEvent | null): void;
     /**
      * @param {?EventsBrowserEvent} e The closure object
      *     representing the browser event that caused a drag event.
@@ -347,7 +347,7 @@ export class Dragger extends goog_events.EventTarget {
      *     the associated scroll target.
      * @protected
      */
-    doDrag(e: EventsBrowserEvent, x: number, y: number, dragFromScroll: boolean): void;
+    doDrag(e: EventsBrowserEvent | null, x: number, y: number, dragFromScroll: boolean): void;
     /**
      * Returns the 'real' x after limits are applied (allows for some
      * limits to be undefined).

@@ -21,7 +21,7 @@ export class RemoteArrayMatcher extends Disposable {
      *     either "1" (opt_noSimilar==false) or "0" (opt_noSimilar==true).
      * XmlHttpFactory used to retrieve the matches.
      */
-    constructor(url: string, opt_noSimilar?: boolean);
+    constructor(url: string, opt_noSimilar?: boolean | undefined);
     /**
      * The HTTP send method (GET, POST) to use when making the ajax call.
      * @type {string}
@@ -102,7 +102,7 @@ export class RemoteArrayMatcher extends Disposable {
      * @return {?string} The complete url. Return null if no request should be sent.
      * @protected
      */
-    buildUrl(uri: string, token: string, maxMatches: number, useSimilar: boolean, opt_fullString?: string): string;
+    buildUrl(uri: string, token: string, maxMatches: number, useSimilar: boolean, opt_fullString?: string | undefined): string | null;
     /**
      * Returns whether the suggestions should be updated?
      * <b>Override this to prevent updates eg - when token is empty.</b>
@@ -114,7 +114,7 @@ export class RemoteArrayMatcher extends Disposable {
      * @return {boolean} Whether new matches be requested.
      * @protected
      */
-    shouldRequestMatches(uri: string, token: string, maxMatches: number, useSimilar: boolean, opt_fullString?: string): boolean;
+    shouldRequestMatches(uri: string, token: string, maxMatches: number, useSimilar: boolean, opt_fullString?: string | undefined): boolean;
     /**
      * Parses and retrieves the array of suggestions from XHR response.
      * <b>Override this if the response is not a simple JSON array.</b>
@@ -130,7 +130,7 @@ export class RemoteArrayMatcher extends Disposable {
      * @param {?EventsEvent} event The XHR success event.
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    xhrCallback(token: string, matchHandler: Function, event: EventsEvent): void;
+    xhrCallback(token: string, matchHandler: Function | null, event: EventsEvent | null): void;
     /**
      * Retrieve a set of matching rows from the server via ajax.
      * @param {string} token The text that should be matched; passed to the server
@@ -142,7 +142,7 @@ export class RemoteArrayMatcher extends Disposable {
      *     matching.
      * @param {string=} opt_fullString The full string from the input box.
      */
-    requestMatchingRows(token: string, maxMatches: number, matchHandler: Function, opt_fullString?: string): void;
+    requestMatchingRows(token: string, maxMatches: number, matchHandler: Function | null, opt_fullString?: string | undefined): void;
 }
 import { Disposable } from "../../disposable/disposable.js";
 import { Map as StructsMap } from "../../structs/map.js";

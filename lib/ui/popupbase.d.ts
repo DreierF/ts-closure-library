@@ -32,10 +32,10 @@ export class PopupBase extends events.EventTarget {
      * @param {Type=} opt_type Type of popup.
      * @param {boolean=} opt_dontSetElement EDITED: Disables calling of setElement in the constructor.
      */
-    constructor(opt_element?: Element, opt_type?: string, opt_dontSetElement?: boolean);
+    constructor(opt_element?: Element | undefined, opt_type?: string | undefined, opt_dontSetElement?: boolean | undefined);
     /**
      * The popup dom element that this Popup wraps.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     element_: Element | null;
@@ -57,7 +57,7 @@ export class PopupBase extends events.EventTarget {
      * hide if autoHide_ is true. If this is null, then the entire document is used.
      * For example, you can use a body-size div so that clicks on the browser
      * scrollbar do not dismiss the popup.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     autoHideRegion_: Element | null;
@@ -127,13 +127,13 @@ export class PopupBase extends events.EventTarget {
     /**
      * @return {?Type} The type of popup this is.
      */
-    getType(): string;
+    getType(): string | null;
     /**
      * Specifies the type of popup to use.
      *
      * @param {?Type} type Type of popup.
      */
-    setType(type: string): void;
+    setType(type: string | null): void;
     /**
      * Returns whether the popup should hide itself asynchronously using a timeout
      * instead of synchronously.
@@ -151,13 +151,13 @@ export class PopupBase extends events.EventTarget {
      *
      * @return {?Element} The popup element.
      */
-    getElement(): Element;
+    getElement(): Element | null;
     /**
      * Specifies the dom element that should be used for the popup.
      *
      * @param {?Element} elt A DOM element for the popup.
      */
-    setElement(elt: Element): void;
+    setElement(elt: Element | null): void;
     /**
      * Returns whether the Popup dismisses itself when the user clicks outside of
      * it.
@@ -205,13 +205,13 @@ export class PopupBase extends events.EventTarget {
      * @return {?Element} The DOM element for autohide, or null if it hasn't been
      *     set.
      */
-    getAutoHideRegion(): Element;
+    getAutoHideRegion(): Element | null;
     /**
      * Sets the region inside which the Popup dismisses itself when the user
      * clicks.
      * @param {?Element} element The DOM element for autohide.
      */
-    setAutoHideRegion(element: Element): void;
+    setAutoHideRegion(element: Element | null): void;
     /**
      * Sets transition animation on showing and hiding the popup.
      * @param {Transition=} opt_showTransition Transition to play on
@@ -219,7 +219,7 @@ export class PopupBase extends events.EventTarget {
      * @param {Transition=} opt_hideTransition Transition to play on
      *     hiding the popup.
      */
-    setTransition(opt_showTransition?: Transition, opt_hideTransition?: Transition): void;
+    setTransition(opt_showTransition?: Transition | undefined, opt_hideTransition?: Transition | undefined): void;
     /**
      * Returns the time when the popup was last shown.
      *
@@ -301,14 +301,14 @@ export class PopupBase extends events.EventTarget {
      * @return {boolean} Whether the popup was hidden and not cancelled.
      * @private
      */
-    hide_(opt_target?: Node): boolean;
+    hide_(opt_target?: Node | null | undefined): boolean;
     /**
      * Continues hiding the popup. This is a continuation from hide_. It is
      * a separate method so that we can add a transition before hiding.
      * @param {?Node=} opt_target Target of the event causing the hide.
      * @private
      */
-    continueHidingPopup_(opt_target?: Node): void;
+    continueHidingPopup_(opt_target?: Node | null | undefined): void;
     /**
      * Shows the popup element.
      * @protected
@@ -349,14 +349,14 @@ export class PopupBase extends events.EventTarget {
      *     if any of the handlers returns false this will also return false.
      * @protected
      */
-    onBeforeHide(opt_target?: Node): boolean;
+    onBeforeHide(opt_target?: Node | null | undefined): boolean;
     /**
      * Called after the popup is hidden. Derived classes can override to hook this
      * event but should make sure to call the parent class method.
      * @param {?Node=} opt_target Target of the event causing the hide.
      * @protected
      */
-    onHide(opt_target?: Node): void;
+    onHide(opt_target?: Node | null | undefined): void;
     /**
      * Mouse down handler for the document on capture phase. Used to hide the
      * popup for auto-hide mode.
@@ -364,14 +364,14 @@ export class PopupBase extends events.EventTarget {
      * @param {?EventsBrowserEvent} e The event object.
      * @private
      */
-    onDocumentMouseDown_(e: EventsBrowserEvent): void;
+    onDocumentMouseDown_(e: EventsBrowserEvent | null): void;
     /**
      * Handles key-downs on the document to handle the escape key.
      *
      * @param {?EventsBrowserEvent} e The event object.
      * @private
      */
-    onDocumentKeyDown_(e: EventsBrowserEvent): void;
+    onDocumentKeyDown_(e: EventsBrowserEvent | null): void;
     /**
      * Deactivate handler(IE) and blur handler (other browsers) for document.
      * Used to hide the popup for auto-hide mode.
@@ -379,14 +379,14 @@ export class PopupBase extends events.EventTarget {
      * @param {?EventsBrowserEvent} e The event object.
      * @private
      */
-    onDocumentBlur_(e: EventsBrowserEvent): void;
+    onDocumentBlur_(e: EventsBrowserEvent | null): void;
     /**
      * @param {?Node} element The element to inspect.
      * @return {boolean} Returns true if the given element is one of the auto hide
      *     partners or is a child of an auto hide partner.
      * @private
      */
-    isOrWithinAutoHidePartner_(element: Node): boolean;
+    isOrWithinAutoHidePartner_(element: Node | null): boolean;
     /**
      * @param {?Node} element The element to inspect.
      * @return {boolean} Returns true if the element is contained within
@@ -394,7 +394,7 @@ export class PopupBase extends events.EventTarget {
      *     entire document.
      * @private
      */
-    isWithinAutoHideRegion_(element: Node): boolean;
+    isWithinAutoHideRegion_(element: Node | null): boolean;
     /**
      * @return {boolean} Whether the time since last show is less than the debounce
      *     delay.

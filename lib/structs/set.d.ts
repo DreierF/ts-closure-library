@@ -148,7 +148,7 @@ declare class structs_Set<T> {
      * @param {boolean=} opt_keys This argument is ignored.
      * @return {!Iterator} An iterator over the elements in this set.
      */
-    __iterator__(opt_keys?: boolean): Iterator<any>;
+    __iterator__(opt_keys?: boolean | undefined): Iterator<any>;
 }
 declare namespace structs_Set {
     export const getUid_: typeof google.getUid;

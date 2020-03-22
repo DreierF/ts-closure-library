@@ -17,7 +17,7 @@ export let ROOT_LOGGER_NAME: string;
  * @param {log_Logger} logger
  * @param {?Function} handler Handler function to add.
  */
-export function addHandler(logger: typeof DebugLogger, handler: Function): void;
+export function addHandler(logger: typeof DebugLogger, handler: Function | null): void;
 /**
  * Logs a message at the Level.SEVERE level.
  * If the logger is currently enabled for the given message level then the
@@ -26,7 +26,7 @@ export function addHandler(logger: typeof DebugLogger, handler: Function): void;
  * @param {?Loggable} msg The message to log.
  * @param {Error=} opt_exception An exception associated with the message.
  */
-export function error(logger: typeof DebugLogger, msg: string | (() => string), opt_exception?: Error): void;
+export function error(logger: typeof DebugLogger, msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
 /**
  * Logs a message at the Level.Fine level.
  * If the logger is currently enabled for the given message level then the
@@ -35,7 +35,7 @@ export function error(logger: typeof DebugLogger, msg: string | (() => string), 
  * @param {?Loggable} msg The message to log.
  * @param {Error=} opt_exception An exception associated with the message.
  */
-export function fine(logger: typeof DebugLogger, msg: string | (() => string), opt_exception?: Error): void;
+export function fine(logger: typeof DebugLogger, msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
 /**
  * Finds or creates a logger for a named subsystem. If a logger has already been
  * created with the given name it is returned. Otherwise a new logger is
@@ -51,7 +51,7 @@ export function fine(logger: typeof DebugLogger, msg: string | (() => string), o
  *     default logging level with the provided level.
  * @return {log_Logger} The named logger or null if logging is disabled.
  */
-export function getLogger(name: string, opt_level?: typeof LoggerLevel): typeof DebugLogger;
+export function getLogger(name: string, opt_level?: typeof LoggerLevel | undefined): typeof DebugLogger;
 /**
  * Logs a message at the Level.INFO level.
  * If the logger is currently enabled for the given message level then the
@@ -60,7 +60,7 @@ export function getLogger(name: string, opt_level?: typeof LoggerLevel): typeof 
  * @param {?Loggable} msg The message to log.
  * @param {Error=} opt_exception An exception associated with the message.
  */
-export function info(logger: typeof DebugLogger, msg: string | (() => string), opt_exception?: Error): void;
+export function info(logger: typeof DebugLogger, msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
 /**
  * Logs a message. If the logger is currently enabled for the
  * given message level then the given message is forwarded to all the
@@ -71,7 +71,7 @@ export function info(logger: typeof DebugLogger, msg: string | (() => string), o
  * @param {Error|Object=} opt_exception An exception associated with the
  *     message.
  */
-export function log(logger: typeof DebugLogger, level: typeof LoggerLevel, msg: string | (() => string), opt_exception?: any): void;
+export function log(logger: typeof DebugLogger, level: typeof LoggerLevel | null, msg: string | (() => string) | null, opt_exception?: any): void;
 /**
  * @constructor
  * @final
@@ -89,7 +89,7 @@ declare let log_Logger: typeof DebugLogger;
  * @param {?Function} handler Handler function to remove.
  * @return {boolean} Whether the handler was removed.
  */
-export function removeHandler(logger: typeof DebugLogger, handler: Function): boolean;
+export function removeHandler(logger: typeof DebugLogger, handler: Function | null): boolean;
 /**
  * Logs a message at the Level.WARNING level.
  * If the logger is currently enabled for the given message level then the
@@ -98,7 +98,7 @@ export function removeHandler(logger: typeof DebugLogger, handler: Function): bo
  * @param {?Loggable} msg The message to log.
  * @param {Error=} opt_exception An exception associated with the message.
  */
-export function warning(logger: typeof DebugLogger, msg: string | (() => string), opt_exception?: Error): void;
+export function warning(logger: typeof DebugLogger, msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
 import { Level as LoggerLevel } from "../debug/logger.js";
 import { Logger as DebugLogger } from "../debug/logger.js";
 import { LogRecord as DebugLogRecord } from "../debug/logrecord.js";

@@ -43,7 +43,7 @@ export class ModalPopup extends Component {
      * @param {DomHelper=} opt_domHelper Optional DOM helper; see {@link
      *     Component} for semantics.
      */
-    constructor(opt_useIframeMask?: boolean, opt_domHelper?: googdom.DomHelper);
+    constructor(opt_useIframeMask?: boolean | undefined, opt_domHelper?: googdom.DomHelper | undefined);
     /**
      * Focus handler. It will be initialized in enterDocument.
      * @type {?FocusHandler}
@@ -58,21 +58,21 @@ export class ModalPopup extends Component {
     visible_: boolean;
     /**
      * Element for the background which obscures the UI and blocks events.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     bgEl_: Element | null;
     /**
      * Iframe element that is only used for IE as a workaround to keep select-type
      * elements from burning through background.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     bgIframeEl_: Element | null;
     /**
      * Element used to catch focus and prevent the user from tabbing out
      * of the popup.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     tabCatcherElement_: Element | null;
@@ -122,7 +122,7 @@ export class ModalPopup extends Component {
     useIframeMask_: boolean;
     /**
      * The element that had focus before the popup was displayed.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     lastFocus_: Element | null;
@@ -143,12 +143,12 @@ export class ModalPopup extends Component {
      * @return {?Element} The background iframe mask element, may return
      *     null/undefined if the modal popup does not use iframe mask.
      */
-    getBackgroundIframe(): Element;
+    getBackgroundIframe(): Element | null;
     /**
      * Returns the background mask element.
      * @return {?Element} The background mask element.
      */
-    getBackgroundElement(): Element;
+    getBackgroundElement(): Element | null;
     /**
      * Creates and disposes of the DOM for background mask elements.
      * @private
@@ -269,7 +269,7 @@ export class ModalPopup extends Component {
      * @param {?EventsBrowserEvent} e Browser's event object.
      * @protected
      */
-    onFocus(e: EventsBrowserEvent): void;
+    onFocus(e: EventsBrowserEvent | null): void;
     /**
      * Returns the magic tab catcher element used to detect when the user has
      * rolled focus off of the popup content.  It is automatically created during
@@ -278,7 +278,7 @@ export class ModalPopup extends Component {
      * @return {?Element} The tab catcher element.
      * @protected
      */
-    getTabCatcherElement(): Element;
+    getTabCatcherElement(): Element | null;
     /**
      * Moves the focus to the modal popup.
      * @private

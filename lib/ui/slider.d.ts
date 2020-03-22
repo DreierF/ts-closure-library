@@ -48,7 +48,7 @@ export class Slider extends SliderBase {
      * @param {(function(number):?string)=} opt_labelFn An optional function mapping
      *     slider values to a description of the value.
      */
-    constructor(opt_domHelper?: goog_dom.DomHelper, opt_labelFn?: (arg0: number) => string);
+    constructor(opt_domHelper?: goog_dom.DomHelper | undefined, opt_labelFn?: ((arg0: number) => string | null) | undefined);
     /**
      * Returns CSS class applied to the slider's thumb element.
      * @return {string} The CSS class applied to the slider's thumb element.

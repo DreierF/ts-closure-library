@@ -24,7 +24,7 @@ export type property = number;
  * @return {boolean} True if there is a grapheme cluster boundary between
  *     a and b; False otherwise.
  */
-export function hasGraphemeBreak(a: number, b: number, opt_extended?: boolean): boolean;
+export function hasGraphemeBreak(a: number, b: number, opt_extended?: boolean | undefined): boolean;
 /**
  * Indicates if there is a grapheme cluster boundary between a and b.
  *
@@ -39,7 +39,7 @@ export function hasGraphemeBreak(a: number, b: number, opt_extended?: boolean): 
  * @return {boolean} True if there is a grapheme cluster boundary between
  *     a and b; False otherwise.
  */
-export function hasGraphemeBreakStrings(a: string, b: string, opt_extended?: boolean): boolean;
+export function hasGraphemeBreakStrings(a: string, b: string, opt_extended?: boolean | undefined): boolean;
 export namespace property {
     export const OTHER: number;
     export const CONTROL: number;

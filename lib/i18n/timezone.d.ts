@@ -103,14 +103,14 @@ export class TimeZone {
      * @param {?DateLike} date The time to check.
      * @return {number} The DST adjustment in minutes EAST of UTC.
      */
-    getDaylightAdjustment(date: Date | import("../date/date.js").Date): number;
+    getDaylightAdjustment(date: Date | import("../date/date.js").Date | null): number;
     /**
      * Return the GMT representation of this time zone object.
      * @param {?DateLike} date The date for which time to retrieve
      *     GMT string.
      * @return {string} GMT representation string.
      */
-    getGMTString(date: Date | import("../date/date.js").Date): string;
+    getGMTString(date: Date | import("../date/date.js").Date | null): string;
     /**
      * Return the UTC representation of this time zone object.
      * @param {!DateLike} date The date for which time to retrieve
@@ -124,28 +124,28 @@ export class TimeZone {
      *     the long time zone name.
      * @return {string} The long time zone name.
      */
-    getLongName(date: Date | import("../date/date.js").Date): string;
+    getLongName(date: Date | import("../date/date.js").Date | null): string;
     /**
      * Get the time zone offset in minutes WEST of UTC for a given date/time.
      * @param {?DateLike} date The time for which to retrieve
      *     the time zone offset.
      * @return {number} The time zone offset in minutes WEST of UTC.
      */
-    getOffset(date: Date | import("../date/date.js").Date): number;
+    getOffset(date: Date | import("../date/date.js").Date | null): number;
     /**
      * Get the RFC representation of the time zone for a given date/time.
      * @param {?DateLike} date The time for which to retrieve the
      *     RFC time zone string.
      * @return {string} The RFC time zone string.
      */
-    getRFCTimeZoneString(date: Date | import("../date/date.js").Date): string;
+    getRFCTimeZoneString(date: Date | import("../date/date.js").Date | null): string;
     /**
      * Get the short time zone name for given date/time.
      * @param {?DateLike} date The time for which to retrieve
      *     the short time zone name.
      * @return {string} The short time zone name.
      */
-    getShortName(date: Date | import("../date/date.js").Date): string;
+    getShortName(date: Date | import("../date/date.js").Date | null): string;
     /**
      * Return the time zone ID for this time zone.
      * @return {string} The time zone ID.
@@ -156,7 +156,7 @@ export class TimeZone {
      * @param {?DateLike} date The time to check.
      * @return {boolean} True if Daylight Saving Time is in effect.
      */
-    isDaylightTime(date: Date | import("../date/date.js").Date): boolean;
+    isDaylightTime(date: Date | import("../date/date.js").Date | null): boolean;
     /**
      * Get the long GMT time zone name for a given date/time.
      * @param {!DateLike} date The time for which to retrieve

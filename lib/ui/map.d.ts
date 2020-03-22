@@ -51,7 +51,7 @@ declare class UiMap<K, V> {
      *     the values contained in each map are identical objects.
      * @return {boolean} Whether the maps are equal.
      */
-    equals(otherMap: UiMap<any, any>, equalityFn?: (arg0: V, arg1: V) => boolean): boolean;
+    equals(otherMap: UiMap<any, any>, equalityFn?: ((arg0: V, arg1: V) => boolean) | undefined): boolean;
     /**
      * @return {boolean} Whether the map is empty.
      */
@@ -77,7 +77,7 @@ declare class UiMap<K, V> {
      * @return {V|DEFAULT} The value for the given key.
      * @template DEFAULT
      */
-    get<DEFAULT>(key: any, defaultValue?: DEFAULT): V | DEFAULT;
+    get<DEFAULT>(key: any, defaultValue?: DEFAULT | undefined): V | DEFAULT;
     /**
      * Adds a key-value pair to the map.
      * @param {*} key The key.
@@ -98,7 +98,7 @@ declare class UiMap<K, V> {
      * @param {T=} thisArg The value of "this" inside callbackFn.
      * @template T
      */
-    forEach<T>(callbackFn: (this: T, arg1: V, arg2: K, arg3: any) => any, thisArg?: T): void;
+    forEach<T>(callbackFn: (this: T, arg1: V, arg2: K, arg3: any) => any, thisArg?: T | undefined): void;
     /**
      * Clones a map and returns a new map.
      * @return {!UiMap} A new map with the same key-value pairs.

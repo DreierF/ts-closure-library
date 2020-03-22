@@ -25,7 +25,7 @@ declare class debug_LogRecord {
      * @param {number=} opt_sequenceNumber Sequence number of this log record. This
      *     should only be passed in when restoring a log record from persistence.
      */
-    constructor(level: Logger_Level, msg: string, loggerName: string, opt_time?: number, opt_sequenceNumber?: number);
+    constructor(level: Logger_Level | null, msg: string, loggerName: string, opt_time?: number | undefined, opt_sequenceNumber?: number | undefined);
     /**
      * Time the LogRecord was created.
      * @type {number}
@@ -73,7 +73,7 @@ declare class debug_LogRecord {
      * @param {number=} opt_sequenceNumber Sequence number of this log record. This
      *     should only be passed in when restoring a log record from persistence.
      */
-    reset(level: Logger_Level, msg: string, loggerName: string, opt_time?: number, opt_sequenceNumber?: number): void;
+    reset(level: Logger_Level | null, msg: string, loggerName: string, opt_time?: number | undefined, opt_sequenceNumber?: number | undefined): void;
     /**
      * Get the source Logger's name.
      *
@@ -102,12 +102,12 @@ declare class debug_LogRecord {
      * Get the logging message level, for example Level.SEVERE.
      * @return {?Logger_Level} the logging message level.
      */
-    getLevel(): Logger_Level;
+    getLevel(): Logger_Level | null;
     /**
      * Set the logging message level, for example Level.SEVERE.
      * @param {?Logger_Level} level the logging message level.
      */
-    setLevel(level: Logger_Level): void;
+    setLevel(level: Logger_Level | null): void;
     /**
      * Get the "raw" log message, before localization or formatting.
      *

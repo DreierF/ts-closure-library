@@ -118,7 +118,7 @@ export function log10Floor(num: number): number;
  *     length of the list.
  * @template S,T
  */
-export function longestCommonSubsequence<S, T>(array1: ArrayLike<S>, array2: ArrayLike<T>, opt_compareFn?: Function, opt_collectorFn?: Function): (S | T)[];
+export function longestCommonSubsequence<S, T>(array1: ArrayLike<S>, array2: ArrayLike<T>, opt_compareFn?: Function | undefined, opt_collectorFn?: Function | undefined): (S | T)[];
 /**
  * The % operator in JavaScript returns the remainder of a / b, but differs from
  * some other languages in that the result will have the same sign as the
@@ -142,7 +142,7 @@ export function modulo(a: number, b: number): number;
  *     to 0.000001. If specified, should be greater than 0.
  * @return {boolean} Whether `a` and `b` are nearly equal.
  */
-export function nearlyEquals(a: number, b: number, opt_tolerance?: number): boolean;
+export function nearlyEquals(a: number, b: number, opt_tolerance?: number | undefined): boolean;
 /**
  * @fileoverview Additional mathematical functions.
  */
@@ -160,7 +160,7 @@ export function randomInt(a: number): number;
  *     rounding error to tolerate.
  * @return {number} The smallest integer greater than or equal to `num`.
  */
-export function safeCeil(num: number, opt_epsilon?: number): number;
+export function safeCeil(num: number, opt_epsilon?: number | undefined): number;
 /**
  * A tweaked variant of `Math.floor` which tolerates if the passed number
  * is infinitesimally smaller than the closest integer. It often happens with
@@ -172,7 +172,7 @@ export function safeCeil(num: number, opt_epsilon?: number): number;
  *     rounding error to tolerate.
  * @return {number} The largest integer less than or equal to `num`.
  */
-export function safeFloor(num: number, opt_epsilon?: number): number;
+export function safeFloor(num: number, opt_epsilon?: number | undefined): number;
 /**
  * Returns the unbiased sample variance of the arguments. For a definition,
  * see e.g. http://en.wikipedia.org/wiki/Variance

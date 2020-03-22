@@ -18,7 +18,7 @@ export class DefaultDatePickerRenderer {
      * @param {string} baseCssClass Name of base CSS class of the date picker.
      * @param {DomHelper=} opt_domHelper DOM helper.
      */
-    constructor(baseCssClass: string, opt_domHelper?: goog_dom.DomHelper);
+    constructor(baseCssClass: string, opt_domHelper?: goog_dom.DomHelper | undefined);
     /**
      * Name of base CSS class of datepicker
      * @type {string}
@@ -75,7 +75,7 @@ export class DefaultDatePickerRenderer {
      * @private
      * @return {!Element} The created button element.
      */
-    createButton_(parentNode: Element, label: string, opt_className?: string): Element;
+    createButton_(parentNode: Element | null, label: string, opt_className?: string | undefined): Element;
 }
 import { DomHelper } from "../dom/dom.js";
 import * as goog_dom from "../dom/dom.js";

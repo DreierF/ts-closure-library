@@ -46,19 +46,19 @@ export class AnimationQueue extends TransitionBase {
      * Pushes an Animation to the end of the queue.
      * @param {?TransitionBase} animation The animation to add to the queue.
      */
-    add(animation: TransitionBase): void;
+    add(animation: TransitionBase | null): void;
     /**
      * Removes an Animation from the queue.
      * @param {?FxAnimation} animation The animation to remove.
      */
-    remove(animation: FxAnimation): void;
+    remove(animation: FxAnimation | null): void;
     /**
      * Handles the event that an animation has finished.
      * @param {?EventsEvent} e The finishing event.
      * @protected
      * @abstract
      */
-    onAnimationFinish(e: EventsEvent): void;
+    onAnimationFinish(e: EventsEvent | null): void;
     actualEventTarget_: AnimationQueue;
 }
 /**

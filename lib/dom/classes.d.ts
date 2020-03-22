@@ -5,7 +5,7 @@
  * @return {boolean} Whether class was added (or all classes were added).
  * @deprecated Use goog.dom.classlist.add or goog.dom.classlist.addAll instead.
  */
-export function add(element: Node, ...args: string[]): boolean;
+export function add(element: Node | null, ...args: string[]): boolean;
 /**
  * Adds zero or more classes to an element and removes zero or more as a single
  * operation. Unlike calling {@link add} and
@@ -24,7 +24,7 @@ export function add(element: Node, ...args: string[]): boolean;
  * @deprecated Use goog.dom.classlist.addRemove instead.
  * @suppress{checkTypes}
  */
-export function addRemove(element: Node, classesToRemove: string | string[], classesToAdd: string | string[]): void;
+export function addRemove(element: Node | null, classesToRemove: string | string[] | null, classesToAdd: string | string[] | null): void;
 /**
  * Adds or removes a class depending on the enabled argument.
  * @param {?Node} element DOM node to add or remove the class on.
@@ -34,7 +34,7 @@ export function addRemove(element: Node, classesToRemove: string | string[], cla
  * @deprecated Use goog.dom.classlist.enable or goog.dom.classlist.enableAll
  *     instead.
  */
-export function enable(element: Node, className: string, enabled: boolean): void;
+export function enable(element: Node | null, className: string, enabled: boolean): void;
 /**
  * Gets an array of class names on an element
  * @param {?Node} element DOM node to get class of.
@@ -42,7 +42,7 @@ export function enable(element: Node, className: string, enabled: boolean): void
  *     properties to the array. Do not depend on any of these!
  * @deprecated Use goog.dom.classlist.get instead.
  */
-export function get(element: Node): any[];
+export function get(element: Node | null): any[];
 /**
  * Returns true if an element has a class.
  * @param {?Node} element DOM node to test.
@@ -50,7 +50,7 @@ export function get(element: Node): any[];
  * @return {boolean} Whether element has the class.
  * @deprecated Use goog.dom.classlist.contains instead.
  */
-export function has(element: Node, className: string): boolean;
+export function has(element: Node | null, className: string): boolean;
 /**
  * Removes a class or classes from an element.
  * @param {?Node} element DOM node to remove class from.
@@ -60,7 +60,7 @@ export function has(element: Node, className: string): boolean;
  * @deprecated Use goog.dom.classlist.remove or goog.dom.classlist.removeAll
  *     instead.
  */
-export function remove(element: Node, ...args: string[]): boolean;
+export function remove(element: Node | null, ...args: string[]): boolean;
 /**
  * @fileoverview Utilities for adding, removing and setting classes.  Prefer
  * {@link goog.dom.classlist} over these utilities since goog.dom.classlist
@@ -77,7 +77,7 @@ export function remove(element: Node, ...args: string[]): boolean;
  * @param {string} className Class name(s) to apply to element.
  * @deprecated Use goog.dom.classlist.set instead.
  */
-export function set(element: Node, className: string): void;
+export function set(element: Node | null, className: string): void;
 /**
  * Switches a class on an element from one to another without disturbing other
  * classes. If the fromClass isn't removed, the toClass won't be added.
@@ -87,7 +87,7 @@ export function set(element: Node, className: string): void;
  * @return {boolean} Whether classes were switched.
  * @deprecated Use goog.dom.classlist.swap instead.
  */
-export function swap(element: Node, fromClass: string, toClass: string): boolean;
+export function swap(element: Node | null, fromClass: string, toClass: string): boolean;
 /**
  * Removes a class if an element has it, and adds it the element doesn't have
  * it.  Won't affect other classes on the node.
@@ -98,4 +98,4 @@ export function swap(element: Node, fromClass: string, toClass: string): boolean
  *     been called).
  * @deprecated Use goog.dom.classlist.toggle instead.
  */
-export function toggle(element: Node, className: string): boolean;
+export function toggle(element: Node | null, className: string): boolean;

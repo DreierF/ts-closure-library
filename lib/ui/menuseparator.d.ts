@@ -17,7 +17,7 @@ export class MenuSeparator extends Separator {
      * @param {DomHelper=} opt_domHelper Optional DOM helper used for
      *     document interactions.
      */
-    constructor(opt_domHelper?: DomHelper);
+    constructor(opt_domHelper?: DomHelper | undefined);
 }
 import { Separator } from "./separator.js";
 import { DomHelper } from "../dom/dom.js";

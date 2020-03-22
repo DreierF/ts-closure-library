@@ -36,7 +36,7 @@ export class WheelHandler extends goog_events.EventTarget {
      * @param {boolean=} opt_capture Whether to handle the wheel event in capture
      *     phase.
      */
-    constructor(element: Element | Document, opt_capture?: boolean);
+    constructor(element: Element | Document, opt_capture?: boolean | undefined);
     /**
      * This is the element that we will listen to the real wheel events on.
      * @private {!Element|!Document}

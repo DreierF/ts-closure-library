@@ -73,7 +73,7 @@ export class Box {
      * @param {number=} opt_left Left margin.
      * @return {!Box} A reference to this Box.
      */
-    expand(top: number | Box, opt_right?: number, opt_bottom?: number, opt_left?: number): Box;
+    expand(top: number | Box, opt_right?: number | undefined, opt_bottom?: number | undefined, opt_left?: number | undefined): Box;
     /**
      * Expand this box to include another box.
      * NOTE(user): This is used in code that needs to be very fast, please don't
@@ -81,7 +81,7 @@ export class Box {
      * arguments, accepting multiple argument types, etc).
      * @param {?Box} box The box to include in this one.
      */
-    expandToInclude(box: Box): void;
+    expandToInclude(box: Box | null): void;
     /**
      * Expand this box to include the coordinate.
      * @param {!Math_Coordinate} coord The coordinate to be included
@@ -118,7 +118,7 @@ export class Box {
      * @param {number=} opt_ty The value to translate y dimension values by.
      * @return {!Box} This box after translating.
      */
-    translate(tx: number | Math_Coordinate, opt_ty?: number): Box;
+    translate(tx: number | Math_Coordinate, opt_ty?: number | undefined): Box;
     /**
      * Scales this coordinate by the given scale factors. The x and y dimension
      * values are scaled by `sx` and `opt_sy` respectively.
@@ -128,7 +128,7 @@ export class Box {
      * @param {number=} opt_sy The scale factor to use for the y dimension.
      * @return {!Box} This box after scaling.
      */
-    scale(sx: number, opt_sy?: number): Box;
+    scale(sx: number, opt_sy?: number | undefined): Box;
 }
 export namespace Box { }
 import { Coordinate as Math_Coordinate } from "./coordinate.js";

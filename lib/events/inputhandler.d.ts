@@ -38,7 +38,7 @@ export class InputHandler extends EventsEventTarget {
      * @param {?Element} element  The element that you want to listen for input
      *     events on.
      */
-    constructor(element: Element);
+    constructor(element: Element | null);
     /**
      * Id of a timer used to postpone firing input event in emulation mode.
      * @type {?number}
@@ -61,7 +61,7 @@ export class InputHandler extends EventsEventTarget {
      * @param {?EventsBrowserEvent} e The underlying browser event.
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    handleEvent(e: EventsBrowserEvent): void;
+    handleEvent(e: EventsBrowserEvent | null): void;
     /**
      * Cancels timer if it is set, does nothing otherwise.
      * @private
@@ -73,7 +73,7 @@ export class InputHandler extends EventsEventTarget {
      * @return {!EventsBrowserEvent} An input event.
      * @private
      */
-    createInputEvent_(be: EventsBrowserEvent): EventsBrowserEvent;
+    createInputEvent_(be: EventsBrowserEvent | null): EventsBrowserEvent;
     actualEventTarget_: InputHandler;
 }
 import { EventTarget as EventsEventTarget } from "./eventhandler.js";

@@ -30,7 +30,7 @@ export function findFirstUrl(text: string): string;
  */
 export function linkifyPlainTextAsHtml(text: string, opt_attributes?: {
     [x: string]: string | number | import("./typedstring.js").TypedString | {
-        [x: string]: string | import("./const.js").Const | import("../html/safeurl.js").SafeUrl | (string | import("./const.js").Const | import("../html/safeurl.js").SafeUrl)[];
-    };
-}, opt_preserveNewlines?: boolean): SafeHtml;
+        [x: string]: string | import("./const.js").Const | import("../html/safeurl.js").SafeUrl | (string | import("./const.js").Const | import("../html/safeurl.js").SafeUrl)[] | null;
+    } | null | undefined;
+} | undefined, opt_preserveNewlines?: boolean | undefined): SafeHtml;
 import { SafeHtml } from "../html/safehtml.js";

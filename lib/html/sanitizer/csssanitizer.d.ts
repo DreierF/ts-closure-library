@@ -13,9 +13,9 @@ export function inlineStyleRules(element: Element): void;
  * tag over DOMParser to produce inert trees, but at least on Chrome the inert
  * STYLE tag does not have a CSSStyleSheet object attached to it.
  * @param {string} html
- * @return {?Element}
+ * @return {Element|null}
  */
-export function safeParseHtmlAndGetInertElement(html: string): Element;
+export function safeParseHtmlAndGetInertElement(html: string): Element | null;
 /**
  * Sanitizes an inline style attribute. Short-hand attributes are expanded to
  * their individual elements. Note: The sanitizer does not output vendor
@@ -25,7 +25,7 @@ export function safeParseHtmlAndGetInertElement(html: string): Element;
  *     rewriter that returns a SafeUrl.
  * @return {!SafeStyle} A sanitized inline cssText.
  */
-export function sanitizeInlineStyle(cssStyle: CSSStyleDeclaration, opt_uriRewriter?: (arg0: string, arg1: string) => SafeUrl): SafeStyle;
+export function sanitizeInlineStyle(cssStyle: CSSStyleDeclaration | null, opt_uriRewriter?: ((arg0: string, arg1: string) => SafeUrl | null) | undefined): SafeStyle;
 /**
  * Sanitizes inline CSS text and returns it as a SafeStyle object. When adequate
  * browser support is not available, such as for IE9 and below, a
@@ -35,7 +35,7 @@ export function sanitizeInlineStyle(cssStyle: CSSStyleDeclaration, opt_uriRewrit
  *     rewriter that returns a SafeUrl.
  * @return {!SafeStyle} A sanitized inline cssText.
  */
-export function sanitizeInlineStyleString(cssText: string, opt_uriRewriter?: (arg0: string, arg1: string) => SafeUrl): SafeStyle;
+export function sanitizeInlineStyleString(cssText: string, opt_uriRewriter?: ((arg0: string, arg1: string) => SafeUrl | null) | undefined): SafeStyle;
 /**
  * Sanitizes the contents of a STYLE tag.
  * @param {string} textContent The textual content of the STYLE tag.
@@ -50,7 +50,7 @@ export function sanitizeInlineStyleString(cssText: string, opt_uriRewriter?: (ar
  *     is unreliable, and some (but not all!) rules containing these are
  *     silently dropped.
  */
-export function sanitizeStyleSheetString(textContent: string, opt_containerId?: string, opt_uriRewriter?: (arg0: string, arg1: string) => SafeUrl): SafeStyleSheet;
+export function sanitizeStyleSheetString(textContent: string, opt_containerId?: string | null | undefined, opt_uriRewriter?: ((arg0: string, arg1: string) => SafeUrl | null) | undefined): SafeStyleSheet;
 import { SafeUrl } from "../safeurl.js";
 import { SafeStyle } from "../safestyle.js";
 import { SafeStyleSheet } from "../safestylesheet.js";

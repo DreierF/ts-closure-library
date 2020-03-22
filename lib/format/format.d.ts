@@ -20,7 +20,7 @@ export let WORD_BREAK_HTML: string;
  * @param {number=} opt_decimals The number of decimals to use.  Defaults to 2.
  * @return {string} The human readable form of the byte size.
  */
-export function fileSize(bytes: number, opt_decimals?: number): string;
+export function fileSize(bytes: number, opt_decimals?: number | undefined): string;
 /**
  * Inserts word breaks into an HTML string at a given interval.
  *
@@ -35,7 +35,7 @@ export function fileSize(bytes: number, opt_decimals?: number): string;
  * @return {string} The string including word breaks.
  * @deprecated Prefer wrapping with CSS word-wrap: break-word.
  */
-export function insertWordBreaks(str: string, opt_maxlen?: number): string;
+export function insertWordBreaks(str: string, opt_maxlen?: number | undefined): string;
 /**
  * Inserts word breaks into an HTML string at a given interval.
  *
@@ -52,7 +52,7 @@ export function insertWordBreaks(str: string, opt_maxlen?: number): string;
  * @return {string} The string including word breaks.
  * @deprecated Prefer wrapping with CSS word-wrap: break-word.
  */
-export function insertWordBreaksBasic(str: string, opt_maxlen?: number): string;
+export function insertWordBreaksBasic(str: string, opt_maxlen?: number | undefined): string;
 /**
  * Checks whether string value containing scaling units (K, M, G, T, P, m,
  * u, n) can be converted to a number.
@@ -82,14 +82,14 @@ export function isConvertableScaledNumber(val: string): boolean;
  *     separated by a no break space. Default is false.
  * @return {string} String representation of number of bytes.
  */
-export function numBytesToString(val: number, opt_decimals?: number, opt_suffix?: boolean, opt_useSeparator?: boolean): string;
+export function numBytesToString(val: number, opt_decimals?: number | undefined, opt_suffix?: boolean | undefined, opt_useSeparator?: boolean | undefined): string;
 /**
  * Converts a numeric value to string representation. SI conversion.
  * @param {number} val Value to be converted.
  * @param {number=} opt_decimals The number of decimals to use.  Defaults to 2.
  * @return {string} String representation of number.
  */
-export function numericValueToString(val: number, opt_decimals?: number): string;
+export function numericValueToString(val: number, opt_decimals?: number | undefined): string;
 /**
  * Converts a string to number of bytes, taking into account the units.
  * Binary conversion.

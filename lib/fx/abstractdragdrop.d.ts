@@ -61,7 +61,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      *     classname.
      */
     setDragClass(className: string): void;
-    dragClass_: string;
+    dragClass_: string | undefined;
     /**
      * Set class to add to source elements.
      *
@@ -69,7 +69,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      *     classname.
      */
     setSourceClass(className: string): void;
-    sourceClass_: string;
+    sourceClass_: string | undefined;
     /**
      * Set class to add to target elements.
      *
@@ -77,7 +77,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      *     classname.
      */
     setTargetClass(className: string): void;
-    targetClass_: string;
+    targetClass_: string | undefined;
     /**
      * Whether the control has been initialized.
      *
@@ -98,7 +98,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      *
      * @param {?AbstractDragDrop} target Target to add.
      */
-    addTarget(target: AbstractDragDrop): void;
+    addTarget(target: AbstractDragDrop | null): void;
     /**
      * Removes the specified target from the list of drop targets.
      *
@@ -111,8 +111,8 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      *
      * @param {?EventTarget} scrollTarget The element that dispatches SCROLL events.
      */
-    setScrollTarget(scrollTarget: EventTarget): void;
-    scrollTarget_: EventTarget;
+    setScrollTarget(scrollTarget: EventTarget | null): void;
+    scrollTarget_: EventTarget | null | undefined;
     /**
      * Initialize drag and drop functionality for sources/targets already added.
      * Sources/targets added after init has been called will initialize themselves
@@ -125,14 +125,14 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * @param {?DragDropItem} item Item to initialize.
      * @protected
      */
-    initItem(item: DragDropItem): void;
+    initItem(item: DragDropItem | null): void;
     /**
      * Called when removing an item. Removes event listeners and classes.
      *
      * @param {?DragDropItem} item Item to dispose.
      * @protected
      */
-    disposeItem(item: DragDropItem): void;
+    disposeItem(item: DragDropItem | null): void;
     /**
      * Removes all items.
      */
@@ -145,17 +145,17 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * @param {?EventsBrowserEvent} event Mouse down event.
      * @param {?DragDropItem} item Item that's being dragged.
      */
-    maybeStartDrag(event: EventsBrowserEvent, item: DragDropItem): void;
+    maybeStartDrag(event: EventsBrowserEvent | null, item: DragDropItem | null): void;
     /**
      * Event handler that's used to start drag.
      *
      * @param {?EventsBrowserEvent} event Mouse move event.
      * @param {?DragDropItem} item Item that's being dragged.
      */
-    startDrag(event: EventsBrowserEvent, item: DragDropItem): void;
-    dragItem_: DragDropItem;
-    dragEl_: Element;
-    dragger_: Fx_Dragger;
+    startDrag(event: EventsBrowserEvent | null, item: DragDropItem | null): void;
+    dragItem_: DragDropItem | null | undefined;
+    dragEl_: Element | null | undefined;
+    dragger_: Fx_Dragger | undefined;
     /**
      * Recalculates the geometry of this source's drag targets.  Call this
      * if the position or visibility of a drag target has changed during
@@ -165,8 +165,8 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * may be necessary.
      */
     recalculateDragTargets(): void;
-    targetList_: any[];
-    targetBox_: Box;
+    targetList_: any[] | undefined;
+    targetBox_: Box | undefined;
     /**
      * Recalculates the current scroll positions of scrollable containers and
      * allocates targets. Call this if the position of a container changed or if
@@ -181,21 +181,21 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * @return {!Fx_Dragger} The new Dragger.
      * @protected
      */
-    createDraggerFor(sourceEl: Element, el: Element, event: EventsBrowserEvent): Fx_Dragger;
+    createDraggerFor(sourceEl: Element | null, el: Element | null, event: EventsBrowserEvent | null): Fx_Dragger;
     /**
      * Event handler that's used to stop drag. Fires a drop event if over a valid
      * target.
      *
      * @param {?DragEvent} event Drag event.
      */
-    endDrag(event: DragEvent): void;
+    endDrag(event: DragEvent | null): void;
     /**
      * Called after a drag operation has finished.
      *
      * @param {DragDropItem=} opt_dropTarget Target for successful drop.
      * @protected
      */
-    afterEndDrag(opt_dropTarget?: DragDropItem): void;
+    afterEndDrag(opt_dropTarget?: DragDropItem | undefined): void;
     /**
      * Called once a drag operation has finished. Removes event listeners and
      * elements.
@@ -210,7 +210,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * @param {?DragEvent} event Drag event.
      * @private
      */
-    moveDrag_(event: DragEvent): void;
+    moveDrag_(event: DragEvent | null): void;
     activeSubtarget_: any;
     /**
      * Event handler for suppressing selectstart events. Selecting should be
@@ -220,7 +220,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * @return {boolean} Whether to perform default behavior.
      * @private
      */
-    suppressSelect_(event: EventsEvent): boolean;
+    suppressSelect_(event: EventsEvent | null): boolean;
     /**
      * Sets up listeners for the scrollable containers that keep track of their
      * scroll positions.
@@ -236,7 +236,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * Makes drag and drop aware of a target container that could scroll mid drag.
      * @param {?Element} element The scroll container.
      */
-    addScrollableContainer(element: Element): void;
+    addScrollableContainer(element: Element | null): void;
     /**
      * Removes all scrollable containers.
      */
@@ -247,7 +247,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * @suppress {visibility} TODO(martone): update dependent projects.
      * @private
      */
-    containerScrollHandler_(e: EventsBrowserEvent): void;
+    containerScrollHandler_(e: EventsBrowserEvent | null): void;
     /**
      * Set a function that provides subtargets. A subtargeting function
      * returns an arbitrary identifier for each subtarget of an element.
@@ -261,15 +261,15 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      *
      * @param {?Function} f The new subtarget function.
      */
-    setSubtargetFunction(f: Function): void;
-    subtargetFunction_: Function;
+    setSubtargetFunction(f: Function | null): void;
+    subtargetFunction_: Function | null | undefined;
     /**
      * Creates an element for the item being dragged.
      *
      * @param {?Element} sourceEl Drag source element.
      * @return {?Element} The new drag element.
      */
-    createDragElement(sourceEl: Element): Element;
+    createDragElement(sourceEl: Element | null): Element | null;
     /**
      * Returns the position for the drag element.
      *
@@ -278,14 +278,14 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * @param {?EventsBrowserEvent} event Mouse down event for start of drag.
      * @return {!Coordinate} The position for the drag element.
      */
-    getDragElementPosition(el: Element, dragEl: Element, event: EventsBrowserEvent): Coordinate;
+    getDragElementPosition(el: Element | null, dragEl: Element | null, event: EventsBrowserEvent | null): Coordinate;
     /**
      * Returns the dragger object.
      *
      * @return {?Fx_Dragger} The dragger object used by this drag and drop
      *     instance.
      */
-    getDragger(): Fx_Dragger;
+    getDragger(): Fx_Dragger | null;
     /**
      * Creates copy of node being dragged.
      *
@@ -294,7 +294,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * @deprecated Use Fx_Dragger.cloneNode().
      * @private
      */
-    cloneNode_(sourceEl: Element): Element;
+    cloneNode_(sourceEl: Element | null): Element;
     /**
      * Generates an element to follow the cursor during dragging, given a drag
      * source element.  The default behavior is simply to clone the source element,
@@ -306,7 +306,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * @protected
      * @suppress {deprecated}
      */
-    createDragElementInternal(sourceEl: Element): Element;
+    createDragElementInternal(sourceEl: Element | null): Element;
     /**
      * Add possible drop target for current drag operation.
      *
@@ -314,7 +314,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * @param {?DragDropItem} item Item that's being dragged.
      * @private
      */
-    addDragTarget_(target: AbstractDragDrop, item: DragDropItem): void;
+    addDragTarget_(target: AbstractDragDrop | null, item: DragDropItem | null): void;
     /**
      * Calculates the position and dimension of a draggable element.
      *
@@ -325,7 +325,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      *     of element.
      * @protected
      */
-    getElementBox(item: DragDropItem, element: Element): Box;
+    getElementBox(item: DragDropItem | null, element: Element | null): Box;
     /**
      * Calculate the outer bounds (the region all targets are inside).
      *
@@ -333,7 +333,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      *     of a drag target.
      * @private
      */
-    calculateTargetBox_(box: Box): void;
+    calculateTargetBox_(box: Box | null): void;
     /**
      * Creates a dummy target for the given cursor position. The assumption is to
      * create as big dummy target box as possible, the only constraints are:
@@ -392,8 +392,8 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * @return {?ActiveDropTarget_} Dummy drop target.
      * @private
      */
-    maybeCreateDummyTargetForPosition_(x: number, y: number): ActiveDropTarget_;
-    dummyTarget_: ActiveDropTarget_;
+    maybeCreateDummyTargetForPosition_(x: number, y: number): ActiveDropTarget_ | null;
+    dummyTarget_: ActiveDropTarget_ | undefined;
     /**
      * Returns the target for a given cursor position.
      *
@@ -402,7 +402,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      *     was defined for the given position.
      * @private
      */
-    getTargetFromPosition_(position: Coordinate): ActiveDropTarget_;
+    getTargetFromPosition_(position: Coordinate | null): ActiveDropTarget_ | null;
     /**
      * Checks whatever a given point is inside a given box.
      *
@@ -413,7 +413,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * @protected
      * @deprecated Use Box.contains.
      */
-    isInside(x: number, y: number, box: Box): boolean;
+    isInside(x: number, y: number, box: Box | null): boolean;
     /**
      * Gets the scroll distance as a coordinate object, using
      * the window of the current drag element's dom.
@@ -427,7 +427,7 @@ export class AbstractDragDrop extends goog_events.EventTarget {
      * @return {!Coordinate} Position of the event.
      * @protected
      */
-    getEventPosition(event: DragEvent): Coordinate;
+    getEventPosition(event: DragEvent | null): Coordinate;
     actualEventTarget_: AbstractDragDrop;
 }
 export namespace AbstractDragDrop {
@@ -462,7 +462,7 @@ export class DragDropEvent extends EventsEvent {
      * @param {EventsBrowserEvent=} opt_browserEvent The browser event
      *     that caused this dragdrop event.
      */
-    constructor(type: string, source: AbstractDragDrop, sourceItem: DragDropItem, opt_target?: AbstractDragDrop, opt_targetItem?: DragDropItem, opt_targetElement?: Element, opt_clientX?: number, opt_clientY?: number, opt_x?: number, opt_y?: number, opt_subtarget?: any, opt_browserEvent?: EventsBrowserEvent);
+    constructor(type: string, source: AbstractDragDrop | null, sourceItem: DragDropItem | null, opt_target?: AbstractDragDrop | undefined, opt_targetItem?: DragDropItem | undefined, opt_targetElement?: Element | undefined, opt_clientX?: number | undefined, opt_clientY?: number | undefined, opt_x?: number | undefined, opt_y?: number | undefined, opt_subtarget?: any, opt_browserEvent?: EventsBrowserEvent | undefined);
     /**
      * Reference to the source AbstractDragDrop object.
      * @type {?AbstractDragDrop}
@@ -518,7 +518,7 @@ export class DragDropEvent extends EventsEvent {
      * The browser event that caused this dragdrop event.
      * @const
      */
-    browserEvent: EventsBrowserEvent;
+    browserEvent: EventsBrowserEvent | undefined;
 }
 /**
  * Class representing a source or target element for drag and drop operations.
@@ -563,9 +563,9 @@ export class DragDropItem extends goog_events.EventTarget {
     /**
      * The current element being dragged. This is needed because a DragDropItem
      * can have multiple elements that can be dragged.
-     * @private {?Element}
+     * @private {Element|null}
      */
-    currentDragElement_: Element;
+    currentDragElement_: Element | null;
     /**
      * Get the data associated with the source/target.
      * @return {Object|null|undefined} Data associated with the source/target.
@@ -581,13 +581,13 @@ export class DragDropItem extends goog_events.EventTarget {
      * @return {?Element} The element that is draggable given the target. If
      *     none are draggable, this will return null.
      */
-    getDraggableElement(target: Element): Element;
+    getDraggableElement(target: Element | null): Element | null;
     /**
      * Gets the element that is currently being dragged.
      *
      * @return {?Element} The element that is currently being dragged.
      */
-    getCurrentDragElement(): Element;
+    getCurrentDragElement(): Element | null;
     /**
      * Gets all the elements of this item that are potentially draggable/
      *
@@ -600,12 +600,12 @@ export class DragDropItem extends goog_events.EventTarget {
      * @param {?EventsBrowserEvent} event Mouse down event.
      * @private
      */
-    mouseDown_(event: EventsBrowserEvent): void;
+    mouseDown_(event: EventsBrowserEvent | null): void;
     /**
      * Sets the dragdrop to which this item belongs.
      * @param {?AbstractDragDrop} parent The parent dragdrop.
      */
-    setParent(parent: AbstractDragDrop): void;
+    setParent(parent: AbstractDragDrop | null): void;
     /**
      * Adds mouse move, mouse out and mouse up handlers.
      *
@@ -613,8 +613,8 @@ export class DragDropItem extends goog_events.EventTarget {
      * @param {?Element} element Element.
      * @private
      */
-    maybeStartDrag_(event: EventsBrowserEvent, element: Element): void;
-    startPosition_: Coordinate;
+    maybeStartDrag_(event: EventsBrowserEvent | null, element: Element | null): void;
+    startPosition_: Coordinate | undefined;
     /**
      * Event handler for mouse move. Starts drag operation if moved more than the
      * threshold value.
@@ -622,7 +622,7 @@ export class DragDropItem extends goog_events.EventTarget {
      * @param {?EventsBrowserEvent} event Mouse move or mouse out event.
      * @private
      */
-    mouseMove_(event: EventsBrowserEvent): void;
+    mouseMove_(event: EventsBrowserEvent | null): void;
     /**
      * Event handler for mouse up. Removes mouse move, mouse out and mouse up event
      * handlers.
@@ -630,7 +630,7 @@ export class DragDropItem extends goog_events.EventTarget {
      * @param {?EventsBrowserEvent} event Mouse up event.
      * @private
      */
-    mouseUp_(event: EventsBrowserEvent): void;
+    mouseUp_(event: EventsBrowserEvent | null): void;
     actualEventTarget_: DragDropItem;
 }
 export namespace EventType {
@@ -668,7 +668,7 @@ declare class ActiveDropTarget_ {
      * @param {Element=} opt_element Element of item associated with position.
      * @private
      */
-    constructor(box: Box, opt_target?: AbstractDragDrop, opt_item?: DragDropItem, opt_element?: Element);
+    constructor(box: Box | null, opt_target?: AbstractDragDrop | undefined, opt_item?: DragDropItem | undefined, opt_element?: Element | undefined);
     /**
      * Box describing the position and dimension of the target item
      * @type {?Box}

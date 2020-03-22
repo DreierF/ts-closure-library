@@ -28,11 +28,11 @@ export class FreeList<ITEM> {
     /**
      * @return {?ITEM}
      */
-    get(): ITEM;
+    get(): ITEM | null;
     /**
      * @param {?ITEM} item An item available for possible future reuse.
      */
-    put(item: ITEM): void;
+    put(item: ITEM | null): void;
     /**
      * Visible for testing.
      * @package

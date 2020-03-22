@@ -13,5 +13,5 @@
  * @param {boolean=} opt_useSimilar use similar matches. e.g. "gost" => "ghost".
  * @return {!AutoComplete} A new autocomplete object.
  */
-export function createSimpleAutoComplete(data: any[], input: Element, opt_multi?: boolean, opt_useSimilar?: boolean): AutoComplete;
+export function createSimpleAutoComplete(data: any[], input: Element | null, opt_multi?: boolean | undefined, opt_useSimilar?: boolean | undefined): AutoComplete;
 import { AutoComplete } from "./autocomplete.js";

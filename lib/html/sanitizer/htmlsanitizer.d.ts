@@ -4,46 +4,46 @@
 export type HtmlSanitizerAttributePolicy = {
     tagName: string;
     attributeName: string;
-    policy: (arg0: string, arg1?: {
-        tagName: string;
-        attributeName: string;
-        cssProperty: string;
-    }, arg2?: {
-        cssStyle: CSSStyleDeclaration;
-    }, arg3?: (arg0: string, arg1?: any, arg2?: any, arg3?: any) => string) => string;
+    policy: ((arg0: string, arg1?: {
+        tagName: string | undefined;
+        attributeName: string | undefined;
+        cssProperty: string | undefined;
+    } | undefined, arg2?: {
+        cssStyle: CSSStyleDeclaration | null | undefined;
+    } | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null) | null;
 };
 /**
  * Type for a policy function.
  */
 export type HtmlSanitizerPolicy = (arg0: string, arg1?: {
-    tagName: string;
-    attributeName: string;
-    cssProperty: string;
-}, arg2?: {
-    cssStyle: CSSStyleDeclaration;
-}, arg3?: (arg0: string, arg1?: any, arg2?: any, arg3?: any) => string) => string;
+    tagName: string | undefined;
+    attributeName: string | undefined;
+    cssProperty: string | undefined;
+} | undefined, arg2?: {
+    cssStyle: CSSStyleDeclaration | null | undefined;
+} | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null;
 /**
  * Type for optional context objects to the policy handler functions.
  */
 export type HtmlSanitizerPolicyContext = {
-    cssStyle: CSSStyleDeclaration;
+    cssStyle: CSSStyleDeclaration | null | undefined;
 };
 /**
  * Type for optional hints to policy handler functions.
  */
 export type HtmlSanitizerPolicyHints = {
-    tagName: string;
-    attributeName: string;
-    cssProperty: string;
+    tagName: string | undefined;
+    attributeName: string | undefined;
+    cssProperty: string | undefined;
 };
 /**
  * Type for a URL policy function.
  */
 export type HtmlSanitizerUrlPolicy = (arg0: string, arg1?: {
-    tagName: string;
-    attributeName: string;
-    cssProperty: string;
-}) => SafeUrl;
+    tagName: string | undefined;
+    attributeName: string | undefined;
+    cssProperty: string | undefined;
+} | undefined) => SafeUrl | null;
 /**
  * The builder for the HTML Sanitizer. All methods except build return
  * `this`.
@@ -134,7 +134,7 @@ export class Builder {
      * allowed.
      * @private {?string}
      */
-    styleContainerId_: string;
+    styleContainerId_: string | null;
     /**
      * Whether rules in STYLE tags should be inlined into style attributes.
      * @private {boolean}
@@ -183,7 +183,7 @@ export class Builder {
      *     scope of any CSS rule found in STYLE tags.
      * @return {!Builder}
      */
-    withStyleContainer(opt_styleContainer?: string): Builder;
+    withStyleContainer(opt_styleContainer?: string | undefined): Builder;
     /**
      * Converts rules in STYLE tags into style attributes on the tags they apply to.
      * This feature is not compatible with {@link withStyleContainer} and {@link
@@ -242,13 +242,13 @@ export class Builder {
     onlyAllowAttributes(attrWhitelist: (string | {
         tagName: string;
         attributeName: string;
-        policy: (arg0: string, arg1?: {
-            tagName: string;
-            attributeName: string;
-            cssProperty: string;
-        }, arg2?: {
-            cssStyle: CSSStyleDeclaration;
-        }, arg3?: (arg0: string, arg1?: any, arg2?: any, arg3?: any) => string) => string;
+        policy: ((arg0: string, arg1?: {
+            tagName: string | undefined;
+            attributeName: string | undefined;
+            cssProperty: string | undefined;
+        } | undefined, arg2?: {
+            cssStyle: CSSStyleDeclaration | null | undefined;
+        } | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null) | null;
     })[]): Builder;
     /**
      * Adds the original tag name in the data attribute 'original-tag' when unknown
@@ -263,34 +263,34 @@ export class Builder {
      * @return {!Builder}
      */
     withCustomUrlPolicy(customUrlPolicy: (arg0: string, arg1?: {
-        tagName: string;
-        attributeName: string;
-        cssProperty: string;
-    }) => SafeUrl): Builder;
+        tagName: string | undefined;
+        attributeName: string | undefined;
+        cssProperty: string | undefined;
+    } | undefined) => SafeUrl | null): Builder;
     /**
      * Sets a custom name policy.
      * @param {!HtmlSanitizerPolicy} customNamePolicy
      * @return {!Builder}
      */
     withCustomNamePolicy(customNamePolicy: (arg0: string, arg1?: {
-        tagName: string;
-        attributeName: string;
-        cssProperty: string;
-    }, arg2?: {
-        cssStyle: CSSStyleDeclaration;
-    }, arg3?: (arg0: string, arg1?: any, arg2?: any, arg3?: any) => string) => string): Builder;
+        tagName: string | undefined;
+        attributeName: string | undefined;
+        cssProperty: string | undefined;
+    } | undefined, arg2?: {
+        cssStyle: CSSStyleDeclaration | null | undefined;
+    } | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null): Builder;
     /**
      * Sets a custom token policy.
      * @param {!HtmlSanitizerPolicy} customTokenPolicy
      * @return {!Builder}
      */
     withCustomTokenPolicy(customTokenPolicy: (arg0: string, arg1?: {
-        tagName: string;
-        attributeName: string;
-        cssProperty: string;
-    }, arg2?: {
-        cssStyle: CSSStyleDeclaration;
-    }, arg3?: (arg0: string, arg1?: any, arg2?: any, arg3?: any) => string) => string): Builder;
+        tagName: string | undefined;
+        attributeName: string | undefined;
+        cssProperty: string | undefined;
+    } | undefined, arg2?: {
+        cssStyle: CSSStyleDeclaration | null | undefined;
+    } | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null): Builder;
     /**
      * Builds and returns a HtmlSanitizer object.
      * @return {!HtmlSanitizer}
@@ -307,19 +307,19 @@ export class Builder {
     alsoAllowAttributesPrivateDoNotAccessOrElse(attrs: (string | {
         tagName: string;
         attributeName: string;
-        policy: (arg0: string, arg1?: {
-            tagName: string;
-            attributeName: string;
-            cssProperty: string;
-        }, arg2?: {
-            cssStyle: CSSStyleDeclaration;
-        }, arg3?: (arg0: string, arg1?: any, arg2?: any, arg3?: any) => string) => string;
+        policy: ((arg0: string, arg1?: {
+            tagName: string | undefined;
+            attributeName: string | undefined;
+            cssProperty: string | undefined;
+        } | undefined, arg2?: {
+            cssStyle: CSSStyleDeclaration | null | undefined;
+        } | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null) | null;
     })[]): Builder;
     withCustomNetworkRequestUrlPolicy(customNetworkReqUrlPolicy: (arg0: string, arg1?: {
-        tagName: string;
-        attributeName: string;
-        cssProperty: string;
-    }) => SafeUrl): Builder;
+        tagName: string | undefined;
+        attributeName: string | undefined;
+        cssProperty: string | undefined;
+    } | undefined) => SafeUrl | null): Builder;
 }
 /**
  * Creates an HTML sanitizer.
@@ -331,7 +331,7 @@ export class HtmlSanitizer extends SafeDomTreeProcessor {
      * Creates an HTML sanitizer.
      * @param {!Builder=} opt_builder
      */
-    constructor(opt_builder?: Builder);
+    constructor(opt_builder?: Builder | undefined);
     /**
      * @private @const {!Object<string, !HtmlSanitizerPolicy>}
      */
@@ -345,9 +345,9 @@ export class HtmlSanitizer extends SafeDomTreeProcessor {
     /** @private @const {!HtmlSanitizerUrlPolicy} */
     networkRequestUrlPolicy_: typeof goog_functions.NULL;
     /** @private @const {?string} */
-    styleContainerId_: string;
+    styleContainerId_: string | null;
     /** @private {?string} */
-    currentStyleContainerId_: string;
+    currentStyleContainerId_: string | null;
     /** @private @const {boolean} */
     inlineStyleRules_: boolean;
     /**
@@ -379,7 +379,7 @@ export class HtmlSanitizer extends SafeDomTreeProcessor {
      * @return {?string}
      * @private
      */
-    getStyleContainerId_(): string;
+    getStyleContainerId_(): string | null;
     /** @override */
     createTextNode(dirtyNode: any): Text;
     /** @override */

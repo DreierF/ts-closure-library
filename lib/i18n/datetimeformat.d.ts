@@ -132,7 +132,7 @@ export class DateTimeFormat {
      *    Throws an error if the date is null or if one tries to format a date-only
      *    object (for instance DateDate) using a pattern with time fields.
      */
-    format(date: Date | googdate.Date, opt_timeZone?: TimeZone): string;
+    format(date: Date | googdate.Date | null, opt_timeZone?: TimeZone | undefined): string;
     /**
      * Apply a predefined pattern as identified by formatType, which is stored in
      * locale specific repository.
@@ -348,7 +348,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatTimeZoneRFC_(count: number, date: Date | googdate.Date, opt_timeZone?: TimeZone): string;
+    formatTimeZoneRFC_(count: number, date: Date | googdate.Date, opt_timeZone?: TimeZone | undefined): string;
     /**
      * Generate GMT timeZone string for given date
      * @param {number} count Number of time pattern char repeats, it controls
@@ -358,7 +358,7 @@ export class DateTimeFormat {
      * @return {string} GMT timeZone string.
      * @private
      */
-    formatTimeZone_(count: number, date: Date | googdate.Date, opt_timeZone?: TimeZone): string;
+    formatTimeZone_(count: number, date: Date | googdate.Date, opt_timeZone?: TimeZone | undefined): string;
     /**
      * Generate GMT timeZone string for given date
      * @param {!DateLike} date Whose value being evaluated.
@@ -366,7 +366,7 @@ export class DateTimeFormat {
      * @return {string} GMT timeZone string.
      * @private
      */
-    formatTimeZoneId_(date: Date | googdate.Date, opt_timeZone?: TimeZone): string;
+    formatTimeZoneId_(date: Date | googdate.Date, opt_timeZone?: TimeZone | undefined): string;
     /**
      * Generate localized, location dependent time zone id
      * @param {number} count Number of time pattern char repeats, it controls
@@ -376,7 +376,7 @@ export class DateTimeFormat {
      * @return {string} GMT timeZone string.
      * @private
      */
-    formatTimeZoneLocationId_(count: number, date: Date | googdate.Date, opt_timeZone?: TimeZone): string;
+    formatTimeZoneLocationId_(count: number, date: Date | googdate.Date, opt_timeZone?: TimeZone | undefined): string;
     /**
      * Formatting one date field.
      * @param {string} patternStr The pattern string for the field being formatted.
@@ -389,7 +389,7 @@ export class DateTimeFormat {
      * @return {string} string representation for the given field.
      * @private
      */
-    formatField_(patternStr: string, date: Date | googdate.Date, dateForDate: Date | googdate.Date, dateForTime: Date | googdate.Date, opt_timeZone?: TimeZone): string;
+    formatField_(patternStr: string, date: Date | googdate.Date, dateForDate: Date | googdate.Date, dateForTime: Date | googdate.Date, opt_timeZone?: TimeZone | undefined): string;
 }
 export namespace DateTimeFormat {
     export const TOKENS_: Array<RegExp>;

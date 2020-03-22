@@ -131,7 +131,7 @@ export class Deferred<VALUE> {
      *     callbacks and errbacks in.
      * @template VALUE
      */
-    constructor(opt_onCancelFunction?: Function, opt_defaultScope?: any);
+    constructor(opt_onCancelFunction?: Function | undefined, opt_defaultScope?: any);
     /**
      * Entries in the sequence are arrays containing a callback, an errback, and
      * an optional scope. The callback or errback in an entry may be null.
@@ -223,7 +223,7 @@ export class Deferred<VALUE> {
      * provides the Error.captureStackTrace API.
      * @private {?string}
      */
-    constructorStack_: string;
+    constructorStack_: string | null;
     /**
      * Cancels a Deferred that has not yet been fired, or is blocked on another
      * deferred operation. If this Deferred is waiting for a blocking Deferred to
@@ -240,7 +240,7 @@ export class Deferred<VALUE> {
      *     if cancel() hasn't been called on some of the parent's branches. Has no
      *     effect on a branch without opt_propagateCancel set to true.
      */
-    cancel(opt_deepCancel?: boolean): void;
+    cancel(opt_deepCancel?: boolean | undefined): void;
     /**
      * Handle a single branch being canceled. Once all branches are canceled, this
      * Deferred will be canceled as well.
@@ -278,7 +278,7 @@ export class Deferred<VALUE> {
      * to the first registered callback.
      * @param {VALUE=} opt_result The starting result.
      */
-    callback(opt_result?: VALUE): void;
+    callback(opt_result?: VALUE | undefined): void;
     /**
      * Fire the execution sequence for this Deferred by passing the starting error
      * result to the first registered errback.
@@ -320,7 +320,7 @@ export class Deferred<VALUE> {
      * @return {!Deferred} This Deferred.
      * @template T
      */
-    addCallback<T>(cb: (this: T, arg1: VALUE) => any, opt_scope?: T): Deferred<any>;
+    addCallback<T>(cb: (this: T, arg1: VALUE) => any, opt_scope?: T | undefined): Deferred<any>;
     /**
      * Register a callback function to be called with an error result. If no value
      * is returned by the function, the error result is unchanged. If a new error
@@ -340,7 +340,7 @@ export class Deferred<VALUE> {
      * @return {!Deferred<VALUE>} This Deferred.
      * @template T
      */
-    addErrback<T>(eb: (this: T, arg1: any) => any, opt_scope?: T): Deferred<VALUE>;
+    addErrback<T>(eb: (this: T, arg1: any) => any, opt_scope?: T | undefined): Deferred<VALUE>;
     /**
      * Registers one function as both a callback and errback.
      *
@@ -349,7 +349,7 @@ export class Deferred<VALUE> {
      * @return {!Deferred} This Deferred.
      * @template T
      */
-    addBoth<T>(f: (this: T, arg1: any) => any, opt_scope?: T): Deferred<any>;
+    addBoth<T>(f: (this: T, arg1: any) => any, opt_scope?: T | undefined): Deferred<any>;
     /**
      * Like addBoth, but propagates uncaught exceptions in the errback.
      *
@@ -358,7 +358,7 @@ export class Deferred<VALUE> {
      * @return {!Deferred<VALUE>} This Deferred.
      * @template T
      */
-    addFinally<T>(f: (this: T, arg1: any) => any, opt_scope?: T): Deferred<VALUE>;
+    addFinally<T>(f: (this: T, arg1: any) => any, opt_scope?: T | undefined): Deferred<VALUE>;
     /**
      * Registers a callback function and an errback function at the same position
      * in the execution sequence. Only one of these functions will execute,
@@ -375,7 +375,7 @@ export class Deferred<VALUE> {
      * @return {!Deferred} This Deferred.
      * @template T
      */
-    addCallbacks<T_4>(cb: (this: T_4, arg1: VALUE) => any, eb: (this: T_4, arg1: any) => any, opt_scope?: T_4): Deferred<any>;
+    addCallbacks<T_4>(cb: ((this: T_4, arg1: VALUE) => any) | null, eb: ((this: T_4, arg1: any) => any) | null, opt_scope?: T_4 | undefined): Deferred<any>;
     /**
      * Implements {@see Thenable} for seamless integration with
      * {@see GoogPromise}.
@@ -425,7 +425,7 @@ export class Deferred<VALUE> {
      * @return {!Deferred<VALUE>} A Deferred that will be started with
      *     the computed result from this stage in the execution sequence.
      */
-    branch(opt_propagateCancel?: boolean): Deferred<VALUE>;
+    branch(opt_propagateCancel?: boolean | undefined): Deferred<VALUE>;
     /**
      * @return {boolean} Whether the execution sequence has been started on this
      *     Deferred by invoking `callback` or `errback`.

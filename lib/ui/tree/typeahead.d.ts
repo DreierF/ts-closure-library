@@ -36,7 +36,7 @@ export class TypeAhead {
      * one node is present with the same label text.
      * @private {?Array<?BaseNode>}
      */
-    matchingNodes_: BaseNode[];
+    matchingNodes_: BaseNode[] | null;
     /**
      * Specifies the current index of the label from the latest typeahead search.
      * @private {number}
@@ -53,14 +53,14 @@ export class TypeAhead {
      * @param {?EventsBrowserEvent} e The browser event.
      * @return {boolean} The handled value.
      */
-    handleNavigation(e: EventsBrowserEvent): boolean;
+    handleNavigation(e: EventsBrowserEvent | null): boolean;
     /**
      * Handles the character presses.
      * @param {?EventsBrowserEvent} e The browser event.
      *    Expected event type is goog.events.KeyHandler.EventType.KEY.
      * @return {boolean} The handled value.
      */
-    handleTypeAheadChar(e: EventsBrowserEvent): boolean;
+    handleTypeAheadChar(e: EventsBrowserEvent | null): boolean;
     /**
      * Adds or updates the given node in the nodemap. The label text is used as a
      * key and the node id is used as a value. In the case that the key already
@@ -68,12 +68,12 @@ export class TypeAhead {
      * function creates an array to hold the multiple nodes.
      * @param {?BaseNode} node Node to be added or updated.
      */
-    setNodeInMap(node: BaseNode): void;
+    setNodeInMap(node: BaseNode | null): void;
     /**
      * Removes the given node from the nodemap.
      * @param {?BaseNode} node Node to be removed.
      */
-    removeNodeFromMap(node: BaseNode): void;
+    removeNodeFromMap(node: BaseNode | null): void;
     /**
      * Select the first matching node for the given typeahead.
      * @param {string} typeAhead Typeahead characters to match.
@@ -87,7 +87,7 @@ export class TypeAhead {
      * @return {boolean} Whether a node is found.
      * @private
      */
-    jumpTo_(offset: number): boolean;
+    jumpTo_(offset: number | null): boolean;
     /**
      * Given a nodes array reveals and selects the node while using node index.
      * @param {Array<BaseNode>|undefined} nodes Nodes array to select
@@ -95,7 +95,7 @@ export class TypeAhead {
      * @return {boolean} Whether a matching node was found.
      * @private
      */
-    selectMatchingNode_(nodes: BaseNode[]): boolean;
+    selectMatchingNode_(nodes: BaseNode[] | undefined): boolean;
     /**
      * Clears the typeahead buffer.
      */

@@ -1,6 +1,6 @@
 export type Spec = {
-    measure: Function;
-    mutate: Function;
+    measure: Function | undefined;
+    mutate: Function | undefined;
 };
 export type Task_ = {
     id: number;
@@ -19,7 +19,7 @@ export type TaskSet_ = {
         context: any;
     };
     state: any;
-    args: any[];
+    args: any[] | undefined;
     isScheduled: boolean;
 };
 /**
@@ -53,9 +53,9 @@ export class State {
  * @template THIS
  */
 export function createTask<THIS>(spec: {
-    measure: (this: THIS, arg1: State) => any;
-    mutate: (this: THIS, arg1: State) => any;
-}, opt_context?: THIS): (...arg0: any[]) => any;
+    measure: ((this: THIS, arg1: State) => any) | undefined;
+    mutate: ((this: THIS, arg1: State) => any) | undefined;
+}, opt_context?: THIS | undefined): (...arg0: any[]) => any;
 /**
  * @return {boolean} Whether the animationframe is currently running. For use
  *     by callers who need not to delay tasks scheduled during runTasks_ for an

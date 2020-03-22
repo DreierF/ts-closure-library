@@ -52,17 +52,17 @@ export class NumberFormat {
      *     overrides the symbols from the current locale, such as the percent sign
      *     and minus sign.
      */
-    constructor(pattern: string | number, opt_currency?: string, opt_currencyStyle?: number, opt_symbols?: {
+    constructor(pattern: string | number, opt_currency?: string | undefined, opt_currencyStyle?: number | undefined, opt_symbols?: {
         [x: string]: string;
-    });
+    } | undefined);
     /** @const @private {?string} */
-    intlCurrencyCode_: string;
+    intlCurrencyCode_: string | null;
     /** @const @private {number} */
     currencyStyle_: number;
     /** @const @private {?Object<string, string>} */
     overrideNumberFormatSymbols_: {
         [x: string]: string;
-    };
+    } | null;
     /** @private {number} */
     maximumIntegerDigits_: number;
     /** @private {number} */
@@ -192,13 +192,13 @@ export class NumberFormat {
      * null if formatting should not be based on another number.
      * @return {!NumberFormat} Reference to this NumberFormat object.
      */
-    setBaseFormatting(baseFormattingNumber: number): NumberFormat;
+    setBaseFormatting(baseFormattingNumber: number | null): NumberFormat;
     /**
      * Gets the number on which compact formatting is currently based, or null if
      * no such number is set. See setBaseFormatting() for more information.
      * @return {?number}
      */
-    getBaseFormatting(): number;
+    getBaseFormatting(): number | null;
     /**
      * Apply provided pattern, result are stored in member variables.
      *
@@ -206,7 +206,7 @@ export class NumberFormat {
      * @private
      */
     applyPattern_(pattern: string): void;
-    pattern_: string;
+    pattern_: string | undefined;
     /**
      * Apply a predefined pattern to NumberFormat object.
      * @param {number} patternType The number that indicates a predefined number
@@ -234,7 +234,7 @@ export class NumberFormat {
      * @return {number} Parsed number. This throws an error if the text cannot be
      *     parsed.
      */
-    parse(text: string, opt_pos?: number[]): number;
+    parse(text: string, opt_pos?: number[] | undefined): number;
     /**
      * This function will parse a "localized" text into a Number. It needs to
      * handle locale specific decimal, grouping, exponent and digits.

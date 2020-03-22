@@ -7,7 +7,7 @@
  * @return {?number} The supplementary Unicode code point obtained by decoding
  * the given UTF-16 surrogate pair.
  */
-export function buildSupplementaryCodePoint(lead: number, trail: number): number;
+export function buildSupplementaryCodePoint(lead: number, trail: number): number | null;
 /**
  * Determines the length of the string needed to represent the specified
  * Unicode code point.
@@ -21,7 +21,7 @@ export function charCount(codePoint: number): number;
  * @param {number} code The Unicode value of the character.
  * @return {?string} The character corresponding to the given Unicode value.
  */
-export function fromCharCode(code: number): string;
+export function fromCharCode(code: number): string | null;
 /**
  * Returns the Unicode code point at the specified index.
  *

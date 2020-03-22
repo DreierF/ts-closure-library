@@ -29,7 +29,7 @@ export class DatePicker extends Component {
      * @param {DatePickerRenderer=} opt_renderer Optional Date picker
      *     renderer.
      */
-    constructor(opt_date?: Date | DateDate, opt_dateTimeSymbols?: any, opt_domHelper?: goog_dom.DomHelper, opt_renderer?: DatePickerRenderer);
+    constructor(opt_date?: Date | DateDate | undefined, opt_dateTimeSymbols?: any, opt_domHelper?: goog_dom.DomHelper | undefined, opt_renderer?: DatePickerRenderer | undefined);
     /**
      * Flag indicating if the number of weeks shown should be fixed.
      * @type {boolean}
@@ -105,19 +105,19 @@ export class DatePicker extends Component {
     longDateFormat_: boolean;
     /**
      * Element for navigation row on a datepicker.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     elNavRow_: Element | null;
     /**
      * Element for the month/year in the navigation row.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     elMonthYear_: Element | null;
     /**
      * Element for footer row on a datepicker.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     elFootRow_: Element | null;
@@ -134,7 +134,7 @@ export class DatePicker extends Component {
     /**
      * @deprecated Use decorate instead.
      */
-    create: (element: Element) => void;
+    create: (element: Element | null) => void;
     /**
      * Date and time symbols to use.
      * @type {!DateTimeSymbolsType}
@@ -352,7 +352,7 @@ export class DatePicker extends Component {
      *
      * @param {?Function} f The decorator function.
      */
-    setDecorator(f: Function): void;
+    setDecorator(f: Function | null): void;
     /**
      * Sets whether the date will be printed in long format. In long format, dates
      * such as '1' will be printed as '01'.
@@ -391,13 +391,13 @@ export class DatePicker extends Component {
     /**
      * @return {?DateDate} The selected date or null if nothing is selected.
      */
-    getDate(): DateDate;
+    getDate(): DateDate | null;
     /**
      * @param {number} row The row in the grid.
      * @param {number} col The column in the grid.
      * @return {?DateDate} The date in the grid or null if there is none.
      */
-    getDateAt(row: number, col: number): DateDate;
+    getDateAt(row: number, col: number): DateDate | null;
     /**
      * Returns a date element given a row and column. In elTable_, the elements that
      * represent dates are 1 indexed because of other elements such as headers.
@@ -408,7 +408,7 @@ export class DatePicker extends Component {
      * @return {?Element} The element in the grid or null if there is none.
      * @protected
      */
-    getDateElementAt(row: number, col: number): Element;
+    getDateElementAt(row: number, col: number): Element | null;
     /**
      * Sets the selected date. Will always fire the SELECT event.
      *
@@ -430,8 +430,8 @@ export class DatePicker extends Component {
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
     updateNavigationRow_(): void;
-    elMonth_: Element;
-    elYear_: Element;
+    elMonth_: Element | null | undefined;
+    elYear_: Element | null | undefined;
     /**
      * Setup click handler with prevent default.
      *
@@ -442,64 +442,64 @@ export class DatePicker extends Component {
      * @param {?Function} handlerFunction The click handler function.
      * @private
      */
-    addPreventDefaultClickHandler_(parentElement: Element, cssName: string, handlerFunction: Function): void;
+    addPreventDefaultClickHandler_(parentElement: Element, cssName: string, handlerFunction: Function | null): void;
     /**
      * Updates the footer row (with select buttons) in the footRow_ element of a
      * created picker.
      * @private
      */
     updateFooterRow_(): void;
-    elToday_: Element;
-    elNone_: Element;
+    elToday_: Element | null | undefined;
+    elNone_: Element | null | undefined;
     /**
      * @override
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
     decorateInternal(el: any): void;
     tableFoot_: any;
-    elTable_: any[];
+    elTable_: any[] | null | undefined;
     /**
      * Click handler for date grid.
      * @param {?EventsBrowserEvent} event Click event.
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    handleGridClick_(event: EventsBrowserEvent): void;
+    handleGridClick_(event: EventsBrowserEvent | null): void;
     /**
      * Keypress handler for date grid.
      *
      * @param {?EventsBrowserEvent} event Keypress event.
      * @private
      */
-    handleGridKeyPress_(event: EventsBrowserEvent): void;
+    handleGridKeyPress_(event: EventsBrowserEvent | null): void;
     /**
      * Click handler for month button. Opens month selection menu.
      *
      * @param {?EventsBrowserEvent} event Click event.
      * @private
      */
-    showMonthMenu_(event: EventsBrowserEvent): void;
+    showMonthMenu_(event: EventsBrowserEvent | null): void;
     /**
      * Click handler for year button. Opens year selection menu.
      *
      * @param {?EventsBrowserEvent} event Click event.
      * @private
      */
-    showYearMenu_(event: EventsBrowserEvent): void;
+    showYearMenu_(event: EventsBrowserEvent | null): void;
     /**
      * Call back function for month menu.
      *
      * @param {?Element} target Selected item.
      * @private
      */
-    handleMonthMenuClick_(target: Element): void;
+    handleMonthMenuClick_(target: Element | null): void;
     /**
      * Call back function for year menu.
      *
      * @param {?Element} target Selected item.
      * @private
      */
-    handleYearMenuClick_(target: Element): void;
+    handleYearMenuClick_(target: Element | null): void;
     /**
      * Support function for menu creation.
      * @param {?Element} srcEl Button to create menu for.
@@ -509,24 +509,24 @@ export class DatePicker extends Component {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    createMenu_(srcEl: Element, items: string[], method: (arg0: Element) => any, selected: string): void;
+    createMenu_(srcEl: Element | null, items: string[], method: (arg0: Element) => any, selected: string): void;
     menuSelected_: any;
     menu_: any;
-    menuCallback_: (arg0: Element) => any;
+    menuCallback_: ((arg0: Element) => any) | undefined;
     /**
      * Click handler for menu.
      *
      * @param {?EventsBrowserEvent} event Click event.
      * @private
      */
-    handleMenuClick_(event: EventsBrowserEvent): void;
+    handleMenuClick_(event: EventsBrowserEvent | null): void;
     /**
      * Keypress handler for menu.
      * @param {?EventsBrowserEvent} event Keypress event.
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    handleMenuKeyPress_(event: EventsBrowserEvent): void;
+    handleMenuKeyPress_(event: EventsBrowserEvent | null): void;
     /**
      * Support function for menu destruction.
      * @private
@@ -565,7 +565,7 @@ export class DatePicker extends Component {
      * @return {?KeyHandler} The key handler for the element.
      * @private
      */
-    getKeyHandlerForElement_(el: Element): KeyHandler;
+    getKeyHandlerForElement_(el: Element | null): KeyHandler | null;
     actualEventTarget_: DatePicker;
 }
 export namespace DatePicker {
@@ -587,7 +587,7 @@ export class DatePickerEvent extends EventsEvent {
      * @param {?DatePicker} target Date picker initiating event.
      * @param {?DateDate} date Selected date.
      */
-    constructor(type: string, target: DatePicker, date: DateDate);
+    constructor(type: string, target: DatePicker | null, date: DateDate | null);
     /**
      * The selected date
      * @type {?DateDate}

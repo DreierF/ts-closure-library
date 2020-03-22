@@ -50,7 +50,7 @@ export class SafeDomTreeProcessor {
      * @return {?Node}
      * @private
      */
-    createNode_(originalNode: Node): Node;
+    createNode_(originalNode: Node): Node | null;
     /**
      * Creates a new text node from the original text node, or null if the node
      * should not be copied over to the new tree.
@@ -58,15 +58,15 @@ export class SafeDomTreeProcessor {
      * @return {?Text}
      * @protected @abstract
      */
-    createTextNode(originalNode: Text): Text;
+    createTextNode(originalNode: Text): Text | null;
     /**
      * Creates a new element from the original element, potentially applying
      * transformations to the element's tagname and attributes.
      * @param {!Element} originalElement
-     * @return {?Element}
+     * @return {Element|null}
      * @private
      */
-    createElement_(originalElement: Element): Element;
+    createElement_(originalElement: Element): Element | null;
     /**
      * Creates a new element from the original element. This function should only
      * either create a new element (optionally changing the tag name from the
@@ -75,10 +75,10 @@ export class SafeDomTreeProcessor {
      * dropped, and this function is not called to decide whether to keep them or
      * not.
      * @param {!Element} originalElement
-     * @return {?Element}
+     * @return {Element|null}
      * @protected @abstract
      */
-    createElementWithoutAttributes(originalElement: Element): Element;
+    createElementWithoutAttributes(originalElement: Element): Element | null;
     /**
      * Copies over the attributes of an original node to its corresponding new node
      * generated with {@link processNode}.
@@ -95,7 +95,7 @@ export class SafeDomTreeProcessor {
      * @return {?string}
      * @protected @abstract
      */
-    processElementAttribute(element: Element, attribute: Attr): string;
+    processElementAttribute(element: Element, attribute: Attr): string | null;
 }
 export namespace SafeDomTreeProcessor {
     export { SAFE_PARSING_SUPPORTED };

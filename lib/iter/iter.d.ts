@@ -24,7 +24,7 @@ export class Iterator<VALUE> {
      * {@see StopIteration} when the iteration passes the end.
      * @return {?VALUE} Any object or value.
      */
-    next(): VALUE;
+    next(): VALUE | null;
     /**
      * Returns the `Iterator` object itself.  This is used to implement
      * the iterator protocol in JavaScript 1.7
@@ -35,7 +35,7 @@ export class Iterator<VALUE> {
      *     return the keys when true is passed.
      * @return {!Iterator<VALUE>} The object itself.
      */
-    __iterator__(opt_keys?: boolean): Iterator<VALUE>;
+    __iterator__(opt_keys?: boolean | undefined): Iterator<VALUE>;
 }
 /**
  * Singleton Error object that is used to terminate iterations.
@@ -184,7 +184,7 @@ export function consume<VALUE>(iterable: {
  * @return {!Iterator<number>} A new iterator that returns the values
  *     in the series.
  */
-export function count(opt_start?: number, opt_step?: number): Iterator<number>;
+export function count(opt_start?: number | undefined, opt_step?: number | undefined): Iterator<number>;
 /**
  * Create an iterator to cycle over the iterable's elements indefinitely.
  * For example, ([1, 2, 3]) would return : 1, 2, 3, 1, 2, 3, ...
@@ -219,7 +219,7 @@ export function dropWhile<THIS, VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, f: any, opt_obj?: THIS): Iterator<VALUE>;
+} | Iterator<VALUE>, f: any, opt_obj?: THIS | undefined): Iterator<VALUE>;
 /**
  * Creates an iterator that returns arrays containing a count and an element
  * obtained from the given `iterable`.
@@ -235,7 +235,7 @@ export function enumerate<VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, opt_start?: number): Iterator<any[]>;
+} | Iterator<VALUE>, opt_start?: number | undefined): Iterator<any[]>;
 /**
  * Iterates over two iterables and returns true if they contain the same
  * sequence of elements and have the same length.
@@ -260,7 +260,7 @@ export function equals<VALUE>(iterable1: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, opt_equalsFn?: (arg0: VALUE, arg1: VALUE) => boolean): boolean;
+} | Iterator<VALUE>, opt_equalsFn?: ((arg0: VALUE, arg1: VALUE) => boolean) | undefined): boolean;
 /**
  * Goes through the values in the iterator. Calls f for each of these and if any
  * of them returns false this returns false (without checking the rest). If all
@@ -281,7 +281,7 @@ export function every<THIS, VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, f: any, opt_obj?: THIS): boolean;
+} | Iterator<VALUE>, f: any, opt_obj?: THIS | undefined): boolean;
 /**
  * Calls a function for every element in the iterator, and if the function
  * returns true adds the element to a new iterator.
@@ -304,7 +304,7 @@ export function filter<THIS, VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, f: any, opt_obj?: THIS): Iterator<VALUE>;
+} | Iterator<VALUE>, f: any, opt_obj?: THIS | undefined): Iterator<VALUE>;
 /**
  * Calls a function for every element in the iterator, and if the function
  * returns false adds the element to a new iterator.
@@ -327,7 +327,7 @@ export function filterFalse<THIS, VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, f: any, opt_obj?: THIS): Iterator<VALUE>;
+} | Iterator<VALUE>, f: any, opt_obj?: THIS | undefined): Iterator<VALUE>;
 /**
  * Calls a function for each element in the iterator with the element of the
  * iterator passed as argument.
@@ -350,7 +350,7 @@ export function forEach<THIS, VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, f: (this: THIS, arg1: VALUE, arg2: any, arg3: Iterator<VALUE>) => any, opt_obj?: THIS): void;
+} | Iterator<VALUE>, f: (this: THIS, arg1: VALUE, arg2: any, arg3: Iterator<VALUE>) => any, opt_obj?: THIS | undefined): void;
 /**
  * Creates an iterator that returns arrays containing elements from the
  * `iterable` grouped by a key value. For iterables with repeated
@@ -372,7 +372,7 @@ export function groupBy<KEY, VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, opt_keyFunc?: (arg0: VALUE) => KEY): Iterator<any[]>;
+} | Iterator<VALUE>, opt_keyFunc?: ((arg0: VALUE) => KEY) | undefined): Iterator<any[]>;
 /**
  * Joins the values in a iterator with a delimiter.
  * @param {Iterator<VALUE>|Iterable} iterable The iterator
@@ -424,7 +424,7 @@ export function map<THIS, VALUE, RESULT>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, f: any, opt_obj?: THIS): Iterator<RESULT>;
+} | Iterator<VALUE>, f: any, opt_obj?: THIS | undefined): Iterator<RESULT>;
 /**
  * Advances the iterator to the next position, returning the given default value
  * instead of throwing an exception if the iterator has no more entries.
@@ -439,7 +439,7 @@ export function nextOrValue<VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, defaultValue: VALUE): VALUE;
+} | Iterator<VALUE>, defaultValue: VALUE | null): VALUE | null;
 /**
  * Creates an iterator that returns permutations of elements in
  * `iterable`.
@@ -461,7 +461,7 @@ export function permutations<VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, opt_length?: number): Iterator<VALUE[]>;
+} | Iterator<VALUE>, opt_length?: number | undefined): Iterator<VALUE[]>;
 /**
  * Cartesian product of zero or more sets.  Gives an iterator that gives every
  * combination of one element chosen from each set.  For example,
@@ -492,7 +492,7 @@ export function product<VALUE>(...args: ArrayLike<VALUE>[]): Iterator<VALUE[]>;
  * @return {!Iterator<number>} A new iterator that returns the values
  *     in the range.
  */
-export function range(startOrStop: number, opt_stop?: number, opt_step?: number, ...args: any[]): Iterator<number>;
+export function range(startOrStop: number, opt_stop?: number | undefined, opt_step?: number | undefined, ...args: any[]): Iterator<number>;
 /**
  * Passes every element of an iterator into a function and accumulates the
  * result.
@@ -515,7 +515,7 @@ export function reduce<THIS, VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, f: (this: THIS, arg1: VALUE, arg2: VALUE) => VALUE, val: VALUE, opt_obj?: THIS): VALUE;
+} | Iterator<VALUE>, f: (this: THIS, arg1: VALUE, arg2: VALUE) => VALUE, val: VALUE | null, opt_obj?: THIS | undefined): VALUE | null;
 /**
  * Creates an iterator that returns the same object or value repeatedly.
  * @param {?VALUE} value Any object or value to repeat.
@@ -523,7 +523,7 @@ export function reduce<THIS, VALUE>(iterable: {
  *     repeated value.
  * @template VALUE
  */
-export function repeat<VALUE>(value: VALUE): Iterator<VALUE>;
+export function repeat<VALUE>(value: VALUE | null): Iterator<VALUE>;
 /**
  * Creates an iterator that returns a range of elements from an iterable.
  * Similar to {@see googarray.slice} but does not support negative indexes.
@@ -540,7 +540,7 @@ export function slice<VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, start: number, opt_end?: number): Iterator<VALUE>;
+} | Iterator<VALUE>, start: number, opt_end?: number | undefined): Iterator<VALUE>;
 /**
  * Goes through the values in the iterator. Calls f for each of these, and if
  * any of them returns true, this returns true (without checking the rest). If
@@ -561,7 +561,7 @@ export function some<THIS, VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, f: any, opt_obj?: THIS): boolean;
+} | Iterator<VALUE>, f: any, opt_obj?: THIS | undefined): boolean;
 /**
  * Gives an iterator that gives the result of calling the given function
  * <code>f</code> with the arguments taken from the next element from
@@ -588,7 +588,7 @@ export function starMap<THIS, RESULT>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<any>, f: (this: THIS, ...arg1: any[]) => RESULT, opt_obj?: THIS): Iterator<RESULT>;
+} | Iterator<any>, f: (this: THIS, ...arg1: any[]) => RESULT, opt_obj?: THIS | undefined): Iterator<RESULT>;
 /**
  * Builds a new iterator that iterates over the original, but only as long as a
  * supplied function returns true.
@@ -607,7 +607,7 @@ export function takeWhile<THIS, VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, f: any, opt_obj?: THIS): Iterator<VALUE>;
+} | Iterator<VALUE>, f: any, opt_obj?: THIS | undefined): Iterator<VALUE>;
 /**
  * Returns an array of iterators each of which can iterate over the values in
  * `iterable` without advancing the others.
@@ -622,7 +622,7 @@ export function tee<VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, opt_num?: number): Iterator<VALUE>[];
+} | Iterator<VALUE>, opt_num?: number | undefined): Iterator<VALUE>[];
 /**
  * Converts the iterator to an array
  * @param {Iterator<VALUE>|Iterable} iterable The iterator
@@ -683,7 +683,7 @@ export function zip<VALUE>(...args: ({
  *     arrays of elements from the provided iterables.
  * @template VALUE
  */
-export function zipLongest<VALUE>(fillValue: VALUE, ...args: ({
+export function zipLongest<VALUE>(fillValue: VALUE | null, ...args: ({
     length: number;
 } | {
     __iterator__: any;

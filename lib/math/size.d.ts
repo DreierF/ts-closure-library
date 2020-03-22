@@ -82,7 +82,7 @@ export class Size {
      * @param {number=} opt_sy The scale factor to use for the height.
      * @return {!Size} This Size object after scaling.
      */
-    scale(sx: number, opt_sy?: number): Size;
+    scale(sx: number, opt_sy?: number | undefined): Size;
     /**
      * Uniformly scales the size to perfectly cover the dimensions of a given size.
      * If the size is already larger than the target, it will be scaled down to the

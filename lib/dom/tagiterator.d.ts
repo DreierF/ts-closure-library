@@ -102,7 +102,7 @@ export class TagIterator extends Iterator<Node> {
      *     the end of the node for reverse iterators.
      * @param {number=} opt_depth The starting tree depth.
      */
-    constructor(opt_node?: Node, opt_reversed?: boolean, opt_unconstrained?: boolean, opt_tagType?: number, opt_depth?: number);
+    constructor(opt_node?: Node | undefined, opt_reversed?: boolean | undefined, opt_unconstrained?: boolean | undefined, opt_tagType?: number | null | undefined, opt_depth?: number | undefined);
     /**
      * Whether the node iterator is moving in reverse.
      * @type {boolean}
@@ -148,14 +148,14 @@ export class TagIterator extends Iterator<Node> {
      *     Defaults to the start of the given node.
      * @param {number=} opt_depth The tree depth.
      */
-    setPosition(node: Node, opt_tagType?: number, opt_depth?: number): void;
+    setPosition(node: Node | null, opt_tagType?: number | null | undefined, opt_depth?: number | undefined): void;
     /**
      * Replace this iterator's values with values from another. The two iterators
      * must be of the same type.
      * @param {?TagIterator} other The iterator to copy.
      * @protected
      */
-    copyFrom(other: TagIterator): void;
+    copyFrom(other: TagIterator | null): void;
     /**
      * @return {!TagIterator} A copy of this iterator.
      */
@@ -192,7 +192,7 @@ export class TagIterator extends Iterator<Node> {
      * @param {?TagIterator} other The iterator to compare to.
      * @return {boolean} Whether the two iterators are at the same position.
      */
-    equals(other: TagIterator): boolean;
+    equals(other: TagIterator | null): boolean;
     /**
      * Replace the current node with the list of nodes. Reset the iterator so that
      * it visits the first of the nodes next.

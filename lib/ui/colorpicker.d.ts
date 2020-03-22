@@ -28,7 +28,7 @@ export class ColorPicker extends Component {
      * @param {ColorPalette=} opt_colorPalette Optional color palette to
      *     use for this color picker.
      */
-    constructor(opt_domHelper?: DomHelper, opt_colorPalette?: ColorPalette);
+    constructor(opt_domHelper?: DomHelper | undefined, opt_colorPalette?: ColorPalette | undefined);
     /**
      * Whether the component is focusable.
      * @type {boolean}
@@ -46,7 +46,7 @@ export class ColorPicker extends Component {
      * Modifying this array will lead to unexpected behavior.
      * @return {Array<string>?} The colors displayed by this widget.
      */
-    getColors(): string[];
+    getColors(): string[] | null;
     /**
      * Sets the array of colors to be displayed by the color picker.
      * @param {Array<string>} colors The array of colors to be added.
@@ -68,7 +68,7 @@ export class ColorPicker extends Component {
      * Gets the number of columns displayed.
      * @return {Size?} The size of the grid.
      */
-    getSize(): Size;
+    getSize(): Size | null;
     /**
      * Sets the number of columns.  Will throw an error after the picker has been
      * rendered.
@@ -91,7 +91,7 @@ export class ColorPicker extends Component {
      * @return {?string} The hex string of the color selected, or null if no
      *     color is selected.
      */
-    getSelectedColor(): string;
+    getSelectedColor(): string | null;
     /**
      * Sets which color is selected.  Noop if the color palette hasn't been created
      * yet.
@@ -122,7 +122,7 @@ export class ColorPicker extends Component {
      * @param {?EventsEvent} e The event.
      * @private
      */
-    onColorPaletteAction_(e: EventsEvent): void;
+    onColorPaletteAction_(e: EventsEvent | null): void;
     /**
      * Create a color palette for the color picker.
      * @param {Array<string>} colors Array of colors.

@@ -38,7 +38,7 @@ export class MenuAnchoredPosition extends AnchoredViewportPosition {
      *     the element fits inside the viewport on the X axis and its height is
      *     resized so if fits in the viewport. This take precedence over opt_adjust.
      */
-    constructor(anchorElement: Element, corner: Corner, opt_adjust?: boolean, opt_resize?: boolean);
+    constructor(anchorElement: Element | null, corner: Corner | null, opt_adjust?: boolean | undefined, opt_resize?: boolean | undefined);
 }
 import { AnchoredViewportPosition } from "./anchoredviewportposition.js";
 import { Corner } from "./positioning.js";

@@ -96,7 +96,7 @@ export class InputHandler extends Disposable {
      *     keyevents with (Default: 150). Use -1 to disable updates on typing. Note
      *     that typing the separator will update autocomplete suggestions.
      */
-    constructor(opt_separators?: string, opt_literals?: string, opt_multi?: boolean, opt_throttleTime?: number);
+    constructor(opt_separators?: string | null | undefined, opt_literals?: string | null | undefined, opt_multi?: boolean | null | undefined, opt_throttleTime?: number | null | undefined);
     /**
      * The AutoComplete instance this inputhandler is associated with.
      * @type {?AutoComplete}
@@ -174,7 +174,7 @@ export class InputHandler extends Disposable {
     activeTimeoutId_: number | null;
     /**
      * The element that is currently active.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     activeElement_: Element | null;
@@ -272,17 +272,17 @@ export class InputHandler extends Disposable {
      * Attach an instance of an AutoComplete
      * @param {?AutoComplete} ac Autocomplete object.
      */
-    attachAutoComplete(ac: AutoComplete): void;
+    attachAutoComplete(ac: AutoComplete | null): void;
     /**
      * Returns the associated autocomplete instance.
      * @return {?AutoComplete} The associated autocomplete instance.
      */
-    getAutoComplete(): AutoComplete;
+    getAutoComplete(): AutoComplete | null;
     /**
      * Returns the current active element.
      * @return {?Element} The currently active element.
      */
-    getActiveElement(): Element;
+    getActiveElement(): Element | null;
     /**
      * Returns the value of the current active element.
      * @return {string} The value of the current active element.
@@ -334,7 +334,7 @@ export class InputHandler extends Disposable {
      *     auto-complete?  Overrides previous setting of opt_multi on constructor.
      * @return {boolean} Whether to suppress the update event.
      */
-    selectRow(row: any, opt_multi?: boolean): boolean;
+    selectRow(row: any, opt_multi?: boolean | undefined): boolean;
     /**
      * Sets the text of the current token without updating the autocomplete
      * choices.
@@ -343,14 +343,14 @@ export class InputHandler extends Disposable {
      *     auto-complete?  Overrides previous setting of opt_multi on constructor.
      * @protected
      */
-    setTokenText(tokenText: string, opt_multi?: boolean): void;
+    setTokenText(tokenText: string, opt_multi?: boolean | undefined): void;
     /**
      * Sets the entry separator characters.
      *
      * @param {string} separators The separator characters to set.
      * @param {string=} opt_defaultSeparators The defaultSeparator character to set.
      */
-    setSeparators(separators: string, opt_defaultSeparators?: string): void;
+    setSeparators(separators: string, opt_defaultSeparators?: string | undefined): void;
     /**
      * Sets whether to flip the orientation of up & down for hiliting next
      * and previous autocomplete entries.
@@ -376,7 +376,7 @@ export class InputHandler extends Disposable {
      * be removed.  This can also be set to null to disable trimming.
      * @param {?RegExp} trimmer Regexp to use for trimming or null to disable it.
      */
-    setTrimmingRegExp(trimmer: RegExp): void;
+    setTrimmingRegExp(trimmer: RegExp | null): void;
     /**
      * Sets the regular expression used to check whether the replacement (used to
      * update the text area after a row is selected) ends with a separator. This can
@@ -385,7 +385,7 @@ export class InputHandler extends Disposable {
      * @param {?RegExp} separatorCheck Regexp to use for checking whether the
      *     replacement ends with a separator.
      */
-    setEndsWithSeparatorRegExp(separatorCheck: RegExp): void;
+    setEndsWithSeparatorRegExp(separatorCheck: RegExp | null): void;
     /**
      * Sets whether we will prevent the default input behavior (moving focus to the
      * next focusable  element) on TAB.
@@ -440,14 +440,14 @@ export class InputHandler extends Disposable {
      * @return {boolean} True if the key event was handled.
      * @protected
      */
-    handleKeyEvent(e: EventsBrowserEvent): boolean;
+    handleKeyEvent(e: EventsBrowserEvent | null): boolean;
     /**
      * Handles a key event for a separator key.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @return {boolean} True if the key event was handled.
      * @private
      */
-    handleSeparator_(e: EventsBrowserEvent): boolean;
+    handleSeparator_(e: EventsBrowserEvent | null): boolean;
     /**
      * @return {boolean} Whether this inputhandler need to listen on key-up.
      * @protected
@@ -459,7 +459,7 @@ export class InputHandler extends Disposable {
      * @return {boolean} Whether an action was taken or not.
      * @protected
      */
-    handleKeyUp(e: EventsEvent): boolean;
+    handleKeyUp(e: EventsEvent | null): boolean;
     /**
      * Adds the necessary input event handlers.
      * @private
@@ -475,19 +475,19 @@ export class InputHandler extends Disposable {
      * @param {?EventsEvent} e Browser event object.
      * @protected
      */
-    handleFocus(e: EventsEvent): void;
+    handleFocus(e: EventsEvent | null): void;
     /**
      * Registers handlers for the active element when it receives focus.
      * @param {?Element} target The element to focus.
      * @protected
      */
-    processFocus(target: Element): void;
+    processFocus(target: Element | null): void;
     /**
      * Handles an element blurring.
      * @param {EventsEvent=} opt_e Browser event object.
      * @protected
      */
-    handleBlur(opt_e?: EventsEvent): void;
+    handleBlur(opt_e?: EventsEvent | undefined): void;
     /**
      * Helper function that does the logic to handle an element blurring.
      * @protected
@@ -499,46 +499,46 @@ export class InputHandler extends Disposable {
      * @param {?EventsEvent} e Browser event object.
      * @private
      */
-    onTick_(e: EventsEvent): void;
+    onTick_(e: EventsEvent | null): void;
     /**
      * Handles typing in an inactive input element. Activate it.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @private
      */
-    onKeyDownOnInactiveElement_(e: EventsBrowserEvent): void;
+    onKeyDownOnInactiveElement_(e: EventsBrowserEvent | null): void;
     /**
      * Handles typing in the active input element.  Checks if the key is a special
      * key and does the relevant action as appropriate.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @private
      */
-    onKey_(e: EventsBrowserEvent): void;
+    onKey_(e: EventsBrowserEvent | null): void;
     /**
      * Handles a KEYPRESS event generated by typing in the active input element.
      * Checks if IME input is ended.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @private
      */
-    onKeyPress_(e: EventsBrowserEvent): void;
+    onKeyPress_(e: EventsBrowserEvent | null): void;
     /**
      * Handles the key-up event.  This is only ever used by Mac FF or when we are in
      * an IME entry scenario.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @private
      */
-    onKeyUp_(e: EventsBrowserEvent): void;
+    onKeyUp_(e: EventsBrowserEvent | null): void;
     /**
      * Handles mouse-down event.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @private
      */
-    onMouseDown_(e: EventsBrowserEvent): void;
+    onMouseDown_(e: EventsBrowserEvent | null): void;
     /**
      * For subclasses to override to handle the mouse-down event.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @protected
      */
-    handleMouseDown(e: EventsBrowserEvent): void;
+    handleMouseDown(e: EventsBrowserEvent | null): void;
     /**
      * Starts waiting for IME.
      * @private
@@ -555,13 +555,13 @@ export class InputHandler extends Disposable {
      * @param {?EventsBrowserEvent} e Browser event object.
      * @private
      */
-    onIeKeyPress_(e: EventsBrowserEvent): void;
+    onIeKeyPress_(e: EventsBrowserEvent | null): void;
     /**
      * Checks if an update has occurred and notified the autocomplete of the new
      * token.
      * @param {boolean=} opt_force If true the menu will be forced to update.
      */
-    update(opt_force?: boolean): void;
+    update(opt_force?: boolean | undefined): void;
     /**
      * Parses a text area or input box for the currently highlighted token.
      * @return {string} Token to complete.

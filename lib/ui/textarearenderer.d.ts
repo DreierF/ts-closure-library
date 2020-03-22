@@ -10,7 +10,7 @@
  */
 export class TextareaRenderer extends ControlRenderer<UiTextarea> {
     /** @override */
-    getAriaRole(): any;
+    getAriaRole(): undefined;
     /** @override */
     decorate(control: any, element: any): any;
     /**
@@ -47,7 +47,7 @@ export class TextareaRenderer extends ControlRenderer<UiTextarea> {
      * @param {?Control} textarea Textarea control to configure.
      * @private
      */
-    setUpTextarea_(textarea: Control<any>): void;
+    setUpTextarea_(textarea: Control<any> | null): void;
     /** @override **/
     setContent(element: any, value: any): void;
 }

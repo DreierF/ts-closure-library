@@ -1,4 +1,4 @@
-export type Methods = Function;
+export type Methods = Function | null;
 /**
  * Returns an element's attributes without falling prey to things like
  * <form><input name="attributes"></form>. Equivalent to
@@ -24,7 +24,7 @@ export function hasElementAttribute(element: Element, attrName: string): boolean
  * @param {string} attrName
  * @return {?string}
  */
-export function getElementAttribute(element: Element, attrName: string): string;
+export function getElementAttribute(element: Element, attrName: string): string | null;
 /**
  * Sets an element's attributes without falling prey to things like
  * <form><input name="setAttribute"></form>. Equivalent to {@code
@@ -116,7 +116,7 @@ export function getNodeType(node: Node): number;
  * @param {!Node} node
  * @return {?Node}
  */
-export function getParentNode(node: Node): Node;
+export function getParentNode(node: Node): Node | null;
 /**
  * Returns the value of node.childNodes without falling prey to things like
  * <form><input name="childNodes"></form>.
@@ -150,21 +150,21 @@ export function getCssPropertyValue(cssStyle: CSSStyleDeclaration, propName: str
  */
 export function setCssProperty(cssStyle: CSSStyleDeclaration, propName: string, sanitizedValue: string): void;
 export namespace Methods {
-    export const ATTRIBUTES_GETTER: Function;
-    export const HAS_ATTRIBUTE: Function;
-    export const GET_ATTRIBUTE: Function;
-    export const SET_ATTRIBUTE: Function;
-    export const REMOVE_ATTRIBUTE: Function;
-    export const INNER_HTML_GETTER: Function;
-    export const GET_ELEMENTS_BY_TAG_NAME: Function;
-    export const MATCHES: Function;
-    export const NODE_NAME_GETTER: Function;
-    export const NODE_TYPE_GETTER: Function;
-    export const PARENT_NODE_GETTER: Function;
-    export const CHILD_NODES_GETTER: Function;
-    export const APPEND_CHILD: Function;
-    export const STYLE_GETTER: Function;
-    export const SHEET_GETTER: Function;
-    export const GET_PROPERTY_VALUE: Function;
-    export const SET_PROPERTY: Function;
+    export const ATTRIBUTES_GETTER: Function | null;
+    export const HAS_ATTRIBUTE: Function | null;
+    export const GET_ATTRIBUTE: Function | null;
+    export const SET_ATTRIBUTE: Function | null;
+    export const REMOVE_ATTRIBUTE: Function | null;
+    export const INNER_HTML_GETTER: Function | null;
+    export const GET_ELEMENTS_BY_TAG_NAME: Function | null;
+    export const MATCHES: Function | null;
+    export const NODE_NAME_GETTER: Function | null;
+    export const NODE_TYPE_GETTER: Function | null;
+    export const PARENT_NODE_GETTER: Function | null;
+    export const CHILD_NODES_GETTER: Function | null;
+    export const APPEND_CHILD: Function | null;
+    export const STYLE_GETTER: Function | null;
+    export const SHEET_GETTER: Function | null;
+    export const GET_PROPERTY_VALUE: Function | null;
+    export const SET_PROPERTY: Function | null;
 }

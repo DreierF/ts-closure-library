@@ -22,7 +22,7 @@ export let MAX_STACK_DEPTH: number;
  * @suppress {strictMissingProperties} onerror is not defined as a property
  *    on Object.
  */
-export function catchErrors(logFunc: (arg0: any) => any, opt_cancel?: boolean, opt_target?: any): void;
+export function catchErrors(logFunc: (arg0: any) => any, opt_cancel?: boolean | undefined, opt_target?: any): void;
 /**
  * Creates a string representing a given primitive or object, and for an
  * object, all its properties and nested objects. NOTE: The output will include
@@ -33,7 +33,7 @@ export function catchErrors(logFunc: (arg0: any) => any, opt_cancel?: boolean, o
  *     default, functions are omitted).
  * @return {string} A string representation of `obj`.
  */
-export function deepExpose(obj: any, opt_showFn?: boolean): string;
+export function deepExpose(obj: any, opt_showFn?: boolean | undefined): string;
 /**
  * Converts an object to an Error using the object's toString if it's not
  * already an Error, adds a stacktrace if there isn't one, and optionally adds
@@ -44,7 +44,7 @@ export function deepExpose(obj: any, opt_showFn?: boolean): string;
  * @return {!Error} If err is an Error, it is enhanced and returned. Otherwise,
  *     it is converted to an Error which is enhanced and returned.
  */
-export function enhanceError(err: any, opt_message?: string): Error;
+export function enhanceError(err: any, opt_message?: string | undefined): Error;
 /**
  * Converts an object to an Error using the object's toString if it's not
  * already an Error, adds a stacktrace if there isn't one, and optionally adds
@@ -57,7 +57,7 @@ export function enhanceError(err: any, opt_message?: string): Error;
  */
 export function enhanceErrorWithContext(err: any, opt_context?: {
     [x: string]: string;
-}): Error;
+} | undefined): Error;
 /**
  * Creates a string representing an object and all its properties.
  * @param {Object|null|undefined} obj Object to expose.
@@ -65,7 +65,7 @@ export function enhanceErrorWithContext(err: any, opt_context?: {
  *     default is false.
  * @return {string} The string representation of `obj`.
  */
-export function expose(obj: any, opt_showFn?: boolean): string;
+export function expose(obj: any, opt_showFn?: boolean | undefined): string;
 /**
  * Recursively outputs a nested array as a string.
  * @param {Array<?>} arr The array.
@@ -86,7 +86,7 @@ export function freeze<T>(arg: T): T;
  * @param {?Function} fn Function to get name of.
  * @return {string} Function's name.
  */
-export function getFunctionName(fn: Function): string;
+export function getFunctionName(fn: Function | null): string;
 /**
  * Gets the current stack trace, either starting from the caller or starting
  * from a specified function that's currently on the call stack.
@@ -96,7 +96,7 @@ export function getFunctionName(fn: Function): string;
  * @return {string} Stack trace.
  * @suppress {es5Strict}
  */
-export function getStacktrace(fn?: Function, ...args: any[]): string;
+export function getStacktrace(fn?: Function | null | undefined, ...args: any[]): string;
 /**
  * Gets the current stack trace. Simple and iterative - doesn't worry about
  * catching circular references or getting the args.
@@ -105,7 +105,7 @@ export function getStacktrace(fn?: Function, ...args: any[]): string;
  *     stack, separated by \n.
  * @suppress {es5Strict}
  */
-export function getStacktraceSimple(opt_depth?: number, ...args: any[]): string;
+export function getStacktraceSimple(opt_depth?: number | undefined, ...args: any[]): string;
 /**
  * Makes whitespace visible by replacing it with printable characters.
  * This is useful in finding diffrences between the expected and the actual

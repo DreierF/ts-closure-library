@@ -24,7 +24,7 @@ export class Html5History extends goog_events.EventTarget {
      *     The token transformer that is used to create URL from the token
      *     when storing token without using hash fragment.
      */
-    constructor(opt_win?: Window, opt_transformer?: TokenTransformer);
+    constructor(opt_win?: Window | undefined, opt_transformer?: TokenTransformer | undefined);
     /**
      * Status of when the object is active and dispatching events.
      * @type {boolean}
@@ -63,7 +63,7 @@ export class Html5History extends goog_events.EventTarget {
      * same navigation (e.g., back button click).
      * @private {?string}
      */
-    lastFragment_: string;
+    lastFragment_: any;
     /**
      * Starts or stops the History.  When enabled, the History object
      * will immediately fire an event for the current location. The caller can set
@@ -83,14 +83,14 @@ export class Html5History extends goog_events.EventTarget {
      * @param {string} token The history state identifier.
      * @param {string=} opt_title Optional title to associate with history entry.
      */
-    setToken(token: string, opt_title?: string): void;
+    setToken(token: string, opt_title?: string | undefined): void;
     /**
      * Replaces the current history state without affecting the rest of the history
      * stack.
      * @param {string} token The history state identifier.
      * @param {string=} opt_title Optional title to associate with history entry.
      */
-    replaceToken(token: string, opt_title?: string): void;
+    replaceToken(token: string, opt_title?: string | undefined): void;
     /**
      * Sets whether to use the fragment to store tokens.
      * @param {boolean} useFragment Whether to use the fragment.
@@ -112,7 +112,7 @@ export class Html5History extends goog_events.EventTarget {
      * @return {?string} The hash fragment.
      * @private
      */
-    getFragment_(): string;
+    getFragment_(): string | null;
     /**
      * Gets the URL to set when calling history.pushState
      * @param {string} token The history token.
@@ -125,7 +125,7 @@ export class Html5History extends goog_events.EventTarget {
      * @param {?EventsBrowserEvent} e The browser event object.
      * @private
      */
-    onHistoryEvent_(e: EventsBrowserEvent): void;
+    onHistoryEvent_(e: EventsBrowserEvent | null): void;
     actualEventTarget_: Html5History;
 }
 export namespace Html5History { }
@@ -151,7 +151,7 @@ export class TokenTransformer {
      *     Treat this object as read-only.
      * @return {string} token The history token.
      */
-    retrieveToken(pathPrefix: string, location: Location): string;
+    retrieveToken(pathPrefix: string, location: Location | null): string;
     /**
      * Creates a URL to be pushed into HTML5 history stack when storing
      * token without using hash fragment.
@@ -165,7 +165,7 @@ export class TokenTransformer {
      *     (without {@code protocol://host:port} part); must begin with a
      *     slash.
      */
-    createUrl(token: string, pathPrefix: string, location: Location): string;
+    createUrl(token: string, pathPrefix: string, location: Location | null): string;
 }
 import * as goog_events from "../events/eventhandler.js";
 import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";

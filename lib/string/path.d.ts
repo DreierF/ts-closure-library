@@ -38,7 +38,7 @@ export function extension(path: string): string;
  * @param {...(string|undefined)} var_args One of more path components.
  * @return {string} The path components joined.
  */
-export function join(...args: string[]): string;
+export function join(...args: (string | undefined)[]): string;
 /**
  * Normalizes a pathname by collapsing duplicate separators, parent directory
  * references ('..'), and current directory references ('.').

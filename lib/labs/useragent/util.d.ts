@@ -26,4 +26,4 @@ export function matchUserAgentIgnoreCase(str: string): boolean;
  * browser object instead.
  * @param {?string=} opt_userAgent The User-Agent override.
  */
-export function setUserAgent(opt_userAgent?: string): void;
+export function setUserAgent(opt_userAgent?: string | null | undefined): void;

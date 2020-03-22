@@ -48,7 +48,7 @@ export class TransitionBase extends EventsEventTarget {
      * @override
      * @abstract
      */
-    play(opt_restart?: boolean): boolean;
+    play(opt_restart?: boolean | undefined): boolean;
     /**
      * Stops the animation.
      *
@@ -57,7 +57,7 @@ export class TransitionBase extends EventsEventTarget {
      * @override
      * @abstract
      */
-    stop(opt_gotoEnd?: boolean): void;
+    stop(opt_gotoEnd?: boolean | undefined): void;
     /**
      * Pauses the animation.
      * @abstract
@@ -67,7 +67,7 @@ export class TransitionBase extends EventsEventTarget {
      * Returns the current state of the animation.
      * @return {?State} State of the animation.
      */
-    getStateInternal(): number;
+    getStateInternal(): number | null;
     /**
      * Sets the current state of the animation to playing.
      * @protected

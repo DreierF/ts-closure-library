@@ -11,7 +11,7 @@ export class Coordinate {
      * @param {number=} opt_x Left, defaults to 0.
      * @param {number=} opt_y Top, defaults to 0.
      */
-    constructor(opt_x?: number, opt_y?: number);
+    constructor(opt_x?: number | undefined, opt_y?: number | undefined);
     /**
      * X-value
      * @type {number}
@@ -58,7 +58,7 @@ export class Coordinate {
      * @param {number=} opt_ty The value to translate y by.
      * @return {!Coordinate} This coordinate after translating.
      */
-    translate(tx: number | Coordinate, opt_ty?: number): Coordinate;
+    translate(tx: number | Coordinate, opt_ty?: number | undefined): Coordinate;
     /**
      * Scales this coordinate by the given scale factors. The x and y values are
      * scaled by `sx` and `opt_sy` respectively.  If `opt_sy`
@@ -67,7 +67,7 @@ export class Coordinate {
      * @param {number=} opt_sy The scale factor to use for the y dimension.
      * @return {!Coordinate} This coordinate after scaling.
      */
-    scale(sx: number, opt_sy?: number): Coordinate;
+    scale(sx: number, opt_sy?: number | undefined): Coordinate;
     /**
      * Rotates this coordinate clockwise about the origin (or, optionally, the given
      * center) by the given angle, in radians.
@@ -76,7 +76,7 @@ export class Coordinate {
      * @param {!Coordinate=} opt_center The center of rotation. Defaults
      *     to (0, 0) if not given.
      */
-    rotateRadians(radians: number, opt_center?: Coordinate): void;
+    rotateRadians(radians: number, opt_center?: Coordinate | undefined): void;
     /**
      * Rotates this coordinate clockwise about the origin (or, optionally, the given
      * center) by the given angle, in degrees.
@@ -85,6 +85,6 @@ export class Coordinate {
      * @param {!Coordinate=} opt_center The center of rotation. Defaults
      *     to (0, 0) if not given.
      */
-    rotateDegrees(degrees: number, opt_center?: Coordinate): void;
+    rotateDegrees(degrees: number, opt_center?: Coordinate | undefined): void;
 }
 export namespace Coordinate { }

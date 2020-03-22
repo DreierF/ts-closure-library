@@ -30,7 +30,7 @@ export class ButtonSet extends UiMap<any, any> {
      * @param {DomHelper=} opt_domHelper Optional DOM helper; see {@link
      *    goog.ui.Component} for semantics.
      */
-    constructor(opt_domHelper?: googdom.DomHelper);
+    constructor(opt_domHelper?: googdom.DomHelper | undefined);
     dom_: googdom.DomHelper;
     /**
      * A CSS className for this component.
@@ -41,18 +41,18 @@ export class ButtonSet extends UiMap<any, any> {
      * The button that has default focus (references key in buttons_ map).
      * @private {?string}
      */
-    defaultButton_: string;
+    defaultButton_: string | null;
     /**
      * Optional container the button set should be rendered into.
-     * @private {?Element}
+     * @private {Element|null}
      */
-    element_: Element;
+    element_: Element | null;
     /**
      * The button whose action is associated with the escape key and the X button
      * on the dialog.
      * @private {?string}
      */
-    cancelButton_: string;
+    cancelButton_: string | null;
     /**
      * Adds a button to the button set.  Buttons will be displayed in the order they
      * are added.
@@ -69,7 +69,7 @@ export class ButtonSet extends UiMap<any, any> {
      * @override
      */
     // @ts-ignore
-    set(key: any, caption: any, opt_isDefault?: boolean, opt_isCancel?: boolean): ButtonSet;
+    set(key: any, caption: any, opt_isDefault?: boolean | undefined, opt_isCancel?: boolean | undefined): ButtonSet;
     /**
      * Adds a button (an object with a key and caption) to this button set. Buttons
      * will be displayed in the order they are added.
@@ -85,12 +85,12 @@ export class ButtonSet extends UiMap<any, any> {
     addButton(button: {
         key: string;
         caption: string;
-    }, opt_isDefault?: boolean, opt_isCancel?: boolean): ButtonSet;
+    }, opt_isDefault?: boolean | undefined, opt_isCancel?: boolean | undefined): ButtonSet;
     /**
      * Attaches the button set to an element, rendering it inside.
      * @param {?Element} el Container.
      */
-    attachToElement(el: Element): void;
+    attachToElement(el: Element | null): void;
     /**
      * Renders the button set inside its container element.
      */
@@ -104,13 +104,13 @@ export class ButtonSet extends UiMap<any, any> {
      * TODO(attila):  ButtonSet should be a goog.ui.Component.  Really.
      * @param {?Element} element The element to decorate; should contain buttons.
      */
-    decorate(element: Element): void;
+    decorate(element: Element | null): void;
     /**
      * Gets the component's element.
      * @return {?Element} The element for the component.
      * TODO(user): Remove after refactoring to goog.ui.Component.
      */
-    getElement(): Element;
+    getElement(): Element | null;
     /**
      * Returns the dom helper that is being used on this component.
      * @return {!DomHelper} The dom helper used on this component.
@@ -121,28 +121,28 @@ export class ButtonSet extends UiMap<any, any> {
      * Sets the default button.
      * @param {?string} key The default button.
      */
-    setDefault(key: string): void;
+    setDefault(key: string | null): void;
     /**
      * Returns the default button.
      * @return {?string} The default button.
      */
-    getDefault(): string;
+    getDefault(): string | null;
     /**
      * Sets the cancel button.
      * @param {?string} key The cancel button.
      */
-    setCancel(key: string): void;
+    setCancel(key: string | null): void;
     /**
      * Returns the cancel button.
      * @return {?string} The cancel button.
      */
-    getCancel(): string;
+    getCancel(): string | null;
     /**
      * Returns the HTML Button element.
      * @param {string} key The button to return.
      * @return {?Element} The button, if found else null.
      */
-    getButton(key: string): Element;
+    getButton(key: string): Element | null;
     /**
      * Returns all the HTML Button elements in the button set container.
      * @return {!ArrayLike<!Element>} A live NodeList of the buttons.
@@ -266,7 +266,7 @@ export class Dialog extends ModalPopup {
      * @param {DomHelper=} opt_domHelper Optional DOM helper; see {@link
      *     goog.ui.Component} for semantics.
      */
-    constructor(opt_class?: string, opt_useIframeMask?: boolean, opt_domHelper?: googdom.DomHelper);
+    constructor(opt_class?: string | undefined, opt_useIframeMask?: boolean | undefined, opt_domHelper?: googdom.DomHelper | undefined);
     /**
      * Whether the escape key closes this dialog.
      * @type {boolean}
@@ -323,13 +323,13 @@ export class Dialog extends ModalPopup {
     disposeOnHide_: boolean;
     /**
      * Element for the title bar.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     titleEl_: Element | null;
     /**
      * Element for the text area of the title bar.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     titleTextEl_: Element | null;
@@ -341,19 +341,19 @@ export class Dialog extends ModalPopup {
     titleTextId_: string | null;
     /**
      * Element for the close box area of the title bar.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     titleCloseEl_: Element | null;
     /**
      * Element for the content area.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     contentEl_: Element | null;
     /**
      * Element for the button bar.
-     * @type {?Element}
+     * @type {Element|null}
      * @private
      */
     buttonEl_: Element | null;
@@ -411,21 +411,21 @@ export class Dialog extends ModalPopup {
      * Gets the content HTML of the content element.
      * @return {?SafeHtml} Content HTML.
      */
-    getSafeHtmlContent(): SafeHtml;
+    getSafeHtmlContent(): SafeHtml | null;
     /**
      * Returns the dialog's preferred ARIA role. This can be used to override the
      * default dialog role, e.g. with an ARIA role of ALERTDIALOG for a simple
      * warning or confirmation dialog.
      * @return {?Role} This dialog's preferred ARIA role.
      */
-    getPreferredAriaRole(): string;
+    getPreferredAriaRole(): string | null;
     /**
      * Sets the dialog's preferred ARIA role. This can be used to override the
      * default dialog role, e.g. with an ARIA role of ALERTDIALOG for a simple
      * warning or confirmation dialog.
      * @param {?Role} role This dialog's preferred ARIA role.
      */
-    setPreferredAriaRole(role: string): void;
+    setPreferredAriaRole(role: string | null): void;
     /**
      * Renders if the DOM is not created.
      * @private
@@ -436,19 +436,19 @@ export class Dialog extends ModalPopup {
      * the title.  Renders if the DOM is not yet created.
      * @return {?Element} The title element.
      */
-    getTitleElement(): Element;
+    getTitleElement(): Element | null;
     /**
      * Returns the title text element so that more complicated things can be done
      * with the text of the title.  Renders if the DOM is not yet created.
      * @return {?Element} The title text element.
      */
-    getTitleTextElement(): Element;
+    getTitleTextElement(): Element | null;
     /**
      * Returns the title close element so that more complicated things can be done
      * with the close area of the title.  Renders if the DOM is not yet created.
      * @return {?Element} The close box.
      */
-    getTitleCloseElement(): Element;
+    getTitleCloseElement(): Element | null;
     /**
      * Get the dialog close message.
      * @return {string}
@@ -460,13 +460,13 @@ export class Dialog extends ModalPopup {
      * the button area.  Renders if the DOM is not yet created.
      * @return {?Element} The button container element.
      */
-    getButtonElement(): Element;
+    getButtonElement(): Element | null;
     /**
      * Returns the dialog element so that more complicated things can be done with
      * the dialog box.  Renders if the DOM is not yet created.
      * @return {?Element} The dialog element.
      */
-    getDialogElement(): Element;
+    getDialogElement(): Element | null;
     /**
      * Gets the opacity of the background mask.
      * @return {number} Background mask opacity.
@@ -535,7 +535,7 @@ export class Dialog extends ModalPopup {
      * @param {?EventsBrowserEvent} e Browser's event object.
      * @private
      */
-    onTitleCloseClick_(e: EventsBrowserEvent): void;
+    onTitleCloseClick_(e: EventsBrowserEvent | null): void;
     /**
      * Performs the action of closing the dialog in response to the title close
      * button being interacted with. General purpose method to be called by click
@@ -578,19 +578,19 @@ export class Dialog extends ModalPopup {
      * Note: Passing in null will cause no button set to be rendered.
      * @param {ButtonSet?} buttons The button set to use.
      */
-    setButtonSet(buttons: ButtonSet): void;
+    setButtonSet(buttons: ButtonSet | null): void;
     /**
      * Returns the button set being used.
      * @return {ButtonSet?} The button set being used.
      */
-    getButtonSet(): ButtonSet;
+    getButtonSet(): ButtonSet | null;
     /**
      * Handles a click on the button container.
      * @param {?EventsBrowserEvent} e Browser's event object.
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    onButtonClick_(e: EventsBrowserEvent): void;
+    onButtonClick_(e: EventsBrowserEvent | null): void;
     /**
      * Finds the parent button of an element (or null if there was no button
      * parent).
@@ -599,7 +599,7 @@ export class Dialog extends ModalPopup {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    findParentButton_(element: Element): Element;
+    findParentButton_(element: Element | null): Element | null;
     /**
      * Handles keydown and keypress events, and dismisses the popup if cancel is
      * pressed.  If there is a cancel action in the ButtonSet, than that will be
@@ -608,7 +608,7 @@ export class Dialog extends ModalPopup {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    onKey_(e: EventsBrowserEvent): void;
+    onKey_(e: EventsBrowserEvent | null): void;
     actualEventTarget_: Dialog;
 }
 export namespace Dialog {

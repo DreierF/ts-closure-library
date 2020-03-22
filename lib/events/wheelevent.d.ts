@@ -37,7 +37,7 @@ export class WheelEvent extends EventsBrowserEvent {
      * @param {number} deltaY The number of delta units the user in the Y axis.
      * @param {number} deltaZ The number of delta units the user in the Z axis.
      */
-    constructor(browserEvent: Event, deltaMode: number, deltaX: number, deltaY: number, deltaZ: number);
+    constructor(browserEvent: Event | null, deltaMode: number, deltaX: number, deltaY: number, deltaZ: number);
     /**
      * An enum corresponding to the units of this event.
      * @type {WheelEvent.DeltaMode}

@@ -39,7 +39,7 @@ export class AnchoredViewportPosition extends AnchoredPosition {
      * @param {Box=} opt_overflowConstraint Box object describing the
      *     dimensions in which the movable element could be shown.
      */
-    constructor(anchorElement: Element, corner: goog_positioning.Corner, opt_adjust?: boolean, opt_overflowConstraint?: Box);
+    constructor(anchorElement: Element | null, corner: goog_positioning.Corner | null, opt_adjust?: boolean | undefined, opt_overflowConstraint?: Box | undefined);
     /**
      * The last resort algorithm to use if the algorithm can't fit inside
      * the viewport.
@@ -63,12 +63,12 @@ export class AnchoredViewportPosition extends AnchoredPosition {
      * @return {Box|undefined} The box object describing the
      *     dimensions in which the movable element will be shown.
      */
-    getOverflowConstraint(): Box;
+    getOverflowConstraint(): Box | undefined;
     /**
      * @param {Box|undefined} overflowConstraint Box object describing the
      *     dimensions in which the movable element could be shown.
      */
-    setOverflowConstraint(overflowConstraint: Box): void;
+    setOverflowConstraint(overflowConstraint: Box | undefined): void;
     /**
      * @return {number} A bitmask for the "last resort" overflow.
      */
@@ -85,7 +85,7 @@ export class AnchoredViewportPosition extends AnchoredPosition {
      * @return {?Corner} The adjusted corner.
      * @protected
      */
-    adjustCorner(status: number, corner: goog_positioning.Corner): goog_positioning.Corner;
+    adjustCorner(status: number, corner: goog_positioning.Corner | null): goog_positioning.Corner | null;
 }
 import { AnchoredPosition } from "./anchoredposition.js";
 import { Box } from "../math/box.js";

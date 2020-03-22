@@ -83,7 +83,7 @@ export function insertAdjacentHtml(node: Node, position: string, html: Html_Safe
  *     history, same as in window.open().
  * @return {?Window} Window the url was opened in.
  */
-export function openInWindow(url: string | Html_SafeUrl, opt_openerWin?: Window, opt_name?: Const, opt_specs?: string, opt_replace?: boolean): Window;
+export function openInWindow(url: string | Html_SafeUrl, opt_openerWin?: Window | undefined, opt_name?: Const | undefined, opt_specs?: string | undefined, opt_replace?: boolean | undefined): Window | null;
 /**
  * Parses the string.
  * @param {!DOMParser} parser
@@ -92,14 +92,14 @@ export function openInWindow(url: string | Html_SafeUrl, opt_openerWin?: Window,
  * @param {string} type
  * @return {?Document}
  */
-export function parseFromString(parser: DOMParser, content: Html_SafeHtml, type: string): Document;
+export function parseFromString(parser: DOMParser, content: Html_SafeHtml, type: string): Document | null;
 /**
  * Parses the HTML as 'text/html'.
  * @param {!DOMParser} parser
  * @param {!Html_SafeHtml} html The HTML to be parsed.
  * @return {?Document}
  */
-export function parseFromStringHtml(parser: DOMParser, html: Html_SafeHtml): Document;
+export function parseFromStringHtml(parser: DOMParser, html: Html_SafeHtml): Document | null;
 /**
  * Safely replaces the URL of a Location object.
  *
@@ -412,10 +412,10 @@ export function setVideoSrc(videoElement: HTMLVideoElement, url: string | Html_S
 /**
  * Assigns HTML to an element's innerHTML property. Helper to use only here and
  * in soy.js.
- * @param {?Element} elem The element whose innerHTML is to be assigned to.
+ * @param {Element|null} elem The element whose innerHTML is to be assigned to.
  * @param {!Html_SafeHtml} html
  */
-export function unsafeSetInnerHtmlDoNotUseOrElse(elem: Element, html: Html_SafeHtml): void;
+export function unsafeSetInnerHtmlDoNotUseOrElse(elem: Element | null, html: Html_SafeHtml): void;
 import { SafeUrl as Html_SafeUrl } from "../html/safeurl.js";
 import { SafeHtml as Html_SafeHtml } from "../html/safehtml.js";
 import { Const } from "../string/const.js";

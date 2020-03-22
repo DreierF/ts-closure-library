@@ -31,7 +31,7 @@ export class ErrorHandler extends Disposable {
      *
      * @param {?Function} handler Handler for exceptions.
      */
-    constructor(handler: Function);
+    constructor(handler: Function | null);
     /**
      * Whether to add tracers when instrumenting entry points.
      * @type {boolean}
@@ -93,7 +93,7 @@ export class ErrorHandler extends Disposable {
      * @return {!Function} A protected wrapper function that calls the entry point
      *     function.
      */
-    protectEntryPoint(fn: Function): Function;
+    protectEntryPoint(fn: Function | null): Function;
     /**
      * Helps {@link #protectEntryPoint} by actually creating the protected
      * wrapper function, after {@link #protectEntryPoint} determines that one does

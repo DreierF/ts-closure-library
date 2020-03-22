@@ -81,6 +81,6 @@ export class Vec2 extends Math_Coordinate {
 export namespace Vec2 {
     export const distance: (a: Math_Coordinate, b: Math_Coordinate) => number;
     export const squaredDistance: (a: Math_Coordinate, b: Math_Coordinate) => number;
-    export const equals: (a: Math_Coordinate, b: Math_Coordinate) => boolean;
+    export const equals: (a: Math_Coordinate | null, b: Math_Coordinate | null) => boolean;
 }
 import { Coordinate as Math_Coordinate } from "./coordinate.js";

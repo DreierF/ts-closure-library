@@ -2,7 +2,7 @@
  * Clears the background image of an element in a browser independent manner.
  * @param {?Element} el The element to clear background image for.
  */
-export function clearTransparentBackgroundImage(el: Element): void;
+export function clearTransparentBackgroundImage(el: Element | null): void;
 /**
  * Retrieves the computed background color string for a given element. The
  * string returned is suitable for assigning to another element's
@@ -21,25 +21,25 @@ export function clearTransparentBackgroundImage(el: Element): void;
  * @param {?Element} element The element to get the background color of.
  * @return {string} The computed string value of the background color.
  */
-export function getBackgroundColor(element: Element): string;
+export function getBackgroundColor(element: Element | null): string;
 /**
  * Gets the computed border widths (on all sides) in pixels
  * @param {?Element} element  The element to get the border widths for.
  * @return {!Box} The computed border widths.
  */
-export function getBorderBox(element: Element): Box;
+export function getBorderBox(element: Element | null): Box;
 /**
  * Gets the border box size for an element.
  * @param {?Element} element  The element to get the size for.
  * @return {!Size} The border box size.
  */
-export function getBorderBoxSize(element: Element): Size;
+export function getBorderBoxSize(element: Element | null): Size;
 /**
  * Returns a bounding rectangle for a given element in page space.
  * @param {?Element} element Element to get bounds of. Must not be display none.
  * @return {!Rect} Bounding rectangle for the element.
  */
-export function getBounds(element: Element): Rect;
+export function getBounds(element: Element | null): Rect;
 /**
  * Gets the cascaded style value of a node, or null if the value cannot be
  * computed (only Internet Explorer can do this).
@@ -48,7 +48,7 @@ export function getBounds(element: Element): Rect;
  * @param {string} style Property to get (camel-case).
  * @return {string} Style value.
  */
-export function getCascadedStyle(element: Element, style: string): string;
+export function getCascadedStyle(element: Element | null, style: string): string;
 /**
  * Returns clientLeft (width of the left border and, if the directionality is
  * right to left, the vertical scrollbar) and clientTop as a coordinate object.
@@ -56,7 +56,7 @@ export function getCascadedStyle(element: Element, style: string): string;
  * @param {?Element} el Element to get clientLeft for.
  * @return {!Coordinate} Client left and top.
  */
-export function getClientLeftTop(el: Element): Coordinate;
+export function getClientLeftTop(el: Element | null): Coordinate;
 /**
  * Returns the position of the event or the element's border box relative to
  * the client viewport. If an event is passed, and if this event is a "touch"
@@ -72,7 +72,7 @@ export function getClientPosition(el: Element | Event | EventsEvent): Coordinate
  *     of.
  * @return {?Element} document.documentElement or document.body.
  */
-export function getClientViewportElement(opt_node?: Node): Element;
+export function getClientViewportElement(opt_node?: Node | undefined): Element | null;
 /**
  * Retrieves the computed value of the box-sizing CSS attribute.
  * Browser support: http://caniuse.com/css3-boxsizing.
@@ -80,31 +80,31 @@ export function getClientViewportElement(opt_node?: Node): Element;
  * @return {?string} 'content-box', 'border-box' or 'padding-box'. null if
  *     box-sizing is not supported (IE7 and below).
  */
-export function getComputedBoxSizing(element: Element): string;
+export function getComputedBoxSizing(element: Element): string | null;
 /**
  * Retrieves the computed value of the cursor CSS attribute.
  * @param {?Element} element The element to get the cursor of.
  * @return {string} The computed string value of the cursor attribute.
  */
-export function getComputedCursor(element: Element): string;
+export function getComputedCursor(element: Element | null): string;
 /**
  * Retrieves the computed value of the overflow-x CSS attribute.
  * @param {?Element} element The element to get the overflow-x of.
  * @return {string} The computed string value of the overflow-x attribute.
  */
-export function getComputedOverflowX(element: Element): string;
+export function getComputedOverflowX(element: Element | null): string;
 /**
  * Retrieves the computed value of the overflow-y CSS attribute.
  * @param {?Element} element The element to get the overflow-y of.
  * @return {string} The computed string value of the overflow-y attribute.
  */
-export function getComputedOverflowY(element: Element): string;
+export function getComputedOverflowY(element: Element | null): string;
 /**
  * Retrieves the computed value of the position CSS attribute.
  * @param {?Element} element The element to get the position of.
  * @return {string} Position value.
  */
-export function getComputedPosition(element: Element): string;
+export function getComputedPosition(element: Element | null): string;
 /**
  * Retrieves a computed style value of a node. It returns empty string if the
  * value cannot be computed (which will be the case in Internet Explorer) or
@@ -115,25 +115,25 @@ export function getComputedPosition(element: Element): string;
  * @param {string} property Property to get (camel-case).
  * @return {string} Style value.
  */
-export function getComputedStyle(element: Element, property: string): string;
+export function getComputedStyle(element: Element | null, property: string): string;
 /**
  * Retrieves the computed value of the text-align CSS attribute.
  * @param {?Element} element The element to get the text-align of.
  * @return {string} The computed string value of the text-align attribute.
  */
-export function getComputedTextAlign(element: Element): string;
+export function getComputedTextAlign(element: Element | null): string;
 /**
  * Retrieves the computed value of the CSS transform attribute.
  * @param {?Element} element The element to get the transform of.
  * @return {string} The computed string representation of the transform matrix.
  */
-export function getComputedTransform(element: Element): string;
+export function getComputedTransform(element: Element | null): string;
 /**
  * Retrieves the computed value of the z-index CSS attribute.
  * @param {?Element} element The element to get the z-index of.
  * @return {string|number} The computed value of the z-index attribute.
  */
-export function getComputedZIndex(element: Element): string | number;
+export function getComputedZIndex(element: Element | null): string | number;
 /**
  * Calculate the scroll position of `container` with the minimum amount so
  * that the content and the borders of the given `element` become visible.
@@ -148,14 +148,14 @@ export function getComputedZIndex(element: Element): string | number;
  * @return {!Coordinate} The new scroll position of the container,
  *     in form of Coordinate(scrollLeft, scrollTop).
  */
-export function getContainerOffsetToScrollInto(element: Element, opt_container?: Element, opt_center?: boolean): Coordinate;
+export function getContainerOffsetToScrollInto(element: Element | null, opt_container?: Element | undefined, opt_center?: boolean | undefined): Coordinate;
 /**
  * Gets the content box size for an element.  This is potentially expensive in
  * all browsers.
  * @param {?Element} element  The element to get the size for.
  * @return {!Size} The content box size.
  */
-export function getContentBoxSize(element: Element): Size;
+export function getContentBoxSize(element: Element | null): Size;
 /**
  * Returns the x,y translation component of any CSS transforms applied to the
  * element, in pixels.
@@ -170,7 +170,7 @@ export function getCssTranslation(element: Element): Coordinate;
  * @return {string} The value of explicitly-set float CSS property on this
  *     element.
  */
-export function getFloat(el: Element): string;
+export function getFloat(el: Element | null): string;
 /**
  * Returns the font face applied to a given node. Opera and IE should return
  * the font actually displayed. Firefox returns the author's most-preferred
@@ -178,13 +178,13 @@ export function getFloat(el: Element): string;
  * @param {?Element} el  The element whose font family is returned.
  * @return {string} The font family applied to el.
  */
-export function getFontFamily(el: Element): string;
+export function getFontFamily(el: Element | null): string;
 /**
  * Returns the font size, in pixels, of text in an element.
  * @param {?Element} el  The element whose font size is returned.
  * @return {number} The font size (in pixels).
  */
-export function getFontSize(el: Element): number;
+export function getFontSize(el: Element | null): number;
 /**
  * Returns a Coordinate object relative to the top-left of an HTML document
  * in an ancestor frame of this element. Used for measuring the position of
@@ -196,25 +196,25 @@ export function getFontSize(el: Element): number;
  *     the top-most window.
  * @return {!Coordinate} The page offset.
  */
-export function getFramedPageOffset(el: Element, relativeWin: Window): Coordinate;
+export function getFramedPageOffset(el: Element | null, relativeWin: Window | null): Coordinate;
 /**
  * Returns the units used for a CSS length measurement.
  * @param {string} value  A CSS length quantity.
  * @return {?string} The units of measurement.
  */
-export function getLengthUnits(value: string): string;
+export function getLengthUnits(value: string): string | null;
 /**
  * Gets the computed margins (on all sides) in pixels.
  * @param {?Element} element  The element to get the margins for.
  * @return {!Box} The computed margins.
  */
-export function getMarginBox(element: Element): Box;
+export function getMarginBox(element: Element | null): Box;
 /**
  * Returns the first parent that could affect the position of a given element.
  * @param {?Element} element The element to get the offset parent for.
  * @return {?Element} The first offset parent or null if one cannot be found.
  */
-export function getOffsetParent(element: Element): Element;
+export function getOffsetParent(element: Element | null): Element | null;
 /**
  * Gets the opacity of a node (x-browser). This gets the inline style opacity
  * of the node, and does not take into account the cascaded or the computed
@@ -223,13 +223,13 @@ export function getOffsetParent(element: Element): Element;
  * @return {number|string} Opacity between 0 and 1 or an empty string {@code ''}
  *     if the opacity is not set.
  */
-export function getOpacity(el: Element): string | number;
+export function getOpacity(el: Element | null): string | number;
 /**
  * Gets the computed paddings (on all sides) in pixels.
  * @param {?Element} element  The element to get the padding for.
  * @return {!Box} The computed paddings.
  */
-export function getPaddingBox(element: Element): Box;
+export function getPaddingBox(element: Element | null): Box;
 /**
  * Returns a Coordinate object relative to the top-left of the HTML document.
  * Implemented as a single function to save having to do two recursive loops in
@@ -240,26 +240,26 @@ export function getPaddingBox(element: Element): Box;
  * @param {?Element} el Element to get the page offset for.
  * @return {!Coordinate} The page offset.
  */
-export function getPageOffset(el: Element): Coordinate;
+export function getPageOffset(el: Element | null): Coordinate;
 /**
  * Returns the left coordinate of an element relative to the HTML document
  * @param {?Element} el Elements.
  * @return {number} The left coordinate.
  */
-export function getPageOffsetLeft(el: Element): number;
+export function getPageOffsetLeft(el: Element | null): number;
 /**
  * Returns the top coordinate of an element relative to the HTML document
  * @param {?Element} el Elements.
  * @return {number} The top coordinate.
  */
-export function getPageOffsetTop(el: Element): number;
+export function getPageOffsetTop(el: Element | null): number;
 /**
  * Gets the offsetLeft and offsetTop properties of an element and returns them
  * in a Coordinate object
  * @param {?Element} element Element.
  * @return {!Coordinate} The position.
  */
-export function getPosition(element: Element): Coordinate;
+export function getPosition(element: Element | null): Coordinate;
 /**
  * Returns the position of an element relative to another element in the
  * document.  A relative to B
@@ -279,7 +279,7 @@ export function getRelativePosition(a: Element | Event | EventsEvent, b: Element
  *     if some scrollbars are styled differently than others.
  * @return {number} The scroll bar width in px.
  */
-export function getScrollbarWidth(opt_className?: string): number;
+export function getScrollbarWidth(opt_className?: string | undefined): number;
 /**
  * Gets the height and width of an element, even if its display is none.
  *
@@ -291,7 +291,7 @@ export function getScrollbarWidth(opt_className?: string): number;
  * @param {?Element} element Element to get size of.
  * @return {!Size} Object with width/height properties.
  */
-export function getSize(element: Element): Size;
+export function getSize(element: Element | null): Size;
 /**
  * Retrieves an explicitly-set style value of a node. This returns '' if there
  * isn't a style attribute on the element or if this style property has not been
@@ -302,7 +302,7 @@ export function getSize(element: Element): Size;
  * property, use element.style[style]).
  * @return {string} Style value.
  */
-export function getStyle(element: Element, property: string): string;
+export function getStyle(element: Element | null, property: string): string;
 /**
  * Gets the height and width of an element, post transform, even if its display
  * is none.
@@ -318,7 +318,7 @@ export function getStyle(element: Element, property: string): string;
  * @param {!Element} element Element to get size of.
  * @return {?Size} Object with width/height properties.
  */
-export function getTransformedSize(element: Element): Size;
+export function getTransformedSize(element: Element): Size | null;
 /**
  * Calculates the viewport coordinates relative to the page/document
  * containing the node. The viewport may be the browser viewport for
@@ -336,7 +336,7 @@ export function getViewportPageOffset(doc: Document): Coordinate;
  * @return {?Box} Bounding elementBox describing the visible rect or
  *     null if scrollable ancestor isn't inside the visible viewport.
  */
-export function getVisibleRectForElement(element: Element): Box;
+export function getVisibleRectForElement(element: Element | null): Box | null;
 /**
  * Installs the style sheet into the window that contains opt_node.  If
  * opt_node is null, the main window is used.
@@ -350,7 +350,7 @@ export function getVisibleRectForElement(element: Element): Box;
  *     it (otherwise, if you pass a StyleSheet to setSafeStyleSheet, it will
  *     make a new StyleSheet and leave the original StyleSheet orphaned).
  */
-export function installSafeStyleSheet(safeStyleSheet: SafeStyleSheet, opt_node?: Node): StyleSheet | HTMLStyleElement;
+export function installSafeStyleSheet(safeStyleSheet: SafeStyleSheet, opt_node?: Node | null | undefined): StyleSheet | HTMLStyleElement;
 /**
  * Test whether the given element has been shown or hidden via a call to
  * {@link #setElementShown}.
@@ -364,13 +364,13 @@ export function installSafeStyleSheet(safeStyleSheet: SafeStyleSheet, opt_node?:
  * @return {boolean} Whether the element has been shown.
  * @see #setElementShown
  */
-export function isElementShown(el: Element): boolean;
+export function isElementShown(el: Element | null): boolean;
 /**
  * Returns true if the element is using right to left (rtl) direction.
  * @param {?Element} el  The element to test.
  * @return {boolean} True for right to left, false for left to right.
  */
-export function isRightToLeft(el: Element): boolean;
+export function isRightToLeft(el: Element | null): boolean;
 /**
  * Returns true if the element is set to be unselectable, false otherwise.
  * Note that on some platforms (e.g. Mozilla), even if an element isn't set
@@ -379,7 +379,7 @@ export function isRightToLeft(el: Element): boolean;
  * @param {?Element} el  Element to check.
  * @return {boolean}  Whether the element is set to be unselectable.
  */
-export function isUnselectable(el: Element): boolean;
+export function isUnselectable(el: Element | null): boolean;
 /**
  * Parses a style attribute value.  Converts CSS property names to camel case.
  * @param {string} value The style attribute value.
@@ -398,21 +398,21 @@ export function parseStyleAttribute(value: string): any;
  * @param {boolean=} opt_center Whether to center the element in the container.
  *     Defaults to false.
  */
-export function scrollIntoContainerView(element: Element, opt_container?: Element, opt_center?: boolean): void;
+export function scrollIntoContainerView(element: Element | null, opt_container?: Element | undefined, opt_center?: boolean | undefined): void;
 /**
  * Sets the border box size of an element. This is potentially expensive in IE
  * if the document is CSS1Compat mode
  * @param {?Element} element  The element to set the size on.
  * @param {?Size} size  The new size.
  */
-export function setBorderBoxSize(element: Element, size: Size): void;
+export function setBorderBoxSize(element: Element | null, size: Size | null): void;
 /**
  * Sets the content box size of an element. This is potentially expensive in IE
  * if the document is BackCompat mode.
  * @param {?Element} element  The element to set the size on.
  * @param {?Size} size  The new size.
  */
-export function setContentBoxSize(element: Element, size: Size): void;
+export function setContentBoxSize(element: Element | null, size: Size | null): void;
 /**
  * Shows or hides an element from the page. Hiding the element is done by
  * setting the display property to "none", removing the element from the
@@ -433,20 +433,20 @@ export function setContentBoxSize(element: Element, size: Size): void;
  * @param {*} isShown True to render the element in its default style,
  *     false to disable rendering the element.
  */
-export function setElementShown(el: Element, isShown: any): void;
+export function setElementShown(el: Element | null, isShown: any): void;
 /**
  * Sets CSS float property on an element.
  * @param {?Element} el The element to set float property on.
  * @param {string} value The value of float CSS property to set on this element.
  */
-export function setFloat(el: Element, value: string): void;
+export function setFloat(el: Element | null, value: string): void;
 /**
  * Set the height of an element.  Sets the element's style property.
  * @param {?Element} element Element to set the height of.
  * @param {string|number} height The height value to set.  If a number, 'px'
  *     will be appended, otherwise the value will be applied directly.
  */
-export function setHeight(element: Element, height: string | number): void;
+export function setHeight(element: Element | null, height: string | number): void;
 /**
  * Sets 'display: inline-block' for an element (cross-browser).
  * @param {?Element} el Element to which the inline-block display style is to be
@@ -454,14 +454,14 @@ export function setHeight(element: Element, height: string | number): void;
  * @see ../demos/inline_block_quirks.html
  * @see ../demos/inline_block_standards.html
  */
-export function setInlineBlock(el: Element): void;
+export function setInlineBlock(el: Element | null): void;
 /**
  * Sets the opacity of a node (x-browser).
  * @param {?Element} el Elements whose opacity has to be set.
  * @param {number|string} alpha Opacity between 0 and 1 or an empty string
  *     {@code ''} to clear the opacity.
  */
-export function setOpacity(el: Element, alpha: string | number): void;
+export function setOpacity(el: Element | null, alpha: string | number): void;
 /**
  * Moves an element to the given coordinates relative to the client viewport.
  * @param {?Element} el Absolutely positioned element to set page offset for.
@@ -470,7 +470,7 @@ export function setOpacity(el: Element, alpha: string | number): void;
  *     box or a coordinate object.
  * @param {number=} opt_y Top position of the element's margin box.
  */
-export function setPageOffset(el: Element, x: number | Coordinate, opt_y?: number): void;
+export function setPageOffset(el: Element | null, x: number | Coordinate, opt_y?: number | undefined): void;
 /**
  * Sets the top/left values of an element.  If no unit is specified in the
  * argument then it will add px. The second argument is required if the first
@@ -480,7 +480,7 @@ export function setPageOffset(el: Element, x: number | Coordinate, opt_y?: numbe
  * @param {string|number|Coordinate} arg1 Left position or coordinate.
  * @param {string|number=} opt_arg2 Top position.
  */
-export function setPosition(el: Element, arg1: string | number | Coordinate, opt_arg2?: string | number): void;
+export function setPosition(el: Element | null, arg1: string | number | Coordinate, opt_arg2?: string | number | undefined): void;
 /**
  * Sets 'white-space: pre-wrap' for a node (x-browser).
  *
@@ -493,7 +493,7 @@ export function setPosition(el: Element, arg1: string | number | Coordinate, opt
  *
  * @param {?Element} el Element to enable pre-wrap for.
  */
-export function setPreWrap(el: Element): void;
+export function setPreWrap(el: Element | null): void;
 /**
  * Sets the content of a style element.  The style element can be any valid
  * style element.  This element will have its content completely replaced by
@@ -517,7 +517,7 @@ export function setSafeStyleSheet(element: Element | StyleSheet, safeStyleSheet:
  * @param {string|number=} opt_h Height of the element. Required if w is not a
  *     size object.
  */
-export function setSize(element: Element, w: string | number | Size, opt_h?: string | number): void;
+export function setSize(element: Element | null, w: string | number | Size, opt_h?: string | number | undefined): void;
 /**
  * @fileoverview Utilities for element styles.
  *
@@ -541,7 +541,7 @@ export function setSize(element: Element, w: string | number | Size, opt_h?: str
  * @param {string|number|boolean=} opt_value If style was a string, then this
  *     should be the value.
  */
-export function setStyle(element: Element, style: any, opt_value?: string | number | boolean): void;
+export function setStyle(element: Element | null, style: any, opt_value?: string | number | boolean | undefined): void;
 /**
  * Sets the background of an element to a transparent image in a browser-
  * independent manner.
@@ -554,7 +554,7 @@ export function setStyle(element: Element, style: any, opt_value?: string | numb
  * @param {?Element} el The element to set background on.
  * @param {string} src The image source URL.
  */
-export function setTransparentBackgroundImage(el: Element, src: string): void;
+export function setTransparentBackgroundImage(el: Element | null, src: string): void;
 /**
  * Makes the element and its descendants selectable or unselectable.  Note
  * that on some platforms (e.g. Mozilla), even if an element isn't set to
@@ -566,14 +566,14 @@ export function setTransparentBackgroundImage(el: Element, src: string): void;
  * @param {boolean=} opt_noRecurse  Whether to only alter the element's own
  *     selectable state, and leave its descendants alone; defaults to false.
  */
-export function setUnselectable(el: Element, unselectable: boolean, opt_noRecurse?: boolean): void;
+export function setUnselectable(el: Element | null, unselectable: boolean, opt_noRecurse?: boolean | undefined): void;
 /**
  * Set the width of an element.  Sets the element's style property.
  * @param {?Element} element Element to set the width of.
  * @param {string|number} width The width value to set.  If a number, 'px'
  *     will be appended, otherwise the value will be applied directly.
  */
-export function setWidth(element: Element, width: string | number): void;
+export function setWidth(element: Element | null, width: string | number): void;
 /**
  * Shows or hides an element from the page. Hiding the element is done by
  * setting the display property to "none", removing the element from the
@@ -594,7 +594,7 @@ export function setWidth(element: Element, width: string | number): void;
  *     false to disable rendering the element.
  * @deprecated Use setElementShown instead.
  */
-export function showElement(el: Element, display: any): void;
+export function showElement(el: Element | null, display: any): void;
 /**
  * Converts a CSS selector in the form style-property to styleProperty.
  * @param {*} selector CSS Selector.
@@ -628,7 +628,7 @@ export function toStyleAttribute(obj: any): string;
  *     coordinate.  This must be a DOM for an ancestor frame of origBase
  *     or the same as origBase.
  */
-export function translateRectForAnotherFrame(rect: Rect, origBase: googdom.DomHelper, newBase: googdom.DomHelper): void;
+export function translateRectForAnotherFrame(rect: Rect | null, origBase: googdom.DomHelper | null, newBase: googdom.DomHelper | null): void;
 /**
  * Removes the styles added by {@link #installStyles}.
  * @param {Element|StyleSheet} styleSheet The value returned by

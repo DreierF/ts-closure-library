@@ -18,7 +18,7 @@ export class DateRange {
      * @param {?DateDate} startDate The first date in the range.
      * @param {?DateDate} endDate The last date in the range.
      */
-    constructor(startDate: DateDate, endDate: DateDate);
+    constructor(startDate: DateDate | null, endDate: DateDate | null);
     /**
      * The first date in the range.
      * @type {?DateDate}
@@ -34,18 +34,18 @@ export class DateRange {
     /**
      * @return {?DateDate} The first date in the range.
      */
-    getStartDate(): DateDate;
+    getStartDate(): DateDate | null;
     /**
      * @return {?DateDate} The last date in the range.
      */
-    getEndDate(): DateDate;
+    getEndDate(): DateDate | null;
     /**
      * Tests if a date falls within this range.
      *
      * @param {?DateDate} date The date to test.
      * @return {boolean} Whether the date is in the range.
      */
-    contains(date: DateDate): boolean;
+    contains(date: DateDate | null): boolean;
     /**
      * @return {!Iterator} An iterator over the date range.
      */
@@ -66,7 +66,7 @@ export class Iterator extends IterIterator<DateDate> {
      * Creates an iterator over the dates in a {@link DateRange}.
      * @param {?DateRange} dateRange The date range to iterate.
      */
-    constructor(dateRange: DateRange);
+    constructor(dateRange: DateRange | null);
     /**
      * The next date.
      * @type {?DateDate}

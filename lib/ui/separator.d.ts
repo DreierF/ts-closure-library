@@ -20,7 +20,7 @@ export class Separator extends Control<Ui_MenuSeparatorRenderer> {
      * @param {DomHelper=} opt_domHelper Optional DOM helper, used for
      *    document interaction.
      */
-    constructor(opt_renderer?: Ui_MenuSeparatorRenderer, opt_domHelper?: DomHelper);
+    constructor(opt_renderer?: Ui_MenuSeparatorRenderer | undefined, opt_domHelper?: DomHelper | undefined);
 }
 import { MenuSeparatorRenderer as Ui_MenuSeparatorRenderer } from "./menuseparatorrenderer.js";
 import { Control } from "./control.js";

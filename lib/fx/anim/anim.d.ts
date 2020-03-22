@@ -27,7 +27,7 @@ export let TIMEOUT: number;
  * Registers an animation to be cycled on the global timer.
  * @param {?Animated} animation The animation to register.
  */
-export function registerAnimation(animation: Animated): void;
+export function registerAnimation(animation: Animated | null): void;
 /**
  * Registers an animation window. This allows usage of the timing control API
  * for animations. Note that this window must be visible, as non-visible
@@ -37,7 +37,7 @@ export function registerAnimation(animation: Animated): void;
  *
  * @param {?Window} animationWindow The window in which to animate elements.
  */
-export function setAnimationWindow(animationWindow: Window): void;
+export function setAnimationWindow(animationWindow: Window | null): void;
 /**
  * Tears down this module. Useful for testing.
  */
@@ -47,4 +47,4 @@ export function tearDown(): void;
  * global timer.
  * @param {?Animated} animation The animation to unregister.
  */
-export function unregisterAnimation(animation: Animated): void;
+export function unregisterAnimation(animation: Animated | null): void;

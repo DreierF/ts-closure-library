@@ -39,9 +39,9 @@ export class MenuItemRenderer extends ControlRenderer<UiMenuItem> {
      * @return {?Element} Root element for the item.
      * @override
      */
-    createDom(item: Control<any>): Element;
+    createDom(item: Control<any> | null): Element | null;
     /** @override */
-    getContentElement(element: any): Element;
+    getContentElement(element: any): Element | null;
     /**
      * Overrides {@link ControlRenderer#decorate} by initializing the
      * menu item to checkable based on whether the element to be decorated has
@@ -51,7 +51,7 @@ export class MenuItemRenderer extends ControlRenderer<UiMenuItem> {
      * @return {?Element} Decorated element.
      * @override
      */
-    decorate(item: Control<any>, element: Element): Element;
+    decorate(item: Control<any> | null, element: Element | null): Element | null;
     /**
      * Returns true if the element appears to have a proper menu item structure by
      * checking whether its first child has the appropriate structural class name.
@@ -59,7 +59,7 @@ export class MenuItemRenderer extends ControlRenderer<UiMenuItem> {
      * @return {boolean} Whether the element appears to have a proper menu item DOM.
      * @protected
      */
-    hasContentStructure(element: Element): boolean;
+    hasContentStructure(element: Element | null): boolean;
     /**
      * Wraps the given text caption or existing DOM node(s) in a structural element
      * containing the menu item's contents.
@@ -68,7 +68,7 @@ export class MenuItemRenderer extends ControlRenderer<UiMenuItem> {
      * @return {?Element} Menu item content element.
      * @protected
      */
-    createContent(content: any, dom: goog_dom.DomHelper): Element;
+    createContent(content: any, dom: goog_dom.DomHelper | null): Element | null;
     /**
      * Enables/disables radio button semantics on the menu item.
      * @param {?Control} item Menu item to update.
@@ -76,7 +76,7 @@ export class MenuItemRenderer extends ControlRenderer<UiMenuItem> {
      *     item hasn't been rendered yet).
      * @param {boolean} selectable Whether the item should be selectable.
      */
-    setSelectable(item: Control<any>, element: Element, selectable: boolean): void;
+    setSelectable(item: Control<any> | null, element: Element | null, selectable: boolean): void;
     /**
      * Enables/disables checkbox semantics on the menu item.
      * @param {?Control} item Menu item to update.
@@ -84,14 +84,14 @@ export class MenuItemRenderer extends ControlRenderer<UiMenuItem> {
      *     item hasn't been rendered yet).
      * @param {boolean} checkable Whether the item should be checkable.
      */
-    setCheckable(item: Control<any>, element: Element, checkable: boolean): void;
+    setCheckable(item: Control<any> | null, element: Element | null, checkable: boolean): void;
     /**
      * Determines whether the item contains a checkbox element.
      * @param {?Element} element Menu item root element.
      * @return {boolean} Whether the element contains a checkbox element.
      * @protected
      */
-    hasCheckBoxStructure(element: Element): boolean;
+    hasCheckBoxStructure(element: Element | null): boolean;
     /**
      * Adds or removes extra markup and CSS styling to the menu item to make it
      * selectable or non-selectable, depending on the value of the

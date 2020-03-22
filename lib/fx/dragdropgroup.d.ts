@@ -34,7 +34,7 @@ export class DragDropGroup extends AbstractDragDrop {
      * @throws Error If no element argument is provided or if the type is
      *     invalid
      */
-    addDragDropItem(item: DragDropItem): void;
+    addDragDropItem(item: DragDropItem | null): void;
     /**
      * Remove item from drag object.
      *

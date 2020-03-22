@@ -30,7 +30,7 @@ export let MAX_XML_SIZE_KB: number;
  * @throws {Error} if browser does not support creating new documents or
  * namespace is provided without a root tag name.
  */
-export function createDocument(opt_rootTagName?: string, opt_namespaceUri?: string, opt_preferActiveX?: boolean): Document;
+export function createDocument(opt_rootTagName?: string | undefined, opt_namespaceUri?: string | undefined, opt_preferActiveX?: boolean | undefined): Document | null;
 /**
  * Creates an XML document from a string
  * @param {string} xml The text.
@@ -41,7 +41,7 @@ export function createDocument(opt_rootTagName?: string, opt_namespaceUri?: stri
  * @return {?Document} XML document from the text.
  * @throws {Error} if browser does not support loading XML documents.
  */
-export function loadXml(xml: string, opt_preferActiveX?: boolean): Document;
+export function loadXml(xml: string, opt_preferActiveX?: boolean | undefined): Document | null;
 /**
  * Selects multiple nodes using an Xpath expression and a root node
  * @param {?Node} node The root node.
@@ -49,14 +49,14 @@ export function loadXml(xml: string, opt_preferActiveX?: boolean): Document;
  * @return {(!NodeList<!Node>|!Array<!Node>)} The selected nodes, or empty array
  *     if no matching nodes.
  */
-export function selectNodes(node: Node, path: string): any;
+export function selectNodes(node: Node | null, path: string): any;
 /**
  * Selects a single node using an Xpath expression and a root node
  * @param {?Node} node The root node.
  * @param {string} path Xpath selector.
  * @return {?Node} The selected node, or null if no matching node.
  */
-export function selectSingleNode(node: Node, path: string): Node;
+export function selectSingleNode(node: Node | null, path: string): Node | null;
 /**
  * Serializes an XML document or subtree to string.
  * @param {Document|Element} xml The document or the root node of the subtree.

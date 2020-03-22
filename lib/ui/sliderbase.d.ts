@@ -59,7 +59,7 @@ export class SliderBase extends Component {
      * @param {(function(number):?string)=} opt_labelFn An optional function mapping
      *     slider values to a description of the value.
      */
-    constructor(opt_domHelper?: goog_dom.DomHelper, opt_labelFn?: (arg0: number) => string);
+    constructor(opt_domHelper?: goog_dom.DomHelper | undefined, opt_labelFn?: ((arg0: number) => string | null) | undefined);
     /**
      * Orientation of the slider.
      * @type {?Orientation}
@@ -209,7 +209,7 @@ export class SliderBase extends Component {
      * A function mapping slider values to text description.
      * @private {function(number):?string}
      */
-    labelFn_: (arg0: number) => string;
+    labelFn_: (arg0: number) => string | null;
     /**
      * Whether to move the focus to the top level element when dragging the
      * slider, default true.
@@ -233,7 +233,7 @@ export class SliderBase extends Component {
      * @protected
      * @abstract
      */
-    getCssClass(orient: string): string;
+    getCssClass(orient: string | null): string;
     /**
      * Subclasses must implement this method and set the valueThumb and
      * extentThumb to non-null values. They can also set the rangeHighlight
@@ -255,7 +255,7 @@ export class SliderBase extends Component {
      * @param {?DragEvent} e  The drag event used to drag the thumb.
      * @private
      */
-    handleBeforeDrag_(e: DragEvent): void;
+    handleBeforeDrag_(e: DragEvent | null): void;
     /**
      * Handler for the start/end drag event on the thumbs. Adds/removes
      * the "-dragging" CSS classes on the slider and thumb.
@@ -263,33 +263,33 @@ export class SliderBase extends Component {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    handleThumbDragStartEnd_(e: DragEvent): void;
+    handleThumbDragStartEnd_(e: DragEvent | null): void;
     /**
      * Event handler for the key down event. This is used to update the value
      * based on the key pressed.
      * @param {?KeyEvent} e  The keyboard event object.
      * @private
      */
-    handleKeyDown_(e: KeyEvent): void;
+    handleKeyDown_(e: KeyEvent | null): void;
     /**
      * Handler for the mouse down event and click event.
      * @param {?EventsEvent} e  The mouse event object.
      * @private
      */
-    handleMouseDownAndClick_(e: EventsEvent): void;
+    handleMouseDownAndClick_(e: EventsEvent | null): void;
     /**
      * Handler for the mouse wheel event.
      * @param {?MouseWheelEvent} e  The mouse wheel event object.
      * @private
      */
-    handleMouseWheel_(e: MouseWheelEvent): void;
+    handleMouseWheel_(e: MouseWheelEvent | null): void;
     /**
      * Starts the animation that causes the thumb to increment/decrement by the
      * block increment when the user presses down on the background.
      * @param {?EventsEvent} e  The mouse event object.
      * @private
      */
-    startBlockIncrementing_(e: EventsEvent): void;
+    startBlockIncrementing_(e: EventsEvent | null): void;
     /**
      * Handler for the tick event dispatched by the timer used to update the value
      * in a block increment. This is also called directly from
@@ -309,25 +309,25 @@ export class SliderBase extends Component {
      * @return {number} The relative mouse position to the slider.
      * @private
      */
-    getRelativeMousePos_(e: EventsEvent): number;
+    getRelativeMousePos_(e: EventsEvent | null): number;
     /**
      * Stores the current mouse position so that it can be used in the timer.
      * @param {?EventsEvent} e  The mouse event object.
      * @private
      */
-    storeMousePos_(e: EventsEvent): void;
+    storeMousePos_(e: EventsEvent | null): void;
     /**
      * Returns the value to use for the current mouse position
      * @param {?EventsEvent} e  The mouse event object.
      * @return {number} The value that this mouse position represents.
      */
-    getValueFromMousePosition(e: EventsEvent): number;
+    getValueFromMousePosition(e: EventsEvent | null): number;
     /**
      * @param {?HTMLDivElement} thumb  The thumb object.
      * @return {number} The position of the specified thumb.
      * @private
      */
-    getThumbPosition_(thumb: HTMLDivElement): number;
+    getThumbPosition_(thumb: HTMLDivElement | null): number;
     /**
      * Returns whether a thumb is currently being dragged with the mouse (or via
      * touch). Note that changing the value with keyboard, mouswheel, or via
@@ -361,7 +361,7 @@ export class SliderBase extends Component {
      * @param {number} position The position to move the thumb to.
      * @private
      */
-    setThumbPosition_(thumb: Element, position: number): void;
+    setThumbPosition_(thumb: Element | null, position: number): void;
     /**
      * Sets the value and extent of the underlying range model. We enforce that
      * getMinimum() <= value <= getMaximum() - extent and
@@ -394,24 +394,24 @@ export class SliderBase extends Component {
     /**
      * @return {?HTMLDivElement} The value thumb element.
      */
-    getValueThumb(): HTMLDivElement;
+    getValueThumb(): HTMLDivElement | null;
     /**
      * @return {?HTMLDivElement} The extent thumb element.
      */
-    getExtentThumb(): HTMLDivElement;
+    getExtentThumb(): HTMLDivElement | null;
     /**
      * @param {number} position The position to get the closest thumb to.
      * @return {?HTMLDivElement} The thumb that is closest to the given position.
      * @private
      */
-    getClosestThumb_(position: number): HTMLDivElement;
+    getClosestThumb_(position: number): HTMLDivElement | null;
     /**
      * Call back when the internal range model changes. Sub-classes may override
      * and re-enter this method to update a11y state. Consider protected.
      * @param {?EventsEvent} e The event object.
      * @protected
      */
-    handleRangeModelChange(e: EventsEvent): void;
+    handleRangeModelChange(e: EventsEvent | null): void;
     /**
      * This is called when we need to update the size of the thumb. This happens
      * when first created as well as when the value and the orientation changes.
@@ -462,7 +462,7 @@ export class SliderBase extends Component {
      *     use.  This will not change the default animations played by the slider.
      *     It will only allow for additional animations.
      */
-    setAdditionalAnimations(factory: AnimationFactory): void;
+    setAdditionalAnimations(factory: AnimationFactory | null): void;
     /**
      * Adds animations for the range highlight element to the animation queue.
      *
@@ -476,23 +476,23 @@ export class SliderBase extends Component {
      * @param {?AnimationParallelQueue} animations The animation queue.
      * @private
      */
-    addRangeHighlightAnimations_(thumb: Element, previousValue: number, previousExtent: number, newCoord: Coordinate, animations: AnimationParallelQueue): void;
+    addRangeHighlightAnimations_(thumb: Element | null, previousValue: number, previousExtent: number, newCoord: Coordinate | null, animations: AnimationParallelQueue | null): void;
     /**
      * Sets the isAnimating_ field to false once the animation is done.
      * @param {?AnimationEvent} e Event object passed by the animation
      *     object.
      * @private
      */
-    endAnimation_(e: AnimationEvent): void;
+    endAnimation_(e: AnimationEvent | null): void;
     /**
      * Changes the orientation.
      * @param {?Orientation} orient The orientation.
      */
-    setOrientation(orient: string): void;
+    setOrientation(orient: string | null): void;
     /**
      * @return {?Orientation} the orientation of the slider.
      */
-    getOrientation(): string;
+    getOrientation(): string | null;
     /**
      * @return {number} The amount to increment/decrement for page up/down as well
      *     as when holding down the mouse button on the background.
@@ -525,13 +525,13 @@ export class SliderBase extends Component {
     /**
      * @return {?number} The step value used to determine how to round the value.
      */
-    getStep(): number;
+    getStep(): number | null;
     /**
      * Sets the step value. The step value is used to determine how to round the
      * value.
      * @param {?number} step  The step size.
      */
-    setStep(step: number): void;
+    setStep(step: number | null): void;
     /**
      * @return {boolean} Whether clicking on the backgtround should move directly to
      *     that point.
@@ -618,12 +618,12 @@ export class SliderBase extends Component {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    getOffsetStart_(element: Element): number;
+    getOffsetStart_(element: Element | null): number;
     /**
      * @return {?string} The text value for the slider's current value, or null if
      *     unavailable.
      */
-    getTextValue(): string;
+    getTextValue(): string | null;
     /**
      * Sets whether focus will be moved to the top-level element when the slider is
      * dragged.

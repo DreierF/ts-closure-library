@@ -106,7 +106,7 @@ export function create<T>(constructor: new (...arg1: any[]) => T, ...args: any[]
  * @return {function(...?): undefined} Wrapped function.
  * @template SCOPE
  */
-export function debounce<SCOPE>(f: (this: SCOPE, ...arg1: any[]) => any, interval: number, opt_scope?: SCOPE): (...arg0: any[]) => undefined;
+export function debounce<SCOPE>(f: (this: SCOPE, ...arg1: any[]) => any, interval: number, opt_scope?: SCOPE | undefined): (...arg0: any[]) => undefined;
 /**
  * Creates a function that returns whether its argument equals the given value.
  *
@@ -118,7 +118,7 @@ export function debounce<SCOPE>(f: (this: SCOPE, ...arg1: any[]) => any, interva
  *     comparison rather than a strict (===) one. Defaults to false.
  * @return {function(*):boolean} The new function.
  */
-export function equalTo(value: any, opt_useLooseComparison?: boolean): (arg0: any) => boolean;
+export function equalTo(value: any, opt_useLooseComparison?: boolean | undefined): (arg0: any) => boolean;
 /**
  * Creates a function that always throws an error with the given message.
  * @param {string} message The error message.
@@ -139,7 +139,7 @@ export function fail(err: any): Function;
  * @return {T} The first argument passed in, or undefined if nothing was passed.
  * @template T
  */
-export function identity<T>(opt_returnValue?: T, ...var_args: any): T;
+export function identity<T>(opt_returnValue?: T | undefined, ...var_args: any): T;
 /**
  * Given a function, create a function that keeps opt_numArgs arguments and
  * silently discards all additional arguments.
@@ -148,7 +148,7 @@ export function identity<T>(opt_returnValue?: T, ...var_args: any): T;
  * @return {!Function} A version of f that only keeps the first opt_numArgs
  *     arguments.
  */
-export function lock(f: Function, opt_numArgs?: number): Function;
+export function lock(f: Function | null, opt_numArgs?: number | undefined): Function;
 /**
  * Creates a function that returns the Boolean opposite of a provided function.
  * For example, (not(f))(x) is equivalent to !f(x).
@@ -218,7 +218,7 @@ export function partialRight(fn: Function, ...args: any[]): Function;
  * @return {function(...?): undefined} Wrapped function.
  * @template SCOPE
  */
-export function rateLimit<SCOPE>(f: (this: SCOPE, ...arg1: any[]) => any, interval: number, opt_scope?: SCOPE): (...arg0: any[]) => undefined;
+export function rateLimit<SCOPE>(f: (this: SCOPE, ...arg1: any[]) => any, interval: number, opt_scope?: SCOPE | undefined): (...arg0: any[]) => undefined;
 /**
  * Creates a function that calls the functions passed in in sequence, and
  * returns the value of the last function. For example,
@@ -244,7 +244,7 @@ export function sequence(...args: Function[]): Function;
  * @return {function(...?): undefined} Wrapped function.
  * @template SCOPE
  */
-export function throttle<SCOPE>(f: (this: SCOPE, ...arg1: any[]) => any, interval: number, opt_scope?: SCOPE): (...arg0: any[]) => undefined;
+export function throttle<SCOPE>(f: (this: SCOPE, ...arg1: any[]) => any, interval: number, opt_scope?: SCOPE | undefined): (...arg0: any[]) => undefined;
 /**
  * Given a function, create a new function that swallows its return value
  * and replaces it with a new one.
@@ -253,4 +253,4 @@ export function throttle<SCOPE>(f: (this: SCOPE, ...arg1: any[]) => any, interva
  * @return {function(...?):T} A new function.
  * @template T
  */
-export function withReturnValue<T>(f: Function, retValue: T): (...arg0: any[]) => T;
+export function withReturnValue<T>(f: Function | null, retValue: T): (...arg0: any[]) => T;

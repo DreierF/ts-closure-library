@@ -28,35 +28,35 @@ export class FullscreenOptions {
  * @param {!DomHelper=} opt_domHelper The DomHelper for the DOM being
  *     queried. If not provided, use the current DOM.
  */
-export function exitFullScreen(opt_domHelper?: goog_dom.DomHelper): void;
+export function exitFullScreen(opt_domHelper?: goog_dom.DomHelper | undefined): void;
 /**
  * Get the root element in full screen mode.
  * @param {!DomHelper=} opt_domHelper The DomHelper for the DOM being
  *     queried. If not provided, use the current DOM.
- * @return {?Element} The root element in full screen mode.
+ * @return {Element|null} The root element in full screen mode.
  */
-export function getFullScreenElement(opt_domHelper?: goog_dom.DomHelper): Element;
+export function getFullScreenElement(opt_domHelper?: goog_dom.DomHelper | undefined): Element | null;
 /**
  * Determines if the document is full screen.
  * @param {!DomHelper=} opt_domHelper The DomHelper for the DOM being
  *     queried. If not provided, use the current DOM.
  * @return {boolean} Whether the document is full screen.
  */
-export function isFullScreen(opt_domHelper?: goog_dom.DomHelper): boolean;
+export function isFullScreen(opt_domHelper?: goog_dom.DomHelper | undefined): boolean;
 /**
  * Determines if full screen is supported.
  * @param {!DomHelper=} opt_domHelper The DomHelper for the DOM being
  *     queried. If not provided, use the current DOM.
  * @return {boolean} True iff full screen is supported.
  */
-export function isSupported(opt_domHelper?: goog_dom.DomHelper): boolean;
+export function isSupported(opt_domHelper?: goog_dom.DomHelper | undefined): boolean;
 /**
  * Requests putting the element in full screen.
  * @param {!Element} element The element to put full screen.
  * @param {!FullscreenOptions=} opt_options Options for full
  *     screen. This field will be ignored on older browsers.
  */
-export function requestFullScreen(element: Element, opt_options?: FullscreenOptions): void;
+export function requestFullScreen(element: Element, opt_options?: FullscreenOptions | undefined): void;
 /**
  * Requests putting the element in full screen with full keyboard access.
  * @param {!Element} element The element to put full screen.

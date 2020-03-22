@@ -29,7 +29,7 @@ export class ColorPalette extends Palette {
      * @param {DomHelper=} opt_domHelper Optional DOM helper, used for
      *     document interaction.
      */
-    constructor(opt_colors?: string[], opt_renderer?: PaletteRenderer, opt_domHelper?: DomHelper);
+    constructor(opt_colors?: string[] | undefined, opt_renderer?: PaletteRenderer | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * Array of normalized colors. Initialized lazily as often never needed.
      * @type {?Array<string>}
@@ -60,18 +60,18 @@ export class ColorPalette extends Palette {
      * @param {Array<string>=} opt_labels The array of labels to be used as
      *        tooltips. When not provided, the color value will be used.
      */
-    setColors(colors: string[], opt_labels?: string[]): void;
+    setColors(colors: string[], opt_labels?: string[] | undefined): void;
     /**
      * @return {?string} The current selected color in hex, or null.
      */
-    getSelectedColor(): string;
+    getSelectedColor(): string | null;
     /**
      * Sets the selected color.  Clears the selection if the argument is null or
      * can't be parsed as a color.
      * @param {?string} color The color to set as selected; null clears the
      *     selection.
      */
-    setSelectedColor(color: string): void;
+    setSelectedColor(color: string | null): void;
     /**
      * @return {!Array<!Node>} An array of DOM nodes for each color.
      * @protected
