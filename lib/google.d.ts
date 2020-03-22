@@ -564,7 +564,6 @@ export function isDef<T>(val: T): val is Exclude<typeof val, undefined>;
  * Returns true if the specified value is defined and not null.
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is defined and not null.
- * @deprecated Use `val != null` instead.
  */
 export function isDefAndNotNull<T>(val: T): val is Exclude<typeof val, (undefined | null)>;
 /**

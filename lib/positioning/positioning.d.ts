@@ -19,22 +19,68 @@ export class Corner {
     TOP_CENTER: number;
     BOTTOM_CENTER: number;
 }
-export namespace CornerBit {
-    export const BOTTOM: number;
-    export const CENTER: number;
-    export const RIGHT: number;
-    export const FLIP_RTL: number;
+/**
+ * @fileoverview Common positioning code.
+ */
+/**
+ * Enum for bits in the {@see Corner) bitmap.
+ *
+ *
+ */
+export class CornerBit {
+    BOTTOM: number;
+    CENTER: number;
+    RIGHT: number;
+    FLIP_RTL: number;
 }
-export namespace Overflow {
-    export const IGNORE: number;
-    export const ADJUST_X: number;
-    export const FAIL_X: number;
-    export const ADJUST_Y: number;
-    export const FAIL_Y: number;
-    export const RESIZE_WIDTH: number;
-    export const RESIZE_HEIGHT: number;
-    export const ADJUST_X_EXCEPT_OFFSCREEN: number;
-    export const ADJUST_Y_EXCEPT_OFFSCREEN: number;
+/**
+ * Enum for representing position handling in cases where the element would be
+ * positioned outside the viewport.
+ *
+ *
+ */
+export class Overflow {
+    /** Ignore overflow */
+    IGNORE: number;
+    /** Try to fit horizontally in the viewport at all costs. */
+    ADJUST_X: number;
+    /** If the element can't fit horizontally, report positioning failure. */
+    FAIL_X: number;
+    /** Try to fit vertically in the viewport at all costs. */
+    ADJUST_Y: number;
+    /** If the element can't fit vertically, report positioning failure. */
+    FAIL_Y: number;
+    /** Resize the element's width to fit in the viewport. */
+    RESIZE_WIDTH: number;
+    /** Resize the element's height to fit in the viewport. */
+    RESIZE_HEIGHT: number;
+    /**
+     * If the anchor goes off-screen in the x-direction, position the movable
+     * element off-screen. Otherwise, try to fit horizontally in the viewport.
+     */
+    ADJUST_X_EXCEPT_OFFSCREEN: number;
+    /**
+     * If the anchor goes off-screen in the y-direction, position the movable
+     * element off-screen. Otherwise, try to fit vertically in the viewport.
+     */
+    ADJUST_Y_EXCEPT_OFFSCREEN: number;
+}
+/**
+ * Enum for representing the outcome of a positioning call.
+ *
+ *
+ */
+export class OverflowStatus {
+    NONE: number;
+    ADJUSTED_X: number;
+    ADJUSTED_Y: number;
+    WIDTH_ADJUSTED: number;
+    HEIGHT_ADJUSTED: number;
+    FAILED_LEFT: number;
+    FAILED_RIGHT: number;
+    FAILED_TOP: number;
+    FAILED_BOTTOM: number;
+    FAILED_OUTSIDE_VIEWPORT: number;
 }
 export namespace OverflowStatus {
     export const FAILED: number;
@@ -100,23 +146,12 @@ export function getOffsetParentPageOffset(movableElement: Element): Coordinate;
  *     the viewport. Required if opt_overflow is specified.
  * @param {?number=} opt_overflow Overflow handling mode. Defaults to IGNORE
  *     if not specified, {@see Overflow}.
- * @return {{rect:!Rect, status:OverflowStatus}}
+ * @return {{rect:!Rect, status:number}}
  *     Object containing the computed position and status bitmap.
  */
 export function getPositionAtCoordinate(absolutePos: Coordinate, elementSize: Size, elementCorner: Corner | null, opt_margin?: Box | undefined, opt_viewport?: Box | undefined, opt_overflow?: number | null | undefined): {
     rect: Rect;
-    status: {
-        NONE: number;
-        ADJUSTED_X: number;
-        ADJUSTED_Y: number;
-        WIDTH_ADJUSTED: number;
-        HEIGHT_ADJUSTED: number;
-        FAILED_LEFT: number;
-        FAILED_RIGHT: number;
-        FAILED_TOP: number;
-        FAILED_BOTTOM: number;
-        FAILED_OUTSIDE_VIEWPORT: number;
-    };
+    status: number;
 };
 /**
  * Positions a movable element relative to an anchor element. The caller
@@ -151,21 +186,10 @@ export function getPositionAtCoordinate(absolutePos: Coordinate, elementSize: Si
  *     describing a "position: absolute" element contained in the offsetParent.
  *     It defaults to visible area of nearest scrollable ancestor of
  *     `movableElement` (see `style.getVisibleRectForElement`).
- * @return {?OverflowStatus} Status bitmap,
- *     {@see OverflowStatus}.
+ * @return {?number} Status bitmap,
+ *     {@see number}.
  */
-export function positionAtAnchor(anchorElement: Element | null, anchorElementCorner: Corner | null, movableElement: Element | null, movableElementCorner: Corner | null, opt_offset?: Coordinate | undefined, opt_margin?: Box | undefined, opt_overflow?: number | null | undefined, opt_preferredSize?: Size | undefined, opt_viewport?: Box | undefined): {
-    NONE: number;
-    ADJUSTED_X: number;
-    ADJUSTED_Y: number;
-    WIDTH_ADJUSTED: number;
-    HEIGHT_ADJUSTED: number;
-    FAILED_LEFT: number;
-    FAILED_RIGHT: number;
-    FAILED_TOP: number;
-    FAILED_BOTTOM: number;
-    FAILED_OUTSIDE_VIEWPORT: number;
-} | null;
+export function positionAtAnchor(anchorElement: Element | null, anchorElementCorner: Corner | null, movableElement: Element | null, movableElementCorner: Corner | null, opt_offset?: Coordinate | undefined, opt_margin?: Box | undefined, opt_overflow?: number | null | undefined, opt_preferredSize?: Size | undefined, opt_viewport?: Box | undefined): number | null;
 /**
  * Positions the specified corner of the movable element at the
  * specified coordinate.
@@ -186,20 +210,9 @@ export function positionAtAnchor(anchorElement: Element | null, anchorElementCor
  *     not specified, {@see Overflow}.
  * @param {Size=} opt_preferredSize The preferred size of the
  *     movableElement. Defaults to the current size.
- * @return {?OverflowStatus} Status bitmap.
+ * @return {?number} Status bitmap.
  */
-export function positionAtCoordinate(absolutePos: Coordinate | null, movableElement: Element | null, movableElementCorner: Corner | null, opt_margin?: Box | undefined, opt_viewport?: Box | undefined, opt_overflow?: number | null | undefined, opt_preferredSize?: Size | undefined): {
-    NONE: number;
-    ADJUSTED_X: number;
-    ADJUSTED_Y: number;
-    WIDTH_ADJUSTED: number;
-    HEIGHT_ADJUSTED: number;
-    FAILED_LEFT: number;
-    FAILED_RIGHT: number;
-    FAILED_TOP: number;
-    FAILED_BOTTOM: number;
-    FAILED_OUTSIDE_VIEWPORT: number;
-} | null;
+export function positionAtCoordinate(absolutePos: Coordinate | null, movableElement: Element | null, movableElementCorner: Corner | null, opt_margin?: Box | undefined, opt_viewport?: Box | undefined, opt_overflow?: number | null | undefined, opt_preferredSize?: Size | undefined): number | null;
 import { Coordinate } from "../math/coordinate.js";
 import { Size } from "../math/size.js";
 import { Box } from "../math/box.js";
