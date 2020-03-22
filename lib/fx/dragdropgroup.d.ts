@@ -18,14 +18,14 @@ export class DragDropGroup extends AbstractDragDrop {
     /**
      * Add item to drag object.
      *
-     * @param {Element|string} element Dom Node, or string representation of node
+     * @param {?Element|string} element Dom Node, or string representation of node
      *     id, to be used as drag source/drop target.
      * @param {Object=} opt_data Data associated with the source/target.
      * @throws Error If no element argument is provided or if the type is
      *     invalid
      * @override
      */
-    addItem(element: string | Element, opt_data?: any): void;
+    addItem(element: string | Element | null, opt_data?: any): void;
     /**
      * Add DragDropItem to drag object.
      *
@@ -38,10 +38,10 @@ export class DragDropGroup extends AbstractDragDrop {
     /**
      * Remove item from drag object.
      *
-     * @param {Element|string} element Dom Node, or string representation of node
+     * @param {?Element|string} element Dom Node, or string representation of node
      *     id, that was previously added with addItem().
      */
-    removeItem(element: string | Element): void;
+    removeItem(element: string | Element | null): void;
     /**
      * Marks the supplied list of items as selected. A drag operation for any of the
      * selected items will affect all of them.

@@ -78,12 +78,12 @@ export class MouseWheelHandler extends goog_events.EventTarget {
     /**
      * This event handler allows you to catch mouse wheel events in a consistent
      * manner.
-     * @param {Element|Document} element The element to listen to the mouse wheel
+     * @param {?Element|Document} element The element to listen to the mouse wheel
      *     event on.
      * @param {boolean=} opt_capture Whether to handle the mouse wheel event in
      *     capture phase.
      */
-    constructor(element: Element | Document, opt_capture?: boolean | undefined);
+    constructor(element: Element | Document | null, opt_capture?: boolean | undefined);
     /**
      * Optional maximum magnitude for x delta on each mousewheel event.
      * @type {number|undefined}
@@ -98,10 +98,10 @@ export class MouseWheelHandler extends goog_events.EventTarget {
     maxDeltaY_: number | undefined;
     /**
      * This is the element that we will listen to the real mouse wheel events on.
-     * @type {Element|Document}
+     * @type {?Element|Document}
      * @private
      */
-    element_: Element | Document;
+    element_: (Element | Document) | null;
     /**
      * True if the element exists and is RTL, false otherwise.
      * @type {boolean}

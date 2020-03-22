@@ -17,12 +17,12 @@ export class AdvancedTooltip extends Tooltip {
      * tooltip but can track the cursor position and direction to determine if the
      * tooltip should be dismissed or remain open.
      *
-     * @param {Element|string=} opt_el Element to display tooltip for, either
+     * @param {?Element|string=} opt_el Element to display tooltip for, either
      *     element reference or string id.
      * @param {?string=} opt_str Text message to display in tooltip.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(opt_el?: string | Element | undefined, opt_str?: string | null | undefined, opt_domHelper?: DomHelper | undefined);
+    constructor(opt_el?: string | Element | null | undefined, opt_str?: string | null | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * Whether to track the cursor and thereby close the tooltip if it moves away
      * from the tooltip and keep it open if it moves towards it.

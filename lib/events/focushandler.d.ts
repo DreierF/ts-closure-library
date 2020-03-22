@@ -24,15 +24,15 @@ export class FocusHandler extends events.EventTarget {
     /**
      * This event handler allows you to catch focus events when descendants gain or
      * loses focus.
-     * @param {Element|Document} element  The node to listen on.
+     * @param {?Element|Document} element  The node to listen on.
      */
-    constructor(element: Element | Document);
+    constructor(element: Element | Document | null);
     /**
      * This is the element that we will listen to the real focus events on.
-     * @type {Element|Document}
+     * @type {?Element|Document}
      * @private
      */
-    element_: Element | Document;
+    element_: (Element | Document) | null;
     /**
      * Store the listen key so it easier to unlisten in dispose.
      * @private

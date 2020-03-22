@@ -307,16 +307,16 @@ export class InputHandler extends Disposable {
      * Attaches the input handler to a target element. The target element
      * should be a textarea, input box, or other focusable element with the
      * same interface.
-     * @param {Element|EventsEventTarget} target An element to attach the
+     * @param {?Element|EventsEventTarget} target An element to attach the
      *     input handler to.
      */
-    attachInput(target: Element | EventsEventTarget): void;
+    attachInput(target: Element | EventsEventTarget | null): void;
     /**
      * Detaches the input handler from the provided element.
-     * @param {Element|EventsEventTarget} target An element to detach the
+     * @param {?Element|EventsEventTarget} target An element to detach the
      *     input handler from.
      */
-    detachInput(target: Element | EventsEventTarget): void;
+    detachInput(target: Element | EventsEventTarget | null): void;
     /**
      * Attaches the input handler to multiple elements.
      * @param {...Element} var_args Elements to attach the input handler too.

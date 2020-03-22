@@ -38,12 +38,12 @@ export class TreeControl extends BaseNode {
      * The object handling keyboard events.
      * @private {?KeyHandler}
      */
-    keyHandler_: any;
+    keyHandler_: KeyHandler | null;
     /**
      * The object handling focus events.
      * @private {?FocusHandler}
      */
-    focusHandler_: any;
+    focusHandler_: FocusHandler | null;
     /**
      * Logger
      * @private {?LogLogger}
@@ -238,6 +238,8 @@ export namespace TreeControl {
 }
 import { BaseNode } from "./treenode.js";
 import { TypeAhead } from "./typeahead.js";
+import { KeyHandler } from "../../events/keyhandler.js";
+import { FocusHandler } from "../../events/focushandler.js";
 import { BrowserEvent as EventsBrowserEvent } from "../../events/browserevent.js";
 import { TreeNode } from "./treenode.js";
 import { SafeHtml } from "../../html/safehtml.js";

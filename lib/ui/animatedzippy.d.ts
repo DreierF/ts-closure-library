@@ -17,16 +17,16 @@ export class AnimatedZippy extends Zippy {
      * Zippy widget. Expandable/collapsible container, clicking the header toggles
      * the visibility of the content.
      *
-     * @param {Element|string|null} header Header element, either element
+     * @param {?Element|string|null} header Header element, either element
      *     reference, string id or null if no header exists.
-     * @param {Element|string} content Content element, either element reference or
+     * @param {?Element|string} content Content element, either element reference or
      *     string id.
      * @param {boolean=} opt_expanded Initial expanded/visibility state. Defaults to
      *     false.
      * @param {DomHelper=} opt_domHelper An optional DOM helper.
      * @param {Role<string>=} opt_role ARIA role, default TAB.
      */
-    constructor(header: string | Element | null, content: string | Element, opt_expanded?: boolean | undefined, opt_domHelper?: googdom.DomHelper | undefined, opt_role?: any);
+    constructor(header: string | Element | null, content: string | Element | null, opt_expanded?: boolean | undefined, opt_domHelper?: googdom.DomHelper | undefined, opt_role?: any);
     /**
      * Duration of expand/collapse animation, in milliseconds.
      * @type {number}

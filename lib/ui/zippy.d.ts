@@ -30,9 +30,9 @@ export class Zippy extends EventsEventTarget {
      * Zippy widget. Expandable/collapsible container, clicking the header toggles
      * the visibility of the content.
      *
-     * @param {Element|string|null} header Header element, either element
+     * @param {?Element|string|null} header Header element, either element
      *     reference, string id or null if no header exists.
-     * @param {Element|string|function():Element=} opt_content Content element
+     * @param {?Element|string|function():Element=} opt_content Content element
      *     (if any), either element reference or string id.  If skipped, the caller
      *     should handle the TOGGLE event in its own way. If a function is passed,
      *     then if will be called to create the content element the first time the
@@ -40,12 +40,12 @@ export class Zippy extends EventsEventTarget {
      * @param {boolean=} opt_expanded Initial expanded/visibility state. If
      *     undefined, attempts to infer the state from the DOM. Setting visibility
      *     using one of the standard Soy templates guarantees correct inference.
-     * @param {Element|string=} opt_expandedHeader Element to use as the header when
+     * @param {?Element|string=} opt_expandedHeader Element to use as the header when
      *     the zippy is expanded.
      * @param {DomHelper=} opt_domHelper An optional DOM helper.
      * @param {Role<string>=} opt_role ARIA role, default TAB.
      */
-    constructor(header: string | Element | null, opt_content?: string | Element | (() => Element) | undefined, opt_expanded?: boolean | undefined, opt_expandedHeader?: string | Element | undefined, opt_domHelper?: goog_dom.DomHelper | undefined, opt_role?: any);
+    constructor(header: string | Element | null, opt_content?: string | Element | (() => Element) | null | undefined, opt_expanded?: boolean | undefined, opt_expandedHeader?: string | Element | null | undefined, opt_domHelper?: goog_dom.DomHelper | undefined, opt_role?: any);
     /**
      * Whether to listen for and handle mouse events; defaults to true.
      * @type {boolean}

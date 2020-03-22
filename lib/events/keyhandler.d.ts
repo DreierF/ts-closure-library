@@ -126,11 +126,11 @@ export class KeyEvent extends EventsBrowserEvent {
 export class KeyHandler extends goog_events.EventTarget {
     /**
      * A wrapper around an element that you want to listen to keyboard events on.
-     * @param {Element|Document=} opt_element The element or document to listen on.
+     * @param {?Element|Document=} opt_element The element or document to listen on.
      * @param {boolean=} opt_capture Whether to listen for browser events in
      *     capture phase (defaults to false).
      */
-    constructor(opt_element?: Element | Document | undefined, opt_capture?: boolean | undefined);
+    constructor(opt_element?: Element | Document | null | undefined, opt_capture?: boolean | undefined);
     /**
      * This is the element that we will listen to the real keyboard events on.
      * @type {?Element|?Document|null}
@@ -205,17 +205,17 @@ export class KeyHandler extends goog_events.EventTarget {
     handleEvent(e: EventsBrowserEvent | null): void;
     /**
      * Returns the element listened on for the real keyboard events.
-     * @return {Element|Document|null} The element listened on for the real
+     * @return {?Element|Document|null} The element listened on for the real
      *     keyboard events.
      */
     getElement(): Element | Document | null;
     /**
      * Adds the proper key event listeners to the element.
-     * @param {Element|Document} element The element to listen on.
+     * @param {?Element|Document} element The element to listen on.
      * @param {boolean=} opt_capture Whether to listen for browser events in
      *     capture phase (defaults to false).
      */
-    attach(element: Element | Document, opt_capture?: boolean | undefined): void;
+    attach(element: Element | Document | null, opt_capture?: boolean | undefined): void;
     /**
      * Removes the listeners that may exist.
      */

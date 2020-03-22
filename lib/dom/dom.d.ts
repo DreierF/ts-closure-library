@@ -191,10 +191,10 @@ export class DomHelper {
     /**
      * Returns an array of all the elements with the provided className.
      * @param {string} className the name of the class to look for.
-     * @param {Element|Document=} opt_el Optional element to look in.
+     * @param {?Element|Document=} opt_el Optional element to look in.
      * @return {!ArrayLike<!Element>} The items found with the class name provided.
      */
-    getElementsByClass(className: string, opt_el?: Element | Document | undefined): ArrayLike<Element>;
+    getElementsByClass(className: string, opt_el?: Element | Document | null | undefined): ArrayLike<Element>;
     /**
      * Returns the first element we find matching the provided class name.
      * @param {string} className the name of the class to look for.
@@ -392,11 +392,11 @@ export class DomHelper {
     /**
      * Flattens an element. That is, removes it and replace it with its children.
      * @param {?Element} element The element to flatten.
-     * @return {Element|undefined} The original element, detached from the document
+     * @return {?Element|undefined} The original element, detached from the document
      *     tree, sans children, or undefined if the element was already not in the
      *     document.
      */
-    flattenElement(element: Element | null): Element | undefined;
+    flattenElement(element: Element | null): Element | null | undefined;
     /**
      * Returns an array containing just the element children of the given element.
      * @param {?Element} element The element whose element children we want.
@@ -900,11 +900,11 @@ export function findNodes(root: Node | null, p: (arg0: Node) => boolean): Node[]
  * Flattens an element. That is, removes it and replace it with its children.
  * Does nothing if the element is not in the document.
  * @param {?Element} element The element to flatten.
- * @return {Element|undefined} The original element, detached from the document
+ * @return {?Element|undefined} The original element, detached from the document
  *     tree, sans children; or undefined, if the element was not in the document
  *     to begin with.
  */
-export function flattenElement(element: Element | null): Element | undefined;
+export function flattenElement(element: Element | null): Element | null | undefined;
 /**
  * Determines the active element in the given document.
  * @param {?Document} doc The document to look in.
@@ -1020,10 +1020,10 @@ export function getElement(element: string | Element): Element | null;
  * Returns the first element with the provided className.
  *
  * @param {string} className the name of the class to look for.
- * @param {Element|Document=} opt_el Optional element to look in.
+ * @param {?Element|Document=} opt_el Optional element to look in.
  * @return {?Element} The first item with the class name provided.
  */
-export function getElementByClass(className: string, opt_el?: Element | Document | undefined): Element | null;
+export function getElementByClass(className: string, opt_el?: Element | Document | null | undefined): Element | null;
 /**
  * Gets the first element matching the tag and the class.
  *

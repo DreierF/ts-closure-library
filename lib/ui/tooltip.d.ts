@@ -96,12 +96,12 @@ export class Tooltip extends Popup {
      * slight delay, when the the cursor is over the element or the element gains
      * focus.
      *
-     * @param {Element|string=} opt_el Element to display tooltip for, either
+     * @param {?Element|string=} opt_el Element to display tooltip for, either
      *     element reference or string id.
      * @param {?string=} opt_str Text message to display in tooltip.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(opt_el?: string | Element | undefined, opt_str?: string | null | undefined, opt_domHelper?: googdom.DomHelper | undefined);
+    constructor(opt_el?: string | Element | null | undefined, opt_str?: string | null | undefined, opt_domHelper?: googdom.DomHelper | undefined);
     /**
      * Active element reference. Used by the delayed show functionality to keep
      * track of the element the mouse is over or the element with focus.
@@ -149,10 +149,10 @@ export class Tooltip extends Popup {
      * this tooltip, anchor becomes that second element, even if its show is
      * cancelled and the original tooltip survives.
      *
-     * @type {Element|undefined}
+     * @type {?Element|undefined}
      * @protected
      */
-    anchor: Element | undefined;
+    anchor: (Element | undefined) | null;
     /**
      * Whether the anchor has seen the cursor move or has received focus since the
      * tooltip was last shown. Used to ignore mouse over events triggered by view
@@ -220,18 +220,18 @@ export class Tooltip extends Popup {
      * Attach to element. Tooltip will be displayed when the cursor is over the
      * element or when the element has been active for a few milliseconds.
      *
-     * @param {Element|string} el Element to display tooltip for, either element
+     * @param {?Element|string} el Element to display tooltip for, either element
      *                            reference or string id.
      */
-    attach(el: string | Element): void;
+    attach(el: string | Element | null): void;
     /**
      * Detach from element(s).
      *
-     * @param {Element|string=} opt_el Element to detach from, either element
+     * @param {?Element|string=} opt_el Element to detach from, either element
      *                                reference or string id. If no element is
      *                                specified all are detached.
      */
-    detach(opt_el?: string | Element | undefined): void;
+    detach(opt_el?: string | Element | null | undefined): void;
     /**
      * Detach from element.
      *

@@ -61,11 +61,11 @@ export function getClientLeftTop(el: Element | null): Coordinate;
  * Returns the position of the event or the element's border box relative to
  * the client viewport. If an event is passed, and if this event is a "touch"
  * event, then the position of the first changedTouches will be returned.
- * @param {Element|Event|EventsEvent} el Element or a mouse / touch event.
+ * @param {?Element|Event|EventsEvent} el Element or a mouse / touch event.
  * @return {!Coordinate} The position.
  * @suppress {checkTypes}
  */
-export function getClientPosition(el: Element | Event | EventsEvent): Coordinate;
+export function getClientPosition(el: Element | Event | EventsEvent | null): Coordinate;
 /**
  * Returns the viewport element for a particular document
  * @param {Node=} opt_node DOM node (Document is OK) to get the viewport element
@@ -263,13 +263,13 @@ export function getPosition(element: Element | null): Coordinate;
 /**
  * Returns the position of an element relative to another element in the
  * document.  A relative to B
- * @param {Element|Event|EventsEvent} a Element or mouse event whose
+ * @param {?Element|Event|EventsEvent} a Element or mouse event whose
  *     position we're calculating.
- * @param {Element|Event|EventsEvent} b Element or mouse event position
+ * @param {?Element|Event|EventsEvent} b Element or mouse event position
  *     is relative to.
  * @return {!Coordinate} The relative position.
  */
-export function getRelativePosition(a: Element | Event | EventsEvent, b: Element | Event | EventsEvent): Coordinate;
+export function getRelativePosition(a: Element | Event | EventsEvent | null, b: Element | Event | EventsEvent | null): Coordinate;
 /**
  * Returns the scroll bar width (represents the width of both horizontal
  * and vertical scroll).
@@ -631,10 +631,10 @@ export function toStyleAttribute(obj: any): string;
 export function translateRectForAnotherFrame(rect: Rect | null, origBase: googdom.DomHelper | null, newBase: googdom.DomHelper | null): void;
 /**
  * Removes the styles added by {@link #installStyles}.
- * @param {Element|StyleSheet} styleSheet The value returned by
+ * @param {?Element|StyleSheet} styleSheet The value returned by
  *     {@link #installStyles}.
  */
-export function uninstallStyles(styleSheet: Element | StyleSheet): void;
+export function uninstallStyles(styleSheet: Element | StyleSheet | null): void;
 import { Box } from "../math/box.js";
 import { Size } from "../math/size.js";
 import { Rect } from "../math/rect.js";

@@ -77,9 +77,9 @@ export class Renderer extends goog_events.EventTarget {
     /**
      * The anchor element to position the rendered autocompleter against.
      * @protected
-      * @type {Element|undefined}
+      * @type {?Element|undefined}
      */
-    target_: Element | undefined;
+    target_: (Element | undefined) | null;
     /**
      * The element on which to base the width of the autocomplete.
      * @protected

@@ -147,10 +147,10 @@ export class Container<T> extends Ui_Component {
     getKeyEventTarget(): Element | null;
     /**
      * Attaches an element on which to listen for key events.
-     * @param {Element|undefined} element The element to attach, or null/undefined
+     * @param {?Element|undefined} element The element to attach, or null/undefined
      *     to attach to the default element.
      */
-    setKeyEventTarget(element: Element | undefined): void;
+    setKeyEventTarget(element: Element | null | undefined): void;
     /**
      * Returns the keyboard event handler for this container, lazily created the
      * first time this method is called.  The keyboard event handler listens for

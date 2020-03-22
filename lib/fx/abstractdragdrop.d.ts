@@ -87,12 +87,12 @@ export class AbstractDragDrop extends goog_events.EventTarget {
     /**
      * Add item to drag object.
      *
-     * @param {Element|string} element Dom Node, or string representation of node
+     * @param {?Element|string} element Dom Node, or string representation of node
      *     id, to be used as drag source/drop target.
      * @throws Error Thrown if called on instance of abstract class
      * @abstract
      */
-    addItem(element: string | Element): void;
+    addItem(element: string | Element | null): void;
     /**
      * Associate drop target with drag element.
      *
@@ -485,9 +485,9 @@ export class DragDropEvent extends EventsEvent {
     dropTargetItem: DragDropItem | undefined;
     /**
      * The actual element of the drop target that is the target for this event.
-     * @type {Element|undefined}
+     * @type {?Element|undefined}
      */
-    dropTargetElement: Element | undefined;
+    dropTargetElement: (Element | undefined) | null;
     /**
      * X-Position relative to the screen.
      * @type {number|undefined}
@@ -532,12 +532,12 @@ export class DragDropItem extends goog_events.EventTarget {
     /**
      * Class representing a source or target element for drag and drop operations.
      *
-     * @param {Element|string} element Dom Node, or string representation of node
+     * @param {?Element|string} element Dom Node, or string representation of node
      *     id, to be used as drag source/drop target.
      * @param {Object=} opt_data Data associated with the source/target.
      * @throws Error If no element argument is provided or if the type is invalid
      */
-    constructor(element: string | Element, opt_data?: any);
+    constructor(element: string | Element | null, opt_data?: any);
     /**
      * Reference to drag source/target element
      * @type {?Element}
