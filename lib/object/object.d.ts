@@ -237,6 +237,7 @@ export function getCount(obj: any): number;
  *
  * @param {?Object} obj The object from which to get the keys.
  * @return {!Array<string>} Array of property keys.
+ * deprecated Use Object.keys(obj) instead
  */
 export function getKeys(obj: any): string[];
 /**

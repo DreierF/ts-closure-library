@@ -730,6 +730,7 @@ export function append(parent: Node, ...args: any[]): void;
  * Appends a child to a node.
  * @param {?Node} parent Parent.
  * @param {?Node} child Child.
+ * @deprecated Use Element.appendChild instead (dom.appendChild(p,c) -> p.appendChild(c))
  */
 export function appendChild(parent: Node | null, child: Node | null): void;
 /**

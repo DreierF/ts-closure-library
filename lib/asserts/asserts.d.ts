@@ -68,7 +68,7 @@ export const ENABLE_ASSERTS: boolean;
  * @throws {AssertionError} When the condition evaluates to false.
  * @closurePrimitive {asserts.truthy}
  */
-export function assert<T>(condition: T, opt_message?: string | undefined, ...args: any[]): T;
+export function assert<T>(condition: T, opt_message?: string | undefined, ...args: any[]): asserts condition;
 /**
  * Checks if the value is an Array if ENABLE_ASSERTS is true.
  * @param {*} value The value to check.
