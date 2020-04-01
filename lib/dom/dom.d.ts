@@ -39,7 +39,8 @@ export function $(element: string | Element | null): Element | null;
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function $$<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): ArrayLike<R>;
+export function $$(opt_tag?: string | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): ArrayLike<Element>;
+export function $$<T>(opt_tag?: TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): ArrayLike<T>;
 /**
  * Returns a dom node with a set of attributes.  This function accepts varargs
  * for subsequent nodes to be added.  Subsequent nodes will be added to the
@@ -1093,7 +1094,8 @@ export function getElementsByTagName<T>(tagName: TagName<T>, opt_parent?: Elemen
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function getElementsByTagNameAndClass<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): ArrayLike<R>;
+export function getElementsByTagNameAndClass(opt_tag?: string | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): ArrayLike<Element>;
+export function getElementsByTagNameAndClass<T>(opt_tag?: TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): ArrayLike<T>;
 /**
  * Returns the first child node that is an element.
  * @param {?Node} node The node to get the first child element of.
