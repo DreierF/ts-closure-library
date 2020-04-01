@@ -67,9 +67,9 @@ declare class events_BrowserEvent extends EventsEvent {
      * The content of this object will not be initialized if no event object is
      * provided. If this is the case, init() needs to be invoked separately.
      * @param {Event=} opt_e Browser event object.
-     * @param {EventTarget=} opt_currentTarget Current target for event.
+     * @param {?EventTarget=} opt_currentTarget Current target for event.
      */
-    constructor(opt_e?: Event | undefined, opt_currentTarget?: EventTarget | undefined);
+    constructor(opt_e?: Event | undefined, opt_currentTarget?: EventTarget | null | undefined);
     /**
      * Target that fired the event.
      * @override
@@ -186,9 +186,9 @@ declare class events_BrowserEvent extends EventsEvent {
      * Accepts a browser event object and creates a patched, cross browser event
      * object.
      * @param {?Event} e Browser event object.
-     * @param {EventTarget=} opt_currentTarget Current target for event.
+     * @param {?EventTarget=} opt_currentTarget Current target for event.
      */
-    init(e: Event | null, opt_currentTarget?: EventTarget | undefined): void;
+    init(e: Event | null, opt_currentTarget?: EventTarget | null | undefined): void;
     /**
      * Tests to see which button was pressed during the event. This is really only
      * useful in IE and Gecko browsers. And in IE, it's only useful for

@@ -453,7 +453,7 @@ export class DragDropEvent extends EventsEvent {
      * @param {?DragDropItem} sourceItem Source item.
      * @param {AbstractDragDrop=} opt_target Target drag drop object.
      * @param {DragDropItem=} opt_targetItem Target item.
-     * @param {Element=} opt_targetElement Target element.
+     * @param {?Element=} opt_targetElement Target element.
      * @param {number=} opt_clientX X-Position relative to the screen.
      * @param {number=} opt_clientY Y-Position relative to the screen.
      * @param {number=} opt_x X-Position relative to the viewport.
@@ -462,7 +462,7 @@ export class DragDropEvent extends EventsEvent {
      * @param {EventsBrowserEvent=} opt_browserEvent The browser event
      *     that caused this dragdrop event.
      */
-    constructor(type: string, source: AbstractDragDrop | null, sourceItem: DragDropItem | null, opt_target?: AbstractDragDrop | undefined, opt_targetItem?: DragDropItem | undefined, opt_targetElement?: Element | undefined, opt_clientX?: number | undefined, opt_clientY?: number | undefined, opt_x?: number | undefined, opt_y?: number | undefined, opt_subtarget?: any, opt_browserEvent?: EventsBrowserEvent | undefined);
+    constructor(type: string, source: AbstractDragDrop | null, sourceItem: DragDropItem | null, opt_target?: AbstractDragDrop | undefined, opt_targetItem?: DragDropItem | undefined, opt_targetElement?: Element | null | undefined, opt_clientX?: number | undefined, opt_clientY?: number | undefined, opt_x?: number | undefined, opt_y?: number | undefined, opt_subtarget?: any, opt_browserEvent?: EventsBrowserEvent | undefined);
     /**
      * Reference to the source AbstractDragDrop object.
      * @type {?AbstractDragDrop}
@@ -665,10 +665,10 @@ declare class ActiveDropTarget_ {
      * @param {AbstractDragDrop=} opt_target Target that contains the item
            associated with position.
      * @param {DragDropItem=} opt_item Item associated with position.
-     * @param {Element=} opt_element Element of item associated with position.
+     * @param {?Element=} opt_element Element of item associated with position.
      * @private
      */
-    constructor(box: Box | null, opt_target?: AbstractDragDrop | undefined, opt_item?: DragDropItem | undefined, opt_element?: Element | undefined);
+    constructor(box: Box | null, opt_target?: AbstractDragDrop | undefined, opt_item?: DragDropItem | undefined, opt_element?: Element | null | undefined);
     /**
      * Box describing the position and dimension of the target item
      * @type {?Box}

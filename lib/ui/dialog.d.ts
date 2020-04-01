@@ -629,13 +629,13 @@ declare class Dialog_Event extends EventsEvent {
     /**
      * Dialog event class.
      * @param {string} key Key identifier for the button.
-     * @param {string|Element} caption Caption on the button (might be i18nlized).
+     * @param {string|?Element} caption Caption on the button (might be i18nlized).
      */
-    constructor(key: string, caption: string | Element);
+    constructor(key: string, caption: string | Element | null);
     /** @const */
     key: string;
     /** @const */
-    caption: string | Element;
+    caption: string | Element | null;
 }
 export namespace EventType {
     export const SELECT: string;

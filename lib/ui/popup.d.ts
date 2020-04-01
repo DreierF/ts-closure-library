@@ -27,12 +27,12 @@ export class Popup extends Ui_PopupBase {
      * This works cross browser and thus does not use IE's createPopup feature
      * which supports extending outside the edge of the brower window.
      *
-     * @param {Element=} opt_element A DOM element for the popup.
+     * @param {?Element=} opt_element A DOM element for the popup.
      * @param {AbstractPosition=} opt_position A positioning helper
      *     object.
      * @param {boolean=} opt_dontSetElement EDITED: Disables calling of setElement in the constructor.
      */
-    constructor(opt_element?: Element | undefined, opt_position?: AbstractPosition | undefined, opt_dontSetElement?: boolean | undefined);
+    constructor(opt_element?: Element | null | undefined, opt_position?: AbstractPosition | undefined, opt_dontSetElement?: boolean | undefined);
     /**
      * Margin for the popup used in positioning algorithms.
      *

@@ -88,13 +88,13 @@ export class Dragger extends goog_events.EventTarget {
      * A class that allows mouse or touch-based dragging (moving) of an element
      *
      * @param {?Element} target The element that will be dragged.
-     * @param {Element=} opt_handle An optional handle to control the drag, if null
+     * @param {?Element=} opt_handle An optional handle to control the drag, if null
      *     the target is used.
      * @param {Rect=} opt_limits Object containing left, top, width,
      *     and height.
      *
      */
-    constructor(target: Element | null, opt_handle?: Element | undefined, opt_limits?: Rect | undefined);
+    constructor(target: Element | null, opt_handle?: Element | null | undefined, opt_limits?: Rect | undefined);
     /**
      * Reference to drag target element.
      * @type {Element|null}

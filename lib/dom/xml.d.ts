@@ -59,11 +59,11 @@ export function selectNodes(node: Node | null, path: string): any;
 export function selectSingleNode(node: Node | null, path: string): Node | null;
 /**
  * Serializes an XML document or subtree to string.
- * @param {Document|Element} xml The document or the root node of the subtree.
+ * @param {Document|?Element} xml The document or the root node of the subtree.
  * @return {string} The serialized XML.
  * @throws {Error} if browser does not support XML serialization.
  */
-export function serialize(xml: Element | Document): string;
+export function serialize(xml: Element | Document | null): string;
 /**
  * Sets multiple attributes on an element. Differs from dom.setProperties
  * in that it exclusively uses the element's setAttributes method. Use this

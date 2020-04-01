@@ -204,7 +204,7 @@ export class EventHandler<SCOPE> extends GoogDisposable {
      * object that has implemented {@link events_EventTarget}. A listener can
      * only be added once to an object.
      *
-     * @param {EventTarget|events_EventTarget} src The node to listen to
+     * @param {?EventTarget|events_EventTarget} src The node to listen to
      *     events on.
      * @param {?EventWrapper} wrapper Event wrapper to use.
      * @param {function(this:SCOPE, ?):?|{handleEvent:function(?):?}|null} listener
@@ -215,13 +215,13 @@ export class EventHandler<SCOPE> extends GoogDisposable {
      * @this {THIS}
      * @template THIS
      */
-    listenWithWrapper<THIS_6>(src: EventTarget | events_EventTarget, wrapper: EventWrapper | null, listener: (this: SCOPE, arg1: any) => any, opt_capt?: boolean | undefined): THIS_6 | null;
+    listenWithWrapper<THIS_6>(src: EventTarget | events_EventTarget | null, wrapper: EventWrapper | null, listener: (this: SCOPE, arg1: any) => any, opt_capt?: boolean | undefined): THIS_6 | null;
     /**
      * Adds an event listener with a specific event wrapper on a DOM Node or an
      * object that has implemented {@link events_EventTarget}. A listener can
      * only be added once to an object.
      *
-     * @param {EventTarget|events_EventTarget} src The node to listen to
+     * @param {?EventTarget|events_EventTarget} src The node to listen to
      *     events on.
      * @param {?EventWrapper} wrapper Event wrapper to use.
      * @param {function(this:T, ?):?|{handleEvent:function(this:T, ?):?}|null}
@@ -233,13 +233,13 @@ export class EventHandler<SCOPE> extends GoogDisposable {
      * @this {THIS}
      * @template T, THIS
      */
-    listenWithWrapperAndScope<T, THIS_7>(src: EventTarget | events_EventTarget, wrapper: EventWrapper | null, listener: (this: T, arg1: any) => any, capture: boolean | undefined, scope: T): THIS_7 | null;
+    listenWithWrapperAndScope<T, THIS_7>(src: EventTarget | events_EventTarget | null, wrapper: EventWrapper | null, listener: (this: T, arg1: any) => any, capture: boolean | undefined, scope: T): THIS_7 | null;
     /**
      * Adds an event listener with a specific event wrapper on a DOM Node or an
      * object that has implemented {@link events_EventTarget}. A listener can
      * only be added once to an object.
      *
-     * @param {EventTarget|events_EventTarget} src The node to listen to
+     * @param {?EventTarget|events_EventTarget} src The node to listen to
      *     events on.
      * @param {?EventWrapper} wrapper Event wrapper to use.
      * @param {function(?):?|{handleEvent:function(?):?}|null} listener Callback
@@ -252,7 +252,7 @@ export class EventHandler<SCOPE> extends GoogDisposable {
      * @template THIS
      * @private
      */
-    listenWithWrapper_<THIS_8>(src: EventTarget | events_EventTarget, wrapper: EventWrapper | null, listener: (arg0: any) => any, opt_capt?: boolean | undefined, opt_scope?: any): THIS_8 | null;
+    listenWithWrapper_<THIS_8>(src: EventTarget | events_EventTarget | null, wrapper: EventWrapper | null, listener: (arg0: any) => any, opt_capt?: boolean | undefined, opt_scope?: any): THIS_8 | null;
     /**
      * @return {number} Number of listeners registered by this handler.
      */
@@ -277,7 +277,7 @@ export class EventHandler<SCOPE> extends GoogDisposable {
     /**
      * Removes an event listener which was added with listenWithWrapper().
      *
-     * @param {EventTarget|events_EventTarget} src The target to stop
+     * @param {?EventTarget|events_EventTarget} src The target to stop
      *     listening to events on.
      * @param {?EventWrapper} wrapper Event wrapper to use.
      * @param {function(?):?|{handleEvent:function(?):?}|null} listener The
@@ -290,7 +290,7 @@ export class EventHandler<SCOPE> extends GoogDisposable {
      * @this {THIS}
      * @template THIS
      */
-    unlistenWithWrapper<THIS_10>(src: EventTarget | events_EventTarget, wrapper: EventWrapper | null, listener: (arg0: any) => any, opt_capt?: boolean | undefined, opt_scope?: any): THIS_10 | null;
+    unlistenWithWrapper<THIS_10>(src: EventTarget | events_EventTarget | null, wrapper: EventWrapper | null, listener: (arg0: any) => any, opt_capt?: boolean | undefined, opt_scope?: any): THIS_10 | null;
     /**
      * Unlistens to all events.
      */
@@ -609,7 +609,7 @@ export namespace Listenable {
     export const IMPLEMENTED_BY_PROP: string;
 }
 /**
- * @typedef {EventTarget|Listenable}
+ * @typedef {?EventTarget|Listenable}
  */
 export let ListenableType: any;
 /**
@@ -626,13 +626,13 @@ export class Listener {
      * Simple class that stores information about a listener
      * @param {function(?):?} listener Callback function.
      * @param {?Function} proxy Wrapper for the listener that patches the event.
-     * @param {EventTarget|Listenable} src Source object for
+     * @param {?EventTarget|Listenable} src Source object for
      *     the event.
      * @param {string} type Event type.
      * @param {boolean} capture Whether in capture or bubble phase.
      * @param {Object=} opt_handler Object in whose context to execute the callback.
      */
-    constructor(listener: (arg0: any) => any, proxy: Function | null, src: EventTarget | Listenable, type: string, capture: boolean, opt_handler?: any);
+    constructor(listener: (arg0: any) => any, proxy: Function | null, src: EventTarget | Listenable | null, type: string, capture: boolean, opt_handler?: any);
     /**
      * If monitoring the Listener instances is enabled, stores the
      * creation stack trace of the Disposable instance.
@@ -650,9 +650,9 @@ export class Listener {
     proxy: Function | null;
     /**
      * Object or node that callback is listening to
-     * @type {EventTarget|Listenable}
+     * @type {?EventTarget|Listenable}
      */
-    src: EventTarget | Listenable;
+    src: (EventTarget | Listenable) | null;
     /**
      * The event type.
      * @const {string}
@@ -704,11 +704,11 @@ export class Listener {
 export class ListenerMap {
     /**
      * Creates a new listener map.
-     * @param {EventTarget|Listenable} src The src object.
+     * @param {?EventTarget|Listenable} src The src object.
      */
-    constructor(src: EventTarget | Listenable);
-    /** @type {EventTarget|Listenable} */
-    src: EventTarget | Listenable;
+    constructor(src: EventTarget | Listenable | null);
+    /** @type {?EventTarget|Listenable} */
+    src: (EventTarget | Listenable) | null;
     /**
      * Maps of event type to an array of listeners.
      * @type {!Object<string, !Array<!Listener>>}
@@ -1003,7 +1003,7 @@ export function fireListeners(obj: any, type: string | EventId<any>, capture: bo
  * Gets the Listener for the event or null if no such listener is
  * in use.
  *
- * @param {EventTarget|Listenable} src The target from
+ * @param {?EventTarget|Listenable} src The target from
  *     which to get listeners.
  * @param {?string|!EventId<EVENTOBJ>} type The type of the event.
  * @param {function(EVENTOBJ):?|{handleEvent:function(?):?}|null} listener The
@@ -1015,7 +1015,7 @@ export function fireListeners(obj: any, type: string | EventId<any>, capture: bo
  * @return {?ListenableKey} the found listener or null if not found.
  * @template EVENTOBJ
  */
-export function getListener<EVENTOBJ>(src: EventTarget | Listenable, type: string | EventId<EVENTOBJ> | null, listener: (arg0: EVENTOBJ) => any, opt_capt?: boolean | undefined, opt_handler?: any): ListenableKey | null;
+export function getListener<EVENTOBJ>(src: EventTarget | Listenable | null, type: string | EventId<EVENTOBJ> | null, listener: (arg0: EVENTOBJ) => any, opt_capt?: boolean | undefined, opt_handler?: any): ListenableKey | null;
 /**
  * Gets the listeners for a given object, type and capture phase.
  *
@@ -1052,7 +1052,7 @@ export function getUniqueId(identifier: string): string;
  * specified signature. If either the type or capture parameters are
  * unspecified, the function will match on the remaining criteria.
  *
- * @param {EventTarget|Listenable} obj Target to get
+ * @param {?EventTarget|Listenable} obj Target to get
  *     listeners for.
  * @param {string|!EventId=} opt_type Event type.
  * @param {boolean=} opt_capture Whether to check for capture or bubble-phase
@@ -1060,7 +1060,7 @@ export function getUniqueId(identifier: string): string;
  * @return {boolean} Whether an event target has one or more listeners matching
  *     the requested type and/or capture phase.
  */
-export function hasListener(obj: EventTarget | Listenable, opt_type?: string | EventId<any> | undefined, opt_capture?: boolean | undefined): boolean;
+export function hasListener(obj: EventTarget | Listenable | null, opt_type?: string | EventId<any> | undefined, opt_capture?: boolean | undefined): boolean;
 /**
  * Adds an event listener for a specific event on a native event
  * target (such as a DOM element) or an object that has implemented
@@ -1070,7 +1070,7 @@ export function hasListener(obj: EventTarget | Listenable, opt_type?: string | E
  * (registered via listenOnce), it will no longer be a one-off
  * listener after a call to listen().
  *
- * @param {EventTarget|Listenable} src The node to listen
+ * @param {?EventTarget|Listenable} src The node to listen
  *     to events on.
  * @param {string|Array<string>|
  *     !EventId<EVENTOBJ>|!Array<!EventId<EVENTOBJ>>}
@@ -1084,7 +1084,7 @@ export function hasListener(obj: EventTarget | Listenable, opt_type?: string | E
  * @template T,EVENTOBJ
  * @suppress{checkTypes}
  */
-export function listen<T, EVENTOBJ>(src: EventTarget | Listenable, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => boolean|void, opt_options?: boolean | AddEventListenerOptions | undefined, opt_handler?: T | undefined): number | ListenableKey | null;
+export function listen<T, EVENTOBJ>(src: EventTarget | Listenable | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => boolean|void, opt_options?: boolean | AddEventListenerOptions | undefined, opt_handler?: T | undefined): number | ListenableKey | null;
 /**
  * Adds an event listener for a specific event on a native event
  * target (such as a DOM element) or an object that has implemented
@@ -1098,7 +1098,7 @@ export function listen<T, EVENTOBJ>(src: EventTarget | Listenable, type: string 
  * one-off listener, listenOnce does not modify the listeners (it is
  * still a once listener).
  *
- * @param {EventTarget|Listenable} src The node to listen
+ * @param {?EventTarget|Listenable} src The node to listen
  *     to events on.
  * @param {string|Array<string>|
  *     !EventId<EVENTOBJ>|!Array<!EventId<EVENTOBJ>>}
@@ -1111,13 +1111,13 @@ export function listen<T, EVENTOBJ>(src: EventTarget | Listenable, type: string 
  * @template T,EVENTOBJ
  * @suppress{checkTypes}
  */
-export function listenOnce<T, EVENTOBJ>(src: EventTarget | Listenable, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => boolean|void, opt_options?: boolean | AddEventListenerOptions | undefined, opt_handler?: T | undefined): number | ListenableKey | null;
+export function listenOnce<T, EVENTOBJ>(src: EventTarget | Listenable | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => boolean|void, opt_options?: boolean | AddEventListenerOptions | undefined, opt_handler?: T | undefined): number | ListenableKey | null;
 /**
  * Adds an event listener with a specific event wrapper on a DOM Node or an
  * object that has implemented {@link Listenable}. A listener can
  * only be added once to an object.
  *
- * @param {EventTarget|Listenable} src The target to
+ * @param {?EventTarget|Listenable} src The target to
  *     listen to events on.
  * @param {?EventWrapper} wrapper Event wrapper to use.
  * @param {function(this:T, ?):?|{handleEvent:function(?):?}|null} listener
@@ -1127,7 +1127,7 @@ export function listenOnce<T, EVENTOBJ>(src: EventTarget | Listenable, type: str
  * @param {T=} opt_handler Element in whose scope to call the listener.
  * @template T
  */
-export function listenWithWrapper<T>(src: EventTarget | Listenable, wrapper: EventWrapper | null, listener: (this: T, arg1: any) => any, opt_capt?: boolean | undefined, opt_handler?: T | undefined): void;
+export function listenWithWrapper<T>(src: EventTarget | Listenable | null, wrapper: EventWrapper | null, listener: (this: T, arg1: any) => any, opt_capt?: boolean | undefined, opt_handler?: T | undefined): void;
 /**
  * Installs exception protection for the browser event entry point using the
  * given error handler.
@@ -1150,7 +1150,7 @@ export function removeAll(obj: any, opt_type?: string | EventId<any> | undefined
 /**
  * Removes an event listener which was added with listen().
  *
- * @param {EventTarget|Listenable} src The target to stop
+ * @param {?EventTarget|Listenable} src The target to stop
  *     listening to events on.
  * @param {string|Array<string>|
  *     !EventId<EVENTOBJ>|!Array<!EventId<EVENTOBJ>>}
@@ -1165,7 +1165,7 @@ export function removeAll(obj: any, opt_type?: string | EventId<any> | undefined
  * @suppress{checkTypes}
  * @template EVENTOBJ
  */
-export function unlisten<EVENTOBJ>(src: EventTarget | Listenable, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (arg0: any) => any, opt_options?: boolean | EventListenerOptions | undefined, opt_handler?: any): boolean | null;
+export function unlisten<EVENTOBJ>(src: EventTarget | Listenable | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (arg0: any) => any, opt_options?: boolean | EventListenerOptions | undefined, opt_handler?: any): boolean | null;
 /**
  * Removes an event listener which was added with listen() by the key
  * returned by listen().
@@ -1180,7 +1180,7 @@ export function unlistenByKey(key: number | ListenableKey | null): boolean;
 /**
  * Removes an event listener which was added with listenWithWrapper().
  *
- * @param {EventTarget|Listenable} src The target to stop
+ * @param {?EventTarget|Listenable} src The target to stop
  *     listening to events on.
  * @param {?EventWrapper} wrapper Event wrapper to use.
  * @param {function(?):?|{handleEvent:function(?):?}|null} listener The
@@ -1190,7 +1190,7 @@ export function unlistenByKey(key: number | ListenableKey | null): boolean;
  *     event.
  * @param {Object=} opt_handler Element in whose scope to call the listener.
  */
-export function unlistenWithWrapper(src: EventTarget | Listenable, wrapper: EventWrapper | null, listener: (arg0: any) => any, opt_capt?: boolean | undefined, opt_handler?: any): void;
+export function unlistenWithWrapper(src: EventTarget | Listenable | null, wrapper: EventWrapper | null, listener: (arg0: any) => any, opt_capt?: boolean | undefined, opt_handler?: any): void;
 /**
  * @param {Object|Function} listener The listener function or an
  *     object that contains handleEvent method.

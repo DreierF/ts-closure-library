@@ -50,7 +50,7 @@ export class Renderer extends goog_events.EventTarget {
     /**
      * Class for rendering the results of an auto-complete in a drop down list.
      *
-     * @param {Element=} opt_parentNode optional reference to the parent element
+     * @param {?Element=} opt_parentNode optional reference to the parent element
      *     that will hold the autocomplete elements. goog_dom.getDocument().body
      *     will be used if this is null.
      * @param {?({renderRow}|{render})=} opt_customRenderer Custom full renderer to
@@ -63,7 +63,7 @@ export class Renderer extends goog_events.EventTarget {
      *     default.
      * @suppress {underscore}
      */
-    constructor(opt_parentNode?: Element | undefined, opt_customRenderer?: {
+    constructor(opt_parentNode?: Element | null | undefined, opt_customRenderer?: {
         renderRow: any;
     } | {
         render: any;
@@ -338,10 +338,10 @@ export class Renderer extends goog_events.EventTarget {
      *
      * @param {Array<!Object>} rows Matching UI rows.
      * @param {string} token Token we are currently matching against.
-     * @param {Element=} opt_target Current HTML node, will position popup beneath
+     * @param {?Element=} opt_target Current HTML node, will position popup beneath
      *     this node.
      */
-    renderRows(rows: any[], token: string, opt_target?: Element | undefined): void;
+    renderRows(rows: any[], token: string, opt_target?: Element | null | undefined): void;
     /**
      * Hide the object.
      */

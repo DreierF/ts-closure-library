@@ -141,14 +141,14 @@ export function getComputedZIndex(element: Element | null): string | number;
  * aligned as close to the container's top left corner as possible.
  *
  * @param {?Element} element The element to make visible.
- * @param {Element=} opt_container The container to scroll. If not set, then the
+ * @param {?Element=} opt_container The container to scroll. If not set, then the
  *     document scroll element will be used.
  * @param {boolean=} opt_center Whether to center the element in the container.
  *     Defaults to false.
  * @return {!Coordinate} The new scroll position of the container,
  *     in form of Coordinate(scrollLeft, scrollTop).
  */
-export function getContainerOffsetToScrollInto(element: Element | null, opt_container?: Element | undefined, opt_center?: boolean | undefined): Coordinate;
+export function getContainerOffsetToScrollInto(element: Element | null, opt_container?: Element | null | undefined, opt_center?: boolean | undefined): Coordinate;
 /**
  * Gets the content box size for an element.  This is potentially expensive in
  * all browsers.
@@ -393,12 +393,12 @@ export function parseStyleAttribute(value: string): any;
  * aligned as close to the container's top left corner as possible.
  *
  * @param {?Element} element The element to make visible.
- * @param {Element=} opt_container The container to scroll. If not set, then the
+ * @param {?Element=} opt_container The container to scroll. If not set, then the
  *     document scroll element will be used.
  * @param {boolean=} opt_center Whether to center the element in the container.
  *     Defaults to false.
  */
-export function scrollIntoContainerView(element: Element | null, opt_container?: Element | undefined, opt_center?: boolean | undefined): void;
+export function scrollIntoContainerView(element: Element | null, opt_container?: Element | null | undefined, opt_center?: boolean | undefined): void;
 /**
  * Sets the border box size of an element. This is potentially expensive in IE
  * if the document is CSS1Compat mode

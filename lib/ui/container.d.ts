@@ -564,9 +564,9 @@ export class ContainerRenderer {
      * @param {?Container} container Container whose children are to be
      *     discovered.
      * @param {?Element} element Element whose children are to be decorated.
-     * @param {Element=} opt_firstChild the first child to be decorated.
+     * @param {?Element=} opt_firstChild the first child to be decorated.
      */
-    decorateChildren(container: Container<any> | null, element: Element | null, opt_firstChild?: Element | undefined): void;
+    decorateChildren(container: Container<any> | null, element: Element | null, opt_firstChild?: Element | null | undefined): void;
     /**
      * Inspects the element, and creates an instance of {@link Control} or
      * an appropriate subclass best suited to decorate it.  Returns the control (or

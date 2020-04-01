@@ -654,7 +654,7 @@ export class Control<T> extends Ui_Component {
 }
 export namespace Control {
     export { setDecoratorByClassName as registerDecorator };
-    export function getDecorator(arg0: Element): Control<any>;
+    export function getDecorator(arg0: Element | null): Control<any>;
     export { IeMouseEventSequenceSimulator_ };
 }
 /**
@@ -709,12 +709,12 @@ export class ControlRenderer<CONTROL> {
      * to/from its root element. May add additional combined classes as needed in
      * IE6 and lower. Because of this, subclasses should use this method when
      * modifying class names on the control's root element.
-     * @param {CONTROL|Element} control Control instance (or root element)
+     * @param {CONTROL|?Element} control Control instance (or root element)
      *     to be updated.
      * @param {string} className CSS class name to add or remove.
      * @param {boolean} enable Whether to add or remove the class name.
      */
-    enableClassName(control: Element | CONTROL, className: string, enable: boolean): void;
+    enableClassName(control: Element | CONTROL | null, className: string, enable: boolean): void;
     /**
      * Updates the control's DOM by adding or removing the specified extra class
      * name to/from its element.

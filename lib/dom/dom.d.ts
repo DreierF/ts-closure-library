@@ -7,10 +7,10 @@ export type Appendable = any;
  *
  * If an Element is passed in, it is returned.
  *
- * @param {string|Element} element Element ID or a DOM node.
+ * @param {string|?Element} element Element ID or a DOM node.
  * @return {?Element} The element with the given ID, or the node passed in.
  */
-export function $(element: string | Element): Element | null;
+export function $(element: string | Element | null): Element | null;
 /**
  * Looks up elements by both tag and class name, using browser native functions
  * (`querySelectorAll`, `getElementsByTagName` or
@@ -30,7 +30,7 @@ export function $(element: string | Element): Element | null;
  *
  * @param {(string|?TagName<T>)=} opt_tag Element tag name.
  * @param {?string=} opt_class Optional class name.
- * @param {(Document|Element)=} opt_el Optional element to look in.
+ * @param {(Document|?Element)=} opt_el Optional element to look in.
  * @return {!ArrayLike<R>} Array-like list of elements (only a length property
  *     and numerical indices are guaranteed to exist). The members of the array
  *     are {!Element} if opt_tag is not a member of TagName or more
@@ -39,7 +39,7 @@ export function $(element: string | Element): Element | null;
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function $$<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | undefined): ArrayLike<R>;
+export function $$<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): ArrayLike<R>;
 /**
  * Returns a dom node with a set of attributes.  This function accepts varargs
  * for subsequent nodes to be added.  Subsequent nodes will be added to the
@@ -67,7 +67,8 @@ export function $$<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_c
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function $dom<T, R>(tagName: string | TagName<T>, opt_attributes?: any, ...args: any[]): R;
+export function $dom(tagName: string, opt_attributes?: any, ...args: any[]): Element;
+export function $dom<T>(tagName: TagName<T>, opt_attributes?: any, ...args: any[]): T;
 /**
  * @fileoverview Utilities for manipulating the browser's Document Object Model
  * Inspiration taken *heavily* from mochikit (http://mochikit.com/).
@@ -129,10 +130,10 @@ export class DomHelper {
     /**
      * Alias for `getElementById`. If a DOM node is passed in then we just
      * return that.
-     * @param {string|Element} element Element ID or a DOM node.
+     * @param {string|?Element} element Element ID or a DOM node.
      * @return {?Element} The element with the given ID, or the node passed in.
      */
-    getElement(element: string | Element): Element | null;
+    getElement(element: string | Element | null): Element | null;
     /**
      * Gets an element by id, asserting that the element is found.
      *
@@ -165,7 +166,7 @@ export class DomHelper {
      * @param {(string|?TagName<T>)=} opt_tag Element tag name or * for all
      *     tags.
      * @param {?string=} opt_class Optional class name.
-     * @param {(Document|Element)=} opt_el Optional element to look in.
+     * @param {(Document|?Element)=} opt_el Optional element to look in.
      * @return {!ArrayLike<R>} Array-like list of elements (only a length property
      *     and numerical indices are guaranteed to exist). The members of the array
      *     are {!Element} if opt_tag is not a member of TagName or more
@@ -174,20 +175,20 @@ export class DomHelper {
      * @template T
      * @template R := cond(isUnknown(T), 'Element', T) =:
      */
-    getElementsByTagNameAndClass<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | undefined): ArrayLike<R>;
+    getElementsByTagNameAndClass<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): ArrayLike<R>;
     /**
      * Gets the first element matching the tag and the class.
      *
      * @param {(string|?TagName<T>)=} opt_tag Element tag name.
      * @param {?string=} opt_class Optional class name.
-     * @param {(Document|Element)=} opt_el Optional element to look in.
+     * @param {(Document|?Element)=} opt_el Optional element to look in.
      * @return {?R} Reference to a DOM node. The return type is {Element|null} if
      *     tagName is a string or a more specific type if it is a member of
      *     TagName (e.g. {?HTMLAnchorElement} for TagName.A).
      * @template T
      * @template R := cond(isUnknown(T), 'Element', T) =:
      */
-    getElementByTagNameAndClass<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | undefined): R | null;
+    getElementByTagNameAndClass<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): R | null;
     /**
      * Returns an array of all the elements with the provided className.
      * @param {string} className the name of the class to look for.
@@ -198,10 +199,10 @@ export class DomHelper {
     /**
      * Returns the first element we find matching the provided class name.
      * @param {string} className the name of the class to look for.
-     * @param {(Element|Document)=} opt_el Optional element to look in.
+     * @param {(?Element|Document)=} opt_el Optional element to look in.
      * @return {?Element} The first item found with the class name provided.
      */
-    getElementByClass(className: string, opt_el?: Element | Document | undefined): Element | null;
+    getElementByClass(className: string, opt_el?: Element | Document | null | undefined): Element | null;
     /**
      * Ensures an element with the given className exists, and then returns the
      * first element with the provided className.
@@ -677,18 +678,18 @@ export class DomHelper {
     getCanvasContext2D(canvas: HTMLCanvasElement): CanvasRenderingContext2D;
     /**
      * Alias for `getElement`.
-     * @param {string|Element} element Element ID or a DOM node.
+     * @param {string|?Element} element Element ID or a DOM node.
      * @return {?Element} The element with the given ID, or the node passed in.
      * @deprecated Use {@link DomHelper.prototype.getElement} instead.
      */
-    $: (element: string | Element) => Element | null;
+    $: (element: string | Element | null) => Element | null;
     /**
      * Alias for `getElementsByTagNameAndClass`.
      * @deprecated Use DomHelper getElementsByTagNameAndClass.
      *
      * @param {(string|?TagName<T>)=} opt_tag Element tag name.
      * @param {?string=} opt_class Optional class name.
-     * @param {Element=} opt_el Optional element to look in.
+     * @param {?Element=} opt_el Optional element to look in.
      * @return {!ArrayLike<R>} Array-like list of elements (only a length property
      *     and numerical indices are guaranteed to exist). The members of the array
      *     are {!Element} if opt_tag is a string or more specific types if it is
@@ -697,7 +698,7 @@ export class DomHelper {
      * @template T
      * @template R := cond(isUnknown(T), 'Element', T) =:
      */
-    $$: <T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | undefined) => ArrayLike<R>;
+    $$: <T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined) => ArrayLike<R>;
     /**
      * Alias for `createDom`.
      * @param {string|!TagName<T>} tagName Tag to create.
@@ -815,7 +816,8 @@ export function contains(parent: Node | null | undefined, descendant: Node | nul
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function createDom<T, R>(tagName: string | TagName<T>, opt_attributes?: any, ...args: any[]): R;
+export function createDom(tagName: string, opt_attributes?: any, ...args: any[]): Element;
+export function createDom<T>(tagName: TagName<T>, opt_attributes?: any, ...args: any[]): T;
 /**
  * Creates a new element.
  * @param {string|!TagName<T>} name Tag to create.
@@ -825,7 +827,8 @@ export function createDom<T, R>(tagName: string | TagName<T>, opt_attributes?: a
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function createElement<T, R>(name: string | TagName<T>): R;
+export function createElement(name: string): Element;
+export function createElement<T>(name: TagName<T>): T;
 /**
  * Create a table.
  * @param {number} rows The number of rows in the table.  Must be >= 1.
@@ -957,7 +960,8 @@ export function getAncestorByClass(element: Node | null, className: string, opt_
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function getAncestorByTagNameAndClass<T, R>(element: Node | null, opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_maxSearchSteps?: number | undefined): R | null;
+export function getAncestorByTagNameAndClass(element: Node | null, opt_tag?: string | null | undefined, opt_class?: string | null | undefined, opt_maxSearchSteps?: number | undefined): Element | null;
+export function getAncestorByTagNameAndClass<T>(element: Node | null, opt_tag?: TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_maxSearchSteps?: number | undefined): T | null;
 /**
  * Gets '2d' context of a canvas. Shortcut for canvas.getContext('2d') with a
  * type information.
@@ -1013,10 +1017,10 @@ export function getDomHelper(opt_element?: Node | Window | undefined): DomHelper
  *
  * If an Element is passed in, it is returned.
  *
- * @param {string|Element} element Element ID or a DOM node.
+ * @param {string|?Element} element Element ID or a DOM node.
  * @return {?Element} The element with the given ID, or the node passed in.
  */
-export function getElement(element: string | Element): Element | null;
+export function getElement(element: string | Element | null): Element | null;
 /**
  * Returns the first element with the provided className.
  *
@@ -1030,24 +1034,24 @@ export function getElementByClass(className: string, opt_el?: Element | Document
  *
  * @param {(string|?TagName<T>)=} opt_tag Element tag name.
  * @param {?string=} opt_class Optional class name.
- * @param {(Document|Element)=} opt_el Optional element to look in.
+ * @param {(Document|?Element)=} opt_el Optional element to look in.
  * @return {?R} Reference to a DOM node. The return type is {Element|null} if
  *     tagName is a string or a more specific type if it is a member of
  *     TagName (e.g. {?HTMLAnchorElement} for TagName.A).
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function getElementByTagNameAndClass<T, R>(opt_tag?: string | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): Element | null;
+export function getElementByTagNameAndClass(opt_tag?: string | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): Element | null;
 export function getElementByTagNameAndClass<T>(opt_tag?: TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): T | null;
 /**
  * Returns a static, array-like list of the elements with the provided
  * className.
  *
  * @param {string} className the name of the class to look for.
- * @param {(Document|Element)=} opt_el Optional element to look in.
+ * @param {(Document|?Element)=} opt_el Optional element to look in.
  * @return {!ArrayLike<!Element>} The items found with the class name provided.
  */
-export function getElementsByClass(className: string, opt_el?: Element | Document | undefined): ArrayLike<Element>;
+export function getElementsByClass(className: string, opt_el?: Element | Document | null | undefined): ArrayLike<Element>;
 /**
  * Gets elements by tag name.
  * @param {!TagName<T>} tagName
@@ -1080,7 +1084,7 @@ export function getElementsByTagName<T>(tagName: TagName<T>, opt_parent?: Elemen
  *
  * @param {(string|?TagName<T>)=} opt_tag Element tag name.
  * @param {?string=} opt_class Optional class name.
- * @param {(Document|Element)=} opt_el Optional element to look in.
+ * @param {(Document|?Element)=} opt_el Optional element to look in.
  * @return {!ArrayLike<R>} Array-like list of elements (only a length property
  *     and numerical indices are guaranteed to exist). The members of the array
  *     are {!Element} if opt_tag is not a member of TagName or more
@@ -1089,8 +1093,7 @@ export function getElementsByTagName<T>(tagName: TagName<T>, opt_parent?: Elemen
  * @template T
  * @template R := cond(isUnknown(T), 'Element', T) =:
  */
-export function getElementsByTagNameAndClass(opt_tag?: string, opt_class?: string, opt_el?: Element | Document | undefined): ArrayLike<Element>;
-export function getElementsByTagNameAndClass<T>(opt_tag?: TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | undefined): ArrayLike<T>;
+export function getElementsByTagNameAndClass<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: string | null | undefined, opt_el?: Element | Document | null | undefined): ArrayLike<R>;
 /**
  * Returns the first child node that is an element.
  * @param {?Node} node The node to get the first child element of.

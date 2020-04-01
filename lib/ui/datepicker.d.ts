@@ -504,15 +504,15 @@ export class DatePicker extends Component {
      * Support function for menu creation.
      * @param {?Element} srcEl Button to create menu for.
      * @param {Array<string>} items List of items to populate menu with.
-     * @param {function(Element)} method Call back method.
+     * @param {function(?Element)} method Call back method.
      * @param {string} selected Item to mark as selected in menu.
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    createMenu_(srcEl: Element | null, items: string[], method: (arg0: Element) => any, selected: string): void;
+    createMenu_(srcEl: Element | null, items: string[], method: (arg0: Element | null) => any, selected: string): void;
     menuSelected_: any;
     menu_: any;
-    menuCallback_: ((arg0: Element) => any) | undefined;
+    menuCallback_: ((arg0: Element | null) => any) | undefined;
     /**
      * Click handler for menu.
      *

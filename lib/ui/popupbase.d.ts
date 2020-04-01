@@ -28,11 +28,11 @@ export class PopupBase extends events.EventTarget {
      * container element. It also provides the option for hiding the popup element
      * if the user clicks outside the popup or the popup loses focus.
      *
-     * @param {Element=} opt_element A DOM element for the popup.
+     * @param {?Element=} opt_element A DOM element for the popup.
      * @param {Type=} opt_type Type of popup.
      * @param {boolean=} opt_dontSetElement EDITED: Disables calling of setElement in the constructor.
      */
-    constructor(opt_element?: Element | undefined, opt_type?: string | undefined, opt_dontSetElement?: boolean | undefined);
+    constructor(opt_element?: Element | null | undefined, opt_type?: string | undefined, opt_dontSetElement?: boolean | undefined);
     /**
      * The popup dom element that this Popup wraps.
      * @type {Element|null}

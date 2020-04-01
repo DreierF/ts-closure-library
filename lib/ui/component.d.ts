@@ -259,10 +259,10 @@ export class Component extends EventsEventTarget {
      *
      * Throws an Error if the component is already rendered.
      *
-     * @param {Element=} opt_parentElement Optional parent element to render the
+     * @param {?Element=} opt_parentElement Optional parent element to render the
      *    component into.
      */
-    render(opt_parentElement?: Element | undefined): void;
+    render(opt_parentElement?: Element | null | undefined): void;
     /**
      * Renders the component before another element. The other element should be in
      * the document already.
@@ -284,13 +284,13 @@ export class Component extends EventsEventTarget {
      *
      * Throws an Error if the component is already rendered.
      *
-     * @param {Element=} opt_parentElement Optional parent element to render the
+     * @param {?Element=} opt_parentElement Optional parent element to render the
      *    component into.
      * @param {Node=} opt_beforeNode Node before which the component is to
      *    be rendered.  If left out the node is appended to the parent element.
      * @private
      */
-    render_(opt_parentElement?: Element | undefined, opt_beforeNode?: Node | undefined): void;
+    render_(opt_parentElement?: Element | null | undefined, opt_beforeNode?: Node | undefined): void;
     /**
      * Decorates the element for the UI component. If the element is in the
      * document, the enterDocument method will be called.
