@@ -9,6 +9,7 @@ export type Appendable = any;
  *
  * @param {string|?Element} element Element ID or a DOM node.
  * @return {?Element} The element with the given ID, or the node passed in.
+ * @deprecated Use document.getElementById(id) instead
  */
 export function $(element: string | Element | null): Element | null;
 /**
@@ -980,6 +981,7 @@ export function getChildren(element: Element | null): ArrayLike<Element>;
 /**
  * Gets the document object being used by the dom library.
  * @return {!Document} Document object.
+ * @deprecated Use document instead
  */
 export function getDocument(): Document;
 /**
@@ -1020,6 +1022,7 @@ export function getDomHelper(opt_element?: Node | Window | undefined): DomHelper
  *
  * @param {string|?Element} element Element ID or a DOM node.
  * @return {?Element} The element with the given ID, or the node passed in.
+ * @deprecated Use document.getElementById(id) instead
  */
 export function getElement(element: string | Element | null): Element | null;
 /**

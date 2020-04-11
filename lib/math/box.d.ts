@@ -12,6 +12,76 @@
  */
 export class Box {
     /**
+     * Creates a Box by bounding a collection of Math_Coordinate objects
+     * @param {...Math_Coordinate} var_args Coordinates to be included inside
+     *     the box.
+     * @return {!Box} A Box containing all the specified Coordinates.
+     */
+    static boundingBox(...args: Math_Coordinate[]): Box;
+    /**
+     * Compares boxes for equality.
+     * @param {?Box} a A Box.
+     * @param {?Box} b A Box.
+     * @return {boolean} True iff the boxes are equal, or if both are null.
+     */
+    static equals(a: Box | null, b: Box | null): boolean;
+    /**
+     * Returns whether a box contains a coordinate or another box.
+     *
+     * @param {?Box} box A Box.
+     * @param {Math_Coordinate|Box} other A Coordinate or a Box.
+     * @return {boolean} Whether the box contains the coordinate or other box.
+     */
+    static contains(box: Box | null, other: Math_Coordinate | Box): boolean;
+    /**
+     * Returns the relative x position of a coordinate compared to a box.  Returns
+     * zero if the coordinate is inside the box.
+     *
+     * @param {?Box} box A Box.
+     * @param {?Math_Coordinate} coord A Coordinate.
+     * @return {number} The x position of `coord` relative to the nearest
+     *     side of `box`, or zero if `coord` is inside `box`.
+     */
+    static relativePositionX(box: Box | null, coord: Math_Coordinate | null): number;
+    /**
+     * Returns the relative y position of a coordinate compared to a box.  Returns
+     * zero if the coordinate is inside the box.
+     *
+     * @param {?Box} box A Box.
+     * @param {?Math_Coordinate} coord A Coordinate.
+     * @return {number} The y position of `coord` relative to the nearest
+     *     side of `box`, or zero if `coord` is inside `box`.
+     */
+    static relativePositionY(box: Box | null, coord: Math_Coordinate | null): number;
+    /**
+     * Returns the distance between a coordinate and the nearest corner/side of a
+     * box. Returns zero if the coordinate is inside the box.
+     *
+     * @param {?Box} box A Box.
+     * @param {?Math_Coordinate} coord A Coordinate.
+     * @return {number} The distance between `coord` and the nearest
+     *     corner/side of `box`, or zero if `coord` is inside
+     *     `box`.
+     */
+    static distance(box: Box | null, coord: Math_Coordinate | null): number;
+    /**
+     * Returns whether two boxes intersect.
+     *
+     * @param {?Box} a A Box.
+     * @param {?Box} b A second Box.
+     * @return {boolean} Whether the boxes intersect.
+     */
+    static intersects(a: Box | null, b: Box | null): boolean;
+    /**
+     * Returns whether two boxes would intersect with additional padding.
+     *
+     * @param {?Box} a A Box.
+     * @param {?Box} b A second Box.
+     * @param {number} padding The additional padding.
+     * @return {boolean} Whether the boxes intersect.
+     */
+    static intersectsWithPadding(a: Box | null, b: Box | null, padding: number): boolean;
+    /**
      * Class for representing a box. A box is specified as a top, right, bottom,
      * and left. A box is useful for representing margins and padding.
      *
@@ -130,5 +200,4 @@ export class Box {
      */
     scale(sx: number, opt_sy?: number | undefined): Box;
 }
-export namespace Box { }
 import { Coordinate as Math_Coordinate } from "./coordinate.js";

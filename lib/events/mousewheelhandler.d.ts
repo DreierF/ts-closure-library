@@ -76,6 +76,17 @@ export class MouseWheelEvent extends EventsBrowserEvent {
  */
 export class MouseWheelHandler extends goog_events.EventTarget {
     /**
+     * Helper for scaling down a mousewheel delta by a scale factor, if appropriate.
+     * @param {number} mouseWheelDelta Delta from a mouse wheel event. Expected to
+     *     be an integer.
+     * @param {number} scaleFactor Factor to scale the delta down by. Expected to
+     *     be an integer.
+     * @return {number} Scaled-down delta value, or the original delta if the
+     *     scaleFactor does not appear to be applicable.
+     * @private
+     */
+    static smartScale_(mouseWheelDelta: number, scaleFactor: number): number;
+    /**
      * This event handler allows you to catch mouse wheel events in a consistent
      * manner.
      * @param {?Element|Document} element The element to listen to the mouse wheel
@@ -132,7 +143,6 @@ export class MouseWheelHandler extends goog_events.EventTarget {
     handleEvent(e: EventsBrowserEvent | null): void;
     actualEventTarget_: MouseWheelHandler;
 }
-export namespace MouseWheelHandler { }
 import { BrowserEvent as EventsBrowserEvent } from "./browserevent.js";
 import * as goog_events from "./eventhandler.js";
 import { Key } from "./eventhandler.js";

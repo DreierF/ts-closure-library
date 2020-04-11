@@ -30,6 +30,11 @@
  */
 export class WheelHandler extends goog_events.EventTarget {
     /**
+     * Returns the dom event type.
+     * @return {string} The dom event type.
+     */
+    static getDomEventType(): string;
+    /**
      * This event handler allows you to catch wheel events in a consistent manner.
      * @param {!Element|!Document} element The element to listen to the wheel event
      *     on.
@@ -60,6 +65,5 @@ export class WheelHandler extends goog_events.EventTarget {
     handleEvent(e: EventsBrowserEvent): void;
     actualEventTarget_: WheelHandler;
 }
-export namespace WheelHandler { }
 import * as goog_events from "./eventhandler.js";
 import { BrowserEvent as EventsBrowserEvent } from "./browserevent.js";

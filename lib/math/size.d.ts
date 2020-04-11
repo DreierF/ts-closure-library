@@ -8,6 +8,14 @@
  */
 export class Size {
     /**
+     * Compares sizes for equality.
+     * @param {?Size} a A Size.
+     * @param {?Size} b A Size.
+     * @return {boolean} True iff the sizes have equal widths and equal
+     *     heights, or if both are null.
+     */
+    static equals(a: Size | null, b: Size | null): boolean;
+    /**
      * Class for representing sizes consisting of a width and height. Undefined
      * width and height support is deprecated and results in compiler warning.
      * @param {number} width Width.
@@ -104,4 +112,3 @@ export class Size {
      */
     scaleToFit(target: Size): Size;
 }
-export namespace Size { }

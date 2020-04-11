@@ -16,6 +16,15 @@
  */
 export class ColorPalette extends Palette {
     /**
+     * Takes a string, attempts to parse it as a color spec, and returns a
+     * normalized hex color spec if successful (null otherwise).
+     * @param {?string} color String possibly containing a color spec; may be null.
+     * @return {?string} Normalized hex color spec, or null if the argument can't
+     *     be parsed as a color.
+     * @private
+     */
+    static parseColor_(color: string | null): string | null;
+    /**
      * A color palette is a grid of color swatches that the user can highlight or
      * select via the keyboard or the mouse.  The selection state of the palette is
      * controlled by a selection model.  When the user makes a selection, the
@@ -79,7 +88,6 @@ export class ColorPalette extends Palette {
     createColorNodes(): Node[];
     actualEventTarget_: ColorPalette;
 }
-export namespace ColorPalette { }
 import { Palette } from "./palette.js";
 import { PaletteRenderer } from "./paletterenderer.js";
 import { DomHelper } from "../dom/dom.js";

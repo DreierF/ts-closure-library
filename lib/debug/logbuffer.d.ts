@@ -16,6 +16,15 @@ export const CAPACITY: number;
  */
 export class LogBuffer {
     /**
+     * A static method that always returns the same instance of LogBuffer.
+     * @return {!LogBuffer} The LogBuffer singleton instance.
+     */
+    static getInstance(): LogBuffer;
+    /**
+     * @return {boolean} Whether the log buffer is enabled.
+     */
+    static isBufferingEnabled(): boolean;
+    /**
      * The array to store the records.
      * @type {!Array<!DebugLogRecord|undefined>}
      * @private
@@ -52,6 +61,5 @@ export class LogBuffer {
      */
     forEachRecord(func: (arg0: DebugLogRecord) => any): void;
 }
-export namespace LogBuffer { }
 import { LogRecord as DebugLogRecord } from "./logrecord.js";
 import { Level } from "./logger.js";

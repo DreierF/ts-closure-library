@@ -165,13 +165,6 @@ export class SliderBase extends Component {
      */
     mouseDownTime_: number;
     /**
-     * The delay after mouseDownTime_ during which a click event is ignored.
-     * @private
-     * @type {number}
-     * @const
-     */
-    MOUSE_DOWN_DELAY_: number;
-    /**
      * Whether the slider is enabled or not.
      * @private
      * @type {boolean}
@@ -630,6 +623,13 @@ export class SliderBase extends Component {
      * @param {boolean} focusElementOnSliderDrag
      */
     setFocusElementOnSliderDrag(focusElementOnSliderDrag: boolean): void;
+    /**
+     * The delay after mouseDownTime_ during which a click event is ignored.
+     * @private
+     * @type {number}
+     * @const
+     */
+    MOUSE_DOWN_DELAY_: number;
     actualEventTarget_: SliderBase;
 }
 export namespace SliderBase {

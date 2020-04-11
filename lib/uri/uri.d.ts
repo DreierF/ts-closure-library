@@ -13,6 +13,34 @@
  */
 export class QueryData {
     /**
+     * Creates a new query data instance from a map of names and values.
+     *
+     * @param {!StructsMap<string, ?>|!Object} map Map of string parameter
+     *     names to parameter value. If parameter value is an array, it is
+     *     treated as if the key maps to each individual value in the
+     *     array.
+     * @param {Uri=} opt_uri URI object that should have its cache
+     *     invalidated when this object updates.
+     * @param {boolean=} opt_ignoreCase If true, ignore the case of the parameter
+     *     name in #get.
+     * @return {!QueryData} The populated query data instance.
+     */
+    static createFromMap(map: any, opt_uri?: Uri | undefined, opt_ignoreCase?: boolean | undefined): QueryData;
+    /**
+     * Creates a new query data instance from parallel arrays of parameter names
+     * and values. Allows for duplicate parameter names. Throws an error if the
+     * lengths of the arrays differ.
+     *
+     * @param {!Array<string>} keys Parameter names.
+     * @param {!Array<?>} values Parameter values.
+     * @param {Uri=} opt_uri URI object that should have its cache
+     *     invalidated when this object updates.
+     * @param {boolean=} opt_ignoreCase If true, ignore the case of the parameter
+     *     name in #get.
+     * @return {!QueryData} The populated query data instance.
+     */
+    static createFromKeysValues(keys: string[], values: any[], opt_uri?: Uri | undefined, opt_ignoreCase?: boolean | undefined): QueryData;
+    /**
      * Class used to represent URI query parameters.  It is essentially a hash of
      * name-value pairs, though a name can be present more than once.
      *
@@ -197,7 +225,6 @@ export class QueryData {
      */
     extend(...args: any[]): void;
 }
-export namespace QueryData { }
 /**
  * @fileoverview Class for parsing and formatting URIs.
  *

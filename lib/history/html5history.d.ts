@@ -16,6 +16,12 @@
  */
 export class Html5History extends goog_events.EventTarget {
     /**
+     * Returns whether Html5History is supported.
+     * @param {Window=} opt_win Optional window to check.
+     * @return {boolean} Whether html5 history is supported.
+     */
+    static isSupported(opt_win?: Window | undefined): boolean;
+    /**
      * An implementation compatible with google.History that uses the HTML5
      * history APIs.
      *
@@ -128,7 +134,6 @@ export class Html5History extends goog_events.EventTarget {
     onHistoryEvent_(e: EventsBrowserEvent | null): void;
     actualEventTarget_: Html5History;
 }
-export namespace Html5History { }
 /**
  * A token transformer that can create a URL from a history
  * token. This is used by `Html5History` to create

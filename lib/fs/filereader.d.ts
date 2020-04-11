@@ -31,6 +31,42 @@ export namespace ReadyState {
  */
 declare class fs_FileReader extends EventsEventTarget {
     /**
+     * Reads a blob as a binary string.
+     * @param {!Blob} blob The blob to read.
+     * @return {!Deferred} The deferred Blob contents as a binary string.
+     *     If an error occurs, the errback is called with a {@link FsError}.
+     */
+    static readAsBinaryString(blob: Blob): Deferred<any>;
+    /**
+     * Reads a blob as an array buffer.
+     * @param {!Blob} blob The blob to read.
+     * @return {!Deferred} The deferred Blob contents as an array buffer.
+     *     If an error occurs, the errback is called with a {@link FsError}.
+     */
+    static readAsArrayBuffer(blob: Blob): Deferred<any>;
+    /**
+     * Reads a blob as text.
+     * @param {!Blob} blob The blob to read.
+     * @param {string=} opt_encoding The name of the encoding to use.
+     * @return {!Deferred} The deferred Blob contents as text.
+     *     If an error occurs, the errback is called with a {@link FsError}.
+     */
+    static readAsText(blob: Blob, opt_encoding?: string | undefined): Deferred<any>;
+    /**
+     * Reads a blob as a data URL.
+     * @param {!Blob} blob The blob to read.
+     * @return {!Deferred} The deferred Blob contents as a data URL.
+     *     If an error occurs, the errback is called with a {@link FsError}.
+     */
+    static readAsDataUrl(blob: Blob): Deferred<any>;
+    /**
+     * Creates a new deferred object for the results of a read method.
+     * @param {fs_FileReader} reader The reader to create a deferred for.
+     * @return {!Deferred} The deferred results.
+     * @private
+     */
+    static createDeferred_(reader: fs_FileReader): Deferred<any>;
+    /**
      * The underlying FileReader object.
      *
      * @type {!FileReader}
@@ -83,7 +119,7 @@ declare class fs_FileReader extends EventsEventTarget {
     readAsDataUrl(blob: Blob): void;
     actualEventTarget_: fs_FileReader;
 }
-declare namespace fs_FileReader { }
 import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";
 import { Error as FsError } from "./error.js";
+import { Deferred } from "../mochikit/async/deferred.js";
 export { fs_FileReader as FileReader };

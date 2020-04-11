@@ -4,6 +4,12 @@
  * @template T
  */
 export class ElementWeakMap<T> {
+    /**
+     * Returns either this weakmap adapter or the native weakmap implmentation, if
+     * available.
+     * @return {!ElementWeakMap|!WeakMap}
+     */
+    static newWeakMap(): any;
     /** @private {!Array<!Element>} */
     keys_: any[];
     /** @private {!Array<!T>} */
@@ -27,4 +33,3 @@ export class ElementWeakMap<T> {
     /** Clears the map. */
     clear(): void;
 }
-export namespace ElementWeakMap { }

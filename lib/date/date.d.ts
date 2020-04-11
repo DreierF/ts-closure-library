@@ -23,6 +23,21 @@ export type weekDay = number;
  */
 declare class date_Date {
     /**
+     * Compares two dates.  May be used as a sorting function.
+     * @see goog.array.sort
+     * @param {!DateLike} date1 Date to compare.
+     * @param {!DateLike} date2 Date to compare.
+     * @return {number} Comparison result. 0 if dates are the same, less than 0 if
+     *     date1 is earlier than date2, greater than 0 if date1 is later than date2.
+     */
+    static compare(date1: Date | date_Date, date2: Date | date_Date): number;
+    /**
+     * Parses an ISO 8601 string as a `date_Date`.
+     * @param {string} formatted ISO 8601 string to parse.
+     * @return {?date_Date} Parsed date or null if parse fails.
+     */
+    static fromIsoString(formatted: string): date_Date | null;
+    /**
      * Class representing a date. Defaults to current date if none is specified.
      *
      * Implements most methods of the native js Date object (except the time related
@@ -308,7 +323,6 @@ declare class date_Date {
      */
     valueOf(): number;
 }
-declare namespace date_Date { }
 /**
  * @fileoverview Typedefs for working with dates.
  */
@@ -329,6 +343,25 @@ export let DateLike: any;
  * @extends {date_Date}
  */
 export class DateTime extends date_Date {
+    /**
+     * @param {number} timestamp Number of milliseconds since Epoch.
+     * @return {!DateTime}
+     */
+    static fromTimestamp(timestamp: number): DateTime;
+    /**
+     * Creates a DateTime from a datetime string expressed in RFC 822 format.
+     *
+     * @param {string} formatted A date or datetime expressed in RFC 822 format.
+     * @return {?DateTime} Parsed date or null if parse fails.
+     */
+    static fromRfc822String(formatted: string): DateTime | null;
+    /**
+     * Parses an ISO 8601 string as a `DateTime`.
+     * @param {string} formatted ISO 8601 string to parse.
+     * @return {?DateTime} Parsed date or null if parse fails.
+     * @override
+     */
+    static fromIsoString(formatted: string): DateTime | null;
     /**
      * Class representing a date and time. Defaults to current date and time if none
      * is specified.
@@ -483,7 +516,6 @@ export class DateTime extends date_Date {
      */
     clone(): DateTime;
 }
-export namespace DateTime { }
 /**
  * Class representing a date/time interval. Used for date calculations.
  * <pre>

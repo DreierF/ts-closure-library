@@ -25,6 +25,33 @@ export type EventType = string;
  */
 export class ButtonSet extends UiMap<any, any> {
     /**
+     * Creates a new ButtonSet with a single 'OK' button, which is also set with
+     * cancel button semantics so that pressing escape will close the dialog.
+     * @return {!ButtonSet} The created ButtonSet.
+     */
+    static createOk(): ButtonSet;
+    /**
+     * Creates a new ButtonSet with 'OK' (default) and 'Cancel' buttons.
+     * @return {!ButtonSet} The created ButtonSet.
+     */
+    static createOkCancel(): ButtonSet;
+    /**
+     * Creates a new ButtonSet with 'Yes' (default) and 'No' buttons.
+     * @return {!ButtonSet} The created ButtonSet.
+     */
+    static createYesNo(): ButtonSet;
+    /**
+     * Creates a new ButtonSet with 'Yes', 'No' (default), and 'Cancel' buttons.
+     * @return {!ButtonSet} The created ButtonSet.
+     */
+    static createYesNoCancel(): ButtonSet;
+    /**
+     * Creates a new ButtonSet with 'Continue', 'Save', and 'Cancel' (default)
+     * buttons.
+     * @return {!ButtonSet} The created ButtonSet.
+     */
+    static createContinueSaveCancel(): ButtonSet;
+    /**
      * A button set defines the behaviour of a set of buttons that the dialog can
      * show.  Uses the {@link goog.structs.Map} interface.
      * @param {DomHelper=} opt_domHelper Optional DOM helper; see {@link
@@ -163,7 +190,6 @@ export class ButtonSet extends UiMap<any, any> {
      */
     setAllButtonsEnabled(enabled: boolean): void;
 }
-export namespace ButtonSet { }
 export namespace DefaultButtonCaptions {
     export const OK: string;
     export const CANCEL: string;

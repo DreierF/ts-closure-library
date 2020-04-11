@@ -16,6 +16,22 @@ export { structs_Map as Map };
  */
 declare class structs_Map<K, V> {
     /**
+     * Default equality test for values.
+     * @param {*} a The first value.
+     * @param {*} b The second value.
+     * @return {boolean} Whether a and b reference the same object.
+     */
+    static defaultEquals(a: any, b: any): boolean;
+    /**
+     * Safe way to test for hasOwnProperty.  It even allows testing for
+     * 'hasOwnProperty'.
+     * @param {!Object} obj The object to test for presence of the given key.
+     * @param {*} key The key to check for.
+     * @return {boolean} Whether the object has the key.
+     * @private
+     */
+    static hasKey_(obj: any, key: any): boolean;
+    /**
      * Class for Hash Map datastructure.
      * @param {*=} opt_map Map or Object to initialize the map with.
      * @param {...*} var_args If 2 or more arguments are present then they
@@ -180,5 +196,4 @@ declare class structs_Map<K, V> {
      */
     __iterator__(opt_keys?: boolean | undefined): Iterator<any>;
 }
-declare namespace structs_Map { }
 import { Iterator } from "../iter/iter.js";

@@ -118,7 +118,6 @@ export class SafeHtml {
     initSecurityPrivateDoNotAccessOrElse_(html: string, dir: number | null): SafeHtml;
 }
 export namespace SafeHtml {
-    export const htmlEscape: (textOrHtml: TextOrHtml_) => SafeHtml;
     export const VALID_NAMES_IN_TAG_: RegExp;
     export const URL_ATTRIBUTES_: any;
     export const NOT_ALLOWED_TAG_NAMES_: any;

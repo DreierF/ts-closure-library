@@ -260,6 +260,7 @@ export class NumberFormat {
      * @return {{intValue: number, fracValue: number}} The integer and fractional
      *     part after rounding.
      * @private
+     * @suppress {checkTypes}
      */
     roundNumber_(number: number): {
         intValue: number;
@@ -407,6 +408,7 @@ export class NumberFormat {
      * @param {string} plurality The plurality of the number.
      * @return {!NumberFormat.CompactNumberUnit} The compact unit.
      * @private
+     * @suppress {checkTypes}
      */
     getUnitFor_(base: number, plurality: string): {
         prefix: string;

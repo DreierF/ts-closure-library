@@ -31,6 +31,20 @@ export let EventLike: any;
  */
 declare class events_Event {
     /**
+     * Stops the propagation of the event. It is equivalent to
+     * `e.stopPropagation()`, but can be used as the callback argument of
+     * {@link goog.events.listen} without declaring another function.
+     * @param {!events_Event} e An event.
+     */
+    static stopPropagation(e: events_Event): void;
+    /**
+     * Prevents the default action. It is equivalent to
+     * `e.preventDefault()`, but can be used as the callback argument of
+     * {@link goog.events.listen} without declaring another function.
+     * @param {!events_Event} e An event.
+     */
+    static preventDefault(e: events_Event): void;
+    /**
      * A base class for event objects, so that they can support preventDefault and
      * stopPropagation.
      *
@@ -92,6 +106,5 @@ declare class events_Event {
      */
     preventDefault(): void;
 }
-declare namespace events_Event { }
 import { EventId } from "./eventid.js";
 export { events_Event as Event };

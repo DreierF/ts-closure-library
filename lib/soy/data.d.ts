@@ -100,6 +100,19 @@ export namespace SanitizedContentKind {
  * @extends {SanitizedContent}
  */
 export class SanitizedCss extends SanitizedContent {
+    /**
+     * Checks if the value could be used as the Soy type {css}.
+     * @param {*} value
+     * @return {boolean}
+     */
+    static isCompatibleWith(value: any): boolean;
+    /**
+     * Checks if the value could be used as the Soy type {css}.
+     * Strict: disallows strings.
+     * @param {*} value
+     * @return {boolean}
+     */
+    static isCompatibleWithStrict(value: any): boolean;
     /** @override */
     contentKind: {
         sanitizedContentCss: boolean;
@@ -117,7 +130,6 @@ export class SanitizedCss extends SanitizedContent {
      */
     toSafeStyleSheet(): Html_SafeStyleSheet;
 }
-export namespace SanitizedCss { }
 /**
  * Content of type {@link SanitizedContentKind.HTML}.
  *
@@ -131,6 +143,19 @@ export namespace SanitizedCss { }
  * @extends {SanitizedContent}
  */
 export class SanitizedHtml extends SanitizedContent {
+    /**
+     * Checks if the value could be used as the Soy type {html}.
+     * @param {*} value
+     * @return {boolean}
+     */
+    static isCompatibleWith(value: any): boolean;
+    /**
+     * Checks if the value could be used as the Soy type {html}.
+     * Strict: disallows strings.
+     * @param {*} value
+     * @return {boolean}
+     */
+    static isCompatibleWithStrict(value: any): boolean;
     /** @override */
     contentKind: {
         sanitizedContentKindHtml: boolean;
@@ -138,7 +163,6 @@ export class SanitizedHtml extends SanitizedContent {
         sanitizedContentKindHtml?: undefined;
     };
 }
-export namespace SanitizedHtml { }
 /**
  * Content of type {@link SanitizedContentKind.ATTRIBUTES}.
  *
@@ -148,6 +172,19 @@ export namespace SanitizedHtml { }
  * @extends {SanitizedContent}
  */
 export class SanitizedHtmlAttribute extends SanitizedContent {
+    /**
+     * Checks if the value could be used as the Soy type {attribute}.
+     * @param {*} value
+     * @return {boolean}
+     */
+    static isCompatibleWith(value: any): boolean;
+    /**
+     * Checks if the value could be used as the Soy type {attribute}.
+     * Strict: disallows strings.
+     * @param {*} value
+     * @return {boolean}
+     */
+    static isCompatibleWithStrict(value: any): boolean;
     /** @override */
     contentKind: {
         sanitizedContentHtmlAttribute: boolean;
@@ -157,7 +194,6 @@ export class SanitizedHtmlAttribute extends SanitizedContent {
     /** @override */
     contentDir: any;
 }
-export namespace SanitizedHtmlAttribute { }
 /**
  * Content of type {@link SanitizedContentKind.JS}.
  *
@@ -167,6 +203,19 @@ export namespace SanitizedHtmlAttribute { }
  * @extends {SanitizedContent}
  */
 export class SanitizedJs extends SanitizedContent {
+    /**
+     * Checks if the value could be used as the Soy type {js}.
+     * @param {*} value
+     * @return {boolean}
+     */
+    static isCompatibleWith(value: any): boolean;
+    /**
+     * Checks if the value could be used as the Soy type {js}.
+     * Strict: disallows strings.
+     * @param {*} value
+     * @return {boolean}
+     */
+    static isCompatibleWithStrict(value: any): boolean;
     /** @override */
     contentKind: {
         sanitizedContentJsChars: boolean;
@@ -176,7 +225,6 @@ export class SanitizedJs extends SanitizedContent {
     /** @override */
     contentDir: any;
 }
-export namespace SanitizedJs { }
 /**
  * Content of type
  * {@link SanitizedContentKind.TRUSTED_RESOURCE_URI}.
@@ -187,6 +235,19 @@ export namespace SanitizedJs { }
  * @extends {SanitizedContent}
  */
 export class SanitizedTrustedResourceUri extends SanitizedContent {
+    /**
+     * Checks if the value could be used as the Soy type {trusted_resource_uri}.
+     * @param {*} value
+     * @return {boolean}
+     */
+    static isCompatibleWith(value: any): boolean;
+    /**
+     * Checks if the value could be used as the Soy type {trusted_resource_uri}.
+     * Strict: disallows strings.
+     * @param {*} value
+     * @return {boolean}
+     */
+    static isCompatibleWithStrict(value: any): boolean;
     /** @override */
     contentKind: {
         sanitizedContentTrustedResourceUri: boolean;
@@ -201,7 +262,6 @@ export class SanitizedTrustedResourceUri extends SanitizedContent {
      */
     toTrustedResourceUrl(): TrustedResourceUrl;
 }
-export namespace SanitizedTrustedResourceUri { }
 /**
  * Content of type {@link SanitizedContentKind.URI}.
  *
@@ -211,6 +271,19 @@ export namespace SanitizedTrustedResourceUri { }
  * @extends {SanitizedContent}
  */
 export class SanitizedUri extends SanitizedContent {
+    /**
+     * Checks if the value could be used as the Soy type {uri}.
+     * @param {*} value
+     * @return {boolean}
+     */
+    static isCompatibleWith(value: any): boolean;
+    /**
+     * Checks if the value could be used as the Soy type {uri}.
+     * Strict: disallows strings.
+     * @param {*} value
+     * @return {boolean}
+     */
+    static isCompatibleWithStrict(value: any): boolean;
     /** @override */
     contentKind: {
         sanitizedContentUri: boolean;
@@ -220,7 +293,6 @@ export class SanitizedUri extends SanitizedContent {
     /** @override */
     contentDir: any;
 }
-export namespace SanitizedUri { }
 import { Dir } from "../i18n/bidi.js";
 import { SafeHtml } from "../html/safehtml.js";
 import { SafeUrl } from "../html/safeurl.js";

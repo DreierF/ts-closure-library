@@ -38,11 +38,6 @@ declare class Trace_ {
      */
     logger_: typeof DebugLogger;
     /**
-     * Maximum size of the trace before we discard events
-     * @type {number}
-     */
-    MAX_TRACE_SIZE: number;
-    /**
      * Events in order.
      * @private {!Array<!Event_>}
      */
@@ -260,6 +255,11 @@ declare class Trace_ {
      * @override
      */
     toString(): string;
+    /**
+     * Maximum size of the trace before we discard events
+     * @type {number}
+     */
+    MAX_TRACE_SIZE: number;
 }
 declare namespace Trace_ {
     export namespace EventType {

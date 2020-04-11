@@ -9,6 +9,67 @@
  */
 export class Rect {
     /**
+     * Creates a new Rect object with the position and size given.
+     * @param {!Coordinate} position The top-left coordinate of the Rect
+     * @param {!Size} size The size of the Rect
+     * @return {!Rect} A new Rect initialized with the given position and
+     *     size.
+     */
+    static createFromPositionAndSize(position: Coordinate, size: Size): Rect;
+    /**
+     * Creates a new Rect object with the same position and dimensions as a given
+     * Box.  Note that this is only the inverse of toBox if left/top are defined.
+     * @param {?Math_Box} box A box.
+     * @return {!Rect} A new Rect initialized with the box's position
+     *     and size.
+     */
+    static createFromBox(box: Math_Box | null): Rect;
+    /**
+     * Compares rectangles for equality.
+     * @param {?IRect} a A Rectangle.
+     * @param {?IRect} b A Rectangle.
+     * @return {boolean} True iff the rectangles have the same left, top, width,
+     *     and height, or if both are null.
+     */
+    static equals(a: IRect | null, b: IRect | null): boolean;
+    /**
+     * Returns the intersection of two rectangles. Two rectangles intersect if they
+     * touch at all, for example, two zero width and height rectangles would
+     * intersect if they had the same top and left.
+     * @param {?IRect} a A Rectangle.
+     * @param {?IRect} b A Rectangle.
+     * @return {?Rect} A new intersection rect (even if width and height
+     *     are 0), or null if there is no intersection.
+     */
+    static intersection(a: IRect | null, b: IRect | null): Rect | null;
+    /**
+     * Returns whether two rectangles intersect. Two rectangles intersect if they
+     * touch at all, for example, two zero width and height rectangles would
+     * intersect if they had the same top and left.
+     * @param {?IRect} a A Rectangle.
+     * @param {?IRect} b A Rectangle.
+     * @return {boolean} Whether a and b intersect.
+     */
+    static intersects(a: IRect | null, b: IRect | null): boolean;
+    /**
+     * Computes the difference regions between two rectangles. The return value is
+     * an array of 0 to 4 rectangles defining the remaining regions of the first
+     * rectangle after the second has been subtracted.
+     * @param {?Rect} a A Rectangle.
+     * @param {?IRect} b A Rectangle.
+     * @return {!Array<!Rect>} An array with 0 to 4 rectangles which
+     *     together define the difference area of rectangle a minus rectangle b.
+     */
+    static difference(a: Rect | null, b: IRect | null): Rect[];
+    /**
+     * Returns a new rectangle which completely contains both input rectangles.
+     * @param {?IRect} a A rectangle.
+     * @param {?IRect} b A rectangle.
+     * @return {?Rect} A new bounding rect, or null if either rect is
+     *     null.
+     */
+    static boundingRect(a: IRect | null, b: IRect | null): Rect | null;
+    /**
      * Class for representing rectangular regions.
      * @param {number} x Left.
      * @param {number} y Top.
@@ -140,7 +201,6 @@ export class Rect {
      */
     scale(sx: number, opt_sy?: number | undefined): Rect;
 }
-export namespace Rect { }
 import { Box as Math_Box } from "./box.js";
 import { IRect } from "./irect.js";
 import { Coordinate } from "./coordinate.js";

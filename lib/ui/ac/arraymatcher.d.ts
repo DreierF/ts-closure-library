@@ -8,6 +8,38 @@
  */
 export class ArrayMatcher {
     /**
+     * Matches the token against the specified rows, first looking for prefix
+     * matches and if that fails, then looking for similar matches.
+     *
+     * @param {string} token Token to match.
+     * @param {number} maxMatches Max number of matches to return.
+     * @param {!Array<?>} rows Rows to search for matches. Can be objects if they
+     *     have a toString method that returns the value to match against.
+     * @return {!Array<?>} Rows that match.
+     */
+    static getMatchesForRows(token: string, maxMatches: number, rows: any[]): any[];
+    /**
+     * Matches the token against the start of words in the row.
+     * @param {string} token Token to match.
+     * @param {number} maxMatches Max number of matches to return.
+     * @param {!Array<?>} rows Rows to search for matches. Can be objects if they
+     * have
+     *     a toString method that returns the value to match against.
+     * @return {!Array<?>} Rows that match.
+     */
+    static getPrefixMatchesForRows(token: string, maxMatches: number, rows: any[]): any[];
+    /**
+     * Matches the token against similar rows, by calculating "distance" between the
+     * terms.
+     * @param {string} token Token to match.
+     * @param {number} maxMatches Max number of matches to return.
+     * @param {!Array<?>} rows Rows to search for matches. Can be objects
+     *     if they have a toString method that returns the value to
+     *     match against.
+     * @return {!Array<?>} The best maxMatches rows.
+     */
+    static getSimilarMatchesForRows(token: string, maxMatches: number, rows: any[]): any[];
+    /**
      * Basic class for matching words in an array
      * @param {Array<?>} rows Dictionary of items to match.  Can be objects if they
      *     have a toString method that returns the value to match against.
@@ -46,4 +78,3 @@ export class ArrayMatcher {
      */
     getSimilarRows(token: string, maxMatches: number): any[];
 }
-export namespace ArrayMatcher { }

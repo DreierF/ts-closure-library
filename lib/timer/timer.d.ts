@@ -95,7 +95,10 @@ export class Timer extends EventsEventTarget {
 export namespace Timer {
     export const MAX_TIMEOUT_: number;
     export const INVALID_TIMEOUT_ID_: number;
-    export const defaultTimerObject: any;
+    export const defaultTimerObject: {
+        setTimeout;
+        clearTimeout;
+    };
     export const intervalScale: number;
     export const TICK: string;
 }

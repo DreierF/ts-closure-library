@@ -24,6 +24,35 @@ export namespace EventType {
  */
 export class TableSorter extends Component {
     /**
+     * Disables sorting on the specified column
+     * @param {*} a First sort value.
+     * @param {*} b Second sort value.
+     * @return {number} Negative if a < b, 0 if a = b, and positive if a > b.
+     */
+    static noSort(a: any, b: any): number;
+    /**
+     * A numeric sort function.  NaN values (or values that do not parse as float
+     * numbers) compare equal to each other and greater to any other number.
+     * @param {*} a First sort value.
+     * @param {*} b Second sort value.
+     * @return {number} Negative if a < b, 0 if a = b, and positive if a > b.
+     */
+    static numericSort(a: any, b: any): number;
+    /**
+     * Alphabetic sort function.
+     * @param {*} a First sort value.
+     * @param {*} b Second sort value.
+     * @return {number} Negative if a < b, 0 if a = b, and positive if a > b.
+     */
+    static alphaSort(a: any, b: any): number;
+    /**
+     * Returns a function that is the given sort function in reverse.
+     * @param {function(*, *) : number} sortFunction The original sort function.
+     * @return {function(*, *) : number} A new sort function that reverses the
+     *     given sort function.
+     */
+    static createReverseSort(sortFunction: (arg0: any, arg1: any) => number): (arg0: any, arg1: any) => number;
+    /**
      * A table sorter allows for sorting of a table by column.  This component can
      * be used to decorate an already existing TABLE element with sorting
      * features.
@@ -122,11 +151,7 @@ export class TableSorter extends Component {
      */
     sort(column: number, opt_reverse?: boolean | undefined): boolean;
     actualEventTarget_: TableSorter;
-   static numericSort: (any, any) => number;
-    static alphaSort: (any, any) => number;
-    static createReverseSort: (sort: (any, any) => number) => ((any, any) => number);
 }
 import { Component } from "./component.js";
 import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
 import * as goog_dom from "../dom/dom.js";
-import * as googarray from "../array/array.js";

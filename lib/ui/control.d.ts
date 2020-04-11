@@ -653,8 +653,6 @@ export class Control<T> extends Ui_Component {
     actualEventTarget_: Control<T>;
 }
 export namespace Control {
-    export { setDecoratorByClassName as registerDecorator };
-    export function getDecorator(arg0: Element | null): Control<any>;
     export { IeMouseEventSequenceSimulator_ };
 }
 /**
@@ -984,7 +982,7 @@ export namespace ControlRenderer {
     export const instance_: undefined | ControlRenderer;
     export const CSS_CLASS: string;
     export const IE6_CLASS_COMBINATIONS: Array<Array<string>>;
-    export const ariaAttributeMap_: any;
+    export const ariaAttributeMap_: Object<State, AriaState>;
     export const TOGGLE_ARIA_STATE_MAP_: any;
 }
 /**
@@ -1054,6 +1052,13 @@ import { KeyEvent } from "../events/keyhandler.js";
 import * as goog_doms from "../dom/dom.js";
 declare class IeMouseEventSequenceSimulator_ extends Disposable {
     /**
+     * @param {!MouseEvent} e
+     * @param {?EventsEventType} typeArg
+     * @return {!MouseEvent}
+     * @private
+     */
+    static makeLeftMouseEvent_(e: MouseEvent, typeArg: string | null): MouseEvent;
+    /**
      * Whether this browser supports synthetic MouseEvents.
      *
      * See https://msdn.microsoft.com/library/dn905219(v=vs.85).aspx for details.
@@ -1062,7 +1067,6 @@ declare class IeMouseEventSequenceSimulator_ extends Disposable {
      * @const
      */
     static SYNTHETIC_EVENTS_: boolean;
-    static makeLeftMouseEvent_(e: MouseEvent, typeArg: string | null): MouseEvent;
     /**
      * A singleton that helps Control instances play well with screen
      * readers.  It necessitated by shortcomings in IE, and need not be

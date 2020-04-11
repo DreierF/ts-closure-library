@@ -703,6 +703,18 @@ export class Listener {
  */
 export class ListenerMap {
     /**
+     * Finds the index of a matching Listener in the given
+     * listenerArray.
+     * @param {!Array<!Listener>} listenerArray Array of listener.
+     * @param {!Function} listener The listener function.
+     * @param {boolean=} opt_useCapture The capture flag for the listener.
+     * @param {Object=} opt_listenerScope The listener scope.
+     * @return {number} The index of the matching listener within the
+     *     listenerArray.
+     * @private
+     */
+    static findListenerIndex_(listenerArray: Listener[], listener: Function, opt_useCapture?: boolean | undefined, opt_listenerScope?: any): number;
+    /**
      * Creates a new listener map.
      * @param {?EventTarget|Listenable} src The src object.
      */
@@ -807,7 +819,6 @@ export class ListenerMap {
      */
     hasListener(opt_type?: string | EventId<any> | undefined, opt_capture?: boolean | undefined): boolean;
 }
-export namespace ListenerMap { }
 /**
  * Dispatches an event (or event like object) and calls all listeners
  * listening for events of this type. The type of the event is decided by the

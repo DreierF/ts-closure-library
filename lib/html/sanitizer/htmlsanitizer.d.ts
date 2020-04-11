@@ -102,7 +102,7 @@ export class Builder {
      * trigger requests.
      * @private {!HtmlSanitizerUrlPolicy}
      */
-    urlPolicy_: (url: string | import("../../string/typedstring.js").TypedString) => SafeUrl;
+    urlPolicy_: typeof SafeUrl.sanitize;
     /**
      * A function to be applied to urls found on the parsing process which may
      * trigger requests.
@@ -388,7 +388,7 @@ export class HtmlSanitizer extends SafeDomTreeProcessor {
     processElementAttribute(dirtyElement: any, attribute: any): any;
 }
 export namespace HtmlSanitizer {
-    export const defaultUrlPolicy_: (url: string | import("../../string/typedstring.js").TypedString) => SafeUrl;
+    export const defaultUrlPolicy_: typeof SafeUrl.sanitize;
     export const defaultNetworkRequestUrlPolicy_: typeof goog_functions.NULL;
     export const defaultNamePolicy_: typeof goog_functions.NULL;
     export const defaultTokenPolicy_: typeof goog_functions.NULL;
