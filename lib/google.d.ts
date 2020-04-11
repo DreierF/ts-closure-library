@@ -184,6 +184,7 @@ export function base(me: any, opt_methodName?: any, ...args: any[]): any;
  *     invoked as a method of.
  * @template T
  * @suppress {deprecated} See above.
+ * @deprecated Use an arrow function or fn.bind(selfObj[, args])
  */
 export function bind<T>(fn: ((this: T, ...arg1: any[]) => any) | null, selfObj: T, ...args: any[]): Function;
 /**

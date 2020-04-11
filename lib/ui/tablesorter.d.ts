@@ -122,10 +122,9 @@ export class TableSorter extends Component {
      */
     sort(column: number, opt_reverse?: boolean | undefined): boolean;
     actualEventTarget_: TableSorter;
-}
-export namespace TableSorter {
-    export const noSort: Function;
-    export const alphaSort: typeof googarray.defaultCompare;
+   static numericSort: (any, any) => number;
+    static alphaSort: (any, any) => number;
+    static createReverseSort: (sort: (any, any) => number) => ((any, any) => number);
 }
 import { Component } from "./component.js";
 import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";

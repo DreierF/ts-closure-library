@@ -564,7 +564,7 @@ export class Listenable {
      *     false.
      * @template EVENTOBJ
      */
-    fireListeners<EVENTOBJ>(type: string | EventId<EVENTOBJ>, capture: boolean, eventObject: EVENTOBJ | null): boolean;
+    fireListeners<EVENTOBJ = BrowserEvent>(type: string | EventId<EVENTOBJ>, capture: boolean, eventObject: EVENTOBJ | null): boolean;
     /**
      * Gets all listeners in this listenable for the given type and
      * capture mode.
@@ -1015,7 +1015,7 @@ export function fireListeners(obj: any, type: string | EventId<any>, capture: bo
  * @return {?ListenableKey} the found listener or null if not found.
  * @template EVENTOBJ
  */
-export function getListener<EVENTOBJ>(src: EventTarget | Listenable | null, type: string | EventId<EVENTOBJ> | null, listener: (arg0: EVENTOBJ) => any, opt_capt?: boolean | undefined, opt_handler?: any): ListenableKey | null;
+export function getListener<EVENTOBJ = BrowserEvent>(src: EventTarget | Listenable | null, type: string | EventId<EVENTOBJ> | null, listener: (arg0: EVENTOBJ) => any, opt_capt?: boolean | undefined, opt_handler?: any): ListenableKey | null;
 /**
  * Gets the listeners for a given object, type and capture phase.
  *
@@ -1084,7 +1084,7 @@ export function hasListener(obj: EventTarget | Listenable | null, opt_type?: str
  * @template T,EVENTOBJ
  * @suppress{checkTypes}
  */
-export function listen<T, EVENTOBJ>(src: EventTarget | Listenable | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => boolean|void, opt_options?: boolean | AddEventListenerOptions | undefined, opt_handler?: T | undefined): number | ListenableKey | null;
+export function listen<T = any, EVENTOBJ = BrowserEvent>(src: EventTarget | Listenable | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => boolean|void, opt_options?: boolean | AddEventListenerOptions | undefined, opt_handler?: T | undefined): number | ListenableKey | null;
 /**
  * Adds an event listener for a specific event on a native event
  * target (such as a DOM element) or an object that has implemented
@@ -1111,7 +1111,7 @@ export function listen<T, EVENTOBJ>(src: EventTarget | Listenable | null, type: 
  * @template T,EVENTOBJ
  * @suppress{checkTypes}
  */
-export function listenOnce<T, EVENTOBJ>(src: EventTarget | Listenable | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => boolean|void, opt_options?: boolean | AddEventListenerOptions | undefined, opt_handler?: T | undefined): number | ListenableKey | null;
+export function listenOnce<T = any, EVENTOBJ = BrowserEvent>(src: EventTarget | Listenable | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => boolean|void, opt_options?: boolean | AddEventListenerOptions | undefined, opt_handler?: T | undefined): number | ListenableKey | null;
 /**
  * Adds an event listener with a specific event wrapper on a DOM Node or an
  * object that has implemented {@link Listenable}. A listener can
@@ -1165,7 +1165,7 @@ export function removeAll(obj: any, opt_type?: string | EventId<any> | undefined
  * @suppress{checkTypes}
  * @template EVENTOBJ
  */
-export function unlisten<EVENTOBJ>(src: EventTarget | Listenable | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (arg0: any) => any, opt_options?: boolean | EventListenerOptions | undefined, opt_handler?: any): boolean | null;
+export function unlisten<EVENTOBJ = BrowserEvent>(src: EventTarget | Listenable | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (arg0: any) => any, opt_options?: boolean | EventListenerOptions | undefined, opt_handler?: any): boolean | null;
 /**
  * Removes an event listener which was added with listen() by the key
  * returned by listen().
@@ -1205,3 +1205,5 @@ import { EventId } from "./eventid.js";
 import { Event as EventsEvent } from "./event.js";
 import { ErrorHandler } from "../debug/errorhandler.js";
 export { events_EventTarget as EventTarget };
+
+import { BrowserEvent } from './browserevent';
