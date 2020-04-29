@@ -276,7 +276,7 @@ export function getValueByKeys(obj: any, ...args: (string | number | ArrayLike<s
  * @return {!Array<V>} The values in the object/map/hash.
  * @template K,V
  */
-export function getValues<T>(obj: { [s: string]: T } | ArrayLike<T>): T[];
+export function getValues<T = unknown>(obj: Record<string, T> | ArrayLike<T> | object): T[];
 /**
  * @fileoverview Utilities for manipulating objects/maps/hashes.
  */
