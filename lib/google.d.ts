@@ -565,6 +565,14 @@ export function isDef<T>(val: T): val is Exclude<typeof val, undefined>;
  * Returns true if the specified value is defined and not null.
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is defined and not null.
+ * @deprecated Try to avoid having a variable use null and
+ * undefined at the same time by:
+ * - Using default parameter values
+ * - Nullish coalescing operator
+ * - Optional chaining
+ *
+ * If none of the above is appicable use `!= null` to check for
+ * null and undefined
  */
 export function isDefAndNotNull<T>(val: T): val is Exclude<typeof val, (undefined | null)>;
 /**

@@ -1031,6 +1031,7 @@ export function getElement(element: string | Element | null): Element | null;
  * @param {string} className the name of the class to look for.
  * @param {?Element|Document=} opt_el Optional element to look in.
  * @return {?Element} The first item with the class name provided.
+ * @deprecated Use document.querySelector('.classname') or element.querySelector('.classname') instead
  */
 export function getElementByClass(className: string, opt_el?: Element | Document | null | undefined): Element | null;
 /**
@@ -1054,6 +1055,7 @@ export function getElementByTagNameAndClass<T>(opt_tag?: TagName<T> | null | und
  * @param {string} className the name of the class to look for.
  * @param {(Document|?Element)=} opt_el Optional element to look in.
  * @return {!ArrayLike<!Element>} The items found with the class name provided.
+ * @deprecated Use document.querySelectorAll('.classname') or element.querySelectorAll('.classname') instead
  */
 export function getElementsByClass(className: string, opt_el?: Element | Document | null | undefined): ArrayLike<Element>;
 /**
@@ -1435,6 +1437,7 @@ export function removeChildren(node: Node | null): void;
  * Removes a node from its parent.
  * @param {?Node} node The node to remove.
  * @return {?Node} The node removed if removed; else, null.
+ * @deprecated Use node.parentNode?.removeChild(node) instead
  */
 export function removeNode(node: Node | null): Node | null;
 /**

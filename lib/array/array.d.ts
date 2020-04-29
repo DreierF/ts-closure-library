@@ -182,6 +182,7 @@ export function concatMap<THIS, VALUE, RESULT>(arr: string | ArrayLike<VALUE>, f
  *     element.
  * @param {*} obj The object for which to test.
  * @return {boolean} true if obj is present.
+ * @deprecated Use arr.includes(obj) instead
  */
 export function contains(arr: string | ArrayLike<any>, obj: any): boolean;
 /**
@@ -309,6 +310,7 @@ export function filter<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, 
  * @return {T|null} The first array element that passes the test, or null if no
  *     element is found.
  * @template T,S
+ * @deprecated Use arr.find(f) instead
  */
 export function find<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: any) => boolean) | null, opt_obj?: S | undefined): T | null;
 /**
@@ -324,6 +326,7 @@ export function find<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, ar
  * @return {number} The index of the first array element that passes the test,
  *     or -1 if no element is found.
  * @template T,S
+ * @deprecated Use arr.findIndex(f) instead
  */
 export function findIndex<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: any) => boolean) | null, opt_obj?: S | undefined): number;
 /**
@@ -781,6 +784,7 @@ export function some<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, ar
  *     negative number, zero, or a positive number depending on whether the
  *     first argument is less than, equal to, or greater than the second.
  * @template T
+ * @deprecated Use arr.sort(opt_compareFn) instead
  */
 export function sort<T>(arr: T[], opt_compareFn?: ((arg0: T, arg1: T) => number) | null | undefined): void;
 /**
