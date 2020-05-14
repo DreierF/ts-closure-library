@@ -23,7 +23,7 @@ export class ViewportClientPosition extends ClientPosition {
      * @type {number}
      * @private
      */
-    lastResortOverflow_: number;
+    private lastResortOverflow_;
     /**
      * Set the last-resort overflow strategy, if the popup fails to fit.
      * @param {number} overflow A bitmask of Overflow strategies.

@@ -1,25 +1,17 @@
 export type Spec = {
-    measure: Function | undefined;
-    mutate: Function | undefined;
+    measure: (Function | undefined);
+    mutate: (Function | undefined);
 };
 export type Task_ = {
     id: number;
     fn: Function;
-    context: any;
+    context: (any | undefined);
 };
 export type TaskSet_ = {
-    measureTask: {
-        id: number;
-        fn: Function;
-        context: any;
-    };
-    mutateTask: {
-        id: number;
-        fn: Function;
-        context: any;
-    };
-    state: any;
-    args: any[] | undefined;
+    measureTask: Task_;
+    mutateTask: Task_;
+    state: (any | undefined);
+    args: (Array | undefined);
     isScheduled: boolean;
 };
 /**
@@ -55,10 +47,20 @@ export class State {
 export function createTask<THIS>(spec: {
     measure: ((this: THIS, arg1: State) => any) | undefined;
     mutate: ((this: THIS, arg1: State) => any) | undefined;
-}, opt_context?: THIS | undefined): (...arg0: any[]) => any;
+}, opt_context?: THIS | undefined): (...args: unknown[]) => void;
 /**
  * @return {boolean} Whether the animationframe is currently running. For use
  *     by callers who need not to delay tasks scheduled during runTasks_ for an
  *     additional frame.
  */
 export function isRunning(): boolean;
+/**
+ * @typedef {{
+ *   id: number,
+ *   fn: !Function,
+ *   context: (!Object|undefined)
+ * }}
+ * @private
+ */
+declare let Task_: any;
+export {};

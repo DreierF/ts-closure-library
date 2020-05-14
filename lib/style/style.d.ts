@@ -65,7 +65,7 @@ export function getClientLeftTop(el: Element | null): Coordinate;
  * @return {!Coordinate} The position.
  * @suppress {checkTypes}
  */
-export function getClientPosition(el: Element | Event | EventsEvent | null): Coordinate;
+export function getClientPosition(el: (Element | Event | EventsEvent) | null): Coordinate;
 /**
  * Returns the viewport element for a particular document
  * @param {Node=} opt_node DOM node (Document is OK) to get the viewport element
@@ -148,7 +148,7 @@ export function getComputedZIndex(element: Element | null): string | number;
  * @return {!Coordinate} The new scroll position of the container,
  *     in form of Coordinate(scrollLeft, scrollTop).
  */
-export function getContainerOffsetToScrollInto(element: Element | null, opt_container?: Element | null | undefined, opt_center?: boolean | undefined): Coordinate;
+export function getContainerOffsetToScrollInto(element: Element | null, opt_container?: (Element | null) | undefined, opt_center?: boolean | undefined): Coordinate;
 /**
  * Gets the content box size for an element.  This is potentially expensive in
  * all browsers.
@@ -223,7 +223,7 @@ export function getOffsetParent(element: Element | null): Element | null;
  * @return {number|string} Opacity between 0 and 1 or an empty string {@code ''}
  *     if the opacity is not set.
  */
-export function getOpacity(el: Element | null): string | number;
+export function getOpacity(el: Element | null): number | string;
 /**
  * Gets the computed paddings (on all sides) in pixels.
  * @param {?Element} element  The element to get the padding for.
@@ -269,7 +269,7 @@ export function getPosition(element: Element | null): Coordinate;
  *     is relative to.
  * @return {!Coordinate} The relative position.
  */
-export function getRelativePosition(a: Element | Event | EventsEvent | null, b: Element | Event | EventsEvent | null): Coordinate;
+export function getRelativePosition(a: (Element | Event | EventsEvent) | null, b: (Element | Event | EventsEvent) | null): Coordinate;
 /**
  * Returns the scroll bar width (represents the width of both horizontal
  * and vertical scroll).
@@ -350,7 +350,7 @@ export function getVisibleRectForElement(element: Element | null): Box | null;
  *     it (otherwise, if you pass a StyleSheet to setSafeStyleSheet, it will
  *     make a new StyleSheet and leave the original StyleSheet orphaned).
  */
-export function installSafeStyleSheet(safeStyleSheet: SafeStyleSheet, opt_node?: Node | null | undefined): StyleSheet | HTMLStyleElement;
+export function installSafeStyleSheet(safeStyleSheet: SafeStyleSheet, opt_node?: (Node | null) | undefined): HTMLStyleElement | StyleSheet;
 /**
  * Test whether the given element has been shown or hidden via a call to
  * {@link #setElementShown}.
@@ -398,7 +398,7 @@ export function parseStyleAttribute(value: string): any;
  * @param {boolean=} opt_center Whether to center the element in the container.
  *     Defaults to false.
  */
-export function scrollIntoContainerView(element: Element | null, opt_container?: Element | null | undefined, opt_center?: boolean | undefined): void;
+export function scrollIntoContainerView(element: Element | null, opt_container?: (Element | null) | undefined, opt_center?: boolean | undefined): void;
 /**
  * Sets the border box size of an element. This is potentially expensive in IE
  * if the document is CSS1Compat mode
@@ -461,7 +461,7 @@ export function setInlineBlock(el: Element | null): void;
  * @param {number|string} alpha Opacity between 0 and 1 or an empty string
  *     {@code ''} to clear the opacity.
  */
-export function setOpacity(el: Element | null, alpha: string | number): void;
+export function setOpacity(el: Element | null, alpha: number | string): void;
 /**
  * Moves an element to the given coordinates relative to the client viewport.
  * @param {?Element} el Absolutely positioned element to set page offset for.
@@ -480,7 +480,7 @@ export function setPageOffset(el: Element | null, x: number | Coordinate, opt_y?
  * @param {string|number|Coordinate} arg1 Left position or coordinate.
  * @param {string|number=} opt_arg2 Top position.
  */
-export function setPosition(el: Element | null, arg1: string | number | Coordinate, opt_arg2?: string | number | undefined): void;
+export function setPosition(el: Element | null, arg1: string | number | Coordinate, opt_arg2?: (string | number) | undefined): void;
 /**
  * Sets 'white-space: pre-wrap' for a node (x-browser).
  *
@@ -517,7 +517,7 @@ export function setSafeStyleSheet(element: Element | StyleSheet, safeStyleSheet:
  * @param {string|number=} opt_h Height of the element. Required if w is not a
  *     size object.
  */
-export function setSize(element: Element | null, w: string | number | Size, opt_h?: string | number | undefined): void;
+export function setSize(element: Element | null, w: string | number | Size, opt_h?: (string | number) | undefined): void;
 /**
  * @fileoverview Utilities for element styles.
  *
@@ -541,7 +541,7 @@ export function setSize(element: Element | null, w: string | number | Size, opt_
  * @param {string|number|boolean=} opt_value If style was a string, then this
  *     should be the value.
  */
-export function setStyle(element: Element | null, style: any, opt_value?: string | number | boolean | undefined): void;
+export function setStyle(element: Element | null, style: string | any, opt_value?: (string | number | boolean) | undefined): void;
 /**
  * Sets the background of an element to a transparent image in a browser-
  * independent manner.
@@ -616,7 +616,7 @@ export function toSelectorCase(selector: string): string;
  * @param {?Object} obj Map of CSS properties to values.
  * @return {string} The style attribute value.
  */
-export function toStyleAttribute(obj: any): string;
+export function toStyleAttribute(obj: any | null): string;
 /**
  * Translates the specified rect relative to origBase page, for newBase page.
  * If origBase and newBase are the same, this function does nothing.
@@ -628,17 +628,17 @@ export function toStyleAttribute(obj: any): string;
  *     coordinate.  This must be a DOM for an ancestor frame of origBase
  *     or the same as origBase.
  */
-export function translateRectForAnotherFrame(rect: Rect | null, origBase: googdom.DomHelper | null, newBase: googdom.DomHelper | null): void;
+export function translateRectForAnotherFrame(rect: Rect | null, origBase: DomHelper | null, newBase: DomHelper | null): void;
 /**
  * Removes the styles added by {@link #installStyles}.
  * @param {?Element|StyleSheet} styleSheet The value returned by
  *     {@link #installStyles}.
  */
-export function uninstallStyles(styleSheet: Element | StyleSheet | null): void;
+export function uninstallStyles(styleSheet: (Element | StyleSheet) | null): void;
 import { Box } from "../math/box.js";
 import { Size } from "../math/size.js";
 import { Rect } from "../math/rect.js";
 import { Coordinate } from "../math/coordinate.js";
 import { Event as EventsEvent } from "../events/event.js";
 import { SafeStyleSheet } from "../html/safestylesheet.js";
-import * as googdom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";

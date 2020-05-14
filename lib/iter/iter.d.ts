@@ -52,11 +52,7 @@ export let StopIteration: any;
  * @return {!Iterator<number>} A new iterator that returns the
  *     numbers in the series.
  */
-export function accumulate(iterable: {
-    length: number;
-} | {
-    __iterator__: any;
-} | Iterator<number>): Iterator<number>;
+export function accumulate(iterable: Iterator<number> | Iterable): Iterator<number>;
 /**
  * Takes zero or more iterables and returns one iterator that will iterate over
  * them in the order chained.
@@ -82,11 +78,7 @@ export function chain<VALUE>(...args: ({
  *     `iterable`.
  * @template VALUE
  */
-export function chainFromIterable<VALUE>(iterable: {
-    length: number;
-} | {
-    __iterator__: any;
-} | Iterator<any>): Iterator<VALUE>;
+export function chainFromIterable<VALUE>(iterable: Iterator<unknown> | Iterable): Iterator<VALUE>;
 /**
  * Creates an iterator that returns combinations of elements from
  * `iterable`.
@@ -235,7 +227,7 @@ export function enumerate<VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, opt_start?: number | undefined): Iterator<any[]>;
+} | Iterator<VALUE>, opt_start?: number | undefined): Iterator<Array<unknown>>;
 /**
  * Iterates over two iterables and returns true if they contain the same
  * sequence of elements and have the same length.
@@ -350,7 +342,7 @@ export function forEach<THIS, VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, f: (this: THIS, arg1: VALUE, arg2: any, arg3: Iterator<VALUE>) => any, opt_obj?: THIS | undefined): void;
+} | Iterator<VALUE>, f: (this: THIS, arg1: VALUE, arg2: unknown, arg3: Iterator<VALUE>) => any, opt_obj?: THIS | undefined): void;
 /**
  * Creates an iterator that returns arrays containing elements from the
  * `iterable` grouped by a key value. For iterables with repeated
@@ -372,7 +364,7 @@ export function groupBy<KEY, VALUE>(iterable: {
     length: number;
 } | {
     __iterator__: any;
-} | Iterator<VALUE>, opt_keyFunc?: ((arg0: VALUE) => KEY) | undefined): Iterator<any[]>;
+} | Iterator<VALUE>, opt_keyFunc?: ((arg0: VALUE) => KEY) | undefined): Iterator<Array<unknown>>;
 /**
  * Joins the values in a iterator with a delimiter.
  * @param {Iterator<VALUE>|Iterable} iterable The iterator
@@ -584,11 +576,7 @@ export function some<THIS, VALUE>(iterable: {
  *     iterator.
  * @template THIS, RESULT
  */
-export function starMap<THIS, RESULT>(iterable: {
-    length: number;
-} | {
-    __iterator__: any;
-} | Iterator<any>, f: (this: THIS, ...arg1: any[]) => RESULT, opt_obj?: THIS | undefined): Iterator<RESULT>;
+export function starMap<THIS, RESULT>(iterable: Iterator<unknown> | Iterable, f: (this: THIS, ...arg1: any[]) => RESULT, opt_obj?: THIS | undefined): Iterator<RESULT>;
 /**
  * Builds a new iterator that iterates over the original, but only as long as a
  * supplied function returns true.

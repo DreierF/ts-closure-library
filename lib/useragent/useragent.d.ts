@@ -232,7 +232,7 @@ export function compare(v1: string, v2: string): number;
  * TODO(nnaze): Change type to "Navigator" and update compilation targets.
  * @return {?Object} The native navigator object.
  */
-export function getNavigator(): any;
+export function getNavigator(): any | null;
 /**
  * @return {?Navigator} The native navigator object.
  */

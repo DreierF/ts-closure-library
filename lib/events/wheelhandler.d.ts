@@ -46,24 +46,23 @@ export class WheelHandler extends goog_events.EventTarget {
      * This is the element that we will listen to the real wheel events on.
      * @private {!Element|!Document}
      */
-    element_: Element | Document;
+    private element_;
     /**
      * True if the element exists and is RTL, false otherwise.
      * @private {boolean}
      */
-    isRtl_: boolean;
+    private isRtl_;
     /**
      * The key returned from the goog_events.listen.
      * @private {Key}
      */
-    listenKey_: any;
+    private listenKey_;
     /**
      * Handles the events on the element.
      * @param {!EventsBrowserEvent} e The underlying browser event.
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
     handleEvent(e: EventsBrowserEvent): void;
-    actualEventTarget_: WheelHandler;
 }
 import * as goog_events from "./eventhandler.js";
 import { BrowserEvent as EventsBrowserEvent } from "./browserevent.js";

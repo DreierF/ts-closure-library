@@ -23,6 +23,8 @@
  * @extends {ControlRenderer<UiPalette>}
  */
 export class PaletteRenderer extends ControlRenderer<UiPalette> {
+    /** @override @return {!PaletteRenderer} @suppress {checkTypes} */
+    static getInstance(): PaletteRenderer;
     /**
      * Returns the given items in a table with `size.width` columns and
      * `size.height` rows.  If the table is too big, empty cells will be
@@ -34,21 +36,21 @@ export class PaletteRenderer extends ControlRenderer<UiPalette> {
      * @param {?DomHelper} dom DOM helper for document interaction.
      * @return {!Element} Palette table element.
      */
-    createGrid(items: Node[], size: Size | null, dom: googdom.DomHelper | null): Element;
+    createGrid(items: Array<Node>, size: Size | null, dom: DomHelper | null): Element;
     /**
      * Returns a table element (or equivalent) that wraps the given rows.
      * @param {Array<Element>} rows Array of row elements.
      * @param {?DomHelper} dom DOM helper for document interaction.
      * @return {!Element} Palette table element.
      */
-    createTable(rows: Element[], dom: googdom.DomHelper | null): Element;
+    createTable(rows: Array<Element>, dom: DomHelper | null): Element;
     /**
      * Returns a table row element (or equivalent) that wraps the given cells.
      * @param {Array<Element>} cells Array of cell elements.
      * @param {?DomHelper} dom DOM helper for document interaction.
      * @return {!Element} Row element.
      */
-    createRow(cells: Element[], dom: googdom.DomHelper | null): Element;
+    createRow(cells: Array<Element>, dom: DomHelper | null): Element;
     /**
      * Returns a table cell element (or equivalent) that wraps the given palette
      * item (which must be a DOM node).
@@ -56,7 +58,7 @@ export class PaletteRenderer extends ControlRenderer<UiPalette> {
      * @param {?DomHelper} dom DOM helper for document interaction.
      * @return {!Element} Cell element.
      */
-    createCell(node: string | Node, dom: googdom.DomHelper | null): Element;
+    createCell(node: Node | string, dom: DomHelper | null): Element;
     /**
      * Updates the aria label of the cell if it doesn't have one. Descends the DOM
      * and tries to find an aria label for a grid cell from the first child with a
@@ -64,16 +66,7 @@ export class PaletteRenderer extends ControlRenderer<UiPalette> {
      * @param {!Element} cell The cell.
      * @private
      */
-    maybeUpdateAriaLabel_(cell: Element): void;
-    /**
-     * Overrides {@link ControlRenderer#decorate} to be a no-op, since
-     * palettes don't support the decorate flow (for now).
-     * @param {?Control} palette Ignored.
-     * @param {?Element} element Ignored.
-     * @return {null} Always null.
-     * @override
-     */
-    decorate(palette: UiPalette | null, element: Element | null): null;
+    private maybeUpdateAriaLabel_;
     /**
      * Returns the item corresponding to the given node, or null if the node is
      * neither a palette cell nor part of a palette item.
@@ -115,5 +108,4 @@ export namespace PaletteRenderer {
 import { Palette as UiPalette } from "./palette.js";
 import { ControlRenderer } from "./control.js";
 import { Size } from "../math/size.js";
-import * as googdom from "../dom/dom.js";
-import { Control } from "./control.js";
+import { DomHelper } from "../dom/dom.js";

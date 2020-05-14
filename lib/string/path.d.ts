@@ -54,4 +54,4 @@ export function normalizePath(path: string): string;
  * @param {string} path A pathname.
  * @return {!Array<string>} An array of [dirname, basename].
  */
-export function split(path: string): string[];
+export function split(path: string): Array<string>;

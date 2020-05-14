@@ -1,5 +1,5 @@
 export type UrlObject_ = {
-    createObjectURL: (arg0: Blob) => string;
+    createObjectURL: ((arg0: Blob) => string);
     revokeObjectURL: (arg0: string) => void;
 };
 /**

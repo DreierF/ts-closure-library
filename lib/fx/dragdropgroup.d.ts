@@ -41,7 +41,7 @@ export class DragDropGroup extends AbstractDragDrop {
      * @param {?Element|string} element Dom Node, or string representation of node
      *     id, that was previously added with addItem().
      */
-    removeItem(element: string | Element | null): void;
+    removeItem(element: (Element | string) | null): void;
     /**
      * Marks the supplied list of items as selected. A drag operation for any of the
      * selected items will affect all of them.
@@ -51,8 +51,7 @@ export class DragDropGroup extends AbstractDragDrop {
      *
      * TODO(eae): Not yet implemented.
      */
-    setSelection(list: DragDropItem[]): void;
-    actualEventTarget_: DragDropGroup;
+    setSelection(list: Array<DragDropItem>): void;
 }
 import { AbstractDragDrop } from "./abstractdragdrop.js";
 import { DragDropItem } from "./abstractdragdrop.js";

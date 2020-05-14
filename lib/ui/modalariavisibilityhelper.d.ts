@@ -29,15 +29,15 @@ export class ModalAriaVisibilityHelper {
      * @type {Array<!Element>}
      * @private
      */
-    hiddenElements_: Array<Element>;
+    private hiddenElements_;
     /**
      * @private {!Element}
      */
-    element_: Element;
+    private element_;
     /**
      * @private {!DomHelper}
      */
-    dom_: DomHelper;
+    private dom_;
     /**
      * Sets aria-hidden on the rest of the page to restrict screen reader focus.
      * Top-level elements with an explicit aria-hidden state are not altered.

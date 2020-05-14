@@ -9,7 +9,7 @@ export class AssertionError extends DebugError {
      * @param {string} messagePattern The pattern that was used to form message.
      * @param {!Array<*>} messageArgs The items to substitute into the pattern.
      */
-    constructor(messagePattern: string, messageArgs: any[]);
+    constructor(messagePattern: string, messageArgs: Array<any>);
     /**
      * The message pattern used to format the error message. Error handlers can
      * use this to uniquely identify the assertion.
@@ -78,7 +78,7 @@ export function assert<T>(condition: T, opt_message?: string | undefined, ...arg
  * @throws {AssertionError} When the value is not an array.
  * @closurePrimitive {asserts.matchesReturn}
  */
-export function assertArray(value: any, opt_message?: string | undefined, ...args: any[]): any[];
+export function assertArray(value: any, opt_message?: string | undefined, ...args: any[]): Array<unknown>;
 /**
  * Checks if the value is a boolean if ENABLE_ASSERTS is true.
  * @param {*} value The value to check.
@@ -169,7 +169,7 @@ export function assertFunction(value: any, opt_message?: string | undefined, ...
  * @template T
  * @closurePrimitive {asserts.matchesReturn}
  */
-export function assertInstanceof<T>(value: any, type: new (...arg1: any[]) => T, opt_message?: string | undefined, ...args: any[]): T;
+export function assertInstanceof<T>(value: unknown, type: new (...arg1: any[]) => T, opt_message?: string | undefined, ...args: any[]): T;
 /**
  * Checks if the value is a number if ENABLE_ASSERTS is true.
  * @param {*} value The value to check.
@@ -231,5 +231,5 @@ export function fail(opt_message?: string, ...args: any[]): never;
  * messages.
  * @param {function(!AssertionError)} errorHandler
  */
-export function setErrorHandler(errorHandler: (arg0: AssertionError) => any): void;
+export function setErrorHandler(errorHandler: (arg0: AssertionError) => void): void;
 import { Error as DebugError } from "../debug/error.js";

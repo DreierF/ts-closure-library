@@ -65,7 +65,7 @@ export function getElementStyle(element: Element): CSSStyleDeclaration;
  * @param {string} name
  * @return {!Array<!Element>}
  */
-export function getElementsByTagName(element: Element, name: string): Element[];
+export function getElementsByTagName(element: Element, name: string): Array<Element>;
 /**
  * Returns an element's style without falling prey to things like
  * <form><input name="style"></form>.

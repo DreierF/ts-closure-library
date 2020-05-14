@@ -34,47 +34,38 @@ export class PopupMenu extends Menu {
      * @param {?MenuRenderer=} opt_renderer Renderer used to render or
      *     decorate the container; defaults to {@link MenuRenderer}.
      */
-    constructor(opt_domHelper?: DomHelper | null | undefined, opt_renderer?: MenuRenderer | null | undefined);
+    constructor(opt_domHelper?: (DomHelper | null) | undefined, opt_renderer?: (MenuRenderer | null) | undefined);
     /**
      * If true, then if the menu will toggle off if it is already visible.
      * @type {boolean}
      * @private
      */
-    toggleMode_: boolean;
+    private toggleMode_;
     /**
      * If true, then the browser context menu will override the menu activation when
      * the shift key is held down.
      * @type {boolean}
      * @private
      */
-    shiftOverride_: boolean;
+    private shiftOverride_;
     /**
      * Time that the menu was last shown.
      * @type {number}
      * @private
      */
-    lastHide_: number;
+    private lastHide_;
     /**
      * Current element where the popup menu is anchored.
      * @type {Element|null}
      * @private
      */
-    currentAnchor_: Element | null;
+    private currentAnchor_;
     /**
      * Map of attachment points for the menu.  Key -> Object
      * @type {!StructsMap}
      * @private
      */
-    targets_: StructsMap<any, any>;
-    /**
-     * Decorate an existing HTML structure with the menu. Menu items will be
-     * constructed from elements with classname 'goog-menuitem', separators will be
-     * made from HR elements.
-     * @param {Element|null} element Element to decorate.
-     * @override
-     * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
-     */
-    decorateInternal(element: Element | null): void;
+    private targets_;
     /**
      * Attaches the menu to a new popup position and anchor element.  A menu can
      * only be attached to an element once, since attaching the same menu for
@@ -92,7 +83,7 @@ export class PopupMenu extends Menu {
      * @param {?Box=} opt_margin Margin for the popup used in positioning
      *     algorithms.
      */
-    attach(element: Element | null, opt_targetCorner?: Corner | null | undefined, opt_menuCorner?: Corner | undefined, opt_contextMenu?: boolean | undefined, opt_margin?: Box | null | undefined): void;
+    attach(element: Element | null, opt_targetCorner?: (Corner | null) | undefined, opt_menuCorner?: Corner | undefined, opt_contextMenu?: boolean | undefined, opt_margin?: (Box | null) | undefined): void;
     /**
      * Handles keyboard actions on the PopupMenu, according to
      * http://www.w3.org/WAI/PF/aria-practices/#menubutton.
@@ -108,7 +99,7 @@ export class PopupMenu extends Menu {
      * @param {!EventsBrowserEvent} e The key down event.
      * @private
      */
-    onMenuKeyboardAction_(element: Element | null, e: EventsBrowserEvent): void;
+    private onMenuKeyboardAction_;
     /**
      * Creates an object describing how the popup menu should be attached to the
      * anchoring element based on the given parameters. The created object is
@@ -134,7 +125,7 @@ export class PopupMenu extends Menu {
      *
      * @protected
      */
-    createAttachTarget(element: Element | null, opt_targetCorner?: Corner | null | undefined, opt_menuCorner?: Corner | null | undefined, opt_contextMenu?: boolean | undefined, opt_margin?: Box | null | undefined): any;
+    protected createAttachTarget(element: Element | null, opt_targetCorner?: (Corner | null) | undefined, opt_menuCorner?: (Corner | null) | undefined, opt_contextMenu?: boolean | undefined, opt_margin?: (Box | null) | undefined): any | null;
     /**
      * Returns the object describing how the popup menu should be attach to given
      * element or `null`. The object is created and the association is formed
@@ -147,7 +138,7 @@ export class PopupMenu extends Menu {
      *     `element`).
      * @protected
      */
-    getAttachTarget(element: Element | null): any;
+    protected getAttachTarget(element: Element | null): any | null;
     /**
      * @param {Element|null} element Any DOM element.
      * @return {boolean} Whether clicking on the given element will trigger the
@@ -155,7 +146,7 @@ export class PopupMenu extends Menu {
      *
      * @protected
      */
-    isAttachTarget(element: Element | null): boolean;
+    protected isAttachTarget(element: Element | null): boolean;
     /**
      * @return {Element|null} The current element where the popup is anchored, if it's
      *     visible.
@@ -168,7 +159,7 @@ export class PopupMenu extends Menu {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    attachEvent_(target: any): void;
+    private attachEvent_;
     /**
      * Detaches all listeners
      */
@@ -184,7 +175,7 @@ export class PopupMenu extends Menu {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    detachEvent_(target: any): void;
+    private detachEvent_;
     /**
      * Sets whether the menu should toggle if it is already open.  For context
      * menus this should be false, for toolbar menus it makes more sense to be true.
@@ -218,7 +209,7 @@ export class PopupMenu extends Menu {
      * @param {?Element=} opt_anchor The element which acts as visual anchor for
      *     this menu.
      */
-    showWithPosition(position: AbstractPosition | null, opt_menuCorner?: Corner | undefined, opt_margin?: Box | null | undefined, opt_anchor?: Element | null | undefined): void;
+    showWithPosition(position: AbstractPosition | null, opt_menuCorner?: Corner | undefined, opt_margin?: (Box | null) | undefined, opt_anchor?: (Element | null) | undefined): void;
     /**
      * Show the menu at a given attached target.
      * @param {!Object} target Popup target.
@@ -227,7 +218,7 @@ export class PopupMenu extends Menu {
      * @protected
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    showMenu(target: any, x: number, y: number): void;
+    protected showMenu(target: any, x: number, y: number): void;
     /**
      * Shows the menu immediately at the given client coordinates.
      * @param {number} x The client-X associated with the show event.
@@ -261,46 +252,43 @@ export class PopupMenu extends Menu {
      * @return {boolean} Whether the menu was recently hidden.
      * @protected
      */
-    wasRecentlyHidden(): boolean;
+    protected wasRecentlyHidden(): boolean;
     /**
      * Dismiss the popup menu when an action fires.
      * @param {?EventsEvent=} opt_e The optional event.
      * @private
      */
-    onAction_(opt_e?: EventsEvent | null | undefined): void;
+    private onAction_;
     /**
      * Handles a browser click event on one of the popup targets.
      * @param {?EventsBrowserEvent} e The browser event.
      * @private
      */
-    onTargetClick_(e: EventsBrowserEvent | null): void;
+    private onTargetClick_;
     /**
      * Handles a KEYDOWN browser event on one of the popup targets.
      * @param {!EventsBrowserEvent} e The browser event.
      * @private
      */
-    onTargetKeyboardAction_(e: EventsBrowserEvent): void;
+    private onTargetKeyboardAction_;
     /**
      * Handles a browser event on one of the popup targets.
      * @param {?EventsBrowserEvent} e The browser event.
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    onTargetActivation_(e: EventsBrowserEvent | null): void;
+    private onTargetActivation_;
     /**
      * Handles click events that propagate to the document.
      * @param {!EventsBrowserEvent} e The browser event.
      * @protected
      */
-    onDocClick(e: EventsBrowserEvent): void;
-    actualEventTarget_: PopupMenu;
+    protected onDocClick(e: EventsBrowserEvent): void;
 }
 import { Menu } from "./menu.js";
-import { Map as StructsMap } from "../structs/map.js";
 import { Corner } from "../positioning/positioning.js";
 import { Box } from "../math/box.js";
-import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
 import { AbstractPosition } from "../positioning/abstractposition.js";
-import { Event as EventsEvent } from "../events/event.js";
+import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
 import { DomHelper } from "../dom/dom.js";
 import { MenuRenderer } from "./menu.js";

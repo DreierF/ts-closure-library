@@ -10,7 +10,7 @@ export class InjectedDataSupplier {
      * `render*` methods is called.
      * @return {?} A key-value pair representing the injected data.
      */
-    getData(): any;
+    getData(): unknown;
 }
 /**
  * @fileoverview Provides a soy renderer that allows registration of
@@ -47,17 +47,17 @@ export class Renderer {
      * @param {?DomHelper=} opt_domHelper Optional DOM helper;
      *     defaults to that provided by `goog_dom.getDomHelper()`.
      */
-    constructor(opt_injectedDataSupplier?: InjectedDataSupplier | null | undefined, opt_domHelper?: goog_dom.DomHelper | null | undefined);
+    constructor(opt_injectedDataSupplier?: (InjectedDataSupplier | null) | undefined, opt_domHelper?: (DomHelper | null) | undefined);
     /**
      * @const {!DomHelper}
      * @private
      */
-    dom_: goog_dom.DomHelper;
+    private dom_;
     /**
      * @const {?InjectedDataSupplier}
      * @private
      */
-    supplier_: InjectedDataSupplier | null;
+    private supplier_;
     /**
      * Renders a Soy template into a single node or a document fragment.
      * Delegates to `soy.renderAsFragment`.
@@ -69,9 +69,9 @@ export class Renderer {
      * @return {!Node} The resulting node or document fragment.
      * @template ARG_TYPES
      */
-    renderAsFragment<ARG_TYPES>(template: ((arg0: ARG_TYPES, arg1?: {
+    renderAsFragment<ARG_TYPES>(template: ((arg0: ARG_TYPES, arg1?: ({
         [x: string]: any;
-    } | null | undefined) => any) | null, opt_templateData?: ARG_TYPES | undefined): Node;
+    } | null) | undefined) => any) | null, opt_templateData?: ARG_TYPES | undefined): Node;
     /**
      * Renders a Soy template into a single node. If the rendered HTML
      * string represents a single node, then that node is returned.
@@ -86,9 +86,9 @@ export class Renderer {
      *     element if necessary.
      * @template ARG_TYPES
      */
-    renderAsElement<ARG_TYPES_1>(template: ((arg0: ARG_TYPES_1, arg1?: {
+    renderAsElement<ARG_TYPES_2>(template: ((arg0: ARG_TYPES_2, arg1?: ({
         [x: string]: any;
-    } | null | undefined) => any) | null, opt_templateData?: ARG_TYPES_1 | undefined): Element;
+    } | null) | undefined) => any) | null, opt_templateData?: ARG_TYPES_2 | undefined): Element;
     /**
      * Renders a Soy template and then set the output string as the
      * innerHTML of the given element. Delegates to `soy.renderElement`.
@@ -100,9 +100,9 @@ export class Renderer {
      * @param {ARG_TYPES=} opt_templateData The data for the template.
      * @template ARG_TYPES
      */
-    renderElement<ARG_TYPES_2>(element: Element | null, template: ((arg0: ARG_TYPES_2, arg1?: {
+    renderElement<ARG_TYPES_4>(element: Element | null, template: ((arg0: ARG_TYPES_4, arg1?: ({
         [x: string]: any;
-    } | null | undefined) => any) | null, opt_templateData?: ARG_TYPES_2 | undefined): void;
+    } | null) | undefined) => any) | null, opt_templateData?: ARG_TYPES_4 | undefined): void;
     /**
      * Renders a Soy template and returns the output string.
      * If the template is strict, it must be of kind HTML. To render strict
@@ -116,9 +116,9 @@ export class Renderer {
      * @return {string} The return value of rendering the template directly.
      * @template ARG_TYPES
      */
-    render<ARG_TYPES_3>(template: ((arg0: ARG_TYPES_3, arg1?: {
+    render<ARG_TYPES_6>(template: ((arg0: ARG_TYPES_6, arg1?: ({
         [x: string]: any;
-    } | null | undefined) => any) | null, opt_templateData?: ARG_TYPES_3 | undefined): string;
+    } | null) | undefined) => any) | null, opt_templateData?: ARG_TYPES_6 | undefined): string;
     /**
      * Renders a strict Soy template of kind="text" and returns the output string.
      * It is an error to use renderText on templates of kinds other than "text".
@@ -131,7 +131,7 @@ export class Renderer {
      * @return {string} The return value of rendering the template directly.
      * @template ARG_TYPES
      */
-    renderText<ARG_TYPES_4>(template: any, opt_templateData?: ARG_TYPES_4 | undefined): string;
+    renderText<ARG_TYPES_8>(template: any, opt_templateData?: ARG_TYPES_8 | undefined): string;
     /**
      * Renders a strict Soy HTML template and returns the output SanitizedHtml
      * object.
@@ -143,7 +143,7 @@ export class Renderer {
      * @return {!SanitizedHtml}
      * @template ARG_TYPES
      */
-    renderStrict<ARG_TYPES_5>(template: any, opt_templateData?: ARG_TYPES_5 | undefined): SanitizedHtml;
+    renderStrict<ARG_TYPES_9>(template: any, opt_templateData?: ARG_TYPES_9 | undefined): SanitizedHtml;
     /**
      * Renders a strict Soy template and returns the output SanitizedUri object.
      *
@@ -154,11 +154,11 @@ export class Renderer {
      * @return {!SanitizedUri}
      * @template ARG_TYPES
      */
-    renderStrictUri<ARG_TYPES_6>(template: (arg0: ARG_TYPES_6, arg1?: {
+    renderStrictUri<ARG_TYPES_10>(template: (arg0: ARG_TYPES_10, arg1?: ({
         [x: string]: any;
-    } | null | undefined) => SanitizedUri | ((arg0: ARG_TYPES_6, arg1?: any, arg2?: {
+    } | null) | undefined) => SanitizedUri | ((arg0: ARG_TYPES_10, arg1?: (any | null) | undefined, arg2?: ({
         [x: string]: any;
-    } | null | undefined) => SanitizedUri), opt_templateData?: ARG_TYPES_6 | undefined): SanitizedUri;
+    } | null) | undefined) => SanitizedUri), opt_templateData?: ARG_TYPES_10 | undefined): SanitizedUri;
     /**
      * Renders a strict Soy template and returns the output SanitizedContent object.
      *
@@ -174,11 +174,11 @@ export class Renderer {
      *     SanitizedHtml.
      * @template ARG_TYPES, RETURN_TYPE
      */
-    renderStrictOfKind<ARG_TYPES_7, RETURN_TYPE>(template: ((arg0: ARG_TYPES_7, arg1?: {
+    renderStrictOfKind<ARG_TYPES_12, RETURN_TYPE>(template: ((arg0: ARG_TYPES_12, arg1?: ({
         [x: string]: any;
-    } | null | undefined) => RETURN_TYPE | ((arg0: ARG_TYPES_7, arg1?: any, arg2?: {
+    } | null) | undefined) => RETURN_TYPE | ((arg0: ARG_TYPES_12, arg1?: (any | null) | undefined, arg2?: ({
         [x: string]: any;
-    } | null | undefined) => RETURN_TYPE) | null) | null, opt_templateData?: ARG_TYPES_7 | undefined, opt_kind?: any): RETURN_TYPE | null;
+    } | null) | undefined) => RETURN_TYPE) | null) | null, opt_templateData?: ARG_TYPES_12 | undefined, opt_kind?: (SanitizedContentKind | null) | undefined): RETURN_TYPE | null;
     /**
      * Renders a strict Soy template of kind="html" and returns the result as
      * a Html_SafeHtml object.
@@ -193,11 +193,11 @@ export class Renderer {
      * @return {!Html_SafeHtml}
      * @template ARG_TYPES
      */
-    renderSafeHtml<ARG_TYPES_8>(template: ((arg0: ARG_TYPES_8, arg1?: {
+    renderSafeHtml<ARG_TYPES_14>(template: ((arg0: ARG_TYPES_14, arg1?: ({
         [x: string]: any;
-    } | null | undefined) => SanitizedHtml | ((arg0: ARG_TYPES_8, arg1?: null | undefined, arg2?: {
+    } | null) | undefined) => SanitizedHtml | ((arg0: ARG_TYPES_14, arg1?: null | undefined, arg2?: ({
         [x: string]: any;
-    } | null | undefined) => SanitizedHtml) | null) | null, opt_templateData?: ARG_TYPES_8 | undefined): Html_SafeHtml;
+    } | null) | undefined) => SanitizedHtml) | null) | null, opt_templateData?: ARG_TYPES_14 | undefined): Html_SafeHtml;
     /**
      * Renders a strict Soy template of kind="css" and returns the result as
      * a SafeStyleSheet object.
@@ -212,16 +212,16 @@ export class Renderer {
      * @return {!SafeStyleSheet}
      * @template ARG_TYPES
      */
-    renderSafeStyleSheet<ARG_TYPES_9>(template: ((arg0: ARG_TYPES_9, arg1?: {
+    renderSafeStyleSheet<ARG_TYPES_16>(template: ((arg0: ARG_TYPES_16, arg1?: ({
         [x: string]: any;
-    } | null | undefined) => SanitizedCss | ((arg0: ARG_TYPES_9, arg1?: null | undefined, arg2?: {
+    } | null) | undefined) => SanitizedCss | ((arg0: ARG_TYPES_16, arg1?: null | undefined, arg2?: ({
         [x: string]: any;
-    } | null | undefined) => SanitizedCss) | null) | null, opt_templateData?: ARG_TYPES_9 | undefined): SafeStyleSheet;
+    } | null) | undefined) => SanitizedCss) | null) | null, opt_templateData?: ARG_TYPES_16 | undefined): SafeStyleSheet;
     /**
      * @return {!DomHelper}
      * @protected
      */
-    getDom(): goog_dom.DomHelper;
+    protected getDom(): DomHelper;
     /**
      * Observes rendering of non-text templates by this renderer.
      * @param {?Node} node Relevant node, if available. The node may or may
@@ -231,18 +231,19 @@ export class Renderer {
      *     it was not strict.
      * @protected
      */
-    handleRender(node: Node | null, kind: any): void;
+    protected handleRender(node: Node | null, kind: SanitizedContentKind | null): void;
     /**
      * Creates the injectedParams map if necessary and calls the configuration
      * service to prepopulate it.
      * @return {?} The injected params.
      * @private
      */
-    getInjectedData_(): any;
+    private getInjectedData_;
 }
-import * as goog_dom from "../dom/dom.js";
 import { SanitizedHtml } from "./data.js";
 import { SanitizedUri } from "./data.js";
+import { SanitizedContentKind } from "./data.js";
 import { SafeHtml as Html_SafeHtml } from "../html/safehtml.js";
 import { SanitizedCss } from "./data.js";
 import { SafeStyleSheet } from "../html/safestylesheet.js";
+import { DomHelper } from "../dom/dom.js";

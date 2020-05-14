@@ -26,32 +26,30 @@ export class FocusHandler extends events.EventTarget {
      * loses focus.
      * @param {?Element|Document} element  The node to listen on.
      */
-    constructor(element: Element | Document | null);
+    constructor(element: (Element | Document) | null);
     /**
      * This is the element that we will listen to the real focus events on.
      * @type {?Element|Document}
      * @private
      */
-    element_: (Element | Document) | null;
+    private element_;
     /**
      * Store the listen key so it easier to unlisten in dispose.
      * @private
      * @type {?Key}
      */
-    listenKeyIn_: Key | null;
+    private listenKeyIn_;
     /**
      * Store the listen key so it easier to unlisten in dispose.
      * @private
      * @type {?Key}
      */
-    listenKeyOut_: Key | null;
+    private listenKeyOut_;
     /**
      * This handles the underlying events and dispatches a new event.
      * @param {?EventsBrowserEvent} e  The underlying browser event.
      */
     handleEvent(e: EventsBrowserEvent | null): void;
-    actualEventTarget_: FocusHandler;
 }
 import * as events from "./eventhandler.js";
-import { Key } from "./eventhandler.js";
 import { BrowserEvent as EventsBrowserEvent } from "./browserevent.js";

@@ -30,12 +30,12 @@ export class Trie<VALUE> {
      * empty key, if defined.
      * @private {VALUE}
      */
-    value_: any;
+    private value_;
     /**
      * This trie's child nodes.
      * @private {!Object<!Trie<VALUE>>}
      */
-    childNodes_: {};
+    private childNodes_;
     /**
      * Sets the given key/value pair in the trie.  O(L), where L is the length
      * of the key.
@@ -60,7 +60,7 @@ export class Trie<VALUE> {
      * @param {boolean=} opt_add Throw exception if key is already in the trie.
      * @private
      */
-    setOrAdd_(key: string, value: VALUE | null, opt_add?: boolean | undefined): void;
+    private setOrAdd_;
     /**
      * Adds multiple key/value pairs from another Trie or Object.
      * O(N) where N is the number of nodes in the trie.
@@ -77,7 +77,7 @@ export class Trie<VALUE> {
      * @return {!Trie<VALUE>|undefined}
      * @private
      */
-    getChildNode_(path: string): Trie<VALUE> | undefined;
+    private getChildNode_;
     /**
      * Retrieves a value from the trie given a key.  O(L), where L is the length of
      * the key.
@@ -97,7 +97,7 @@ export class Trie<VALUE> {
      * @return {!Object<string, VALUE>} Map of end index of matching prefixes and
      *     corresponding values. Empty if no match found.
      */
-    getKeyAndPrefixes(key: string, opt_keyStartIndex?: number | null | undefined): {
+    getKeyAndPrefixes(key: string, opt_keyStartIndex?: (number | null) | undefined): {
         [x: string]: VALUE;
     };
     /**
@@ -112,14 +112,14 @@ export class Trie<VALUE> {
      * @param {!Array<VALUE>} allValues Array to place values into.
      * @private
      */
-    getValuesInternal_(allValues: VALUE[]): void;
+    private getValuesInternal_;
     /**
      * Gets the keys of the trie.  Not returned in any reliable order.  O(N) where
      * N is the number of nodes in the trie (or prefix subtree).
      * @param {string=} opt_prefix Find only keys with this optional prefix.
      * @return {!Array<string>} The keys in the trie.
      */
-    getKeys(opt_prefix?: string | undefined): string[];
+    getKeys(opt_prefix?: string | undefined): Array<string>;
     /**
      * Private method to get keys from the trie.  Builds the keys as it goes.
      * @param {string} keySoFar The partial key (prefix) traversed so far.
@@ -127,7 +127,7 @@ export class Trie<VALUE> {
      *     far.
      * @private
      */
-    getKeysInternal_(keySoFar: string, allKeys: string[]): void;
+    private getKeysInternal_;
     /**
      * Checks to see if a certain key is in the trie.  O(L), where L is the length
      * of the key.

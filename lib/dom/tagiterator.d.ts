@@ -102,7 +102,7 @@ export class TagIterator extends Iterator<Node> {
      *     the end of the node for reverse iterators.
      * @param {number=} opt_depth The starting tree depth.
      */
-    constructor(opt_node?: Node | undefined, opt_reversed?: boolean | undefined, opt_unconstrained?: boolean | undefined, opt_tagType?: number | null | undefined, opt_depth?: number | undefined);
+    constructor(opt_node?: Node | undefined, opt_reversed?: boolean | undefined, opt_unconstrained?: boolean | undefined, opt_tagType?: (TagWalkType | null) | undefined, opt_depth?: number | undefined);
     /**
      * Whether the node iterator is moving in reverse.
      * @type {boolean}
@@ -133,7 +133,7 @@ export class TagIterator extends Iterator<Node> {
      * Whether iteration has started.
      * @private {boolean}
      */
-    started_: boolean;
+    private started_;
     /**
      * Whether the iterator is constrained to the starting node and its children.
      * @type {boolean}
@@ -148,14 +148,14 @@ export class TagIterator extends Iterator<Node> {
      *     Defaults to the start of the given node.
      * @param {number=} opt_depth The tree depth.
      */
-    setPosition(node: Node | null, opt_tagType?: number | null | undefined, opt_depth?: number | undefined): void;
+    setPosition(node: Node | null, opt_tagType?: (TagWalkType | null) | undefined, opt_depth?: number | undefined): void;
     /**
      * Replace this iterator's values with values from another. The two iterators
      * must be of the same type.
      * @param {?TagIterator} other The iterator to copy.
      * @protected
      */
-    copyFrom(other: TagIterator | null): void;
+    protected copyFrom(other: TagIterator | null): void;
     /**
      * @return {!TagIterator} A copy of this iterator.
      */
@@ -172,7 +172,7 @@ export class TagIterator extends Iterator<Node> {
      * @return {boolean} Whether next has ever been called on this iterator.
      * @protected
      */
-    isStarted(): boolean;
+    protected isStarted(): boolean;
     /**
      * @return {boolean} Whether this iterator's position is a start tag position.
      */

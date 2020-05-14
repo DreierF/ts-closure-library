@@ -15,13 +15,13 @@ export class SelectionModel extends EventsEventTarget {
      * event when a selection is made.
      * @param {Array<Object>=} opt_items Array of items; defaults to empty.
      */
-    constructor(opt_items?: any[] | undefined);
+    constructor(opt_items?: Array<any> | undefined);
     /**
      * The currently selected item (null if none).
      * @type {?Object}
      * @private
      */
-    selectedItem_: Object | null;
+    private selectedItem_;
     /**
      * Selection handler function.  Called with two arguments (the item to be
      * selected or deselected, and a Boolean indicating whether the item is to
@@ -29,7 +29,7 @@ export class SelectionModel extends EventsEventTarget {
      * @type {?Function}
      * @private
      */
-    selectionHandler_: Function | null;
+    private selectionHandler_;
     /**
      * Array of items controlled by the selection model.  If the items support
      * the `setSelected(Boolean)` interface, they will be (de)selected
@@ -37,7 +37,7 @@ export class SelectionModel extends EventsEventTarget {
      * @type {!Array<Object>}
      * @private
      */
-    items_: Array<Object>;
+    private items_;
     /**
      * Returns the selection handler function used by the selection model to change
      * the internal selection state of items under its control.
@@ -65,46 +65,46 @@ export class SelectionModel extends EventsEventTarget {
      * @param {Object|undefined} item Item to look for.
      * @return {number} Index of the given item (-1 if none).
      */
-    indexOfItem(item: any): number;
+    indexOfItem(item: any | undefined): number;
     /**
      * @return {Object|undefined} The first item, or undefined if there are no items
      *     in the model.
      */
-    getFirst(): any;
+    getFirst(): any | undefined;
     /**
      * @return {Object|undefined} The last item, or undefined if there are no items
      *     in the model.
      */
-    getLast(): any;
+    getLast(): any | undefined;
     /**
      * Returns the item at the given 0-based index.
      * @param {number} index Index of the item to return.
      * @return {?Object} Item at the given index (null if none).
      */
-    getItemAt(index: number): any;
+    getItemAt(index: number): any | null;
     /**
      * Bulk-adds items to the selection model.  This is more efficient than calling
      * {@link #addItem} for each new item.
      * @param {Array<Object>|undefined} items New items to add.
      */
-    addItems(items: any[] | undefined): void;
+    addItems(items: Array<any> | undefined): void;
     /**
      * Adds an item at the end of the list.
      * @param {?Object} item Item to add.
      */
-    addItem(item: any): void;
+    addItem(item: any | null): void;
     /**
      * Adds an item at the given index.
      * @param {?Object} item Item to add.
      * @param {number} index Index at which to add the new item.
      */
-    addItemAt(item: any, index: number): void;
+    addItemAt(item: any | null, index: number): void;
     /**
      * Removes the given item (if it exists).  Dispatches a `SELECT` event if
      * the removed item was the currently selected item.
      * @param {?Object} item Item to remove.
      */
-    removeItem(item: any): void;
+    removeItem(item: any | null): void;
     /**
      * Removes the item at the given index.
      * @param {number} index Index of the item to remove.
@@ -113,17 +113,17 @@ export class SelectionModel extends EventsEventTarget {
     /**
      * @return {?Object} The currently selected item, or null if none.
      */
-    getSelectedItem(): any;
+    getSelectedItem(): any | null;
     /**
      * @return {!Array<Object>} All items in the selection model.
      */
-    getItems(): any[];
+    getItems(): Array<any>;
     /**
      * Selects the given item, deselecting any previously selected item, and
      * dispatches a `SELECT` event.
      * @param {?Object} item Item to select (null to clear the selection).
      */
-    setSelectedItem(item: any): void;
+    setSelectedItem(item: any | null): void;
     /**
      * @return {number} The 0-based index of the currently selected item, or -1
      *     if none.
@@ -150,7 +150,6 @@ export class SelectionModel extends EventsEventTarget {
      *     will be deselected.
      * @private
      */
-    selectItem_(item: any, select: boolean): void;
-    actualEventTarget_: SelectionModel;
+    private selectItem_;
 }
 import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";

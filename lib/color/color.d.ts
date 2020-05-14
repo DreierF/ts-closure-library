@@ -54,7 +54,7 @@ export let Rgb: any;
  *     If greater than 1, factor will be set to 1.
  * @return {!Rgb} Combined color represented in rgb.
  */
-export function blend(rgb1: number[] | null, rgb2: number[] | null, factor: number): number[];
+export function blend(rgb1: Rgb | null, rgb2: Rgb | null, factor: number): Rgb;
 /**
  * Adds black to the specified color, darkening it
  * @param {?Rgb} rgb rgb representation of the color.
@@ -63,25 +63,25 @@ export function blend(rgb1: number[] | null, rgb2: number[] | null, factor: numb
  *     than 1, factor will be set to 1.
  * @return {!Rgb} Combined rgb color.
  */
-export function darken(rgb: number[] | null, factor: number): number[];
+export function darken(rgb: Rgb | null, factor: number): Rgb;
 /**
  * Converts a hex representation of a color to HSL.
  * @param {string} hex Color to convert.
  * @return {!Hsl} hsl representation of the color.
  */
-export function hexToHsl(hex: string): number[];
+export function hexToHsl(hex: string): Hsl;
 /**
  * Converts a hex representation of a color to HSV
  * @param {string} hex Color to convert.
  * @return {!Hsv} hsv representation of the color.
  */
-export function hexToHsv(hex: string): number[];
+export function hexToHsv(hex: string): Hsv;
 /**
  * Converts a hex representation of a color to RGB.
  * @param {string} hexColor Color to convert.
  * @return {!Rgb} rgb representation of the color.
  */
-export function hexToRgb(hexColor: string): number[];
+export function hexToRgb(hexColor: string): Rgb;
 /**
  * Converts a hex representation of a color to RGB.
  * @param {string} hexColor Color to convert.
@@ -98,19 +98,19 @@ export function hexToRgbStyle(hexColor: string): string;
  *     each representing a rgb array.
  * @return {!Rgb} Highest-contrast color represented by an array..
  */
-export function highContrast(prime: number[] | null, suggestions: number[][]): number[];
+export function highContrast(prime: Rgb | null, suggestions: Array<Rgb>): Rgb;
 /**
  * Converts from an hsl array to a hex string
  * @param {?Hsl} hsl hsl representation of the color.
  * @return {string} hex representation of the color.
  */
-export function hslArrayToHex(hsl: number[] | null): string;
+export function hslArrayToHex(hsl: Hsl | null): string;
 /**
  * Converts a color from HSL color space to RGB color space.
  * @param {?Hsl} hsl hsl representation of the color.
  * @return {!Rgb} rgb representation of the color.
  */
-export function hslArrayToRgb(hsl: number[] | null): number[];
+export function hslArrayToRgb(hsl: Hsl | null): Rgb;
 /**
  * Calculates the Euclidean distance between two color vectors on an HSL sphere.
  * A demo of the sphere can be found at:
@@ -122,7 +122,7 @@ export function hslArrayToRgb(hsl: number[] | null): number[];
  * @param {?Hsl} hsl2 Second color in hsl representation.
  * @return {number} Distance between the two colors, in the range [0, 1].
  */
-export function hslDistance(hsl1: number[] | null, hsl2: number[] | null): number;
+export function hslDistance(hsl1: Hsl | null, hsl2: Hsl | null): number;
 /**
  * Converts from h,s,l values to a hex string
  * @param {number} h Hue, in [0, 360].
@@ -139,19 +139,19 @@ export function hslToHex(h: number, s: number, l: number): string;
  * @param {number} l Luminosity, in [0, 1].
  * @return {!Rgb} rgb representation of the color.
  */
-export function hslToRgb(h: number, s: number, l: number): number[];
+export function hslToRgb(h: number, s: number, l: number): Rgb;
 /**
  * Converts from an HSV array to a hex string
  * @param {?Hsv} hsv hsv representation of the color.
  * @return {string} hex representation of the color.
  */
-export function hsvArrayToHex(hsv: number[] | null): string;
+export function hsvArrayToHex(hsv: Hsv | null): string;
 /**
  * Converts an HSV triplet to an RGB array.
  * @param {?Hsv} hsv hsv representation of the color.
  * @return {!Rgb} rgb representation of the color.
  */
-export function hsvArrayToRgb(hsv: number[] | null): number[];
+export function hsvArrayToRgb(hsv: Hsv | null): Rgb;
 /**
  * Converts from h,s,v values to a hex string
  * @param {number} h Hue, in [0, 360].
@@ -168,7 +168,7 @@ export function hsvToHex(h: number, s: number, v: number): string;
  * @param {number} brightness brightness in [0, 255].
  * @return {!Rgb} rgb representation of the color.
  */
-export function hsvToRgb(h: number, s: number, brightness: number): number[];
+export function hsvToRgb(h: number, s: number, brightness: number): Rgb;
 /**
  * Determines if the given string can be parsed as a color.
  *     {@see parse}.
@@ -184,7 +184,7 @@ export function isValidColor(str: string): boolean;
  *     than 1, factor will be set to 1.
  * @return {!Rgb} Combined rgb color.
  */
-export function lighten(rgb: number[] | null, factor: number): number[];
+export function lighten(rgb: Rgb | null, factor: number): Rgb;
 /**
  * Normalize an hex representation of a color
  * @param {string} hexColor an hex color string.
@@ -210,7 +210,7 @@ export function parse(str: string): {
  *    {@see isValidRgbColor_}.
  * @return {!Rgb} rgb representation of the color.
  */
-export function parseRgb(str: string): number[];
+export function parseRgb(str: string): Rgb;
 /**
  * Takes a string a prepends a '#' sign if one doesn't exist.
  * Small helper method for use by google.color and friends.
@@ -232,19 +232,19 @@ export function prependZeroIfNecessaryHelper(hex: string): string;
  * @param {?Rgb} rgb rgb representation of the color.
  * @return {string} hex representation of the color.
  */
-export function rgbArrayToHex(rgb: number[] | null): string;
+export function rgbArrayToHex(rgb: Rgb | null): string;
 /**
  * Converts a color from RGB color space to HSL color space.
  * @param {?Rgb} rgb rgb representation of the color.
  * @return {!Hsl} hsl representation of the color.
  */
-export function rgbArrayToHsl(rgb: number[] | null): number[];
+export function rgbArrayToHsl(rgb: Rgb | null): Hsl;
 /**
  * Converts from an array of RGB values to an array of HSV values.
  * @param {?Rgb} rgb rgb representation of the color.
  * @return {!Hsv} hsv representation of the color.
  */
-export function rgbArrayToHsv(rgb: number[] | null): number[];
+export function rgbArrayToHsv(rgb: Rgb | null): Hsv;
 /**
  * Converts a color from RGB to hex representation.
  * @param {number} r Amount of red, int between 0 and 255.
@@ -261,7 +261,7 @@ export function rgbToHex(r: number, g: number, b: number): string;
  * @param {number} b Value of blue, in [0, 255].
  * @return {!Hsl} hsl representation of the color.
  */
-export function rgbToHsl(r: number, g: number, b: number): number[];
+export function rgbToHsl(r: number, g: number, b: number): Hsl;
 /**
  * Converts from RGB values to an array of HSV values.
  * @param {number} red Red value in [0, 255].
@@ -269,4 +269,4 @@ export function rgbToHsl(r: number, g: number, b: number): number[];
  * @param {number} blue Blue value in [0, 255].
  * @return {!Hsv} hsv representation of the color.
  */
-export function rgbToHsv(red: number, green: number, blue: number): number[];
+export function rgbToHsv(red: number, green: number, blue: number): Hsv;

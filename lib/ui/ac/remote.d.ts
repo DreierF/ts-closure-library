@@ -24,7 +24,6 @@ export class Remote extends AutoComplete {
      * @param {RemoteArrayMatcher=} opt_matcher
      */
     constructor(url: string, input: Element | null, opt_multi?: boolean | undefined, opt_useSimilar?: boolean | undefined, opt_matcher?: RemoteArrayMatcher | undefined);
-    matcher_: RemoteArrayMatcher;
     /**
      * Set whether or not standard highlighting should be used when rendering rows.
      * @param {boolean} useStandardHighlighting true if standard highlighting used.
@@ -50,15 +49,15 @@ export class Remote extends AutoComplete {
      * @param {Object|StructsMap} headers Map of headers to add to the
      *     request.
      */
-    setHeaders(headers: any): void;
+    setHeaders(headers: any | StructsMap): void;
     /**
      * Set the timeout interval for the matcher.
      * @param {number} interval Number of milliseconds after which an
      *     incomplete request will be aborted; 0 means no timeout is set.
      */
     setTimeoutInterval(interval: number): void;
-    actualEventTarget_: Remote;
 }
 import { AutoComplete } from "./autocomplete.js";
-import { RemoteArrayMatcher } from "./remotearraymatcher.js";
 import { InputHandler } from "./inputhandler.js";
+import { Map as StructsMap } from "../../structs/map.js";
+import { RemoteArrayMatcher } from "./remotearraymatcher.js";

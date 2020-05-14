@@ -19,7 +19,7 @@ export class ItemEvent extends EventsEvent {
      *                        of this event.
      * @param {?Object} item The item that was clicked.
      */
-    constructor(type: string, target: any, item: any);
+    constructor(type: string, target: any | null, item: any | null);
     /**
      * Item for the event. The type of this object is specific to the type
      * of event. For a menu, it would be the menu item that was clicked. For a
@@ -27,6 +27,6 @@ export class ItemEvent extends EventsEvent {
      *
      * @type {?Object}
      */
-    item: Object | null;
+    item: any | null;
 }
 import { Event as EventsEvent } from "../events/event.js";

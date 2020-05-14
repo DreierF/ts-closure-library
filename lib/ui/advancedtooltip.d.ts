@@ -22,7 +22,7 @@ export class AdvancedTooltip extends Tooltip {
      * @param {?string=} opt_str Text message to display in tooltip.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(opt_el?: string | Element | null | undefined, opt_str?: string | null | undefined, opt_domHelper?: DomHelper | undefined);
+    constructor(opt_el?: ((Element | string) | null) | undefined, opt_str?: (string | null) | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * Whether to track the cursor and thereby close the tooltip if it moves away
      * from the tooltip and keep it open if it moves towards it.
@@ -30,7 +30,7 @@ export class AdvancedTooltip extends Tooltip {
      * @type {boolean}
      * @private
      */
-    cursorTracking_: boolean;
+    private cursorTracking_;
     /**
      * Delay in milliseconds before tooltips are hidden if cursor tracking is
      * enabled and the cursor is moving away from the tooltip.
@@ -38,7 +38,7 @@ export class AdvancedTooltip extends Tooltip {
      * @type {number}
      * @private
      */
-    cursorTrackingHideDelayMs_: number;
+    private cursorTrackingHideDelayMs_;
     /**
      * Box object representing a margin around the tooltip where the cursor is
      * allowed without dismissing the tooltip.
@@ -46,28 +46,28 @@ export class AdvancedTooltip extends Tooltip {
      * @type {?Box}
      * @private
      */
-    hotSpotPadding_: Box | null;
+    private hotSpotPadding_;
     /**
      * Bounding box.
      *
      * @type {?Box}
      * @private
      */
-    boundingBox_: Box | null;
+    private boundingBox_;
     /**
      * Anchor bounding box.
      *
      * @type {?Box}
      * @private
      */
-    anchorBox_: Box | null;
+    private anchorBox_;
     /**
      * Whether the cursor tracking is active.
      *
      * @type {boolean}
      * @private
      */
-    tracking_: boolean;
+    private tracking_;
     /**
      * Sets margin around the tooltip where the cursor is allowed without dismissing
      * the tooltip.
@@ -121,16 +121,14 @@ export class AdvancedTooltip extends Tooltip {
      *     tooltip whose anchor is a child of this tooltip.
      * @private
      */
-    isCoordinateActive_(coord: Coordinate | null): boolean;
+    private isCoordinateActive_;
     /**
      * Forces the recalculation of the hotspot on the next mouse over event.
      * @deprecated Not ever necessary to call this function. Hot spot is calculated
      *     as necessary.
      */
     resetHotSpot(): void;
-    actualEventTarget_: AdvancedTooltip;
 }
 import { Tooltip } from "./tooltip.js";
 import { Box } from "../math/box.js";
-import { Coordinate } from "../math/coordinate.js";
 import { DomHelper } from "../dom/dom.js";

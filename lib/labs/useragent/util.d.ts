@@ -4,7 +4,7 @@
  * @return {!Array<!Array<string>>} Tuples of key, version, and the contents
  *     of the parenthetical.
  */
-export function extractVersionTuples(userAgent: string): string[][];
+export function extractVersionTuples(userAgent: string): Array<Array<string>>;
 /**
  * @return {string} The user agent string.
  */
@@ -26,4 +26,4 @@ export function matchUserAgentIgnoreCase(str: string): boolean;
  * browser object instead.
  * @param {?string=} opt_userAgent The User-Agent override.
  */
-export function setUserAgent(opt_userAgent?: string | null | undefined): void;
+export function setUserAgent(opt_userAgent?: (string | null) | undefined): void;

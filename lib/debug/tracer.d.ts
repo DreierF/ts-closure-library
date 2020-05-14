@@ -33,92 +33,114 @@ export let Trace: Trace_ | null;
  */
 declare class Trace_ {
     /**
+     * Converts 'v' to a string and pads it with up to 3 spaces for
+     * improved alignment. TODO there must be a better way
+     * @param {number} v A number.
+     * @return {string} A padded string.
+     * @private
+     */
+    private static longToPaddedString_;
+    /**
+     * Return the sec.ms part of time (if time = "20:06:11.566",  "11.566
+     * @param {number} time The time in MS.
+     * @return {string} A formatted string as sec.ms'.
+     * @private
+     */
+    private static formatTime_;
+    /**
+     * Returns the current time. Done through a wrapper function so it can be
+     * overridden by application code. Gmail has an ActiveX extension that provides
+     * higher precision timing info.
+     * @return {number} The current time in milliseconds.
+     */
+    static now(): number;
+    /**
      * Logger for the tracer
      * @private @const {?LogLogger}
      */
-    logger_: typeof DebugLogger;
+    private logger_;
     /**
      * Events in order.
      * @private {!Array<!Event_>}
      */
-    events_: any[];
+    private events_;
     /**
      * Outstanding events that have started but haven't yet ended. The keys are
      * numeric ids and the values are Event_ objects.
      * @private {!StructsMap<number, !Event_>}
      */
-    outstandingEvents_: any;
+    private outstandingEvents_;
     /**
      * Start time of the event trace
      * @private {number}
      */
-    startTime_: number;
+    private startTime_;
     /**
      * Cummulative overhead of calls to startTracer
      * @private {number}
      */
-    tracerOverheadStart_: number;
+    private tracerOverheadStart_;
     /**
      * Cummulative overhead of calls to endTracer
      * @private {number}
      */
-    tracerOverheadEnd_: number;
+    private tracerOverheadEnd_;
     /**
      * Cummulative overhead of calls to addComment
      * @private {number}
      */
-    tracerOverheadComment_: number;
+    private tracerOverheadComment_;
     /**
      * Keeps stats on different types of tracers. The keys are strings and the
      * values are goog.debug.Stat
      * @private {!StructsMap}
      */
-    stats_: any;
+    private stats_;
     /**
      * Total number of traces created in the trace.
      * @private {number}
      */
-    tracerCount_: number;
+    private tracerCount_;
     /**
      * Total number of comments created in the trace.
      * @private {number}
      */
-    commentCount_: number;
+    private commentCount_;
     /**
      * Next id to use for the trace.
      * @private {number}
      */
-    nextId_: number;
+    private nextId_;
     /**
      * @private
      * @type {?Object}
      */
-    gcTracer_: Object | null;
+    private gcTracer_;
     /**
      * A pool for Event_ objects so we don't keep creating and
      * garbage collecting these (which is very expensive in IE6).
      * @private {!SimplePool}
      */
-    eventPool_: SimplePool<any>;
+    private eventPool_;
     /**
      * A pool for Trace_.Stat_ objects so we don't keep creating and
      * garbage collecting these (which is very expensive in IE6).
      * @private {!SimplePool}
      */
-    statPool_: SimplePool<any>;
+    private statPool_;
     /** @private {!SimplePool<number>} */
-    idPool_: SimplePool<any>;
+    private idPool_;
     /**
      * Default threshold below which a tracer shouldn't be reported
      * @private {number}
      */
-    defaultThreshold_: number;
+    private defaultThreshold_;
     /**
      * An object containing three callback functions to be called when starting or
      * stopping a trace, or creating a comment trace.
      * @private {!TracerCallbacks}
      */
-    traceCallbacks_: {};
+    private traceCallbacks_;
     /**
      * Removes all registered callback functions. Mainly used for testing.
      */
@@ -153,7 +175,7 @@ declare class Trace_ {
      * Clears the open traces and calls stop callback for them.
      * @private
      */
-    clearOutstandingEvents_(): void;
+    private clearOutstandingEvents_;
     /**
      * Resets the trace.
      * @param {number} defaultThreshold The default threshold below which the
@@ -163,7 +185,7 @@ declare class Trace_ {
     /**
      * @private
      */
-    releaseEvents_(): void;
+    private releaseEvents_;
     /**
      * Starts a tracer
      * @param {string} comment A comment used to identify the tracer. Does not
@@ -187,12 +209,12 @@ declare class Trace_ {
      * @return {?number} The elapsed time for the tracer or null if the tracer
      *    identitifer was not recognized.
      */
-    stopTracer(id: number | null | undefined, opt_silenceThreshold?: number | undefined): number | null;
+    stopTracer(id: number | undefined | null, opt_silenceThreshold?: number | undefined): number | null;
     /**
      * Sets the ActiveX object that can be used to get GC tracing in IE6.
      * @param {?Object} gcTracer GCTracer ActiveX object.
      */
-    setGcTracer(gcTracer: any): void;
+    setGcTracer(gcTracer: any | null): void;
     /**
      * Returns the total number of allocations since the GC stats were reset. Only
      * works in IE.
@@ -209,7 +231,7 @@ declare class Trace_ {
      * @param {?number=} opt_timeStamp The timestamp to insert the comment. If not
      *    specified, the current time wil be used.
      */
-    addComment(comment: string, opt_type?: string | null | undefined, opt_timeStamp?: number | null | undefined): void;
+    addComment(comment: string, opt_type?: (string | null) | undefined, opt_timeStamp?: (number | null) | undefined): void;
     /**
      * Gets a stat object for a particular type. The stat object is created if it
      * hasn't yet been.
@@ -217,32 +239,7 @@ declare class Trace_ {
      * @return {Trace_.Stat_} The stat object.
      * @private
      */
-    getStat_(type: string): {
-        /**
-         * @type {string|null|undefined}
-         */
-        type: string | null | undefined;
-        /**
-         * Number of tracers
-         * @type {number}
-         */
-        count: number;
-        /**
-         * Cumulative time of traces
-         * @type {number}
-         */
-        time: number;
-        /**
-         * Total number of allocations for this tracer type
-         * @type {number}
-         */
-        varAlloc: number;
-        /**
-         * @return {string} A string describing the tracer stat.
-         * @override
-         */
-        toString(): string;
-    };
+    private getStat_;
     /**
      * Returns a formatted string for the current trace
      * @return {string} A formatted string that shows the timings of the current
@@ -274,9 +271,9 @@ declare namespace Trace_ {
     export { Stat_ };
     export const NORMAL_STOP_: {};
 }
-import { Logger as DebugLogger } from "./logger.js";
-import { SimplePool } from "../structs/simplepool.js";
-declare namespace TracerCallbacks { }
+declare namespace TracerCallbacks {
+    export function sequence_(fn1: Function | undefined, fn2: Function | undefined): Function | undefined;
+}
 declare class Stat_ {
     /**
      * @type {string|null|undefined}

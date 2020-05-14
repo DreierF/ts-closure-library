@@ -36,40 +36,40 @@ export class Html5History extends goog_events.EventTarget {
      * @type {boolean}
      * @private
      */
-    enabled_: boolean;
+    private enabled_;
     /**
      * Whether to use the fragment to store the token, defaults to true.
      * @type {boolean}
      * @private
      */
-    useFragment_: boolean;
+    private useFragment_;
     /**
      * If useFragment is false the path will be used, the path prefix will be
      * prepended to all tokens. Defaults to '/'.
      * @type {string}
      * @private
      */
-    pathPrefix_: string;
+    private pathPrefix_;
     /**
      * The window object to use for history tokens.  Typically the top window.
      * @type {?Window}
      * @private
      */
-    window_: Window | null;
+    private window_;
     /**
      * The token transformer that is used to create URL from the token
      * when storing token without using hash fragment.
      * @type {?TokenTransformer}
      * @private
      */
-    transformer_: TokenTransformer | null;
+    private transformer_;
     /**
      * The fragment of the last navigation. Used to eliminate duplicate/redundant
      * NAVIGATE events when a POPSTATE and HASHCHANGE event are triggered for the
      * same navigation (e.g., back button click).
      * @private {?string}
      */
-    lastFragment_: any;
+    private lastFragment_;
     /**
      * Starts or stops the History.  When enabled, the History object
      * will immediately fire an event for the current location. The caller can set
@@ -118,21 +118,20 @@ export class Html5History extends goog_events.EventTarget {
      * @return {?string} The hash fragment.
      * @private
      */
-    getFragment_(): string | null;
+    private getFragment_;
     /**
      * Gets the URL to set when calling history.pushState
      * @param {string} token The history token.
      * @return {string} The URL.
      * @private
      */
-    getUrl_(token: string): string;
+    private getUrl_;
     /**
      * Handles history events dispatched by the browser.
      * @param {?EventsBrowserEvent} e The browser event object.
      * @private
      */
-    onHistoryEvent_(e: EventsBrowserEvent | null): void;
-    actualEventTarget_: Html5History;
+    private onHistoryEvent_;
 }
 /**
  * A token transformer that can create a URL from a history
@@ -173,4 +172,3 @@ export class TokenTransformer {
     createUrl(token: string, pathPrefix: string, location: Location | null): string;
 }
 import * as goog_events from "../events/eventhandler.js";
-import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";

@@ -9,7 +9,7 @@ export class AlreadyCalledError extends DebugError {
      * @param {!Deferred} deferred The Deferred.
      *
      */
-    constructor(deferred: Deferred<any>);
+    constructor(deferred: Deferred);
     /**
      * The Deferred that raised this error.
      * @type {?Deferred}
@@ -27,7 +27,7 @@ export class CanceledError extends DebugError {
      *
      * @param {!Deferred} deferred The Deferred object.
      */
-    constructor(deferred: Deferred<any>);
+    constructor(deferred: Deferred);
     /**
      * The Deferred that raised this error.
      * @type {?Deferred}
@@ -90,7 +90,92 @@ export class CanceledError extends DebugError {
  * @implements {Thenable<VALUE>}
  * @template VALUE
  */
-export class Deferred<VALUE> {
+export class Deferred<VALUE> implements Thenable<VALUE> {
+    /**
+     * Creates a Deferred that has an initial result.
+     *
+     * @param {*=} opt_result The result.
+     * @return {!Deferred} The new Deferred.
+     */
+    static succeed(opt_result?: any | undefined): Deferred;
+    /**
+     * Creates a Deferred that fires when the given promise resolves.
+     * Use only during migration to Promises.
+     *
+     * Note: If the promise resolves to a thenable value (which is not allowed by
+     * conforming promise implementations), then the deferred may behave
+     * unexpectedly as it tries to wait on it. This should not be a risk when using
+     * GoogPromise, Deferred, or native Promise objects.
+     *
+     * @param {!IThenable<T>} promise
+     * @return {!Deferred<T>} The new Deferred.
+     * @template T
+     */
+    static fromPromise<T_5>(promise: any): Deferred<T_5>;
+    /**
+     * Creates a Deferred that has an initial error result.
+     *
+     * @param {*} res The error result.
+     * @return {!Deferred} The new Deferred.
+     */
+    static fail(res: any): Deferred;
+    /**
+     * Creates a Deferred that has already been canceled.
+     *
+     * @return {!Deferred} The new Deferred.
+     */
+    static canceled(): Deferred;
+    /**
+     * Normalizes values that may or may not be Deferreds.
+     *
+     * If the input value is a Deferred, the Deferred is branched (so the original
+     * execution sequence is not modified) and the input callback added to the new
+     * branch. The branch is returned to the caller.
+     *
+     * If the input value is not a Deferred, the callback will be executed
+     * immediately and an already firing Deferred will be returned to the caller.
+     *
+     * In the following (contrived) example, if <code>isImmediate</code> is true
+     * then 3 is alerted immediately, otherwise 6 is alerted after a 2-second delay.
+     *
+     * <pre>
+     * var value;
+     * if (isImmediate) {
+     *   value = 3;
+     * } else {
+     *   value = new Deferred();
+     *   setTimeout(function() { value.callback(6); }, 2000);
+     * }
+     *
+     * var d = Deferred.when(value, alert);
+     * </pre>
+     *
+     * @param {*} value Deferred or normal value to pass to the callback.
+     * @param {function(this:T, ?):?} callback The callback to execute.
+     * @param {T=} opt_scope An optional scope to call the callback in.
+     * @return {!Deferred} A new Deferred that will call the input
+     *     callback with the input value.
+     * @template T
+     */
+    static when<T_6>(value: any, callback: (this: T_6, arg1: unknown) => unknown, opt_scope?: T_6 | undefined): Deferred;
+    /**
+     * Schedules an error to be thrown after a delay.
+     * @param {*} error Error from a failing deferred.
+     * @return {number} Id of the error.
+     * @private
+     */
+    private static scheduleError_;
+    /**
+     * Unschedules an error from being thrown.
+     * @param {number} id Id of the deferred error to unschedule.
+     * @private
+     */
+    private static unscheduleError_;
+    /**
+     * Asserts that there are no pending deferred errors. If there are any
+     * scheduled errors, one will be thrown immediately to make this function fail.
+     */
+    static assertNoErrors(): void;
     /**
      * A Deferred represents the result of an asynchronous operation. A Deferred
      * instance has no result when it is created, and is "fired" (given an initial
@@ -131,45 +216,45 @@ export class Deferred<VALUE> {
      *     callbacks and errbacks in.
      * @template VALUE
      */
-    constructor(opt_onCancelFunction?: Function | undefined, opt_defaultScope?: any);
+    constructor(opt_onCancelFunction?: Function | undefined, opt_defaultScope?: any | undefined);
     /**
      * Entries in the sequence are arrays containing a callback, an errback, and
      * an optional scope. The callback or errback in an entry may be null.
      * @type {!Array<!Array>}
      * @private
      */
-    sequence_: Array<Array>;
+    private sequence_;
     /**
      * Optional function that will be called if the Deferred is canceled.
      * @type {Function|undefined}
      * @private
      */
-    onCancelFunction_: Function | undefined;
+    private onCancelFunction_;
     /**
      * The default scope to execute callbacks and errbacks in.
      * @type {?Object}
      * @private
      */
-    defaultScope_: Object | null;
+    private defaultScope_;
     /**
      * Whether the Deferred has been fired.
      * @type {boolean}
      * @private
      */
-    fired_: boolean;
+    private fired_;
     /**
      * Whether the last result in the execution sequence was an error.
      * @type {boolean}
      * @private
      */
-    hadError_: boolean;
+    private hadError_;
     /**
      * The current Deferred result, updated as callbacks and errbacks are
      * executed.
      * @type {*}
      * @private
      */
-    result_: any;
+    private result_;
     /**
      * Whether the Deferred is blocked waiting on another Deferred to fire. If a
      * callback or errback returns a Deferred as a result, the execution sequence
@@ -177,7 +262,7 @@ export class Deferred<VALUE> {
      * @type {boolean}
      * @private
      */
-    blocked_: boolean;
+    private blocked_;
     /**
      * Whether this Deferred is blocking execution of another Deferred. If this
      * instance was returned as a result in another Deferred's execution
@@ -187,14 +272,14 @@ export class Deferred<VALUE> {
      * @type {boolean}
      * @private
      */
-    blocking_: boolean;
+    private blocking_;
     /**
      * Whether the Deferred has been canceled without having a custom cancel
      * function.
      * @type {boolean}
      * @private
      */
-    silentlyCanceled_: boolean;
+    private silentlyCanceled_;
     /**
      * If an error is thrown during Deferred execution with no errback to catch
      * it, the error is rethrown after a timeout. Reporting the error after a
@@ -203,27 +288,27 @@ export class Deferred<VALUE> {
      * @type {number}
      * @private
      */
-    unhandledErrorId_: number;
+    private unhandledErrorId_;
     /**
      * If this Deferred was created by branch(), this will be the "parent"
      * Deferred.
      * @type {?Deferred}
      * @private
      */
-    parent_: Deferred | null;
+    private parent_;
     /**
      * The number of Deferred objects that have been branched off this one. This
      * will be decremented whenever a branch is fired or canceled.
      * @type {number}
      * @private
      */
-    branches_: number;
+    private branches_;
     /**
      * Holds the stack trace at time of deferred creation if the JS engine
      * provides the Error.captureStackTrace API.
      * @private {?string}
      */
-    constructorStack_: string | null;
+    private constructorStack_;
     /**
      * Cancels a Deferred that has not yet been fired, or is blocked on another
      * deferred operation. If this Deferred is waiting for a blocking Deferred to
@@ -247,7 +332,7 @@ export class Deferred<VALUE> {
      *
      * @private
      */
-    branchCancel_(): void;
+    private branchCancel_;
     /**
      * Called after a blocking Deferred fires. Unblocks this Deferred and resumes
      * its execution sequence.
@@ -256,7 +341,7 @@ export class Deferred<VALUE> {
      * @param {*} res The result of the blocking Deferred.
      * @private
      */
-    continue_(isSuccess: boolean, res: any): void;
+    private continue_;
     /**
      * Updates the current result based on the success or failure of the last action
      * in the execution sequence.
@@ -265,14 +350,14 @@ export class Deferred<VALUE> {
      * @param {*} res The result.
      * @private
      */
-    updateResult_(isSuccess: boolean, res: any): void;
+    private updateResult_;
     /**
      * Verifies that the Deferred has not yet been fired.
      *
      * @private
      * @throws {Error} If this has already been fired.
      */
-    check_(): void;
+    private check_;
     /**
      * Fire the execution sequence for this Deferred by passing the starting result
      * to the first registered callback.
@@ -284,7 +369,7 @@ export class Deferred<VALUE> {
      * result to the first registered errback.
      * @param {*=} opt_result The starting error.
      */
-    errback(opt_result?: any): void;
+    errback(opt_result?: any | undefined): void;
     /**
      * Attempt to make the error's stack trace be long in that it contains the
      * stack trace from the point where the deferred was created on top of the
@@ -293,14 +378,14 @@ export class Deferred<VALUE> {
      * @private
      * @suppress {missingProperties} error.stack
      */
-    makeStackTraceLong_(error: any): void;
+    private makeStackTraceLong_;
     /**
      * Asserts that an object is not a Deferred.
      * @param {*} obj The object to test.
      * @throws {Error} Throws an exception if the object is a Deferred.
      * @private
      */
-    assertNotDeferred_(obj: any): void;
+    private assertNotDeferred_;
     /**
      * Register a callback function to be called with a successful result. If no
      * value is returned by the callback function, the result value is unchanged. If
@@ -320,7 +405,7 @@ export class Deferred<VALUE> {
      * @return {!Deferred} This Deferred.
      * @template T
      */
-    addCallback<T>(cb: (this: T, arg1: VALUE) => any, opt_scope?: T | undefined): Deferred<any>;
+    addCallback<T>(cb: (this: T, arg1: VALUE) => unknown, opt_scope?: T | undefined): Deferred;
     /**
      * Register a callback function to be called with an error result. If no value
      * is returned by the function, the error result is unchanged. If a new error
@@ -340,7 +425,7 @@ export class Deferred<VALUE> {
      * @return {!Deferred<VALUE>} This Deferred.
      * @template T
      */
-    addErrback<T>(eb: (this: T, arg1: any) => any, opt_scope?: T | undefined): Deferred<VALUE>;
+    addErrback<T>(eb: (this: T, arg1: unknown) => unknown, opt_scope?: T | undefined): Deferred<VALUE>;
     /**
      * Registers one function as both a callback and errback.
      *
@@ -349,7 +434,7 @@ export class Deferred<VALUE> {
      * @return {!Deferred} This Deferred.
      * @template T
      */
-    addBoth<T>(f: (this: T, arg1: any) => any, opt_scope?: T | undefined): Deferred<any>;
+    addBoth<T>(f: (this: T, arg1: unknown) => unknown, opt_scope?: T | undefined): Deferred;
     /**
      * Like addBoth, but propagates uncaught exceptions in the errback.
      *
@@ -358,7 +443,7 @@ export class Deferred<VALUE> {
      * @return {!Deferred<VALUE>} This Deferred.
      * @template T
      */
-    addFinally<T>(f: (this: T, arg1: any) => any, opt_scope?: T | undefined): Deferred<VALUE>;
+    addFinally<T>(f: (this: T, arg1: unknown) => unknown, opt_scope?: T | undefined): Deferred<VALUE>;
     /**
      * Registers a callback function and an errback function at the same position
      * in the execution sequence. Only one of these functions will execute,
@@ -375,7 +460,7 @@ export class Deferred<VALUE> {
      * @return {!Deferred} This Deferred.
      * @template T
      */
-    addCallbacks<T_4>(cb: ((this: T_4, arg1: VALUE) => any) | null, eb: ((this: T_4, arg1: any) => any) | null, opt_scope?: T_4 | undefined): Deferred<any>;
+    addCallbacks<T_4>(cb: ((this: T_4, arg1: VALUE) => unknown) | null, eb: ((this: T_4, arg1: unknown) => unknown) | null, opt_scope?: T_4 | undefined): Deferred;
     /**
      * Implements {@see Thenable} for seamless integration with
      * {@see GoogPromise}.
@@ -396,7 +481,7 @@ export class Deferred<VALUE> {
      * @param {!Deferred} otherDeferred The Deferred to chain.
      * @return {!Deferred} This Deferred.
      */
-    chainDeferred(otherDeferred: Deferred<any>): Deferred<any>;
+    chainDeferred(otherDeferred: Deferred): Deferred;
     /**
      * Makes this Deferred wait for another Deferred's execution sequence to
      * complete before continuing.
@@ -409,7 +494,7 @@ export class Deferred<VALUE> {
      *     to wait for.
      * @return {!Deferred} This Deferred.
      */
-    awaitDeferred(otherDeferred: Thenable<any> | Deferred<any>): Deferred<any>;
+    awaitDeferred(otherDeferred: Deferred | Thenable): Deferred;
     /**
      * Creates a branch off this Deferred's execution sequence, and returns it as a
      * new Deferred. The branched Deferred's starting result will be shared with the
@@ -438,12 +523,12 @@ export class Deferred<VALUE> {
      *     special error types.
      * @protected
      */
-    isError(res: any): boolean;
+    protected isError(res: any): boolean;
     /**
      * @return {boolean} Whether an errback exists in the remaining sequence.
      * @private
      */
-    hasErrback_(): boolean;
+    private hasErrback_;
     /**
      * Exhausts the execution sequence while a result is available. The result may
      * be modified by callbacks or errbacks, and execution will block if the
@@ -451,7 +536,7 @@ export class Deferred<VALUE> {
      *
      * @private
      */
-    fire_(): void;
+    private fire_;
 }
 export namespace Deferred {
     export { Error_ };
@@ -468,8 +553,8 @@ export const LONG_STACK_TRACES: boolean;
  */
 export const STRICT_ERRORS: boolean;
 import { Error as DebugError } from "../../debug/error.js";
-import { Promise as GoogPromise } from "../../promise/promise.js";
 import { Thenable } from "../../promise/promise.js";
+import { Promise as GoogPromise } from "../../promise/promise.js";
 declare class Error_ {
     /**
      * Wrapper around errors that are scheduled to be thrown by failing deferreds
@@ -478,11 +563,11 @@ declare class Error_ {
      * @param {*} error Error from a failing deferred.
      * @private
      */
-    constructor(error: any);
+    private constructor();
     /** @const @private {number} */
-    id_: number;
+    private id_;
     /** @const @private {*} */
-    error_: any;
+    private error_;
     /**
      * Actually throws the error and removes it from the list of pending
      * deferred errors.

@@ -27,78 +27,74 @@ export class TreeControl extends BaseNode {
      *    will be used.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(content: string | SafeHtml, opt_config?: any, opt_domHelper?: DomHelper | undefined);
+    constructor(content: string | SafeHtml, opt_config?: any | undefined, opt_domHelper?: DomHelper | undefined);
     selectedItem_: any;
     /**
      * Used for typeahead support.
      * @private {!TypeAhead}
      */
-    typeAhead_: TypeAhead;
+    private typeAhead_;
     /**
      * The object handling keyboard events.
      * @private {?KeyHandler}
      */
-    keyHandler_: KeyHandler | null;
+    private keyHandler_;
     /**
      * The object handling focus events.
      * @private {?FocusHandler}
      */
-    focusHandler_: FocusHandler | null;
+    private focusHandler_;
     /**
      * Logger
      * @private {?LogLogger}
      */
-    logger_: typeof import("../../debug/logger.js").Logger;
+    private logger_;
     /**
      * Whether the tree is focused.
      * @private {boolean}
      */
-    focused_: boolean;
+    private focused_;
     /**
      * Child node that currently has focus.
      * @private {?BaseNode}
      */
-    focusedNode_: any;
+    private focusedNode_;
     /**
      * Whether to show lines.
      * @private {boolean}
      */
-    showLines_: any;
+    private showLines_;
     /**
      * Whether to show expanded lines.
      * @private {boolean}
      */
-    showExpandIcons_: any;
+    private showExpandIcons_;
     /**
      * Whether to show the root node.
      * @private {boolean}
      */
-    showRootNode_: any;
+    private showRootNode_;
     /**
      * Whether to show the root lines.
      * @private {boolean}
      */
-    showRootLines_: any;
+    private showRootLines_;
     /**
      * Handles focus on the tree.
      * @param {!EventsBrowserEvent} e The browser event.
      * @private
      */
-    handleFocus_(e: EventsBrowserEvent): void;
+    private handleFocus_;
     /**
      * Handles blur on the tree.
      * @param {!EventsBrowserEvent} e The browser event.
      * @private
      */
-    handleBlur_(e: EventsBrowserEvent): void;
+    private handleBlur_;
     /**
      * @return {boolean} Whether the tree has keyboard focus.
      */
     hasFocus(): boolean;
-    /** @override */
-    setExpanded(expanded: any): void;
-    /** @override */
-    getExpandIconElement(): null;
     /**
      * Sets the selected item.
      * @param {?BaseNode} node The item to select.
@@ -122,7 +118,7 @@ export class TreeControl extends BaseNode {
      * Updates the lines after the tree has been drawn.
      * @private
      */
-    updateLinesAndExpandIcons_(): void;
+    private updateLinesAndExpandIcons_;
     /**
      * Sets whether to show root lines.
      * @param {boolean} b Whether to show root lines.
@@ -154,18 +150,18 @@ export class TreeControl extends BaseNode {
      * Adds the event listeners to the tree.
      * @private
      */
-    attachEvents_(): void;
+    private attachEvents_;
     /**
      * Removes the event listeners from the tree.
      * @private
      */
-    detachEvents_(): void;
+    private detachEvents_;
     /**
      * Handles mouse events.
      * @param {!EventsBrowserEvent} e The browser event.
      * @private
      */
-    handleMouseEvent_(e: EventsBrowserEvent): void;
+    private handleMouseEvent_;
     /**
      * Handles key down on the tree.
      * @param {!EventsBrowserEvent} e The browser event.
@@ -179,7 +175,7 @@ export class TreeControl extends BaseNode {
      *     found.
      * @private
      */
-    getNodeFromEvent_(e: EventsBrowserEvent): BaseNode | null;
+    private getNodeFromEvent_;
     /**
      * Creates a new tree node using the same config as the root.
      * @param {string=} opt_content The content of the node label. Strings are
@@ -205,7 +201,6 @@ export class TreeControl extends BaseNode {
      * Clear the typeahead buffer.
      */
     clearTypeAhead(): void;
-    actualEventTarget_: TreeControl;
 }
 export namespace TreeControl {
     export const defaultConfig: {
@@ -237,9 +232,6 @@ export namespace TreeControl {
     };
 }
 import { BaseNode } from "./treenode.js";
-import { TypeAhead } from "./typeahead.js";
-import { KeyHandler } from "../../events/keyhandler.js";
-import { FocusHandler } from "../../events/focushandler.js";
 import { BrowserEvent as EventsBrowserEvent } from "../../events/browserevent.js";
 import { TreeNode } from "./treenode.js";
 import { SafeHtml } from "../../html/safehtml.js";

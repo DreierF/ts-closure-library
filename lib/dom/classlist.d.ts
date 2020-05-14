@@ -74,7 +74,7 @@ export function enableAll(element: Element, classesToEnable: ArrayLike<string> |
  * @param {?Element} element DOM node to get the classes of.
  * @return {!ArrayLike<?>} Class names on `element`.
  */
-export function get(element: Element | null): ArrayLike<any>;
+export function get(element: Element | null): ArrayLike<string>;
 /**
  * Removes a class from an element.  This method may throw a DOM exception
  * for an invalid or empty class name if DOMTokenList is used.

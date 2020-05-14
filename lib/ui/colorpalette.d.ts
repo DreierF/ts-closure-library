@@ -23,7 +23,7 @@ export class ColorPalette extends Palette {
      *     be parsed as a color.
      * @private
      */
-    static parseColor_(color: string | null): string | null;
+    private static parseColor_;
     /**
      * A color palette is a grid of color swatches that the user can highlight or
      * select via the keyboard or the mouse.  The selection state of the palette is
@@ -38,38 +38,38 @@ export class ColorPalette extends Palette {
      * @param {DomHelper=} opt_domHelper Optional DOM helper, used for
      *     document interaction.
      */
-    constructor(opt_colors?: string[] | undefined, opt_renderer?: PaletteRenderer | undefined, opt_domHelper?: DomHelper | undefined);
+    constructor(opt_colors?: Array<string> | undefined, opt_renderer?: PaletteRenderer | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * Array of normalized colors. Initialized lazily as often never needed.
      * @type {?Array<string>}
      * @private
      */
-    normalizedColors_: Array<string> | null;
+    private normalizedColors_;
     /**
      * Array of labels for the colors. Will be used for the tooltips and
      * accessibility.
      * @type {?Array<string>}
      * @private
      */
-    labels_: Array<string> | null;
+    private labels_;
     /**
      * Array of colors to show in the palette.
      * @type {Array<string>}
      * @private
      */
-    colors_: Array<string>;
+    private colors_;
     /**
      * Returns the array of colors represented in the color palette.
      * @return {Array<string>} Array of colors.
      */
-    getColors(): string[];
+    getColors(): Array<string>;
     /**
      * Sets the colors that are contained in the palette.
      * @param {Array<string>} colors Array of colors in any valid CSS color format.
      * @param {Array<string>=} opt_labels The array of labels to be used as
      *        tooltips. When not provided, the color value will be used.
      */
-    setColors(colors: string[], opt_labels?: string[] | undefined): void;
+    setColors(colors: Array<string>, opt_labels?: Array<string> | undefined): void;
     /**
      * @return {?string} The current selected color in hex, or null.
      */
@@ -85,8 +85,7 @@ export class ColorPalette extends Palette {
      * @return {!Array<!Node>} An array of DOM nodes for each color.
      * @protected
      */
-    createColorNodes(): Node[];
-    actualEventTarget_: ColorPalette;
+    protected createColorNodes(): Array<Node>;
 }
 import { Palette } from "./palette.js";
 import { PaletteRenderer } from "./paletterenderer.js";

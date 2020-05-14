@@ -50,7 +50,7 @@ export function sanitizeInlineStyleString(cssText: string, opt_uriRewriter?: ((a
  *     is unreliable, and some (but not all!) rules containing these are
  *     silently dropped.
  */
-export function sanitizeStyleSheetString(textContent: string, opt_containerId?: string | null | undefined, opt_uriRewriter?: ((arg0: string, arg1: string) => SafeUrl | null) | undefined): SafeStyleSheet;
+export function sanitizeStyleSheetString(textContent: string, opt_containerId?: (string | null) | undefined, opt_uriRewriter?: ((arg0: string, arg1: string) => SafeUrl | null) | undefined): SafeStyleSheet;
 import { SafeUrl } from "../safeurl.js";
 import { SafeStyle } from "../safestyle.js";
 import { SafeStyleSheet } from "../safestylesheet.js";

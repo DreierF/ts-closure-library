@@ -57,7 +57,7 @@ declare class events_Event {
      *     this event. It has to implement the `EventTarget` interface
      *     declared at {@link http://developer.mozilla.org/en/DOM/EventTarget}.
      */
-    constructor(type: string | EventId<any>, opt_target?: any);
+    constructor(type: string | EventId, opt_target?: any | undefined);
     /**
      * Event type.
      * @type {string}
@@ -70,18 +70,18 @@ declare class events_Event {
      * Target of the event.
      * @type {Object|undefined}
      */
-    target: Object | null | undefined;
+    target: any | undefined;
     /**
      * Object that had the listener attached.
      * @type {Object|undefined}
      */
-    currentTarget: Object | null | undefined;
+    currentTarget: any | undefined;
     /**
      * Whether to cancel the event in internal capture/bubble processing for IE.
      * @type {boolean}
      * @public
      */
-    propagationStopped_: boolean;
+    public propagationStopped_: boolean;
     /**
      * Whether the default action has been prevented.
      * This is a property to match the W3C specification at
@@ -96,7 +96,7 @@ declare class events_Event {
      * @type {boolean}
      * @public
      */
-    returnValue_: boolean;
+    public returnValue_: boolean;
     /**
      * Stops event propagation.
      */

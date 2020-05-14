@@ -9,37 +9,8 @@
  * @extends {ControlRenderer<UiTextarea>}
  */
 export class TextareaRenderer extends ControlRenderer<UiTextarea> {
-    /** @override */
-    getAriaRole(): undefined;
-    /** @override */
-    decorate(control: any, element: any): any;
-    /**
-     * Textareas natively support right-to-left rendering.
-     * @override
-     */
-    setRightToLeft(): void;
-    /**
-     * Textareas are always focusable as long as they are enabled.
-     * @override
-     */
-    isFocusable(textarea: any): any;
-    /**
-     * Textareas natively support keyboard focus.
-     * @override
-     */
-    setFocusable(): void;
-    /**
-     * Textareas also expose the DISABLED state in the HTML textarea's
-     * `disabled` attribute.
-     * @override
-     */
-    setState(textarea: any, state: any, enable: any): void;
-    /**
-     * Textareas don't need ARIA states to support accessibility, so this is
-     * a no-op.
-     * @override
-     */
-    updateAriaState(): void;
+    /** @override @return {!TextareaRenderer} @suppress {checkTypes} */
+    static getInstance(): TextareaRenderer;
     /**
      * Sets up the textarea control such that it doesn't waste time adding
      * functionality that is already natively supported by browser
@@ -47,9 +18,7 @@ export class TextareaRenderer extends ControlRenderer<UiTextarea> {
      * @param {?Control} textarea Textarea control to configure.
      * @private
      */
-    setUpTextarea_(textarea: Control<any> | null): void;
-    /** @override **/
-    setContent(element: any, value: any): void;
+    private setUpTextarea_;
 }
 export namespace TextareaRenderer {
     export const instance_: TextareaRenderer | null;
@@ -57,4 +26,3 @@ export namespace TextareaRenderer {
 }
 import { Textarea as UiTextarea } from "./textarea.js";
 import { ControlRenderer } from "./control.js";
-import { Control } from "./control.js";

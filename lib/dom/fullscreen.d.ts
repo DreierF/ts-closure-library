@@ -28,28 +28,28 @@ export class FullscreenOptions {
  * @param {!DomHelper=} opt_domHelper The DomHelper for the DOM being
  *     queried. If not provided, use the current DOM.
  */
-export function exitFullScreen(opt_domHelper?: goog_dom.DomHelper | undefined): void;
+export function exitFullScreen(opt_domHelper?: DomHelper | undefined): void;
 /**
  * Get the root element in full screen mode.
  * @param {!DomHelper=} opt_domHelper The DomHelper for the DOM being
  *     queried. If not provided, use the current DOM.
  * @return {Element|null} The root element in full screen mode.
  */
-export function getFullScreenElement(opt_domHelper?: goog_dom.DomHelper | undefined): Element | null;
+export function getFullScreenElement(opt_domHelper?: DomHelper | undefined): Element | null;
 /**
  * Determines if the document is full screen.
  * @param {!DomHelper=} opt_domHelper The DomHelper for the DOM being
  *     queried. If not provided, use the current DOM.
  * @return {boolean} Whether the document is full screen.
  */
-export function isFullScreen(opt_domHelper?: goog_dom.DomHelper | undefined): boolean;
+export function isFullScreen(opt_domHelper?: DomHelper | undefined): boolean;
 /**
  * Determines if full screen is supported.
  * @param {!DomHelper=} opt_domHelper The DomHelper for the DOM being
  *     queried. If not provided, use the current DOM.
  * @return {boolean} True iff full screen is supported.
  */
-export function isSupported(opt_domHelper?: goog_dom.DomHelper | undefined): boolean;
+export function isSupported(opt_domHelper?: DomHelper | undefined): boolean;
 /**
  * Requests putting the element in full screen.
  * @param {!Element} element The element to put full screen.
@@ -62,4 +62,4 @@ export function requestFullScreen(element: Element, opt_options?: FullscreenOpti
  * @param {!Element} element The element to put full screen.
  */
 export function requestFullScreenWithKeys(element: Element): void;
-import * as goog_dom from "./dom.js";
+import { DomHelper } from "./dom.js";

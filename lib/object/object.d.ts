@@ -13,7 +13,7 @@ export function add<K, V>(obj: any, key: string, val: V): void;
  *
  * @param {?Object} obj The object to clear.
  */
-export function clear(obj: any): void;
+export function clear(obj: any | null): void;
 /**
  * Returns a shallow clone of the object.
  *
@@ -39,7 +39,7 @@ export function contains<K, V>(obj: any, val: V): boolean;
  * @param {?} key The key for which to check.
  * @return {boolean} true If the map contains the key.
  */
-export function containsKey(obj: any, key: any): boolean;
+export function containsKey(obj: any | null, key: unknown): boolean;
 /**
  * Whether the object/map/hash contains the given value. This is O(n).
  *
@@ -104,7 +104,7 @@ export function equals<K, V>(a: any, b: any): boolean;
  * @return {boolean} false if any element fails the test.
  * @template T,K,V
  */
-export function every<T, K, V>(obj: any, f: ((this: T, arg1: V, arg2: any, arg3: any) => boolean) | null, opt_obj?: T | undefined): boolean;
+export function every<T, K, V>(obj: any, f: ((this: T, arg1: V, arg2: unknown, arg3: any) => boolean) | null, opt_obj?: T | undefined): boolean;
 /**
  * Extends an object with another object.
  * This operates 'in-place'; it does not create a new Object.
@@ -123,7 +123,7 @@ export function every<T, K, V>(obj: any, f: ((this: T, arg1: V, arg2: any, arg3:
  *     will be copied.
  * @deprecated Prefer Object.assign
  */
-export function extend(target: any, ...args: any[]): void;
+export function extend(target: any | null, ...args: any[]): void;
 /**
  * Calls a function for each element in an object/map/hash. If that call returns
  * true, adds the element to a new object.
@@ -140,7 +140,7 @@ export function extend(target: any, ...args: any[]): void;
  *     test are present.
  * @template T,K,V
  */
-export function filter<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: any) => boolean, opt_obj?: T | undefined): any;
+export function filter<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: unknown, arg3: any) => boolean, opt_obj?: T | undefined): any;
 /**
  * Searches an object for an element that satisfies the given condition and
  * returns its key.
@@ -204,7 +204,7 @@ export function get<K, V, R>(obj: any, key: string, opt_val?: R | undefined): V 
  * @return {!Array<string>}
  * @public
  */
-export function getAllPropertyNames(obj: any, opt_includeObjectPrototype?: boolean | undefined, opt_includeFunctionPrototype?: boolean | undefined): string[];
+export function getAllPropertyNames(obj: any | null, opt_includeObjectPrototype?: boolean | undefined, opt_includeFunctionPrototype?: boolean | undefined): Array<string>;
 /**
  * Returns one key from the object map, if any exists.
  * For map literals the returned key will be the first one in most of the
@@ -213,7 +213,7 @@ export function getAllPropertyNames(obj: any, opt_includeObjectPrototype?: boole
  * @param {?Object} obj The object to pick a key from.
  * @return {string|undefined} The key or undefined if the object is empty.
  */
-export function getAnyKey(obj: any): string | undefined;
+export function getAnyKey(obj: any | null): string | undefined;
 /**
  * Returns one value from the object map, if any exists.
  * For map literals the returned value will be the first one in most of the
@@ -231,7 +231,7 @@ export function getAnyValue<K, V>(obj: any): V | undefined;
  *     pairs.
  * @return {number} The number of key-value pairs in the object map.
  */
-export function getCount(obj: any): number;
+export function getCount(obj: any | null): number;
 /**
  * Returns the keys of the object/map/hash.
  *
@@ -239,7 +239,7 @@ export function getCount(obj: any): number;
  * @return {!Array<string>} Array of property keys.
  * deprecated Use Object.keys(obj) instead
  */
-export function getKeys(obj: any): string[];
+export function getKeys(obj: any | null): Array<string>;
 /**
  * Given a ES5 or ES6 class reference, return its super class / super
  * constructor.
@@ -254,7 +254,7 @@ export function getKeys(obj: any): string[];
  * @param {function(new: ?)} constructor
  * @return {?Object}
  */
-export function getSuperClass(constructor: new () => any): any;
+export function getSuperClass(constructor: new () => unknown): any | null;
 /**
  * Get a value from an object multiple levels deep.  This is useful for
  * pulling values from deeply nested objects, such as JSON responses.
@@ -299,7 +299,7 @@ export function is(v: any, v2: any): boolean;
  * @param {?Object} obj The object to test.
  * @return {boolean} true if obj is empty.
  */
-export function isEmpty(obj: any): boolean;
+export function isEmpty(obj: any | null): boolean;
 /**
  * @param {!Object} obj An object.
  * @return {boolean} Whether this is an immutable view of the object.
@@ -319,7 +319,7 @@ export function isImmutableView(obj: any): boolean;
  * @return {!Object<K,R>} a new object with the results from f.
  * @template T,K,V,R
  */
-export function map<T, K, V, R>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: any) => R, opt_obj?: T | undefined): any;
+export function map<T, K, V, R>(obj: any, f: (this: T, arg1: V, arg2: unknown, arg3: any) => R, opt_obj?: T | undefined): any;
 /**
  * Removes a key-value pair based on the key.
  *
@@ -327,7 +327,7 @@ export function map<T, K, V, R>(obj: any, f: (this: T, arg1: V, arg2: any, arg3:
  * @param {?} key The key to remove.
  * @return {boolean} Whether an element was removed.
  */
-export function remove(obj: any, key: any): boolean;
+export function remove(obj: any | null, key: unknown): boolean;
 /**
  * Adds a key-value pair to the object/map/hash.
  *
@@ -377,7 +377,7 @@ export function setWithReturnValueIfNotSet<K, V>(obj: any, key: string, f: () =>
  * @return {boolean} true if any element passes the test.
  * @template T,K,V
  */
-export function some<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: any) => boolean, opt_obj?: T | undefined): boolean;
+export function some<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: unknown, arg3: any) => boolean, opt_obj?: T | undefined): boolean;
 /**
  * Returns a new object in which all the keys and values are interchanged
  * (keys become values and values become keys). If multiple keys map to the
@@ -386,7 +386,7 @@ export function some<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: a
  * @param {?Object} obj The object to transpose.
  * @return {!Object} The transposed object.
  */
-export function transpose(obj: any): any;
+export function transpose(obj: any | null): any;
 /**
  * Clones a value. The input may be an Object, Array, or basic type. Objects and
  * arrays will be cloned recursively.

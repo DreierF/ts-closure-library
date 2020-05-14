@@ -67,7 +67,7 @@ export let BLANK_SOURCE_URL: TrustedResourceUrl;
  * @param {!SafeStyle=} opt_styles CSS styles for the iframe.
  * @return {!HTMLIFrameElement} A completely blank iframe.
  */
-export function createBlank(domHelper: googdom.DomHelper | null, opt_styles?: SafeStyle | undefined): HTMLIFrameElement;
+export function createBlank(domHelper: DomHelper | null, opt_styles?: SafeStyle | undefined): HTMLIFrameElement;
 /**
  * Creates a same-domain iframe containing preloaded content.
  *
@@ -101,6 +101,6 @@ export function createWithContent(parentElement: Element, opt_headContents?: Saf
  */
 export function writeSafeContent(iframe: HTMLIFrameElement, content: SafeHtml): void;
 import { TrustedResourceUrl } from "../html/trustedresourceurl.js";
-import * as googdom from "./dom.js";
+import { DomHelper } from "./dom.js";
 import { SafeStyle } from "../html/safestyle.js";
 import { SafeHtml } from "../html/safehtml.js";

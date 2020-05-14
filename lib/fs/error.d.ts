@@ -1,5 +1,5 @@
 /**
- * Error codes for file errors.
+ * *
  */
 export type ErrorCode = number;
 /**
@@ -36,6 +36,19 @@ export namespace ErrorCode {
  * @final
  */
 declare class fs_Error extends DebugError {
+    /**
+     * @param {ErrorCode|undefined} code
+     * @return {string} name
+     * @private
+     */
+    private static getNameFromCode_;
+    /**
+     * Returns the code that corresponds to the given name.
+     * @param {string} name
+     * @return {?ErrorCode} code
+     * @private
+     */
+    private static getCodeFromName_;
     /**
      * A filesystem error. Since the filesystem API is asynchronous, stack traces
      * are less useful for identifying where errors come from, so this includes a

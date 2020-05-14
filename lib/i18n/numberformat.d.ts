@@ -38,6 +38,56 @@ export namespace Format {
  */
 export class NumberFormat {
     /**
+     * Set if the usage of Ascii digits in formatting should be enforced.
+     * NOTE: This function must be called before constructing NumberFormat.
+     *
+     * @param {boolean} doEnforce Boolean value about if Ascii digits should be
+     *     enforced.
+     */
+    static setEnforceAsciiDigits(doEnforce: boolean): void;
+    /**
+     * Return if Ascii digits is enforced.
+     * @return {boolean} If Ascii digits is enforced.
+     */
+    static isEnforceAsciiDigits(): boolean;
+    /**
+     * Shifts `number` by `digitCount` decimal digits.
+     *
+     * This function corrects for rounding error that may occur when naively
+     * multiplying or dividing by a power of 10. See:
+     * https://en.wikipedia.org/wiki/Floating-point_arithmetic#Accuracy_problems
+     * Example: `1.1e27 / Math.pow(10, 12)  != 1.1e15`.
+     *
+     * This function does not correct for inherent limitations in the precision of
+     * JavaScript numbers.
+     *
+     * @param {number} number The number to shift.
+     * @param {number} digitCount The number of places by which to shift number.
+     *     Must be an integer. May be positive or negative.
+     * @return {number}
+     * @private
+     */
+    private static decimalShift_;
+    /**
+     * Rounds `number` to `decimalCount` decimal places.
+     *
+     * Negative values of `decimalCount` will eliminate integeral digits.
+     *
+     * This function corrects for rounding error that may occur when naively
+     * multiplying by a power of 10.
+     *
+     * This function does not correct for inherent limitations in the precision of
+     * JavaScript numbers.
+     *
+     * @param {number} number The number to round.
+     * @param {number} decimalCount The number of decimal places to retain.
+     *     Must be an integer. May be positive or negative.
+     * @return {number}
+     * @private
+     * @suppress {checkTypes}
+     */
+    private static decimalRound_;
+    /**
      * Constructor of NumberFormat.
      * @param {number|string} pattern The number that indicates a predefined
      *     number format pattern.
@@ -52,52 +102,50 @@ export class NumberFormat {
      *     overrides the symbols from the current locale, such as the percent sign
      *     and minus sign.
      */
-    constructor(pattern: string | number, opt_currency?: string | undefined, opt_currencyStyle?: number | undefined, opt_symbols?: {
+    constructor(pattern: number | string, opt_currency?: string | undefined, opt_currencyStyle?: number | undefined, opt_symbols?: {
         [x: string]: string;
     } | undefined);
     /** @const @private {?string} */
-    intlCurrencyCode_: string | null;
+    private intlCurrencyCode_;
     /** @const @private {number} */
-    currencyStyle_: number;
+    private currencyStyle_;
     /** @const @private {?Object<string, string>} */
-    overrideNumberFormatSymbols_: {
-        [x: string]: string;
-    } | null;
+    private overrideNumberFormatSymbols_;
     /** @private {number} */
-    maximumIntegerDigits_: number;
+    private maximumIntegerDigits_;
     /** @private {number} */
-    minimumIntegerDigits_: number;
+    private minimumIntegerDigits_;
     /** @private {number} */
-    significantDigits_: number;
+    private significantDigits_;
     /** @private {number} */
-    maximumFractionDigits_: number;
+    private maximumFractionDigits_;
     /** @private {number} */
-    minimumFractionDigits_: number;
+    private minimumFractionDigits_;
     /** @private {number} */
-    minExponentDigits_: number;
+    private minExponentDigits_;
     /** @private {boolean} */
-    useSignForPositiveExponent_: boolean;
+    private useSignForPositiveExponent_;
     /**
      * Whether to show trailing zeros in the fraction when significantDigits_ is
      * positive.
      * @private {boolean}
      */
-    showTrailingZeros_: boolean;
+    private showTrailingZeros_;
     /** @private {string} */
-    positivePrefix_: string;
+    private positivePrefix_;
     /** @private {string} */
-    positiveSuffix_: string;
+    private positiveSuffix_;
     /** @private {string} */
-    negativePrefix_: any;
+    private negativePrefix_;
     /** @private {string} */
-    negativeSuffix_: string;
+    private negativeSuffix_;
     /** @private {number} */
-    multiplier_: number;
+    private multiplier_;
     /**
      * True if the percent/permill sign of the negative pattern is expected.
      * @private {boolean}
      */
-    negativePercentSignExpected_: boolean;
+    private negativePercentSignExpected_;
     /**
      * The grouping array is used to store the values of each number group
      * following left of the decimal place. For example, a number group with
@@ -105,32 +153,32 @@ export class NumberFormat {
      * repeated number group following a fixed number grouping of size 3.
      * @private {!Array<number>}
      */
-    groupingArray_: any[];
+    private groupingArray_;
     /** @private {boolean} */
-    decimalSeparatorAlwaysShown_: boolean;
+    private decimalSeparatorAlwaysShown_;
     /** @private {boolean} */
-    useExponentialNotation_: boolean;
+    private useExponentialNotation_;
     /** @private {NumberFormat.CompactStyle} */
-    compactStyle_: number;
+    private compactStyle_;
     /**
      * The number to base the formatting on when using compact styles, or null
      * if formatting should not be based on another number.
      * @type {?number}
      * @private
      */
-    baseFormattingNumber_: number | null;
+    private baseFormattingNumber_;
     /**
      * Returns the current NumberFormatSymbols.
      * @return {?}
      * @private
      */
-    getNumberFormatSymbols_(): any;
+    private getNumberFormatSymbols_;
     /**
      * Returns the currency code.
      * @return {string}
      * @private
      */
-    getCurrencyCode_(): string;
+    private getCurrencyCode_;
     /**
      * Sets minimum number of fraction digits.
      * @param {number} min the minimum.
@@ -205,7 +253,7 @@ export class NumberFormat {
      * @param {string} pattern String pattern being applied.
      * @private
      */
-    applyPattern_(pattern: string): void;
+    private applyPattern_;
     pattern_: string | undefined;
     /**
      * Apply a predefined pattern to NumberFormat object.
@@ -213,14 +261,14 @@ export class NumberFormat {
      *     format pattern.
      * @private
      */
-    applyStandardPattern_(patternType: number): void;
+    private applyStandardPattern_;
     /**
      * Apply a predefined pattern for shorthand formats.
      * @param {NumberFormat.CompactStyle} style the compact style to
      *     set defaults for.
      * @private
      */
-    applyCompactStyle_(style: number): void;
+    private applyCompactStyle_;
     /**
      * Parses text string to produce a Number.
      *
@@ -234,7 +282,7 @@ export class NumberFormat {
      * @return {number} Parsed number. This throws an error if the text cannot be
      *     parsed.
      */
-    parse(text: string, opt_pos?: number[] | undefined): number;
+    parse(text: string, opt_pos?: Array<number> | undefined): number;
     /**
      * This function will parse a "localized" text into a Number. It needs to
      * handle locale specific decimal, grouping, exponent and digits.
@@ -245,7 +293,7 @@ export class NumberFormat {
      * @return {number} Number value, or NaN if nothing can be parsed.
      * @private
      */
-    parseNumber_(text: string, pos: number[]): number;
+    private parseNumber_;
     /**
      * Formats a Number to produce a string.
      *
@@ -262,10 +310,7 @@ export class NumberFormat {
      * @private
      * @suppress {checkTypes}
      */
-    roundNumber_(number: number): {
-        intValue: number;
-        fracValue: number;
-    };
+    private roundNumber_;
     /**
      * Formats a number with the appropriate groupings when there are repeating
      * digits present. Repeating digits exists when the length of the digits left
@@ -300,7 +345,7 @@ export class NumberFormat {
      *  how numbers are to be grouped and appear.
      * @private
      */
-    formatNumberGroupingRepeatingDigitsParts_(parts: string[], zeroCode: number, intPart: string, groupingArray: number[], repeatedDigitLen: number): string[];
+    private formatNumberGroupingRepeatingDigitsParts_;
     /**
      * Formats a number with the appropriate groupings when there are no repeating
      * digits present. Non-repeating digits exists when the length of the digits
@@ -333,7 +378,7 @@ export class NumberFormat {
      *  how numbers are to be grouped and appear.
      * @private
      */
-    formatNumberGroupingNonRepeatingDigitsParts_(parts: string[], zeroCode: number, intPart: string, groupingArray: number[]): string[];
+    private formatNumberGroupingNonRepeatingDigitsParts_;
     /**
      * Formats a Number in fraction format.
      *
@@ -344,7 +389,7 @@ export class NumberFormat {
      *     This function will add its formatted pieces to the array.
      * @private
      */
-    subformatFixed_(number: number, minIntDigits: number, parts: string[]): void;
+    private subformatFixed_;
     /**
      * Formats exponent part of a Number.
      *
@@ -353,7 +398,7 @@ export class NumberFormat {
      *     string. This function will append more formatted pieces to the array.
      * @private
      */
-    addExponentPart_(exponent: number, parts: string[]): void;
+    private addExponentPart_;
     /**
      * Returns the mantissa for the given value and its exponent.
      *
@@ -362,7 +407,7 @@ export class NumberFormat {
      * @return {number}
      * @private
      */
-    getMantissa_(value: number, exponent: number): number;
+    private getMantissa_;
     /**
      * Formats Number in exponential format.
      *
@@ -371,7 +416,7 @@ export class NumberFormat {
      *     string. This function will append more formatted pieces to the array.
      * @private
      */
-    subformatExponential_(number: number, parts: string[]): void;
+    private subformatExponential_;
     /**
      * Returns the digit value of current character. The character could be either
      * '0' to '9', or a locale specific digit.
@@ -380,7 +425,7 @@ export class NumberFormat {
      * @return {number} The digit value, or -1 on error.
      * @private
      */
-    getDigit_(ch: string): number;
+    private getDigit_;
     /**
      * Parses affix part of pattern.
      *
@@ -391,7 +436,7 @@ export class NumberFormat {
      * @return {string} Affix received from parsing.
      * @private
      */
-    parseAffix_(pattern: string, pos: number[]): string;
+    private parseAffix_;
     /**
      * Parses the trunk part of a pattern.
      *
@@ -400,7 +445,7 @@ export class NumberFormat {
      *     parsing position.
      * @private
      */
-    parseTrunk_(pattern: string, pos: number[]): void;
+    private parseTrunk_;
     /**
      * Get compact unit for a certain number of digits
      *
@@ -410,11 +455,7 @@ export class NumberFormat {
      * @private
      * @suppress {checkTypes}
      */
-    getUnitFor_(base: number, plurality: string): {
-        prefix: string;
-        suffix: string;
-        divisorBase: number;
-    };
+    private getUnitFor_;
     /**
      * Get the compact unit divisor, accounting for rounding of the quantity.
      *
@@ -425,11 +466,7 @@ export class NumberFormat {
      * @return {!NumberFormat.CompactNumberUnit} The unit after rounding.
      * @private
      */
-    getUnitAfterRounding_(formattingNumber: number, pluralityNumber: number): {
-        prefix: string;
-        suffix: string;
-        divisorBase: number;
-    };
+    private getUnitAfterRounding_;
     /**
      * Get the integer base 10 logarithm of a number.
      *
@@ -437,7 +474,7 @@ export class NumberFormat {
      * @return {number} The lowest integer n such that 10^n >= number.
      * @private
      */
-    intLog10_(number: number): number;
+    private intLog10_;
     /**
      * Round to a certain number of significant digits.
      *
@@ -448,14 +485,14 @@ export class NumberFormat {
      * @return {number} The rounded number.
      * @private
      */
-    roundToSignificantDigits_(number: number, significantDigits: number, scale: number): number;
+    private roundToSignificantDigits_;
     /**
      * Get the plural form of a number.
      * @param {number} quantity The quantity to find plurality of.
      * @return {string} One of 'zero', 'one', 'two', 'few', 'many', 'other'.
      * @private
      */
-    pluralForm_(quantity: number): string;
+    private pluralForm_;
     /**
      * Checks if the currency symbol comes before the value ($12) or after (12$)
      * Handy for applications that need to have separate UI fields for the currency

@@ -19,7 +19,12 @@ export type State = number;
  * @implements {Transition}
  * @extends {TransitionBase}
  */
-export class Animation extends TransitionBase {
+export class Animation extends TransitionBase implements fx_anim.Animated, Transition {
+    /**
+     * @deprecated Use fx_anim.setAnimationWindow.
+     * @param {?Window} animationWindow The window in which to animate elements.
+     */
+    static setAnimationWindow(animationWindow: Window | null): void;
     /**
      * Constructor for an animation object.
      * @param {Array<number>} start Array for start coordinates.
@@ -27,38 +32,38 @@ export class Animation extends TransitionBase {
      * @param {number} duration Length of animation in milliseconds.
      * @param {Function=} opt_acc Acceleration function, returns 0-1 for inputs 0-1.
      */
-    constructor(start: number[], end: number[], duration: number, opt_acc?: Function | undefined);
+    constructor(start: Array<number>, end: Array<number>, duration: number, opt_acc?: Function | undefined);
     /**
      * Start point.
      * @type {Array<number>}
      * @protected
      */
-    startPoint: Array<number>;
+    protected startPoint: Array<number>;
     /**
      * End point.
      * @type {Array<number>}
      * @protected
      */
-    endPoint: Array<number>;
+    protected endPoint: Array<number>;
     /**
      * Duration of animation in milliseconds.
      * @type {number}
      * @protected
      */
-    duration: number;
+    protected duration: number;
     /**
      * Acceleration function, which must return a number between 0 and 1 for
      * inputs between 0 and 1.
      * @type {Function|undefined}
      * @private
      */
-    accel_: Function | undefined;
+    private accel_;
     /**
      * Current coordinate for animation.
      * @type {Array<number>}
      * @protected
      */
-    coords: Array<number>;
+    protected coords: Array<number>;
     /**
      * Whether the animation should use "right" rather than "left" to position
      * elements in RTL.  This is a temporary flag to allow clients to transition
@@ -67,22 +72,22 @@ export class Animation extends TransitionBase {
      * @type {boolean}
      * @private
      */
-    useRightPositioningForRtl_: boolean;
+    private useRightPositioningForRtl_;
     /**
      * Current frame rate.
      * @private {number}
      */
-    fps_: number;
+    private fps_;
     /**
      * Percent of the way through the animation.
      * @protected {number}
      */
-    progress: any;
+    protected progress: any;
     /**
      * Timestamp for when last frame was run.
      * @protected {?number}
      */
-    lastFrame: any;
+    protected lastFrame: any;
     /**
      * @return {number} The duration of this animation in milliseconds.
      */
@@ -105,8 +110,6 @@ export class Animation extends TransitionBase {
      *     "left" should be used for positioning.
      */
     isRightPositioningForRtlEnabled(): boolean;
-    startTime: any;
-    endTime: any;
     /**
      * @return {number} The current progress of the animation, the number
      *     is between 0 and 1 inclusive.
@@ -136,22 +139,19 @@ export class Animation extends TransitionBase {
      * @param {number} t Percentage of the way through the animation as a decimal.
      * @private
      */
-    updateCoords_(t: number): void;
+    private updateCoords_;
     /**
      * Dispatches the ANIMATE event. Sub classes should override this instead
      * of listening to the event.
      * @protected
      */
-    onAnimate(): void;
+    protected onAnimate(): void;
     /**
      * Dispatches the DESTROY event. Sub classes should override this instead
      * of listening to the event.
      * @protected
      */
-    onDestroy(): void;
-    /** @override */
-    dispatchAnimationEvent(type: any): void;
-    actualEventTarget_: Animation;
+    protected onDestroy(): void;
 }
 export namespace Animation {
     export const TIMEOUT: number;
@@ -217,7 +217,7 @@ export class AnimationEvent extends EventsEvent {
      * @return {!Array<number>} An array of the coordinates rounded to
      *     the nearest integer.
      */
-    coordsAsInts(): number[];
+    coordsAsInts(): Array<number>;
 }
 export namespace EventType {
     export const PLAY: any;
@@ -237,4 +237,6 @@ export namespace EventType {
  */
 export let State: any;
 import { TransitionBase } from "./transitionbase.js";
+import * as fx_anim from "./anim/anim.js";
+import { Transition } from "./transition.js";
 import { Event as EventsEvent } from "../events/event.js";

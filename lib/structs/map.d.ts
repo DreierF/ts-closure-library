@@ -30,7 +30,7 @@ declare class structs_Map<K, V> {
      * @return {boolean} Whether the object has the key.
      * @private
      */
-    static hasKey_(obj: any, key: any): boolean;
+    private static hasKey_;
     /**
      * Class for Hash Map datastructure.
      * @param {*=} opt_map Map or Object to initialize the map with.
@@ -39,12 +39,12 @@ declare class structs_Map<K, V> {
      * @template K, V
      * @deprecated This type is misleading: use ES6 Map instead.
      */
-    constructor(opt_map?: any, ...args: any[]);
+    constructor(opt_map?: any | undefined, ...args: any[]);
     /**
      * Underlying JS object used to implement the map.
      * @private {!Object}
      */
-    map_: {};
+    private map_;
     /**
      * An array of keys. This is necessary for two reasons:
      *   1. Iterating the keys using for (var key in this.map_) allocates an
@@ -58,17 +58,17 @@ declare class structs_Map<K, V> {
      * memory allocation in IE).
      * @private {!Array<string>}
      */
-    keys_: any[];
+    private keys_;
     /**
      * The number of key value pairs in the map.
      * @private {number}
      */
-    count_: number;
+    private count_;
     /**
      * Version used to detect changes while iterating.
      * @private {number}
      */
-    version_: number;
+    private version_;
     /**
      * @return {number} The number of key-value pairs in the map.
      */
@@ -82,7 +82,7 @@ declare class structs_Map<K, V> {
      * Returns the keys of the map.
      * @return {!Array<string>} Array of string values.
      */
-    getKeys(): string[];
+    getKeys(): Array<string>;
     /**
      * Whether the map contains the given key.
      * @param {*} key The key to check for.
@@ -125,7 +125,7 @@ declare class structs_Map<K, V> {
      * map.
      * @private
      */
-    cleanupKeysArray_(): void;
+    private cleanupKeysArray_;
     /**
      * Returns the value for the given key.  If the key is not found and the default
      * value is not given this will return `undefined`.
@@ -147,7 +147,7 @@ declare class structs_Map<K, V> {
      * Adds multiple key-value pairs from another structs_Map or Object.
      * @param {?Object} map Object containing the data to add.
      */
-    addAll(map: any): void;
+    addAll(map: any | null): void;
     /**
      * Calls the given function on each entry in the map.
      * @param {function(this:T, V, K, structs_Map<K,V>)} f
@@ -159,7 +159,7 @@ declare class structs_Map<K, V> {
      * Clones a map and returns a new map.
      * @return {!structs_Map} A new map with the same key-value pairs.
      */
-    clone(): structs_Map<any, any>;
+    clone(): structs_Map;
     /**
      * Returns a new map in which all the keys and values are interchanged
      * (keys become values and values become keys). If multiple keys map to the
@@ -169,7 +169,7 @@ declare class structs_Map<K, V> {
      *
      * @return {!structs_Map} The transposed map.
      */
-    transpose(): structs_Map<any, any>;
+    transpose(): structs_Map;
     /**
      * @return {!Object} Object representation of the map.
      */
@@ -179,13 +179,13 @@ declare class structs_Map<K, V> {
      * while iterating might have undesired side effects.
      * @return {!Iterator} An iterator over the keys in the map.
      */
-    getKeyIterator(): Iterator<any>;
+    getKeyIterator(): Iterator;
     /**
      * Returns an iterator that iterates over the values in the map.  Removal of
      * keys while iterating might have undesired side effects.
      * @return {!Iterator} An iterator over the values in the map.
      */
-    getValueIterator(): Iterator<any>;
+    getValueIterator(): Iterator;
     /**
      * Returns an iterator that iterates over the values or the keys in the map.
      * This throws an exception if the map was mutated since the iterator was
@@ -194,6 +194,6 @@ declare class structs_Map<K, V> {
      *     over the values.  The default value is false.
      * @return {!Iterator} An iterator over the values or keys in the map.
      */
-    __iterator__(opt_keys?: boolean | undefined): Iterator<any>;
+    __iterator__(opt_keys?: boolean | undefined): Iterator;
 }
 import { Iterator } from "../iter/iter.js";

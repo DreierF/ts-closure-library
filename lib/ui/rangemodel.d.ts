@@ -18,40 +18,40 @@ export class RangeModel extends EventsEventTarget {
      * @type {number}
      * @private
      */
-    value_: number;
+    private value_;
     /**
      * @type {number}
      * @private
      */
-    minimum_: number;
+    private minimum_;
     /**
      * @type {number}
      * @private
      */
-    maximum_: number;
+    private maximum_;
     /**
      * @type {number}
      * @private
      */
-    extent_: number;
+    private extent_;
     /**
      * @type {?number}
      * @private
      */
-    step_: number | null;
+    private step_;
     /**
      * This is true if something is changed as a side effect. This happens when for
      * example we set the maximum below the current value.
      * @type {boolean}
      * @private
      */
-    isChanging_: boolean;
+    private isChanging_;
     /**
      * If set to true, we do not fire any change events.
      * @type {boolean}
      * @private
      */
-    mute_: boolean;
+    private mute_;
     /**
      * Sets the model to mute / unmute.
      * @param {boolean} muteValue Whether or not to mute the range, i.e.,
@@ -117,6 +117,5 @@ export class RangeModel extends EventsEventTarget {
      * @return {number} The number rounded to the closest step.
      */
     roundToStep(value: number): number;
-    actualEventTarget_: RangeModel;
 }
 import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";

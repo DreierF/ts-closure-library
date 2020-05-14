@@ -25,7 +25,7 @@ export class QueryData {
      *     name in #get.
      * @return {!QueryData} The populated query data instance.
      */
-    static createFromMap(map: any, opt_uri?: Uri | undefined, opt_ignoreCase?: boolean | undefined): QueryData;
+    static createFromMap(map: StructsMap<string, unknown> | any, opt_uri?: Uri | undefined, opt_ignoreCase?: boolean | undefined): QueryData;
     /**
      * Creates a new query data instance from parallel arrays of parameter names
      * and values. Allows for duplicate parameter names. Throws an error if the
@@ -39,7 +39,7 @@ export class QueryData {
      *     name in #get.
      * @return {!QueryData} The populated query data instance.
      */
-    static createFromKeysValues(keys: string[], values: any[], opt_uri?: Uri | undefined, opt_ignoreCase?: boolean | undefined): QueryData;
+    static createFromKeysValues(keys: Array<string>, values: Array<unknown>, opt_uri?: Uri | undefined, opt_ignoreCase?: boolean | undefined): QueryData;
     /**
      * Class used to represent URI query parameters.  It is essentially a hash of
      * name-value pairs, though a name can be present more than once.
@@ -54,7 +54,7 @@ export class QueryData {
      * @param {boolean=} opt_ignoreCase If true, ignore the case of the parameter
      *     name in #get.
      */
-    constructor(opt_query?: string | null | undefined, opt_uri?: Uri | undefined, opt_ignoreCase?: boolean | undefined);
+    constructor(opt_query?: (string | null) | undefined, opt_uri?: Uri | undefined, opt_ignoreCase?: boolean | undefined);
     /**
      * The map containing name/value or name/array-of-values pairs.
      * May be null if it requires parsing from the query string.
@@ -64,28 +64,28 @@ export class QueryData {
      *
      * @private {?StructsMap<string, !Array<*>>}
      */
-    keyMap_: any;
+    private keyMap_;
     /**
      * The number of params, or null if it requires computing.
      * @private {?number}
      */
-    count_: any;
+    private count_;
     /**
      * Encoded query string, or null if it requires computing from the key map.
      * @private {?string}
      */
-    encodedQuery_: string | null;
+    private encodedQuery_;
     /**
      * If true, ignore the case of the parameter name in #get.
      * @private {boolean}
      */
-    ignoreCase_: boolean;
+    private ignoreCase_;
     /**
      * If the underlying key map is not yet initialized, it parses the
      * query string and fills the map with parsed data.
      * @private
      */
-    ensureKeyMapInitialized_(): void;
+    private ensureKeyMapInitialized_;
     /**
      * @return {?number} The number of parameters.
      */
@@ -131,13 +131,13 @@ export class QueryData {
      * @param {SCOPE=} opt_scope The value of "this" inside f.
      * @template SCOPE
      */
-    forEach<SCOPE>(f: (this: SCOPE, arg1: any, arg2: string, arg3: QueryData) => any, opt_scope?: SCOPE | undefined): void;
+    forEach<SCOPE>(f: (this: SCOPE, arg1: unknown, arg2: string, arg3: QueryData) => any, opt_scope?: SCOPE | undefined): void;
     /**
      * Returns all the keys of the parameters. If a key is used multiple times
      * it will be included multiple times in the returned array
      * @return {!Array<string>} All the keys of the parameters.
      */
-    getKeys(): string[];
+    getKeys(): Array<string>;
     /**
      * Returns all the values of the parameters with the given name. If the query
      * data has no such key this will return an empty array. If no key is given
@@ -145,7 +145,7 @@ export class QueryData {
      * @param {string=} opt_key The name of the parameter to get the values for.
      * @return {!Array<?>} All the values of the parameters with the given name.
      */
-    getValues(opt_key?: string | undefined): any[];
+    getValues(opt_key?: string | undefined): Array<unknown>;
     /**
      * Sets a key value pair and removes all other keys with the same value.
      *
@@ -163,14 +163,14 @@ export class QueryData {
      * @return {*} The first string value associated with the key, or opt_default
      *     if there's no value.
      */
-    get(key: string, opt_default?: any): any;
+    get(key: string, opt_default?: any | undefined): any;
     /**
      * Sets the values for a key. If the key already exists, this will
      * override all of the existing values that correspond to the key.
      * @param {string} key The key to set values for.
      * @param {!Array<?>} values The values to set.
      */
-    setValues(key: string, values: any[]): void;
+    setValues(key: string, values: Array<unknown>): void;
     /**
      * @return {string} Encoded query string.
      * @override
@@ -186,13 +186,13 @@ export class QueryData {
      * Invalidate the cache.
      * @private
      */
-    invalidateCache_(): void;
+    private invalidateCache_;
     /**
      * Removes all keys that are not in the provided list. (Modifies this object.)
      * @param {Array<string>} keys The desired keys.
      * @return {!QueryData} a reference to this object.
      */
-    filterKeys(keys: string[]): QueryData;
+    filterKeys(keys: Array<string>): QueryData;
     /**
      * Clone the query data instance.
      * @return {!QueryData} New instance of the QueryData object.
@@ -205,7 +205,7 @@ export class QueryData {
      * @param {*} arg The object to get a key name from.
      * @return {string} valid key name which can be looked up in #keyMap_.
      */
-    getKeyName_(arg: any): string;
+    private getKeyName_;
     /**
      * Ignore case in parameter names.
      * NOTE: If there are already key/value pairs in the QueryData, and
@@ -269,6 +269,96 @@ export class QueryData {
  */
 export class Uri {
     /**
+     * Creates a uri from the string form.  Basically an alias of new Uri().
+     * If a Uri object is passed to parse then it will return a clone of the object.
+     *
+     * @throws URIError If parsing the URI is malformed. The passed URI components
+     *     should all be parseable by decodeURIComponent.
+     * @param {*} uri Raw URI string or instance of Uri
+     *     object.
+     * @param {boolean=} opt_ignoreCase Whether to ignore the case of parameter
+     * names in #getParameterValue.
+     * @return {!Uri} The new URI object.
+     */
+    static parse(uri: any, opt_ignoreCase?: boolean | undefined): Uri;
+    /**
+     * Creates a new Uri object from unencoded parts.
+     *
+     * @param {?string=} opt_scheme Scheme/protocol or full URI to parse.
+     * @param {?string=} opt_userInfo username:password.
+     * @param {?string=} opt_domain www.google.com.
+     * @param {?number=} opt_port 9830.
+     * @param {?string=} opt_path /some/path/to/a/file.html.
+     * @param {string|QueryData=} opt_query a=1&b=2.
+     * @param {?string=} opt_fragment The fragment without the #.
+     * @param {boolean=} opt_ignoreCase Whether to ignore parameter name case in
+     *     #getParameterValue.
+     *
+     * @return {!Uri} The new URI object.
+     */
+    static create(opt_scheme?: (string | null) | undefined, opt_userInfo?: (string | null) | undefined, opt_domain?: (string | null) | undefined, opt_port?: (number | null) | undefined, opt_path?: (string | null) | undefined, opt_query?: (string | QueryData) | undefined, opt_fragment?: (string | null) | undefined, opt_ignoreCase?: boolean | undefined): Uri;
+    /**
+     * Resolves a relative Uri against a base Uri, accepting both strings and
+     * Uri objects.
+     *
+     * @param {*} base Base Uri.
+     * @param {*} rel Relative Uri.
+     * @return {!Uri} Resolved uri.
+     */
+    static resolve(base: any, rel: any): Uri;
+    /**
+     * Removes dot segments in given path component, as described in
+     * RFC 3986, section 5.2.4.
+     *
+     * @param {string} path A non-empty path component.
+     * @return {string} Path component with removed dot segments.
+     */
+    static removeDotSegments(path: string): string;
+    /**
+     * Decodes a value or returns the empty string if it isn't defined or empty.
+     * @throws URIError If decodeURIComponent fails to decode val.
+     * @param {string|undefined} val Value to decode.
+     * @param {boolean=} opt_preserveReserved If true, restricted characters will
+     *     not be decoded.
+     * @return {string} Decoded value.
+     * @private
+     */
+    private static decodeOrEmpty_;
+    /**
+     * If unescapedPart is non null, then escapes any characters in it that aren't
+     * valid characters in a url and also escapes any special characters that
+     * appear in extra.
+     *
+     * @param {*} unescapedPart The string to encode.
+     * @param {?RegExp} extra A character set of characters in [\01-\177].
+     * @param {boolean=} opt_removeDoubleEncoding If true, remove double percent
+     *     encoding.
+     * @return {?string} null iff unescapedPart == null.
+     * @private
+     */
+    private static encodeSpecialChars_;
+    /**
+     * Converts a character in [\01-\177] to its unicode character equivalent.
+     * @param {string} ch One character string.
+     * @return {string} Encoded string.
+     * @private
+     */
+    private static encodeChar_;
+    /**
+     * Removes double percent-encoding from a string.
+     * @param  {string} doubleEncodedString String
+     * @return {string} String with double encoding removed.
+     * @private
+     */
+    private static removeDoubleEncoding_;
+    /**
+     * Checks whether two URIs have the same domain.
+     * @param {string} uri1String First URI string.
+     * @param {string} uri2String Second URI string.
+     * @return {boolean} true if the two URIs have the same domain; false otherwise.
+     */
+    static haveSameDomain(uri1String: string, uri2String: string): boolean;
+    /**
      * This class contains setters and getters for the parts of the URI.
      * The <code>getXyz</code>/<code>setXyz</code> methods return the decoded part
      * -- so<code>Uri.parse('/foo%20bar').getPath()</code> will return the
@@ -296,48 +386,48 @@ export class Uri {
      * @throws URIError If opt_uri is provided and URI is malformed (that is,
      *     if decodeURIComponent fails on any of the URI components).
      */
-    constructor(opt_uri?: any, opt_ignoreCase?: boolean | undefined);
+    constructor(opt_uri?: any | undefined, opt_ignoreCase?: boolean | undefined);
     /**
      * Scheme such as "http".
      * @private {string}
      */
-    scheme_: any;
+    private scheme_;
     /**
      * User credentials in the form "username:password".
      * @private {string}
      */
-    userInfo_: string;
+    private userInfo_;
     /**
      * Domain part, e.g. "www.google.com".
      * @private {string}
      */
-    domain_: string;
+    private domain_;
     /**
      * Port, e.g. 8080.
      * @private {?number}
      */
-    port_: any;
+    private port_;
     /**
      * Path, e.g. "/tests/img.png".
      * @private {string}
      */
-    path_: string;
+    private path_;
     /**
      * The fragment without the #.
      * @private {string}
      */
-    fragment_: string;
+    private fragment_;
     /**
      * Whether or not this Uri should be treated as Read Only.
      * @private {boolean}
      */
-    isReadOnly_: boolean;
+    private isReadOnly_;
     /**
      * Whether or not to ignore case when comparing query params.
      * @private {boolean}
      */
-    ignoreCase_: boolean;
-    queryData_: any;
+    private ignoreCase_;
+    queryData_: QueryData;
     /**
      * @return {string} The string form of the url.
      * @override
@@ -459,7 +549,7 @@ export class Uri {
      *     Applies only if queryData is a string.
      * @return {!Uri} Reference to this URI object.
      */
-    setQueryData(queryData: string | QueryData | undefined, opt_decode?: boolean | undefined): Uri;
+    setQueryData(queryData: QueryData | string | undefined, opt_decode?: boolean | undefined): Uri;
     /**
      * Sets the URI query.
      * @param {string} newQuery New query value.
@@ -518,7 +608,7 @@ export class Uri {
      * @return {!Array<?>} The values for a given cgi parameter as a list of
      *     decoded query parameter values.
      */
-    getParameterValues(name: string): any[];
+    getParameterValues(name: string): Array<unknown>;
     /**
      * Returns the first value for a given cgi parameter or undefined if the given
      * parameter name does not appear in the query string.
@@ -601,3 +691,4 @@ export namespace Uri {
     export const reDisallowedInQuery_: RegExp | null;
     export const reDisallowedInFragment_: RegExp | null;
 }
+import { Map as StructsMap } from "../structs/map.js";

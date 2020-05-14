@@ -15,13 +15,13 @@ declare class fs_ProgressEvent extends EventsEvent {
      * @param {!ProgressEvent} event The underlying event object.
      * @param {!Object} target The file access object emitting the event.
      */
-    constructor(event: ProgressEvent<EventTarget>, target: any);
+    constructor(event: ProgressEvent, target: any);
     /**
      * The underlying event object.
      * @type {!ProgressEvent}
      * @private
      */
-    event_: ProgressEvent;
+    private event_;
     /**
      * @return {boolean} Whether or not the total size of the of the file being
      *     saved is known.

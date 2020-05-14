@@ -26,19 +26,19 @@ export class PopupDatePicker extends Component {
      * @type {Ui_DatePicker?}
      * @private
      */
-    datePicker_: Ui_DatePicker | null;
+    private datePicker_;
     /**
      * Instance of UiPopup used to manage the behavior of the date picker.
      * @type {UiPopup?}
      * @private
      */
-    popup_: UiPopup | null;
+    private popup_;
     /**
      * Reference to the element that triggered the last popup.
      * @type {Element|null}
      * @private
      */
-    lastTarget_: Element | null;
+    private lastTarget_;
     /**
      * Whether the date picker can move the focus to its key event target when it
      * is shown.  The default is true.  Setting to false can break keyboard
@@ -47,14 +47,14 @@ export class PopupDatePicker extends Component {
      * @type {boolean}
      * @private
      */
-    allowAutoFocus_: boolean;
+    private allowAutoFocus_;
     /**
      * Whether to reposition the popup when the date picker size changes (due to
      * going to a different month with more weeks) so that all weeks are visible
      * in the viewport.
      * @private {boolean}
      */
-    keepAllWeeksInViewport_: boolean;
+    private keepAllWeeksInViewport_;
     /**
      * @return {boolean} Whether the date picker is visible.
      */
@@ -126,7 +126,7 @@ export class PopupDatePicker extends Component {
      * @param {?EventsEvent} event The click event.
      * @private
      */
-    showPopup_(event: EventsEvent | null): void;
+    private showPopup_;
     /**
      * Hides this popup.
      */
@@ -137,24 +137,22 @@ export class PopupDatePicker extends Component {
      * @param {!EventsEvent} event The date change event.
      * @private
      */
-    onDateSelected_(event: EventsEvent): void;
+    private onDateSelected_;
     /**
      * Called when the date is changed.
      *
      * @param {!EventsEvent} event The date change event.
      * @private
      */
-    onDateChanged_(event: EventsEvent): void;
+    private onDateChanged_;
     /**
      * Called when the container DatePicker's size increases.
      * @private
      */
-    onGridSizeIncrease_(): void;
-    actualEventTarget_: PopupDatePicker;
+    private onGridSizeIncrease_;
 }
 import { Component } from "./component.js";
 import { DatePicker as Ui_DatePicker } from "./datepicker.js";
 import { Popup as UiPopup } from "./popup.js";
 import { Date as DateDate } from "../date/date.js";
-import { Event as EventsEvent } from "../events/event.js";
 import { DomHelper } from "../dom/dom.js";

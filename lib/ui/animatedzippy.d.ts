@@ -26,7 +26,7 @@ export class AnimatedZippy extends Zippy {
      * @param {DomHelper=} opt_domHelper An optional DOM helper.
      * @param {Role<string>=} opt_role ARIA role, default TAB.
      */
-    constructor(header: string | Element | null, content: string | Element | null, opt_expanded?: boolean | undefined, opt_domHelper?: googdom.DomHelper | undefined, opt_role?: any);
+    constructor(header: (Element | string | null) | null, content: (Element | string) | null, opt_expanded?: boolean | undefined, opt_domHelper?: DomHelper | undefined, opt_role?: Role<string> | undefined);
     /**
      * Duration of expand/collapse animation, in milliseconds.
      * @type {number}
@@ -42,13 +42,13 @@ export class AnimatedZippy extends Zippy {
      * @type {?Element}
      * @private
      */
-    elWrapper_: Element | null;
+    private elWrapper_;
     /**
      * Reference to animation or null if animation is not active.
      * @type {?Animation}
      * @private
      */
-    anim_: Animation | null;
+    private anim_;
     /**
      * @return {boolean} Whether the zippy is in the process of being expanded or
      *     collapsed.
@@ -60,22 +60,21 @@ export class AnimatedZippy extends Zippy {
      * @param {?EventsEvent} e The event.
      * @private
      */
-    onAnimate_(e: EventsEvent | null): void;
+    private onAnimate_;
     /**
      * Called once the expand/collapse animation has started.
      *
      * @param {boolean} expanding Expanded/visibility state.
      * @private
      */
-    onAnimationBegin_(expanding: boolean): void;
+    private onAnimationBegin_;
     /**
      * Called once the expand/collapse animation has completed.
      *
      * @param {boolean} expanded Expanded/visibility state.
      * @private
      */
-    onAnimationCompleted_(expanded: boolean): void;
-    actualEventTarget_: AnimatedZippy;
+    private onAnimationCompleted_;
 }
 export namespace AnimatedZippy {
     export namespace Events {
@@ -88,6 +87,5 @@ export namespace AnimatedZippy {
     export type Events = string;
 }
 import { Zippy } from "./zippy.js";
-import { Animation } from "../fx/animation.js";
-import { Event as EventsEvent } from "../events/event.js";
-import * as googdom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";
+import { Role } from "../a11y/aria/roles.js";

@@ -44,18 +44,18 @@ export class InputHandler extends EventsEventTarget {
      * @type {?number}
      * @private
      */
-    timer_: number | null;
+    private timer_;
     /**
      * The element that you want to listen for input events on.
      * @type {?Element}
      * @private
      */
-    element_: Element | null;
+    private element_;
     /**
      * @type {EventHandler<!InputHandler>}
      * @private
      */
-    eventHandler_: EventHandler<InputHandler>;
+    private eventHandler_;
     /**
      * This handles the underlying events and dispatches a new event as needed.
      * @param {?EventsBrowserEvent} e The underlying browser event.
@@ -66,16 +66,14 @@ export class InputHandler extends EventsEventTarget {
      * Cancels timer if it is set, does nothing otherwise.
      * @private
      */
-    cancelTimerIfSet_(): void;
+    private cancelTimerIfSet_;
     /**
      * Creates an input event from the browser event.
      * @param {?EventsBrowserEvent} be A browser event.
      * @return {!EventsBrowserEvent} An input event.
      * @private
      */
-    createInputEvent_(be: EventsBrowserEvent | null): EventsBrowserEvent;
-    actualEventTarget_: InputHandler;
+    private createInputEvent_;
 }
 import { EventTarget as EventsEventTarget } from "./eventhandler.js";
-import { EventHandler } from "./eventhandler.js";
 import { BrowserEvent as EventsBrowserEvent } from "./browserevent.js";

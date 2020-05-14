@@ -85,7 +85,7 @@ export function binarySearch<TARGET, VALUE>(arr: ArrayLike<VALUE>, target: TARGE
  *     iff a match is found.
  * @template THIS, VALUE
  */
-export function binarySelect<THIS, VALUE>(arr: ArrayLike<VALUE>, evaluator: (this: THIS, arg1: VALUE, arg2: number, arg3: any) => number, opt_obj?: THIS | undefined): number;
+export function binarySelect<THIS, VALUE>(arr: ArrayLike<VALUE>, evaluator: (this: THIS, arg1: VALUE, arg2: number, arg3: unknown) => number, opt_obj?: THIS | undefined): number;
 /**
  * Splits an array into disjoint buckets according to a splitting function.
  * @param {ArrayLike<T>} array The array.
@@ -100,12 +100,12 @@ export function binarySelect<THIS, VALUE>(arr: ArrayLike<VALUE>, evaluator: (thi
  *     which the splitter returned that key.
  * @template T,S
  */
-export function bucket<T, S>(array: ArrayLike<T>, sorter: (this: S, arg1: T, arg2: number, arg3: ArrayLike<T>) => any, opt_obj?: S | undefined): any;
+export function bucket<T, S>(array: ArrayLike<T>, sorter: (this: S, arg1: T, arg2: number, arg3: ArrayLike<T>) => unknown, opt_obj?: S | undefined): any;
 /**
  * Clears the array.
  * @param {ArrayLike<?>} arr Array or array like object to clear.
  */
-export function clear(arr: ArrayLike<any>): void;
+export function clear(arr: ArrayLike<unknown>): void;
 /**
  * Does a shallow copy of an array.
  * @param {ArrayLike<T>|string} arr  Array or array-like object to
@@ -159,7 +159,10 @@ export function compare3<VALUE>(arr1: ArrayLike<VALUE>, arr2: ArrayLike<VALUE>, 
  * @return {!Array<?>} The new resultant array.
  * @deprecated Use Array.concat directly
  */
-export function concat(...args: any[]): any[];
+export function concat<T>(...args: T[][]): Array<T>;
+export function concat<T>(...args: T[]): Array<T>;
+export function concat<T>(array: T[], element: T): Array<T>;
+export function concat(...args: any[]): Array<unknown>;
 /**
  * Maps each element of the input array into zero or more elements of the output
  * array.
@@ -175,7 +178,7 @@ export function concat(...args: any[]): any[];
  *     returned from f.
  * @template THIS, VALUE, RESULT
  */
-export function concatMap<THIS, VALUE, RESULT>(arr: string | ArrayLike<VALUE>, f: (this: THIS, arg1: VALUE, arg2: number, arg3: any) => RESULT[], opt_obj?: THIS | undefined): RESULT[];
+export function concatMap<THIS, VALUE, RESULT>(arr: string | ArrayLike<VALUE>, f: (this: THIS, arg1: VALUE, arg2: number, arg3: unknown) => RESULT[], opt_obj?: THIS | undefined): RESULT[];
 /**
  * Whether the array contains the given object.
  * @param {ArrayLike<?>|string} arr The array to test for the presence of the
@@ -184,7 +187,7 @@ export function concatMap<THIS, VALUE, RESULT>(arr: string | ArrayLike<VALUE>, f
  * @return {boolean} true if obj is present.
  * @deprecated Use arr.includes(obj) instead
  */
-export function contains(arr: string | ArrayLike<any>, obj: any): boolean;
+export function contains(arr: ArrayLike<unknown> | string, obj: any): boolean;
 /**
  * Returns a new array of elements from arr, based on the indexes of elements
  * provided by index_arr. For example, the result of index copying
@@ -208,7 +211,7 @@ export function copyByIndex<T>(arr: ArrayLike<T>, index_arr: ArrayLike<number>):
  * @return {number} The number of the matching elements.
  * @template T,S
  */
-export function count<T, S>(arr: string | ArrayLike<T>, f: (this: S, arg1: T, arg2: number, arg3: any) => boolean, opt_obj?: S | undefined): number;
+export function count<T, S>(arr: string | ArrayLike<T>, f: (this: S, arg1: T, arg2: number, arg3: unknown) => boolean, opt_obj?: S | undefined): number;
 /**
  * Compares its two arguments for order, using the built in < and >
  * operators.
@@ -240,7 +243,7 @@ export function defaultCompareEquality(a: any, b: any): boolean;
  *     compares the elements using the built-in '===' operator.
  * @return {boolean} Whether the two arrays are equal.
  */
-export function equals(arr1: ArrayLike<any>, arr2: ArrayLike<any>, opt_equalsFn?: Function | undefined): boolean;
+export function equals(arr1: ArrayLike<unknown>, arr2: ArrayLike<unknown>, opt_equalsFn?: Function | undefined): boolean;
 /**
  * Call f for each element of an array. If all calls return true, every()
  * returns true. If any call returns false, every() returns false and
@@ -259,7 +262,7 @@ export function equals(arr1: ArrayLike<any>, arr2: ArrayLike<any>, opt_equalsFn?
  * @template T,S
  * @deprecated Use Array.every directly
  */
-export function every<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: any) => boolean) | null, opt_obj?: S | undefined): boolean;
+export function every<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: unknown) => boolean) | null, opt_obj?: S | undefined): boolean;
 /**
  * Extends an array with another array, element, or "array like" object.
  * This function operates 'in-place', it does not create a new Array.
@@ -297,7 +300,7 @@ export function extend<VALUE>(arr1: VALUE[], ...args: (VALUE | ArrayLike<VALUE>)
  * @template T,S
  * @deprecated Use Array.filter directly
  */
-export function filter<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: any) => boolean) | null, opt_obj?: S | undefined): T[];
+export function filter<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: unknown) => boolean) | null, opt_obj?: S | undefined): T[];
 /**
  * Search an array for the first element that satisfies a given condition and
  * return that element.
@@ -312,7 +315,7 @@ export function filter<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, 
  * @template T,S
  * @deprecated Use arr.find(f) instead
  */
-export function find<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: any) => boolean) | null, opt_obj?: S | undefined): T | null;
+export function find<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: unknown) => boolean) | null, opt_obj?: S | undefined): T | null;
 /**
  * Search an array for the first element that satisfies a given condition and
  * return its index.
@@ -328,7 +331,7 @@ export function find<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, ar
  * @template T,S
  * @deprecated Use arr.findIndex(f) instead
  */
-export function findIndex<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: any) => boolean) | null, opt_obj?: S | undefined): number;
+export function findIndex<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: unknown) => boolean) | null, opt_obj?: S | undefined): number;
 /**
  * Search an array (in reverse order) for the last element that satisfies a
  * given condition and return its index.
@@ -343,7 +346,7 @@ export function findIndex<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: 
  *     or -1 if no element is found.
  * @template T,S
  */
-export function findIndexRight<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: any) => boolean) | null, opt_obj?: S | undefined): number;
+export function findIndexRight<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: unknown) => boolean) | null, opt_obj?: S | undefined): number;
 /**
  * Search an array (in reverse order) for the last element that satisfies a
  * given condition and return that element.
@@ -358,7 +361,7 @@ export function findIndexRight<T, S>(arr: string | ArrayLike<T>, f: ((this: S, a
  *     element is found.
  * @template T,S
  */
-export function findRight<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: any) => boolean) | null, opt_obj?: S | undefined): T | null;
+export function findRight<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: unknown) => boolean) | null, opt_obj?: S | undefined): T | null;
 /**
  * Returns an array consisting of every argument with all arrays
  * expanded in-place recursively.
@@ -366,7 +369,7 @@ export function findRight<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: 
  * @param {...*} var_args The values to flatten.
  * @return {!Array<?>} An array containing the flattened values.
  */
-export function flatten(...args: any[]): any[];
+export function flatten(...args: any[]): Array<unknown>;
 /**
  * Calls a function for each element in an array. Skips holes in the array.
  * See {@link http://tinyurl.com/developer-mozilla-org-array-foreach}
@@ -380,7 +383,7 @@ export function flatten(...args: any[]): any[];
  * @template T,S
  * @deprecated Use Array.forEach directly or for ... of loops
  */
-export function forEach<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: any) => any) | null, opt_obj?: S | undefined): void;
+export function forEach<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: unknown) => unknown) | null, opt_obj?: S | undefined): void;
 /**
  * Calls a function for each element in an array, starting from the last
  * element rather than the first.
@@ -395,7 +398,7 @@ export function forEach<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T,
  *     within f.
  * @template T,S
  */
-export function forEachRight<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: any) => any) | null, opt_obj?: S | undefined): void;
+export function forEachRight<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: unknown) => unknown) | null, opt_obj?: S | undefined): void;
 /**
  * Returns the index of the first element of an array with a specified value, or
  * -1 if the element is not present in the array.
@@ -425,7 +428,7 @@ export function insert<T>(arr: T[], obj: T): void;
  * @param {number=} opt_i The index at which to insert the object. If omitted,
  *      treated as 0. A negative index is counted from the end of the array.
  */
-export function insertArrayAt(arr: ArrayLike<any>, elementsToAdd: ArrayLike<any>, opt_i?: number | undefined): void;
+export function insertArrayAt(arr: ArrayLike<unknown>, elementsToAdd: ArrayLike<unknown>, opt_i?: number | undefined): void;
 /**
  * Inserts an object at the given index of the array.
  * @param {ArrayLike<?>} arr The array to modify.
@@ -433,7 +436,7 @@ export function insertArrayAt(arr: ArrayLike<any>, elementsToAdd: ArrayLike<any>
  * @param {number=} opt_i The index at which to insert the object. If omitted,
  *      treated as 0. A negative index is counted from the end of the array.
  */
-export function insertAt(arr: ArrayLike<any>, obj: any, opt_i?: number | undefined): void;
+export function insertAt(arr: ArrayLike<unknown>, obj: any, opt_i?: number | undefined): void;
 /**
  * Inserts an object into an array before a specified object.
  * @param {Array<T>} arr The array to modify.
@@ -459,7 +462,7 @@ export function inverseDefaultCompare<VALUE>(a: VALUE | null, b: VALUE | null): 
  * @param {ArrayLike<?>|string} arr The array to test.
  * @return {boolean} true if empty.
  */
-export function isEmpty(arr: string | ArrayLike<any>): boolean;
+export function isEmpty(arr: ArrayLike<unknown> | string): boolean;
 /**
  * Tells if the array is sorted.
  * @param {!ArrayLike<T>} arr The array.
@@ -503,7 +506,7 @@ export function last<T>(array: string | ArrayLike<T>): T;
  * @template T
  * @deprecated Use Array.lastIndexOf directly
  */
-export function lastIndexOf<T>(arr: string | ArrayLike<T>, obj: T, opt_fromIndex?: number | null | undefined): number;
+export function lastIndexOf<T>(arr: string | ArrayLike<T>, obj: T, opt_fromIndex?: (number | null) | undefined): number;
 /**
  * Calls a function for each element in an array and inserts the result into a
  * new array.
@@ -521,7 +524,7 @@ export function lastIndexOf<T>(arr: string | ArrayLike<T>, obj: T, opt_fromIndex
  * @template THIS, VALUE, RESULT
  * @deprecated Use Array.map directly
  */
-export function map<THIS, VALUE, RESULT>(arr: string | ArrayLike<VALUE>, f: (this: THIS, arg1: VALUE, arg2: number, arg3: any) => RESULT, opt_obj?: THIS | undefined): RESULT[];
+export function map<THIS, VALUE, RESULT>(arr: string | ArrayLike<VALUE>, f: (this: THIS, arg1: VALUE, arg2: number, arg3: unknown) => RESULT, opt_obj?: THIS | undefined): RESULT[];
 /**
  * Moves one item of an array to a new position keeping the order of the rest
  * of the items. Example use case: keeping a list of JavaScript objects
@@ -532,7 +535,7 @@ export function map<THIS, VALUE, RESULT>(arr: string | ArrayLike<VALUE>, f: (thi
  *     {@code arr.length - 1}.
  * @param {number} toIndex Target index between 0 and {@code arr.length - 1}.
  */
-export function moveItem(arr: ArrayLike<any>, fromIndex: number, toIndex: number): void;
+export function moveItem(arr: ArrayLike<unknown>, fromIndex: number, toIndex: number): void;
 /**
  * Returns the last element in an array without removing it.
  * Same as last.
@@ -561,7 +564,7 @@ export function peek<T>(array: string | ArrayLike<T>): T;
  *     an empty array if adding the step would not converge toward the end
  *     value.
  */
-export function range(startOrEnd: number, opt_end?: number | undefined, opt_step?: number | undefined): number[];
+export function range(startOrEnd: number, opt_end?: number | undefined, opt_step?: number | undefined): Array<number>;
 /**
  * Passes every element of an array into a function and accumulates the result.
  *
@@ -587,7 +590,7 @@ export function range(startOrEnd: number, opt_end?: number | undefined, opt_step
  * @template T,S,R
  * @deprecated Use Array.reduce directly
  */
-export function reduce<T, S, R>(arr: string | ArrayLike<T>, f: (this: S, arg1: R, arg2: T, arg3: number, arg4: any) => R, val: any, opt_obj?: S | undefined): R;
+export function reduce<T, S, R>(arr: string | ArrayLike<T>, f: (this: S, arg1: R, arg2: T, arg3: number, arg4: unknown) => R, val: unknown, opt_obj?: S | undefined): R;
 /**
  * Passes every element of an array into a function and accumulates the result,
  * starting from the last element and working towards the first.
@@ -615,7 +618,7 @@ export function reduce<T, S, R>(arr: string | ArrayLike<T>, f: (this: S, arg1: R
  * @template T,S,R
  * @deprecated Use Array.reduceRight directly
  */
-export function reduceRight<T, S, R>(arr: string | ArrayLike<T>, f: ((this: S, arg1: R, arg2: T, arg3: number, arg4: any) => R) | null, val: any, opt_obj?: S | undefined): R;
+export function reduceRight<T, S, R>(arr: string | ArrayLike<T>, f: ((this: S, arg1: R, arg2: T, arg3: number, arg4: unknown) => R) | null, val: unknown, opt_obj?: S | undefined): R;
 /**
  * Removes the first occurrence of a particular value from an array.
  * @param {ArrayLike<T>} arr Array from which to remove
@@ -637,7 +640,7 @@ export function remove<T>(arr: ArrayLike<T>, obj: T): boolean;
  * @return {number} The number of items removed
  * @template T,S
  */
-export function removeAllIf<T, S>(arr: ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: any) => boolean) | null, opt_obj?: S | undefined): number;
+export function removeAllIf<T, S>(arr: ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: unknown) => boolean) | null, opt_obj?: S | undefined): number;
 /**
  * Removes from an array the element at index i
  * @param {ArrayLike<?>} arr Array or array like object from which to
@@ -645,7 +648,7 @@ export function removeAllIf<T, S>(arr: ArrayLike<T>, f: ((this: S, arg1: T, arg2
  * @param {number} i The index to remove.
  * @return {boolean} True if an element was removed.
  */
-export function removeAt(arr: ArrayLike<any>, i: number): boolean;
+export function removeAt(arr: ArrayLike<unknown>, i: number): boolean;
 /**
  * Removes all duplicates from an array (retaining only the first
  * occurrence of each array element).  This function modifies the
@@ -670,7 +673,7 @@ export function removeAt(arr: ArrayLike<any>, i: number): boolean;
  *     value for each item in the array it should consider unique.
  * @template T
  */
-export function removeDuplicates<T>(arr: ArrayLike<T>, opt_rv?: any[] | undefined, opt_hashFn?: ((arg0: T) => string) | undefined): void;
+export function removeDuplicates<T>(arr: ArrayLike<T>, opt_rv?: Array | undefined, opt_hashFn?: ((arg0: T) => string) | undefined): void;
 /**
  * Removes the first value that satisfies the given condition.
  * @param {ArrayLike<T>} arr Array or array
@@ -683,7 +686,7 @@ export function removeDuplicates<T>(arr: ArrayLike<T>, opt_rv?: any[] | undefine
  * @return {boolean} True if an element was removed.
  * @template T,S
  */
-export function removeIf<T, S>(arr: ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: any) => boolean) | null, opt_obj?: S | undefined): boolean;
+export function removeIf<T, S>(arr: ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: unknown) => boolean) | null, opt_obj?: S | undefined): boolean;
 /**
  * Removes the last occurrence of a particular value from an array.
  * @param {!ArrayLike<T>} arr Array from which to remove value.
@@ -730,7 +733,7 @@ export function rotate<T>(array: T[], n: number): T[];
  *     Takes no arguments, and returns a random number on the interval [0, 1).
  *     Defaults to Math.random() using JavaScript's built-in Math library.
  */
-export function shuffle(arr: any[], opt_randFn?: (() => number) | undefined): void;
+export function shuffle(arr: Array<unknown>, opt_randFn?: (() => number) | undefined): void;
 /**
  * Returns a new array from a segment of an array. This is a generic version of
  * Array slice. This means that it might work on other objects similar to
@@ -763,7 +766,7 @@ export function slice<T>(arr: string | ArrayLike<T>, start: number, opt_end?: nu
  * @template T,S
  * @deprecated Use Array.some directly
  */
-export function some<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: any) => boolean) | null, opt_obj?: S | undefined): boolean;
+export function some<T, S>(arr: string | ArrayLike<T>, f: ((this: S, arg1: T, arg2: number, arg3: unknown) => boolean) | null, opt_obj?: S | undefined): boolean;
 /**
  * Sorts the specified array into ascending order.  If no opt_compareFn is
  * specified, elements are compared using
@@ -818,7 +821,7 @@ export function sortByKey<T, K>(arr: T[], keyFn: (arg0: T) => K, opt_compareFn?:
  * @param {Function=} opt_compareFn The function to use to compare key
  *     values.
  */
-export function sortObjectsByKey(arr: any[], key: string, opt_compareFn?: Function | undefined): void;
+export function sortObjectsByKey(arr: Array<any>, key: string, opt_compareFn?: Function | undefined): void;
 /**
  * Adds or removes elements from an array. This is a generic version of Array
  * splice. This means that it might work on other objects similar to arrays,
@@ -882,7 +885,7 @@ export function toArray<T>(object: string | ArrayLike<T>): T[];
  * @return {!Object<T>} The new object.
  * @template T,S
  */
-export function toObject<T, S>(arr: ArrayLike<T>, keyFunc: ((this: S, arg1: T, arg2: number, arg3: any) => string) | null, opt_obj?: S | undefined): any;
+export function toObject<T, S>(arr: ArrayLike<T>, keyFunc: ((this: S, arg1: T, arg2: number, arg3: unknown) => string) | null, opt_obj?: S | undefined): any;
 /**
  * Creates a new array for which the element at position i is an array of the
  * ith element of the provided arrays.  The returned array will only be as long
@@ -896,4 +899,4 @@ export function toObject<T, S>(arr: ArrayLike<T>, keyFunc: ((this: S, arg1: T, a
  * @return {!Array<!Array<?>>} A new array of arrays created from
  *     provided arrays.
  */
-export function zip(...args: ArrayLike<any>[]): any[][];
+export function zip(...args: ArrayLike<any>[]): Array<Array<unknown>>;

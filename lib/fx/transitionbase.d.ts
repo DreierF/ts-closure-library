@@ -21,25 +21,25 @@ export namespace State {
  * @suppress {checkTypes}
  * @abstract
  */
-export class TransitionBase extends EventsEventTarget {
+export class TransitionBase extends EventsEventTarget implements FxTransition {
     /**
      * The internal state of the animation.
      * @type {?State}
      * @private
      */
-    state_: State | null;
+    private state_;
     /**
      * Timestamp for when the animation was started.
      * @type {?number}
      * @protected
      */
-    startTime: number | null;
+    protected startTime: number | null;
     /**
      * Timestamp for when the animation finished or was stopped.
      * @type {?number}
      * @protected
      */
-    endTime: number | null;
+    protected endTime: number | null;
     /**
      * Plays the animation.
      *
@@ -67,22 +67,22 @@ export class TransitionBase extends EventsEventTarget {
      * Returns the current state of the animation.
      * @return {?State} State of the animation.
      */
-    getStateInternal(): number | null;
+    getStateInternal(): State | null;
     /**
      * Sets the current state of the animation to playing.
      * @protected
      */
-    setStatePlaying(): void;
+    protected setStatePlaying(): void;
     /**
      * Sets the current state of the animation to paused.
      * @protected
      */
-    setStatePaused(): void;
+    protected setStatePaused(): void;
     /**
      * Sets the current state of the animation to stopped.
      * @protected
      */
-    setStateStopped(): void;
+    protected setStateStopped(): void;
     /**
      * @return {boolean} True iff the current state of the animation is playing.
      */
@@ -100,49 +100,49 @@ export class TransitionBase extends EventsEventTarget {
      * of listening to the event, and call this instead of dispatching the event.
      * @protected
      */
-    onBegin(): void;
+    protected onBegin(): void;
     /**
      * Dispatches the END event. Sub classes should override this instead
      * of listening to the event, and call this instead of dispatching the event.
      * @protected
      */
-    onEnd(): void;
+    protected onEnd(): void;
     /**
      * Dispatches the FINISH event. Sub classes should override this instead
      * of listening to the event, and call this instead of dispatching the event.
      * @protected
      */
-    onFinish(): void;
+    protected onFinish(): void;
     /**
      * Dispatches the PAUSE event. Sub classes should override this instead
      * of listening to the event, and call this instead of dispatching the event.
      * @protected
      */
-    onPause(): void;
+    protected onPause(): void;
     /**
      * Dispatches the PLAY event. Sub classes should override this instead
      * of listening to the event, and call this instead of dispatching the event.
      * @protected
      */
-    onPlay(): void;
+    protected onPlay(): void;
     /**
      * Dispatches the RESUME event. Sub classes should override this instead
      * of listening to the event, and call this instead of dispatching the event.
      * @protected
      */
-    onResume(): void;
+    protected onResume(): void;
     /**
      * Dispatches the STOP event. Sub classes should override this instead
      * of listening to the event, and call this instead of dispatching the event.
      * @protected
      */
-    onStop(): void;
+    protected onStop(): void;
     /**
      * Dispatches an event object for the current animation.
      * @param {string} type Event type that will be dispatched.
      * @protected
      */
-    dispatchAnimationEvent(type: string): void;
-    actualEventTarget_: TransitionBase;
+    protected dispatchAnimationEvent(type: string): void;
 }
 import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";
+import { Transition as FxTransition } from "./transition.js";

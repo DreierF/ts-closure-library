@@ -105,11 +105,6 @@ export class Vec2 extends Math_Coordinate {
      */
     constructor(x: number, y: number);
     /**
-     * @return {!Vec2} A new vector with the same coordinates as this one.
-     * @override
-     */
-    clone(): Vec2;
-    /**
      * Returns the magnitude of the vector measured from the origin.
      * @return {number} The length of the vector.
      */
@@ -149,15 +144,5 @@ export class Vec2 extends Math_Coordinate {
      * @return {!Vec2} This vector rotated `angle` radians.
      */
     rotate(angle: number): Vec2;
-    /** @override */
-    equals(b: any): boolean;
-    /**
-     * @param {number} sx The scale factor to use for the x dimension.
-     * @param {number=} opt_sy The scale factor to use for the y dimension.
-     * @return {!Vec2} This vector after scaling.
-     * @override
-     * @suppress {checkTypes}
-     */
-    scale: any;
 }
 import { Coordinate as Math_Coordinate } from "./coordinate.js";

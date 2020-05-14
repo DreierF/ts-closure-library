@@ -6,6 +6,8 @@
  * @extends {ControlRenderer<UiMenuSeparator>}
  */
 export class MenuSeparatorRenderer extends ControlRenderer<UiMenuSeparator> {
+    /** @override @return {!MenuSeparatorRenderer} @suppress {checkTypes} */
+    static getInstance(): MenuSeparatorRenderer;
 }
 export namespace MenuSeparatorRenderer {
     export const instance_: MenuSeparatorRenderer | null;

@@ -6,16 +6,16 @@ export const DEFAULT_MAX_UNUSED: number;
  */
 export class WorkItem {
     /** @type {?function()} */
-    fn: (() => void) | null;
+    fn: (() => any) | null;
     /** @type {?Object|null|undefined} */
-    scope: (Object | null | undefined) | null;
+    scope: (any | null | undefined) | null;
     /** @type {?WorkItem} */
     next: WorkItem | null;
     /**
      * @param {function()} fn
      * @param {Object|null|undefined} scope
      */
-    set(fn: () => any, scope: any): void;
+    set(fn: () => , scope: any | null | undefined): void;
     /** Reset the work item so they don't prevent GC before reuse */
     reset(): void;
 }
@@ -34,7 +34,7 @@ export class WorkQueue {
      * @param {function()} fn
      * @param {Object|null|undefined} scope
      */
-    add(fn: () => any, scope: any): void;
+    add(fn: () => any, scope: any | null | undefined): void;
     /**
      * @return {?WorkItem}
      */
@@ -47,7 +47,7 @@ export class WorkQueue {
      * @return {?WorkItem}
      * @private
      */
-    getUnusedItem_(): WorkItem | null;
+    private getUnusedItem_;
 }
 export namespace WorkQueue {
     export const freelist_: FreeList<WorkItem>;

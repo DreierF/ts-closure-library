@@ -108,14 +108,14 @@ export class DateTimeParse {
      * @param {!Object=} opt_dateTimeSymbols Optional symbols to use for this
      *     instance rather than the global symbols.
      */
-    constructor(pattern: string | number, opt_dateTimeSymbols?: any);
+    constructor(pattern: string | number, opt_dateTimeSymbols?: any | undefined);
     patternParts_: any[];
     /**
      * Data structure with all the locale info needed for date formatting.
      * (day/month names, most common patterns, rules for week-end, etc.)
      * @const @private {!DateTimeSymbolsType}
      */
-    dateTimeSymbols_: DateTimeSymbolsType;
+    private dateTimeSymbols_;
     /**
      * Apply a pattern to this Parser. The pattern string will be parsed and saved
      * in "compiled" form.
@@ -126,14 +126,14 @@ export class DateTimeParse {
      *     be parsed.
      * @private
      */
-    applyPattern_(pattern: string): void;
+    private applyPattern_;
     /**
      * Apply a predefined pattern to this Parser.
      * @param {number} formatType A constant used to identified the predefined
      *     pattern string stored in locale repository.
      * @private
      */
-    applyStandardPattern_(formatType: number): void;
+    private applyStandardPattern_;
     /**
      * Parse the given string and fill info into date object. This version does
      * not validate the input.
@@ -142,7 +142,7 @@ export class DateTimeParse {
      * @param {number=} opt_start The position from where parse should begin.
      * @return {number} How many characters parser advanced.
      */
-    parse(text: string, date: Date | goog_date.Date | null, opt_start?: number | undefined): number;
+    parse(text: string, date: DateLike | null, opt_start?: number | undefined): number;
     /**
      * Parse the given string and fill info into date object. This version will
      * validate the input and make sure it is a valid date/time.
@@ -151,7 +151,7 @@ export class DateTimeParse {
      * @param {number=} opt_start The position from where parse should begin.
      * @return {number} How many characters parser advanced.
      */
-    strictParse(text: string, date: Date | goog_date.Date | null, opt_start?: number | undefined): number;
+    strictParse(text: string, date: DateLike | null, opt_start?: number | undefined): number;
     /**
      * Parse the given string and fill info into date object.
      * @param {string} text The string being parsed.
@@ -162,7 +162,7 @@ export class DateTimeParse {
      * @return {number} How many characters parser advanced.
      * @private
      */
-    internalParse_(text: string, date: Date | goog_date.Date | null, start: number, validation: boolean): number;
+    private internalParse_;
     /**
      * Calculate character repeat count in pattern.
      *
@@ -173,7 +173,7 @@ export class DateTimeParse {
      * @return {number} Repeat count.
      * @private
      */
-    getNextCharCount_(pattern: string, start: number): number;
+    private getNextCharCount_;
     /**
      * Check if the pattern part is a numeric field.
      *
@@ -182,7 +182,7 @@ export class DateTimeParse {
      * @return {boolean} true if the pattern part is numeric field.
      * @private
      */
-    isNumericField_(part: any): boolean;
+    private isNumericField_;
     /**
      * Identify the start of an abutting numeric fields' run. Taking pattern
      * "HHmmss" as an example. It will try to parse 2/2/2 characters of the input
@@ -195,7 +195,7 @@ export class DateTimeParse {
      *
      * @private
      */
-    markAbutStart_(): void;
+    private markAbutStart_;
     /**
      * Skip space in the string.
      *
@@ -204,7 +204,7 @@ export class DateTimeParse {
      *     stops.
      * @private
      */
-    skipSpace_(text: string, pos: number[]): void;
+    private skipSpace_;
     /**
      * Protected method that converts one field of the input string into a
      * numeric field value.
@@ -218,93 +218,7 @@ export class DateTimeParse {
      * @return {boolean} True if it parses successfully.
      * @private
      */
-    subParse_(text: string, pos: number[], part: any, digitCount: number, cal: {
-        /**
-         * The date's era.
-         * @type {?number}
-         */
-        era: number | null;
-        /**
-         * The date's year.
-         * @type {?number}
-         */
-        year: number | null;
-        /**
-         * The date's month.
-         * @type {?number}
-         */
-        month: number | null;
-        /**
-         * The date's day of month.
-         * @type {?number}
-         */
-        day: number | null;
-        /**
-         * The date's hour.
-         * @type {?number}
-         */
-        hours: number | null;
-        /**
-         * The date's before/afternoon denominator.
-         * @type {?number}
-         */
-        ampm: number | null;
-        /**
-         * The date's minutes.
-         * @type {?number}
-         */
-        minutes: number | null;
-        /**
-         * The date's seconds.
-         * @type {?number}
-         */
-        seconds: number | null;
-        /**
-         * The date's milliseconds.
-         * @type {?number}
-         */
-        milliseconds: number | null;
-        /**
-         * The date's timezone offset.
-         * @type {?number}
-         */
-        tzOffset: number | null;
-        /**
-         * The date's day of week. Sunday is 0, Saturday is 6.
-         * @type {?number}
-         */
-        dayOfWeek: number | null;
-        /**
-         * 2 digit year special handling. Assuming for example that the
-         * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
-         * forced into the range 6/18/1903 to 6/17/2003. As a result, years 00, 01, and
-         * 02 correspond to 2000, 2001, and 2002. Years 04, 05, etc. correspond
-         * to 1904, 1905, etc. If the year is 03, then it is 2003 if the
-         * other fields specify a date before 6/18, or 1903 if they specify a
-         * date afterwards. As a result, 03 is an ambiguous year. All other
-         * two-digit years are unambiguous.
-         *
-         * @param {number} year 2 digit year value before adjustment.
-         * @return {number} disambiguated year.
-         * @private
-         * @suppress {checkTypes}
-         */
-        setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean | undefined;
-        /**
-         * Based on the fields set, fill a Date object. For those fields that not
-         * set, use the passed in date object's value.
-         *
-         * @param {?DateLike} date Date object to be filled.
-         * @param {boolean} validation If true, input string will be checked to make
-         *     sure it is valid.
-         *
-         * @return {boolean} false if fields specify a invalid date.
-         * @private
-         * @suppress {checkTypes}
-         */
-        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
-    }): boolean;
+    private subParse_;
     /**
      * Parse year field. Year field is special because
      * 1) two digit year need to be resolved.
@@ -321,93 +235,7 @@ export class DateTimeParse {
      * @return {boolean} True if successful.
      * @private
      */
-    subParseYear_(text: string, pos: number[], start: number, value: number, part: any, cal: {
-        /**
-         * The date's era.
-         * @type {?number}
-         */
-        era: number | null;
-        /**
-         * The date's year.
-         * @type {?number}
-         */
-        year: number | null;
-        /**
-         * The date's month.
-         * @type {?number}
-         */
-        month: number | null;
-        /**
-         * The date's day of month.
-         * @type {?number}
-         */
-        day: number | null;
-        /**
-         * The date's hour.
-         * @type {?number}
-         */
-        hours: number | null;
-        /**
-         * The date's before/afternoon denominator.
-         * @type {?number}
-         */
-        ampm: number | null;
-        /**
-         * The date's minutes.
-         * @type {?number}
-         */
-        minutes: number | null;
-        /**
-         * The date's seconds.
-         * @type {?number}
-         */
-        seconds: number | null;
-        /**
-         * The date's milliseconds.
-         * @type {?number}
-         */
-        milliseconds: number | null;
-        /**
-         * The date's timezone offset.
-         * @type {?number}
-         */
-        tzOffset: number | null;
-        /**
-         * The date's day of week. Sunday is 0, Saturday is 6.
-         * @type {?number}
-         */
-        dayOfWeek: number | null;
-        /**
-         * 2 digit year special handling. Assuming for example that the
-         * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
-         * forced into the range 6/18/1903 to 6/17/2003. As a result, years 00, 01, and
-         * 02 correspond to 2000, 2001, and 2002. Years 04, 05, etc. correspond
-         * to 1904, 1905, etc. If the year is 03, then it is 2003 if the
-         * other fields specify a date before 6/18, or 1903 if they specify a
-         * date afterwards. As a result, 03 is an ambiguous year. All other
-         * two-digit years are unambiguous.
-         *
-         * @param {number} year 2 digit year value before adjustment.
-         * @return {number} disambiguated year.
-         * @private
-         * @suppress {checkTypes}
-         */
-        setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean | undefined;
-        /**
-         * Based on the fields set, fill a Date object. For those fields that not
-         * set, use the passed in date object's value.
-         *
-         * @param {?DateLike} date Date object to be filled.
-         * @param {boolean} validation If true, input string will be checked to make
-         *     sure it is valid.
-         *
-         * @return {boolean} false if fields specify a invalid date.
-         * @private
-         * @suppress {checkTypes}
-         */
-        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
-    }): boolean;
+    private subParseYear_;
     /**
      * Parse Month field.
      *
@@ -420,93 +248,7 @@ export class DateTimeParse {
      * @return {boolean} True if parsing successful.
      * @private
      */
-    subParseMonth_(text: string, pos: number[], cal: {
-        /**
-         * The date's era.
-         * @type {?number}
-         */
-        era: number | null;
-        /**
-         * The date's year.
-         * @type {?number}
-         */
-        year: number | null;
-        /**
-         * The date's month.
-         * @type {?number}
-         */
-        month: number | null;
-        /**
-         * The date's day of month.
-         * @type {?number}
-         */
-        day: number | null;
-        /**
-         * The date's hour.
-         * @type {?number}
-         */
-        hours: number | null;
-        /**
-         * The date's before/afternoon denominator.
-         * @type {?number}
-         */
-        ampm: number | null;
-        /**
-         * The date's minutes.
-         * @type {?number}
-         */
-        minutes: number | null;
-        /**
-         * The date's seconds.
-         * @type {?number}
-         */
-        seconds: number | null;
-        /**
-         * The date's milliseconds.
-         * @type {?number}
-         */
-        milliseconds: number | null;
-        /**
-         * The date's timezone offset.
-         * @type {?number}
-         */
-        tzOffset: number | null;
-        /**
-         * The date's day of week. Sunday is 0, Saturday is 6.
-         * @type {?number}
-         */
-        dayOfWeek: number | null;
-        /**
-         * 2 digit year special handling. Assuming for example that the
-         * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
-         * forced into the range 6/18/1903 to 6/17/2003. As a result, years 00, 01, and
-         * 02 correspond to 2000, 2001, and 2002. Years 04, 05, etc. correspond
-         * to 1904, 1905, etc. If the year is 03, then it is 2003 if the
-         * other fields specify a date before 6/18, or 1903 if they specify a
-         * date afterwards. As a result, 03 is an ambiguous year. All other
-         * two-digit years are unambiguous.
-         *
-         * @param {number} year 2 digit year value before adjustment.
-         * @return {number} disambiguated year.
-         * @private
-         * @suppress {checkTypes}
-         */
-        setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean | undefined;
-        /**
-         * Based on the fields set, fill a Date object. For those fields that not
-         * set, use the passed in date object's value.
-         *
-         * @param {?DateLike} date Date object to be filled.
-         * @param {boolean} validation If true, input string will be checked to make
-         *     sure it is valid.
-         *
-         * @return {boolean} false if fields specify a invalid date.
-         * @private
-         * @suppress {checkTypes}
-         */
-        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
-    }, value: number): boolean;
+    private subParseMonth_;
     /**
      * Parse Quarter field.
      *
@@ -519,93 +261,7 @@ export class DateTimeParse {
      * @return {boolean} True if parsing successful.
      * @private
      */
-    subParseQuarter_(text: string, pos: number[], cal: {
-        /**
-         * The date's era.
-         * @type {?number}
-         */
-        era: number | null;
-        /**
-         * The date's year.
-         * @type {?number}
-         */
-        year: number | null;
-        /**
-         * The date's month.
-         * @type {?number}
-         */
-        month: number | null;
-        /**
-         * The date's day of month.
-         * @type {?number}
-         */
-        day: number | null;
-        /**
-         * The date's hour.
-         * @type {?number}
-         */
-        hours: number | null;
-        /**
-         * The date's before/afternoon denominator.
-         * @type {?number}
-         */
-        ampm: number | null;
-        /**
-         * The date's minutes.
-         * @type {?number}
-         */
-        minutes: number | null;
-        /**
-         * The date's seconds.
-         * @type {?number}
-         */
-        seconds: number | null;
-        /**
-         * The date's milliseconds.
-         * @type {?number}
-         */
-        milliseconds: number | null;
-        /**
-         * The date's timezone offset.
-         * @type {?number}
-         */
-        tzOffset: number | null;
-        /**
-         * The date's day of week. Sunday is 0, Saturday is 6.
-         * @type {?number}
-         */
-        dayOfWeek: number | null;
-        /**
-         * 2 digit year special handling. Assuming for example that the
-         * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
-         * forced into the range 6/18/1903 to 6/17/2003. As a result, years 00, 01, and
-         * 02 correspond to 2000, 2001, and 2002. Years 04, 05, etc. correspond
-         * to 1904, 1905, etc. If the year is 03, then it is 2003 if the
-         * other fields specify a date before 6/18, or 1903 if they specify a
-         * date afterwards. As a result, 03 is an ambiguous year. All other
-         * two-digit years are unambiguous.
-         *
-         * @param {number} year 2 digit year value before adjustment.
-         * @return {number} disambiguated year.
-         * @private
-         * @suppress {checkTypes}
-         */
-        setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean | undefined;
-        /**
-         * Based on the fields set, fill a Date object. For those fields that not
-         * set, use the passed in date object's value.
-         *
-         * @param {?DateLike} date Date object to be filled.
-         * @param {boolean} validation If true, input string will be checked to make
-         *     sure it is valid.
-         *
-         * @return {boolean} false if fields specify a invalid date.
-         * @private
-         * @suppress {checkTypes}
-         */
-        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
-    }, value: number): boolean;
+    private subParseQuarter_;
     /**
      * Parse Day of week field.
      * @param {string} text the time text to be parsed.
@@ -615,93 +271,7 @@ export class DateTimeParse {
      * @return {boolean} True if successful.
      * @private
      */
-    subParseDayOfWeek_(text: string, pos: number[], cal: {
-        /**
-         * The date's era.
-         * @type {?number}
-         */
-        era: number | null;
-        /**
-         * The date's year.
-         * @type {?number}
-         */
-        year: number | null;
-        /**
-         * The date's month.
-         * @type {?number}
-         */
-        month: number | null;
-        /**
-         * The date's day of month.
-         * @type {?number}
-         */
-        day: number | null;
-        /**
-         * The date's hour.
-         * @type {?number}
-         */
-        hours: number | null;
-        /**
-         * The date's before/afternoon denominator.
-         * @type {?number}
-         */
-        ampm: number | null;
-        /**
-         * The date's minutes.
-         * @type {?number}
-         */
-        minutes: number | null;
-        /**
-         * The date's seconds.
-         * @type {?number}
-         */
-        seconds: number | null;
-        /**
-         * The date's milliseconds.
-         * @type {?number}
-         */
-        milliseconds: number | null;
-        /**
-         * The date's timezone offset.
-         * @type {?number}
-         */
-        tzOffset: number | null;
-        /**
-         * The date's day of week. Sunday is 0, Saturday is 6.
-         * @type {?number}
-         */
-        dayOfWeek: number | null;
-        /**
-         * 2 digit year special handling. Assuming for example that the
-         * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
-         * forced into the range 6/18/1903 to 6/17/2003. As a result, years 00, 01, and
-         * 02 correspond to 2000, 2001, and 2002. Years 04, 05, etc. correspond
-         * to 1904, 1905, etc. If the year is 03, then it is 2003 if the
-         * other fields specify a date before 6/18, or 1903 if they specify a
-         * date afterwards. As a result, 03 is an ambiguous year. All other
-         * two-digit years are unambiguous.
-         *
-         * @param {number} year 2 digit year value before adjustment.
-         * @return {number} disambiguated year.
-         * @private
-         * @suppress {checkTypes}
-         */
-        setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean | undefined;
-        /**
-         * Based on the fields set, fill a Date object. For those fields that not
-         * set, use the passed in date object's value.
-         *
-         * @param {?DateLike} date Date object to be filled.
-         * @param {boolean} validation If true, input string will be checked to make
-         *     sure it is valid.
-         *
-         * @return {boolean} false if fields specify a invalid date.
-         * @private
-         * @suppress {checkTypes}
-         */
-        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
-    }): boolean;
+    private subParseDayOfWeek_;
     /**
      * Parse fractional seconds field.
      *
@@ -713,93 +283,7 @@ export class DateTimeParse {
      * @return {boolean} True if successful.
      * @private
      */
-    subParseFractionalSeconds_(value: number, pos: number[], start: number, cal: {
-        /**
-         * The date's era.
-         * @type {?number}
-         */
-        era: number | null;
-        /**
-         * The date's year.
-         * @type {?number}
-         */
-        year: number | null;
-        /**
-         * The date's month.
-         * @type {?number}
-         */
-        month: number | null;
-        /**
-         * The date's day of month.
-         * @type {?number}
-         */
-        day: number | null;
-        /**
-         * The date's hour.
-         * @type {?number}
-         */
-        hours: number | null;
-        /**
-         * The date's before/afternoon denominator.
-         * @type {?number}
-         */
-        ampm: number | null;
-        /**
-         * The date's minutes.
-         * @type {?number}
-         */
-        minutes: number | null;
-        /**
-         * The date's seconds.
-         * @type {?number}
-         */
-        seconds: number | null;
-        /**
-         * The date's milliseconds.
-         * @type {?number}
-         */
-        milliseconds: number | null;
-        /**
-         * The date's timezone offset.
-         * @type {?number}
-         */
-        tzOffset: number | null;
-        /**
-         * The date's day of week. Sunday is 0, Saturday is 6.
-         * @type {?number}
-         */
-        dayOfWeek: number | null;
-        /**
-         * 2 digit year special handling. Assuming for example that the
-         * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
-         * forced into the range 6/18/1903 to 6/17/2003. As a result, years 00, 01, and
-         * 02 correspond to 2000, 2001, and 2002. Years 04, 05, etc. correspond
-         * to 1904, 1905, etc. If the year is 03, then it is 2003 if the
-         * other fields specify a date before 6/18, or 1903 if they specify a
-         * date afterwards. As a result, 03 is an ambiguous year. All other
-         * two-digit years are unambiguous.
-         *
-         * @param {number} year 2 digit year value before adjustment.
-         * @return {number} disambiguated year.
-         * @private
-         * @suppress {checkTypes}
-         */
-        setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean | undefined;
-        /**
-         * Based on the fields set, fill a Date object. For those fields that not
-         * set, use the passed in date object's value.
-         *
-         * @param {?DateLike} date Date object to be filled.
-         * @param {boolean} validation If true, input string will be checked to make
-         *     sure it is valid.
-         *
-         * @return {boolean} false if fields specify a invalid date.
-         * @private
-         * @suppress {checkTypes}
-         */
-        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
-    }): boolean;
+    private subParseFractionalSeconds_;
     /**
      * Parse GMT type timezone.
      *
@@ -810,93 +294,7 @@ export class DateTimeParse {
      * @return {boolean} True if successful.
      * @private
      */
-    subparseTimeZoneInGMT_(text: string, pos: number[], cal: {
-        /**
-         * The date's era.
-         * @type {?number}
-         */
-        era: number | null;
-        /**
-         * The date's year.
-         * @type {?number}
-         */
-        year: number | null;
-        /**
-         * The date's month.
-         * @type {?number}
-         */
-        month: number | null;
-        /**
-         * The date's day of month.
-         * @type {?number}
-         */
-        day: number | null;
-        /**
-         * The date's hour.
-         * @type {?number}
-         */
-        hours: number | null;
-        /**
-         * The date's before/afternoon denominator.
-         * @type {?number}
-         */
-        ampm: number | null;
-        /**
-         * The date's minutes.
-         * @type {?number}
-         */
-        minutes: number | null;
-        /**
-         * The date's seconds.
-         * @type {?number}
-         */
-        seconds: number | null;
-        /**
-         * The date's milliseconds.
-         * @type {?number}
-         */
-        milliseconds: number | null;
-        /**
-         * The date's timezone offset.
-         * @type {?number}
-         */
-        tzOffset: number | null;
-        /**
-         * The date's day of week. Sunday is 0, Saturday is 6.
-         * @type {?number}
-         */
-        dayOfWeek: number | null;
-        /**
-         * 2 digit year special handling. Assuming for example that the
-         * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
-         * forced into the range 6/18/1903 to 6/17/2003. As a result, years 00, 01, and
-         * 02 correspond to 2000, 2001, and 2002. Years 04, 05, etc. correspond
-         * to 1904, 1905, etc. If the year is 03, then it is 2003 if the
-         * other fields specify a date before 6/18, or 1903 if they specify a
-         * date afterwards. As a result, 03 is an ambiguous year. All other
-         * two-digit years are unambiguous.
-         *
-         * @param {number} year 2 digit year value before adjustment.
-         * @return {number} disambiguated year.
-         * @private
-         * @suppress {checkTypes}
-         */
-        setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean | undefined;
-        /**
-         * Based on the fields set, fill a Date object. For those fields that not
-         * set, use the passed in date object's value.
-         *
-         * @param {?DateLike} date Date object to be filled.
-         * @param {boolean} validation If true, input string will be checked to make
-         *     sure it is valid.
-         *
-         * @return {boolean} false if fields specify a invalid date.
-         * @private
-         * @suppress {checkTypes}
-         */
-        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
-    }): boolean;
+    private subparseTimeZoneInGMT_;
     /**
      * Parse time zone offset.
      *
@@ -907,93 +305,7 @@ export class DateTimeParse {
      * @return {boolean} True if successful.
      * @private
      */
-    parseTimeZoneOffset_(text: string, pos: number[], cal: {
-        /**
-         * The date's era.
-         * @type {?number}
-         */
-        era: number | null;
-        /**
-         * The date's year.
-         * @type {?number}
-         */
-        year: number | null;
-        /**
-         * The date's month.
-         * @type {?number}
-         */
-        month: number | null;
-        /**
-         * The date's day of month.
-         * @type {?number}
-         */
-        day: number | null;
-        /**
-         * The date's hour.
-         * @type {?number}
-         */
-        hours: number | null;
-        /**
-         * The date's before/afternoon denominator.
-         * @type {?number}
-         */
-        ampm: number | null;
-        /**
-         * The date's minutes.
-         * @type {?number}
-         */
-        minutes: number | null;
-        /**
-         * The date's seconds.
-         * @type {?number}
-         */
-        seconds: number | null;
-        /**
-         * The date's milliseconds.
-         * @type {?number}
-         */
-        milliseconds: number | null;
-        /**
-         * The date's timezone offset.
-         * @type {?number}
-         */
-        tzOffset: number | null;
-        /**
-         * The date's day of week. Sunday is 0, Saturday is 6.
-         * @type {?number}
-         */
-        dayOfWeek: number | null;
-        /**
-         * 2 digit year special handling. Assuming for example that the
-         * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
-         * forced into the range 6/18/1903 to 6/17/2003. As a result, years 00, 01, and
-         * 02 correspond to 2000, 2001, and 2002. Years 04, 05, etc. correspond
-         * to 1904, 1905, etc. If the year is 03, then it is 2003 if the
-         * other fields specify a date before 6/18, or 1903 if they specify a
-         * date afterwards. As a result, 03 is an ambiguous year. All other
-         * two-digit years are unambiguous.
-         *
-         * @param {number} year 2 digit year value before adjustment.
-         * @return {number} disambiguated year.
-         * @private
-         * @suppress {checkTypes}
-         */
-        setTwoDigitYear_(year: number): number;
-        ambiguousYear: boolean | undefined;
-        /**
-         * Based on the fields set, fill a Date object. For those fields that not
-         * set, use the passed in date object's value.
-         *
-         * @param {?DateLike} date Date object to be filled.
-         * @param {boolean} validation If true, input string will be checked to make
-         *     sure it is valid.
-         *
-         * @return {boolean} false if fields specify a invalid date.
-         * @private
-         * @suppress {checkTypes}
-         */
-        calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
-    }): boolean;
+    private parseTimeZoneOffset_;
     /**
      * Parse an integer string and return integer value.
      *
@@ -1004,7 +316,7 @@ export class DateTimeParse {
      *     parsed.
      * @private
      */
-    parseInt_(text: string, pos: number[]): number;
+    private parseInt_;
     /**
      * Attempt to match the text at a given position against an array of strings.
      * Since multiple strings in the array may match (for example, if the array
@@ -1019,7 +331,7 @@ export class DateTimeParse {
      *     number indicating matching failure.
      * @private
      */
-    matchString_(text: string, pos: number[], data: string[]): number;
+    private matchString_;
 }
 export namespace DateTimeParse {
     export const ambiguousYearCenturyStart: number;
@@ -1027,8 +339,7 @@ export namespace DateTimeParse {
     export const NUMERIC_FORMAT_CHARS_: string;
     export { MyDate_ };
 }
-import { DateTimeSymbolsType } from "./datetimesymbols.js";
-import * as goog_date from "../date/date.js";
+import { DateLike } from "../date/date.js";
 declare class MyDate_ {
     /**
      * The date's era.
@@ -1100,7 +411,7 @@ declare class MyDate_ {
      * @private
      * @suppress {checkTypes}
      */
-    setTwoDigitYear_(year: number): number;
+    private setTwoDigitYear_;
     ambiguousYear: boolean | undefined;
     /**
      * Based on the fields set, fill a Date object. For those fields that not
@@ -1114,6 +425,6 @@ declare class MyDate_ {
      * @private
      * @suppress {checkTypes}
      */
-    calcDate_(date: Date | goog_date.Date | null, validation: boolean): boolean;
+    private calcDate_;
 }
 export {};

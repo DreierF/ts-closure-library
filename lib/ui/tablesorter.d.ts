@@ -1,5 +1,5 @@
 /**
- * Table sorter events.
+ * *
  */
 export type EventType = string;
 export namespace EventType {
@@ -63,37 +63,37 @@ export class TableSorter extends Component {
      * @param {DomHelper=} opt_domHelper Optional DOM helper, used for
      *     document interaction.
      */
-    constructor(opt_domHelper?: goog_dom.DomHelper | undefined);
+    constructor(opt_domHelper?: DomHelper | undefined);
     /**
      * Row number (in <thead>) to use for sorting.
      * @type {number}
      * @private
      */
-    sortableHeaderRowIndex_: number;
+    private sortableHeaderRowIndex_;
     /**
      * The current sort header of the table, or null if none.
      * @type {?HTMLTableCellElement}
      * @private
      */
-    header_: HTMLTableCellElement | null;
+    private header_;
     /**
      * Whether the last sort was in reverse.
      * @type {boolean}
      * @private
      */
-    reversed_: boolean;
+    private reversed_;
     /**
      * The default sorting function.
      * @type {function(*, *) : number}
      * @private
      */
-    defaultSortFunction_: (arg0: any, arg1: any) => number;
+    private defaultSortFunction_;
     /**
      * Array of custom sorting functions per colun.
      * @type {Array<function(*, *) : number>}
      * @private
      */
-    sortFunctions_: Array<(arg0: any, arg1: any) => number>;
+    private sortFunctions_;
     /**
      * Sets the row index (in <thead>) to be used for sorting.
      * By default, the first row (index 0) is used.
@@ -101,8 +101,6 @@ export class TableSorter extends Component {
      * @param {number} index The row index.
      */
     setSortableHeaderRowIndex(index: number): void;
-    /** @override */
-    canDecorate(element: any): boolean;
     /**
      * @return {number} The current sort column of the table, or -1 if none.
      */
@@ -141,7 +139,7 @@ export class TableSorter extends Component {
      * @param {?EventsBrowserEvent} e The click event.
      * @private
      */
-    sort_(e: EventsBrowserEvent | null): void;
+    private sort_;
     /**
      * Sort the table contents by the values in the given column.
      * @param {number} column The column to sort by.
@@ -150,8 +148,6 @@ export class TableSorter extends Component {
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
     sort(column: number, opt_reverse?: boolean | undefined): boolean;
-    actualEventTarget_: TableSorter;
 }
 import { Component } from "./component.js";
-import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
-import * as goog_dom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";

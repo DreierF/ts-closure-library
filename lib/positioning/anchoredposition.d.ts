@@ -30,7 +30,7 @@ export class AnchoredPosition extends AbstractPosition {
      * @param {number=} opt_overflow Overflow handling mode. Defaults to IGNORE if
      *     not specified. Bitmap, {@see Overflow}.
      */
-    constructor(anchorElement: Element | null, corner: goog_positioning.Corner | null, opt_overflow?: number | undefined);
+    constructor(anchorElement: Element | null, corner: Corner | null, opt_overflow?: number | undefined);
     /**
      * Element the movable element should be anchored against.
      * @type {?Element}
@@ -47,8 +47,7 @@ export class AnchoredPosition extends AbstractPosition {
      * @type {number|undefined}
      * @private
      */
-    overflow_: number | undefined;
+    private overflow_;
 }
 import { AbstractPosition } from "./abstractposition.js";
 import { Corner } from "./positioning.js";
-import * as goog_positioning from "./positioning.js";

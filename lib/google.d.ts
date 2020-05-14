@@ -160,7 +160,7 @@ export function addSingletonGetter(ctor: Function): void;
  *     "base" method added to the constructor by inherits
  *     or ES6 classes and the "super" keyword.
  */
-export function base(me: any, opt_methodName?: any, ...args: any[]): any;
+export function base(me: any, opt_methodName?: any | undefined, ...args: any[]): any;
 /**
  * Partially applies this function to a particular 'this object' and zero or
  * more arguments. The result is a new function with some arguments of the first
@@ -212,7 +212,7 @@ export function cloneObject(obj: any): any;
  * @param {string} name
  * @return {?TrustedTypePolicy}
  */
-export function createTrustedTypesPolicy(name: string): any;
+export function createTrustedTypesPolicy(name: string): any | null;
 /**
  * Creates a restricted form of a Closure "class":
  *   - from the compiler's perspective, the instance returned from the
@@ -235,12 +235,12 @@ export function createTrustedTypesPolicy(name: string): any;
  * @return {!Function} The class constructor.
  * @deprecated Use ES6 class syntax instead.
  */
-export function defineClass(superClass: Function | null, def: {
-    constructor: Function | undefined;
-    statics: any;
-}): Function;
+export function defineClass(superClass: Function | null, def: defineClass.ClassDescriptor): Function;
 export namespace defineClass {
+    export function createSealingConstructor_(ctr: Function, superClass: Function | null): Function;
+    export function isUnsealable_(ctr: Function | null): boolean;
     export const OBJECT_PROTOTYPE_FIELDS_: Array<string>;
+    export function applyProperties_(target: any, source: any): void;
     export type ClassDescriptor = {
         constructor: Function | undefined;
         statics: any;
@@ -254,7 +254,7 @@ export namespace defineClass {
  * @param {string} publicName Unobfuscated name to export.
  * @param {*} symbol Object the name should point to.
  */
-export function exportProperty(object: any, publicName: string, symbol: any): void;
+export function exportProperty(object: any | null, publicName: string, symbol: any): void;
 /**
  * Exposes an unobfuscated global namespace path for the given object.
  * Note that fields of the exported object *will* be obfuscated, unless they are
@@ -276,7 +276,7 @@ export function exportProperty(object: any, publicName: string, symbol: any): vo
  * @param {Object=} opt_objectToExportTo The object to add the path to; default
  *     is window.
  */
-export function exportSymbol(publicPath: string, object: any, opt_objectToExportTo?: any): void;
+export function exportSymbol(publicPath: string, object: any, opt_objectToExportTo?: any | undefined): void;
 /**
  * Forward declares a symbol. This is an indication to the compiler that the
  * symbol may be used in the source yet is not required and may not be provided
@@ -336,7 +336,7 @@ export function getCssName(className: string, opt_modifier?: string | undefined)
  * @return {number} The hash code for the object.
  * @deprecated Use getUid instead.
  */
-export function getHashCode(obj: any): number;
+export function getHashCode(obj: any | null): number;
 /**
  * Gets a localized message.
  *
@@ -399,14 +399,14 @@ export function getMsgWithFallback(a: string, b: string): string;
  *     |window|.
  * @return {?} The value (object or primitive) or, if not found, null.
  */
-export function getObjectByName(name: string, opt_obj?: any): any;
+export function getObjectByName(name: string, opt_obj?: any | undefined): unknown;
 /**
  * Returns CSP nonce, if set for any script tag.
  * @param {?Window=} opt_window The window context used to retrieve the nonce.
  *     Defaults to global context.
  * @return {string} CSP nonce or empty string if no nonce is present.
  */
-export function getScriptNonce(opt_window?: Window | null | undefined): string;
+export function getScriptNonce(opt_window?: (Window | null) | undefined): string;
 /**
  * Gets a unique ID for an object. This mutates the object so that further calls
  * with the same object as a parameter returns the same value. The unique ID is
@@ -418,7 +418,7 @@ export function getScriptNonce(opt_window?: Window | null | undefined): string;
  * @param {?Object} obj The object to get the unique ID for.
  * @return {number} The unique ID for the object.
  */
-export function getUid(obj: any): number;
+export function getUid(obj: any | null): number;
 /**
  * Evals JavaScript in the global scope.  In IE this uses execScript, other
  * browsers use window.eval. If window.eval does not evaluate in the
@@ -435,7 +435,7 @@ export function globalEval(script: string): void;
  * @deprecated Properties may be explicitly exported to the global scope, but
  *     this should no longer be done in bulk.
  */
-export function globalize(obj: any, opt_global?: any): void;
+export function globalize(obj: any, opt_global?: any | undefined): void;
 /**
  * @package {?boolean}
  * Visible for testing.
@@ -478,7 +478,7 @@ export function inherits(childCtor: Function, parentCtor: Function): void;
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is an array.
  */
-export function isArray(val: any): val is any[];
+export function isArray(val: unknown): val is unknown[];
 /**
  * Returns true if the object looks like an array. To qualify as array like
  * the value needs to be either a NodeList or an object with a Number length
@@ -488,21 +488,21 @@ export function isArray(val: any): val is any[];
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is an array.
  */
-export function isArrayLike(val: any): boolean;
+export function isArrayLike(val: unknown): boolean;
 /**
  * Returns true if the specified value is a boolean.
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is boolean.
  * @deprecated Use `typeof val === 'boolean'` instead.
  */
-export function isBoolean(val: any): val is boolean;
+export function isBoolean(val: unknown): val is boolean;
 /**
  * Returns true if the object looks like a Date. To qualify as Date-like the
  * value needs to be an object and have a getFullYear() function.
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is a like a Date.
  */
-export function isDateLike(val: any): boolean;
+export function isDateLike(val: unknown): boolean;
 /**
  * @fileoverview Bootstrap for the Google JS Library (Closure).
  *
@@ -580,35 +580,35 @@ export function isDefAndNotNull<T>(val: T): val is Exclude<typeof val, (undefine
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is a function.
  */
-export function isFunction(val: any): boolean;
+export function isFunction(val: unknown): boolean;
 /**
  * Returns true if the specified value is null.
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is null.
  * @deprecated Use `val === null` instead.
  */
-export function isNull(val: any): val is null;
+export function isNull(val: unknown): val is null;
 /**
  * Returns true if the specified value is a number.
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is a number.
  * @deprecated Use `typeof val === 'number'` instead.
  */
-export function isNumber(val: any): val is number;
+export function isNumber(val: unknown): val is number;
 /**
  * Returns true if the specified value is an object.  This includes arrays and
  * functions.
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is an object.
  */
-export function isObject(val: any): val is object;
+export function isObject(val: unknown): val is object;
 /**
  * Returns true if the specified value is a string.
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is a string.
  * @deprecated Use `typeof val === 'string'` instead.
  */
-export function isString(val: any): val is string;
+export function isString(val: unknown): val is string;
 /**
  * Copies all the members of a source object to a target object. This method
  * does not work on all browsers for all objects that contain keys such as
@@ -624,7 +624,7 @@ export function isString(val: any): val is string;
  * @param {?Object} source Source.
  * @deprecated Prefer Object.assign
  */
-export function mixin(target: any, source: any): void;
+export function mixin(target: any | null, source: any | null): void;
 /**
  * @return {number} An integer value representing the number of milliseconds
  *     between midnight, January 1, 1970 and the current time.
@@ -656,14 +656,14 @@ export function partial(fn: Function | null, ...args: any[]): Function;
  * undone.
  * @param {?Object} obj The object to remove the unique ID field from.
  */
-export function removeHashCode(obj: any): void;
+export function removeHashCode(obj: any | null): void;
 /**
  * Removes the unique ID from an object. This is useful if the object was
  * previously mutated using `getUid` in which case the mutation is
  * undone.
  * @param {?Object} obj The object to remove the unique ID field from.
  */
-export function removeUid(obj: any): void;
+export function removeUid(obj: any | null): void;
 /**
  * Sets the map to check when returning a value from getCssName(). Example:
  * <pre>
@@ -715,7 +715,7 @@ export function tagUnsealableClass(ctr: Function): void;
  * @param {?} value The value to get the type of.
  * @return {string} The name of the type.
  */
-export function typeOf(value: any): string;
+export function typeOf(value: unknown): string;
 /**
  * @return {boolean}
  * @package Visible for testing.

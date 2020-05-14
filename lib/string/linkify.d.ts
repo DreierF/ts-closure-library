@@ -29,8 +29,6 @@ export function findFirstUrl(text: string): string;
  *      link will be HTML-escaped.
  */
 export function linkifyPlainTextAsHtml(text: string, opt_attributes?: {
-    [x: string]: string | number | import("./typedstring.js").TypedString | {
-        [x: string]: string | import("./const.js").Const | import("../html/safeurl.js").SafeUrl | (string | import("./const.js").Const | import("../html/safeurl.js").SafeUrl)[] | null;
-    } | null | undefined;
+    [x: string]: SafeHtml.AttributeValue | null;
 } | undefined, opt_preserveNewlines?: boolean | undefined): SafeHtml;
 import { SafeHtml } from "../html/safehtml.js";

@@ -7,4 +7,4 @@
  * @return {!Array<number>} The CSS specificity.
  * @supported IE9+, other browsers.
  */
-export function getSpecificity(selector: string): number[];
+export function getSpecificity(selector: string): Array<number>;

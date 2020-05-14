@@ -6,14 +6,6 @@
  * @return {!MouseEvents} The browser events that should be listened
  *     to for the given mouse events.
  */
-export function getMouseEventType(component: Component): {
-    MOUSEDOWN: string;
-    MOUSEUP: string;
-    MOUSECANCEL: string;
-    MOUSEMOVE: string;
-    MOUSEOVER: string;
-    MOUSEOUT: string;
-    MOUSEENTER: string;
-    MOUSELEAVE: string;
-};
+export function getMouseEventType(component: Component): MouseEvents;
 import { Component } from "./component.js";
+import { MouseEvents } from "../events/eventtype.js";

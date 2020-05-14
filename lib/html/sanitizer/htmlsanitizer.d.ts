@@ -4,46 +4,30 @@
 export type HtmlSanitizerAttributePolicy = {
     tagName: string;
     attributeName: string;
-    policy: ((arg0: string, arg1?: {
-        tagName: string | undefined;
-        attributeName: string | undefined;
-        cssProperty: string | undefined;
-    } | undefined, arg2?: {
-        cssStyle: CSSStyleDeclaration | null | undefined;
-    } | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null) | null;
+    policy: HtmlSanitizerPolicy | null;
 };
 /**
  * Type for a policy function.
  */
-export type HtmlSanitizerPolicy = (arg0: string, arg1?: {
-    tagName: string | undefined;
-    attributeName: string | undefined;
-    cssProperty: string | undefined;
-} | undefined, arg2?: {
-    cssStyle: CSSStyleDeclaration | null | undefined;
-} | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null;
+export type HtmlSanitizerPolicy = (arg0: string, arg1?: HtmlSanitizerPolicyHints | undefined, arg2?: HtmlSanitizerPolicyContext | undefined, arg3?: ((arg0: string, arg1: unknown | undefined, arg2: unknown | undefined, arg3: unknown | undefined) => string | null) | undefined) => string | null;
 /**
  * Type for optional context objects to the policy handler functions.
  */
 export type HtmlSanitizerPolicyContext = {
-    cssStyle: CSSStyleDeclaration | null | undefined;
+    cssStyle: ((CSSStyleDeclaration | undefined) | null);
 };
 /**
  * Type for optional hints to policy handler functions.
  */
 export type HtmlSanitizerPolicyHints = {
-    tagName: string | undefined;
-    attributeName: string | undefined;
-    cssProperty: string | undefined;
+    tagName: (string | undefined);
+    attributeName: (string | undefined);
+    cssProperty: (string | undefined);
 };
 /**
  * Type for a URL policy function.
  */
-export type HtmlSanitizerUrlPolicy = (arg0: string, arg1?: {
-    tagName: string | undefined;
-    attributeName: string | undefined;
-    cssProperty: string | undefined;
-} | undefined) => SafeUrl | null;
+export type HtmlSanitizerUrlPolicy = (arg0: string, arg1?: HtmlSanitizerPolicyHints | undefined) => SafeUrl | null;
 /**
  * The builder for the HTML Sanitizer. All methods except build return
  * `this`.
@@ -59,67 +43,67 @@ export class Builder {
      * tag-agnostic one.
      * @private {!Object<string, !HtmlSanitizerPolicy>}
      */
-    attributeWhitelist_: {};
+    private attributeWhitelist_;
     /**
      * A set of attribute handlers that should not inherit their default policy
      * during build().
      * @private @const {!Object<string, boolean>}
      */
-    attributeOverrideList_: {};
+    private attributeOverrideList_;
     /**
      * List of data attributes to whitelist. Data-attributes are inert and don't
      * require sanitization.
      * @private @const {!Array<string>}
      */
-    dataAttributeWhitelist_: any[];
+    private dataAttributeWhitelist_;
     /**
      * List of custom element tags to whitelist. Custom elements are inert on
      * their own and require code to actually be dangerous, so the risk is similar
      * to data-attributes.
      * @private @const {!Array<string>}
      */
-    customElementTagWhitelist_: any[];
+    private customElementTagWhitelist_;
     /**
      * A tag blacklist, to effectively remove an element and its children from the
      * dom.
      * @private @const {!Object<string, boolean>}
      */
-    tagBlacklist_: any;
+    private tagBlacklist_;
     /**
      * A tag whitelist, to effectively allow an element and its children from the
      * dom.
      * @private {!Object<string, boolean>}
      */
-    tagWhitelist_: any;
+    private tagWhitelist_;
     /**
      * Whether non-whitelisted and non-blacklisted tags that have been converted
      * to &lt;span&rt; tags will contain the original tag in a data attribute.
      * @private {boolean}
      */
-    shouldAddOriginalTagNames_: boolean;
+    private shouldAddOriginalTagNames_;
     /**
      * A function to be applied to URLs found on the parsing process which do not
      * trigger requests.
      * @private {!HtmlSanitizerUrlPolicy}
      */
-    urlPolicy_: typeof SafeUrl.sanitize;
+    private urlPolicy_;
     /**
      * A function to be applied to urls found on the parsing process which may
      * trigger requests.
      * @private {!HtmlSanitizerUrlPolicy}
      */
-    networkRequestUrlPolicy_: typeof goog_functions.NULL;
+    private networkRequestUrlPolicy_;
     /**
      * A function to be applied to names found on the parsing process.
      * @private {!HtmlSanitizerPolicy}
      */
-    namePolicy_: typeof goog_functions.NULL;
+    private namePolicy_;
     /**
      * A function to be applied to other tokens (i.e. classes and IDs) found on
      * the parsing process.
      * @private {!HtmlSanitizerPolicy}
      */
-    tokenPolicy_: typeof goog_functions.NULL;
+    private tokenPolicy_;
     /**
      * A function to sanitize inline CSS styles. Defaults to deny all.
      * @private {function(
@@ -128,35 +112,35 @@ export class Builder {
      *     !HtmlSanitizerPolicyHints,
      *     !HtmlSanitizerPolicyContext):?string}
      */
-    sanitizeInlineCssPolicy_: typeof goog_functions.NULL;
+    private sanitizeInlineCssPolicy_;
     /**
      * An optional ID to restrict the scope of CSS rules when STYLE tags are
      * allowed.
      * @private {?string}
      */
-    styleContainerId_: string | null;
+    private styleContainerId_;
     /**
      * Whether rules in STYLE tags should be inlined into style attributes.
      * @private {boolean}
      */
-    inlineStyleRules_: boolean;
+    private inlineStyleRules_;
     /**
      * True iff policies have been installed for the instance.
      * @private {boolean}
      */
-    policiesInstalled_: boolean;
+    private policiesInstalled_;
     /**
      * Extends the list of allowed data attributes.
      * @param {!Array<string>} dataAttributeWhitelist
      * @return {!Builder}
      */
-    allowDataAttributes(dataAttributeWhitelist: string[]): Builder;
+    allowDataAttributes(dataAttributeWhitelist: Array<string>): Builder;
     /**
      * Extends the list of allowed custom element tags.
      * @param {!Array<string>} customElementTagWhitelist
      * @return {!Builder}
      */
-    allowCustomElementTags(customElementTagWhitelist: string[]): Builder;
+    allowCustomElementTags(customElementTagWhitelist: Array<string>): Builder;
     /**
      * Allows form tags in the HTML. Without this all form tags and content will be
      * dropped.
@@ -209,7 +193,7 @@ export class Builder {
      * @return {!Builder}
      * @throws {Error} Thrown if an attempt is made to allow a non-whitelisted tag.
      */
-    onlyAllowTags(tagWhitelist: string[]): Builder;
+    onlyAllowTags(tagWhitelist: Array<string>): Builder;
     /**
      * Allows only the provided whitelist of attributes, possibly setting a custom
      * policy for them. The set of tag/attribute combinations need to be a subset of
@@ -239,17 +223,7 @@ export class Builder {
      * @throws {Error} Thrown if an attempt is made to allow a non-whitelisted
      *     attribute.
      */
-    onlyAllowAttributes(attrWhitelist: (string | {
-        tagName: string;
-        attributeName: string;
-        policy: ((arg0: string, arg1?: {
-            tagName: string | undefined;
-            attributeName: string | undefined;
-            cssProperty: string | undefined;
-        } | undefined, arg2?: {
-            cssStyle: CSSStyleDeclaration | null | undefined;
-        } | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null) | null;
-    })[]): Builder;
+    onlyAllowAttributes(attrWhitelist: Array<(string | HtmlSanitizerAttributePolicy)>): Builder;
     /**
      * Adds the original tag name in the data attribute 'original-tag' when unknown
      * tags are sanitized to &lt;span&rt;, so that caller can distinguish them from
@@ -262,35 +236,19 @@ export class Builder {
      * @param {!HtmlSanitizerUrlPolicy} customUrlPolicy
      * @return {!Builder}
      */
-    withCustomUrlPolicy(customUrlPolicy: (arg0: string, arg1?: {
-        tagName: string | undefined;
-        attributeName: string | undefined;
-        cssProperty: string | undefined;
-    } | undefined) => SafeUrl | null): Builder;
+    withCustomUrlPolicy(customUrlPolicy: HtmlSanitizerUrlPolicy): Builder;
     /**
      * Sets a custom name policy.
      * @param {!HtmlSanitizerPolicy} customNamePolicy
      * @return {!Builder}
      */
-    withCustomNamePolicy(customNamePolicy: (arg0: string, arg1?: {
-        tagName: string | undefined;
-        attributeName: string | undefined;
-        cssProperty: string | undefined;
-    } | undefined, arg2?: {
-        cssStyle: CSSStyleDeclaration | null | undefined;
-    } | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null): Builder;
+    withCustomNamePolicy(customNamePolicy: HtmlSanitizerPolicy): Builder;
     /**
      * Sets a custom token policy.
      * @param {!HtmlSanitizerPolicy} customTokenPolicy
      * @return {!Builder}
      */
-    withCustomTokenPolicy(customTokenPolicy: (arg0: string, arg1?: {
-        tagName: string | undefined;
-        attributeName: string | undefined;
-        cssProperty: string | undefined;
-    } | undefined, arg2?: {
-        cssStyle: CSSStyleDeclaration | null | undefined;
-    } | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null): Builder;
+    withCustomTokenPolicy(customTokenPolicy: HtmlSanitizerPolicy): Builder;
     /**
      * Builds and returns a HtmlSanitizer object.
      * @return {!HtmlSanitizer}
@@ -302,24 +260,10 @@ export class Builder {
      * @private
      * @suppress {checkTypes}
      */
-    installPolicies_(): void;
-    alsoAllowTagsPrivateDoNotAccessOrElse(tags: string[]): Builder;
-    alsoAllowAttributesPrivateDoNotAccessOrElse(attrs: (string | {
-        tagName: string;
-        attributeName: string;
-        policy: ((arg0: string, arg1?: {
-            tagName: string | undefined;
-            attributeName: string | undefined;
-            cssProperty: string | undefined;
-        } | undefined, arg2?: {
-            cssStyle: CSSStyleDeclaration | null | undefined;
-        } | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null) | null;
-    })[]): Builder;
-    withCustomNetworkRequestUrlPolicy(customNetworkReqUrlPolicy: (arg0: string, arg1?: {
-        tagName: string | undefined;
-        attributeName: string | undefined;
-        cssProperty: string | undefined;
-    } | undefined) => SafeUrl | null): Builder;
+    private installPolicies_;
+    alsoAllowTagsPrivateDoNotAccessOrElse(tags: Array<string>): Builder;
+    alsoAllowAttributesPrivateDoNotAccessOrElse(attrs: Array<(string | HtmlSanitizerAttributePolicy)>): Builder;
+    withCustomNetworkRequestUrlPolicy(customNetworkReqUrlPolicy: HtmlSanitizerUrlPolicy): Builder;
 }
 /**
  * Creates an HTML sanitizer.
@@ -328,6 +272,130 @@ export class Builder {
  */
 export class HtmlSanitizer extends SafeDomTreeProcessor {
     /**
+     * Transforms a {@link HtmlSanitizerUrlPolicy} into a
+     * {@link HtmlSanitizerPolicy} by returning a wrapper that calls the {@link
+     * HtmlSanitizerUrlPolicy} with the required arguments and unwraps the returned
+     * {@link SafeUrl}. This is necessary because internally the sanitizer works
+     * with {@HtmlSanitizerPolicy} to sanitize attributes, but its public API must
+     * use {@HtmlSanitizerUrlPolicy} to ensure that callers do not violate SafeHtml
+     * invariants in their custom handlers.
+     * @param {!HtmlSanitizerUrlPolicy} urlPolicy
+     * @return {!HtmlSanitizerPolicy}
+     * @private
+     */
+    private static wrapUrlPolicy_;
+    /**
+     * Wraps a custom policy function with the sanitizer's default policy.
+     * @param {?HtmlSanitizerPolicy} customPolicy The custom
+     *     policy for the tag/attribute combination.
+     * @param {!HtmlSanitizerPolicy} defaultPolicy The
+     *     sanitizer's policy that is always called after the custom policy.
+     * @return {!HtmlSanitizerPolicy}
+     * @private
+     */
+    private static wrapPolicy_;
+    /**
+     * Installs the sanitizer's default policy for a specific tag/attribute
+     * combination on the provided whitelist, but only if a policy already exists.
+     * @param {!Object<string, !HtmlSanitizerPolicy>}
+     *     whitelist The whitelist to modify.
+     * @param {!Object<string, boolean>} overrideList The set of attributes handlers
+     *     that should not be wrapped with a default policy.
+     * @param {string} key The tag/attribute combination
+     * @param {!HtmlSanitizerPolicy} defaultPolicy The
+     *     sanitizer's policy.
+     * @private
+     */
+    private static installDefaultPolicy_;
+    /**
+     * Returns a key into the attribute handlers dictionary given a node name and
+     * an attribute name. If no node name is given, returns a key applying to all
+     * nodes.
+     * @param {?string} nodeName
+     * @param {string} attributeName
+     * @return {string} key into attribute handlers dict
+     * @private
+     */
+    private static attrIdentifier_;
+    /**
+     * Sanitizes a list of CSS declarations.
+     * @param {?HtmlSanitizerPolicy} policySanitizeUrl
+     * @param {string} attrValue
+     * @param {?HtmlSanitizerPolicyHints} policyHints
+     * @param {?HtmlSanitizerPolicyContext} policyContext
+     * @return {?string} sanitizedCss from the policyContext
+     * @private
+     */
+    private static sanitizeCssDeclarationList_;
+    /**
+     * Cleans up an attribute value that we don't particularly want to do anything
+     * to. At the moment we just trim the whitespace.
+     * @param {string} attrValue
+     * @return {string} sanitizedAttrValue
+     * @private
+     */
+    private static cleanUpAttribute_;
+    /**
+     * Allows a set of attribute values.
+     * @param {!Array<string>} allowedValues Set of allowed values lowercased.
+     * @param {string} attrValue
+     * @param {?HtmlSanitizerPolicyHints} policyHints
+     * @return {?string} sanitizedAttrValue
+     * @private
+     */
+    private static allowedAttributeValues_;
+    /**
+     * Sanitizes URL fragments.
+     * @param {string} urlFragment
+     * @param {?HtmlSanitizerPolicyHints} policyHints
+     * @return {?string} sanitizedAttrValue
+     * @private
+     */
+    private static sanitizeUrlFragment_;
+    /**
+     * Runs an attribute name through a name policy.
+     * @param {?HtmlSanitizerPolicy} namePolicy
+     * @param {string} attrName
+     * @param {?HtmlSanitizerPolicyHints} policyHints
+     * @return {?string} sanitizedAttrValue
+     * @private
+     */
+    private static sanitizeName_;
+    /**
+     * Ensures that the class prefix is present on all space-separated tokens
+     * (i.e. all class names).
+     * @param {?HtmlSanitizerPolicy} tokenPolicy
+     * @param {string} attrValue
+     * @param {?HtmlSanitizerPolicyHints} policyHints
+     * @return {?string} sanitizedAttrValue
+     * @private
+     */
+    private static sanitizeClasses_;
+    /**
+     * Ensures that the id prefix is present.
+     * @param {?HtmlSanitizerPolicy} tokenPolicy
+     * @param {string} attrValue
+     * @param {?HtmlSanitizerPolicyHints} policyHints
+     * @return {?string} sanitizedAttrValue
+     * @private
+     */
+    private static sanitizeId_;
+    /**
+     * Retrieves a HtmlSanitizerPolicyContext from a dirty node given an attribute
+     * name.
+     * @param {string} attributeName
+     * @param {!Element} dirtyElement
+     * @return {!HtmlSanitizerPolicyContext}
+     * @private
+     */
+    private static getContext_;
+    /**
+     * Sanitizes a HTML string using a sanitizer with default options.
+     * @param {string} unsanitizedHtml
+     * @return {!SafeHtml} sanitizedHtml
+     */
+    static sanitize(unsanitizedHtml: string): SafeHtml;
+    /**
      * Creates an HTML sanitizer.
      * @param {!Builder=} opt_builder
      */
@@ -335,21 +403,21 @@ export class HtmlSanitizer extends SafeDomTreeProcessor {
     /**
      * @private @const {!Object<string, !HtmlSanitizerPolicy>}
      */
-    attributeHandlers_: any;
+    private attributeHandlers_;
     /** @private @const {!Object<string, boolean>} */
-    tagBlacklist_: any;
+    private tagBlacklist_;
     /** @private @const {!Object<string, boolean>} */
-    tagWhitelist_: any;
+    private tagWhitelist_;
     /** @private @const {boolean} */
-    shouldAddOriginalTagNames_: boolean;
+    private shouldAddOriginalTagNames_;
     /** @private @const {!HtmlSanitizerUrlPolicy} */
-    networkRequestUrlPolicy_: typeof goog_functions.NULL;
+    private networkRequestUrlPolicy_;
     /** @private @const {?string} */
-    styleContainerId_: string | null;
+    private styleContainerId_;
     /** @private {?string} */
-    currentStyleContainerId_: string | null;
+    private currentStyleContainerId_;
     /** @private @const {boolean} */
-    inlineStyleRules_: boolean;
+    private inlineStyleRules_;
     /**
      * Parses the DOM tree of a given HTML string, then walks the tree. For each
      * element, it creates a new sanitized version, applies sanitized attributes,
@@ -368,10 +436,6 @@ export class HtmlSanitizer extends SafeDomTreeProcessor {
      * @return {!HTMLSpanElement} Sanitized HTML
      */
     sanitizeToDomNode(unsanitizedHtml: string): HTMLSpanElement;
-    /** @override */
-    processRoot(newRoot: any): void;
-    /** @override */
-    preProcessHtml(unsanitizedHtml: any): any;
     /**
      * Gets the style container ID for the sanitized output, or creates a new random
      * one. If no style container is necessary or style containment is disabled,
@@ -379,13 +443,7 @@ export class HtmlSanitizer extends SafeDomTreeProcessor {
      * @return {?string}
      * @private
      */
-    getStyleContainerId_(): string | null;
-    /** @override */
-    createTextNode(dirtyNode: any): Text;
-    /** @override */
-    createElementWithoutAttributes(dirtyElement: any): any;
-    /** @override */
-    processElementAttribute(dirtyElement: any, attribute: any): any;
+    private getStyleContainerId_;
 }
 export namespace HtmlSanitizer {
     export const defaultUrlPolicy_: typeof SafeUrl.sanitize;
@@ -393,6 +451,13 @@ export namespace HtmlSanitizer {
     export const defaultNamePolicy_: typeof goog_functions.NULL;
     export const defaultTokenPolicy_: typeof goog_functions.NULL;
 }
+/**
+ * Type for a policy function.
+ * @typedef {function(string, HtmlSanitizerPolicyHints=,
+ *     HtmlSanitizerPolicyContext=,
+ *     (function(string, ?=, ?=, ?=):?string)=):?string}
+ */
+export let HtmlSanitizerPolicy: any;
 /**
  * Type for attribute policy configuration.
  * @typedef {{
@@ -402,20 +467,6 @@ export namespace HtmlSanitizer {
  * }}
  */
 export let HtmlSanitizerAttributePolicy: any;
-/**
- * Type for a policy function.
- * @typedef {function(string, HtmlSanitizerPolicyHints=,
- *     HtmlSanitizerPolicyContext=,
- *     (function(string, ?=, ?=, ?=):?string)=):?string}
- */
-export let HtmlSanitizerPolicy: any;
-/**
- * Type for optional context objects to the policy handler functions.
- * @typedef {{
- *     cssStyle: (?CSSStyleDeclaration|undefined)
- *     }}
- */
-export let HtmlSanitizerPolicyContext: any;
 /**
  * @fileoverview An HTML sanitizer that can satisfy a variety of security
  * policies.
@@ -440,6 +491,13 @@ export let HtmlSanitizerPolicyContext: any;
  *     }}
  */
 export let HtmlSanitizerPolicyHints: any;
+/**
+ * Type for optional context objects to the policy handler functions.
+ * @typedef {{
+ *     cssStyle: (?CSSStyleDeclaration|undefined)
+ *     }}
+ */
+export let HtmlSanitizerPolicyContext: any;
 import { SafeUrl } from "../safeurl.js";
 /**
  * Type for a URL policy function.
@@ -448,6 +506,6 @@ import { SafeUrl } from "../safeurl.js";
  *     ?SafeUrl}
  */
 export let HtmlSanitizerUrlPolicy: any;
-import * as goog_functions from "../../functions/functions.js";
 import { SafeDomTreeProcessor } from "./safedomtreeprocessor.js";
 import { SafeHtml } from "../safehtml.js";
+import * as goog_functions from "../../functions/functions.js";

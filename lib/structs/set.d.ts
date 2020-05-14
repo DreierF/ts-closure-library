@@ -23,7 +23,16 @@ export { structs_Set as Set };
  * @template T
  * @deprecated This type is misleading: use ES6 Set instead.
  */
-declare class structs_Set<T> {
+declare class structs_Set<T> implements Collection<T> {
+    /**
+     * Obtains a unique key for an element of the set.  Primitives will yield the
+     * same key if they have the same type and convert to the same string.  Object
+     * references will yield the same key only if they refer to the same object.
+     * @param {*} val Object or primitive value to get a key for.
+     * @return {string} A unique key for this value/object.
+     * @private
+     */
+    private static getKey_;
     /**
      * A set that can contain both primitives and objects.  Adding and removing
      * elements is O(1).  Primitives are treated as identical if they have the same
@@ -39,7 +48,7 @@ declare class structs_Set<T> {
      * @deprecated This type is misleading: use ES6 Set instead.
      */
     constructor(opt_values?: any);
-    map_: any;
+    map_: StructsMap<any, any>;
     /**
      * @return {number} The number of elements in the set.
      * @override
@@ -112,7 +121,7 @@ declare class structs_Set<T> {
      *     (primitives or objects) present in this set but not in the given
      *     collection.
      */
-    difference(col: any): structs_Set<any>;
+    difference(col: any): structs_Set;
     /**
      * Returns an array containing all the elements in this set.
      * @return {!Array<T>} An array containing all the elements in this set.
@@ -148,10 +157,12 @@ declare class structs_Set<T> {
      * @param {boolean=} opt_keys This argument is ignored.
      * @return {!Iterator} An iterator over the elements in this set.
      */
-    __iterator__(opt_keys?: boolean | undefined): Iterator<any>;
+    __iterator__(opt_keys?: boolean | undefined): Iterator;
 }
 declare namespace structs_Set {
     export const getUid_: typeof google.getUid;
 }
+import { Collection } from "./collection.js";
+import { Map as StructsMap } from "./map.js";
 import { Iterator } from "../iter/iter.js";
 import * as google from "../google.js";

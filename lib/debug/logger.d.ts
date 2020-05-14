@@ -44,6 +44,23 @@ export const ENABLE_PROFILER_LOGGING: boolean;
  */
 export class Level {
     /**
+     * Creates the predefined levels cache and populates it.
+     * @private
+     */
+    private static createPredefinedLevelsCache_;
+    /**
+     * Gets the predefined level with the given name.
+     * @param {string} name The name of the level.
+     * @return {?Level} The level, or null if none found.
+     */
+    static getPredefinedLevel(name: string): Level | null;
+    /**
+     * Gets the highest predefined level <= #value.
+     * @param {number} value Level value.
+     * @return {?Level} The level, or null if none found.
+     */
+    static getPredefinedLevelByValue(value: number): Level | null;
+    /**
      * The Level class defines a set of standard logging levels that
      * can be used to control logging output.  The logging Level objects
      * are ordered and are specified by ordered integers.  Enabling logging
@@ -98,13 +115,21 @@ export namespace Level {
     export const FINEST: Level;
     export const ALL: Level;
     export const PREDEFINED_LEVELS: Array<Level>;
-    export const predefinedLevelsCache_: Object | null;
+    export const predefinedLevelsCache_: any | null;
 }
 export namespace LogManager {
     export const loggers_: {
         [x: string]: debug_Logger;
     };
     export const rootLogger_: debug_Logger | null;
+    export function initialize(): void;
+    export function getLoggers(): {
+        [x: string]: debug_Logger;
+    };
+    export function getRoot(): debug_Logger;
+    export function getLogger(name: string): debug_Logger;
+    export function createFunctionForCatchErrors(opt_logger?: debug_Logger | undefined): (arg0: any) => any;
+    export function createLogger_(name: string): debug_Logger;
 }
 /**
  * @fileoverview Definition of the Logger class. Please minimize dependencies
@@ -140,6 +165,28 @@ export let Loggable: any;
  */
 declare class debug_Logger {
     /**
+     * Finds or creates a logger for a named subsystem. If a logger has already been
+     * created with the given name it is returned. Otherwise a new logger is
+     * created. If a new logger is created its log level will be configured based
+     * on the LogManager configuration and it will configured to also send logging
+     * output to its parent's handlers. It will be registered in the LogManager
+     * global namespace.
+     *
+     * @param {string} name A name for the logger. This should be a dot-separated
+     * name and should normally be based on the package name or class name of the
+     * subsystem, such as goog.net.BrowserChannel.
+     * @return {!debug_Logger} The named logger.
+     * @deprecated use {@link google.log} instead.
+     */
+    static getLogger(name: string): debug_Logger;
+    /**
+     * Logs a message to profiling tools, if available.
+     * {@see https://developers.google.com/web-toolkit/speedtracer/logging-api}
+     * {@see http://msdn.microsoft.com/en-us/library/dd433074(VS.85).aspx}
+     * @param {string} msg The message to log.
+     */
+    static logToProfilers(msg: string): void;
+    /**
      * The Logger is an object used for logging debug messages. Loggers are
      * normally named, using a hierarchical dot-separated namespace. Logger names
      * can be arbitrary strings, but they should normally be based on the package
@@ -159,29 +206,29 @@ declare class debug_Logger {
      * Name of the Logger. Generally a dot-separated namespace
      * @private {string}
      */
-    name_: string;
+    private name_;
     /**
      * Parent Logger.
      * @private {?debug_Logger}
      */
-    parent_: debug_Logger | null;
+    private parent_;
     /**
      * Level that this logger only filters above. Null indicates it should
      * inherit from the parent.
      * @private {?Level}
      */
-    level_: Level | null;
+    private level_;
     /**
      * Map of children loggers. The keys are the leaf names of the children and
      * the values are the child loggers.
      * @private {?Object}
      */
-    children_: {} | null;
+    private children_;
     /**
      * Handlers that are listening to this logger.
      * @private {?Array<?Function>}
      */
-    handlers_: any[] | null;
+    private handlers_;
     /**
      * Gets the name of this logger.
      * @return {string} The name of this logger.
@@ -253,7 +300,7 @@ declare class debug_Logger {
      * @param {Error|Object=} opt_exception An exception associated with the
      *     message.
      */
-    log(level: Level | null, msg: string | (() => string) | null, opt_exception?: any): void;
+    log(level: Level | null, msg: Loggable | null, opt_exception?: (Error | any) | undefined): void;
     /**
      * Creates a new log record and adds the exception (if present) to it.
      * @param {?Level} level One of the level identifiers.
@@ -263,7 +310,7 @@ declare class debug_Logger {
      * @return {!DebugLogRecord} A log record.
      * @suppress {es5Strict}
      */
-    getLogRecord(level: Level | null, msg: string, opt_exception?: any): DebugLogRecord;
+    getLogRecord(level: Level | null, msg: string, opt_exception?: (Error | any) | undefined): DebugLogRecord;
     /**
      * Logs a message at the Logger.Level.SHOUT level.
      * If the logger is currently enabled for the given message level then the
@@ -271,7 +318,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    shout(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
+    shout(msg: Loggable | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.SEVERE level.
      * If the logger is currently enabled for the given message level then the
@@ -279,7 +326,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    severe(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
+    severe(msg: Loggable | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.WARNING level.
      * If the logger is currently enabled for the given message level then the
@@ -287,7 +334,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    warning(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
+    warning(msg: Loggable | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.INFO level.
      * If the logger is currently enabled for the given message level then the
@@ -295,7 +342,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    info(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
+    info(msg: Loggable | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.CONFIG level.
      * If the logger is currently enabled for the given message level then the
@@ -303,7 +350,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    config(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
+    config(msg: Loggable | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.FINE level.
      * If the logger is currently enabled for the given message level then the
@@ -311,7 +358,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    fine(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
+    fine(msg: Loggable | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.FINER level.
      * If the logger is currently enabled for the given message level then the
@@ -319,7 +366,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    finer(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
+    finer(msg: Loggable | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a message at the Logger.Level.FINEST level.
      * If the logger is currently enabled for the given message level then the
@@ -327,7 +374,7 @@ declare class debug_Logger {
      * @param {?Loggable} msg The message to log.
      * @param {Error=} opt_exception An exception associated with the message.
      */
-    finest(msg: string | (() => string) | null, opt_exception?: Error | undefined): void;
+    finest(msg: Loggable | null, opt_exception?: Error | undefined): void;
     /**
      * Logs a LogRecord. If the logger is currently enabled for the
      * given message level then the given message is forwarded to all the
@@ -340,26 +387,26 @@ declare class debug_Logger {
      * @param {?DebugLogRecord} logRecord A log record to log.
      * @private
      */
-    doLogRecord_(logRecord: DebugLogRecord | null): void;
+    private doLogRecord_;
     /**
      * Calls the handlers for publish.
      * @param {?DebugLogRecord} logRecord The log record to publish.
      * @private
      */
-    callPublish_(logRecord: DebugLogRecord | null): void;
+    private callPublish_;
     /**
      * Sets the parent of this logger. This is used for setting up the logger tree.
      * @param {debug_Logger} parent The parent logger.
      * @private
      */
-    setParent_(parent: debug_Logger): void;
+    private setParent_;
     /**
      * Adds a child to this logger. This is used for setting up the logger tree.
      * @param {string} name The leaf name of the child.
      * @param {debug_Logger} logger The child logger.
      * @private
      */
-    addChild_(name: string, logger: debug_Logger): void;
+    private addChild_;
 }
 declare namespace debug_Logger {
     export const ROOT_LOGGER_NAME: string;

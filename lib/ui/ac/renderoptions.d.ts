@@ -12,14 +12,14 @@ export class RenderOptions {
      * @type {boolean}
      * @private
      */
-    preserveHilited_: boolean;
+    private preserveHilited_;
     /**
      * Whether the first match is to be highlighted.  When undefined the autoHilite
      * flag of the autocomplete is used.
      * @type {boolean|undefined}
      * @private
      */
-    autoHilite_: boolean | undefined;
+    private autoHilite_;
     /**
      * @param {boolean} flag The new value for the preserveHilited_ flag.
      */

@@ -19,7 +19,7 @@ export class TagName<T> {
      */
     constructor(tagName: string);
     /** @private {string} */
-    tagName_: string;
+    private tagName_;
     /**
      * Returns the tag name.
      * @return {string}
@@ -92,7 +92,7 @@ export namespace TagName {
     export const IMG: TagName<HTMLImageElement>;
     export const INPUT: TagName<HTMLInputElement>;
     export const INS: TagName<HTMLModElement>;
-    
+    export const ISINDEX: TagName<any>;
     export const KBD: TagName<HtmlElement>;
     export const KEYGEN: TagName<HtmlElement>;
     export const LABEL: TagName<HTMLLabelElement>;
@@ -104,7 +104,7 @@ export namespace TagName {
     export const MARK: TagName<HtmlElement>;
     export const MATH: TagName<HtmlElement>;
     export const MENU: TagName<HTMLMenuElement>;
-    
+    export const MENUITEM: TagName<any>;
     export const META: TagName<HTMLMetaElement>;
     export const METER: TagName<HTMLMeterElement>;
     export const NAV: TagName<HtmlElement>;

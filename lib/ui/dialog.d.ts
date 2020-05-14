@@ -14,7 +14,7 @@ export type DefaultButtons = {
     caption: string;
 };
 /**
- * Events dispatched by dialogs.
+ * *
  */
 export type EventType = string;
 /**
@@ -57,46 +57,29 @@ export class ButtonSet extends UiMap<any, any> {
      * @param {DomHelper=} opt_domHelper Optional DOM helper; see {@link
      *    goog.ui.Component} for semantics.
      */
-    constructor(opt_domHelper?: googdom.DomHelper | undefined);
+    constructor(opt_domHelper?: DomHelper | undefined);
     dom_: googdom.DomHelper;
     /**
      * A CSS className for this component.
      * @private @const {string}
      */
-    class_: string;
+    private class_;
     /**
      * The button that has default focus (references key in buttons_ map).
      * @private {?string}
      */
-    defaultButton_: string | null;
+    private defaultButton_;
     /**
      * Optional container the button set should be rendered into.
      * @private {Element|null}
      */
-    element_: Element | null;
+    private element_;
     /**
      * The button whose action is associated with the escape key and the X button
      * on the dialog.
      * @private {?string}
      */
-    cancelButton_: string | null;
-    /**
-     * Adds a button to the button set.  Buttons will be displayed in the order they
-     * are added.
-     *
-     * @param {*} key Key used to identify the button in events.
-     * @param {*} caption A string caption or a DOM node that can be
-     *     appended to a button element.
-     * @param {boolean=} opt_isDefault Whether this button is the default button,
-     *     Dialog will dispatch for this button if enter is pressed.
-     * @param {boolean=} opt_isCancel Whether this button has the same behaviour as
-     *    cancel.  If escape is pressed this button will fire.
-     * @return {!ButtonSet} The button set, to make it easy to chain
-     *    "set" calls and build new ButtonSets.
-     * @override
-     */
-    // @ts-ignore
-    set(key: any, caption: any, opt_isDefault?: boolean | undefined, opt_isCancel?: boolean | undefined): ButtonSet;
+    private cancelButton_;
     /**
      * Adds a button (an object with a key and caption) to this button set. Buttons
      * will be displayed in the order they are added.
@@ -143,7 +126,7 @@ export class ButtonSet extends UiMap<any, any> {
      * @return {!DomHelper} The dom helper used on this component.
      * TODO(user): Remove after refactoring to goog.ui.Component.
      */
-    getDomHelper(): googdom.DomHelper;
+    getDomHelper(): DomHelper;
     /**
      * Sets the default button.
      * @param {?string} key The default button.
@@ -292,116 +275,116 @@ export class Dialog extends ModalPopup {
      * @param {DomHelper=} opt_domHelper Optional DOM helper; see {@link
      *     goog.ui.Component} for semantics.
      */
-    constructor(opt_class?: string | undefined, opt_useIframeMask?: boolean | undefined, opt_domHelper?: googdom.DomHelper | undefined);
+    constructor(opt_class?: string | undefined, opt_useIframeMask?: boolean | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * Whether the escape key closes this dialog.
      * @type {boolean}
      * @private
      */
-    escapeToCancel_: boolean;
+    private escapeToCancel_;
     /**
      * Whether this dialog should include a title close button.
      * @type {boolean}
      * @private
      */
-    hasTitleCloseButton_: boolean;
+    private hasTitleCloseButton_;
     /**
      * Whether the dialog is modal. Defaults to true.
      * @type {boolean}
      * @private
      */
-    modal_: boolean;
+    private modal_;
     /**
      * Whether the dialog is draggable. Defaults to true.
      * @type {boolean}
      * @private
      */
-    draggable_: boolean;
+    private draggable_;
     /**
      * Opacity for background mask.  Defaults to 50%.
      * @type {number}
      * @private
      */
-    backgroundElementOpacity_: number;
+    private backgroundElementOpacity_;
     /**
      * Dialog's title.
      * @type {string}
      * @private
      */
-    title_: string;
+    private title_;
     /**
      * Dialog's content (HTML).
      * @type {?SafeHtml}
      * @private
      */
-    content_: SafeHtml | null;
+    private content_;
     /**
      * Dragger.
      * @type {?Fx_Dragger}
      * @private
      */
-    dragger_: Fx_Dragger | null;
+    private dragger_;
     /**
      * Whether the dialog should be disposed when it is hidden.
      * @type {boolean}
      * @private
      */
-    disposeOnHide_: boolean;
+    private disposeOnHide_;
     /**
      * Element for the title bar.
      * @type {Element|null}
      * @private
      */
-    titleEl_: Element | null;
+    private titleEl_;
     /**
      * Element for the text area of the title bar.
      * @type {Element|null}
      * @private
      */
-    titleTextEl_: Element | null;
+    private titleTextEl_;
     /**
      * Id of element for the text area of the title bar.
      * @type {?string}
      * @private
      */
-    titleTextId_: string | null;
+    private titleTextId_;
     /**
      * Element for the close box area of the title bar.
      * @type {Element|null}
      * @private
      */
-    titleCloseEl_: Element | null;
+    private titleCloseEl_;
     /**
      * Element for the content area.
      * @type {Element|null}
      * @private
      */
-    contentEl_: Element | null;
+    private contentEl_;
     /**
      * Element for the button bar.
      * @type {Element|null}
      * @private
      */
-    buttonEl_: Element | null;
+    private buttonEl_;
     /**
      * The dialog's preferred ARIA role.
      * @type {?Role}
      * @private
      */
-    preferredAriaRole_: Role | null;
+    private preferredAriaRole_;
     /**
      * CSS class name for the dialog element, also used as a class name prefix for
      * related elements.  Defaults to google.getCssName('modal-dialog').
      * @type {string}
      * @private
      */
-    class_: string;
+    private class_;
     /**
      * Button set.  Default to Ok/Cancel.
      * @type {?ButtonSet}
      * @private
      */
-    buttons_: ButtonSet | null;
+    private buttons_;
     /**
      * Sets the title.
      * @param {string} title The title text.
@@ -444,19 +427,19 @@ export class Dialog extends ModalPopup {
      * warning or confirmation dialog.
      * @return {?Role} This dialog's preferred ARIA role.
      */
-    getPreferredAriaRole(): string | null;
+    getPreferredAriaRole(): Role | null;
     /**
      * Sets the dialog's preferred ARIA role. This can be used to override the
      * default dialog role, e.g. with an ARIA role of ALERTDIALOG for a simple
      * warning or confirmation dialog.
      * @param {?Role} role This dialog's preferred ARIA role.
      */
-    setPreferredAriaRole(role: string | null): void;
+    setPreferredAriaRole(role: Role | null): void;
     /**
      * Renders if the DOM is not created.
      * @private
      */
-    renderIfNoDom_(): void;
+    private renderIfNoDom_;
     /**
      * Returns the title element so that more complicated things can be done with
      * the title.  Renders if the DOM is not yet created.
@@ -480,7 +463,7 @@ export class Dialog extends ModalPopup {
      * @return {string}
      * @protected
      */
-    getDialogCloseMessage(): string;
+    protected getDialogCloseMessage(): string;
     /**
      * Returns the button element so that more complicated things can be done with
      * the button area.  Renders if the DOM is not yet created.
@@ -518,7 +501,7 @@ export class Dialog extends ModalPopup {
      * @param {boolean} modal Whether the dialog is modal.
      * @private
      */
-    setModalInternal_(modal: boolean): void;
+    private setModalInternal_;
     /**
      * @return {boolean} modal Whether the dialog is modal.
      */
@@ -539,7 +522,7 @@ export class Dialog extends ModalPopup {
      * @return {!Fx_Dragger} The created dragger instance.
      * @protected
      */
-    createDragger(): Fx_Dragger;
+    protected createDragger(): Fx_Dragger;
     /**
      * @return {boolean} Whether the dialog is draggable.
      */
@@ -549,26 +532,26 @@ export class Dialog extends ModalPopup {
      * @param {boolean} enabled Whether to enable it.
      * @private
      */
-    setDraggingEnabled_(enabled: boolean): void;
+    private setDraggingEnabled_;
     /**
      * Sets dragger limits when dragging is started.
      * @param {!EventsEvent} e DraggerEventType.START event.
      * @private
      */
-    setDraggerLimits_(e: EventsEvent): void;
+    private setDraggerLimits_;
     /**
      * Handles a click on the title close area.
      * @param {?EventsBrowserEvent} e Browser's event object.
      * @private
      */
-    onTitleCloseClick_(e: EventsBrowserEvent | null): void;
+    private onTitleCloseClick_;
     /**
      * Performs the action of closing the dialog in response to the title close
      * button being interacted with. General purpose method to be called by click
      * and button event handlers.
      * @private
      */
-    handleTitleClose_(): void;
+    private handleTitleClose_;
     /**
      * @return {boolean} Whether this dialog has a title close button.
      */
@@ -616,7 +599,7 @@ export class Dialog extends ModalPopup {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    onButtonClick_(e: EventsBrowserEvent | null): void;
+    private onButtonClick_;
     /**
      * Finds the parent button of an element (or null if there was no button
      * parent).
@@ -625,7 +608,7 @@ export class Dialog extends ModalPopup {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    findParentButton_(element: Element | null): Element | null;
+    private findParentButton_;
     /**
      * Handles keydown and keypress events, and dismisses the popup if cancel is
      * pressed.  If there is a cancel action in the ButtonSet, than that will be
@@ -634,8 +617,7 @@ export class Dialog extends ModalPopup {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    onKey_(e: EventsBrowserEvent | null): void;
-    actualEventTarget_: Dialog;
+    private onKey_;
 }
 export namespace Dialog {
     export const SELECT_EVENT: string;
@@ -657,7 +639,7 @@ declare class Dialog_Event extends EventsEvent {
      * @param {string} key Key identifier for the button.
      * @param {string|?Element} caption Caption on the button (might be i18nlized).
      */
-    constructor(key: string, caption: string | Element | null);
+    constructor(key: string, caption: string | (Element | null));
     /** @const */
     key: string;
     /** @const */
@@ -670,10 +652,10 @@ export namespace EventType {
 }
 import { Map as UiMap } from "./map.js";
 import * as googdom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";
 import { ModalPopup } from "./modalpopup.js";
 import { SafeHtml } from "../html/safehtml.js";
-import { Dragger as Fx_Dragger } from "../fx/dragger.js";
 import { Role } from "../a11y/aria/roles.js";
+import { Dragger as Fx_Dragger } from "../fx/dragger.js";
 import { Event as EventsEvent } from "../events/event.js";
-import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
 export { Dialog_Event as Event };

@@ -6,19 +6,21 @@
  * @final
  */
 export class IdGenerator {
+    /** @return {!IdGenerator} @suppress {checkTypes} */
+    static getInstance(): IdGenerator;
     /**
      * Next unique ID to use
      * @type {number}
      * @private
      */
-    nextId_: number;
+    private nextId_;
     /**
      * Random ID prefix to help avoid collisions with other closure JavaScript on
      * the same page that may initialize its own IdGenerator singleton.
      * @type {string}
      * @private
      */
-    idPrefix_: string;
+    private idPrefix_;
     /**
      * Sets the ID prefix for this singleton. This is a temporary workaround to be
      * backwards compatible with code relying on the undocumented, but consistent,

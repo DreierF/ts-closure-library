@@ -17,7 +17,7 @@ export class SafeDomTreeProcessor {
      * @return {string}
      * @protected @final
      */
-    processToString(html: string): string;
+    protected processToString(html: string): string;
     /**
      * Parses an HTML string and walks the resulting DOM forest to apply the
      * transformation function and generate a copy of the forest. Returns the forest
@@ -26,7 +26,7 @@ export class SafeDomTreeProcessor {
      * @return {!HTMLSpanElement}
      * @protected @final
      */
-    processToTree(html: string): HTMLSpanElement;
+    protected processToTree(html: string): HTMLSpanElement;
     /**
      * Creates the root SPAN element for the new tree. This function can be
      * overridden to add attributes to the tag. Note that if any attributes are
@@ -35,14 +35,14 @@ export class SafeDomTreeProcessor {
      * @param {!HTMLSpanElement} newRoot
      * @protected @abstract
      */
-    processRoot(newRoot: HTMLSpanElement): void;
+    protected processRoot(newRoot: HTMLSpanElement): void;
     /**
      * Pre-processes the input html before the main tree-based transformation.
      * @param {string} html
      * @return {string}
      * @protected @abstract
      */
-    preProcessHtml(html: string): string;
+    protected preProcessHtml(html: string): string;
     /**
      * Returns a new node based on the transformation of an original node, or null
      * if the node and all its children should not be copied over to the new tree.
@@ -50,7 +50,7 @@ export class SafeDomTreeProcessor {
      * @return {?Node}
      * @private
      */
-    createNode_(originalNode: Node): Node | null;
+    private createNode_;
     /**
      * Creates a new text node from the original text node, or null if the node
      * should not be copied over to the new tree.
@@ -58,7 +58,7 @@ export class SafeDomTreeProcessor {
      * @return {?Text}
      * @protected @abstract
      */
-    createTextNode(originalNode: Text): Text | null;
+    protected createTextNode(originalNode: Text): Text | null;
     /**
      * Creates a new element from the original element, potentially applying
      * transformations to the element's tagname and attributes.
@@ -66,7 +66,7 @@ export class SafeDomTreeProcessor {
      * @return {Element|null}
      * @private
      */
-    createElement_(originalElement: Element): Element | null;
+    private createElement_;
     /**
      * Creates a new element from the original element. This function should only
      * either create a new element (optionally changing the tag name from the
@@ -78,7 +78,7 @@ export class SafeDomTreeProcessor {
      * @return {Element|null}
      * @protected @abstract
      */
-    createElementWithoutAttributes(originalElement: Element): Element | null;
+    protected createElementWithoutAttributes(originalElement: Element): Element | null;
     /**
      * Copies over the attributes of an original node to its corresponding new node
      * generated with {@link processNode}.
@@ -86,7 +86,7 @@ export class SafeDomTreeProcessor {
      * @param {!Element} newElement
      * @private
      */
-    processElementAttributes_(originalElement: Element, newElement: Element): void;
+    private processElementAttributes_;
     /**
      * Returns the new value for an attribute, or null if the attribute should be
      * dropped.
@@ -95,7 +95,7 @@ export class SafeDomTreeProcessor {
      * @return {?string}
      * @protected @abstract
      */
-    processElementAttribute(element: Element, attribute: Attr): string | null;
+    protected processElementAttribute(element: Element, attribute: Attr): string | null;
 }
 export namespace SafeDomTreeProcessor {
     export { SAFE_PARSING_SUPPORTED };

@@ -46,7 +46,66 @@
  * @class
  * @implements {TypedString}
  */
-export class SafeStyleSheet {
+export class SafeStyleSheet implements TypedString {
+    /**
+     * Creates a style sheet consisting of one selector and one style definition.
+     * Use {@link SafeStyleSheet.concat} to create longer style sheets.
+     * This function doesn't support @import, @media and similar constructs.
+     * @param {string} selector CSS selector, e.g. '#id' or 'tag .class, #id'. We
+     *     support CSS3 selectors: https://w3.org/TR/css3-selectors/#selectors.
+     * @param {!HtmlSafeStyle.PropertyMap|!HtmlSafeStyle} style Style
+     *     definition associated with the selector.
+     * @return {!SafeStyleSheet}
+     * @throws {Error} If invalid selector is provided.
+     */
+    static createRule(selector: string, style: HtmlSafeStyle.PropertyMap | HtmlSafeStyle): SafeStyleSheet;
+    /**
+     * Checks if a string has balanced () and [] brackets.
+     * @param {string} s String to check.
+     * @return {boolean}
+     * @private
+     */
+    private static hasBalancedBrackets_;
+    /**
+     * Creates a new SafeStyleSheet object by concatenating values.
+     * @suppress{checkTypes}
+     * @param {...(!SafeStyleSheet|!Array<!SafeStyleSheet>)}
+     *     var_args Values to concatenate.
+     * @return {!SafeStyleSheet}
+     */
+    static concat(...args: (SafeStyleSheet | SafeStyleSheet[])[]): SafeStyleSheet;
+    /**
+     * Creates a SafeStyleSheet object from a compile-time constant string.
+     *
+     * `styleSheet` must not have any &lt; characters in it, so that
+     * the syntactic structure of the surrounding HTML is not affected.
+     *
+     * @param {!Const} styleSheet A compile-time-constant string from
+     *     which to create a SafeStyleSheet.
+     * @return {!SafeStyleSheet} A SafeStyleSheet object initialized to
+     *     `styleSheet`.
+     */
+    static fromConstant(styleSheet: Const): SafeStyleSheet;
+    /**
+     * Performs a runtime check that the provided object is indeed a
+     * SafeStyleSheet object, and returns its value.
+     *
+     * @param {!SafeStyleSheet} safeStyleSheet The object to extract from.
+     * @return {string} The safeStyleSheet object's contained string, unless
+     *     the run-time type check fails. In that case, `unwrap` returns an
+     *     innocuous string, or, if assertions are enabled, throws
+     *     `AssertionError`.
+     */
+    static unwrap(safeStyleSheet: SafeStyleSheet): string;
+    /**
+     * Package-internal utility method to create SafeStyleSheet instances.
+     *
+     * @param {string} styleSheet The string to initialize the SafeStyleSheet
+     *     object with.
+     * @return {!SafeStyleSheet} The initialized SafeStyleSheet object.
+     * @package
+     */
+    static createSafeStyleSheetSecurityPrivateDoNotAccessOrElse(styleSheet: string): SafeStyleSheet;
     /**
      * @override
      * @const
@@ -58,14 +117,14 @@ export class SafeStyleSheet {
      * field stand out.
      * @private {string}
      */
-    privateDoNotAccessOrElseSafeStyleSheetWrappedValue_: string;
+    private privateDoNotAccessOrElseSafeStyleSheetWrappedValue_;
     /**
      * A type marker used to implement additional run-time type checking.
      * @see SafeStyleSheet#unwrap
      * @const {!Object}
      * @private
      */
-    SAFE_STYLE_SHEET_TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
+    private SAFE_STYLE_SHEET_TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_;
     /**
      * Returns this SafeStyleSheet's value as a string.
      *
@@ -96,9 +155,12 @@ export class SafeStyleSheet {
      * @return {!SafeStyleSheet}
      * @private
      */
-    initSecurityPrivateDoNotAccessOrElse_(styleSheet: string): SafeStyleSheet;
+    private initSecurityPrivateDoNotAccessOrElse_;
 }
 export namespace SafeStyleSheet {
     export const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
     export const EMPTY: SafeStyleSheet;
 }
+import { TypedString } from "../string/typedstring.js";
+import { SafeStyle as HtmlSafeStyle } from "./safestyle.js";
+import { Const } from "../string/const.js";

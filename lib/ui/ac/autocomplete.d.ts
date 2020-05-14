@@ -54,25 +54,25 @@ export class AutoComplete extends events.EventTarget {
      *
      * @suppress {underscore}
      */
-    constructor(matcher: any, renderer: Renderer | null, selectionHandler: any);
+    constructor(matcher: any | null, renderer: Renderer | null, selectionHandler: any | null);
     /**
      * The maximum number of matches that should be returned
      * @type {number}
      * @private
      */
-    maxMatches_: number;
+    private maxMatches_;
     /**
      * True iff the first row should automatically be highlighted
      * @type {boolean}
      * @private
      */
-    autoHilite_: boolean;
+    private autoHilite_;
     /**
      * True iff the user can unhilight all rows by pressing the up arrow.
      * @type {boolean}
      * @private
      */
-    allowFreeSelect_: boolean;
+    private allowFreeSelect_;
     /**
      * True iff item selection should wrap around from last to first. If
      *     allowFreeSelect_ is on in conjunction, there is a step of free selection
@@ -80,13 +80,13 @@ export class AutoComplete extends events.EventTarget {
      * @type {boolean}
      * @private
      */
-    wrap_: boolean;
+    private wrap_;
     /**
      * Whether completion from suggestion triggers fetching new suggestion.
      * @type {boolean}
      * @private
      */
-    triggerSuggestionsOnUpdate_: boolean;
+    private triggerSuggestionsOnUpdate_;
     /**
      * A data-source which provides autocomplete suggestions.
      *
@@ -96,7 +96,7 @@ export class AutoComplete extends events.EventTarget {
      * @protected
      * @suppress {underscore|visibility}
      */
-    matcher_: Object | null;
+    protected matcher_: any | null;
     /**
      * A handler which interacts with the input DOM element (textfield, textarea,
      * or richedit).
@@ -107,35 +107,35 @@ export class AutoComplete extends events.EventTarget {
      * @protected
      * @suppress {underscore|visibility}
      */
-    selectionHandler_: Object | null;
+    protected selectionHandler_: any | null;
     /**
      * A renderer to render/show/highlight/hide the autocomplete menu.
      * @type {?Renderer}
      * @protected
      * @suppress {underscore|visibility}
      */
-    renderer_: Renderer | null;
+    protected renderer_: Renderer | null;
     /**
      * Currently typed token which will be used for completion.
      * @type {?string}
      * @protected
      * @suppress {underscore|visibility}
      */
-    token_: string | null;
+    protected token_: string | null;
     /**
      * Autocomplete suggestion items.
      * @type {Array<?>}
      * @protected
      * @suppress {underscore|visibility}
      */
-    rows_: Array<unknown>;
+    protected rows_: Array<unknown>;
     /**
      * Id of the currently highlighted row.
      * @type {number}
      * @protected
      * @suppress {underscore|visibility}
      */
-    hiliteId_: number;
+    protected hiliteId_: number;
     /**
      * Id of the first row in autocomplete menu. Note that new ids are assigned
      * every time new suggestions are fetched.
@@ -147,20 +147,20 @@ export class AutoComplete extends events.EventTarget {
      * @protected
      * @suppress {underscore|visibility}
      */
-    firstRowId_: number;
+    protected firstRowId_: number;
     /**
      * The target HTML node for displaying.
      * @type {Element|null}
      * @protected
      * @suppress {underscore|visibility}
      */
-    target_: Element | null;
+    protected target_: Element | null;
     /**
      * The timer id for dismissing autocomplete menu with a delay.
      * @type {?number}
      * @private
      */
-    dismissTimer_: number | null;
+    private dismissTimer_;
     /**
      * Mapping from text input element to the anchor element. If the
      * mapping does not exist, the input element will act as the anchor
@@ -168,7 +168,7 @@ export class AutoComplete extends events.EventTarget {
      * @type {Object<Element>}
      * @private
      */
-    inputToAnchorMap_: any;
+    private inputToAnchorMap_;
     /**
      * @return {!Object} The data source providing the `autocomplete
      *     suggestions.
@@ -182,20 +182,20 @@ export class AutoComplete extends events.EventTarget {
      * @param {!Object} matcher The matcher.
      * @protected
      */
-    setMatcher(matcher: any): void;
+    protected setMatcher(matcher: any): void;
     /**
      * @return {!Object} The handler used to interact with the input DOM
      *     element (textfield, textarea, or richedit), e.g. to update the
      *     input DOM element with selected value.
      * @protected
      */
-    getSelectionHandler(): any;
+    protected getSelectionHandler(): any;
     /**
      * @return {?EventsEventTarget} The renderer that
      *     renders/shows/highlights/hides the autocomplete menu.
      *     See constructor documentation for the expected renderer API.
      */
-    getRenderer(): events.EventTarget | null;
+    getRenderer(): EventsEventTarget | null;
     /**
      * Sets the renderer that renders/shows/highlights/hides the autocomplete
      * menu.
@@ -205,12 +205,12 @@ export class AutoComplete extends events.EventTarget {
      * @param {?Renderer} renderer The renderer.
      * @protected
      */
-    setRenderer(renderer: Renderer | null): void;
+    protected setRenderer(renderer: Renderer | null): void;
     /**
      * @return {?string} The currently typed token used for completion.
      * @protected
      */
-    getToken(): string | null;
+    protected getToken(): string | null;
     /**
      * Sets the current token (without changing the rendered autocompletion).
      *
@@ -220,18 +220,18 @@ export class AutoComplete extends events.EventTarget {
      * @param {?string} token The new token.
      * @protected
      */
-    setTokenInternal(token: string | null): void;
+    protected setTokenInternal(token: string | null): void;
     /**
      * @param {number} index The suggestion index, must be within the
      *     interval [0, this.getSuggestionCount()).
      * @return {?Object} The currently suggested item at the given index
      *     (or null if there is none).
      */
-    getSuggestion(index: number): any;
+    getSuggestion(index: number): any | null;
     /**
      * @return {!Array<?>} The current autocomplete suggestion items.
      */
-    getAllSuggestions(): any[];
+    getAllSuggestions(): Array<unknown>;
     /**
      * @return {number} The number of currently suggested items.
      */
@@ -365,7 +365,7 @@ export class AutoComplete extends events.EventTarget {
      * @return {boolean} Whether a delayed dismiss was cancelled.
      * @private
      */
-    immediatelyCancelDelayedDismiss_(): boolean;
+    private immediatelyCancelDelayedDismiss_;
     /**
      * Cancel the active delayed dismiss if there is one.
      */
@@ -391,7 +391,7 @@ export class AutoComplete extends events.EventTarget {
      *     Otherwise a RenderOptions object.
      * @private
      */
-    matchListener_(matchedToken: string, rows: any[], opt_options?: boolean | RenderOptions | undefined): void;
+    private matchListener_;
     /**
      * Renders the rows and adds highlighting.
      * @param {!Array<?>} rows Set of data that match the given token.
@@ -399,21 +399,21 @@ export class AutoComplete extends events.EventTarget {
      *     keeps the currently hilited (by index) element hilited. If false not.
      *     Otherwise a RenderOptions object.
      */
-    renderRows(rows: any[], opt_options?: boolean | RenderOptions | undefined): void;
+    renderRows(rows: Array<unknown>, opt_options?: (boolean | RenderOptions) | undefined): void;
     /**
      * Gets the index corresponding to a particular id.
      * @param {number} id A unique id for the row.
      * @return {number} A valid index into rows_, or -1 if the id is invalid.
      * @protected
      */
-    getIndexOfId(id: number): number;
+    protected getIndexOfId(id: number): number;
     /**
      * Gets the id corresponding to a particular index.  (Does no checking.)
      * @param {number} index The index of a row in the result set.
      * @return {number} The id that currently corresponds to that index.
      * @private
      */
-    getIdOfIndex_(index: number): number;
+    private getIdOfIndex_;
     /**
      * Attach text areas or input boxes to the autocomplete by DOM reference.  After
      * elements are attached to the autocomplete, when a user types they will see
@@ -443,7 +443,6 @@ export class AutoComplete extends events.EventTarget {
      * @param {boolean=} opt_force Whether to force an update.
      */
     update(opt_force?: boolean | undefined): void;
-    actualEventTarget_: AutoComplete;
 }
 export namespace AutoComplete {
     export type Matcher = {
@@ -462,5 +461,6 @@ export namespace EventType {
 }
 import * as events from "../../events/eventhandler.js";
 import { Renderer } from "./renderer.js";
+import { EventTarget as EventsEventTarget } from "../../events/eventhandler.js";
 import { Event as EventsEvent } from "../../events/event.js";
 import { RenderOptions } from "./renderoptions.js";

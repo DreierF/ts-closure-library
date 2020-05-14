@@ -395,7 +395,7 @@ export function isUpperCamelCase(str: string): boolean;
  * @param {string|!Array<string>} separators A list of separator characters
  * @return {string} The last part of the string with respect to the separators
  */
-export function lastComponent(str: string, separators: string | string[]): string;
+export function lastComponent(str: string, separators: string | Array<string>): string;
 /**
  * Returns a string representation of the given object, with
  * null and undefined being returned as the empty string.
@@ -524,7 +524,7 @@ export function replaceAll(s: string, ss: string, replacement: string): string;
  *     as zero.
  * @return {!Array<string>} The string, split.
  */
-export function splitLimit(str: string, separator: string, limit: number): string[];
+export function splitLimit(str: string, separator: string, limit: number): Array<string>;
 /**
  * Fast prefix-checker.
  * @param {string} str The string to check.

@@ -1,5 +1,5 @@
 /**
- * Container-specific events.
+ * *
  */
 export type EventType = string;
 /**
@@ -49,53 +49,53 @@ export class Container<T> extends Ui_Component {
      *     interaction.
      * @template T
      */
-    constructor(opt_orientation?: string | null | undefined, opt_renderer?: T | undefined, opt_domHelper?: goog_dom.DomHelper | undefined);
+    constructor(opt_orientation?: (Orientation | null) | undefined, opt_renderer?: T | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * Allows an alternative element to be set to receive key events, otherwise
      * defers to the renderer's element choice.
      * @type {?Element|undefined}
      * @private
      */
-    keyEventTarget_: (Element | undefined) | null;
+    private keyEventTarget_;
     /**
      * Keyboard event handler.
      * @type {KeyHandler?}
      * @private
      */
-    keyHandler_: KeyHandler | null;
+    private keyHandler_;
     /**
      * Whether the container is set to be visible.  Defaults to true.
      * @type {boolean}
      * @private
      */
-    visible_: boolean;
+    private visible_;
     /**
      * Whether the container is enabled and reacting to keyboard and mouse events.
      * Defaults to true.
      * @type {boolean}
      * @private
      */
-    enabled_: boolean;
+    private enabled_;
     /**
      * Whether the container supports keyboard focus.  Defaults to true.  Focusable
      * containers have a `tabIndex` and can be navigated to via the keyboard.
      * @type {boolean}
      * @private
      */
-    focusable_: boolean;
+    private focusable_;
     /**
      * The 0-based index of the currently highlighted control in the container
      * (-1 if none).
      * @type {number}
      * @private
      */
-    highlightedIndex_: number;
+    private highlightedIndex_;
     /**
      * The currently open (expanded) control in the container (null if none).
      * @type {Control?}
      * @private
      */
-    openItem_: Control<any> | null;
+    private openItem_;
     /**
      * Whether the mouse button is held down.  Defaults to false.  This flag is set
      * when the user mouses down over the container, and remains set until they
@@ -103,20 +103,20 @@ export class Container<T> extends Ui_Component {
      * @type {boolean}
      * @private
      */
-    mouseButtonPressed_: boolean;
+    private mouseButtonPressed_;
     /**
      * Whether focus of child components should be allowed.  Only effective if
      * focusable_ is set to false.
      * @type {boolean}
      * @private
      */
-    allowFocusableChildren_: boolean;
+    private allowFocusableChildren_;
     /**
      * Whether highlighting a child component should also open it.
      * @type {boolean}
      * @private
      */
-    openFollowsHighlight_: boolean;
+    private openFollowsHighlight_;
     /**
      * Map of DOM IDs to child controls.  Each key is the DOM ID of a child
      * control's root element; each value is a reference to the child control
@@ -125,19 +125,19 @@ export class Container<T> extends Ui_Component {
      * @type {?Object}
      * @private
      */
-    childElementIdMap_: Object | null;
+    private childElementIdMap_;
     /**
      * Renderer for the container.  Defaults to {@link ContainerRenderer}.
      * @type {T|undefined}
      * @private
      */
-    renderer_: T | undefined;
+    private renderer_;
     /**
      * Container orientation; determines layout and default keyboard navigation.
      * @type {?Orientation}
      * @private
      */
-    orientation_: Orientation | null;
+    private orientation_;
     /**
      * Returns the DOM element on which the container is listening for keyboard
      * events (null if none).
@@ -150,7 +150,7 @@ export class Container<T> extends Ui_Component {
      * @param {?Element|undefined} element The element to attach, or null/undefined
      *     to attach to the default element.
      */
-    setKeyEventTarget(element: Element | null | undefined): void;
+    setKeyEventTarget(element: (Element | undefined) | null): void;
     /**
      * Returns the keyboard event handler for this container, lazily created the
      * first time this method is called.  The keyboard event handler listens for
@@ -175,13 +175,13 @@ export class Container<T> extends Ui_Component {
      * @param {!EventsBrowserEvent} e Event to handle.
      * @private
      */
-    preventPointerCapture_(e: EventsBrowserEvent): void;
+    private preventPointerCapture_;
     /**
      * Sets up listening for events applicable to focusable containers.
      * @param {boolean} enable Whether to enable or disable focus handling.
      * @private
      */
-    enableFocusHandling_(enable: boolean): void;
+    private enableFocusHandling_;
     /**
      * Handles ENTER events raised by child controls when they are navigated to.
      * @param {?EventsEvent} e ENTER event to handle.
@@ -245,7 +245,7 @@ export class Container<T> extends Ui_Component {
      * @protected
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    getOwnerControl(node: Node | null): UiControl<any> | null;
+    protected getOwnerControl(node: Node | null): Control | null;
     /**
      * Handles focus events raised when the container's key event target receives
      * keyboard focus.
@@ -283,23 +283,7 @@ export class Container<T> extends Ui_Component {
      *     to be created yet.
      * @private
      */
-    registerChildId_(child: Ui_Component | null): void;
-    /**
-     * Overrides {@link Container#getChild} to make it clear that it
-     * only returns {@link Control}s.
-     * @param {string} id Child component ID.
-     * @return {?Control} The child with the given ID; null if none.
-     * @override
-     */
-    getChild(id: string): UiControl<any> | null;
-    /**
-     * Overrides {@link Container#getChildAt} to make it clear that it
-     * only returns {@link Control}s.
-     * @param {number} index 0-based index.
-     * @return {?Control} The child with the given ID; null if none.
-     * @override
-     */
-    getChildAt(index: number): UiControl<any> | null;
+    private registerChildId_;
     /**
      * Updates the highlighted index when children are added or moved.
      * @param {number} fromIndex Index of the child before it was moved, or -1 if
@@ -307,25 +291,12 @@ export class Container<T> extends Ui_Component {
      * @param {number} toIndex Index of the child after it was moved or added.
      * @private
      */
-    updateHighlightedIndex_(fromIndex: number, toIndex: number): void;
-    /**
-     * Removes a child control.  Overrides {@link Ui_Component#removeChild} by
-     * updating the highlight index.  Since {@link Ui_Component#removeChildAt}
-     * uses {@link #removeChild} internally, we only need to override this method.
-     * @param {string|Ui_Component} control The ID of the child to remove, or
-     *     the control itself.
-     * @param {boolean=} opt_unrender Whether to call `exitDocument` on the
-     *     removed control, and detach its DOM from the document (defaults to
-     *     false).
-     * @return {?Control} The removed control, if any.
-     * @override
-     */
-    removeChild(control: string | Ui_Component, opt_unrender?: boolean | undefined): UiControl<any> | null;
+    private updateHighlightedIndex_;
     /**
      * Returns the container's orientation.
      * @return {?Orientation} Container orientation.
      */
-    getOrientation(): string | null;
+    getOrientation(): Orientation | null;
     /**
      * Returns true if the container's visibility is set to visible, false if
      * it is set to hidden.  A container that is set to hidden is guaranteed
@@ -410,12 +381,12 @@ export class Container<T> extends Ui_Component {
      * otherwise un-highlights the currently highlighted item.
      * @param {?Control} item Item to highlight.
      */
-    setHighlighted(item: UiControl<any> | null): void;
+    setHighlighted(item: Control | null): void;
     /**
      * Returns the currently highlighted item (if any).
      * @return {Control?} Highlighted item (null if none).
      */
-    getHighlighted(): UiControl<any> | null;
+    getHighlighted(): Control | null;
     /**
      * Highlights the first highlightable item in the container
      */
@@ -444,14 +415,14 @@ export class Container<T> extends Ui_Component {
      * @return {boolean} Whether the highlight has changed.
      * @protected
      */
-    highlightHelper(fn: (this: Container<any>, arg1: number, arg2: number) => number, startIndex: number): boolean;
+    protected highlightHelper(fn: (args: Container, arg1: number, arg2: number) => number, startIndex: number): boolean;
     /**
      * Returns whether the given item can be highlighted.
      * @param {?Control} item The item to check.
      * @return {boolean} Whether the item can be highlighted.
      * @protected
      */
-    canHighlightItem(item: UiControl<any> | null): boolean;
+    protected canHighlightItem(item: Control | null): boolean;
     /**
      * Helper method that sets the highlighted index to the given index in response
      * to a keyboard event.  The base class implementation simply calls the
@@ -460,13 +431,13 @@ export class Container<T> extends Ui_Component {
      * @param {number} index Index of item to highlight.
      * @protected
      */
-    setHighlightedIndexFromKeyEvent(index: number): void;
+    protected setHighlightedIndexFromKeyEvent(index: number): void;
     /**
      * Returns the currently open (expanded) control in the container (null if
      * none).
      * @return {Control?} The currently open control.
      */
-    getOpenItem(): UiControl<any> | null;
+    getOpenItem(): Control | null;
     /**
      * Returns true if the mouse button is pressed, false otherwise.
      * @return {boolean} Whether the mouse button is pressed.
@@ -477,8 +448,7 @@ export class Container<T> extends Ui_Component {
      * @param {boolean} pressed Whether the mouse button is presed.
      */
     setMouseButtonPressed(pressed: boolean): void;
-    setOrientation(orientation: string | null): void;
-    actualEventTarget_: Container<T>;
+    setOrientation(orientation: Orientation | null): void;
 }
 /**
  * @fileoverview Base class for container renderers.
@@ -489,6 +459,41 @@ export class Container<T> extends Ui_Component {
  * tailored for them by extending this class.
  */
 export class ContainerRenderer {
+    /** @return {!ContainerRenderer} @suppress {checkTypes} */
+    static getInstance(): ContainerRenderer;
+    /**
+     * Constructs a new renderer and sets the CSS class that the renderer will use
+     * as the base CSS class to apply to all elements rendered by that renderer.
+     * An example to use this function using a menu is:
+     *
+     * <pre>
+     * var myCustomRenderer = ContainerRenderer.getCustomRenderer(
+     *     goog.ui.MenuRenderer, 'my-special-menu');
+     * var newMenu = new goog.ui.Menu(opt_domHelper, myCustomRenderer);
+     * </pre>
+     *
+     * Your styles for the menu can now be:
+     * <pre>
+     * .my-special-menu { }
+     * </pre>
+     *
+     * <em>instead</em> of
+     * <pre>
+     * .CSS_MY_SPECIAL_MENU .goog-menu { }
+     * </pre>
+     *
+     * You would want to use this functionality when you want an instance of a
+     * component to have specific styles different than the other components of the
+     * same type in your application.  This avoids using descendant selectors to
+     * apply the specific styles to this component.
+     *
+     * @param {?Function} ctor The constructor of the renderer you want to create.
+     * @param {string} cssClassName The name of the CSS class for this renderer.
+     * @return {?ContainerRenderer} An instance of the desired renderer with
+     *     its getCssClass() method overridden to return the supplied custom CSS
+     *     class name.
+     */
+    static getCustomRenderer(ctor: Function | null, cssClassName: string): ContainerRenderer | null;
     /**
      * Default renderer for {@link Container}.  Can be used as-is, but
      * subclasses of Container will probably want to use renderers specifically
@@ -497,13 +502,13 @@ export class ContainerRenderer {
      */
     constructor(opt_ariaRole?: string | undefined);
     /** @private {string|undefined} */
-    ariaRole_: string | undefined;
+    private ariaRole_;
     /**
      * Returns the ARIA role to be applied to the container.
      * See http://wiki/Main/ARIA for more info.
      * @return {undefined|string} ARIA role.
      */
-    getAriaRole(): string | undefined;
+    getAriaRole(): undefined | string;
     /**
      * Enables or disables the tab index of the element.  Only elements with a
      * valid tab index can receive focus.
@@ -518,7 +523,7 @@ export class ContainerRenderer {
      * @param {?Container} container Container to render.
      * @return {?Element} Root element for the container.
      */
-    createDom(container: Container<any> | null): Element | null;
+    createDom(container: Container | null): Element | null;
     /**
      * Returns the DOM element into which child components are to be rendered,
      * or null if the container hasn't been rendered yet.
@@ -542,7 +547,7 @@ export class ContainerRenderer {
      * @param {?Element} element Element to decorate.
      * @return {!Element} Decorated element.
      */
-    decorate(container: Container<any> | null, element: Element | null): Element;
+    decorate(container: Container | null, element: Element | null): Element;
     /**
      * Sets the container's state based on the given CSS class name, encountered
      * during decoration.  CSS class names that don't represent container states
@@ -555,7 +560,7 @@ export class ContainerRenderer {
      * @protected
      * @suppress {missingRequire} Container
      */
-    setStateFromClassName(container: Container<any> | null, className: string, baseClass: string): void;
+    protected setStateFromClassName(container: Container | null, className: string, baseClass: string): void;
     /**
      * Takes a container and an element that may contain child elements, decorates
      * the child elements, and adds the corresponding components to the container
@@ -566,7 +571,7 @@ export class ContainerRenderer {
      * @param {?Element} element Element whose children are to be decorated.
      * @param {?Element=} opt_firstChild the first child to be decorated.
      */
-    decorateChildren(container: Container<any> | null, element: Element | null, opt_firstChild?: Element | null | undefined): void;
+    decorateChildren(container: Container | null, element: Element | null, opt_firstChild?: (Element | null) | undefined): void;
     /**
      * Inspects the element, and creates an instance of {@link Control} or
      * an appropriate subclass best suited to decorate it.  Returns the control (or
@@ -577,14 +582,14 @@ export class ContainerRenderer {
      * @return {Control?} A new control suitable to decorate the element
      *     (null if none).
      */
-    getDecoratorForChild(element: Element | null): UiControl<any> | null;
+    getDecoratorForChild(element: Element | null): Control | null;
     /**
      * Initializes the container's DOM when the container enters the document.
      * Called from {@link Container#enterDocument}.
      * @param {?Container} container Container whose DOM is to be initialized
      *     as it enters the document.
      */
-    initializeDom(container: Container<any> | null): void;
+    initializeDom(container: Container | null): void;
     /**
      * Returns the element within the container's DOM that should receive keyboard
      * focus (null if none).  The default implementation returns the container's
@@ -593,7 +598,7 @@ export class ContainerRenderer {
      *     to be returned.
      * @return {?Element} Key event target (null if none).
      */
-    getKeyEventTarget(container: Container<any> | null): Element | null;
+    getKeyEventTarget(container: Container | null): Element | null;
     /**
      * Returns the CSS class to be applied to the root element of containers
      * rendered using this renderer.
@@ -610,7 +615,7 @@ export class ContainerRenderer {
      * @return {!Array<string>} Array of CSS class names applicable to the
      *     container.
      */
-    getClassNames(container: Container<any> | null): string[];
+    getClassNames(container: Container | null): Array<string>;
     /**
      * Returns the default orientation of containers rendered or decorated by this
      * renderer.  The base class implementation returns `VERTICAL`.
@@ -618,7 +623,7 @@ export class ContainerRenderer {
      *     created or decorated by this renderer.
      * @suppress {missingRequire} Container
      */
-    getDefaultOrientation(): string | null;
+    getDefaultOrientation(): Orientation | null;
 }
 export namespace ContainerRenderer {
     export const instance_: undefined | ContainerRenderer;
@@ -634,9 +639,8 @@ export namespace Orientation {
 }
 import { Component as Ui_Component } from "./component.js";
 import { KeyHandler } from "../events/keyhandler.js";
-import { Control } from "./control.js";
-import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
 import { Event as EventsEvent } from "../events/event.js";
-import { Control as UiControl } from "./control.js";
+import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
+import { Control } from "./control.js";
 import { KeyEvent } from "../events/keyhandler.js";
-import * as goog_dom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";

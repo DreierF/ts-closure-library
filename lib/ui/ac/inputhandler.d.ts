@@ -96,7 +96,7 @@ export class InputHandler extends Disposable {
      *     keyevents with (Default: 150). Use -1 to disable updates on typing. Note
      *     that typing the separator will update autocomplete suggestions.
      */
-    constructor(opt_separators?: string | null | undefined, opt_literals?: string | null | undefined, opt_multi?: boolean | null | undefined, opt_throttleTime?: number | null | undefined);
+    constructor(opt_separators?: (string | null) | undefined, opt_literals?: (string | null) | undefined, opt_multi?: (boolean | null) | undefined, opt_throttleTime?: (number | null) | undefined);
     /**
      * The AutoComplete instance this inputhandler is associated with.
      * @type {?AutoComplete}
@@ -107,44 +107,44 @@ export class InputHandler extends Disposable {
      * @type {string|null}
      * @private
      */
-    separators_: string | null;
+    private separators_;
     /**
      * The separator we use to reconstruct the string
      * @type {string|null}
      * @private
      */
-    defaultSeparator_: string | null;
+    private defaultSeparator_;
     /**
      * Regular expression used from trimming tokens or null for no trimming.
      * @type {?RegExp}
      * @private
      */
-    trimmer_: RegExp | null;
+    private trimmer_;
     /**
      * Regular expression to test whether a separator exists
      * @type {?RegExp}
      * @private
      */
-    separatorCheck_: RegExp | null;
+    private separatorCheck_;
     /**
      * Should auto-completed tokens be wrapped in whitespace?  Used in selectRow.
      * @type {boolean}
      * @private
      */
-    whitespaceWrapEntries_: boolean;
+    private whitespaceWrapEntries_;
     /**
      * Should the occurrence of a literal indicate a token boundary?
      * @type {boolean}
      * @private
      */
-    generateNewTokenOnLiteral_: boolean;
+    private generateNewTokenOnLiteral_;
     /**
      * Whether to flip the orientation of up & down for hiliting next
      * and previous autocomplete entries.
      * @type {boolean}
      * @private
      */
-    upsideDown_: boolean;
+    private upsideDown_;
     /**
      * If we're in 'multi' mode, does typing a separator force the updating of
      * suggestions?
@@ -156,7 +156,7 @@ export class InputHandler extends Disposable {
      * @type {boolean}
      * @private
      */
-    separatorUpdates_: boolean;
+    private separatorUpdates_;
     /**
      * If we're in 'multi' mode, does typing a separator force the current term to
      * autocomplete?
@@ -165,72 +165,72 @@ export class InputHandler extends Disposable {
      * @type {boolean}
      * @private
      */
-    separatorSelects_: boolean;
+    private separatorSelects_;
     /**
      * The id of the currently active timeout, so it can be cleared if required.
      * @type {?number}
      * @private
      */
-    activeTimeoutId_: number | null;
+    private activeTimeoutId_;
     /**
      * The element that is currently active.
      * @type {Element|null}
      * @private
      */
-    activeElement_: Element | null;
+    private activeElement_;
     /**
      * The previous value of the active element.
      * @type {string}
      * @private
      */
-    lastValue_: string;
+    private lastValue_;
     /**
      * Flag used to indicate that the IME key has been seen and we need to wait for
      * the up event.
      * @type {boolean}
      * @private
      */
-    waitingForIme_: boolean;
+    private waitingForIme_;
     /**
      * Flag used to indicate that the user just selected a row and we should
      * therefore ignore the change of the input value.
      * @type {boolean}
      * @private
      */
-    rowJustSelected_: boolean;
+    private rowJustSelected_;
     /**
      * Flag indicating whether the result list should be updated continuously
      * during typing or only after a short pause.
      * @type {boolean}
      * @private
      */
-    updateDuringTyping_: boolean;
+    private updateDuringTyping_;
     /**
      * Whether this input accepts multiple values
      * @type {boolean}
      * @private
      */
-    multi_: boolean;
+    private multi_;
     /**
      * Characters that are used to delimit literal text. Separarator characters
      * found within literal text are not processed as separators
      * @type {string}
      * @private
      */
-    literals_: string;
+    private literals_;
     /**
      * Whether to prevent highlighted item selection when tab is pressed.
      * @type {boolean}
      * @private
      */
-    preventSelectionOnTab_: boolean;
+    private preventSelectionOnTab_;
     /**
      * Whether to prevent the default behavior (moving focus to another element)
      * when tab is pressed.  This occurs by default only for multi-value mode.
      * @type {boolean}
      * @private
      */
-    preventDefaultOnTab_: boolean;
+    private preventDefaultOnTab_;
     /**
      * A timer object used to monitor for changes when an element is active.
      *
@@ -242,32 +242,32 @@ export class InputHandler extends Disposable {
      * @type {?Timer}
      * @private
      */
-    timer_: Timer | null;
+    private timer_;
     /**
      * Event handler used by the input handler to manage events.
      * @type {EventHandler<!InputHandler>}
      * @private
      */
-    eh_: EventHandler<InputHandler>;
+    private eh_;
     /**
      * Event handler to help us find an input element that already has the focus.
      * @type {EventHandler<!InputHandler>}
      * @private
      */
-    activateHandler_: EventHandler<InputHandler>;
+    private activateHandler_;
     /**
      * The keyhandler used for listening on most key events.  This takes care of
      * abstracting away some of the browser differences.
      * @type {?KeyHandler}
      * @private
      */
-    keyHandler_: KeyHandler | null;
+    private keyHandler_;
     /**
      * The last key down key code.
      * @type {number}
      * @private
      */
-    lastKeyCode_: number;
+    private lastKeyCode_;
     /**
      * Attach an instance of an AutoComplete
      * @param {?AutoComplete} ac Autocomplete object.
@@ -310,13 +310,13 @@ export class InputHandler extends Disposable {
      * @param {?Element|EventsEventTarget} target An element to attach the
      *     input handler to.
      */
-    attachInput(target: Element | EventsEventTarget | null): void;
+    attachInput(target: (Element | EventsEventTarget) | null): void;
     /**
      * Detaches the input handler from the provided element.
      * @param {?Element|EventsEventTarget} target An element to detach the
      *     input handler from.
      */
-    detachInput(target: Element | EventsEventTarget | null): void;
+    detachInput(target: (Element | EventsEventTarget) | null): void;
     /**
      * Attaches the input handler to multiple elements.
      * @param {...Element} var_args Elements to attach the input handler too.
@@ -334,7 +334,7 @@ export class InputHandler extends Disposable {
      *     auto-complete?  Overrides previous setting of opt_multi on constructor.
      * @return {boolean} Whether to suppress the update event.
      */
-    selectRow(row: any, opt_multi?: boolean | undefined): boolean;
+    selectRow(row: unknown, opt_multi?: boolean | undefined): boolean;
     /**
      * Sets the text of the current token without updating the autocomplete
      * choices.
@@ -343,7 +343,7 @@ export class InputHandler extends Disposable {
      *     auto-complete?  Overrides previous setting of opt_multi on constructor.
      * @protected
      */
-    setTokenText(tokenText: string, opt_multi?: boolean | undefined): void;
+    protected setTokenText(tokenText: string, opt_multi?: boolean | undefined): void;
     /**
      * Sets the entry separator characters.
      *
@@ -440,122 +440,122 @@ export class InputHandler extends Disposable {
      * @return {boolean} True if the key event was handled.
      * @protected
      */
-    handleKeyEvent(e: EventsBrowserEvent | null): boolean;
+    protected handleKeyEvent(e: EventsBrowserEvent | null): boolean;
     /**
      * Handles a key event for a separator key.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @return {boolean} True if the key event was handled.
      * @private
      */
-    handleSeparator_(e: EventsBrowserEvent | null): boolean;
+    private handleSeparator_;
     /**
      * @return {boolean} Whether this inputhandler need to listen on key-up.
      * @protected
      */
-    needKeyUpListener(): boolean;
+    protected needKeyUpListener(): boolean;
     /**
      * Handles the key up event. Registered only if needKeyUpListener returns true.
      * @param {?EventsEvent} e The keyup event.
      * @return {boolean} Whether an action was taken or not.
      * @protected
      */
-    handleKeyUp(e: EventsEvent | null): boolean;
+    protected handleKeyUp(e: EventsEvent | null): boolean;
     /**
      * Adds the necessary input event handlers.
      * @private
      */
-    addEventHandlers_(): void;
+    private addEventHandlers_;
     /**
      * Removes the necessary input event handlers.
      * @private
      */
-    removeEventHandlers_(): void;
+    private removeEventHandlers_;
     /**
      * Handles an element getting focus.
      * @param {?EventsEvent} e Browser event object.
      * @protected
      */
-    handleFocus(e: EventsEvent | null): void;
+    protected handleFocus(e: EventsEvent | null): void;
     /**
      * Registers handlers for the active element when it receives focus.
      * @param {?Element} target The element to focus.
      * @protected
      */
-    processFocus(target: Element | null): void;
+    protected processFocus(target: Element | null): void;
     /**
      * Handles an element blurring.
      * @param {EventsEvent=} opt_e Browser event object.
      * @protected
      */
-    handleBlur(opt_e?: EventsEvent | undefined): void;
+    protected handleBlur(opt_e?: EventsEvent | undefined): void;
     /**
      * Helper function that does the logic to handle an element blurring.
      * @protected
      */
-    processBlur(): void;
+    protected processBlur(): void;
     /**
      * Handles the timer's tick event.  Calculates the current token, and reports
      * any update to the autocomplete.
      * @param {?EventsEvent} e Browser event object.
      * @private
      */
-    onTick_(e: EventsEvent | null): void;
+    private onTick_;
     /**
      * Handles typing in an inactive input element. Activate it.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @private
      */
-    onKeyDownOnInactiveElement_(e: EventsBrowserEvent | null): void;
+    private onKeyDownOnInactiveElement_;
     /**
      * Handles typing in the active input element.  Checks if the key is a special
      * key and does the relevant action as appropriate.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @private
      */
-    onKey_(e: EventsBrowserEvent | null): void;
+    private onKey_;
     /**
      * Handles a KEYPRESS event generated by typing in the active input element.
      * Checks if IME input is ended.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @private
      */
-    onKeyPress_(e: EventsBrowserEvent | null): void;
+    private onKeyPress_;
     /**
      * Handles the key-up event.  This is only ever used by Mac FF or when we are in
      * an IME entry scenario.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @private
      */
-    onKeyUp_(e: EventsBrowserEvent | null): void;
+    private onKeyUp_;
     /**
      * Handles mouse-down event.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @private
      */
-    onMouseDown_(e: EventsBrowserEvent | null): void;
+    private onMouseDown_;
     /**
      * For subclasses to override to handle the mouse-down event.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @protected
      */
-    handleMouseDown(e: EventsBrowserEvent | null): void;
+    protected handleMouseDown(e: EventsBrowserEvent | null): void;
     /**
      * Starts waiting for IME.
      * @private
      */
-    startWaitingForIme_(): void;
+    private startWaitingForIme_;
     /**
      * Stops waiting for IME.
      * @private
      */
-    stopWaitingForIme_(): void;
+    private stopWaitingForIme_;
     /**
      * Handles the key-press event for IE, checking to see if the user typed a
      * separator character.
      * @param {?EventsBrowserEvent} e Browser event object.
      * @private
      */
-    onIeKeyPress_(e: EventsBrowserEvent | null): void;
+    private onIeKeyPress_;
     /**
      * Checks if an update has occurred and notified the autocomplete of the new
      * token.
@@ -567,32 +567,32 @@ export class InputHandler extends Disposable {
      * @return {string} Token to complete.
      * @protected
      */
-    parseToken(): string;
+    protected parseToken(): string;
     /**
      * Moves hilite up.  May hilite next or previous depending on orientation.
      * @return {boolean} True if successful.
      * @private
      */
-    moveUp_(): boolean;
+    private moveUp_;
     /**
      * Moves hilite down.  May hilite next or previous depending on orientation.
      * @return {boolean} True if successful.
      * @private
      */
-    moveDown_(): boolean;
+    private moveDown_;
     /**
      * Parses a text area or input box for the currently highlighted token.
      * @return {string} Token to complete.
      * @private
      */
-    parseToken_(): string;
+    private parseToken_;
     /**
      * Trims a token of characters that we want to ignore
      * @param {string} text string to trim.
      * @return {string} Trimmed string.
      * @private
      */
-    trim_(text: string): string;
+    private trim_;
     /**
      * Gets the index of the currently highlighted token
      * @param {string} text string to parse.
@@ -600,7 +600,7 @@ export class InputHandler extends Disposable {
      * @return {number} Index of token.
      * @private
      */
-    getTokenIndex_(text: string, caret: number): number;
+    private getTokenIndex_;
     /**
      * Splits an input string of text at the occurrence of a character in
      * {@link InputHandler.prototype.separators_} and creates
@@ -613,7 +613,7 @@ export class InputHandler extends Disposable {
      * @return {!Array<string>} Parsed array.
      * @private
      */
-    splitInput_(text: string): string[];
+    private splitInput_;
 }
 export namespace InputHandler {
     export const REQUIRES_ASYNC_BLUR_: boolean;
@@ -622,9 +622,6 @@ export namespace InputHandler {
 }
 import { Disposable } from "../../disposable/disposable.js";
 import { AutoComplete } from "./autocomplete.js";
-import { Timer } from "../../timer/timer.js";
-import { EventHandler } from "../../events/eventhandler.js";
-import { KeyHandler } from "../../events/keyhandler.js";
 import { EventTarget as EventsEventTarget } from "../../events/eventhandler.js";
 import { BrowserEvent as EventsBrowserEvent } from "../../events/browserevent.js";
 import { Event as EventsEvent } from "../../events/event.js";

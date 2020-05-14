@@ -48,24 +48,23 @@ export class Slider extends SliderBase {
      * @param {(function(number):?string)=} opt_labelFn An optional function mapping
      *     slider values to a description of the value.
      */
-    constructor(opt_domHelper?: goog_dom.DomHelper | undefined, opt_labelFn?: ((arg0: number) => string | null) | undefined);
+    constructor(opt_domHelper?: DomHelper | undefined, opt_labelFn?: ((arg0: number) => string | null) | undefined);
     /**
      * Returns CSS class applied to the slider's thumb element.
      * @return {string} The CSS class applied to the slider's thumb element.
      * @protected
      */
-    getThumbCssClass(): string;
+    protected getThumbCssClass(): string;
     /**
      * Creates the thumb element.
      * @return {!HTMLDivElement} The created thumb element.
      * @private
      */
-    createThumb_(): HTMLDivElement;
-    actualEventTarget_: Slider;
+    private createThumb_;
 }
 export namespace Slider {
     export const CSS_CLASS_PREFIX: string;
     export const THUMB_CSS_CLASS: string;
 }
 import { SliderBase } from "./sliderbase.js";
-import * as goog_dom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";

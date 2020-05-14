@@ -85,6 +85,15 @@ export class DragEvent extends EventsEvent {
  */
 export class Dragger extends goog_events.EventTarget {
     /**
+     * Creates copy of node being dragged.  This is a utility function to be used
+     * wherever it is inappropriate for the original source to follow the mouse
+     * cursor itself.
+     *
+     * @param {?Element} sourceEl Element to copy.
+     * @return {!Element} The clone of `sourceEl`.
+     */
+    static cloneNode(sourceEl: Element | null): Element;
+    /**
      * A class that allows mouse or touch-based dragging (moving) of an element
      *
      * @param {?Element} target The element that will be dragged.
@@ -94,7 +103,7 @@ export class Dragger extends goog_events.EventTarget {
      *     and height.
      *
      */
-    constructor(target: Element | null, opt_handle?: Element | null | undefined, opt_limits?: Rect | undefined);
+    constructor(target: Element | null, opt_handle?: (Element | null) | undefined, opt_limits?: Rect | undefined);
     /**
      * Reference to drag target element.
      * @type {Element|null}
@@ -114,9 +123,9 @@ export class Dragger extends goog_events.EventTarget {
      * Reference to a document object to use for the events.
      * @private {Document}
      */
-    document_: any;
+    private document_;
     /** @private {!EventHandler} */
-    eventHandler_: any;
+    private eventHandler_;
     /**
      * Current x position of mouse or touch relative to viewport.
      * @type {number}
@@ -170,28 +179,28 @@ export class Dragger extends goog_events.EventTarget {
      * Whether dragging is currently enabled.
      * @private {boolean}
      */
-    enabled_: boolean;
+    private enabled_;
     /**
      * Whether object is currently being dragged.
      * @private {boolean}
      */
-    dragging_: boolean;
+    private dragging_;
     /**
      * Whether mousedown should be default prevented.
      * @private {boolean}
      **/
-    preventMouseDown_: boolean;
+    private preventMouseDown_;
     /**
      * The amount of distance, in pixels, after which a mousedown or touchstart is
      * considered a drag.
      * @private {number}
      */
-    hysteresisDistanceSquared_: number;
+    private hysteresisDistanceSquared_;
     /**
      * Whether IE drag events cancelling is on.
      * @private {boolean}
      */
-    ieDragStartCancellingOn_: boolean;
+    private ieDragStartCancellingOn_;
     /**
      * Whether the dragger implements the changes described in http://b/6324964,
      * making it truly RTL.  This is a temporary flag to allow clients to
@@ -199,9 +208,9 @@ export class Dragger extends goog_events.EventTarget {
      * be the default.
      * @private {boolean}
      */
-    useRightPositioningForRtl_: boolean;
+    private useRightPositioningForRtl_;
     /** @private {boolean} Avoids setCapture() calls to fix click handlers. */
-    useSetCapture_: boolean;
+    private useSetCapture_;
     /**
      * Prevents the dragger from calling setCapture(), even in browsers that support
      * it.  If the draggable item has click handlers, setCapture() can break them.
@@ -281,7 +290,7 @@ export class Dragger extends goog_events.EventTarget {
      *     otherwise.
      * @private
      */
-    isRightToLeft_(): boolean;
+    private isRightToLeft_;
     rightToLeft_: boolean | undefined;
     /**
      * Event handler that is used to start the drag
@@ -292,20 +301,20 @@ export class Dragger extends goog_events.EventTarget {
      * Sets up event handlers when dragging starts.
      * @protected
      */
-    setupDragHandlers(): void;
+    protected setupDragHandlers(): void;
     /**
      * Fires a EventType.START event.
      * @param {?EventsBrowserEvent} e Browser event that triggered the drag.
      * @return {boolean} False iff preventDefault was called on the DragEvent.
      * @private
      */
-    fireDragStart_(e: EventsBrowserEvent | null): boolean;
+    private fireDragStart_;
     /**
      * Unregisters the event handlers that are only active during dragging, and
      * releases mouse capture.
      * @private
      */
-    cleanUpAfterDragging_(): void;
+    private cleanUpAfterDragging_;
     /**
      * Event handler that is used to end the drag.
      * @param {?EventsBrowserEvent} e Event object.
@@ -322,7 +331,7 @@ export class Dragger extends goog_events.EventTarget {
      * @param {?EventsBrowserEvent} e Event object.
      * @private
      */
-    handleMove_(e: EventsBrowserEvent | null): void;
+    private handleMove_;
     /**
      * Calculates the drag position.
      *
@@ -331,13 +340,13 @@ export class Dragger extends goog_events.EventTarget {
      * @return {!Coordinate} The newly calculated drag element position.
      * @private
      */
-    calculatePosition_(dx: number, dy: number): Coordinate;
+    private calculatePosition_;
     /**
      * Event handler for scroll target scrolling.
      * @param {?EventsBrowserEvent} e The event.
      * @private
      */
-    onScroll_(e: EventsBrowserEvent | null): void;
+    private onScroll_;
     /**
      * @param {?EventsBrowserEvent} e The closure object
      *     representing the browser event that caused a drag event.
@@ -347,7 +356,7 @@ export class Dragger extends goog_events.EventTarget {
      *     the associated scroll target.
      * @protected
      */
-    doDrag(e: EventsBrowserEvent | null, x: number, y: number, dragFromScroll: boolean): void;
+    protected doDrag(e: EventsBrowserEvent | null, x: number, y: number, dragFromScroll: boolean): void;
     /**
      * Returns the 'real' x after limits are applied (allows for some
      * limits to be undefined).
@@ -367,7 +376,7 @@ export class Dragger extends goog_events.EventTarget {
      * before dragging begins.
      * @protected
      */
-    computeInitialPosition(): void;
+    protected computeInitialPosition(): void;
     /**
      * Overridable function for handling the default action of the drag behaviour.
      * Normally this is simply moving the element to x,y though in some cases it
@@ -382,7 +391,6 @@ export class Dragger extends goog_events.EventTarget {
      * @return {boolean} Whether the dragger is currently in the midst of a drag.
      */
     isDragging(): boolean;
-    actualEventTarget_: Dragger;
 }
 export namespace Dragger {
     export const HAS_SET_CAPTURE_: boolean;
@@ -399,3 +407,4 @@ import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
 import * as goog_events from "../events/eventhandler.js";
 import { Rect } from "../math/rect.js";
 import { Coordinate } from "../math/coordinate.js";
+import { EventHandler } from "../events/eventhandler.js";

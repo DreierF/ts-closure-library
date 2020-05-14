@@ -49,33 +49,33 @@ export class AnimationDelay<THIS> extends Disposable {
      * or null when inactive.
      * @private {?Key|number}
      */
-    id_: any;
+    private id_;
     /**
      * If we're using dom listeners.
      * @private {?boolean}
      */
-    usingListeners_: boolean;
+    private usingListeners_;
     /**
      * The function that will be invoked after a delay.
      * @const
      * @private
      */
-    listener_: (this: THIS, arg1: number) => any;
+    private listener_;
     /**
      * The object context to invoke the callback in.
      * @const
      * @private {(THIS|undefined)}
      */
-    handler_: THIS | undefined;
+    private handler_;
     /**
      * @private {Window}
      */
-    win_: Window;
+    private win_;
     /**
      * Cached callback function invoked when the delay finishes.
      * @private {function()}
      */
-    callback_: any;
+    private callback_;
     /**
      * Starts the delay timer. The provided listener function will be called
      * before the next animation frame.
@@ -108,19 +108,19 @@ export class AnimationDelay<THIS> extends Disposable {
      * Invokes the callback function after the delay successfully completes.
      * @private
      */
-    doAction_(): void;
+    private doAction_;
     /**
      * @return {?function(function(number)): number} The requestAnimationFrame
      *     function, or null if not available on this browser.
      * @private
      */
-    getRaf_(): ((arg0: (arg0: number) => any) => number) | null;
+    private getRaf_;
     /**
      * @return {?function(number): undefined} The cancelAnimationFrame function,
      *     or null if not available on this browser.
      * @private
      */
-    getCancelRaf_(): ((arg0: number) => undefined) | null;
+    private getCancelRaf_;
 }
 export namespace AnimationDelay {
     export const TIMEOUT: number;

@@ -36,11 +36,11 @@ export class Hash {
      * @param {number=} opt_length Number of bytes to use.
      * @abstract
      */
-    update(bytes: string | number[] | Uint8Array, opt_length?: number | undefined): void;
+    update(bytes: Array<number> | Uint8Array | string, opt_length?: number | undefined): void;
     /**
      * @return {!Array<number>} The finalized hash computed
      *     from the internal accumulator.
      * @abstract
      */
-    digest(): number[];
+    digest(): Array<number>;
 }

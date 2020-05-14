@@ -20,34 +20,34 @@ export class TypeAhead {
      * text.
      * @private {Trie<Array<BaseNode>>}
      */
-    nodeMap_: Trie<any>;
+    private nodeMap_;
     /**
      * Buffer for storing typeahead characters.
      * @private {string}
      */
-    buffer_: any;
+    private buffer_;
     /**
      * Matching labels from the latest typeahead search.
      * @private {?Array<string>}
      */
-    matchingLabels_: any;
+    private matchingLabels_;
     /**
      * Matching nodes from the latest typeahead search. Used when more than
      * one node is present with the same label text.
      * @private {?Array<?BaseNode>}
      */
-    matchingNodes_: BaseNode[] | null;
+    private matchingNodes_;
     /**
      * Specifies the current index of the label from the latest typeahead search.
      * @private {number}
      */
-    matchingLabelIndex_: any;
+    private matchingLabelIndex_;
     /**
      * Specifies the index into matching nodes when more than one node is found
      * with the same label.
      * @private {number}
      */
-    matchingNodeIndex_: any;
+    private matchingNodeIndex_;
     /**
      * Handles navigation keys.
      * @param {?EventsBrowserEvent} e The browser event.
@@ -80,14 +80,14 @@ export class TypeAhead {
      * @return {boolean} True iff a node is found.
      * @private
      */
-    jumpToLabel_(typeAhead: string): boolean;
+    private jumpToLabel_;
     /**
      * Select the next or previous node based on the offset.
      * @param {?Offset} offset DOWN or UP.
      * @return {boolean} Whether a node is found.
      * @private
      */
-    jumpTo_(offset: number | null): boolean;
+    private jumpTo_;
     /**
      * Given a nodes array reveals and selects the node while using node index.
      * @param {Array<BaseNode>|undefined} nodes Nodes array to select
@@ -95,12 +95,11 @@ export class TypeAhead {
      * @return {boolean} Whether a matching node was found.
      * @private
      */
-    selectMatchingNode_(nodes: BaseNode[] | undefined): boolean;
+    private selectMatchingNode_;
     /**
      * Clears the typeahead buffer.
      */
     clear(): void;
 }
-import { Trie } from "../../structs/trie.js";
-import { BaseNode } from "./treenode.js";
 import { BrowserEvent as EventsBrowserEvent } from "../../events/browserevent.js";
+import { BaseNode } from "./treenode.js";

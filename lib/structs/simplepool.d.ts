@@ -50,24 +50,24 @@ export class SimplePool<T> extends Disposable {
      * subclassing this class.
      * @private {?Function}
      */
-    createObjectFn_: Function | null;
+    private createObjectFn_;
     /**
      * Function for overriding disposeObject. The avoids a common case requiring
      * subclassing this class.
      * @private {?Function}
      */
-    disposeObjectFn_: Function | null;
+    private disposeObjectFn_;
     /**
      * Maximum number of objects allowed
      * @private {number}
      */
-    maxCount_: number;
+    private maxCount_;
     /**
      * Queue used to store objects that are currently in the pool and available
      * to be used.
      * @private {Array<T>}
      */
-    freeQueue_: any[];
+    private freeQueue_;
     /**
      * Sets the `createObject` function which is used for creating a new
      * object in the pool.
@@ -99,7 +99,7 @@ export class SimplePool<T> extends Disposable {
      * @param {number} initialCount The number of objects to add to the pool.
      * @private
      */
-    createInitial_(initialCount: number): void;
+    private createInitial_;
     /**
      * Should be overridden by sub-classes to return an instance of the object type
      * that is expected in the pool.

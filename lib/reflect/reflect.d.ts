@@ -26,7 +26,7 @@
  * @template K
  * @template V
  */
-export function cache<K, V>(cacheObj: any, key: any, valueFn: (arg0: any) => V, opt_keyFn?: ((arg0: any) => K) | undefined): V;
+export function cache<K, V>(cacheObj: any, key: unknown, valueFn: (arg0: unknown) => V, opt_keyFn?: ((arg0: unknown) => K) | undefined): V;
 /**
  * Check if a property can be accessed without throwing an exception.
  * @param {?Object} obj The owner of the property.
@@ -34,7 +34,7 @@ export function cache<K, V>(cacheObj: any, key: any, valueFn: (arg0: any) => V, 
  * @return {boolean} Whether the property is accessible. Will also return true
  *     if obj is null.
  */
-export function canAccessProperty(obj: any, prop: string): boolean;
+export function canAccessProperty(obj: any | null, prop: string): boolean;
 /**
  * @fileoverview Useful compiler idioms.
  */
@@ -50,7 +50,7 @@ export function canAccessProperty(obj: any, prop: string): boolean;
  * @param {?Object} object Object literal to cast.
  * @return {?Object} The object literal.
  */
-export function object(type: Function, object: any): any;
+export function object(type: Function, object: any | null): any | null;
 /**
  * Syntax for renaming property strings.
  * @see http://go/jscompiler-renaming

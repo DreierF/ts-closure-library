@@ -27,46 +27,46 @@ export class RemoteArrayMatcher extends Disposable {
      * @type {string}
      * @private
      */
-    method_: string;
+    private method_;
     /**
      * Data to submit during a POST.
      * @type {string|undefined}
      * @private
      */
-    content_: string | undefined;
+    private content_;
     /**
      * Headers to send with every HTTP request.
      * @type {?Object|?StructsMap}
      * @private
      */
-    headers_: (Object | (StructsMap<any, any> | null)) | null;
+    private headers_;
     /**
      * Key to the listener on XHR. Used to clear previous listeners.
      * @type {?Key}
      * @private
      */
-    lastListenerKey_: Key | null;
+    private lastListenerKey_;
     /**
      * The base URL for the ajax call.  The token and max_matches are added as
      * query params.
      * @type {string}
      * @private
      */
-    url_: string;
+    private url_;
     /**
      * Whether similar matches should be found as well.  This is sent as a hint
      * to the server only.
      * @type {boolean}
      * @private
      */
-    useSimilar_: boolean;
+    private useSimilar_;
     /**
      * Used for making remote requests.  When a new request
      * is made, the current one is aborted and the new one sent.
      * @type {!XMLHttpRequest}
      * @private
      */
-    xhr_: XMLHttpRequest;
+    private xhr_;
     /**
      * Set the send method ("GET", "POST").
      * @param {string} method The send method; default: GET.
@@ -82,7 +82,7 @@ export class RemoteArrayMatcher extends Disposable {
      * @param {Object|StructsMap} headers Map of headers to add to the
      *     request.
      */
-    setHeaders(headers: any): void;
+    setHeaders(headers: any | StructsMap): void;
     /**
      * Set the timeout interval.
      * @param {number} interval Number of milliseconds after which an
@@ -102,7 +102,7 @@ export class RemoteArrayMatcher extends Disposable {
      * @return {?string} The complete url. Return null if no request should be sent.
      * @protected
      */
-    buildUrl(uri: string, token: string, maxMatches: number, useSimilar: boolean, opt_fullString?: string | undefined): string | null;
+    protected buildUrl(uri: string, token: string, maxMatches: number, useSimilar: boolean, opt_fullString?: string | undefined): string | null;
     /**
      * Returns whether the suggestions should be updated?
      * <b>Override this to prevent updates eg - when token is empty.</b>
@@ -114,7 +114,7 @@ export class RemoteArrayMatcher extends Disposable {
      * @return {boolean} Whether new matches be requested.
      * @protected
      */
-    shouldRequestMatches(uri: string, token: string, maxMatches: number, useSimilar: boolean, opt_fullString?: string | undefined): boolean;
+    protected shouldRequestMatches(uri: string, token: string, maxMatches: number, useSimilar: boolean, opt_fullString?: string | undefined): boolean;
     /**
      * Parses and retrieves the array of suggestions from XHR response.
      * <b>Override this if the response is not a simple JSON array.</b>
@@ -122,7 +122,7 @@ export class RemoteArrayMatcher extends Disposable {
      * @return {Array<string>} The array of suggestions.
      * @protected
      */
-    parseResponseText(responseText: string): string[];
+    protected parseResponseText(responseText: string): Array<string>;
     /**
      * Handles the XHR response.
      * @param {string} token The XHR autocomplete token.
@@ -146,5 +146,4 @@ export class RemoteArrayMatcher extends Disposable {
 }
 import { Disposable } from "../../disposable/disposable.js";
 import { Map as StructsMap } from "../../structs/map.js";
-import { Key } from "../../events/eventhandler.js";
 import { Event as EventsEvent } from "../../events/event.js";

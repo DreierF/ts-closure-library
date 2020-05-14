@@ -18,13 +18,13 @@ export class InversionMap<T> {
      * @param {boolean=} opt_delta If true, saves only delta from previous value.
      * @template T
      */
-    constructor(rangeArray: number[], valueArray: T[], opt_delta?: boolean | undefined);
+    constructor(rangeArray: Array<number>, valueArray: T[], opt_delta?: boolean | undefined);
     /**
      * @protected {?Array<number>}
      */
-    rangeArray: any;
+    protected rangeArray: any;
     /** @protected {Array<T>} */
-    values: any;
+    protected values: T[];
     /**
      * Stores the integers as ranges (half-open).
      * If delta is true, the integers are delta from the previous value and
@@ -35,7 +35,7 @@ export class InversionMap<T> {
      * @param {boolean=} opt_delta If true, saves only delta from previous value.
      * @private
      */
-    storeInversion_(rangeArray: number[], opt_delta?: boolean | undefined): void;
+    private storeInversion_;
     /**
      * Splices a range -> value map into this inversion map.
      * @param {Array<number>} rangeArray An array of monotonically
@@ -44,7 +44,7 @@ export class InversionMap<T> {
      *     Length must be the same as rangeArray.
      * @param {boolean=} opt_delta If true, saves only delta from previous value.
      */
-    spliceInversion(rangeArray: number[], valueArray: T[], opt_delta?: boolean | undefined): void;
+    spliceInversion(rangeArray: Array<number>, valueArray: T[], opt_delta?: boolean | undefined): void;
     /**
      * Gets the value corresponding to a number from the inversion map.
      * @param {number} intKey The number for which value needs to be retrieved
@@ -59,5 +59,5 @@ export class InversionMap<T> {
      * @return {number} Largest index such that rangeArray[index] <= intKey.
      * @protected
      */
-    getLeast(intKey: number): number;
+    protected getLeast(intKey: number): number;
 }

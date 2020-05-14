@@ -24,7 +24,7 @@ export function add(element: Node | null, ...args: string[]): boolean;
  * @deprecated Use goog.dom.classlist.addRemove instead.
  * @suppress{checkTypes}
  */
-export function addRemove(element: Node | null, classesToRemove: string | string[] | null, classesToAdd: string | string[] | null): void;
+export function addRemove(element: Node | null, classesToRemove: (string | Array<string>) | null, classesToAdd: (string | Array<string>) | null): void;
 /**
  * Adds or removes a class depending on the enabled argument.
  * @param {?Node} element DOM node to add or remove the class on.
@@ -42,7 +42,7 @@ export function enable(element: Node | null, className: string, enabled: boolean
  *     properties to the array. Do not depend on any of these!
  * @deprecated Use goog.dom.classlist.get instead.
  */
-export function get(element: Node | null): any[];
+export function get(element: Node | null): Array<unknown>;
 /**
  * Returns true if an element has a class.
  * @param {?Node} element DOM node to test.

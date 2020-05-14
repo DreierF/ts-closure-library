@@ -36,7 +36,7 @@ export type QueryValue = any;
  */
 export type StandardQueryParam = string;
 /**
- * Character codes inlined to avoid object allocations due to charCode.
+ * *
  */
 export type CharCode_ = number;
 export namespace ComponentIndex {
@@ -97,7 +97,7 @@ export namespace StandardQueryParam {
  *     key will be added as a valueless parameter.
  * @return {string} The URI with the query parameter added.
  */
-export function appendParam(uri: string, key: string, opt_value?: any): string;
+export function appendParam(uri: string, key: string, opt_value?: any | undefined): string;
 /**
  * Appends URI parameters to an existing URI.
  *
@@ -165,7 +165,7 @@ export function appendPath(baseUri: string, path: string): string;
  * @param {?string=} opt_fragment The URI-encoded fragment identifier.
  * @return {string} The fully combined URI.
  */
-export function buildFromEncodedParts(opt_scheme?: string | null | undefined, opt_userInfo?: string | null | undefined, opt_domain?: string | null | undefined, opt_port?: string | number | null | undefined, opt_path?: string | null | undefined, opt_queryData?: string | null | undefined, opt_fragment?: string | null | undefined): string;
+export function buildFromEncodedParts(opt_scheme?: (string | null) | undefined, opt_userInfo?: (string | null) | undefined, opt_domain?: (string | null) | undefined, opt_port?: (string | number | null) | undefined, opt_path?: (string | null) | undefined, opt_queryData?: (string | null) | undefined, opt_fragment?: (string | null) | undefined): string;
 /**
  * Builds a query data string from a sequence of alternating keys and values.
  * Currently generates "&key&" for empty args.
@@ -175,7 +175,7 @@ export function buildFromEncodedParts(opt_scheme?: string | null | undefined, op
  * @param {number=} opt_startIndex A start offset into the arary, defaults to 0.
  * @return {string} The encoded query string, in the form 'a=1&b=2'.
  */
-export function buildQueryData(keysAndValues: ArrayLike<any>, opt_startIndex?: number | undefined): string;
+export function buildQueryData(keysAndValues: ArrayLike<string | QueryValue>, opt_startIndex?: number | undefined): string;
 /**
  * Builds a query data string from a map.
  * Currently generates "&key&" for empty args.
@@ -186,7 +186,7 @@ export function buildQueryData(keysAndValues: ArrayLike<any>, opt_startIndex?: n
  * @return {string} The encoded query string, in the form 'a=1&b=2'.
  */
 export function buildQueryDataFromMap(map: {
-    [x: string]: any;
+    [x: string]: QueryValue;
 }): string;
 /**
  * @param {string} uri The URI to examine.
@@ -244,7 +244,7 @@ export function getParamValue(uri: string, keyEncoded: string): string | null;
  * @return {!Array<string>} All URI-decoded values with the given key.
  *     If the key is not found, this will have length 0, but never be null.
  */
-export function getParamValues(uri: string, keyEncoded: string): string[];
+export function getParamValues(uri: string, keyEncoded: string): Array<string>;
 /**
  * @param {string} uri The URI to examine.
  * @return {?string} The decoded path, or null if none.  Includes the leading
@@ -336,7 +336,7 @@ export function makeUnique(uri: string): string;
  *     second will.  If the parameter has no value (i.e. “=” was not present)
  *     the second argument (value) will be an empty string.
  */
-export function parseQueryData(encodedQuery: string, callback: (arg0: string, arg1: string) => any): void;
+export function parseQueryData(encodedQuery: string, callback: (arg0: string, arg1: string) => void): void;
 /**
  * Gets the URI with the fragment identifier removed.
  * @param {string} uri The URI to examine.
@@ -385,7 +385,7 @@ export function setParam(uri: string, keyEncoded: string, value: any): string;
  *     the params.
  */
 export function setParamsFromMap(uri: string, params: {
-    [x: string]: any;
+    [x: string]: QueryValue;
 }): string;
 /**
  * Replaces the path.
@@ -409,4 +409,4 @@ export function setPath(uri: string, path: string): string;
  *     on the browser's regular expression implementation.  Never null, since
  *     arbitrary strings may still look like path names.
  */
-export function split(uri: string): (string | undefined)[];
+export function split(uri: string): Array<string | undefined>;

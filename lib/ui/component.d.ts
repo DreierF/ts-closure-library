@@ -37,49 +37,68 @@ export const ALLOW_DETACHED_DECORATION: boolean;
  */
 export class Component extends EventsEventTarget {
     /**
+     * Static helper method; returns the type of event components are expected to
+     * dispatch when transitioning to or from the given state.
+     * @param {?State} state State to/from which the component
+     *     is transitioning.
+     * @param {boolean} isEntering Whether the component is entering or leaving the
+     *     state.
+     * @return {?EventType} Event type to dispatch.
+     */
+    static getStateTransitionEvent(state: State | null, isEntering: boolean): EventType | null;
+    /**
+     * Set the default right-to-left value. This causes all component's created from
+     * this point forward to have the given value. This is useful for cases where
+     * a given page is always in one directionality, avoiding unnecessary
+     * right to left determinations.
+     * @param {?boolean} rightToLeft Whether the components should be rendered
+     *     right-to-left. Null iff components should determine their directionality.
+     */
+    static setDefaultRightToLeft(rightToLeft: boolean | null): void;
+    /**
      * Default implementation of UI component.
      *
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      * @suppress {underscore}
      */
-    constructor(opt_domHelper?: goog_dom.DomHelper | undefined);
+    constructor(opt_domHelper?: DomHelper | undefined);
     /**
      * Generator for unique IDs.
      * @type {?IdGenerator}
      * @private
      */
-    idGenerator_: IdGenerator | null;
+    private idGenerator_;
     /**
      * DomHelper used to interact with the document, allowing components to be
      * created in a different window.
      * @protected {!DomHelper}
      * @suppress {underscore|visibility}
      */
-    dom_: goog_dom.DomHelper;
+    protected dom_: goog_dom.DomHelper;
     /**
      * Whether the component is rendered right-to-left.  Right-to-left is set
      * lazily when {@link #isRightToLeft} is called the first time, unless it has
      * been set by calling {@link #setRightToLeft} explicitly.
      * @private {?boolean}
      */
-    rightToLeft_: boolean | null;
+    private rightToLeft_;
     /**
      * Unique ID of the component, lazily initialized in {@link
      * Component#getId} if needed.  This property is strictly private and
      * must not be accessed directly outside of this class!
      * @private {?string}
      */
-    id_: string | null;
+    private id_;
     /**
      * Whether the component is in the document.
      * @private {boolean}
      */
-    inDocument_: boolean;
+    private inDocument_;
     /**
      * The DOM element for the component.
      * @private {Element|null}
      */
-    element_: any;
+    private element_;
     /**
      * Event handler.
      * TODO(user): rename it to handler_ after all component subclasses in
@@ -87,25 +106,25 @@ export class Component extends EventsEventTarget {
      * Code search: http://go/component_code_search
      * @private {EventHandler|undefined}
      */
-    googUiComponentHandler_: any;
+    private googUiComponentHandler_;
     /**
      * Arbitrary data object associated with the component.  Such as meta-data.
      * @private {*}
      */
-    model_: any;
+    private model_;
     /**
      * Parent component to which events will be propagated.  This property is
      * strictly private and must not be accessed directly outside of this class!
      * @private {Component?}
      */
-    parent_: any;
+    private parent_;
     /**
      * Array of child components.  Lazily initialized on first use.  Must be kept
      * in sync with `childIndex_`.  This property is strictly private and
      * must not be accessed directly outside of this class!
      * @private {?Array<?Component>}
      */
-    children_: any[] | null;
+    private children_;
     /**
      * Map of child component IDs to child components.  Used for constant-time
      * random access to child components by ID.  Lazily initialized on first use.
@@ -119,7 +138,7 @@ export class Component extends EventsEventTarget {
      *
      * @private {?Object}
      */
-    childIndex_: {} | null;
+    private childIndex_;
     /**
      * Flag used to keep track of whether a component decorated an already
      * existing element or whether it created the DOM itself.
@@ -131,13 +150,13 @@ export class Component extends EventsEventTarget {
      *
      * @private {boolean}
      */
-    wasDecorated_: boolean;
+    private wasDecorated_;
     /**
      * If true, listen for PointerEvent types rather than MouseEvent types. This
      * allows supporting drag gestures for touch/stylus input.
      * @private {boolean}
      */
-    pointerEventsEnabled_: boolean;
+    private pointerEventsEnabled_;
     /**
      * Gets the unique ID for the instance of this component.  If the instance
      * doesn't already have an ID, generates one on the fly.
@@ -209,7 +228,7 @@ export class Component extends EventsEventTarget {
      * @this {T}
      * @template T
      */
-    getHandler<T>(): EventHandler<T>;
+    protected getHandler<T>(): EventHandler<T>;
     /**
      * Sets the parent of this component to use for event bubbling.  Throws an error
      * if the component already has a parent or if an attempt is made to add a
@@ -227,16 +246,10 @@ export class Component extends EventsEventTarget {
      */
     getParent(): Component | null;
     /**
-     * Overrides {@link EventsEventTarget#setParentEventTarget} to throw an
-     * error if the parent component is set, and the argument is not the parent.
-     * @override
-     */
-    setParentEventTarget(parent: any): void;
-    /**
      * Returns the dom helper that is being used on this component.
      * @return {!DomHelper} The dom helper used on this component.
      */
-    getDomHelper(): goog_dom.DomHelper;
+    getDomHelper(): DomHelper;
     /**
      * Determines whether the component has been added to the document.
      * @return {boolean} TRUE if rendered. Otherwise, FALSE.
@@ -262,7 +275,7 @@ export class Component extends EventsEventTarget {
      * @param {?Element=} opt_parentElement Optional parent element to render the
      *    component into.
      */
-    render(opt_parentElement?: Element | null | undefined): void;
+    render(opt_parentElement?: (Element | null) | undefined): void;
     /**
      * Renders the component before another element. The other element should be in
      * the document already.
@@ -290,7 +303,7 @@ export class Component extends EventsEventTarget {
      *    be rendered.  If left out the node is appended to the parent element.
      * @private
      */
-    render_(opt_parentElement?: Element | null | undefined, opt_beforeNode?: Node | undefined): void;
+    private render_;
     /**
      * Decorates the element for the UI component. If the element is in the
      * document, the enterDocument method will be called.
@@ -320,7 +333,7 @@ export class Component extends EventsEventTarget {
      * @param {?Element} element Element to decorate.
      * @protected
      */
-    decorateInternal(element: Element | null): void;
+    protected decorateInternal(element: Element | null): void;
     /**
      * Called when the component's element is known to be in the document. Anything
      * using document.getElementById etc. should be done at this stage.
@@ -356,7 +369,7 @@ export class Component extends EventsEventTarget {
      * @param {?Object} object The object that will be used to create the ids.
      * @return {!Object<string, string>} An object of id keys to generated ids.
      */
-    makeIds(object: any): {
+    makeIds(object: any | null): {
         [x: string]: string;
     };
     /**
@@ -477,7 +490,7 @@ export class Component extends EventsEventTarget {
      * empty array if the component has no children.
      * @return {!Array<string>} Child component IDs.
      */
-    getChildIds(): string[];
+    getChildIds(): Array<string>;
     /**
      * Returns the child with the given ID, or null if no such child exists.
      * @param {string} id Child component ID.
@@ -500,7 +513,7 @@ export class Component extends EventsEventTarget {
      * @param {T=} opt_obj Used as the 'this' object in f when called.
      * @template T
      */
-    forEachChild<T>(f: (this: T, arg1: any, arg2: number) => any, opt_obj?: T | undefined): void;
+    forEachChild<T>(f: (this: T, arg1: Component, arg2: number) => unknown, opt_obj?: T | undefined): void;
     /**
      * Returns the 0-based index of the given child component, or -1 if no such
      * child is found.
@@ -548,7 +561,7 @@ export class Component extends EventsEventTarget {
      *    removed child components, and detaches their DOM from the document.
      * @return {!Array<Component>} The removed components if any.
      */
-    removeChildren(opt_unrender?: boolean | undefined): Component[];
+    removeChildren(opt_unrender?: boolean | undefined): Array<Component>;
     /**
      * Returns whether this component should listen for PointerEvent types rather
      * than MouseEvent types. This allows supporting drag gestures for touch/stylus
@@ -564,7 +577,6 @@ export class Component extends EventsEventTarget {
      * @param {boolean} enable
      */
     setPointerEventsEnabled(enable: boolean): void;
-    actualEventTarget_: Component;
 }
 export namespace Component {
     export const defaultRightToLeft_: boolean | null;
@@ -620,7 +632,7 @@ export namespace State {
     export const OPENED: number;
 }
 import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";
-import { IdGenerator } from "./idgenerator.js";
 import * as goog_dom from "../dom/dom.js";
 import { EventHandler } from "../events/eventhandler.js";
+import { DomHelper } from "../dom/dom.js";
 export { Component_Error as Error };

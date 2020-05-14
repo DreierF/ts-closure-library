@@ -33,7 +33,7 @@ export class SanitizedContent {
      * @protected
       * @type {string}
      */
-    content: string;
+    protected content: string;
     /**
      * Gets the already-safe content.
      * @return {string}
@@ -113,14 +113,6 @@ export class SanitizedCss extends SanitizedContent {
      * @return {boolean}
      */
     static isCompatibleWithStrict(value: any): boolean;
-    /** @override */
-    contentKind: {
-        sanitizedContentCss: boolean;
-    } | {
-        sanitizedContentCss?: undefined;
-    };
-    /** @override */
-    contentDir: any;
     /**
      * Converts SanitizedCss into SafeStyleSheet.
      * Note: SanitizedCss in Soy represents both SafeStyle and SafeStyleSheet in
@@ -156,12 +148,6 @@ export class SanitizedHtml extends SanitizedContent {
      * @return {boolean}
      */
     static isCompatibleWithStrict(value: any): boolean;
-    /** @override */
-    contentKind: {
-        sanitizedContentKindHtml: boolean;
-    } | {
-        sanitizedContentKindHtml?: undefined;
-    };
 }
 /**
  * Content of type {@link SanitizedContentKind.ATTRIBUTES}.
@@ -185,14 +171,6 @@ export class SanitizedHtmlAttribute extends SanitizedContent {
      * @return {boolean}
      */
     static isCompatibleWithStrict(value: any): boolean;
-    /** @override */
-    contentKind: {
-        sanitizedContentHtmlAttribute: boolean;
-    } | {
-        sanitizedContentHtmlAttribute?: undefined;
-    };
-    /** @override */
-    contentDir: any;
 }
 /**
  * Content of type {@link SanitizedContentKind.JS}.
@@ -216,14 +194,6 @@ export class SanitizedJs extends SanitizedContent {
      * @return {boolean}
      */
     static isCompatibleWithStrict(value: any): boolean;
-    /** @override */
-    contentKind: {
-        sanitizedContentJsChars: boolean;
-    } | {
-        sanitizedContentJsChars?: undefined;
-    };
-    /** @override */
-    contentDir: any;
 }
 /**
  * Content of type
@@ -248,14 +218,6 @@ export class SanitizedTrustedResourceUri extends SanitizedContent {
      * @return {boolean}
      */
     static isCompatibleWithStrict(value: any): boolean;
-    /** @override */
-    contentKind: {
-        sanitizedContentTrustedResourceUri: boolean;
-    } | {
-        sanitizedContentTrustedResourceUri?: undefined;
-    };
-    /** @override */
-    contentDir: any;
     /**
      * Converts sanitized content into TrustedResourceUrl without modification.
      * @return {!TrustedResourceUrl}
@@ -284,14 +246,6 @@ export class SanitizedUri extends SanitizedContent {
      * @return {boolean}
      */
     static isCompatibleWithStrict(value: any): boolean;
-    /** @override */
-    contentKind: {
-        sanitizedContentUri: boolean;
-    } | {
-        sanitizedContentUri?: undefined;
-    };
-    /** @override */
-    contentDir: any;
 }
 import { Dir } from "../i18n/bidi.js";
 import { SafeHtml } from "../html/safehtml.js";

@@ -1,5 +1,5 @@
 /**
- * The event types dispatched by this class.
+ * *
  */
 export type EventType = string;
 /**
@@ -30,68 +30,60 @@ export class BaseNode extends Component {
      *    default config will be used.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(content: string | SafeHtml, opt_config?: any, opt_domHelper?: DomHelper | undefined);
+    constructor(content: string | SafeHtml, opt_config?: any | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * @deprecated Use {@link #removeChild}.
      */
-    remove: (childNode: string | Component, opt_unrender?: boolean | undefined) => BaseNode;
+    remove: (childNode: Component | string, opt_unrender?: boolean | undefined) => BaseNode;
     /**
      * The configuration for the tree.
      * @type {?Object}
      * @private
      */
-    config_: Object | null;
+    private config_;
     /**
      * HTML content of the node label.
      * @type {!SafeHtml}
      * @private
      */
-    html_: SafeHtml;
+    private html_;
     /**
      * Whether the tree item is selected.
      * @private {boolean}
      */
-    selected_: any;
+    private selected_;
     /**
      * Whether the tree node is expanded.
      * @private {boolean}
      */
-    expanded_: boolean;
+    private expanded_;
     /**
      * Tooltip for the tree item
      * @private {?string}
      */
-    toolTip_: string | null;
+    private toolTip_;
     /**
      * HTML that can appear after the label (so not inside the anchor).
      * @private {!SafeHtml}
      */
-    afterLabelHtml_: SafeHtml;
+    private afterLabelHtml_;
     /**
      * Whether to allow user to collapse this node.
      * @private {boolean}
      */
-    isUserCollapsible_: boolean;
+    private isUserCollapsible_;
     /**
      * Nesting depth of this node; cached result of computeDepth_.
      * -1 if value has not been cached.
      * @private {number}
      */
-    depth_: any;
+    private depth_;
     tree: any;
     /**
      * Adds roles and states.
      * @protected
      */
-    initAccessibility(): void;
-    /**
-     * The method assumes that the child doesn't have parent node yet.
-     * The `opt_render` argument is not used. If the parent node is expanded,
-     * the child node's state will be the same as the parent's. Otherwise the
-     * child's DOM tree won't be created.
-     * @override
-     */
-    addChildAt(child: any, index: any, opt_render?: any): void;
+    protected initAccessibility(): void;
     firstChild_: any;
     lastChild_: any;
     /**
@@ -104,25 +96,16 @@ export class BaseNode extends Component {
      */
     add(child: BaseNode | null, opt_before?: BaseNode | undefined): BaseNode;
     /**
-     * Removes a child. The caller is responsible for disposing the node.
-     * @param {Component|string} childNode The child to remove. Must be a
-     *     {@link BaseNode}.
-     * @param {boolean=} opt_unrender Unused. The child will always be unrendered.
-     * @return {!BaseNode} The child that was removed.
-     * @override
-     */
-    removeChild(childNode: string | Component, opt_unrender?: boolean | undefined): BaseNode;
-    /**
      * Handler for setting focus asynchronously.
      * @private
      */
-    onTimeoutSelect_(): void;
+    private onTimeoutSelect_;
     /**
      * Returns the tree.
      * @return {?TreeControl}
      * @abstract
      */
-    getTree(): TreeTreeControl | null;
+    getTree(): TreeControl | null;
     /**
      * Returns the depth of the node in the tree. Should not be overridden.
      * @return {number} The non-negative depth of this node (the root is zero).
@@ -134,13 +117,13 @@ export class BaseNode extends Component {
      * @return {number} The non-negative depth of this node (the root is zero).
      * @private
      */
-    computeDepth_(): number;
+    private computeDepth_;
     /**
      * Changes the depth of a node (and all its descendants).
      * @param {number} depth The new nesting depth; must be non-negative.
      * @private
      */
-    setDepth_(depth: number): void;
+    private setDepth_;
     /**
      * Returns true if the node is a descendant of this node
      * @param {?BaseNode} node The node to check.
@@ -149,16 +132,10 @@ export class BaseNode extends Component {
      */
     contains(node: BaseNode | null): boolean;
     /**
-     * @param {number} index 0-based index.
-     * @return {?BaseNode} The child at the given index; null if none.
-     * @override
-     */
-    getChildAt(index: number): BaseNode | null;
-    /**
      * Returns the children of this node.
      * @return {!Array<!BaseNode>} The children.
      */
-    getChildren(): BaseNode[];
+    getChildren(): Array<BaseNode>;
     /**
      * @return {?BaseNode} The first child of this node.
      */
@@ -197,7 +174,7 @@ export class BaseNode extends Component {
      * @param {boolean} selected The new selection state.
      * @protected
      */
-    setSelectedInternal(selected: boolean): void;
+    protected setSelectedInternal(selected: boolean): void;
     /**
      * @return {boolean} Whether the node is expanded.
      */
@@ -258,27 +235,27 @@ export class BaseNode extends Component {
      * @return {!SafeHtml}
      * @protected
      */
-    toSafeHtml(): SafeHtml;
+    protected toSafeHtml(): SafeHtml;
     /**
      * @return {number} The pixel indent of the row.
      * @private
      */
-    getPixelIndent_(): number;
+    private getPixelIndent_;
     /**
      * @return {!SafeHtml} The html for the row.
      * @protected
      */
-    getRowSafeHtml(): SafeHtml;
+    protected getRowSafeHtml(): SafeHtml;
     /**
      * @return {string} The class name for the row.
      * @protected
      */
-    getRowClassName(): string;
+    protected getRowClassName(): string;
     /**
      * @return {!SafeHtml} The html for the label.
      * @protected
      */
-    getLabelSafeHtml(): SafeHtml;
+    protected getLabelSafeHtml(): SafeHtml;
     /**
      * Returns the html that appears after the label. This is useful if you want to
      * put extra UI on the row of the label but not inside the anchor tag.
@@ -302,24 +279,24 @@ export class BaseNode extends Component {
      * @return {!SafeHtml} The html for the icon.
      * @protected
      */
-    getIconSafeHtml(): SafeHtml;
+    protected getIconSafeHtml(): SafeHtml;
     /**
      * Gets the calculated icon class.
      * @protected
      * @return {string}
      * @abstract
      */
-    getCalculatedIconClass(): string;
+    protected getCalculatedIconClass(): string;
     /**
      * @return {!SafeHtml} The source for the icon.
      * @protected
      */
-    getExpandIconSafeHtml(): SafeHtml;
+    protected getExpandIconSafeHtml(): SafeHtml;
     /**
      * @return {string} The class names of the icon used for expanding the node.
      * @protected
      */
-    getExpandIconClass(): string;
+    protected getExpandIconClass(): string;
     /**
      * @return {!SafeStyle} The line style.
      */
@@ -337,12 +314,12 @@ export class BaseNode extends Component {
      * @return {?Element} The expanded icon element.
      * @protected
      */
-    getExpandIconElement(): Element | null;
+    protected getExpandIconElement(): Element | null;
     /**
      * @return {?Element} The icon element.
      * @protected
      */
-    getIconElement(): Element | null;
+    protected getIconElement(): Element | null;
     /**
      * @return {?Element} The label element.
      */
@@ -355,7 +332,7 @@ export class BaseNode extends Component {
      * @return {?Element} The div containing the children.
      * @protected
      */
-    getChildrenElement(): Element | null;
+    protected getChildrenElement(): Element | null;
     /**
      * Sets the icon class for the node.
      * @param {string} s The icon class.
@@ -427,39 +404,34 @@ export class BaseNode extends Component {
      * Updates the icon of the node. Assumes that this.getElement() is created.
      * @private
      */
-    updateIcon_(): void;
+    private updateIcon_;
     /**
      * Handles mouse down event.
      * @param {!EventsBrowserEvent} e The browser event.
      * @protected
      */
-    onMouseDown(e: EventsBrowserEvent): void;
+    protected onMouseDown(e: EventsBrowserEvent): void;
     /**
      * Handles a click event.
      * @param {!EventsBrowserEvent} e The browser event.
      * @protected
      * @suppress {underscore|visibility}
      */
-    onClick_(e: EventsBrowserEvent): void;
+    protected onClick_(e: EventsBrowserEvent): void;
     /**
      * Handles a double click event.
      * @param {!EventsBrowserEvent} e The browser event.
      * @protected
      * @suppress {underscore|visibility}
      */
-    onDoubleClick_(e: EventsBrowserEvent): void;
+    protected onDoubleClick_(e: EventsBrowserEvent): void;
     /**
      * Handles a key down event.
      * @param {!EventsBrowserEvent} e The browser event.
      * @return {boolean} The handled value.
      * @protected
      */
-    onKeyDown(e: EventsBrowserEvent): boolean;
-    /**
-     * @override
-     * @return {?BaseNode}
-     */
-    getParent(): BaseNode | null;
+    protected onKeyDown(e: EventsBrowserEvent): boolean;
     /**
      * @return {?BaseNode} The last shown descendant.
      */
@@ -487,16 +459,15 @@ export class BaseNode extends Component {
     /**
      * @return {?Object} The configuration for the tree.
      */
-    getConfig(): any;
+    getConfig(): any | null;
     /**
      * Internal method that is used to set the tree control on the node.
      * @param {?TreeControl} tree The tree control.
      */
-    setTreeInternal(tree: TreeTreeControl | null): void;
-    actualEventTarget_: BaseNode;
+    setTreeInternal(tree: TreeControl | null): void;
 }
 export namespace BaseNode {
-    export const allNodes: Object | null;
+    export const allNodes: any | null;
     export const EMPTY_CHILDREN_: Array<BaseNode>;
     export namespace defaultConfig {
         export const indentWidth: number;
@@ -556,11 +527,11 @@ export class TreeNode extends BaseNode {
      *    will be used.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(content: string | SafeHtml, opt_config?: any, opt_domHelper?: DomHelper | undefined);
+    constructor(content: string | SafeHtml, opt_config?: any | undefined, opt_domHelper?: DomHelper | undefined);
 }
 import { Component } from "../component.js";
+import { TreeControl } from "./treecontrol.js";
 import { SafeHtml } from "../../html/safehtml.js";
-import { TreeControl as TreeTreeControl } from "./treecontrol.js";
 import { SafeStyle } from "../../html/safestyle.js";
 import { BrowserEvent as EventsBrowserEvent } from "../../events/browserevent.js";
 import { DomHelper } from "../../dom/dom.js";

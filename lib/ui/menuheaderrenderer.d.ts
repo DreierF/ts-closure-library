@@ -6,6 +6,8 @@
  * @extends {ControlRenderer<UiMenuHeader>}
  */
 export class MenuHeaderRenderer extends ControlRenderer<UiMenuHeader> {
+    /** @override @return {!MenuHeaderRenderer} @suppress {checkTypes} */
+    static getInstance(): MenuHeaderRenderer;
 }
 export namespace MenuHeaderRenderer {
     export const instance_: MenuHeaderRenderer | null;

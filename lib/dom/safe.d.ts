@@ -54,7 +54,7 @@ export function documentWrite(doc: Document, html: Html_SafeHtml): void;
  *     to insert the HTML.
  * @param {!Html_SafeHtml} html The known-safe HTML to insert.
  */
-export function insertAdjacentHtml(node: Node, position: string, html: Html_SafeHtml): void;
+export function insertAdjacentHtml(node: Node, position: InsertAdjacentHtmlPosition, html: Html_SafeHtml): void;
 /**
  * Safely opens a URL in a new window (via window.open).
  *
@@ -317,7 +317,7 @@ export function setInputFormAction(input: Element, url: string | Html_SafeUrl): 
  *     TrustedResourceUrl
  * @see Html_SafeUrl#sanitize
  */
-export function setLinkHrefAndRel(link: HTMLLinkElement, url: string | TrustedResourceUrl | Html_SafeUrl, rel: string): void;
+export function setLinkHrefAndRel(link: HTMLLinkElement, url: string | Html_SafeUrl | TrustedResourceUrl, rel: string): void;
 /**
  * Safely assigns a URL to a Location object's href property.
  *

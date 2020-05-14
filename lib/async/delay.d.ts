@@ -38,30 +38,30 @@ export class Delay<THIS> extends Disposable {
      * @type {number}
      * @private
      */
-    id_: number;
+    private id_;
     /**
      * The function that will be invoked after a delay.
      * @private {function(this:THIS)}
      */
-    listener_: (this: THIS) => any;
+    private listener_;
     /**
      * The default amount of time to delay before invoking the callback.
      * @type {number}
      * @private
      */
-    interval_: number;
+    private interval_;
     /**
      * The object context to invoke the callback in.
      * @type {Object|undefined}
      * @private
      */
-    handler_: Object | undefined;
+    private handler_;
     /**
      * Cached callback function invoked when the delay finishes.
      * @type {?Function}
      * @private
      */
-    callback_: Function | null;
+    private callback_;
     /**
      * Starts the delay timer. The provided listener function will be called after
      * the specified interval. Calling start on an active timer will reset the
@@ -100,6 +100,6 @@ export class Delay<THIS> extends Disposable {
      * Invokes the callback function after the delay successfully completes.
      * @private
      */
-    doAction_(): void;
+    private doAction_;
 }
 import { Disposable } from "../disposable/disposable.js";

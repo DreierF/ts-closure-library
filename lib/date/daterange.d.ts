@@ -14,6 +14,125 @@ export type StandardDateRangeKeys = string;
  */
 export class DateRange {
     /**
+     * Tests two {@link DateRange} objects for equality.
+     * @param {?DateRange} a A date range.
+     * @param {?DateRange} b A date range.
+     * @return {boolean} Whether |a| is the same range as |b|.
+     */
+    static equals(a: DateRange | null, b: DateRange | null): boolean;
+    /**
+     * Calculates a date that is a number of days after a date. Does not modify its
+     * input.
+     * @param {?DateDate} date The input date.
+     * @param {number} offset Number of days.
+     * @return {!DateDate} The date that is |offset| days after |date|.
+     * @private
+     */
+    private static offsetInDays_;
+    /**
+     * Calculates a date that is a number of months after the first day in the
+     * month that contains its input. Does not modify its input.
+     * @param {?DateDate} date The input date.
+     * @param {number} offset Number of months.
+     * @return {!DateDate} The date that is |offset| months after the first
+     *     day in the month that contains |date|.
+     * @private
+     */
+    private static offsetInMonths_;
+    /**
+     * Returns the range from yesterday to yesterday.
+     * @param {DateDate=} opt_today The date to consider today.
+     *     Defaults to today.
+     * @return {!DateRange} The range that includes only yesterday.
+     */
+    static yesterday(opt_today?: DateDate | undefined): DateRange;
+    /**
+     * Returns the range from today to today.
+     * @param {DateDate=} opt_today The date to consider today.
+     *     Defaults to today.
+     * @return {!DateRange} The range that includes only today.
+     */
+    static today(opt_today?: DateDate | undefined): DateRange;
+    /**
+     * Returns the range that includes the seven days that end yesterday.
+     * @param {DateDate=} opt_today The date to consider today.
+     *     Defaults to today.
+     * @return {!DateRange} The range that includes the seven days that
+     *     end yesterday.
+     */
+    static last7Days(opt_today?: DateDate | undefined): DateRange;
+    /**
+     * Returns the range that starts the first of this month and ends the last day
+     * of this month.
+     * @param {DateDate=} opt_today The date to consider today.
+     *     Defaults to today.
+     * @return {!DateRange} The range that starts the first of this month
+     *     and ends the last day of this month.
+     */
+    static thisMonth(opt_today?: DateDate | undefined): DateRange;
+    /**
+     * Returns the range that starts the first of last month and ends the last day
+     * of last month.
+     * @param {DateDate=} opt_today The date to consider today.
+     *     Defaults to today.
+     * @return {!DateRange} The range that starts the first of last month
+     *     and ends the last day of last month.
+     */
+    static lastMonth(opt_today?: DateDate | undefined): DateRange;
+    /**
+     * Returns the seven-day range that starts on the first day of the week
+     * (see {@link goog.i18n.DateTimeSymbols.FIRSTDAYOFWEEK}) on or before today.
+     * @param {DateDate=} opt_today The date to consider today.
+     *     Defaults to today.
+     * @return {!DateRange} The range that starts the Monday on or before
+     *     today and ends the Sunday on or after today.
+     */
+    static thisWeek(opt_today?: DateDate | undefined): DateRange;
+    /**
+     * Returns the seven-day range that ends the day before the first day of
+     * the week (see {@link goog.i18n.DateTimeSymbols.FIRSTDAYOFWEEK}) that
+     * contains today.
+     * @param {DateDate=} opt_today The date to consider today.
+     *     Defaults to today.
+     * @return {!DateRange} The range that starts seven days before the
+     *     Monday on or before today and ends the Sunday on or before yesterday.
+     */
+    static lastWeek(opt_today?: DateDate | undefined): DateRange;
+    /**
+     * Returns the range that starts seven days before the Monday on or before
+     * today and ends the Friday before today.
+     * @param {DateDate=} opt_today The date to consider today.
+     *     Defaults to today.
+     * @return {!DateRange} The range that starts seven days before the
+     *     Monday on or before today and ends the Friday before today.
+     */
+    static lastBusinessWeek(opt_today?: DateDate | undefined): DateRange;
+    /**
+     * Returns the range that includes all days between January 1, 1900 and
+     * December 31, 9999.
+     * @param {DateDate=} opt_today The date to consider today.
+     *     Defaults to today.
+     * @return {!DateRange} The range that includes all days between
+     *     January 1, 1900 and December 31, 9999.
+     */
+    static allTime(opt_today?: DateDate | undefined): DateRange;
+    /**
+     * @param {string} dateRangeKey A standard date range key.
+     * @param {DateDate=} opt_today The date to consider today.
+     *     Defaults to today.
+     * @return {!DateRange} The date range that corresponds to that key.
+     * @throws {Error} If no standard date range with that key exists.
+     */
+    static standardDateRange(dateRangeKey: string, opt_today?: DateDate | undefined): DateRange;
+    /**
+     * Clones or creates new.
+     * @param {DateDate=} opt_today The date to consider today.
+     *     Defaults to today.
+     * @return {!DateDate} cloned or new.
+     * @private
+     */
+    private static cloneOrCreate_;
+    /**
      * Constructs a date range.
      * @param {?DateDate} startDate The first date in the range.
      * @param {?DateDate} endDate The last date in the range.
@@ -24,13 +143,13 @@ export class DateRange {
      * @type {?DateDate}
      * @private
      */
-    startDate_: DateDate | null;
+    private startDate_;
     /**
      * The last date in the range.
      * @type {?DateDate}
      * @private
      */
-    endDate_: DateDate | null;
+    private endDate_;
     /**
      * @return {?DateDate} The first date in the range.
      */
@@ -72,13 +191,13 @@ export class Iterator extends IterIterator<DateDate> {
      * @type {?DateDate}
      * @private
      */
-    nextDate_: DateDate | null;
+    private nextDate_;
     /**
      * The end date, expressed as an integer: YYYYMMDD.
      * @type {number}
      * @private
      */
-    endDate_: number;
+    private endDate_;
 }
 export namespace StandardDateRangeKeys {
     export const YESTERDAY: string;

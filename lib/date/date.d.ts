@@ -30,7 +30,7 @@ declare class date_Date {
      * @return {number} Comparison result. 0 if dates are the same, less than 0 if
      *     date1 is earlier than date2, greater than 0 if date1 is later than date2.
      */
-    static compare(date1: Date | date_Date, date2: Date | date_Date): number;
+    static compare(date1: DateLike, date2: DateLike): number;
     /**
      * Parses an ISO 8601 string as a `date_Date`.
      * @param {string} formatted ISO 8601 string to parse.
@@ -53,19 +53,19 @@ declare class date_Date {
      * @param {number=} opt_date Date of month, 1 - 31.
      * @see DateTime
      */
-    constructor(opt_year?: number | Date | date_Date | undefined, opt_month?: number | undefined, opt_date?: number | undefined);
+    constructor(opt_year?: (number | DateLike) | undefined, opt_month?: number | undefined, opt_date?: number | undefined);
     /**
      * First day of week. 0 = Mon, 6 = Sun.
      * @type {number}
      * @private
      */
-    firstDayOfWeek_: number;
+    private firstDayOfWeek_;
     /**
      * The cut off weekday used for week number calculations. 0 = Mon, 6 = Sun.
      * @type {number}
      * @private
      */
-    firstWeekCutOffDay_: number;
+    private firstWeekCutOffDay_;
     date: Date;
     /**
      * new Date(y, m, d) treats years in the interval [0, 100) as two digit years,
@@ -78,7 +78,7 @@ declare class date_Date {
      * @param {number} date The day of the month.
      * @return {!Date} The constructed Date object.
      */
-    buildDate_(fullYear: number, monthNumber: number, date: number): Date;
+    private buildDate_;
     /**
      * @return {!date_Date} A clone of the date object.
      */
@@ -97,7 +97,7 @@ declare class date_Date {
     /**
      * @return {month} The month of date, 0 = Jan, 11 = Dec.
      */
-    getMonth(): number;
+    getMonth(): month;
     /**
      * @return {number} The date of month.
      */
@@ -115,7 +115,7 @@ declare class date_Date {
     /**
      * @return {weekDay} The day of week, ISO style. 0 = Mon, 6 = Sun.
      */
-    getIsoWeekday(): number;
+    getIsoWeekday(): weekDay;
     /**
      * @return {number} The day of week according to firstDayOfWeek setting.
      */
@@ -128,7 +128,7 @@ declare class date_Date {
      * @return {month} The month of date according to universal time,
      *     0 = Jan, 11 = Dec.
      */
-    getUTCMonth(): number;
+    getUTCMonth(): month;
     /**
      * @return {number} The date of month according to universal time.
      */
@@ -150,7 +150,7 @@ declare class date_Date {
      * @return {weekDay} The day of week according to universal time, ISO
      *     style. 0 = Mon, 6 = Sun.
      */
-    getUTCIsoWeekday(): number;
+    getUTCIsoWeekday(): weekDay;
     /**
      * @return {number} The day of week according to universal time and
      *     firstDayOfWeek setting.
@@ -316,7 +316,7 @@ declare class date_Date {
      * @param {number} expected Expected date.
      * @private
      */
-    maybeFixDst_(expected: number): void;
+    private maybeFixDst_;
     /**
      * @return {number} Value of wrapped date.
      * @override
@@ -379,9 +379,9 @@ export class DateTime extends date_Date {
      * @param {number=} opt_seconds Seconds, 0 - 61.
      * @param {number=} opt_milliseconds Milliseconds, 0 - 999.
      */
-    constructor(opt_year?: number | {
-        getTime: any;
-    } | null | undefined, opt_month?: number | undefined, opt_date?: number | undefined, opt_hours?: number | undefined, opt_minutes?: number | undefined, opt_seconds?: number | undefined, opt_milliseconds?: number | undefined);
+    constructor(opt_year?: (number | {
+        getTime: unknown;
+    } | null) | undefined, opt_month?: number | undefined, opt_date?: number | undefined, opt_hours?: number | undefined, opt_minutes?: number | undefined, opt_seconds?: number | undefined, opt_milliseconds?: number | undefined);
     /**
      * Returns the hours part of the datetime.
      *
@@ -510,11 +510,6 @@ export class DateTime extends date_Date {
      * @return {string} The time label.
      */
     toIsoTimeString(opt_showSeconds?: boolean | undefined): string;
-    /**
-     * @return {!DateTime} A clone of the datetime object.
-     * @override
-     */
-    clone(): DateTime;
 }
 /**
  * Class representing a date/time interval. Used for date calculations.
@@ -529,6 +524,16 @@ export class DateTime extends date_Date {
  * @final
  */
 export class Interval {
+    /**
+     * Parses an XML Schema duration (ISO 8601 extended).
+     * @see http://www.w3.org/TR/xmlschema-2/#duration
+     *
+     * @param  {string} duration An XML schema duration in textual format.
+     *     Recurring durations and weeks are not supported.
+     * @return {?Interval} The duration as a Interval or null
+     *     if the parse fails.
+     */
+    static fromIsoString(duration: string): Interval | null;
     /**
      * Class representing a date/time interval. Used for date calculations.
      * <pre>
@@ -545,7 +550,7 @@ export class Interval {
      * @param {number=} opt_minutes Minutes.
      * @param {number=} opt_seconds Seconds.
      */
-    constructor(opt_years?: string | number | undefined, opt_months?: number | undefined, opt_days?: number | undefined, opt_hours?: number | undefined, opt_minutes?: number | undefined, opt_seconds?: number | undefined);
+    constructor(opt_years?: (number | string) | undefined, opt_months?: number | undefined, opt_days?: number | undefined, opt_hours?: number | undefined, opt_minutes?: number | undefined, opt_seconds?: number | undefined);
     /** @type {number} */
     years: number;
     /** @type {number} */
@@ -687,21 +692,21 @@ export function isLongIsoYear(year: number): boolean;
  * @param {DateLike=} opt_now The current time.
  * @return {boolean} Whether the dates are on the same day.
  */
-export function isSameDay(date: Date | date_Date | null, opt_now?: Date | date_Date | undefined): boolean;
+export function isSameDay(date: DateLike | null, opt_now?: DateLike | undefined): boolean;
 /**
  * Returns true if the 2 dates are in the same month.
  * @param {?DateLike} date The time to check.
  * @param {DateLike=} opt_now The current time.
  * @return {boolean} Whether the dates are in the same calendar month.
  */
-export function isSameMonth(date: Date | date_Date | null, opt_now?: Date | date_Date | undefined): boolean;
+export function isSameMonth(date: DateLike | null, opt_now?: DateLike | undefined): boolean;
 /**
  * Returns true if the 2 dates are in the same year.
  * @param {?DateLike} date The time to check.
  * @param {DateLike=} opt_now The current time.
  * @return {boolean} Whether the dates are in the same calendar year.
  */
-export function isSameYear(date: Date | date_Date | null, opt_now?: Date | date_Date | undefined): boolean;
+export function isSameYear(date: DateLike | null, opt_now?: DateLike | undefined): boolean;
 /**
  * @param {T} date1 A datelike object.
  * @param {S} date2 Another datelike object.

@@ -90,6 +90,53 @@ export type Format = number;
  */
 export class DateTimeFormat {
     /**
+     * @param {!DateLike} date
+     * @return {number}
+     * @private
+     */
+    private static getHours_;
+    /**
+     * Sets if the usage of Ascii digits in formatting should be enforced in
+     * formatted date/time even for locales where native digits are indicated.
+     * Also sets whether to remove RLM unicode control characters when using
+     * standard enumerated patterns (they exist e.g. in standard d/M/y for Arabic).
+     * Production code should call this once before any `DateTimeFormat`
+     * object is instantiated.
+     * Caveats:
+     *    * Enforcing ASCII digits affects all future formatting by new or existing
+     * `DateTimeFormat` objects.
+     *    * Removal of RLM characters only applies to `DateTimeFormat` objects
+     * instantiated after this call.
+     * @param {boolean} enforceAsciiDigits Whether Ascii digits should be enforced.
+     */
+    static setEnforceAsciiDigits(enforceAsciiDigits: boolean): void;
+    /**
+     * @return {boolean} Whether enforcing ASCII digits for all locales. See
+     *     `#setEnforceAsciiDigits` for more details.
+     */
+    static isEnforceAsciiDigits(): boolean;
+    /**
+     * Localizes a string potentially containing numbers, replacing ASCII digits
+     * with native digits if specified so by the locale. Leaves other characters.
+     * @param {number|string} input the string to be localized, using ASCII digits.
+     * @param {!Object=} opt_dateTimeSymbols Optional symbols to use rather than
+     *     the global symbols.
+     * @return {string} localized string, potentially using native digits.
+     * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
+     */
+    static localizeNumbers(input: number | string, opt_dateTimeSymbols?: any | undefined): string;
+    /**
+     * Validates is the DateLike object to format has a time.
+     * DateLike means Date|DateDate, and DateDateTime inherits
+     * from DateDate. But DateDate does not have time related
+     * members (getHours, getMinutes, getSeconds).
+     * Formatting can be done, if there are no time placeholders in the pattern.
+     *
+     * @param {!DateLike} date the object to validate.
+     * @private
+     */
+    private static validateDateHasTime_;
+    /**
      * Construct a DateTimeFormat object based on current locale.
      * @param {string|number} pattern pattern specification or pattern type.
      * @param {!Object=} opt_dateTimeSymbols Optional symbols to use for this
@@ -107,20 +154,20 @@ export class DateTimeFormat {
      * {@see Format}
      * {@see goog.i18n.DateTimePatterns}
      */
-    constructor(pattern: string | number, opt_dateTimeSymbols?: any);
+    constructor(pattern: string | number, opt_dateTimeSymbols?: any | undefined);
     patternParts_: any[];
     /**
      * Data structure that with all the locale info needed for date formatting.
      * (day/month names, most common patterns, rules for week-end, etc.)
      * @private {!DateTimeSymbolsType}
      */
-    dateTimeSymbols_: DateTimeSymbolsType;
+    private dateTimeSymbols_;
     /**
      * Apply specified pattern to this formatter object.
      * @param {string} pattern String specifying how the date should be formatted.
      * @private
      */
-    applyPattern_(pattern: string): void;
+    private applyPattern_;
     /**
      * Format the given date object according to preset pattern and current locale.
      * @param {?DateLike} date The Date object that is being formatted.
@@ -132,14 +179,14 @@ export class DateTimeFormat {
      *    Throws an error if the date is null or if one tries to format a date-only
      *    object (for instance DateDate) using a pattern with time fields.
      */
-    format(date: Date | googdate.Date | null, opt_timeZone?: TimeZone | undefined): string;
+    format(date: DateLike | null, opt_timeZone?: TimeZone | undefined): string;
     /**
      * Apply a predefined pattern as identified by formatType, which is stored in
      * locale specific repository.
      * @param {number} formatType A number that identified the predefined pattern.
      * @private
      */
-    applyStandardPattern_(formatType: number): void;
+    private applyStandardPattern_;
     /**
      * Localizes a string potentially containing numbers, replacing ASCII digits
      * with native digits if specified so by the locale. Leaves other characters.
@@ -147,7 +194,7 @@ export class DateTimeFormat {
      * @return {string} localized string, potentially using native digits.
      * @private
      */
-    localizeNumbers_(input: string): string;
+    private localizeNumbers_;
     /**
      * Formats Era field according to pattern specified.
      *
@@ -157,7 +204,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatEra_(count: number, date: Date | googdate.Date): string;
+    private formatEra_;
     /**
      * Formats Year field according to pattern specified
      *   JavaScript Date object seems incapable handling 1BC and
@@ -171,7 +218,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatYear_(count: number, date: Date | googdate.Date): string;
+    private formatYear_;
     /**
      * Formats Year (Week of Year) field according to pattern specified
      *   JavaScript Date object seems incapable handling 1BC and
@@ -185,7 +232,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatYearOfWeek_(count: number, date: Date | googdate.Date): string;
+    private formatYearOfWeek_;
     /**
      * Formats Month field according to pattern specified
      *
@@ -195,7 +242,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatMonth_(count: number, date: Date | googdate.Date): string;
+    private formatMonth_;
     /**
      * Formats (1..24) Hours field according to pattern specified
      *
@@ -205,7 +252,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    format24Hours_(count: number, date: Date | googdate.Date): string;
+    private format24Hours_;
     /**
      * Formats Fractional seconds field according to pattern
      * specified
@@ -217,7 +264,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatFractionalSeconds_(count: number, date: Date | googdate.Date): string;
+    private formatFractionalSeconds_;
     /**
      * Formats Day of week field according to pattern specified
      *
@@ -227,7 +274,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatDayOfWeek_(count: number, date: Date | googdate.Date): string;
+    private formatDayOfWeek_;
     /**
      * Formats Am/Pm field according to pattern specified
      *
@@ -237,7 +284,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatAmPm_(count: number, date: Date | googdate.Date): string;
+    private formatAmPm_;
     /**
      * Formats (1..12) Hours field according to pattern specified
      *
@@ -247,7 +294,7 @@ export class DateTimeFormat {
      * @return {string} formatted string that represent this field.
      * @private
      */
-    format1To12Hours_(count: number, date: Date | googdate.Date): string;
+    private format1To12Hours_;
     /**
      * Formats (0..11) Hours field according to pattern specified
      *
@@ -257,7 +304,7 @@ export class DateTimeFormat {
      * @return {string} formatted string that represent this field.
      * @private
      */
-    format0To11Hours_(count: number, date: Date | googdate.Date): string;
+    private format0To11Hours_;
     /**
      * Formats (0..23) Hours field according to pattern specified
      *
@@ -267,7 +314,7 @@ export class DateTimeFormat {
      * @return {string} formatted string that represent this field.
      * @private
      */
-    format0To23Hours_(count: number, date: Date | googdate.Date): string;
+    private format0To23Hours_;
     /**
      * Formats Standalone weekday field according to pattern specified
      *
@@ -277,7 +324,7 @@ export class DateTimeFormat {
      * @return {string} formatted string that represent this field.
      * @private
      */
-    formatStandaloneDay_(count: number, date: Date | googdate.Date): string;
+    private formatStandaloneDay_;
     /**
      * Formats Standalone Month field according to pattern specified
      *
@@ -287,7 +334,7 @@ export class DateTimeFormat {
      * @return {string} formatted string that represent this field.
      * @private
      */
-    formatStandaloneMonth_(count: number, date: Date | googdate.Date): string;
+    private formatStandaloneMonth_;
     /**
      * Formats Quarter field according to pattern specified
      *
@@ -297,7 +344,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatQuarter_(count: number, date: Date | googdate.Date): string;
+    private formatQuarter_;
     /**
      * Formats Date field according to pattern specified
      *
@@ -307,7 +354,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatDate_(count: number, date: Date | googdate.Date): string;
+    private formatDate_;
     /**
      * Formats Minutes field according to pattern specified
      *
@@ -317,7 +364,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatMinutes_(count: number, date: Date | googdate.Date): string;
+    private formatMinutes_;
     /**
      * Formats Seconds field according to pattern specified
      *
@@ -327,7 +374,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatSeconds_(count: number, date: Date | googdate.Date): string;
+    private formatSeconds_;
     /**
      * Formats the week of year field according to pattern specified
      *
@@ -337,7 +384,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatWeekOfYear_(count: number, date: Date | googdate.Date): string;
+    private formatWeekOfYear_;
     /**
      * Formats TimeZone field following RFC
      *
@@ -348,7 +395,7 @@ export class DateTimeFormat {
      * @return {string} Formatted string that represent this field.
      * @private
      */
-    formatTimeZoneRFC_(count: number, date: Date | googdate.Date, opt_timeZone?: TimeZone | undefined): string;
+    private formatTimeZoneRFC_;
     /**
      * Generate GMT timeZone string for given date
      * @param {number} count Number of time pattern char repeats, it controls
@@ -358,7 +405,7 @@ export class DateTimeFormat {
      * @return {string} GMT timeZone string.
      * @private
      */
-    formatTimeZone_(count: number, date: Date | googdate.Date, opt_timeZone?: TimeZone | undefined): string;
+    private formatTimeZone_;
     /**
      * Generate GMT timeZone string for given date
      * @param {!DateLike} date Whose value being evaluated.
@@ -366,7 +413,7 @@ export class DateTimeFormat {
      * @return {string} GMT timeZone string.
      * @private
      */
-    formatTimeZoneId_(date: Date | googdate.Date, opt_timeZone?: TimeZone | undefined): string;
+    private formatTimeZoneId_;
     /**
      * Generate localized, location dependent time zone id
      * @param {number} count Number of time pattern char repeats, it controls
@@ -376,7 +423,7 @@ export class DateTimeFormat {
      * @return {string} GMT timeZone string.
      * @private
      */
-    formatTimeZoneLocationId_(count: number, date: Date | googdate.Date, opt_timeZone?: TimeZone | undefined): string;
+    private formatTimeZoneLocationId_;
     /**
      * Formatting one date field.
      * @param {string} patternStr The pattern string for the field being formatted.
@@ -389,7 +436,7 @@ export class DateTimeFormat {
      * @return {string} string representation for the given field.
      * @private
      */
-    formatField_(patternStr: string, date: Date | googdate.Date, dateForDate: Date | googdate.Date, dateForTime: Date | googdate.Date, opt_timeZone?: TimeZone | undefined): string;
+    private formatField_;
 }
 export namespace DateTimeFormat {
     export const TOKENS_: Array<RegExp>;
@@ -399,7 +446,7 @@ export namespace DateTimeFormat {
         export const LITERAL: number;
     }
     /**
-     * These are token types, corresponding to above token definitions.
+     * *
      */
     export type PartTypes_ = number;
     export const enforceAsciiDigits_: boolean;
@@ -419,6 +466,5 @@ export namespace Format {
     export const MEDIUM_DATETIME: number;
     export const SHORT_DATETIME: number;
 }
-import { DateTimeSymbolsType } from "./datetimesymbols.js";
-import * as googdate from "../date/date.js";
+import { DateLike } from "../date/date.js";
 import { TimeZone } from "./timezone.js";

@@ -32,26 +32,26 @@ export class PopupBase extends events.EventTarget {
      * @param {Type=} opt_type Type of popup.
      * @param {boolean=} opt_dontSetElement EDITED: Disables calling of setElement in the constructor.
      */
-    constructor(opt_element?: Element | null | undefined, opt_type?: string | undefined, opt_dontSetElement?: boolean | undefined);
+    constructor(opt_element?: (Element | null) | undefined, opt_type?: Type | undefined, opt_dontSetElement?: boolean | undefined);
     /**
      * The popup dom element that this Popup wraps.
      * @type {Element|null}
      * @private
      */
-    element_: Element | null;
+    private element_;
     /**
      * Whether the Popup dismisses itself it the user clicks outside of it or the
      * popup loses focus
      * @type {boolean}
      * @private
      */
-    autoHide_: boolean;
+    private autoHide_;
     /**
      * Mouse events without auto hide partner elements will not dismiss the popup.
      * @type {?Array<?Element>}
      * @private
      */
-    autoHidePartners_: Array<Element | null> | null;
+    private autoHidePartners_;
     /**
      * Clicks outside the popup but inside this element will cause the popup to
      * hide if autoHide_ is true. If this is null, then the entire document is used.
@@ -60,13 +60,13 @@ export class PopupBase extends events.EventTarget {
      * @type {Element|null}
      * @private
      */
-    autoHideRegion_: Element | null;
+    private autoHideRegion_;
     /**
      * Whether the popup is currently being shown.
      * @type {boolean}
      * @private
      */
-    isVisible_: boolean;
+    private isVisible_;
     /**
      * Whether the popup should hide itself asynchrously. This was added because
      * there are cases where hiding the element in mouse down handler in IE can
@@ -75,65 +75,65 @@ export class PopupBase extends events.EventTarget {
      * @type {boolean}
      * @private
      */
-    shouldHideAsync_: boolean;
+    private shouldHideAsync_;
     /**
      * The time when the popup was last shown.
      * @type {number}
      * @private
      */
-    lastShowTime_: number;
+    private lastShowTime_;
     /**
      * The time when the popup was last hidden.
      * @type {number}
      * @private
      */
-    lastHideTime_: number;
+    private lastHideTime_;
     /**
      * Whether to hide when the escape key is pressed.
      * @type {boolean}
      * @private
      */
-    hideOnEscape_: boolean;
+    private hideOnEscape_;
     /**
      * Whether to enable cross-iframe dismissal.
      * @type {boolean}
      * @private
      */
-    enableCrossIframeDismissal_: boolean;
+    private enableCrossIframeDismissal_;
     /**
      * The type of popup
      * @type {?Type}
      * @private
      */
-    type_: Type | null;
+    private type_;
     /**
      * Transition to play on showing the popup.
      * @type {Transition|undefined}
      * @private
      */
-    showTransition_: Transition | undefined;
+    private showTransition_;
     /**
      * Transition to play on hiding the popup.
      * @type {Transition|undefined}
      * @private
      */
-    hideTransition_: Transition | undefined;
+    private hideTransition_;
     /**
      * An event handler to manage the events easily
      * @type {EventHandler<!PopupBase>}
      * @private
      */
-    handler_: EventHandler<PopupBase>;
+    private handler_;
     /**
      * @return {?Type} The type of popup this is.
      */
-    getType(): string | null;
+    getType(): Type | null;
     /**
      * Specifies the type of popup to use.
      *
      * @param {?Type} type Type of popup.
      */
-    setType(type: string | null): void;
+    setType(type: Type | null): void;
     /**
      * Returns whether the popup should hide itself asynchronously using a timeout
      * instead of synchronously.
@@ -244,12 +244,12 @@ export class PopupBase extends events.EventTarget {
      * @this {T}
      * @template T
      */
-    getHandler<T>(): events.EventHandler<T>;
+    protected getHandler<T>(): events.EventHandler<T>;
     /**
      * Helper to throw exception if the popup is showing.
      * @private
      */
-    ensureNotVisible_(): void;
+    private ensureNotVisible_;
     /**
      * Returns whether the popup is currently visible.
      *
@@ -293,7 +293,7 @@ export class PopupBase extends events.EventTarget {
      * Does the work to show the popup.
      * @private
      */
-    show_(): void;
+    private show_;
     /**
      * Hides the popup. This call is idempotent.
      *
@@ -301,30 +301,30 @@ export class PopupBase extends events.EventTarget {
      * @return {boolean} Whether the popup was hidden and not cancelled.
      * @private
      */
-    hide_(opt_target?: Node | null | undefined): boolean;
+    private hide_;
     /**
      * Continues hiding the popup. This is a continuation from hide_. It is
      * a separate method so that we can add a transition before hiding.
      * @param {?Node=} opt_target Target of the event causing the hide.
      * @private
      */
-    continueHidingPopup_(opt_target?: Node | null | undefined): void;
+    private continueHidingPopup_;
     /**
      * Shows the popup element.
      * @protected
      */
-    showPopupElement(): void;
+    protected showPopupElement(): void;
     /**
      * Hides the popup element.
      * @protected
      */
-    hidePopupElement(): void;
+    protected hidePopupElement(): void;
     /**
      * Hides the popup by moving it offscreen.
      *
      * @private
      */
-    moveOffscreen_(): void;
+    private moveOffscreen_;
     /**
      * Called before the popup is shown. Derived classes can override to hook this
      * event but should make sure to call the parent class method.
@@ -333,13 +333,13 @@ export class PopupBase extends events.EventTarget {
      *     if any of the handlers returns false this will also return false.
      * @protected
      */
-    onBeforeShow(): boolean;
+    protected onBeforeShow(): boolean;
     /**
      * Called after the popup is shown. Derived classes can override to hook this
      * event but should make sure to call the parent class method.
      * @protected
      */
-    onShow(): void;
+    protected onShow(): void;
     /**
      * Called before the popup is hidden. Derived classes can override to hook this
      * event but should make sure to call the parent class method.
@@ -349,14 +349,14 @@ export class PopupBase extends events.EventTarget {
      *     if any of the handlers returns false this will also return false.
      * @protected
      */
-    onBeforeHide(opt_target?: Node | null | undefined): boolean;
+    protected onBeforeHide(opt_target?: (Node | null) | undefined): boolean;
     /**
      * Called after the popup is hidden. Derived classes can override to hook this
      * event but should make sure to call the parent class method.
      * @param {?Node=} opt_target Target of the event causing the hide.
      * @protected
      */
-    onHide(opt_target?: Node | null | undefined): void;
+    protected onHide(opt_target?: (Node | null) | undefined): void;
     /**
      * Mouse down handler for the document on capture phase. Used to hide the
      * popup for auto-hide mode.
@@ -364,14 +364,14 @@ export class PopupBase extends events.EventTarget {
      * @param {?EventsBrowserEvent} e The event object.
      * @private
      */
-    onDocumentMouseDown_(e: EventsBrowserEvent | null): void;
+    private onDocumentMouseDown_;
     /**
      * Handles key-downs on the document to handle the escape key.
      *
      * @param {?EventsBrowserEvent} e The event object.
      * @private
      */
-    onDocumentKeyDown_(e: EventsBrowserEvent | null): void;
+    private onDocumentKeyDown_;
     /**
      * Deactivate handler(IE) and blur handler (other browsers) for document.
      * Used to hide the popup for auto-hide mode.
@@ -379,14 +379,14 @@ export class PopupBase extends events.EventTarget {
      * @param {?EventsBrowserEvent} e The event object.
      * @private
      */
-    onDocumentBlur_(e: EventsBrowserEvent | null): void;
+    private onDocumentBlur_;
     /**
      * @param {?Node} element The element to inspect.
      * @return {boolean} Returns true if the given element is one of the auto hide
      *     partners or is a child of an auto hide partner.
      * @private
      */
-    isOrWithinAutoHidePartner_(element: Node | null): boolean;
+    private isOrWithinAutoHidePartner_;
     /**
      * @param {?Node} element The element to inspect.
      * @return {boolean} Returns true if the element is contained within
@@ -394,14 +394,13 @@ export class PopupBase extends events.EventTarget {
      *     entire document.
      * @private
      */
-    isWithinAutoHideRegion_(element: Node | null): boolean;
+    private isWithinAutoHideRegion_;
     /**
      * @return {boolean} Whether the time since last show is less than the debounce
      *     delay.
      * @private
      */
-    shouldDebounce_(): boolean;
-    actualEventTarget_: PopupBase;
+    private shouldDebounce_;
 }
 export namespace PopupBase {
     export const DEBOUNCE_DELAY_MS: number;
@@ -413,4 +412,3 @@ export namespace Type {
 import * as events from "../events/eventhandler.js";
 import { Transition } from "../fx/transition.js";
 import { EventHandler } from "../events/eventhandler.js";
-import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";

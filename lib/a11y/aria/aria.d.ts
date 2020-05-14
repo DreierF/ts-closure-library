@@ -26,14 +26,14 @@ export function getLabel(element: Element): string;
  * @param {!Element} element DOM element to get role of.
  * @return {?Role} ARIA Role name.
  */
-export function getRole(element: Element): string | null;
+export function getRole(element: Element): Role | null;
 /**
  * Gets value of specified state or property.
  * @param {!Element} element DOM node to get state from.
  * @param {!State|string} stateName State name.
  * @return {string} Value of the state attribute.
  */
-export function getState(element: Element, stateName: string): string;
+export function getState(element: Element, stateName: State | string): string;
 /**
  * Gets the boolean value of an ARIA state/property.
  * @param {!Element} element The element to get the ARIA state for.
@@ -41,7 +41,7 @@ export function getState(element: Element, stateName: string): string;
  * @return {?boolean} Boolean value for the ARIA state value or null if
  *     the state value is not 'true', not 'false', or not set.
  */
-export function getStateBoolean(element: Element, stateName: string): boolean | null;
+export function getStateBoolean(element: Element, stateName: State | string): boolean | null;
 /**
  * Gets the number value of an ARIA state/property.
  * @param {!Element} element The element to get the ARIA state for.
@@ -49,7 +49,7 @@ export function getStateBoolean(element: Element, stateName: string): boolean | 
  * @return {?number} Number value for the ARIA state value or null if
  *     the state value is not a number or not set.
  */
-export function getStateNumber(element: Element, stateName: string): number | null;
+export function getStateNumber(element: Element, stateName: State | string): number | null;
 /**
  * Gets the string value of an ARIA state/property.
  * @param {!Element} element The element to get the ARIA state for.
@@ -57,7 +57,7 @@ export function getStateNumber(element: Element, stateName: string): number | nu
  * @return {?string} String value for the ARIA state value or null if
  *     the state value is empty string or not set.
  */
-export function getStateString(element: Element, stateName: string): string | null;
+export function getStateString(element: Element, stateName: State | string): string | null;
 /**
  * Gets array of strings value of the specified state or
  * property for the element.
@@ -67,14 +67,14 @@ export function getStateString(element: Element, stateName: string): string | nu
  * @return {!ArrayLike<string>} string Array
  *     value of the state attribute.
  */
-export function getStringArrayStateInternalUtil(element: Element, stateName: string): ArrayLike<string>;
+export function getStringArrayStateInternalUtil(element: Element, stateName: State): ArrayLike<string>;
 /**
  * Returns true if element has an ARIA state/property, false otherwise.
  * @param {!Element} element The element to get the ARIA state for.
  * @param {!State|string} stateName the ARIA state name.
  * @return {boolean}
  */
-export function hasState(element: Element, stateName: string): boolean;
+export function hasState(element: Element, stateName: State | string): boolean;
 /**
  * Returns whether the element has a container ARIA role.
  * Container roles are ARIA roles that use the aria-activedescendant property
@@ -95,7 +95,7 @@ export function removeRole(element: Element): void;
  * @param {!Element} element DOM node where we set state.
  * @param {!State} stateName State name.
  */
-export function removeState(element: Element, stateName: string): void;
+export function removeState(element: Element, stateName: State): void;
 /**
  * Sets the activedescendant ARIA property value for an element.
  * If the activeElement is not null, it should have an id set.
@@ -120,7 +120,7 @@ export function setLabel(element: Element, label: string): void;
  * @param {!Element} element DOM node to set role of.
  * @param {!Role|string} roleName role name(s).
  */
-export function setRole(element: Element, roleName: string): void;
+export function setRole(element: Element, roleName: Role | string): void;
 /**
  * Sets the state or property of an element.
  * @suppress{checkTypes}
@@ -131,7 +131,7 @@ export function setRole(element: Element, roleName: string): void;
  * @param {string|boolean|number|!Array<string>} value Value
  * for the state attribute.
  */
-export function setState(element: Element, stateName: string, value: string | number | boolean | string[]): void;
+export function setState(element: Element, stateName: (State | string), value: string | boolean | number | Array<string>): void;
 /**
  * Toggles the ARIA attribute of an element.
  * Meant for attributes with a true/false value, but works with any attribute.
@@ -143,4 +143,6 @@ export function setState(element: Element, stateName: string, value: string | nu
  *     Automatically adds prefix 'aria-' to the attribute name if the attribute
  *     is not an extra attribute.
  */
-export function toggleState(el: Element, attr: string): void;
+export function toggleState(el: Element, attr: (State | string)): void;
+import { Role } from "./roles.js";
+import { State } from "./attributes.js";

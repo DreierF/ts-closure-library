@@ -23,7 +23,7 @@ export class DirectionalString {
      * Retrieves this object's known direction (if any).
      * @return {?Dir} The known direction. Null if unknown.
      */
-    getDirection(): number | null;
+    getDirection(): Dir | null;
     /**
      * Interface marker of the DirectionalString interface.
      *
@@ -174,7 +174,7 @@ export function enforceRtlInText(text: string): string;
  *     Default: false.
  * @return {?Dir} Estimated overall directionality of `str`.
  */
-export function estimateDirection(str: string, opt_isHtml?: boolean | undefined): number | null;
+export function estimateDirection(str: string, opt_isHtml?: boolean | undefined): Dir | null;
 /**
  * Apply bracket guard using LRM and RLM. This is to address the problem of
  * messy bracket display frequently happens in RTL layout.
@@ -329,7 +329,7 @@ export function normalizeHebrewQuote(str: string): string;
  *     3. A boolean (true = RTL, false = LTR).
  *     4. A null for unknown directionality.
  */
-export function setElementDirAndAlign(element: Element | null, dir: number | boolean | null): void;
+export function setElementDirAndAlign(element: Element | null, dir: Dir | number | boolean | null): void;
 /**
  * Sets element dir based on estimated directionality of the given text.
  * @param {!Element} element
@@ -371,4 +371,4 @@ export function startsWithRtl(str: string, opt_isHtml?: boolean | undefined): bo
  * @return {?Dir} A Dir constant matching the
  *     given directionality. If given null, returns null (i.e. unknown).
  */
-export function toDir(givenDir: number | boolean | null, opt_noNeutral?: boolean | undefined): number | null;
+export function toDir(givenDir: Dir | number | boolean | null, opt_noNeutral?: boolean | undefined): Dir | null;

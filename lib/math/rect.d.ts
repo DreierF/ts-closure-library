@@ -7,7 +7,7 @@
  * @class
  * @implements {IRect}
  */
-export class Rect {
+export class Rect implements IRect {
     /**
      * Creates a new Rect object with the position and size given.
      * @param {!Coordinate} position The top-left coordinate of the Rect
@@ -60,7 +60,7 @@ export class Rect {
      * @return {!Array<!Rect>} An array with 0 to 4 rectangles which
      *     together define the difference area of rectangle a minus rectangle b.
      */
-    static difference(a: Rect | null, b: IRect | null): Rect[];
+    static difference(a: Rect | null, b: IRect | null): Array<Rect>;
     /**
      * Returns a new rectangle which completely contains both input rectangles.
      * @param {?IRect} a A rectangle.
@@ -116,7 +116,7 @@ export class Rect {
      * @return {!Array<!Rect>} An array with 0 to 4 rectangles which
      *     together define the difference area of rectangle a minus rectangle b.
      */
-    difference(rect: IRect | null): Rect[];
+    difference(rect: IRect | null): Array<Rect>;
     /**
      * Expand this rectangle to also include the area of the given rectangle.
      * @param {?IRect} rect The other rectangle.
@@ -131,7 +131,7 @@ export class Rect {
      * @return {boolean} Whether this rectangle contains given rectangle or
      *     coordinate.
      */
-    contains(another: Coordinate | IRect): boolean;
+    contains(another: IRect | Coordinate): boolean;
     /**
      * @param {!Coordinate} point A coordinate.
      * @return {number} The squared distance between the point and the closest
@@ -201,7 +201,7 @@ export class Rect {
      */
     scale(sx: number, opt_sy?: number | undefined): Rect;
 }
-import { Box as Math_Box } from "./box.js";
 import { IRect } from "./irect.js";
+import { Box as Math_Box } from "./box.js";
 import { Coordinate } from "./coordinate.js";
 import { Size } from "./size.js";

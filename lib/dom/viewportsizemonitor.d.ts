@@ -31,6 +31,22 @@
  */
 export class ViewportSizeMonitor extends events.EventTarget {
     /**
+     * Returns a viewport size monitor for the given window.  A new one is created
+     * if it doesn't exist already.  This prevents the unnecessary creation of
+     * multiple spooling monitors for a window.
+     * @param {Window=} opt_window The window to monitor; defaults to the window in
+     *     which this code is executing.
+     * @return {!ViewportSizeMonitor} Monitor for the given window.
+     */
+    static getInstanceForWindow(opt_window?: Window | undefined): ViewportSizeMonitor;
+    /**
+     * Removes and disposes a viewport size monitor for the given window if one
+     * exists.
+     * @param {Window=} opt_window The window whose monitor should be removed;
+     *     defaults to the window in which this code is executing.
+     */
+    static removeInstanceForWindow(opt_window?: Window | undefined): void;
+    /**
      * This class can be used to monitor changes in the viewport size.  Instances
      * dispatch a {@link EventType.RESIZE} event when the viewport size
      * changes.  Handlers can call {@link ViewportSizeMonitor#getSize} to
@@ -61,18 +77,18 @@ export class ViewportSizeMonitor extends events.EventTarget {
      * The window to monitor. Defaults to the window in which the code is running.
      * @private {Window}
      */
-    window_: Window;
+    private window_;
     /**
      * Event listener key for window the window resize handler, as returned by
      * {@link events.listen}.
      * @private {Key}
      */
-    listenerKey_: number | events.ListenableKey | null;
+    private listenerKey_;
     /**
      * The most recently recorded size of the viewport, in pixels.
      * @private {Size}
      */
-    size_: Size;
+    private size_;
     /**
      * Returns the most recently recorded size of the viewport, in pixels.  May
      * return null if no window resize event has been handled yet.
@@ -86,8 +102,7 @@ export class ViewportSizeMonitor extends events.EventTarget {
      * @param {?EventsEvent} event The window resize event to handle.
      * @private
      */
-    handleResize_(event: EventsEvent | null): void;
-    actualEventTarget_: ViewportSizeMonitor;
+    private handleResize_;
 }
 export namespace ViewportSizeMonitor {
     export const windowInstanceMap_: {
@@ -96,4 +111,3 @@ export namespace ViewportSizeMonitor {
 }
 import * as events from "../events/eventhandler.js";
 import { Size } from "../math/size.js";
-import { Event as EventsEvent } from "../events/event.js";

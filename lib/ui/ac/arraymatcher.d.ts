@@ -17,7 +17,7 @@ export class ArrayMatcher {
      *     have a toString method that returns the value to match against.
      * @return {!Array<?>} Rows that match.
      */
-    static getMatchesForRows(token: string, maxMatches: number, rows: any[]): any[];
+    static getMatchesForRows(token: string, maxMatches: number, rows: Array<unknown>): Array<unknown>;
     /**
      * Matches the token against the start of words in the row.
      * @param {string} token Token to match.
@@ -27,7 +27,7 @@ export class ArrayMatcher {
      *     a toString method that returns the value to match against.
      * @return {!Array<?>} Rows that match.
      */
-    static getPrefixMatchesForRows(token: string, maxMatches: number, rows: any[]): any[];
+    static getPrefixMatchesForRows(token: string, maxMatches: number, rows: Array<unknown>): Array<unknown>;
     /**
      * Matches the token against similar rows, by calculating "distance" between the
      * terms.
@@ -38,7 +38,7 @@ export class ArrayMatcher {
      *     match against.
      * @return {!Array<?>} The best maxMatches rows.
      */
-    static getSimilarMatchesForRows(token: string, maxMatches: number, rows: any[]): any[];
+    static getSimilarMatchesForRows(token: string, maxMatches: number, rows: Array<unknown>): Array<unknown>;
     /**
      * Basic class for matching words in an array
      * @param {Array<?>} rows Dictionary of items to match.  Can be objects if they
@@ -46,14 +46,14 @@ export class ArrayMatcher {
      * @param {boolean=} opt_noSimilar if true, do not do similarity matches for the
      *     input token against the dictionary.
      */
-    constructor(rows: any[], opt_noSimilar?: boolean | undefined);
+    constructor(rows: Array<unknown>, opt_noSimilar?: boolean | undefined);
     rows_: any[];
     useSimilar_: boolean;
     /**
      * Replaces the rows that this object searches over.
      * @param {Array<?>} rows Dictionary of items to match.
      */
-    setRows(rows: any[]): void;
+    setRows(rows: Array<unknown>): void;
     /**
      * Function used to pass matches to the autocomplete
      * @param {string} token Token to match.
@@ -68,7 +68,7 @@ export class ArrayMatcher {
      * @param {number} maxMatches Max number of matches to return.
      * @return {!Array<?>} Rows that match.
      */
-    getPrefixMatches(token: string, maxMatches: number): any[];
+    getPrefixMatches(token: string, maxMatches: number): Array<unknown>;
     /**
      * Matches the token against similar rows, by calculating "distance" between the
      * terms.
@@ -76,5 +76,5 @@ export class ArrayMatcher {
      * @param {number} maxMatches Max number of matches to return.
      * @return {!Array<?>} The best maxMatches rows.
      */
-    getSimilarRows(token: string, maxMatches: number): any[];
+    getSimilarRows(token: string, maxMatches: number): Array<unknown>;
 }

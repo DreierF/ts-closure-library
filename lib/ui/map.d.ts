@@ -14,9 +14,9 @@ declare class UiMap<K, V> {
      * @param {*=} map Map or Object to initialize the map with.
      * @template K, V
      */
-    constructor(map?: any, ...args: any[]);
+    constructor(map?: any | undefined, ...args: any[]);
     /** @private @const {!Map<K, V>} */
-    map_: any;
+    private map_;
     /**
      * @return {number} The number of key-value pairs in the map.
      */
@@ -51,7 +51,7 @@ declare class UiMap<K, V> {
      *     the values contained in each map are identical objects.
      * @return {boolean} Whether the maps are equal.
      */
-    equals(otherMap: UiMap<any, any>, equalityFn?: ((arg0: V, arg1: V) => boolean) | undefined): boolean;
+    equals(otherMap: UiMap, equalityFn?: ((arg0: V, arg1: V) => boolean) | undefined): boolean;
     /**
      * @return {boolean} Whether the map is empty.
      */
@@ -103,7 +103,7 @@ declare class UiMap<K, V> {
      * Clones a map and returns a new map.
      * @return {!UiMap} A new map with the same key-value pairs.
      */
-    clone(): UiMap<any, any>;
+    clone(): UiMap;
     /**
      * @return {!Object} Object representation of the map.
      */

@@ -25,40 +25,40 @@ export class PopupColorPicker extends Component {
      * @type {boolean}
      * @private
      */
-    initialized_: boolean;
+    private initialized_;
     /**
      * Instance of a color picker control.
      * @type {?ColorPicker}
      * @private
      */
-    colorPicker_: ColorPicker | null;
+    private colorPicker_;
     /**
      * Instance of UiPopup used to manage the behavior of the color picker.
      * @type {?UiPopup}
      * @private
      */
-    popup_: UiPopup | null;
+    private popup_;
     /**
      * Corner of the popup which is pinned to the attaching element.
      * @type {?Corner}
      * @private
      */
-    pinnedCorner_: Corner | null;
+    private pinnedCorner_;
     /**
      * Corner of the attaching element where the popup shows.
      * @type {?Corner}
      * @private
      */
-    popupCorner_: Corner | null;
+    private popupCorner_;
     /**
      * Reference to the element that triggered the last popup.
      * @type {Element|null}
      * @private
      */
-    lastTarget_: Element | null;
+    private lastTarget_;
     /** @private
       * @type {boolean} */
-    rememberSelection_: boolean;
+    private rememberSelection_;
     /**
      * Whether the color picker can move the focus to its key event target when it
      * is shown.  The default is true.  Setting to false can break keyboard
@@ -67,26 +67,26 @@ export class PopupColorPicker extends Component {
      * @type {boolean}
      * @private
      */
-    allowAutoFocus_: boolean;
+    private allowAutoFocus_;
     /**
      * Whether the color picker can accept focus.
      * @type {boolean}
      * @private
      */
-    focusable_: boolean;
+    private focusable_;
     /**
      * If true, then the colorpicker will toggle off if it is already visible.
      *
      * @type {boolean}
      * @private
      */
-    toggleMode_: boolean;
+    private toggleMode_;
     /**
      * If true, the colorpicker will appear on hover.
      * @type {boolean}
      * @private
      */
-    showOnHover_: boolean;
+    private showOnHover_;
     /**
      * @return {?ColorPicker} The color picker instance.
      */
@@ -193,7 +193,7 @@ export class PopupColorPicker extends Component {
      * Does not add duplicated colors.
      * @param {Array<string>} colors The array of colors to be added.
      */
-    addColors(colors: string[]): void;
+    addColors(colors: Array<string>): void;
     /**
      * Clear the colors displayed by the color picker.
      */
@@ -220,20 +220,16 @@ export class PopupColorPicker extends Component {
      * @param {?EventsBrowserEvent} e The browser event.
      * @private
      */
-    show_(e: EventsBrowserEvent | null): void;
+    private show_;
     /**
      * Handles the color change event.
      * @param {?EventsEvent} e The event.
      * @private
      */
-    onColorPicked_(e: EventsEvent | null): void;
-    actualEventTarget_: PopupColorPicker;
+    private onColorPicked_;
 }
 import { Component } from "./component.js";
 import { ColorPicker } from "./colorpicker.js";
-import { Popup as UiPopup } from "./popup.js";
-import { Corner } from "../positioning/positioning.js";
 import { PopupBase } from "./popupbase.js";
-import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
-import { Event as EventsEvent } from "../events/event.js";
+import { Corner } from "../positioning/positioning.js";
 import { DomHelper } from "../dom/dom.js";

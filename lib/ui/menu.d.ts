@@ -38,7 +38,7 @@ export class Menu extends Container<MenuRenderer> {
      * @param {MenuRenderer=} opt_renderer Renderer used to render or
      *     decorate the container; defaults to {@link MenuRenderer}.
      */
-    constructor(opt_domHelper?: _googdom.DomHelper | undefined, opt_renderer?: MenuRenderer | undefined);
+    constructor(opt_domHelper?: DomHelper | undefined, opt_renderer?: MenuRenderer | undefined);
     /**
      * Coordinates of the mousedown event that caused this menu to be made visible.
      * Used to prevent the consequent mouseup event due to a simple click from
@@ -53,14 +53,14 @@ export class Menu extends Container<MenuRenderer> {
      * @type {boolean}
      * @private
      */
-    allowAutoFocus_: boolean;
+    private allowAutoFocus_;
     /**
      * Whether the menu should use windows style behavior and allow disabled menu
      * items to be highlighted (though not selectable).  Defaults to false
      * @type {boolean}
      * @private
      */
-    allowHighlightDisabled_: boolean;
+    private allowHighlightDisabled_;
     /**
      * Returns the CSS class applied to menu elements, also used as the prefix for
      * derived styles, if any.  Subclasses should override this method as needed.
@@ -69,7 +69,7 @@ export class Menu extends Container<MenuRenderer> {
      * @protected
      * @deprecated Use getRenderer().getCssClass().
      */
-    getCssClass(): string;
+    protected getCssClass(): string;
     /**
      * Returns whether the provided element is to be considered inside the menu for
      * purposes such as dismissing the menu on an event.  This is so submenus can
@@ -127,19 +127,19 @@ export class Menu extends Container<MenuRenderer> {
      * @return {!Array<MenuItem>} An array of menu items.
      * @deprecated Use getChildAt, forEachChild, and getChildCount.
      */
-    getItems(): MenuItem[];
+    getItems(): Array<MenuItem>;
     /**
      * Sets the position of the menu relative to the view port.
      * @param {number|Coordinate} x Left position or coordinate obj.
      * @param {number=} opt_y Top position.
      */
-    setPosition(x: number | MathCoordinate, opt_y?: number | undefined): void;
+    setPosition(x: number | Coordinate, opt_y?: number | undefined): void;
     /**
      * Gets the page offset of the menu, or null if the menu isn't visible
      * @return {Coordinate?} Object holding the x-y coordinates of the
      *     menu or null if the menu is not visible.
      */
-    getPosition(): MathCoordinate | null;
+    getPosition(): Coordinate | null;
     /**
      * Sets whether the menu can automatically move focus to its key event target
      * when it is set to visible.
@@ -165,40 +165,19 @@ export class Menu extends Container<MenuRenderer> {
      */
     getAllowHighlightDisabled(): boolean;
     /**
-     * @override
-     * @param {boolean} show Whether to show or hide the menu.
-     * @param {boolean=} opt_force If true, doesn't check whether the menu
-     *     already has the requested visibility, and doesn't dispatch any events.
-     * @param {EventsEvent=} opt_e Mousedown event that caused this menu to
-     *     be made visible (ignored if show is false).
-     * @suppress {checkTypes}
-     */
-    setVisible(show: boolean, opt_force?: boolean | undefined, opt_e?: EventsEvent | undefined): boolean;
-    /** @override */
-    handleEnterItem(e: any): boolean;
-    /**
      * Highlights the next item that begins with the specified string.  If no
      * (other) item begins with the given string, the selection is unchanged.
      * @param {string} charStr The prefix to match.
      * @return {boolean} Whether a matching prefix was found.
      */
     highlightNextPrefix(charStr: string): boolean;
-    /** @override */
-    canHighlightItem(item: any): any;
-    /** @override */
-    decorateInternal(element: any): void;
-    /** @override */
-    handleKeyEventInternal(e: any): boolean;
-    /** @override */
-    setHighlightedIndex(index: any): void;
     /**
      * Decorate menu items located in any descendant node which as been explicitly
      * marked as a 'content' node.
      * @param {?Element} element Element to decorate.
      * @protected
      */
-    decorateContent(element: Element | null): void;
-    actualEventTarget_: Menu;
+    protected decorateContent(element: Element | null): void;
 }
 export namespace Menu {
     import CSS_CLASS = MenuRenderer.CSS_CLASS;
@@ -230,7 +209,7 @@ export class MenuItem extends Control<Ui_MenuItemRenderer> {
      *     document interactions.
      * @param {Ui_MenuItemRenderer=} opt_renderer Optional renderer.
      */
-    constructor(content: any, opt_model?: any, opt_domHelper?: _googdom.DomHelper | undefined, opt_renderer?: Ui_MenuItemRenderer | undefined);
+    constructor(content: ControlContent | null, opt_model?: any | undefined, opt_domHelper?: DomHelper | undefined, opt_renderer?: Ui_MenuItemRenderer | undefined);
     /**
      * The access key for this menu item. This key allows the user to quickly
      * trigger this item's action with they keyboard. For example, setting the
@@ -240,7 +219,7 @@ export class MenuItem extends Control<Ui_MenuItemRenderer> {
      * @type {?KeyCodes}
      * @private
      */
-    mnemonicKey_: KeyCodes | null;
+    private mnemonicKey_;
     /**
      * Returns the value associated with the menu item.  The default implementation
      * returns the model object associated with the item (if any), or its caption.
@@ -253,8 +232,6 @@ export class MenuItem extends Control<Ui_MenuItemRenderer> {
      * @param {*} value Value to be associated with the menu item.
      */
     setValue(value: any): void;
-    /** @override */
-    setSupportedState(state: any, support: any): void;
     /**
      * Sets the menu item to be selectable or not.  Set to true for menu items
      * that represent selectable options.
@@ -266,7 +243,7 @@ export class MenuItem extends Control<Ui_MenuItemRenderer> {
      * @param {boolean} selectable  Whether the menu item is selectable.
      * @private
      */
-    setSelectableInternal_(selectable: boolean): void;
+    private setSelectableInternal_;
     /**
      * Sets the menu item to be checkable or not.  Set to true for menu items
      * that represent checkable options.
@@ -278,16 +255,12 @@ export class MenuItem extends Control<Ui_MenuItemRenderer> {
      * @param {boolean} checkable Whether the menu item is checkable.
      * @private
      */
-    setCheckableInternal_(checkable: boolean): void;
+    private setCheckableInternal_;
     /**
      * @suppress {checkTypes}
      * @return {?string} The keyboard accelerator text, or null if the menu item doesn't have one.
      */
     getAccelerator(): string | null;
-    /** @override */
-    handleMouseUp(e: any): void;
-    /** @override */
-    handleKeyEventInternal(e: any): boolean;
     /**
      * Sets the mnemonic key code. The mnemonic is the key associated with this
      * action.
@@ -300,21 +273,6 @@ export class MenuItem extends Control<Ui_MenuItemRenderer> {
      * @return {?KeyCodes} The key code of the mnemonic key.
      */
     getMnemonic(): KeyCodes | null;
-    /**
-     * @override
-     */
-    getPreferredAriaRole(): any;
-    /**
-     * @override
-     * @return {?Menu}
-     */
-    getParent(): Menu | null;
-    /**
-     * @override
-     * @return {?Menu}
-     */
-    getParentEventTarget(): Menu | null;
-    actualEventTarget_: MenuItem;
 }
 export namespace MenuItem {
     export const MNEMONIC_WRAPPER_CLASS_: string;
@@ -329,6 +287,8 @@ export namespace MenuItem {
  * @extends {ContainerRenderer}
  */
 export class MenuRenderer extends ContainerRenderer {
+    /** @override @return {!MenuRenderer} @suppress {checkTypes} */
+    static getInstance(): MenuRenderer;
     /**
      * Default renderer for {@link Menu}s, based on {@link
      * ContainerRenderer}.
@@ -342,8 +302,6 @@ export class MenuRenderer extends ContainerRenderer {
      * @return {boolean} Whether the given element is contained in the menu.
      */
     containsElement(menu: Menu | null, element: Element | null): boolean;
-    /** @override */
-    initializeDom(container: any): void;
 }
 export namespace MenuRenderer {
     export const instance_: MenuRenderer | null;
@@ -354,10 +312,9 @@ import { Container } from "./container.js";
 import { Coordinate } from "../math/coordinate.js";
 import { MenuHeader } from "./menuheader.js";
 import { MenuSeparator } from "./menuseparator.js";
-import { Coordinate as MathCoordinate } from "../math/coordinate.js";
-import { Event as EventsEvent } from "../events/event.js";
-import * as _googdom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";
 import { MenuItemRenderer as Ui_MenuItemRenderer } from "./menuitemrenderer.js";
 import { Control } from "./control.js";
 import { KeyCodes } from "../events/keycodes.js";
+import { ControlContent } from "./controlcontent.js";
 import { ContainerRenderer } from "./container.js";

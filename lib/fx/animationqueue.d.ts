@@ -9,17 +9,7 @@ export class AnimationParallelQueue extends AnimationQueue {
      * @type {number}
      * @private
      */
-    finishedCounter_: number;
-    /**
-     * @override
-     * @suppress {checkTypes}
-     */
-    play(opt_restart?: any): boolean;
-    /** @override */
-    stop(opt_gotoEnd?: any): void;
-    /** @override */
-    onAnimationFinish(e: any): void;
-    actualEventTarget_: AnimationParallelQueue;
+    private finishedCounter_;
 }
 /**
  * @fileoverview A class which automatically plays through a queue of
@@ -41,7 +31,7 @@ export class AnimationQueue extends TransitionBase {
      * @type {Array<TransitionBase>}
      * @protected
      */
-    queue: Array<TransitionBase>;
+    protected queue: Array<TransitionBase>;
     /**
      * Pushes an Animation to the end of the queue.
      * @param {?TransitionBase} animation The animation to add to the queue.
@@ -58,8 +48,7 @@ export class AnimationQueue extends TransitionBase {
      * @protected
      * @abstract
      */
-    onAnimationFinish(e: EventsEvent | null): void;
-    actualEventTarget_: AnimationQueue;
+    protected onAnimationFinish(e: EventsEvent | null): void;
 }
 /**
  * Constructor for AnimationSerialQueue object.
@@ -72,17 +61,7 @@ export class AnimationSerialQueue extends AnimationQueue {
      * @type {number}
      * @private
      */
-    current_: number;
-    /**
-     * @override
-     * @suppress {checkTypes}
-     */
-    play(opt_restart?: any): boolean;
-    /** @override */
-    stop(opt_gotoEnd?: any): void;
-    /** @override */
-    onAnimationFinish(e: any): void;
-    actualEventTarget_: AnimationSerialQueue;
+    private current_;
 }
 import { TransitionBase } from "./transitionbase.js";
 import { Animation as FxAnimation } from "./animation.js";

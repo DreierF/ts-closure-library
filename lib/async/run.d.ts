@@ -14,7 +14,10 @@ export const ASSUME_NATIVE_PROMISE: boolean;
  */
 export function run<THIS>(callback: (this: THIS) => any, opt_context?: THIS | undefined): void;
 export namespace run {
+    export function initializeRunner_(): void;
+    export function forceNextTick(opt_realSetTimeout?: ((arg0: () => any) => any) | undefined): void;
     export const workQueueScheduled_: boolean;
     export const workQueue_: WorkQueue;
+    export function processWorkQueue(): void;
 }
 import { WorkQueue } from "./workqueue.js";

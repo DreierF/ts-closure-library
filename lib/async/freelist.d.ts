@@ -16,15 +16,15 @@ export class FreeList<ITEM> {
      */
     constructor(create: () => ITEM, reset: (arg0: ITEM) => void, limit: number);
     /** @private @const {number} */
-    limit_: number;
+    private limit_;
     /** @private @const {function()} */
-    create_: () => ITEM;
+    private create_;
     /** @private @const {function(ITEM):void} */
-    reset_: (arg0: ITEM) => void;
+    private reset_;
     /** @private {number} */
-    occupants_: number;
+    private occupants_;
     /** @private {ITEM} */
-    head_: any;
+    private head_;
     /**
      * @return {?ITEM}
      */

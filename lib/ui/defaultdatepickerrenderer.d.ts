@@ -10,7 +10,7 @@
  *
  * @implements {DatePickerRenderer}
  */
-export class DefaultDatePickerRenderer {
+export class DefaultDatePickerRenderer implements DatePickerRenderer {
     /**
      * Default renderer for {@link goog.ui.DatePicker}. Renders the date picker's
      * navigation header and footer.
@@ -18,23 +18,23 @@ export class DefaultDatePickerRenderer {
      * @param {string} baseCssClass Name of base CSS class of the date picker.
      * @param {DomHelper=} opt_domHelper DOM helper.
      */
-    constructor(baseCssClass: string, opt_domHelper?: goog_dom.DomHelper | undefined);
+    constructor(baseCssClass: string, opt_domHelper?: DomHelper | undefined);
     /**
      * Name of base CSS class of datepicker
      * @type {string}
      * @private
      */
-    baseCssClass_: string;
+    private baseCssClass_;
     /**
      * @type {!DomHelper}
      * @private
      */
-    dom_: DomHelper;
+    private dom_;
     /**
      * Returns the dom helper that is being used on this component.
      * @return {!DomHelper} The dom helper used on this component.
      */
-    getDomHelper(): goog_dom.DomHelper;
+    getDomHelper(): DomHelper;
     /**
      * Returns base CSS class. This getter is used to get base CSS class part.
      * All CSS class names in component are created as:
@@ -75,7 +75,7 @@ export class DefaultDatePickerRenderer {
      * @private
      * @return {!Element} The created button element.
      */
-    createButton_(parentNode: Element | null, label: string, opt_className?: string | undefined): Element;
+    private createButton_;
 }
+import { DatePickerRenderer } from "./datepickerrenderer.js";
 import { DomHelper } from "../dom/dom.js";
-import * as goog_dom from "../dom/dom.js";

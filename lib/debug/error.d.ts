@@ -15,9 +15,7 @@ declare class debug_Error extends Error {
      * Base class for custom error objects.
      * @param {*=} opt_msg The message associated with the error.
      */
-    constructor(opt_msg?: any);
-    /** @override */
-    stack: string;
+    constructor(opt_msg?: any | undefined);
     /**
      * Whether to report this error to the server. Setting this to false will
      * cause the error reporter to not report the error back to the server,

@@ -19,100 +19,100 @@ export class ComboBox extends Component {
      * @param {LabelInput=} opt_labelInput Optional label input.
      *     This label input is disposed of by this control.
      */
-    constructor(opt_domHelper?: googdom.DomHelper | undefined, opt_menu?: Menu | undefined, opt_labelInput?: LabelInput | undefined);
+    constructor(opt_domHelper?: DomHelper | undefined, opt_menu?: Menu | undefined, opt_labelInput?: LabelInput | undefined);
     /**
      * A logger to help debugging of combo box behavior.
      * @type {?LogLogger}
      * @private
      */
-    logger_: DebugLogger | null;
+    private logger_;
     /**
      * Keyboard event handler to manage key events dispatched by the input element.
      * @type {?KeyHandler}
      * @private
      */
-    keyHandler_: KeyHandler | null;
+    private keyHandler_;
     /**
      * Input handler to take care of firing events when the user inputs text in
      * the input.
      * @type {?InputHandler}
      * @private
      */
-    inputHandler_: InputHandler | null;
+    private inputHandler_;
     /**
      * The last input token.
      * @type {?string}
      * @private
      */
-    lastToken_: string | null;
+    private lastToken_;
     /**
      * The cached visible count.
      * @type {number}
      * @private
      */
-    visibleCount_: number;
+    private visibleCount_;
     /**
      * The input element.
      * @type {Element|null}
      * @private
      */
-    input_: Element | null;
+    private input_;
     /**
      * The match function.  The first argument for the match function will be
      * a MenuItem's caption and the second will be the token to evaluate.
      * @type {?Function}
      * @private
      */
-    matchFunction_: Function | null;
+    private matchFunction_;
     /**
      * Element used as the combo boxes button.
      * @type {Element|null}
      * @private
      */
-    button_: Element | null;
+    private button_;
     /**
      * Default text content for the input box when it is unchanged and unfocussed.
      * @type {string}
      * @private
      */
-    defaultText_: string;
+    private defaultText_;
     /**
      * Name for the input box created
      * @type {string}
      * @private
      */
-    fieldName_: string;
+    private fieldName_;
     /**
      * Timer identifier for delaying the dismissal of the combo menu.
      * @type {?number}
      * @private
      */
-    dismissTimer_: number | null;
+    private dismissTimer_;
     /**
      * True if the unicode inverted triangle should be displayed in the dropdown
      * button. Defaults to false.
      * @type {boolean} useDropdownArrow
      * @private
      */
-    useDropdownArrow_: boolean;
+    private useDropdownArrow_;
     /**
      * A LabelInput control that manages the focus/blur state of the input box.
      * @type {?LabelInput}
      * @private
      */
-    labelInput_: LabelInput | null;
+    private labelInput_;
     /**
      * Whether the combo box is enabled.
      * @type {boolean}
      * @private
      */
-    enabled_: boolean;
+    private enabled_;
     /**
      * Drop down menu for the combo box.  Will be created at construction time.
      * @type {?Menu}
      * @private
      */
-    menu_: Menu | null;
+    private menu_;
     /**
      * Enables/Disables the combo box.
      * @param {boolean} enabled Whether to enable (true) or disable (false) the
@@ -123,12 +123,6 @@ export class ComboBox extends Component {
      * @return {boolean} Whether the menu item is enabled.
      */
     isEnabled(): boolean;
-    /**
-     * Combo box currently can't decorate elements.
-     * @return {boolean} The value false.
-     * @override
-     */
-    canDecorate(): boolean;
     /**
      * Dismisses the menu and resets the value of the edit field.
      */
@@ -187,7 +181,7 @@ export class ComboBox extends Component {
      * @return {number} The number of visible items in the menu.
      * @private
      */
-    getNumberOfVisibleItems_(): number;
+    private getNumberOfVisibleItems_;
     /**
      * Sets the match function to be used when filtering the combo box menu.
      * @param {?Function} matchFunction The match function to be used when filtering
@@ -241,11 +235,11 @@ export class ComboBox extends Component {
      *     input box, when multi-input is disabled it will be the full input value.
      * @private
      */
-    getTokenText_(): string;
+    private getTokenText_;
     /**
      * @private
      */
-    setupMenu_(): void;
+    private setupMenu_;
     /**
      * Shows the menu if it isn't already showing.  Also positions the menu
      * correctly, resets the menu item visibilities and highlights the relevant
@@ -254,51 +248,51 @@ export class ComboBox extends Component {
      *     item highlighted.
      * @private
      */
-    maybeShowMenu_(showAll: boolean): void;
+    private maybeShowMenu_;
     /**
      * Positions the menu.
      * @protected
      */
-    positionMenu(): void;
+    protected positionMenu(): void;
     /**
      * Show the menu and add an active class to the combo box's element.
      * @private
      */
-    showMenu_(): void;
+    private showMenu_;
     /**
      * Hide the menu and remove the active class from the combo box's element.
      * @private
      */
-    hideMenu_(): void;
+    private hideMenu_;
     /**
      * Clears the dismiss timer if it's active.
      * @private
      */
-    clearDismissTimer_(): void;
+    private clearDismissTimer_;
     /**
      * Event handler for when the combo box area has been clicked.
      * @param {?EventsBrowserEvent} e The browser event.
      * @private
      */
-    onComboMouseDown_(e: EventsBrowserEvent | null): void;
+    private onComboMouseDown_;
     /**
      * Event handler for when the document is clicked.
      * @param {?EventsBrowserEvent} e The browser event.
      * @private
      */
-    onDocClicked_(e: EventsBrowserEvent | null): void;
+    private onDocClicked_;
     /**
      * Handle the menu's select event.
      * @param {?EventsEvent} e The event.
      * @private
      */
-    onMenuSelected_(e: EventsEvent | null): void;
+    private onMenuSelected_;
     /**
      * Event handler for when the input box looses focus -- hide the menu
      * @param {?EventsBrowserEvent} e The browser event.
      * @private
      */
-    onInputBlur_(e: EventsBrowserEvent | null): void;
+    private onInputBlur_;
     /**
      * Handles keyboard events from the input box.  Returns true if the combo box
      * was able to handle the event, false otherwise.
@@ -307,31 +301,31 @@ export class ComboBox extends Component {
      * @protected
      * @suppress {visibility} performActionInternal
      */
-    handleKeyEvent(e: KeyEvent | null): boolean;
+    protected handleKeyEvent(e: KeyEvent | null): boolean;
     /**
      * Handles the content of the input box changing.
      * @param {?EventsEvent} e The INPUT event to handle.
      * @private
      */
-    onInputEvent_(e: EventsEvent | null): void;
+    private onInputEvent_;
     /**
      * Handles the content of the input box changing, either because of user
      * interaction or programmatic changes.
      * @private
      */
-    handleInputChange_(): void;
+    private handleInputChange_;
     /**
      * Loops through all menu items setting their visibility according to a token.
      * @param {string} token The token.
      * @private
      */
-    setItemVisibilityFromToken_(token: string): void;
+    private setItemVisibilityFromToken_;
     /**
      * Highlights the first token that matches the given token.
      * @param {string} token The token.
      * @private
      */
-    setItemHighlightFromToken_(token: string): void;
+    private setItemHighlightFromToken_;
     /**
      * Returns true if the item has an isSticky method and the method returns true.
      * @param {?MenuItem} item The item.
@@ -340,8 +334,7 @@ export class ComboBox extends Component {
      * @private
      * @suppress {checkTypes}
      */
-    isItemSticky_(item: MenuItem | null): boolean;
-    actualEventTarget_: ComboBox;
+    private isItemSticky_;
 }
 export namespace ComboBox {
     export const BLUR_DISMISS_TIMER_MS: number;
@@ -364,14 +357,14 @@ export class ComboBoxItem extends MenuItem {
      *     interactions.
      * @param {Ui_MenuItemRenderer=} opt_renderer Optional renderer.
      */
-    constructor(content: any, opt_data?: any, opt_domHelper?: googdom.DomHelper | undefined, opt_renderer?: Ui_MenuItemRenderer | undefined);
+    constructor(content: ControlContent | null, opt_data?: any | undefined, opt_domHelper?: DomHelper | undefined, opt_renderer?: Ui_MenuItemRenderer | undefined);
     /**
      * Whether the menu item is sticky, non-sticky items will be hidden as the
      * user types.
      * @type {boolean}
      * @private
      */
-    isSticky_: boolean;
+    private isSticky_;
     /**
      * Sets the menu item to be sticky or not sticky.
      * @param {boolean} sticky Whether the menu item should be sticky.
@@ -386,19 +379,14 @@ export class ComboBoxItem extends MenuItem {
      * @param {string} token The token.
      */
     setFormatFromToken(token: string): void;
-    actualEventTarget_: ComboBoxItem;
 }
 import { Component } from "./component.js";
-import { Logger as LogLogger } from "../log/log.js";
-import { KeyHandler } from "../events/keyhandler.js";
-import { InputHandler } from "../events/inputhandler.js";
-import { LabelInput } from "./labelinput.js";
-import { Menu } from "./menu.js";
 import { MenuItem } from "./menu.js";
-import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
-import { Event as EventsEvent } from "../events/event.js";
+import { Menu } from "./menu.js";
+import { LabelInput } from "./labelinput.js";
 import { KeyEvent } from "../events/keyhandler.js";
-import * as googdom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";
+import { ControlContent } from "./controlcontent.js";
 import { MenuItemRenderer as Ui_MenuItemRenderer } from "./menuitemrenderer.js";
 import {Logger as DebugLogger} from "../debug/logger";
 

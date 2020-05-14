@@ -10,7 +10,7 @@ export function focusAndSelect(el: Element | null): void;
  * @return {!StructsMap<string, !Array<string>>} A map of the form data
  *     as field name to arrays of values.
  */
-export function getFormDataMap(form: HTMLFormElement | null): StructsMap<string, string[]>;
+export function getFormDataMap(form: HTMLFormElement | null): StructsMap<string, Array<string>>;
 /**
  * Returns the form data as an application/x-www-url-encoded string. This
  * doesn't support file inputs.
@@ -24,7 +24,7 @@ export function getFormDataString(form: HTMLFormElement | null): string;
  * @return {string|Array<string>|null} The current value of the element
  *     (or null).
  */
-export function getValue(input: any): string | string[] | null;
+export function getValue(input: null | Element | RadioNodeList<unknown>): string | Array<string> | null;
 /**
  * Returns the value of the named form field. In the case of radio buttons,
  * returns the value of the checked button with the given name.
@@ -35,7 +35,7 @@ export function getValue(input: any): string | string[] | null;
  * @return {Array<string>|string|null} The value of the form element, or
  *     null if the form element does not exist or has no value.
  */
-export function getValueByName(form: HTMLFormElement | null, name: string): string | string[] | null;
+export function getValueByName(form: HTMLFormElement | null, name: string): Array<string> | string | null;
 /**
  * Whether the form has a file input.
  * @param {?HTMLFormElement} form The form.
@@ -68,7 +68,7 @@ export function setDisabled(el: Element | null, disabled: boolean): void;
  *     by the browser in the default case using toString. This value should be
  *     an array for setting the value of select multiple elements.
  */
-export function setValue(el: Element | null, opt_value?: any): void;
+export function setValue(el: Element | null, opt_value?: any | undefined): void;
 /**
  * Submits form data via a new window. This hides references to the parent
  * window and should be used when submitting forms to untrusted 3rd party urls.
@@ -78,7 +78,7 @@ export function setValue(el: Element | null, opt_value?: any): void;
  *     data as field name to arrays of values.
  * @return {boolean} true If the form was submitted succesfully.
  */
-export function submitFormDataInNewWindow(actionUri: string, method: string, formData: StructsMap<string, string[]>): boolean;
+export function submitFormDataInNewWindow(actionUri: string, method: string, formData: StructsMap<string, Array<string>>): boolean;
 /**
  * @fileoverview Utilities for manipulating a form and elements.
  *

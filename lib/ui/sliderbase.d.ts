@@ -16,7 +16,7 @@ export class AnimationFactory {
      * @param {number} interval The animation interval.
      * @return {!Array<!TransitionBase>} The additional animations to play.
      */
-    createAnimations(previousValue: number, newValue: number, interval: number): TransitionBase[];
+    createAnimations(previousValue: number, newValue: number, interval: number): Array<TransitionBase>;
 }
 export namespace Orientation {
     export const VERTICAL: string;
@@ -59,117 +59,117 @@ export class SliderBase extends Component {
      * @param {(function(number):?string)=} opt_labelFn An optional function mapping
      *     slider values to a description of the value.
      */
-    constructor(opt_domHelper?: goog_dom.DomHelper | undefined, opt_labelFn?: ((arg0: number) => string | null) | undefined);
+    constructor(opt_domHelper?: DomHelper | undefined, opt_labelFn?: ((arg0: number) => string | null) | undefined);
     /**
      * Orientation of the slider.
      * @type {?Orientation}
      * @private
      */
-    orientation_: Orientation | null;
+    private orientation_;
     /** @private
       * @type {?AnimationParallelQueue} */
-    currentAnimation_: AnimationParallelQueue | null;
+    private currentAnimation_;
     /** @private
       * @type {?Timer} */
-    incTimer_: Timer | null;
+    private incTimer_;
     /** @private
       * @type {boolean|null} */
-    incrementing_: boolean | null;
+    private incrementing_;
     /** @private
       * @type {number|null} */
-    lastMousePosition_: number | null;
+    private lastMousePosition_;
     /**
      * The minThumb dom-element, pointing to the start of the selected range.
      * @type {?HTMLDivElement}
      * @protected
      */
-    valueThumb: HTMLDivElement | null;
+    protected valueThumb: HTMLDivElement | null;
     /**
      * The maxThumb dom-element, pointing to the end of the selected range.
      * @type {?HTMLDivElement}
      * @protected
      */
-    extentThumb: HTMLDivElement | null;
+    protected extentThumb: HTMLDivElement | null;
     /**
      * The dom-element highlighting the selected range.
      * @type {?HTMLDivElement}
      * @protected
      */
-    rangeHighlight: HTMLDivElement | null;
+    protected rangeHighlight: HTMLDivElement | null;
     /**
      * The thumb that we should be moving (only relevant when timed move is active).
      * @type {?HTMLDivElement}
      * @private
      */
-    thumbToMove_: HTMLDivElement | null;
+    private thumbToMove_;
     /**
      * The object handling keyboard events.
      * @type {?KeyHandler}
      * @private
      */
-    keyHandler_: KeyHandler | null;
+    private keyHandler_;
     /**
      * The object handling mouse wheel events.
      * @type {?MouseWheelHandler}
      * @private
      */
-    mouseWheelHandler_: MouseWheelHandler | null;
+    private mouseWheelHandler_;
     /**
      * The Dragger for dragging the valueThumb.
      * @type {?Dragger}
      * @private
      */
-    valueDragger_: Dragger | null;
+    private valueDragger_;
     /**
      * The Dragger for dragging the extentThumb.
      * @type {?Dragger}
      * @private
      */
-    extentDragger_: Dragger | null;
+    private extentDragger_;
     /**
      * If we are currently animating the thumb.
      * @private
      * @type {boolean}
      */
-    isAnimating_: boolean;
+    private isAnimating_;
     /**
      * Whether clicking on the backgtround should move directly to that point.
      * @private
      * @type {boolean}
      */
-    moveToPointEnabled_: boolean;
+    private moveToPointEnabled_;
     /**
      * The amount to increment/decrement for page up/down as well as when holding
      * down the mouse button on the background.
      * @private
      * @type {number}
      */
-    blockIncrement_: number;
+    private blockIncrement_;
     /**
      * The minimal extent. The class will ensure that the extent cannot shrink
      * to a value smaller than minExtent.
      * @private
      * @type {number}
      */
-    minExtent_: number;
+    private minExtent_;
     /**
      * Whether the slider should handle mouse wheel events.
      * @private
      * @type {boolean}
      */
-    isHandleMouseWheel_: boolean;
+    private isHandleMouseWheel_;
     /**
      * The time the last mousedown event was received.
      * @private
      * @type {number}
      */
-    mouseDownTime_: number;
+    private mouseDownTime_;
     /**
      * Whether the slider is enabled or not.
      * @private
      * @type {boolean}
      */
-    enabled_: boolean;
+    private enabled_;
     /**
      * Whether the slider implements the changes described in http://b/6324964,
      * making it truly RTL.  This is a temporary flag to allow clients to transition
@@ -178,37 +178,37 @@ export class SliderBase extends Component {
      * @type {boolean}
      * @private
      */
-    flipForRtl_: boolean;
+    private flipForRtl_;
     /**
      * The amount to increment/decrement for up, down, left and right arrow keys
      * and mouse wheel events.
      * @private
      * @type {number}
      */
-    unitIncrement_: number;
+    private unitIncrement_;
     /**
      * The factory to use to generate additional animations when animating to a
      * new value.
      * @type {?AnimationFactory}
      * @private
      */
-    additionalAnimations_: AnimationFactory | null;
+    private additionalAnimations_;
     /**
      * The model for the range of the slider.
      * @protected {!RangeModel}
      */
-    rangeModel: RangeModel;
+    protected rangeModel: RangeModel;
     /**
      * A function mapping slider values to text description.
      * @private {function(number):?string}
      */
-    labelFn_: (arg0: number) => string | null;
+    private labelFn_;
     /**
      * Whether to move the focus to the top level element when dragging the
      * slider, default true.
      * @private {boolean}
      */
-    focusElementOnSliderDrag_: boolean;
+    private focusElementOnSliderDrag_;
     /**
      * Enables/disables true RTL behavior.  This should be called immediately after
      * construction.  This is a temporary flag to allow clients to transition
@@ -226,7 +226,7 @@ export class SliderBase extends Component {
      * @protected
      * @abstract
      */
-    getCssClass(orient: string | null): string;
+    protected getCssClass(orient: Orientation | null): string;
     /**
      * Subclasses must implement this method and set the valueThumb and
      * extentThumb to non-null values. They can also set the rangeHighlight
@@ -234,21 +234,19 @@ export class SliderBase extends Component {
      * @abstract
      */
     createThumbs(): void;
-    /** @override */
-    decorateInternal(element: any): void;
     /**
      * Attaches/Detaches the event handlers on the slider.
      * @param {boolean} enable Whether to attach or detach the event handlers.
      * @private
      */
-    enableEventHandlers_(enable: boolean): void;
+    private enableEventHandlers_;
     /**
      * Handler for the before drag event. We use the event properties to determine
      * the new value.
      * @param {?DragEvent} e  The drag event used to drag the thumb.
      * @private
      */
-    handleBeforeDrag_(e: DragEvent | null): void;
+    private handleBeforeDrag_;
     /**
      * Handler for the start/end drag event on the thumbs. Adds/removes
      * the "-dragging" CSS classes on the slider and thumb.
@@ -256,59 +254,59 @@ export class SliderBase extends Component {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    handleThumbDragStartEnd_(e: DragEvent | null): void;
+    private handleThumbDragStartEnd_;
     /**
      * Event handler for the key down event. This is used to update the value
      * based on the key pressed.
      * @param {?KeyEvent} e  The keyboard event object.
      * @private
      */
-    handleKeyDown_(e: KeyEvent | null): void;
+    private handleKeyDown_;
     /**
      * Handler for the mouse down event and click event.
      * @param {?EventsEvent} e  The mouse event object.
      * @private
      */
-    handleMouseDownAndClick_(e: EventsEvent | null): void;
+    private handleMouseDownAndClick_;
     /**
      * Handler for the mouse wheel event.
      * @param {?MouseWheelEvent} e  The mouse wheel event object.
      * @private
      */
-    handleMouseWheel_(e: MouseWheelEvent | null): void;
+    private handleMouseWheel_;
     /**
      * Starts the animation that causes the thumb to increment/decrement by the
      * block increment when the user presses down on the background.
      * @param {?EventsEvent} e  The mouse event object.
      * @private
      */
-    startBlockIncrementing_(e: EventsEvent | null): void;
+    private startBlockIncrementing_;
     /**
      * Handler for the tick event dispatched by the timer used to update the value
      * in a block increment. This is also called directly from
      * startBlockIncrementing_.
      * @private
      */
-    handleTimerTick_(): void;
+    private handleTimerTick_;
     /**
      * Stops the block incrementing animation and unlistens the necessary
      * event handlers.
      * @private
      */
-    stopBlockIncrementing_(): void;
+    private stopBlockIncrementing_;
     /**
      * Returns the relative mouse position to the slider.
      * @param {?EventsEvent} e  The mouse event object.
      * @return {number} The relative mouse position to the slider.
      * @private
      */
-    getRelativeMousePos_(e: EventsEvent | null): number;
+    private getRelativeMousePos_;
     /**
      * Stores the current mouse position so that it can be used in the timer.
      * @param {?EventsEvent} e  The mouse event object.
      * @private
      */
-    storeMousePos_(e: EventsEvent | null): void;
+    private storeMousePos_;
     /**
      * Returns the value to use for the current mouse position
      * @param {?EventsEvent} e  The mouse event object.
@@ -320,7 +318,7 @@ export class SliderBase extends Component {
      * @return {number} The position of the specified thumb.
      * @private
      */
-    getThumbPosition_(thumb: HTMLDivElement | null): number;
+    private getThumbPosition_;
     /**
      * Returns whether a thumb is currently being dragged with the mouse (or via
      * touch). Note that changing the value with keyboard, mouswheel, or via
@@ -354,7 +352,7 @@ export class SliderBase extends Component {
      * @param {number} position The position to move the thumb to.
      * @private
      */
-    setThumbPosition_(thumb: Element | null, position: number): void;
+    private setThumbPosition_;
     /**
      * Sets the value and extent of the underlying range model. We enforce that
      * getMinimum() <= value <= getMaximum() - extent and
@@ -397,20 +395,20 @@ export class SliderBase extends Component {
      * @return {?HTMLDivElement} The thumb that is closest to the given position.
      * @private
      */
-    getClosestThumb_(position: number): HTMLDivElement | null;
+    private getClosestThumb_;
     /**
      * Call back when the internal range model changes. Sub-classes may override
      * and re-enter this method to update a11y state. Consider protected.
      * @param {?EventsEvent} e The event object.
      * @protected
      */
-    handleRangeModelChange(e: EventsEvent | null): void;
+    protected handleRangeModelChange(e: EventsEvent | null): void;
     /**
      * This is called when we need to update the size of the thumb. This happens
      * when first created as well as when the value and the orientation changes.
      * @private
      */
-    updateUi_(): void;
+    private updateUi_;
     /**
      * Calculates the start position (offset) and size of the range highlight, e.g.
      * for a horizontal slider, this will return [left, width] for the highlight.
@@ -423,10 +421,7 @@ export class SliderBase extends Component {
      *     range highlight.
      * @private
      */
-    calculateRangeHighlightPositioning_(firstThumbPos: number, secondThumbPos: number, thumbSize: number): {
-        offset: number;
-        size: number;
-    };
+    private calculateRangeHighlightPositioning_;
     /**
      * Returns the position to move the handle to for a given value
      * @param {number} val  The value to get the coordinate for.
@@ -469,23 +464,23 @@ export class SliderBase extends Component {
      * @param {?AnimationParallelQueue} animations The animation queue.
      * @private
      */
-    addRangeHighlightAnimations_(thumb: Element | null, previousValue: number, previousExtent: number, newCoord: Coordinate | null, animations: AnimationParallelQueue | null): void;
+    private addRangeHighlightAnimations_;
     /**
      * Sets the isAnimating_ field to false once the animation is done.
      * @param {?AnimationEvent} e Event object passed by the animation
      *     object.
      * @private
      */
-    endAnimation_(e: AnimationEvent | null): void;
+    private endAnimation_;
     /**
      * Changes the orientation.
      * @param {?Orientation} orient The orientation.
      */
-    setOrientation(orient: string | null): void;
+    setOrientation(orient: Orientation | null): void;
     /**
      * @return {?Orientation} the orientation of the slider.
      */
-    getOrientation(): string | null;
+    getOrientation(): Orientation | null;
     /**
      * @return {number} The amount to increment/decrement for page up/down as well
      *     as when holding down the mouse button on the background.
@@ -570,12 +565,12 @@ export class SliderBase extends Component {
      * Set a11y roles and state.
      * @protected
      */
-    setAriaRoles(): void;
+    protected setAriaRoles(): void;
     /**
      * Set a11y roles and state when values change.
      * @protected
      */
-    updateAriaStates(): void;
+    protected updateAriaStates(): void;
     /**
      * Enables or disables mouse wheel handling for the slider. The mouse wheel
      * handler enables the user to change the value of slider using a mouse wheel.
@@ -592,7 +587,7 @@ export class SliderBase extends Component {
      * @param {boolean} enable Whether to enable mouse wheel handling.
      * @private
      */
-    enableMouseWheelHandling_(enable: boolean): void;
+    private enableMouseWheelHandling_;
     /**
      * Enables or disables the slider. A disabled slider will ignore all
      * user-initiated events. Also fires ComponentEventType.ENABLE/DISABLE
@@ -611,7 +606,7 @@ export class SliderBase extends Component {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    getOffsetStart_(element: Element | null): number;
+    private getOffsetStart_;
     /**
      * @return {?string} The text value for the slider's current value, or null if
      *     unavailable.
@@ -629,8 +624,7 @@ export class SliderBase extends Component {
      * @type {number}
      * @const
      */
-    MOUSE_DOWN_DELAY_: number;
-    actualEventTarget_: SliderBase;
+    private MOUSE_DOWN_DELAY_;
 }
 export namespace SliderBase {
     export namespace EventType {
@@ -643,9 +637,7 @@ export namespace SliderBase {
         export const ANIMATION_END: string;
     }
     /**
-     * Event types used to listen for dragging events. Note that extent drag events
-     * are also sent for single-thumb sliders, since the one thumb controls both
-     * value and extent together; in this case, they can simply be ignored.
+     * *
      */
     export type EventType = string;
     export const MOUSE_DOWN_INCREMENT_INTERVAL_: number;
@@ -656,16 +648,7 @@ export namespace SliderBase {
 }
 import { TransitionBase } from "../fx/transitionbase.js";
 import { Component } from "./component.js";
-import { AnimationParallelQueue } from "../fx/animationqueue.js";
-import { Timer } from "../timer/timer.js";
-import { KeyHandler } from "../events/keyhandler.js";
-import { MouseWheelHandler } from "../events/mousewheelhandler.js";
-import { Dragger } from "../fx/dragger.js";
 import { RangeModel } from "./rangemodel.js";
-import { DragEvent } from "../fx/dragger.js";
-import { KeyEvent } from "../events/keyhandler.js";
 import { Event as EventsEvent } from "../events/event.js";
-import { MouseWheelEvent } from "../events/mousewheelhandler.js";
 import { Coordinate } from "../math/coordinate.js";
-import { AnimationEvent } from "../fx/animation.js";
-import * as goog_dom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";

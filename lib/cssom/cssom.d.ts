@@ -29,7 +29,7 @@ export function addCssRule(cssStyleSheet: StyleSheet | null, cssText: string, op
  *     document interactions.
  * @return {!Element} The newly created STYLE element.
  */
-export function addCssText(cssText: string, opt_domHelper?: googdom.DomHelper | undefined): Element;
+export function addCssText(cssText: string, opt_domHelper?: DomHelper | undefined): Element;
 /**
  * Recursively gets all CSSStyleRules, optionally starting from a given
  * StyleSheet.
@@ -37,7 +37,7 @@ export function addCssText(cssText: string, opt_domHelper?: googdom.DomHelper | 
  * @param {(StyleSheet|StyleSheetList)=} opt_styleSheet
  * @return {!Array<CSSStyleRule>} A list of CSSStyleRules.
  */
-export function getAllCssStyleRules(opt_styleSheet?: StyleSheet | StyleSheetList | undefined): CSSStyleRule[];
+export function getAllCssStyleRules(opt_styleSheet?: (StyleSheet | StyleSheetList) | undefined): Array<CSSStyleRule>;
 /**
  * Gets all StyleSheet objects starting from some StyleSheet. Note that we
  * want to return the sheets in the order of the cascade, therefore if we
@@ -49,14 +49,14 @@ export function getAllCssStyleRules(opt_styleSheet?: StyleSheet | StyleSheetList
  * @return {!Array<StyleSheet>} A list of StyleSheet objects.
  * @suppress {strictMissingProperties} StyleSheet does not define cssRules
  */
-export function getAllCssStyleSheets(opt_styleSheet?: StyleSheet | StyleSheetList | undefined, opt_includeDisabled?: boolean | undefined): StyleSheet[];
+export function getAllCssStyleSheets(opt_styleSheet?: (StyleSheet | StyleSheetList) | undefined, opt_includeDisabled?: boolean | undefined): Array<StyleSheet>;
 /**
  * Recursively gets all CSS as text, optionally starting from a given
  * StyleSheet.
  * @param {(StyleSheet|StyleSheetList)=} opt_styleSheet
  * @return {string} css text.
  */
-export function getAllCssText(opt_styleSheet?: StyleSheet | StyleSheetList | undefined): string;
+export function getAllCssText(opt_styleSheet?: (StyleSheet | StyleSheetList) | undefined): string;
 /**
  * Get the index of the CSSRule in it's StyleSheet.
  * @param {?CSSRule} cssRule A CSSRule.
@@ -125,4 +125,4 @@ export function removeCssRule(cssStyleSheet: StyleSheet | null, index: number): 
  * @throws {Error} If we cannot find a css rule index.
  */
 export function replaceCssRule(cssRule: CSSRule | null, cssText: string, opt_parentStyleSheet?: StyleSheet | undefined, opt_index?: number | undefined): void;
-import * as googdom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";

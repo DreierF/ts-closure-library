@@ -22,7 +22,7 @@ export let MAX_STACK_DEPTH: number;
  * @suppress {strictMissingProperties} onerror is not defined as a property
  *    on Object.
  */
-export function catchErrors(logFunc: (arg0: any) => any, opt_cancel?: boolean | undefined, opt_target?: any): void;
+export function catchErrors(logFunc: (arg0: any) => , opt_cancel?: boolean | undefined, opt_target?: any | undefined): void;
 /**
  * Creates a string representing a given primitive or object, and for an
  * object, all its properties and nested objects. NOTE: The output will include
@@ -65,13 +65,13 @@ export function enhanceErrorWithContext(err: any, opt_context?: {
  *     default is false.
  * @return {string} The string representation of `obj`.
  */
-export function expose(obj: any, opt_showFn?: boolean | undefined): string;
+export function expose(obj: any | null | undefined, opt_showFn?: boolean | undefined): string;
 /**
  * Recursively outputs a nested array as a string.
  * @param {Array<?>} arr The array.
  * @return {string} String representing nested array.
  */
-export function exposeArray(arr: any[]): string;
+export function exposeArray(arr: Array<unknown>): string;
 /**
  * Freezes the given object, but only in debug mode (and in browsers that
  * support it).  Note that this is a shallow freeze, so for deeply nested
@@ -96,7 +96,7 @@ export function getFunctionName(fn: Function | null): string;
  * @return {string} Stack trace.
  * @suppress {es5Strict}
  */
-export function getStacktrace(fn?: Function | null | undefined, ...args: any[]): string;
+export function getStacktrace(fn?: (Function | null) | undefined, ...args: any[]): string;
 /**
  * Gets the current stack trace. Simple and iterative - doesn't worry about
  * catching circular references or getting the args.
@@ -127,11 +127,11 @@ export function makeWhitespaceVisible(string: string): string;
  * @suppress {strictMissingProperties} properties not defined on err
  */
 export function normalizeErrorObject(err: any): {
-    message: any;
-    name: any;
-    lineNumber: any;
-    fileName: any;
-    stack: any;
+    message: (unknown | undefined);
+    name: (unknown | undefined);
+    lineNumber: (unknown | undefined);
+    fileName: (unknown | undefined);
+    stack: (unknown | undefined);
 };
 /**
  * Returns the type of a value. If a constructor is passed, and a suitable

@@ -36,14 +36,14 @@ declare class fs_FileReader extends EventsEventTarget {
      * @return {!Deferred} The deferred Blob contents as a binary string.
      *     If an error occurs, the errback is called with a {@link FsError}.
      */
-    static readAsBinaryString(blob: Blob): Deferred<any>;
+    static readAsBinaryString(blob: Blob): Deferred;
     /**
      * Reads a blob as an array buffer.
      * @param {!Blob} blob The blob to read.
      * @return {!Deferred} The deferred Blob contents as an array buffer.
      *     If an error occurs, the errback is called with a {@link FsError}.
      */
-    static readAsArrayBuffer(blob: Blob): Deferred<any>;
+    static readAsArrayBuffer(blob: Blob): Deferred;
     /**
      * Reads a blob as text.
      * @param {!Blob} blob The blob to read.
@@ -51,28 +51,28 @@ declare class fs_FileReader extends EventsEventTarget {
      * @return {!Deferred} The deferred Blob contents as text.
      *     If an error occurs, the errback is called with a {@link FsError}.
      */
-    static readAsText(blob: Blob, opt_encoding?: string | undefined): Deferred<any>;
+    static readAsText(blob: Blob, opt_encoding?: string | undefined): Deferred;
     /**
      * Reads a blob as a data URL.
      * @param {!Blob} blob The blob to read.
      * @return {!Deferred} The deferred Blob contents as a data URL.
      *     If an error occurs, the errback is called with a {@link FsError}.
      */
-    static readAsDataUrl(blob: Blob): Deferred<any>;
+    static readAsDataUrl(blob: Blob): Deferred;
     /**
      * Creates a new deferred object for the results of a read method.
      * @param {fs_FileReader} reader The reader to create a deferred for.
      * @return {!Deferred} The deferred results.
      * @private
      */
-    static createDeferred_(reader: fs_FileReader): Deferred<any>;
+    private static createDeferred_;
     /**
      * The underlying FileReader object.
      *
      * @type {!FileReader}
      * @private
      */
-    reader_: FileReader;
+    private reader_;
     /**
      * Abort the reading of the file.
      */
@@ -80,7 +80,7 @@ declare class fs_FileReader extends EventsEventTarget {
     /**
      * @return {?ReadyState} The current state of the FileReader.
      */
-    getReadyState(): number | null;
+    getReadyState(): ReadyState | null;
     /**
      * @return {*} The result of the file read.
      */
@@ -95,7 +95,7 @@ declare class fs_FileReader extends EventsEventTarget {
      * @param {!ProgressEvent} event The underlying event.
      * @private
      */
-    dispatchProgressEvent_(event: ProgressEvent<EventTarget>): void;
+    private dispatchProgressEvent_;
     /**
      * Starts reading a blob as a binary string.
      * @param {!Blob} blob The blob to read.
@@ -117,7 +117,6 @@ declare class fs_FileReader extends EventsEventTarget {
      * @param {!Blob} blob The blob to read.
      */
     readAsDataUrl(blob: Blob): void;
-    actualEventTarget_: fs_FileReader;
 }
 import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";
 import { Error as FsError } from "./error.js";

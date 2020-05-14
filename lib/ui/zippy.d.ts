@@ -45,38 +45,38 @@ export class Zippy extends EventsEventTarget {
      * @param {DomHelper=} opt_domHelper An optional DOM helper.
      * @param {Role<string>=} opt_role ARIA role, default TAB.
      */
-    constructor(header: string | Element | null, opt_content?: string | Element | (() => Element) | null | undefined, opt_expanded?: boolean | undefined, opt_expandedHeader?: string | Element | null | undefined, opt_domHelper?: goog_dom.DomHelper | undefined, opt_role?: any);
+    constructor(header: (Element | string | null) | null, opt_content?: ((Element | string | (() => Element)) | null) | undefined, opt_expanded?: boolean | undefined, opt_expandedHeader?: ((Element | string) | null) | undefined, opt_domHelper?: DomHelper | undefined, opt_role?: Role<string> | undefined);
     /**
      * Whether to listen for and handle mouse events; defaults to true.
      * @type {boolean}
      * @private
      */
-    handleMouseEvents_: boolean;
+    private handleMouseEvents_;
     /**
      * Whether to listen for and handle key events; defaults to true.
      * @type {boolean}
      * @private
      */
-    handleKeyEvents_: boolean;
+    private handleKeyEvents_;
     /**
      * DomHelper used to interact with the document, allowing components to be
      * created in a different window.
      * @type {!DomHelper}
      * @private
      */
-    dom_: DomHelper;
+    private dom_;
     /**
      * Header element or null if no header exists.
      * @type {?Element}
      * @private
      */
-    elHeader_: Element | null;
+    private elHeader_;
     /**
      * When present, the header to use when the zippy is expanded.
      * @type {?Element}
      * @private
      */
-    elExpandedHeader_: Element | null;
+    private elExpandedHeader_;
     /**
      * Function that will create the content element, or false if there is no such
      * function.
@@ -84,47 +84,47 @@ export class Zippy extends EventsEventTarget {
    * @suppress{checkTypes}
      * @private
      */
-    lazyCreateFunc_: (() => Element) | null;
+    private lazyCreateFunc_;
     /**
      * ARIA role.
      * @type {Role<string>}
      * @private
      */
-     role_: Role;
+    private role_;
     /**
      * Content element.
      * @type {?Element}
      * @private
      */
-    elContent_: Element | null;
+    private elContent_;
     /**
      * Expanded state.
      * @type {boolean}
      * @private
      */
-    expanded_: boolean;
+    private expanded_;
     /**
      * A keyboard events handler. If there are two headers it is shared for both.
      * @type {EventHandler<!Zippy>}
      * @private
      */
-    keyboardEventHandler_: EventHandler<Zippy>;
+    private keyboardEventHandler_;
     /**
      * The keyhandler used for listening on most key events. This takes care of
      * abstracting away some of the browser differences.
      * @private {!KeyHandler}
      */
-    keyHandler_: KeyHandler;
+    private keyHandler_;
     /**
      * A mouse events handler. If there are two headers it is shared for both.
      * @type {EventHandler<!Zippy>}
      * @private
      */
-    mouseEventHandler_: EventHandler<Zippy>;
+    private mouseEventHandler_;
     /**
      * @return {?Role} The ARIA role to be applied to Zippy element.
      */
-    getAriaRole(): string | null;
+    getAriaRole(): Role | null;
     /**
      * @return {?HTMLElement} The content element.
      */
@@ -157,7 +157,7 @@ export class Zippy extends EventsEventTarget {
      * @param {boolean} expanded Expanded/visibility state.
      * @protected
      */
-    setExpandedInternal(expanded: boolean): void;
+    protected setExpandedInternal(expanded: boolean): void;
     /**
      * @return {boolean} Whether the zippy is expanded.
      */
@@ -169,7 +169,7 @@ export class Zippy extends EventsEventTarget {
      * @param {boolean} expanded Expanded/visibility state.
      * @protected
      */
-    updateHeaderClassName(expanded: boolean): void;
+    protected updateHeaderClassName(expanded: boolean): void;
     /**
      * @return {boolean} Whether the Zippy handles its own key events.
      */
@@ -193,13 +193,13 @@ export class Zippy extends EventsEventTarget {
      * @param {?Element} header The header element.
      * @private
      */
-    enableKeyboardEventsHandling_(header: Element | null): void;
+    private enableKeyboardEventsHandling_;
     /**
      * Enables mouse events handling for the passed header element.
      * @param {?Element} header The header element.
      * @private
      */
-    enableMouseEventsHandling_(header: Element | null): void;
+    private enableMouseEventsHandling_;
     /**
      * KeyDown event handler for header element. Enter and space toggles expanded
      * state.
@@ -207,14 +207,14 @@ export class Zippy extends EventsEventTarget {
      * @param {!EventsBrowserEvent} event KeyDown event.
      * @private
      */
-    onHeaderKeyDown_(event: EventsBrowserEvent): void;
+    private onHeaderKeyDown_;
     /**
      * Click event handler for header element.
      *
      * @param {!EventsBrowserEvent} event Click event.
      * @private
      */
-    onHeaderClick_(event: EventsBrowserEvent): void;
+    private onHeaderClick_;
     /**
      * Dispatch an ACTION event whenever there is user interaction with the header.
      * Please note that after the zippy state change is completed a TOGGLE event
@@ -223,8 +223,7 @@ export class Zippy extends EventsEventTarget {
      * @param {!EventsBrowserEvent} triggeringEvent
      * @private
      */
-    dispatchActionEvent_(triggeringEvent: EventsBrowserEvent): void;
-    actualEventTarget_: Zippy;
+    private dispatchActionEvent_;
 }
 /**
  * Object representing a zippy toggle event.
@@ -255,10 +254,7 @@ export class ZippyEvent extends EventsEvent {
     triggeringEvent: EventsBrowserEvent | null;
 }
 import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";
-import { DomHelper } from "../dom/dom.js";
 import { Role } from "../a11y/aria/roles.js";
-import { EventHandler } from "../events/eventhandler.js";
-import { KeyHandler } from "../events/keyhandler.js";
-import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
-import * as goog_dom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";
 import { Event as EventsEvent } from "../events/event.js";
+import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";

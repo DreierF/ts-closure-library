@@ -10,7 +10,7 @@ export function getPrefixedEventType(eventType: string): string;
  * @return {?string} A vendor prefixed property name, or null if it does not
  *     exist.
  */
-export function getPrefixedPropertyName(propertyName: string, opt_object?: any): string | null;
+export function getPrefixedPropertyName(propertyName: string, opt_object?: any | undefined): string | null;
 /**
  * @fileoverview Vendor prefix getters.
  */

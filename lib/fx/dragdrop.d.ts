@@ -26,6 +26,6 @@ export class DragDrop extends AbstractDragDrop {
      * @param {Object=} opt_data Data associated with the source/target.
      * @throws Error If no element argument is provided or if the type is invalid
      */
-    constructor(element: string | Element | null, opt_data?: any);
+    constructor(element: (Element | string) | null, opt_data?: any | undefined);
 }
 import { AbstractDragDrop } from "./abstractdragdrop.js";

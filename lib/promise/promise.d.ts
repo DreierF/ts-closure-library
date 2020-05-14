@@ -22,12 +22,12 @@ export class Resolver<TYPE> {
      * The promise that created this resolver.
      * @type {!goog_Promise<TYPE>}
      */
-    promise: goog_Promise<TYPE>;
+    promise: goog_Promise<TYPE, any>;
     /**
      * Resolves this resolver with the specified value.
      * @type {function((TYPE|goog_Promise<TYPE>|Thenable)=)}
      */
-    resolve: (arg0: (TYPE | goog_Promise<TYPE> | Thenable) | undefined) => void;
+    resolve: (arg0?: Thenable<any> | TYPE | goog_Promise<TYPE, any> | undefined) => any;
     /**
      * Rejects this resolver with the specified reason.
      * @type {function(*=): void}
@@ -44,6 +44,23 @@ export class Resolver<TYPE> {
  * @template TYPE
  */
 export class Thenable<TYPE> {
+    /**
+     * Marks a given class (constructor) as an implementation of Thenable, so
+     * that we can query that fact at runtime. The class must have already
+     * implemented the interface.
+     * Exports a 'then' method on the constructor prototype, so that the objects
+     * also implement the extern {@see Thenable} interface for interop with
+     * other Promise implementations.
+     * @param {function(new:Thenable,...?)} ctor The class constructor. The
+     *     corresponding class must have already implemented the interface.
+     */
+    static addImplementation(ctor: new (...args: unknown[]) => Thenable): void;
+    /**
+     * @param {?} object
+     * @return {boolean} Whether a given instance implements `Thenable`.
+     *     The class/superclass of the instance must call `addImplementation`.
+     */
+    static isImplementedBy(object: unknown): boolean;
     /**
      * Adds callbacks that will operate on the result of the Thenable, returning a
      * new child Promise.
@@ -155,7 +172,175 @@ export const UNHANDLED_REJECTION_DELAY: number;
  * @implements {Thenable<TYPE>}
  * @template TYPE,RESOLVER_CONTEXT
  */
-declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
+declare class goog_Promise<TYPE, RESOLVER_CONTEXT> implements Thenable<TYPE> {
+    /**
+     * @param {?Function} onFulfilled
+     * @param {?Function} onRejected
+     * @param {?} context
+     * @return {!goog_Promise.CallbackEntry_}
+     * @private
+     */
+    private static getCallbackEntry_;
+    /**
+     * @param {!goog_Promise.CallbackEntry_} entry
+     * @private
+     */
+    private static returnEntry_;
+    /**
+     * @param {VALUE=} opt_value
+     * @return {?RESULT} A new Promise that is immediately resolved
+     *     with the given value. If the input value is already a goog_Promise, it
+     *     will be returned immediately without creating a new instance.
+     * @template VALUE
+     * @template RESULT := type('Promise',
+     *     cond(isUnknown(VALUE), unknown(),
+     *       mapunion(VALUE, (V) =>
+     *         cond(isTemplatized(V) && sub(rawTypeOf(V), 'IThenable'),
+     *           templateTypeOf(V, 0),
+     *           cond(sub(V, 'Thenable'),
+     *              unknown(),
+     *              V)))))
+     * =:
+     */
+    static resolve<VALUE, RESULT>(opt_value?: VALUE | undefined): RESULT | null;
+    /**
+     * @param {*=} opt_reason
+     * @return {!goog_Promise} A new Promise that is immediately rejected with the
+     *     given reason.
+     */
+    static reject(opt_reason?: any | undefined): goog_Promise;
+    /**
+     * This is identical to
+     * {@code goog_Promise.resolve(value).then(onFulfilled, onRejected)}, but it
+     * avoids creating an unnecessary wrapper Promise when `value` is already
+     * thenable.
+     *
+     * @param {?(Thenable<TYPE>|Thenable|TYPE)} value
+     * @param {function(TYPE): ?} onFulfilled
+     * @param {function(*): *} onRejected
+     * @template TYPE
+     * @private
+     */
+    private static resolveThen_;
+    /**
+     * @param {!Array<?(goog_Promise<TYPE>|Thenable<TYPE>|Thenable|*)>}
+     *     promises
+     * @return {!goog_Promise<TYPE>} A Promise that receives the result of the
+     *     first Promise (or Promise-like) input to settle immediately after it
+     *     settles.
+     * @template TYPE
+     */
+    static race<TYPE>(promises: any[]): goog_Promise<TYPE, any>;
+    /**
+     * @param {!Array<?(goog_Promise<TYPE>|Thenable<TYPE>|Thenable|*)>}
+     *     promises
+     * @return {!goog_Promise<!Array<TYPE>>} A Promise that receives a list of
+     *     every fulfilled value once every input Promise (or Promise-like) is
+     *     successfully fulfilled, or is rejected with the first rejection reason
+     *     immediately after it is rejected.
+     * @template TYPE
+     */
+    static all<TYPE>(promises: any[]): goog_Promise<TYPE[], any>;
+    /**
+     * @param {!Array<?(goog_Promise<TYPE>|Thenable<TYPE>|Thenable|*)>}
+     *     promises
+     * @return {!goog_Promise<!Array<{
+     *     fulfilled: boolean,
+     *     value: (TYPE|undefined),
+     *     reason: (*|undefined)}>>} A Promise that resolves with a list of
+     *         result objects once all input Promises (or Promise-like) have
+     *         settled. Each result object contains a 'fulfilled' boolean indicating
+     *         whether an input Promise was fulfilled or rejected. For fulfilled
+     *         Promises, the resulting value is stored in the 'value' field. For
+     *         rejected Promises, the rejection reason is stored in the 'reason'
+     *         field.
+     * @template TYPE
+     */
+    static allSettled<TYPE_4>(promises: any[]): goog_Promise<{
+        fulfilled: boolean;
+        value: TYPE_4 | undefined;
+        reason: (any | undefined);
+    }[], any>;
+    /**
+     * @param {!Array<?(goog_Promise<TYPE>|Thenable<TYPE>|Thenable|*)>}
+     *     promises
+     * @return {!goog_Promise<TYPE>} A Promise that receives the value of the first
+     *     input to be fulfilled, or is rejected with a list of every rejection
+     *     reason if all inputs are rejected.
+     * @template TYPE
+     */
+    static firstFulfilled<TYPE_5>(promises: any[]): goog_Promise<TYPE_5, any>;
+    /**
+     * @return {!Resolver<TYPE>} Resolver wrapping the promise and its
+     *     resolve / reject functions. Resolving or rejecting the resolver
+     *     resolves or rejects the promise.
+     * @template TYPE
+     */
+    static withResolver<TYPE_6>(): Resolver<TYPE_6>;
+    /**
+     * Invokes the "then" method of an input value if that value is a Thenable. This
+     * is a no-op if the value is not thenable.
+     *
+     * @param {?} value A potentially thenable value.
+     * @param {!Function} onFulfilled
+     * @param {!Function} onRejected
+     * @param {?} context
+     * @return {boolean} Whether the input value was thenable.
+     * @private
+     */
+    private static maybeThen_;
+    /**
+     * Attempts to call the `then` method on an object in the hopes that it is
+     * a Promise-compatible instance. This allows interoperation between different
+     * Promise implementations, however a non-compliant object may cause a Promise
+     * to hang indefinitely. If the `then` method throws an exception, the
+     * dependent Promise will be rejected with the thrown value.
+     *
+     * @see http://promisesaplus.com/#point-70
+     *
+     * @param {?Thenable} thenable An object with a `then` method that may be
+     *     compatible with the Promise/A+ specification.
+     * @param {!Function} then The `then` method of the Thenable object.
+     * @param {!Function} onFulfilled
+     * @param {!Function} onRejected
+     * @param {*} context
+     * @private
+     */
+    private static tryThen_;
+    /**
+     * Executes the onFulfilled or onRejected callback for a callbackEntry.
+     *
+     * @param {!goog_Promise.CallbackEntry_} callbackEntry
+     * @param {goog_Promise.State_} state
+     * @param {*} result
+     * @private
+     */
+    private static invokeCallback_;
+    /**
+     * Marks this rejected Promise as unhandled. If no `onRejected` callback
+     * is called for this Promise before the `UNHANDLED_REJECTION_DELAY`
+     * expires, the reason will be passed to the unhandled rejection handler. The
+     * handler typically rethrows the rejection reason so that it becomes visible in
+     * the developer console.
+     *
+     * @param {!goog_Promise} promise The rejected Promise.
+     * @param {*} reason The Promise rejection reason.
+     * @private
+     */
+    private static addUnhandledRejection_;
+    /**
+     * Sets a handler that will be called with reasons from unhandled rejected
+     * Promises. If the rejected Promise (or one of its descendants) has an
+     * `onRejected` callback registered, the rejection will be considered
+     * handled, and the rejection handler will not be called.
+     *
+     * By default, unhandled rejections are rethrown so that the error may be
+     * captured by the developer console or a `window.onerror` handler.
+     *
+     * @param {function(*)} handler A function that will be called with reasons from
+     *     rejected Promises. Defaults to `throwException`.
+     */
+    static setUnhandledRejectionHandler(handler: (arg0: any) => void): void;
     /**
      * NOTE: This class was created in anticipation of the built-in Promise type
      * being standardized and implemented across browsers. Now that Promise is
@@ -209,62 +394,41 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      *     in the default scope.
      * @template TYPE,RESOLVER_CONTEXT
      */
-    constructor(resolver: (this: RESOLVER_CONTEXT_1, arg1: (arg0?: any) => any, arg2: () => any) => void, opt_context?: RESOLVER_CONTEXT_1 | undefined);
+    constructor(resolver: (this: RESOLVER_CONTEXT_1, arg1: (arg0?: any) => any, arg2: () => void) => void, opt_context?: RESOLVER_CONTEXT_1 | undefined);
     /**
      * The internal state of this Promise. Either PENDING, FULFILLED, REJECTED, or
      * BLOCKED.
      * @private {goog_Promise.State_}
      */
-    state_: number;
+    private state_;
     /**
      * The settled result of the Promise. Immutable once set with either a
      * fulfillment value or rejection reason.
      * @private {*}
      */
-    result_: any;
+    private result_;
     /**
      * For Promises created by calling `then()`, the originating parent.
      * @private {?goog_Promise}
      */
-    parent_: any;
+    private parent_;
     /**
      * The linked list of `onFulfilled` and `onRejected` callbacks
      * added to this Promise by calls to `then()`.
      * @private {?goog_Promise.CallbackEntry_}
      */
-    callbackEntries_: any;
+    private callbackEntries_;
     /**
      * The tail of the linked list of `onFulfilled` and `onRejected`
      * callbacks added to this Promise by calls to `then()`.
      * @private {?goog_Promise.CallbackEntry_}
      */
-    callbackEntriesTail_: {
-        /** @type {?goog_Promise} */
-        child: goog_Promise<any, any> | null;
-        /** @type {?Function} */
-        onFulfilled: Function | null;
-        /** @type {?Function} */
-        onRejected: Function | null;
-        /** @type {?} */
-        context: any;
-        /** @type {?goog_Promise.CallbackEntry_} */
-        next: any | null;
-        /**
-         * A boolean value to indicate this is a "thenAlways" callback entry.
-         * Unlike a normal "then/thenVoid" a "thenAlways doesn't participate
-         * in "cancel" considerations but is simply an observer and requires
-         * special handling.
-         * @type {boolean}
-         */
-        always: boolean;
-        /** clear the object prior to reuse */
-        reset(): void;
-    } | null;
+    private callbackEntriesTail_;
     /**
      * Whether the Promise is in the queue of Promises to execute.
      * @private {boolean}
      */
-    executing_: boolean;
+    private executing_;
     /**
      * A timeout ID used when the `UNHANDLED_REJECTION_DELAY` is greater
      * than 0 milliseconds. The ID is set when the Promise is rejected, and
@@ -275,7 +439,7 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      * rejection reason is passed to the unhandled rejection handler.
      * @private {number}
      */
-    unhandledRejectionId_: number;
+    private unhandledRejectionId_;
     /**
      * When the `UNHANDLED_REJECTION_DELAY` is set to 0 milliseconds, a
      * boolean that is set if the Promise is rejected, and reset to false if an
@@ -284,19 +448,19 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      * the rejection reason is passed to the unhandled rejection handler.
      * @private {boolean}
      */
-    hadUnhandledRejection_: boolean;
+    private hadUnhandledRejection_;
     /**
      * A list of stack trace frames pointing to the locations where this Promise
      * was created or had callbacks added to it. Saved to add additional context
      * to stack traces when an exception is thrown.
      * @private {!Array<string>}
      */
-    stack_: any[];
+    private stack_;
     /**
      * Index of the most recently executed stack frame entry.
      * @private {number}
      */
-    currentStep_: number;
+    private currentStep_;
     /**
      * Adds callbacks that will operate on the result of the Promise, returning a
      * new child Promise.
@@ -335,7 +499,7 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      * @package
      * @template THIS
      */
-    thenVoid<THIS>(opt_onFulfilled?: ((this: THIS, arg1: TYPE) => any) | null | undefined, opt_onRejected?: ((this: THIS, arg1: any) => any) | null | undefined, opt_context?: THIS | undefined): void;
+    thenVoid<THIS>(opt_onFulfilled?: ((this: THIS, arg1: TYPE) => unknown) | null | undefined, opt_onRejected?: ((this: THIS, arg1: any) => any) | null | undefined, opt_context?: THIS | undefined): void;
     /**
      * Adds a callback that will be invoked when the Promise is settled (fulfilled
      * or rejected). The callback receives no argument, and no new child Promise is
@@ -374,7 +538,7 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      *     `onRejected`. The returned Promise will reject if `onRejected` throws.
      * @template THIS
      */
-    thenCatch<THIS>(onRejected: (this: THIS, arg1: any) => any, opt_context?: THIS | undefined): goog_Promise<any, any>;
+    thenCatch<THIS>(onRejected: (this: THIS, arg1: any) => any, opt_context?: THIS | undefined): goog_Promise;
     /**
      * Cancels the Promise if it is still pending by rejecting it with a cancel
      * Error. No action is performed if the Promise is already resolved.
@@ -394,7 +558,7 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      * @param {!Error} err The cancellation error.
      * @private
      */
-    cancelInternal_(err: Error): void;
+    private cancelInternal_;
     /**
      * Cancels a child Promise from the list of callback entries. If the Promise has
      * not already been resolved, reject it with a cancel error. If there are no
@@ -405,7 +569,7 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      * @param {!Error} err The cancel error to use for rejecting the Promise.
      * @private
      */
-    cancelChild_(childPromise: goog_Promise<any, any>, err: Error): void;
+    private cancelChild_;
     /**
      * Adds a callback entry to the current Promise, and schedules callback
      * execution if the Promise has already been settled.
@@ -415,28 +579,7 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      *     the Promise is settled.
      * @private
      */
-    addCallbackEntry_(callbackEntry: {
-        /** @type {?goog_Promise} */
-        child: goog_Promise<any, any> | null;
-        /** @type {?Function} */
-        onFulfilled: Function | null;
-        /** @type {?Function} */
-        onRejected: Function | null;
-        /** @type {?} */
-        context: any;
-        /** @type {?goog_Promise.CallbackEntry_} */
-        next: any | null;
-        /**
-         * A boolean value to indicate this is a "thenAlways" callback entry.
-         * Unlike a normal "then/thenVoid" a "thenAlways doesn't participate
-         * in "cancel" considerations but is simply an observer and requires
-         * special handling.
-         * @type {boolean}
-         */
-        always: boolean;
-        /** clear the object prior to reuse */
-        reset(): void;
-    }): void;
+    private addCallbackEntry_;
     /**
      * Creates a child Promise and adds it to the callback entry list. The result of
      * the child Promise is determined by the state of the parent Promise and the
@@ -456,21 +599,21 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      * @template RESULT,THIS
      * @private
      */
-    addChildPromise_<RESULT, THIS>(onFulfilled: ((this: THIS, arg1: TYPE) => Thenable<any> | RESULT | goog_Promise<RESULT, any>) | null, onRejected: ((this: THIS, arg1: any) => any) | null, opt_context?: THIS | undefined): goog_Promise<any, any>;
+    private addChildPromise_;
     /**
      * Unblocks the Promise and fulfills it with the given value.
      *
      * @param {?TYPE} value
      * @private
      */
-    unblockAndFulfill_(value: TYPE | null): void;
+    private unblockAndFulfill_;
     /**
      * Unblocks the Promise and rejects it with the given rejection reason.
      *
      * @param {*} reason
      * @private
      */
-    unblockAndReject_(reason: any): void;
+    private unblockAndReject_;
     /**
      * Attempts to resolve a Promise with a given resolution state and value. This
      * is a no-op if the given Promise has already been resolved.
@@ -488,7 +631,7 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      * @param {*} x The result to apply to the Promise.
      * @private
      */
-    resolve_(state: number, x: any): void;
+    private resolve_;
     /**
      * Executes the pending callbacks of a settled Promise after a timeout.
      *
@@ -505,96 +648,33 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      *
      * @private
      */
-    scheduleCallbacks_(): void;
+    private scheduleCallbacks_;
     /**
      * @return {boolean} Whether there are any pending callbacks queued.
      * @private
      */
-    hasEntry_(): boolean;
+    private hasEntry_;
     /**
      * @param {goog_Promise.CallbackEntry_} entry
      * @private
      */
-    queueEntry_(entry: {
-        /** @type {?goog_Promise} */
-        child: goog_Promise<any, any> | null;
-        /** @type {?Function} */
-        onFulfilled: Function | null;
-        /** @type {?Function} */
-        onRejected: Function | null;
-        /** @type {?} */
-        context: any;
-        /** @type {?goog_Promise.CallbackEntry_} */
-        next: any | null;
-        /**
-         * A boolean value to indicate this is a "thenAlways" callback entry.
-         * Unlike a normal "then/thenVoid" a "thenAlways doesn't participate
-         * in "cancel" considerations but is simply an observer and requires
-         * special handling.
-         * @type {boolean}
-         */
-        always: boolean;
-        /** clear the object prior to reuse */
-        reset(): void;
-    }): void;
+    private queueEntry_;
     /**
      * @return {goog_Promise.CallbackEntry_} entry
      * @private
      */
-    popEntry_(): {
-        /** @type {?goog_Promise} */
-        child: goog_Promise<any, any> | null;
-        /** @type {?Function} */
-        onFulfilled: Function | null;
-        /** @type {?Function} */
-        onRejected: Function | null;
-        /** @type {?} */
-        context: any;
-        /** @type {?goog_Promise.CallbackEntry_} */
-        next: any | null;
-        /**
-         * A boolean value to indicate this is a "thenAlways" callback entry.
-         * Unlike a normal "then/thenVoid" a "thenAlways doesn't participate
-         * in "cancel" considerations but is simply an observer and requires
-         * special handling.
-         * @type {boolean}
-         */
-        always: boolean;
-        /** clear the object prior to reuse */
-        reset(): void;
-    };
+    private popEntry_;
     /**
      * @param {goog_Promise.CallbackEntry_} previous
      * @private
      */
-    removeEntryAfter_(previous: {
-        /** @type {?goog_Promise} */
-        child: goog_Promise<any, any> | null;
-        /** @type {?Function} */
-        onFulfilled: Function | null;
-        /** @type {?Function} */
-        onRejected: Function | null;
-        /** @type {?} */
-        context: any;
-        /** @type {?goog_Promise.CallbackEntry_} */
-        next: any | null;
-        /**
-         * A boolean value to indicate this is a "thenAlways" callback entry.
-         * Unlike a normal "then/thenVoid" a "thenAlways doesn't participate
-         * in "cancel" considerations but is simply an observer and requires
-         * special handling.
-         * @type {boolean}
-         */
-        always: boolean;
-        /** clear the object prior to reuse */
-        reset(): void;
-    }): void;
+    private removeEntryAfter_;
     /**
      * Executes all pending callbacks for this Promise.
      *
      * @private
      */
-    executeCallbacks_(): void;
+    private executeCallbacks_;
     /**
      * Executes a pending callback for this Promise. Invokes an `onFulfilled`
      * or `onRejected` callback based on the settled state of the Promise.
@@ -606,28 +686,7 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      * @param {*} result The settled result of the Promise.
      * @private
      */
-    executeCallback_(callbackEntry: {
-        /** @type {?goog_Promise} */
-        child: goog_Promise<any, any> | null;
-        /** @type {?Function} */
-        onFulfilled: Function | null;
-        /** @type {?Function} */
-        onRejected: Function | null;
-        /** @type {?} */
-        context: any;
-        /** @type {?goog_Promise.CallbackEntry_} */
-        next: any | null;
-        /**
-         * A boolean value to indicate this is a "thenAlways" callback entry.
-         * Unlike a normal "then/thenVoid" a "thenAlways doesn't participate
-         * in "cancel" considerations but is simply an observer and requires
-         * special handling.
-         * @type {boolean}
-         */
-        always: boolean;
-        /** clear the object prior to reuse */
-        reset(): void;
-    }, state: number, result: any): void;
+    private executeCallback_;
     /**
      * Records a stack trace entry for functions that call `then` or the
      * Promise constructor. May be disabled by unsetting `LONG_STACK_TRACES`.
@@ -636,7 +695,7 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      *     providing a stack trace.
      * @private
      */
-    addStackTrace_(err: Error): void;
+    private addStackTrace_;
     /**
      * Adds extra stack trace information to an exception for the list of
      * asynchronous `then` calls that have been run for this Promise. Stack
@@ -646,7 +705,7 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      * @param {?} err An unhandled exception captured during callback execution.
      * @private
      */
-    appendLongStack_(err: any): void;
+    private appendLongStack_;
     /**
      * Marks this rejected Promise as having being handled. Also marks any parent
      * Promises in the rejected state as handled. The rejection handler will no
@@ -654,7 +713,7 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> {
      *
      * @private
      */
-    removeUnhandledRejection_(): void;
+    private removeUnhandledRejection_;
 }
 declare namespace goog_Promise {
     export namespace State_ {
@@ -664,33 +723,11 @@ declare namespace goog_Promise {
         export const REJECTED: number;
     }
     /**
-     * The possible internal states for a Promise. These states are not directly
-     * observable to external callers.
+     * *
      */
     export type State_ = number;
     export { CallbackEntry_ };
-    export const freelist_: FreeList<{
-        /** @type {?goog_Promise} */
-        child: goog_Promise<any, any> | null;
-        /** @type {?Function} */
-        onFulfilled: Function | null;
-        /** @type {?Function} */
-        onRejected: Function | null;
-        /** @type {?} */
-        context: any;
-        /** @type {?goog_Promise.CallbackEntry_} */
-        next: any | null;
-        /**
-         * A boolean value to indicate this is a "thenAlways" callback entry.
-         * Unlike a normal "then/thenVoid" a "thenAlways doesn't participate
-         * in "cancel" considerations but is simply an observer and requires
-         * special handling.
-         * @type {boolean}
-         */
-        always: boolean;
-        /** clear the object prior to reuse */
-        reset(): void;
-    }>;
+    export const freelist_: FreeList<any>;
     export { throwException as handleRejection_ };
     export { CancellationError };
     export { Resolver_ };
@@ -705,7 +742,27 @@ declare class CallbackEntry_ {
     /** @type {?} */
     context: unknown;
     /** @type {?goog_Promise.CallbackEntry_} */
-    next: goog_Promise.CallbackEntry_ | null;
+    next: {
+        /** @type {?goog_Promise} */
+        child: goog_Promise | null;
+        /** @type {?Function} */
+        onFulfilled: Function | null;
+        /** @type {?Function} */
+        onRejected: Function | null;
+        /** @type {?} */
+        context: unknown;
+        next: any | null;
+        /**
+         * A boolean value to indicate this is a "thenAlways" callback entry.
+         * Unlike a normal "then/thenVoid" a "thenAlways doesn't participate
+         * in "cancel" considerations but is simply an observer and requires
+         * special handling.
+         * @type {boolean}
+         */
+        always: boolean;
+        /** clear the object prior to reuse */
+        reset(): void;
+    } | null;
     /**
      * A boolean value to indicate this is a "thenAlways" callback entry.
      * Unlike a normal "then/thenVoid" a "thenAlways doesn't participate
@@ -727,7 +784,7 @@ declare class CancellationError extends DebugError {
      */
     constructor(opt_message?: string | undefined);
 }
-declare class Resolver_<TYPE> {
+declare class Resolver_<TYPE> implements Resolver<TYPE> {
     /**
      * Internal implementation of the resolver interface.
      *
@@ -737,7 +794,7 @@ declare class Resolver_<TYPE> {
      * @private
      * @template TYPE
      */
-    constructor(promise: goog_Promise<TYPE, any>, resolve: (arg0?: Thenable<any> | TYPE | goog_Promise<TYPE, any> | undefined) => any, reject: () => void);
+    private constructor();
     /**
      * @const
      * @suppress {checkTypes}

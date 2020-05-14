@@ -17,7 +17,9 @@
  */
 export function nextTick<SCOPE>(callback: (this: SCOPE) => any, opt_context?: SCOPE | undefined, opt_useSetImmediate?: boolean | undefined): void;
 export namespace nextTick {
+    export function useSetImmediate_(): boolean;
     export const setImmediate_: (arg0: () => void) => void;
+    export function getSetImmediateEmulator_(): (arg0: () => any) => any;
     export const wrapCallback_: typeof functions.identity;
 }
 /**

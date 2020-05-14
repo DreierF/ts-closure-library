@@ -22,40 +22,46 @@
  */
 export class LabelInput extends Component {
     /**
+     * Checks browser support for placeholder attribute.
+     * @return {boolean} Whether placeholder attribute is supported.
+     * @private
+     */
+    private static isPlaceholderSupported_;
+    /**
      * This creates the label input object.
      * @param {string=} opt_label The text to show as the label.
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
-    constructor(opt_label?: string | undefined, opt_domHelper?: goog_dom.DomHelper | undefined);
+    constructor(opt_label?: string | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * Variable used to store the element value on keydown and restore it on
      * keypress.  See {@link #handleEscapeKeys_}
      * @type {?string}
      * @private
      */
-    ffKeyRestoreValue_: string | null;
+    private ffKeyRestoreValue_;
     /**
      * The label restore delay after leaving the input.
      * @type {number} Delay for restoring the label.
      * @protected
      */
-    labelRestoreDelayMs: number;
+    protected labelRestoreDelayMs: number;
     /** @private
       * @type {boolean|null} */
-    inFocusAndSelect_: boolean | null;
+    private inFocusAndSelect_;
     /** @private
       * @type {boolean|null} */
-    formAttached_: boolean | null;
+    private formAttached_;
     /**
      * @type {?EventHandler}
      * @private
      */
-    eventHandler_: EventHandler<any> | null;
+    private eventHandler_;
     /**
      * @type {boolean}
      * @private
      */
-    hasFocus_: boolean;
+    private hasFocus_;
     /**
      * The CSS class name to add to the input when the user has not entered a
      * value.
@@ -66,36 +72,36 @@ export class LabelInput extends Component {
      * @type {string}
      * @private
      */
-    label_: string;
+    private label_;
     /**
      * Attaches the events we need to listen to.
      * @private
      */
-    attachEvents_(): void;
+    private attachEvents_;
     /**
      * Adds a listener to the form so that we can clear the input before it is
      * submitted.
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    attachEventsToForm_(): void;
+    private attachEventsToForm_;
     /**
      * Stops listening to the events.
      * @private
      */
-    detachEvents_(): void;
+    private detachEvents_;
     /**
      * Handler for the focus event.
      * @param {?EventsEvent} e The event object passed in to the event handler.
      * @private
      */
-    handleFocus_(e: EventsEvent | null): void;
+    private handleFocus_;
     /**
      * Handler for the blur event.
      * @param {?EventsEvent} e The event object passed in to the event handler.
      * @private
      */
-    handleBlur_(e: EventsEvent | null): void;
+    private handleBlur_;
     /**
      * Handler for key events in Firefox.
      *
@@ -113,27 +119,27 @@ export class LabelInput extends Component {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    handleEscapeKeys_(e: EventsBrowserEvent | null): void;
+    private handleEscapeKeys_;
     /**
      * Handler for the submit event of the form element.
      * @param {?EventsEvent} e The event object passed in to the event handler.
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    handleFormSubmit_(e: EventsEvent | null): void;
+    private handleFormSubmit_;
     /**
      * Restore value after submit
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    handleAfterSubmit_(): void;
+    private handleAfterSubmit_;
     /**
      * Handler for the load event the window. This is needed because
      * IE sets defaultValue upon load.
      * @param {?Event} e The event object passed in to the event handler.
      * @private
      */
-    handleWindowLoad_(e: Event | null): void;
+    private handleWindowLoad_;
     /**
      * @return {boolean} Whether the control is currently focused on.
      */
@@ -181,7 +187,7 @@ export class LabelInput extends Component {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    check_(): void;
+    private check_;
     /**
      * This method focuses the input and selects all the text. If the value hasn't
      * changed it will set the value to the label so that the label text is
@@ -204,20 +210,16 @@ export class LabelInput extends Component {
     /**
      * @private
      */
-    focusAndSelect_(): void;
+    private focusAndSelect_;
     /**
      * Sets the value of the input element to label.
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    restoreLabel_(): void;
-    actualEventTarget_: LabelInput;
+    private restoreLabel_;
 }
 export namespace LabelInput {
     export const supportsPlaceholder_: boolean | null;
 }
 import { Component } from "./component.js";
-import { EventHandler } from "../events/eventhandler.js";
-import { Event as EventsEvent } from "../events/event.js";
-import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
-import * as goog_dom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";

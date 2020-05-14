@@ -11,17 +11,34 @@
  */
 export class Disposable {
     /**
+     * @return {!Array<!Disposable>} All `Disposable` objects that
+     *     haven't been disposed of.
+     */
+    static getUndisposedObjects(): Array<Disposable>;
+    /**
+     * Clears the registry of undisposed objects but doesn't dispose of them.
+     */
+    static clearUndisposedObjects(): void;
+    /**
+     * Returns True if we can verify the object is disposed.
+     * Calls `isDisposed` on the argument if it supports it.  If obj
+     * is not an object with an isDisposed() method, return false.
+     * @param {*} obj The object to investigate.
+     * @return {boolean} True if we can verify the object is disposed.
+     */
+    static isDisposed(obj: any): boolean;
+    /**
      * Whether the object has been disposed of.
      * @type {boolean}
      * @private
      */
-    disposed_: boolean;
+    private disposed_;
     /**
      * Callbacks to invoke when this object is disposed.
      * @type {Array<!Function>}
      * @private
      */
-    onDisposeCallbacks_: Array<Function>;
+    private onDisposeCallbacks_;
     /**
      * If monitoring the Disposable instances is enabled, stores the creation
      * stack trace of the Disposable instance.
@@ -63,7 +80,7 @@ export class Disposable {
      * @param {T=} opt_scope An optional scope to call the callback in.
      * @template T
      */
-    addOnDisposeCallback<T>(callback: (this: T) => any, opt_scope?: T | undefined): void;
+    addOnDisposeCallback<T>(callback: (this: T) => unknown, opt_scope?: T | undefined): void;
     /**
      * Deletes or nulls out any references to COM objects, DOM nodes, or other
      * disposable objects. Classes that extend `Disposable` should
@@ -90,7 +107,7 @@ export class Disposable {
      * </pre>
      * @protected
      */
-    disposeInternal(): void;
+    protected disposeInternal(): void;
 }
 export namespace Disposable {
     export namespace MonitoringMode {

@@ -62,6 +62,13 @@ export const USE_LAYER_XY_AS_OFFSET_XY: boolean;
  */
 declare class events_BrowserEvent extends EventsEvent {
     /**
+     * Extracts the pointer type from the given event.
+     * @param {!Event} e
+     * @return {string} The pointer type, e.g. 'mouse', 'pen', or 'touch'.
+     * @private
+     */
+    private static getPointerType_;
+    /**
      * Accepts a browser event object and creates a patched, cross browser event
      * object.
      * The content of this object will not be initialized if no event object is
@@ -69,19 +76,7 @@ declare class events_BrowserEvent extends EventsEvent {
      * @param {Event=} opt_e Browser event object.
      * @param {?EventTarget=} opt_currentTarget Current target for event.
      */
-    constructor(opt_e?: Event | undefined, opt_currentTarget?: EventTarget | null | undefined);
-    /**
-     * Target that fired the event.
-     * @override
-     * @type {?Node}
-     */
-    target: Node | null;
-    /**
-     * Node that had the listener attached.
-     * @override
-     * @type {?Node|undefined}
-     */
-    currentTarget: (Node | undefined) | null;
+    constructor(opt_e?: Event | undefined, opt_currentTarget?: (EventTarget | null) | undefined);
     /**
      * For mouseover and mouseout events, the related object for the event.
      * @type {?Node}
@@ -162,7 +157,7 @@ declare class events_BrowserEvent extends EventsEvent {
      * state object provided to pushState or replaceState.
      * @type {?Object}
      */
-    state: Object | null;
+    state: any | null;
     /**
      * Whether the default platform modifier key was pressed at time of event.
      * (This is control for all platforms except Mac, where it's Meta.)
@@ -181,14 +176,14 @@ declare class events_BrowserEvent extends EventsEvent {
      * The browser event object.
      * @private {?Event}
      */
-    event_: Event | null;
+    private event_;
     /**
      * Accepts a browser event object and creates a patched, cross browser event
      * object.
      * @param {?Event} e Browser event object.
      * @param {?EventTarget=} opt_currentTarget Current target for event.
      */
-    init(e: Event | null, opt_currentTarget?: EventTarget | null | undefined): void;
+    init(e: Event | null, opt_currentTarget?: (EventTarget | null) | undefined): void;
     /**
      * Tests to see which button was pressed during the event. This is really only
      * useful in IE and Gecko browsers. And in IE, it's only useful for
@@ -205,7 +200,7 @@ declare class events_BrowserEvent extends EventsEvent {
      *     to test for.
      * @return {boolean} True if button was pressed.
      */
-    isButton(button: number | null): boolean;
+    isButton(button: MouseButton | null): boolean;
     /**
      * Whether this has an "action"-producing mouse button.
      *

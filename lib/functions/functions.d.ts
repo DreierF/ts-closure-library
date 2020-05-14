@@ -27,7 +27,7 @@ export function TRUE(): boolean;
  * @return {function(...?):boolean} A function that ANDs its component
  *      functions.
  */
-export function and(...args: Function[]): (...arg0: any[]) => boolean;
+export function and(...args: Function[]): (...args: unknown[]) => boolean;
 /**
  * Gives a wrapper function that caches the return value of a parameterless
  * function when first called.
@@ -52,7 +52,7 @@ export function cacheReturnValue<T>(fn: () => T): () => T;
  * @return {function(...?):T} The composition of all inputs.
  * @template T
  */
-export function compose<T>(fn: (...arg0: any[]) => T, ...args: Function[]): (...arg0: any[]) => T;
+export function compose<T>(fn: (...arg0: unknown[]) => T, ...args: Function[]): (...arg0: unknown[]) => T;
 /**
  * @fileoverview Utilities for creating functions. Loosely inspired by these
  * java classes from the Guava library:
@@ -106,7 +106,7 @@ export function create<T>(constructor: new (...arg1: any[]) => T, ...args: any[]
  * @return {function(...?): undefined} Wrapped function.
  * @template SCOPE
  */
-export function debounce<SCOPE>(f: (this: SCOPE, ...arg1: any[]) => any, interval: number, opt_scope?: SCOPE | undefined): (...arg0: any[]) => undefined;
+export function debounce<SCOPE>(f: (this: SCOPE, ...arg1: unknown[]) => any, interval: number, opt_scope?: SCOPE | undefined): (...args: unknown[]) => undefined;
 /**
  * Creates a function that returns whether its argument equals the given value.
  *
@@ -139,7 +139,7 @@ export function fail(err: any): Function;
  * @return {T} The first argument passed in, or undefined if nothing was passed.
  * @template T
  */
-export function identity<T>(opt_returnValue?: T | undefined, ...var_args: any): T;
+export function identity<T>(opt_returnValue?: T | undefined, ...var_args: any[]): T;
 /**
  * Given a function, create a function that keeps opt_numArgs arguments and
  * silently discards all additional arguments.
@@ -156,7 +156,7 @@ export function lock(f: Function | null, opt_numArgs?: number | undefined): Func
  * @return {function(...?):boolean} A function that delegates to f and returns
  * opposite.
  */
-export function not(f: Function): (...arg0: any[]) => boolean;
+export function not(f: Function): (...args: unknown[]) => boolean;
 /**
  * Creates a function that returns its nth argument.
  * @param {number} n The position of the return argument.
@@ -183,7 +183,7 @@ export function once(f: () => any): () => undefined;
  * @return {function(...?):boolean} A function that ORs its component
  *    functions.
  */
-export function or(...args: Function[]): (...arg0: any[]) => boolean;
+export function or(...args: Function[]): (...args: unknown[]) => boolean;
 /**
  * Like google.partial(), except that arguments are added after arguments to the
  * returned function.
@@ -218,7 +218,7 @@ export function partialRight(fn: Function, ...args: any[]): Function;
  * @return {function(...?): undefined} Wrapped function.
  * @template SCOPE
  */
-export function rateLimit<SCOPE>(f: (this: SCOPE, ...arg1: any[]) => any, interval: number, opt_scope?: SCOPE | undefined): (...arg0: any[]) => undefined;
+export function rateLimit<SCOPE>(f: (this: SCOPE, ...arg1: unknown[]) => any, interval: number, opt_scope?: SCOPE | undefined): (...args: unknown[]) => undefined;
 /**
  * Creates a function that calls the functions passed in in sequence, and
  * returns the value of the last function. For example,
@@ -244,7 +244,7 @@ export function sequence(...args: Function[]): Function;
  * @return {function(...?): undefined} Wrapped function.
  * @template SCOPE
  */
-export function throttle<SCOPE>(f: (this: SCOPE, ...arg1: any[]) => any, interval: number, opt_scope?: SCOPE | undefined): (...arg0: any[]) => undefined;
+export function throttle<SCOPE>(f: (this: SCOPE, ...arg1: unknown[]) => any, interval: number, opt_scope?: SCOPE | undefined): (...args: unknown[]) => undefined;
 /**
  * Given a function, create a new function that swallows its return value
  * and replaces it with a new one.
@@ -253,4 +253,4 @@ export function throttle<SCOPE>(f: (this: SCOPE, ...arg1: any[]) => any, interva
  * @return {function(...?):T} A new function.
  * @template T
  */
-export function withReturnValue<T>(f: Function | null, retValue: T): (...arg0: any[]) => T;
+export function withReturnValue<T>(f: Function | null, retValue: T): (...arg0: unknown[]) => T;

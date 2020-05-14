@@ -49,7 +49,7 @@ export function loadXml(xml: string, opt_preferActiveX?: boolean | undefined): D
  * @return {(!NodeList<!Node>|!Array<!Node>)} The selected nodes, or empty array
  *     if no matching nodes.
  */
-export function selectNodes(node: Node | null, path: string): any;
+export function selectNodes(node: Node | null, path: string): (NodeList<Node> | Array<Node>);
 /**
  * Selects a single node using an Xpath expression and a root node
  * @param {?Node} node The root node.
@@ -63,7 +63,7 @@ export function selectSingleNode(node: Node | null, path: string): Node | null;
  * @return {string} The serialized XML.
  * @throws {Error} if browser does not support XML serialization.
  */
-export function serialize(xml: Element | Document | null): string;
+export function serialize(xml: Document | (Element | null)): string;
 /**
  * Sets multiple attributes on an element. Differs from dom.setProperties
  * in that it exclusively uses the element's setAttributes method. Use this

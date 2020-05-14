@@ -130,51 +130,51 @@ export class KeyHandler extends goog_events.EventTarget {
      * @param {boolean=} opt_capture Whether to listen for browser events in
      *     capture phase (defaults to false).
      */
-    constructor(opt_element?: Element | Document | null | undefined, opt_capture?: boolean | undefined);
+    constructor(opt_element?: ((Element | Document) | null) | undefined, opt_capture?: boolean | undefined);
     /**
      * This is the element that we will listen to the real keyboard events on.
      * @type {?Element|?Document|null}
      * @private
      */
-    element_: (Element | ((Document | null) | null)) | null;
+    private element_;
     /**
      * The key for the key press listener.
      * @type {?EventsKey}
      * @private
      */
-    keyPressKey_: EventsKey | null;
+    private keyPressKey_;
     /**
      * The key for the key down listener.
      * @type {?EventsKey}
      * @private
      */
-    keyDownKey_: EventsKey | null;
+    private keyDownKey_;
     /**
      * The key for the key up listener.
      * @type {?EventsKey}
      * @private
      */
-    keyUpKey_: EventsKey | null;
+    private keyUpKey_;
     /**
      * Used to detect keyboard repeat events.
      * @private
      * @type {number}
      */
-    lastKey_: number;
+    private lastKey_;
     /**
      * Keycode recorded for key down events. As most browsers don't report the
      * keycode in the key press event we need to record it in the key down phase.
      * @private
      * @type {number}
      */
-    keyCode_: number;
+    private keyCode_;
     /**
      * Alt key recorded for key down events. FF on Mac does not report the alt key
      * flag in the key press event, we need to record it in the key down phase.
      * @type {boolean}
      * @private
      */
-    altKey_: boolean;
+    private altKey_;
     /**
      * Records the keycode for browsers that only returns the keycode for key up/
      * down events. For browser/key combinations that doesn't trigger a key pressed
@@ -182,7 +182,7 @@ export class KeyHandler extends goog_events.EventTarget {
      * @param {?EventsBrowserEvent} e The key down event.
      * @private
      */
-    handleKeyDown_(e: EventsBrowserEvent | null): void;
+    private handleKeyDown_;
     /**
      * Resets the stored previous values. Needed to be called for webkit which will
      * not generate a key up for meta key operations. This should only be called
@@ -196,7 +196,7 @@ export class KeyHandler extends goog_events.EventTarget {
      * @param {?EventsBrowserEvent} e The keyup event.
      * @private
      */
-    handleKeyup_(e: EventsBrowserEvent | null): void;
+    private handleKeyup_;
     /**
      * Handles the events on the element.
      * @param {?EventsBrowserEvent} e  The keyboard event sent from the
@@ -208,26 +208,24 @@ export class KeyHandler extends goog_events.EventTarget {
      * @return {?Element|Document|null} The element listened on for the real
      *     keyboard events.
      */
-    getElement(): Element | Document | null;
+    getElement(): (Element | Document | null) | null;
     /**
      * Adds the proper key event listeners to the element.
      * @param {?Element|Document} element The element to listen on.
      * @param {boolean=} opt_capture Whether to listen for browser events in
      *     capture phase (defaults to false).
      */
-    attach(element: Element | Document | null, opt_capture?: boolean | undefined): void;
+    attach(element: (Element | Document) | null, opt_capture?: boolean | undefined): void;
     /**
      * Removes the listeners that may exist.
      */
     detach(): void;
-    actualEventTarget_: KeyHandler;
 }
 export namespace KeyHandler {
-    export const safariKey_: Object | null;
-    export const keyIdentifier_: Object | null;
+    export const safariKey_: any | null;
+    export const keyIdentifier_: any | null;
     export const USES_KEYDOWN_: boolean;
     export const SAVE_ALT_FOR_KEYPRESS_: boolean;
 }
 import { BrowserEvent as EventsBrowserEvent } from "./browserevent.js";
 import * as goog_events from "./eventhandler.js";
-import { Key as EventsKey } from "./eventhandler.js";

@@ -30,12 +30,12 @@ export class Serializer {
      * Class that is used to serialize JSON objects to a string.
      * @param {?Replacer=} opt_replacer Replacer.
      */
-    constructor(opt_replacer?: ((this: any, arg1: string, arg2: any) => any) | null | undefined);
+    constructor(opt_replacer?: (Replacer | null) | undefined);
     /**
      * @type {Replacer|null|undefined}
      * @private
      */
-    replacer_: Replacer | null | undefined;
+    private replacer_;
     /**
      * Serializes an object or a value to a JSON string.
      *
@@ -52,38 +52,38 @@ export class Serializer {
      * @param {Array<string>} sb Array used as a string builder.
      * @throws Error if there are loops in the object graph.
      */
-    serializeInternal(object: any, sb: string[]): void;
+    protected serializeInternal(object: any, sb: Array<string>): void;
     /**
      * Serializes a string to a JSON string
      * @private
      * @param {string} s The string to serialize.
      * @param {Array<string>} sb Array used as a string builder.
      */
-    serializeString_(s: string, sb: string[]): void;
+    private serializeString_;
     /**
      * Serializes a number to a JSON string
      * @private
      * @param {number} n The number to serialize.
      * @param {Array<string>} sb Array used as a string builder.
      */
-    serializeNumber_(n: number, sb: string[]): void;
+    private serializeNumber_;
     /**
      * Serializes an array to a JSON string
      * @param {Array<string>} arr The array to serialize.
      * @param {Array<string>} sb Array used as a string builder.
      * @protected
      */
-    serializeArray(arr: string[], sb: string[]): void;
+    protected serializeArray(arr: Array<string>, sb: Array<string>): void;
     /**
      * Serializes an object to a JSON string
      * @private
      * @param {!Object} obj The object to serialize.
      * @param {Array<string>} sb Array used as a string builder.
      */
-    serializeObject_(obj: any, sb: string[]): void;
+    private serializeObject_;
 }
 export namespace Serializer {
-    export const charToJsonCharCache_: Object;
+    export const charToJsonCharCache_: any;
     export const charsToReplace_: RegExp;
 }
 /**
@@ -112,12 +112,12 @@ export const USE_NATIVE_JSON: boolean;
  * @return {boolean} True if the input is a valid JSON string.
  */
 export function isValid(s: string): boolean;
-export function parse(arg0: any): any;
-export function serialize(arg0: any, arg1?: ((this: any, arg1: string, arg2: any) => any) | null | undefined): string;
+export function parse(s: any): any;
+export function serialize(object: any, opt_replacer?: any): string;
 /**
  * Sets an error logger to use if there's a recoverable parsing error and
  * `TRY_NATIVE_JSON` is enabled.
  * @param {function(string, !Error)} errorLogger The first parameter is the
  *     error message, the second is the exception thrown by `JSON.parse`.
  */
-export function setErrorLogger(errorLogger: (arg0: string, arg1: Error) => any): void;
+export function setErrorLogger(errorLogger: (arg0: string, arg1: Error) => void): void;

@@ -9,7 +9,7 @@
  * @return {!HTMLAnchorElement}
  * @deprecated Use asserts.dom.assertIsHtmlAnchorElement instead.
  */
-export function assertIsHTMLAnchorElement(o: any): HTMLAnchorElement;
+export function assertIsHTMLAnchorElement(o: any | null): HTMLAnchorElement;
 /**
  * Asserts that a given object is a HTMLAudioElement.
  *
@@ -20,7 +20,7 @@ export function assertIsHTMLAnchorElement(o: any): HTMLAnchorElement;
  * @return {!HTMLAudioElement}
  * @deprecated Use asserts.dom.assertIsHtmlAudioElement instead.
  */
-export function assertIsHTMLAudioElement(o: any): HTMLAudioElement;
+export function assertIsHTMLAudioElement(o: any | null): HTMLAudioElement;
 /**
  * Asserts that a given object is a HTMLButtonElement.
  *
@@ -31,7 +31,7 @@ export function assertIsHTMLAudioElement(o: any): HTMLAudioElement;
  * @return {!HTMLButtonElement}
  * @deprecated Use asserts.dom.assertIsHtmlButtonElement instead.
  */
-export function assertIsHTMLButtonElement(o: any): HTMLButtonElement;
+export function assertIsHTMLButtonElement(o: any | null): HTMLButtonElement;
 /**
  * Asserts that a given object is a HTMLCanvasElement.
  *
@@ -42,7 +42,7 @@ export function assertIsHTMLButtonElement(o: any): HTMLButtonElement;
  * @return {!HTMLCanvasElement}
  * @deprecated Use asserts.dom.assertIsHtmlCanvasElement instead.
  */
-export function assertIsHTMLCanvasElement(o: any): HTMLCanvasElement;
+export function assertIsHTMLCanvasElement(o: any | null): HTMLCanvasElement;
 /**
  * Asserts that a given object is a HTMLEmbedElement.
  *
@@ -53,7 +53,7 @@ export function assertIsHTMLCanvasElement(o: any): HTMLCanvasElement;
  * @return {!HTMLEmbedElement}
  * @deprecated Use asserts.dom.assertIsHtmlEmbedElement instead.
  */
-export function assertIsHTMLEmbedElement(o: any): HTMLEmbedElement;
+export function assertIsHTMLEmbedElement(o: any | null): HTMLEmbedElement;
 /**
  * Asserts that a given object is a HTMLFormElement.
  *
@@ -64,7 +64,7 @@ export function assertIsHTMLEmbedElement(o: any): HTMLEmbedElement;
  * @return {!HTMLFormElement}
  * @deprecated Use asserts.dom.assertIsHtmlFormElement instead.
  */
-export function assertIsHTMLFormElement(o: any): HTMLFormElement;
+export function assertIsHTMLFormElement(o: any | null): HTMLFormElement;
 /**
  * Asserts that a given object is a HTMLFrameElement.
  *
@@ -75,7 +75,7 @@ export function assertIsHTMLFormElement(o: any): HTMLFormElement;
  * @return {!HTMLFrameElement}
  * @deprecated Use asserts.dom.assertIsHtmlFrameElement instead.
  */
-export function assertIsHTMLFrameElement(o: any): HTMLFrameElement;
+export function assertIsHTMLFrameElement(o: any | null): HTMLFrameElement;
 /**
  * Asserts that a given object is a HTMLIFrameElement.
  *
@@ -86,7 +86,7 @@ export function assertIsHTMLFrameElement(o: any): HTMLFrameElement;
  * @return {!HTMLIFrameElement}
  * @deprecated Use asserts.dom.assertIsHtmlIFrameElement instead.
  */
-export function assertIsHTMLIFrameElement(o: any): HTMLIFrameElement;
+export function assertIsHTMLIFrameElement(o: any | null): HTMLIFrameElement;
 /**
  * Asserts that a given object is a HTMLImageElement.
  *
@@ -97,7 +97,7 @@ export function assertIsHTMLIFrameElement(o: any): HTMLIFrameElement;
  * @return {!HTMLImageElement}
  * @deprecated Use asserts.dom.assertIsHtmlImageElement instead.
  */
-export function assertIsHTMLImageElement(o: any): HTMLImageElement;
+export function assertIsHTMLImageElement(o: any | null): HTMLImageElement;
 /**
  * Asserts that a given object is a HTMLInputElement.
  *
@@ -108,7 +108,7 @@ export function assertIsHTMLImageElement(o: any): HTMLImageElement;
  * @return {!HTMLInputElement}
  * @deprecated Use asserts.dom.assertIsHtmlInputElement instead.
  */
-export function assertIsHTMLInputElement(o: any): HTMLInputElement;
+export function assertIsHTMLInputElement(o: any | null): HTMLInputElement;
 /**
  * Asserts that a given object is a HTMLLinkElement.
  *
@@ -119,7 +119,7 @@ export function assertIsHTMLInputElement(o: any): HTMLInputElement;
  * @return {!HTMLLinkElement}
  * @deprecated Use asserts.dom.assertIsHtmlLinkElement instead.
  */
-export function assertIsHTMLLinkElement(o: any): HTMLLinkElement;
+export function assertIsHTMLLinkElement(o: any | null): HTMLLinkElement;
 /**
  * Asserts that a given object is a HTMLObjectElement.
  *
@@ -130,7 +130,7 @@ export function assertIsHTMLLinkElement(o: any): HTMLLinkElement;
  * @return {!HTMLObjectElement}
  * @deprecated Use asserts.dom.assertIsHtmlObjectElement instead.
  */
-export function assertIsHTMLObjectElement(o: any): HTMLObjectElement;
+export function assertIsHTMLObjectElement(o: any | null): HTMLObjectElement;
 /**
  * Asserts that a given object is a HTMLScriptElement.
  *
@@ -141,7 +141,7 @@ export function assertIsHTMLObjectElement(o: any): HTMLObjectElement;
  * @return {!HTMLScriptElement}
  * @deprecated Use asserts.dom.assertIsHtmlScriptElement instead.
  */
-export function assertIsHTMLScriptElement(o: any): HTMLScriptElement;
+export function assertIsHTMLScriptElement(o: any | null): HTMLScriptElement;
 /**
  * Asserts that a given object is a HTMLTextAreaElement.
  *
@@ -152,7 +152,7 @@ export function assertIsHTMLScriptElement(o: any): HTMLScriptElement;
  * @return {!HTMLTextAreaElement}
  * @deprecated Use asserts.dom.assertIsHtmlTextAreaElement instead.
  */
-export function assertIsHTMLTextAreaElement(o: any): HTMLTextAreaElement;
+export function assertIsHTMLTextAreaElement(o: any | null): HTMLTextAreaElement;
 /**
  * Asserts that a given object is a HTMLVideoElement.
  *
@@ -163,7 +163,7 @@ export function assertIsHTMLTextAreaElement(o: any): HTMLTextAreaElement;
  * @return {!HTMLVideoElement}
  * @deprecated Use asserts.dom.assertIsHtmlVideoElement instead.
  */
-export function assertIsHTMLVideoElement(o: any): HTMLVideoElement;
+export function assertIsHTMLVideoElement(o: any | null): HTMLVideoElement;
 /**
  * @fileoverview Custom assertions to ensure that an element has the appropriate
  * type.
@@ -207,4 +207,4 @@ export function assertIsHTMLVideoElement(o: any): HTMLVideoElement;
  * @param {?Object} o The object whose type to assert.
  * @return {!Location}
  */
-export function assertIsLocation(o: any): Location;
+export function assertIsLocation(o: any | null): Location;

@@ -2,22 +2,16 @@
  * Type definition for strict Soy HTML templates. Very useful when passing
  * a template as an argument.
  */
-export type StrictHtmlTemplate = (arg0?: any, arg1?: typeof IjData | {
-    [x: string]: any;
-} | null | undefined) => SanitizedHtml;
+export type StrictHtmlTemplate = (arg0?: unknown | undefined, arg1?: (CompatibleIj_ | null) | undefined) => SanitizedHtml;
 /**
  * Type definition for strict Soy templates. Very useful when passing a template
  * as an argument.
  */
-export type StrictTemplate = (arg0?: any, arg1?: typeof IjData | {
-    [x: string]: any;
-} | null | undefined) => string | SanitizedContent;
+export type StrictTemplate = (arg0?: unknown | undefined, arg1?: (CompatibleIj_ | null) | undefined) => (string | SanitizedContent);
 /**
  * Type definition for text templates.
  */
-export type TextTemplate = (arg0?: any, arg1?: typeof IjData | {
-    [x: string]: any;
-} | null | undefined) => string;
+export type TextTemplate = (arg0?: unknown | undefined, arg1?: (CompatibleIj_ | null) | undefined) => string;
 /**
  * Helper typedef for ij parameters.  This is what soy generates.
  */
@@ -35,6 +29,12 @@ export type CompatibleIj_ = typeof IjData | {
  * @interface
  */
 export function IjData(): void;
+/**
+ * Helper typedef for ij parameters.  This is what soy generates.
+ * @private
+ * @typedef {!IjData|!Object<string, *>}
+ */
+declare let CompatibleIj_: any;
 import { SanitizedHtml } from "./data.js";
 /**
  * Type definition for strict Soy HTML templates. Very useful when passing
@@ -68,7 +68,7 @@ export let TextTemplate: any;
  * @return {!Element} Rendered template contents, wrapped in a parent DIV
  *     element if necessary.
  */
-export function convertToElement(templateResult: SanitizedContent, opt_domHelper?: googdom.DomHelper | null | undefined): Element;
+export function convertToElement(templateResult: SanitizedContent, opt_domHelper?: (DomHelper | null) | undefined): Element;
 /**
  * Renders a Soy template into a single node. If the rendered
  * HTML string represents a single node, then that node is returned. Otherwise,
@@ -85,9 +85,7 @@ export function convertToElement(templateResult: SanitizedContent, opt_domHelper
  *     element if necessary.
  * @template ARG_TYPES
  */
-export function renderAsElement<ARG_TYPES>(template: ((arg0: ARG_TYPES, arg1?: typeof IjData | {
-    [x: string]: any;
-} | null | undefined) => any) | null, opt_templateData?: ARG_TYPES | undefined, opt_injectedData?: any, opt_domHelper?: googdom.DomHelper | undefined): Element;
+export function renderAsElement<ARG_TYPES>(template: ((arg0: ARG_TYPES, arg1?: (CompatibleIj_ | null) | undefined) => any) | null, opt_templateData?: ARG_TYPES | undefined, opt_injectedData?: any | undefined, opt_domHelper?: DomHelper | undefined): Element;
 /**
  * Renders a Soy template into a single node or a document
  * fragment. If the rendered HTML string represents a single node, then that
@@ -108,7 +106,7 @@ export function renderAsElement<ARG_TYPES>(template: ((arg0: ARG_TYPES, arg1?: t
  * @return {!Node} The resulting node or document fragment.
  * @template ARG_TYPES
  */
-export function renderAsFragment<ARG_TYPES>(template: any, opt_templateData?: ARG_TYPES | undefined, opt_injectedData?: any, opt_domHelper?: googdom.DomHelper | undefined): Node;
+export function renderAsFragment<ARG_TYPES>(template: any, opt_templateData?: ARG_TYPES | undefined, opt_injectedData?: any | undefined, opt_domHelper?: DomHelper | undefined): Node;
 /**
  * Renders a Soy template and then set the output string as
  * the innerHTML of an element. It is recommended to use this helper function
@@ -123,9 +121,7 @@ export function renderAsFragment<ARG_TYPES>(template: any, opt_templateData?: AR
  * @param {Object=} opt_injectedData The injected data for the template.
  * @template ARG_TYPES
  */
-export function renderElement<ARG_TYPES>(element: Element | null, template: ((arg0: ARG_TYPES, arg1?: typeof IjData | {
-    [x: string]: any;
-} | null | undefined) => any) | null, opt_templateData?: ARG_TYPES | undefined, opt_injectedData?: any): void;
+export function renderElement<ARG_TYPES>(element: Element | null, template: ((arg0: ARG_TYPES, arg1?: (CompatibleIj_ | null) | undefined) => any) | null, opt_templateData?: ARG_TYPES | undefined, opt_injectedData?: any | undefined): void;
 /**
  * Sets the processed template as the innerHTML of an element. It is recommended
  * to use this helper function instead of directly setting innerHTML in your
@@ -138,4 +134,5 @@ export function renderElement<ARG_TYPES>(element: Element | null, template: ((ar
  * @template ARG_TYPES
  */
 export function renderHtml<ARG_TYPES>(element: Element | null, templateResult: SanitizedContent): void;
-import * as googdom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";
+export {};

@@ -15,7 +15,7 @@ export function getEnd(textfield: Element | null): number;
  *     difference between an element that has no selection and one where
  *     it starts and ends at 0.
  */
-export function getEndPoints(textfield: Element | null): number[];
+export function getEndPoints(textfield: Element | null): Array<number>;
 /**
  * Return the place where the selection starts inside a textarea or a text
  * input

@@ -55,7 +55,7 @@ export let DEFAULT_POPUP_WIDTH: number;
  *                  object is a emulated Window object that functions as if
  *                  a cross-origin window has been opened.
  */
-export function open(linkRef: any, opt_options?: any, opt_parentWin?: Window | null | undefined): Window | null;
+export function open(linkRef: Html_SafeUrl | string | any | null, opt_options?: (any | null) | undefined, opt_parentWin?: (Window | null) | undefined): Window | null;
 /**
  * Opens a new window without any real content in it.
  *
@@ -81,7 +81,7 @@ export function open(linkRef: any, opt_options?: any, opt_parentWin?: Window | n
  *                  null if a popup blocker prevented the window from being
  *                  opened.
  */
-export function openBlank(opt_message?: string | undefined, opt_options?: any, opt_parentWin?: Window | null | undefined): Window | null;
+export function openBlank(opt_message?: string | undefined, opt_options?: (any | null) | undefined, opt_parentWin?: (Window | null) | undefined): Window | null;
 /**
  * Raise a help popup window, defaulting to "Google standard" size and name.
  *
@@ -102,4 +102,5 @@ export function openBlank(opt_message?: string | undefined, opt_options?: any, o
  *
  * @return {boolean} true if the window was not popped up, false if it was.
  */
-export function popup(linkRef: any, opt_options?: any): boolean;
+export function popup(linkRef: (Html_SafeUrl | string | (any | null)) | null, opt_options?: (any | null) | undefined): boolean;
+import { SafeUrl as Html_SafeUrl } from "../html/safeurl.js";

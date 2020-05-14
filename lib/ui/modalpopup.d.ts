@@ -43,101 +43,101 @@ export class ModalPopup extends Component {
      * @param {DomHelper=} opt_domHelper Optional DOM helper; see {@link
      *     Component} for semantics.
      */
-    constructor(opt_useIframeMask?: boolean | undefined, opt_domHelper?: googdom.DomHelper | undefined);
+    constructor(opt_useIframeMask?: boolean | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * Focus handler. It will be initialized in enterDocument.
      * @type {?FocusHandler}
      * @private
      */
-    focusHandler_: FocusHandler | null;
+    private focusHandler_;
     /**
      * Whether the modal popup is visible.
      * @type {boolean}
      * @private
      */
-    visible_: boolean;
+    private visible_;
     /**
      * Element for the background which obscures the UI and blocks events.
      * @type {Element|null}
      * @private
      */
-    bgEl_: Element | null;
+    private bgEl_;
     /**
      * Iframe element that is only used for IE as a workaround to keep select-type
      * elements from burning through background.
      * @type {Element|null}
      * @private
      */
-    bgIframeEl_: Element | null;
+    private bgIframeEl_;
     /**
      * Element used to catch focus and prevent the user from tabbing out
      * of the popup.
      * @type {Element|null}
      * @private
      */
-    tabCatcherElement_: Element | null;
+    private tabCatcherElement_;
     /**
      * Whether the modal popup is in the process of wrapping focus from the top of
      * the popup to the last tabbable element.
      * @type {boolean}
      * @private
      */
-    backwardTabWrapInProgress_: boolean;
+    private backwardTabWrapInProgress_;
     /**
      * Transition to show the popup.
      * @type {?Transition}
      * @private
      */
-    popupShowTransition_: Transition | null;
+    private popupShowTransition_;
     /**
      * Transition to hide the popup.
      * @type {?Transition}
      * @private
      */
-    popupHideTransition_: Transition | null;
+    private popupHideTransition_;
     /**
      * Transition to show the background.
      * @type {?Transition}
      * @private
      */
-    bgShowTransition_: Transition | null;
+    private bgShowTransition_;
     /**
      * Transition to hide the background.
      * @type {?Transition}
      * @private
      */
-    bgHideTransition_: Transition | null;
+    private bgHideTransition_;
     /**
      * Helper object to control aria visibility of the rest of the page.
      * @type {?ModalAriaVisibilityHelper}
      * @private
      */
-    modalAriaVisibilityHelper_: ModalAriaVisibilityHelper | null;
+    private modalAriaVisibilityHelper_;
     /**
      * Whether the modal popup should use an iframe as the background
      * element to work around z-order issues.
      * @type {boolean}
      * @private
      */
-    useIframeMask_: boolean;
+    private useIframeMask_;
     /**
      * The element that had focus before the popup was displayed.
      * @type {Element|null}
      * @private
      */
-    lastFocus_: Element | null;
+    private lastFocus_;
     /**
      * The animation task that resizes the background, scheduled to run in the
      * next animation frame.
      * @type {function(...?)}
      * @private
      */
-    resizeBackgroundTask_: () => void;
+    private resizeBackgroundTask_;
     /**
      * @return {string} Base CSS class for this component.
      * @protected
      */
-    getCssClass(): string;
+    protected getCssClass(): string;
     /**
      * Returns the background iframe mask element, if any.
      * @return {?Element} The background iframe mask element, may return
@@ -153,12 +153,12 @@ export class ModalPopup extends Component {
      * Creates and disposes of the DOM for background mask elements.
      * @private
      */
-    manageBackgroundDom_(): void;
+    private manageBackgroundDom_;
     /**
      * Creates the tab catcher element.
      * @private
      */
-    createTabCatcher_(): void;
+    private createTabCatcher_;
     /**
      * Allow a shift-tab from the top of the modal popup to the last tabbable
      * element by moving focus to the tab catcher. This should be called after
@@ -166,21 +166,17 @@ export class ModalPopup extends Component {
      * that focus will land on the last tabbable element before the tab catcher.
      * @protected
      */
-    setupBackwardTabWrap(): void;
+    protected setupBackwardTabWrap(): void;
     /**
      * Resets the backward tab wrap flag.
      * @private
      */
-    resetBackwardTabWrap_(): void;
+    private resetBackwardTabWrap_;
     /**
      * Renders the background mask.
      * @private
      */
-    renderBackground_(): void;
-    /** @override */
-    canDecorate(element: any): boolean;
-    /** @override */
-    decorateInternal(element: any): void;
+    private renderBackground_;
     /**
      * Sets the visibility of the modal popup box and focus to the popup.
      * @param {boolean} visible Whether the modal popup should be visible.
@@ -192,7 +188,7 @@ export class ModalPopup extends Component {
      * @param {boolean} hide Whether to hide or show the rest of the page.
      * @protected
      */
-    setA11YDetectBackground(hide: boolean): void;
+    protected setA11YDetectBackground(hide: boolean): void;
     /**
      * Sets the transitions to show and hide the popup and background.
      * @param {!Transition} popupShowTransition Transition to show the
@@ -209,36 +205,36 @@ export class ModalPopup extends Component {
      * Shows the popup.
      * @private
      */
-    show_(): void;
+    private show_;
     /**
      * Hides the popup.
      * @private
      */
-    hide_(): void;
+    private hide_;
     /**
      * Attempts to return the focus back to the element that had it before the popup
      * was opened.
      * @private
      */
-    returnFocus_(): void;
+    private returnFocus_;
     /**
      * Shows or hides the popup element.
      * @param {boolean} visible Shows the popup element if true, hides if false.
      * @private
      */
-    showPopupElement_(visible: boolean): void;
+    private showPopupElement_;
     /**
      * Called after the popup is shown. If there is a transition, this
      * will be called after the transition completed or stopped.
      * @protected
      */
-    onShow(): void;
+    protected onShow(): void;
     /**
      * Called after the popup is hidden. If there is a transition, this
      * will be called after the transition completed or stopped.
      * @protected
      */
-    onHide(): void;
+    protected onHide(): void;
     /**
      * @return {boolean} Whether the modal popup is visible.
      */
@@ -256,7 +252,7 @@ export class ModalPopup extends Component {
      * browsers, but should not be a common scenario.
      * @private
      */
-    resizeBackground_(): void;
+    private resizeBackground_;
     /**
      * Centers the modal popup in the viewport, taking scrolling into account.
      */
@@ -269,7 +265,7 @@ export class ModalPopup extends Component {
      * @param {?EventsBrowserEvent} e Browser's event object.
      * @protected
      */
-    onFocus(e: EventsBrowserEvent | null): void;
+    protected onFocus(e: EventsBrowserEvent | null): void;
     /**
      * Returns the magic tab catcher element used to detect when the user has
      * rolled focus off of the popup content.  It is automatically created during
@@ -278,17 +274,14 @@ export class ModalPopup extends Component {
      * @return {?Element} The tab catcher element.
      * @protected
      */
-    getTabCatcherElement(): Element | null;
+    protected getTabCatcherElement(): Element | null;
     /**
      * Moves the focus to the modal popup.
      * @private
      */
-    focusElement_(): void;
-    actualEventTarget_: ModalPopup;
+    private focusElement_;
 }
 import { Component } from "./component.js";
-import { FocusHandler } from "../events/focushandler.js";
 import { Transition } from "../fx/transition.js";
-import { ModalAriaVisibilityHelper } from "./modalariavisibilityhelper.js";
 import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
-import * as googdom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";

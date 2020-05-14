@@ -29,19 +29,19 @@ export class LogBuffer {
      * @type {!Array<!DebugLogRecord|undefined>}
      * @private
      */
-    buffer_: Array<DebugLogRecord | undefined>;
+    private buffer_;
     /**
      * The index of the most recently added record or -1 if there are no records.
      * @type {number}
      * @private
      */
-    curIndex_: number;
+    private curIndex_;
     /**
      * Whether the buffer is at capacity.
      * @type {boolean}
      * @private
      */
-    isFull_: boolean;
+    private isFull_;
     /**
      * Adds a log record to the buffer, possibly overwriting the oldest record.
      * @param {?Level} level One of the level identifiers.
@@ -59,7 +59,7 @@ export class LogBuffer {
      * oldest one.
      * @param {function(!DebugLogRecord)} func The function to call.
      */
-    forEachRecord(func: (arg0: DebugLogRecord) => any): void;
+    forEachRecord(func: (arg0: DebugLogRecord) => void): void;
 }
-import { LogRecord as DebugLogRecord } from "./logrecord.js";
 import { Level } from "./logger.js";
+import { LogRecord as DebugLogRecord } from "./logrecord.js";

@@ -85,7 +85,7 @@ export class MouseWheelHandler extends goog_events.EventTarget {
      *     scaleFactor does not appear to be applicable.
      * @private
      */
-    static smartScale_(mouseWheelDelta: number, scaleFactor: number): number;
+    private static smartScale_;
     /**
      * This event handler allows you to catch mouse wheel events in a consistent
      * manner.
@@ -94,37 +94,37 @@ export class MouseWheelHandler extends goog_events.EventTarget {
      * @param {boolean=} opt_capture Whether to handle the mouse wheel event in
      *     capture phase.
      */
-    constructor(element: Element | Document | null, opt_capture?: boolean | undefined);
+    constructor(element: (Element | Document) | null, opt_capture?: boolean | undefined);
     /**
      * Optional maximum magnitude for x delta on each mousewheel event.
      * @type {number|undefined}
      * @private
      */
-    maxDeltaX_: number | undefined;
+    private maxDeltaX_;
     /**
      * Optional maximum magnitude for y delta on each mousewheel event.
      * @type {number|undefined}
      * @private
      */
-    maxDeltaY_: number | undefined;
+    private maxDeltaY_;
     /**
      * This is the element that we will listen to the real mouse wheel events on.
      * @type {?Element|Document}
      * @private
      */
-    element_: (Element | Document) | null;
+    private element_;
     /**
      * True if the element exists and is RTL, false otherwise.
      * @type {boolean}
      * @private
      */
-    isRtl_: boolean;
+    private isRtl_;
     /**
      * The key returned from the goog_events.listen.
      * @type {?Key}
      * @private
      */
-    listenKey_: Key | null;
+    private listenKey_;
     /**
      * @param {number} maxDeltaX Maximum magnitude for x delta on each mousewheel
      *     event. Should be non-negative.
@@ -141,8 +141,6 @@ export class MouseWheelHandler extends goog_events.EventTarget {
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
     handleEvent(e: EventsBrowserEvent | null): void;
-    actualEventTarget_: MouseWheelHandler;
 }
 import { BrowserEvent as EventsBrowserEvent } from "./browserevent.js";
 import * as goog_events from "./eventhandler.js";
-import { Key } from "./eventhandler.js";

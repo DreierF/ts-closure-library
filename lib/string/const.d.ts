@@ -23,7 +23,39 @@
  * @class
  * @implements {TypedString}
  */
-export class Const {
+export class Const implements TypedString {
+    /**
+     * Performs a runtime check that the provided object is indeed an instance
+     * of `Const`, and returns its value.
+     * @param {!Const} stringConst The object to extract from.
+     * @return {string} The Const object's contained string, unless the run-time
+     *     type check fails. In that case, `unwrap` returns an innocuous
+     *     string, or, if assertions are enabled, throws
+     *     `AssertionError`.
+     */
+    static unwrap(stringConst: Const): string;
+    /**
+     * Creates a Const object from a compile-time constant string.
+     *
+     * It is illegal to invoke this function on an expression whose
+     * compile-time-constant value cannot be determined by the Closure compiler.
+     *
+     * Correct invocations include,
+     * <pre>
+     *   var s = Const.from('hello');
+     *   var t = Const.from('hello' + 'world');
+     * </pre>
+     *
+     * In contrast, the following are illegal:
+     * <pre>
+     *   var s = Const.from(getHello());
+     *   var t = Const.from('hello' + world);
+     * </pre>
+     *
+     * @param {string} s A constant string from which to create a Const.
+     * @return {!Const} A Const object initialized to stringConst.
+     */
+    static from(s: string): Const;
     /**
      * Wrapper for compile-time-constant strings.
      *
@@ -48,7 +80,7 @@ export class Const {
      * @param {Object=} opt_token package-internal implementation detail.
      * @param {string=} opt_content package-internal implementation detail.
      */
-    constructor(opt_token?: any, opt_content?: string | undefined);
+    constructor(opt_token?: any | undefined, opt_content?: string | undefined);
     /**
      * @override
      * @const
@@ -60,14 +92,14 @@ export class Const {
      * field stand out.
      * @private {string}
      */
-    stringConstValueWithSecurityContract__googStringSecurityPrivate_: string;
+    private stringConstValueWithSecurityContract__googStringSecurityPrivate_;
     /**
      * A type marker used to implement additional run-time type checking.
      * @see Const#unwrap
      * @const {!Object}
      * @private
      */
-    STRING_CONST_TYPE_MARKER__GOOG_STRING_SECURITY_PRIVATE_: {};
+    private STRING_CONST_TYPE_MARKER__GOOG_STRING_SECURITY_PRIVATE_;
     /**
      * Returns this Const's value a string.
      *
@@ -82,6 +114,7 @@ export class Const {
 }
 export namespace Const {
     export const TYPE_MARKER_: {};
-    export const GOOG_STRING_CONSTRUCTOR_TOKEN_PRIVATE_: Object;
+    export const GOOG_STRING_CONSTRUCTOR_TOKEN_PRIVATE_: any;
     export const EMPTY: Const;
 }
+import { TypedString } from "./typedstring.js";

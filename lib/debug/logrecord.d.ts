@@ -31,38 +31,38 @@ declare class debug_LogRecord {
      * @type {number}
      * @private
      */
-    time_: number;
+    private time_;
     /**
      * Level of the LogRecord
      * @type {?Logger_Level}
      * @private
      */
-    level_: Logger_Level | null;
+    private level_;
     /**
      * Message associated with the record
      * @type {string}
      * @private
      */
-    msg_: string;
+    private msg_;
     /**
      * Name of the logger that created the record.
      * @type {string}
      * @private
      */
-    loggerName_: string;
+    private loggerName_;
     /**
      * Sequence number for the LogRecord. Each record has a unique sequence number
      * that is greater than all log records created before it.
      * @type {number}
      * @private
      */
-    sequenceNumber_: number;
+    private sequenceNumber_;
     /**
      * Exception associated with the record
      * @type {?Object}
      * @private
      */
-    exception_: Object | null;
+    private exception_;
     /**
      * Sets all fields of the log record.
      * @param {?Logger_Level} level One of the level identifiers.
@@ -85,13 +85,13 @@ declare class debug_LogRecord {
      *
      * @return {?Object} the exception.
      */
-    getException(): any;
+    getException(): any | null;
     /**
      * Set the exception that is part of the log record.
      *
      * @param {?Object} exception the exception.
      */
-    setException(exception: any): void;
+    setException(exception: any | null): void;
     /**
      * Get the source Logger's name.
      *

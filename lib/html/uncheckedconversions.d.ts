@@ -31,7 +31,7 @@
  * @return {!SafeHtml} The value of html, wrapped in a SafeHtml
  *     object.
  */
-export function safeHtmlFromStringKnownToSatisfyTypeContract(justification: Const, html: string, opt_dir?: number | null | undefined): SafeHtml;
+export function safeHtmlFromStringKnownToSatisfyTypeContract(justification: Const, html: string, opt_dir?: (Dir | null) | undefined): SafeHtml;
 /**
  * Performs an "unchecked conversion" to SafeScript from a plain string that is
  * known to satisfy the SafeScript type contract.
@@ -118,6 +118,7 @@ export function safeUrlFromStringKnownToSatisfyTypeContract(justification: Const
  */
 export function trustedResourceUrlFromStringKnownToSatisfyTypeContract(justification: Const, url: string): Html_TrustedResourceUrl;
 import { Const } from "../string/const.js";
+import { Dir } from "../i18n/bidi.js";
 import { SafeHtml } from "./safehtml.js";
 import { SafeScript as Html_SafeScript } from "./safescript.js";
 import { SafeStyle as Html_SafeStyle } from "./safestyle.js";

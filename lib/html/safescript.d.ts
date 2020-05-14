@@ -42,7 +42,81 @@
  * @class
  * @implements {TypedString}
  */
-export class SafeScript {
+export class SafeScript implements TypedString {
+    /**
+     * Creates a SafeScript object from a compile-time constant string.
+     *
+     * @param {!String_Const} script A compile-time-constant string from which
+     *     to create a SafeScript.
+     * @return {!SafeScript} A SafeScript object initialized to
+     *     `script`.
+     */
+    static fromConstant(script: String_Const): SafeScript;
+    /**
+     * Creates a SafeScript from a compile-time constant string but with arguments
+     * that can vary at run-time. The code argument should be formatted as an
+     * inline function (see example below). The arguments will be JSON-encoded and
+     * provided as input to the function specified in code.
+     *
+     * Example Usage:
+     *
+     *     let safeScript = SafeScript.fromConstantAndArgs(
+     *         Const.from('function(arg1, arg2) { doSomething(arg1, arg2); }'),
+     *         arg1,
+     *         arg2);
+     *
+     * This produces a SafeScript equivalent to the following:
+     *
+     *     (function(arg1, arg2) { doSomething(arg1, arg2); })("value1", "value2");
+     *
+     * @param {!String_Const} code
+     * @param {...*} var_args
+     * @return {!SafeScript}
+     */
+    static fromConstantAndArgs(code: String_Const, ...args: any[]): SafeScript;
+    /**
+     * Creates a SafeScript JSON representation from anything that could be passed
+     * to JSON.stringify.
+     * @param {*} val
+     * @return {!SafeScript}
+     */
+    static fromJson(val: any): SafeScript;
+    /**
+     * Performs a runtime check that the provided object is indeed a
+     * SafeScript object, and returns its value.
+     *
+     * @param {!SafeScript} safeScript The object to extract from.
+     * @return {string} The safeScript object's contained string, unless
+     *     the run-time type check fails. In that case, `unwrap` returns an
+     *     innocuous string, or, if assertions are enabled, throws
+     *     `AssertionError`.
+     */
+    static unwrap(safeScript: SafeScript): string;
+    /**
+     * Unwraps value as TrustedScript if supported or as a string if not.
+     * @param {!SafeScript} safeScript
+     * @return {!TrustedScript|string}
+     * @see SafeScript.unwrap
+     */
+    static unwrapTrustedScript(safeScript: SafeScript): any | string;
+    /**
+     * Converts the given value to a embeddabel JSON string and returns it. The
+     * resulting string can be embedded in HTML because the '<' character is
+     * encoded.
+     *
+     * @param {*} val
+     * @return {string}
+     * @private
+     */
+    private static stringify_;
+    /**
+     * Package-internal utility method to create SafeScript instances.
+     *
+     * @param {string} script The string to initialize the SafeScript object with.
+     * @return {!SafeScript} The initialized SafeScript object.
+     * @package
+     */
+    static createSafeScriptSecurityPrivateDoNotAccessOrElse(script: string): SafeScript;
     /**
      * @override
      * @const
@@ -54,14 +128,14 @@ export class SafeScript {
      * field stand out.
      * @private {!TrustedScript|string}
      */
-    privateDoNotAccessOrElseSafeScriptWrappedValue_: string;
+    private privateDoNotAccessOrElseSafeScriptWrappedValue_;
     /**
      * A type marker used to implement additional run-time type checking.
      * @see SafeScript#unwrap
      * @const {!Object}
      * @private
      */
-    SAFE_SCRIPT_TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
+    private SAFE_SCRIPT_TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_;
     /**
      * Returns this SafeScript's value as a string.
      *
@@ -92,9 +166,11 @@ export class SafeScript {
      * @return {!SafeScript}
      * @private
      */
-    initSecurityPrivateDoNotAccessOrElse_(script: string): SafeScript;
+    private initSecurityPrivateDoNotAccessOrElse_;
 }
 export namespace SafeScript {
     export const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
     export const EMPTY: SafeScript;
 }
+import { TypedString } from "../string/typedstring.js";
+import { Const as String_Const } from "../string/const.js";

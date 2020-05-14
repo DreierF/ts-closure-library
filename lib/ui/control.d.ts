@@ -37,6 +37,40 @@
  */
 export class Control<T> extends Ui_Component {
     /**
+     * Maps a CSS class name to a function that returns a new instance of
+     * {@link Control} or a subclass thereof, suitable to decorate
+     * an element that has the specified CSS class.  UI components that extend
+     * {@link Control} and want {@link goog.ui.Container}s to be able
+     * to discover and decorate elements using them should register a factory
+     * function via this API.
+     * @param {string} className CSS class name.
+     * @param {?Function} decoratorFunction Function that takes no arguments and
+     *     returns a new instance of a control to decorate an element with the
+     *     given class.
+     * @deprecated Use {@link setDecoratorByClassName} instead.
+     */
+    static registerDecorator(className: string, decoratorFunction: Function | null): void;
+    /**
+     * Takes an element and returns a new instance of {@link Control}
+     * or a subclass, suitable to decorate it (based on the element's CSS class).
+     * @param {?Element} element Element to decorate.
+     * @return {Control?} New control instance to decorate the element
+     *     (null if none).
+     * @deprecated Use {@link getDecorator} instead.
+     * @suppress {checkTypes}
+     */
+    static getDecorator(element: Element | null): Control | null;
+    /**
+     * Checks if a mouse event (mouseover or mouseout) occurred below an element.
+     * @param {?EventsBrowserEvent} e Mouse event (should be mouseover or
+     *     mouseout).
+     * @param {?Element} elem The ancestor element.
+     * @return {boolean} Whether the event has a relatedTarget (the element the
+     *     mouse is coming from) and it's a descendant of elem.
+     * @private
+     */
+    private static isMouseEventWithinElement_;
+    /**
      * Base class for UI controls.  Extends {@link Ui_Component} by adding
      * the following:
      *  <ul>
@@ -65,25 +99,25 @@ export class Control<T> extends Ui_Component {
      *     document interaction.
      * @template T
      */
-    constructor(opt_content?: any, opt_renderer?: T | undefined, opt_domHelper?: goog_doms.DomHelper | undefined);
+    constructor(opt_content?: ControlContent | undefined, opt_renderer?: T | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * Text caption or DOM structure displayed in the component.
      * @type {?ControlContent}
      * @private
      */
-    content_: ControlContent | null;
+    private content_;
     /**
      * Current component state; a bit mask of {@link State}s.
      * @type {number}
      * @private
      */
-    state_: number;
+    private state_;
     /**
      * A bit mask of {@link State}s this component supports.
      * @type {number}
      * @private
      */
-    supportedStates_: number;
+    private supportedStates_;
     /**
      * A bit mask of {@link State}s for which this component
      * provides default event handling.  For example, a component that handles
@@ -98,7 +132,7 @@ export class Control<T> extends Ui_Component {
      * @type {number}
      * @private
      */
-    autoStates_: number;
+    private autoStates_;
     /**
      * A bit mask of {@link State}s for which this component
      * dispatches state transition events.  Because events are expensive, the
@@ -110,52 +144,52 @@ export class Control<T> extends Ui_Component {
      * @type {number}
      * @private
      */
-    statesWithTransitionEvents_: number;
+    private statesWithTransitionEvents_;
     /**
      * Component visibility.
      * @type {boolean}
      * @private
      */
-    visible_: boolean;
+    private visible_;
     /**
      * Keyboard event handler.
      * @type {?KeyHandler}
      * @private
      */
-    keyHandler_: KeyHandler | null;
+    private keyHandler_;
     /**
      * Additional class name(s) to apply to the control's root element, if any.
      * @type {Array<string>?}
      * @private
      */
-    extraClassNames_: Array<string> | null;
+    private extraClassNames_;
     /**
      * Whether the control should listen for and handle mouse events; defaults to
      * true.
      * @type {boolean}
      * @private
      */
-    handleMouseEvents_: boolean;
+    private handleMouseEvents_;
     /**
      * Whether the control allows text selection within its DOM.  Defaults to false.
      * @type {boolean}
      * @private
      */
-    allowTextSelection_: boolean;
+    private allowTextSelection_;
     /**
      * The control's preferred ARIA role.
      * @type {?Role}
      * @private
      */
-    preferredAriaRole_: Role | null;
+    private preferredAriaRole_;
     /**
      * Renderer associated with the component.
      * @type {T}
      * @private
      */
-    renderer_: T;
+    private renderer_;
     /** @private {?string} The control's aria-label. */
-    ariaLabel_: string | null;
+    private ariaLabel_;
     /**
      * Returns true if the control is configured to handle its own mouse events,
      * false otherwise.  Controls not hosted in {@link goog.ui.Container}s have
@@ -187,7 +221,7 @@ export class Control<T> extends Ui_Component {
      * @return {!KeyHandler} Keyboard event handler for this component.
      * @protected
      */
-    getKeyHandler(): KeyHandler;
+    protected getKeyHandler(): KeyHandler;
     /**
      * Returns the renderer used by this component to render itself or to decorate
      * an existing element.
@@ -208,7 +242,7 @@ export class Control<T> extends Ui_Component {
      * @return {Array<string>?} Additional class names to be applied to
      *     the component's root element (null if none).
      */
-    getExtraClassNames(): string[] | null;
+    getExtraClassNames(): Array<string> | null;
     /**
      * Adds the given class name to the list of classes to be applied to the
      * component's root element.
@@ -239,7 +273,7 @@ export class Control<T> extends Ui_Component {
      * @return {?Role} This control's preferred ARIA role or null if
      *     no preferred ARIA role is set.
      */
-    getPreferredAriaRole(): string | null;
+    getPreferredAriaRole(): Role | null;
     /**
      * Sets the control's preferred ARIA role. This can be used to override the role
      * that would be assigned by the renderer.  This is useful in cases where a
@@ -248,7 +282,7 @@ export class Control<T> extends Ui_Component {
      * {@link goog.ui.Select} should have an ARIA role of LISTBOX and not MENUITEM.
      * @param {?Role} role This control's preferred ARIA role.
      */
-    setPreferredAriaRole(role: string | null): void;
+    setPreferredAriaRole(role: Role | null): void;
     /**
      * Gets the control's aria label.
      * @return {?string} This control's aria label.
@@ -266,14 +300,14 @@ export class Control<T> extends Ui_Component {
      * @param {boolean} enable Whether to enable mouse event handling.
      * @private
      */
-    enableMouseEventHandling_(enable: boolean): void;
+    private enableMouseEventHandling_;
     ieMouseEventSequenceSimulator_: any;
     /**
      * Returns the text caption or DOM structure displayed in the component.
      * @return {?ControlContent} Text caption or DOM structure
      *     comprising the component's contents.
      */
-    getContent(): any;
+    getContent(): ControlContent | null;
     /**
      * Sets the component's content to the given text caption, element, or array of
      * nodes.  (If the argument is an array of nodes, it must be an actual array,
@@ -281,7 +315,7 @@ export class Control<T> extends Ui_Component {
      * @param {?ControlContent} content Text caption or DOM
      *     structure to set as the component's contents.
      */
-    setContent(content: any): void;
+    setContent(content: ControlContent | null): void;
     /**
      * Sets the component's content to the given text caption, element, or array
      * of nodes.  Unlike {@link #setContent}, doesn't modify the component's DOM.
@@ -292,7 +326,7 @@ export class Control<T> extends Ui_Component {
      * @param {?ControlContent} content Text caption or DOM structure
      *     to set as the component's contents.
      */
-    setContentInternal(content: any): void;
+    setContentInternal(content: ControlContent | null): void;
     /**
      * @return {string} Text caption of the control or empty string if none.
      * @suppress{checkTypes}
@@ -303,8 +337,6 @@ export class Control<T> extends Ui_Component {
      * @param {string} caption Text caption of the component.
      */
     setCaption(caption: string): void;
-    /** @override */
-    setRightToLeft(rightToLeft: any): void;
     /**
      * Returns true if the control allows text selection within its DOM, false
      * otherwise.  Controls that disallow text selection have the appropriate
@@ -352,7 +384,7 @@ export class Control<T> extends Ui_Component {
      * @return {boolean} Whether the component is hosted in a disabled container.
      * @private
      */
-    isParentDisabled_(): boolean;
+    private isParentDisabled_;
     /**
      * Enables or disables the component.  Does nothing if this state transition
      * is disallowed.  If the component is both visible and focusable, updates its
@@ -456,7 +488,7 @@ export class Control<T> extends Ui_Component {
      * @param {?State} state State to check.
      * @return {boolean} Whether the component is in the given state.
      */
-    hasState(state: number | null): boolean;
+    hasState(state: State | null): boolean;
     /**
      * Sets or clears the given state on the component, and updates its styling
      * accordingly.  Does nothing if the component is already in the correct state
@@ -466,7 +498,7 @@ export class Control<T> extends Ui_Component {
      * @param {boolean} enable Whether to set or clear the state (if supported).
      * @param {boolean=} opt_calledFrom Prevents looping with setEnabled.
      */
-    setState(state: number | null, enable: boolean, opt_calledFrom?: boolean | undefined): void;
+    setState(state: State | null, enable: boolean, opt_calledFrom?: boolean | undefined): void;
     /**
      * Sets the component's state to the state represented by a bit mask of
      * {@link State}s.  Unlike {@link #setState}, doesn't
@@ -484,7 +516,7 @@ export class Control<T> extends Ui_Component {
      * @param {?State} state State to check.
      * @return {boolean} Whether the component supports the given state.
      */
-    isSupportedState(state: number | null): boolean;
+    isSupportedState(state: State | null): boolean;
     /**
      * Enables or disables support for the given state. Disabling support
      * for a state while the component is in that state is an error.
@@ -492,7 +524,7 @@ export class Control<T> extends Ui_Component {
      * @param {boolean} support Whether the component should support the state.
      * @throws {Error} If disabling support for a state the control is currently in.
      */
-    setSupportedState(state: number | null, support: boolean): void;
+    setSupportedState(state: State | null, support: boolean): void;
     /**
      * Returns true if the component provides default event handling for the state,
      * false otherwise.
@@ -500,7 +532,7 @@ export class Control<T> extends Ui_Component {
      * @return {boolean} Whether the component provides default event handling for
      *     the state.
      */
-    isAutoState(state: number | null): boolean;
+    isAutoState(state: State | null): boolean;
     /**
      * Enables or disables automatic event handling for the given state(s).
      * @param {number} states Bit mask of {@link State}s for which
@@ -516,7 +548,7 @@ export class Control<T> extends Ui_Component {
      * @return {boolean} Whether the component dispatches transition events for
      *     the state.
      */
-    isDispatchTransitionEvents(state: number | null): boolean;
+    isDispatchTransitionEvents(state: State | null): boolean;
     /**
      * Enables or disables transition events for the given state(s).  Controls
      * handle state transitions internally by default, and only dispatch state
@@ -546,7 +578,7 @@ export class Control<T> extends Ui_Component {
      * @return {boolean} Whether the state transition is allowed to proceed.
      * @protected
      */
-    isTransitionAllowed(state: number | null, enable: boolean): boolean;
+    protected isTransitionAllowed(state: State | null, enable: boolean): boolean;
     /**
      * Handles mouseover events.  Dispatches an ENTER event; if the event isn't
      * canceled, the component is enabled, and it supports auto-highlighting,
@@ -567,7 +599,7 @@ export class Control<T> extends Ui_Component {
      * @param {!EventsBrowserEvent} e Event to handle.
      * @private
      */
-    preventPointerCapture_(e: EventsBrowserEvent): void;
+    private preventPointerCapture_;
     /**
      * Handles contextmenu events.
      * @param {?EventsBrowserEvent} e Event to handle.
@@ -613,7 +645,7 @@ export class Control<T> extends Ui_Component {
      * @protected
      * @suppress {checkTypes}
      */
-    performActionInternal(e: EventsEvent | null): boolean;
+    protected performActionInternal(e: EventsEvent | null): boolean;
     /**
      * Handles focus events on the component's key event target element.  If the
      * component is focusable, updates its state and styling to indicate that it
@@ -649,8 +681,7 @@ export class Control<T> extends Ui_Component {
      * @return {boolean} Whether the key event was handled.
      * @protected
      */
-    handleKeyEventInternal(e: KeyEvent | null): boolean;
-    actualEventTarget_: Control<T>;
+    protected handleKeyEventInternal(e: KeyEvent | null): boolean;
 }
 export namespace Control {
     export { IeMouseEventSequenceSimulator_ };
@@ -679,12 +710,74 @@ export namespace Control {
  * @template CONTROL
  */
 export class ControlRenderer<CONTROL> {
+    /** @return {!ControlRenderer} @suppress {checkTypes} */
+    static getInstance(): ControlRenderer;
+    /**
+     * Constructs a new renderer and sets the CSS class that the renderer will use
+     * as the base CSS class to apply to all elements rendered by that renderer.
+     * An example to use this function using a color palette:
+     *
+     * <pre>
+     * var myCustomRenderer = ControlRenderer.getCustomRenderer(
+     *     goog.ui.PaletteRenderer, 'my-special-palette');
+     * var newColorPalette = new goog.ui.ColorPalette(
+     *     colors, myCustomRenderer, opt_domHelper);
+     * </pre>
+     *
+     * Your CSS can look like this now:
+     * <pre>
+     * .my-special-palette { }
+     * .my-special-palette-table { }
+     * .my-special-palette-cell { }
+     * etc.
+     * </pre>
+     *
+     * <em>instead</em> of
+     * <pre>
+     * .CSS_MY_SPECIAL_PALETTE .goog-palette { }
+     * .CSS_MY_SPECIAL_PALETTE .goog-palette-table { }
+     * .CSS_MY_SPECIAL_PALETTE .goog-palette-cell { }
+     * etc.
+     * </pre>
+     *
+     * You would want to use this functionality when you want an instance of a
+     * component to have specific styles different than the other components of the
+     * same type in your application.  This avoids using descendant selectors to
+     * apply the specific styles to this component.
+     *
+     * @param {?Function} ctor The constructor of the renderer you are trying to
+     *     create.
+     * @param {string} cssClassName The name of the CSS class for this renderer.
+     * @return {?ControlRenderer} An instance of the desired renderer with
+     *     its getCssClass() method overridden to return the supplied custom CSS
+     *     class name.
+     */
+    static getCustomRenderer(ctor: Function | null, cssClassName: string): ControlRenderer | null;
+    /**
+     * Returns the appropriate ARIA attribute based on ARIA role if the ARIA
+     * attribute is an ARIA state.
+     * @param {!Element} element The element from which to get the ARIA role for
+     * matching ARIA state.
+     * @param {?AriaState} attr The ARIA attribute to check to see if it
+     * can be applied to the given ARIA role.
+     * @return {?AriaState} An ARIA attribute that can be applied to the
+     * given ARIA role.
+     * @private
+     */
+    private static getAriaStateForAriaRole_;
+    /**
+     * Determines if the given ARIA attribute is an ARIA property or ARIA state.
+     * @param {?AriaState} attr The ARIA attribute to classify.
+     * @return {boolean} If the ARIA attribute is an ARIA state.
+     * @private
+     */
+    private static isAriaState_;
     /**
      * Returns the ARIA role to be applied to the control.
      * See http://wiki/Main/ARIA for more info.
      * @return {Role|undefined} ARIA role.
      */
-    getAriaRole(): string | undefined;
+    getAriaRole(): Role | undefined;
     /**
      * Returns the control's contents wrapped in a DIV, with the renderer's own
      * CSS class and additional state-specific classes applied to it.
@@ -751,7 +844,7 @@ export class ControlRenderer<CONTROL> {
      * @param {?Element} element Element to update.
      * @param {?Role=} opt_preferredRole The preferred ARIA role.
      */
-    setAriaRole(element: Element | null, opt_preferredRole?: string | null | undefined): void;
+    setAriaRole(element: Element | null, opt_preferredRole?: (Role | null) | undefined): void;
     /**
      * Sets the element's ARIA attributes, including distinguishing between
      * universally supported ARIA properties and ARIA states that are only
@@ -760,7 +853,7 @@ export class ControlRenderer<CONTROL> {
      * @param {!Control} control Control whose ARIA state will be updated.
      * @param {!Element} element Element whose ARIA state is to be updated.
      */
-    setAriaStates(control: Control<any>, element: Element): void;
+    setAriaStates(control: Control, element: Element): void;
     /**
      * Sets the element's ARIA label. This should be overriden by subclasses that
      * don't apply the role directly on control.element_.
@@ -812,7 +905,7 @@ export class ControlRenderer<CONTROL> {
      * @param {?State} state State to enable or disable.
      * @param {boolean} enable Whether the control is entering or exiting the state.
      */
-    setState(control: CONTROL | null, state: number | null, enable: boolean): void;
+    setState(control: CONTROL | null, state: State | null, enable: boolean): void;
     /**
      * Updates the element's ARIA (accessibility) attributes , including
      * distinguishing between universally supported ARIA properties and ARIA states
@@ -823,7 +916,7 @@ export class ControlRenderer<CONTROL> {
      * @param {boolean} enable Whether the state is being enabled or disabled.
      * @protected
      */
-    updateAriaState(element: Element | null, state: number | null, enable: boolean): void;
+    protected updateAriaState(element: Element | null, state: State | null, enable: boolean): void;
     /**
      * Takes a control's root element, and sets its content to the given text
      * caption or DOM structure.  The default implementation replaces the children
@@ -835,7 +928,7 @@ export class ControlRenderer<CONTROL> {
      *     set as the control's content. The DOM nodes will not be cloned, they
      *     will only moved under the content element of the control.
      */
-    setContent(element: Element | null, content: any): void;
+    setContent(element: Element | null, content: ControlContent | null): void;
     /**
      * Returns the element within the component's DOM that should receive keyboard
      * focus (null if none).  The default implementation returns the control's root
@@ -861,7 +954,7 @@ export class ControlRenderer<CONTROL> {
      * static constant instead.
      * @return {Array<Array<string>>} Array of class name combinations.
      */
-    getIe6ClassCombinations(): string[][];
+    getIe6ClassCombinations(): Array<Array<string>>;
     /**
      * Returns the name of a DOM structure-specific CSS class to be applied to the
      * root element of all components rendered or decorated using this renderer.
@@ -898,7 +991,7 @@ export class ControlRenderer<CONTROL> {
      * @return {!Array<string>} Array of CSS class names applicable to the control.
      * @protected
      */
-    getClassNames(control: CONTROL | null): string[];
+    protected getClassNames(control: CONTROL | null): Array<string>;
     /**
      * Returns an array of all the combined class names that should be applied based
      * on the given list of classes. Checks the result of
@@ -917,7 +1010,7 @@ export class ControlRenderer<CONTROL> {
      *     applied.
      * @private
      */
-    getAppliedCombinedClassNames_(classes: ArrayLike<string>, opt_includedClass?: string | null | undefined): string[];
+    private getAppliedCombinedClassNames_;
     /**
      * Takes a bit mask of {@link State}s, and returns an array
      * of the appropriate class names representing the given state, suitable to be
@@ -930,7 +1023,7 @@ export class ControlRenderer<CONTROL> {
      *     state.
      * @protected
      */
-    getClassNamesForState(state: number): string[];
+    protected getClassNamesForState(state: number): Array<string>;
     /**
      * Takes a single {@link State}, and returns the
      * corresponding CSS class name (null if none).
@@ -939,7 +1032,7 @@ export class ControlRenderer<CONTROL> {
      *     if none).
      * @protected
      */
-    getClassForState(state: number | null): string | undefined;
+    protected getClassForState(state: State | null): string | undefined;
     /**
      * Takes a single CSS class name which may represent a component state, and
      * returns the corresponding component state (0x00 if none).
@@ -949,12 +1042,12 @@ export class ControlRenderer<CONTROL> {
      *     to the given CSS class (0x00 if none).
      * @protected
      */
-    getStateFromClass(className: string): number | null;
+    protected getStateFromClass(className: string): State | null;
     /**
      * Creates the lookup table of states to classes, used during state changes.
      * @private
      */
-    createClassByStateMap_(): void;
+    private createClassByStateMap_;
     /**
      * Map of component states to state-specific structural class names,
      * used when changing the DOM in response to a state change.  Precomputed
@@ -963,12 +1056,12 @@ export class ControlRenderer<CONTROL> {
      * @type {?Object}
      * @private
      */
-    classByState_: Object | null;
+    private classByState_;
     /**
      * Creates the lookup table of classes to states, used during decoration.
      * @private
      */
-    createStateByClassMap_(): void;
+    private createStateByClassMap_;
     /**
      * Map of state-specific structural class names to component states,
      * used during element decoration.  Precomputed and cached on first use
@@ -976,13 +1069,13 @@ export class ControlRenderer<CONTROL> {
      * @type {?Object}
      * @private
      */
-    stateByClass_: Object | null;
+    private stateByClass_;
 }
 export namespace ControlRenderer {
     export const instance_: undefined | ControlRenderer;
     export const CSS_CLASS: string;
     export const IE6_CLASS_COMBINATIONS: Array<Array<string>>;
-    export const ariaAttributeMap_: Object<State, AriaState>;
+    export const ariaAttributeMap_: any;
     export const TOGGLE_ARIA_STATE_MAP_: any;
 }
 /**
@@ -1017,7 +1110,7 @@ export function getDecoratorByClassName(className: string): Ui_Component | null;
  *     singleton instance of `goog.ui.ButtonRenderer`), or null if
  *     no default renderer was found.
  */
-export function getDefaultRenderer(componentCtor: Function | null): ControlRenderer<any> | null;
+export function getDefaultRenderer(componentCtor: Function | null): ControlRenderer | null;
 /**
  * Resets the global renderer and decorator registry.
  */
@@ -1043,13 +1136,14 @@ export function setDecoratorByClassName(className: string, decoratorFn: Function
  */
 export function setDefaultRenderer(componentCtor: Function | null, rendererCtor: Function | null): void;
 import { Component as Ui_Component } from "./component.js";
-import { ControlContent } from "./controlcontent.js";
 import { KeyHandler } from "../events/keyhandler.js";
 import { Role } from "../a11y/aria/roles.js";
+import { ControlContent } from "./controlcontent.js";
+import { State } from "./component.js";
 import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
 import { Event as EventsEvent } from "../events/event.js";
 import { KeyEvent } from "../events/keyhandler.js";
-import * as goog_doms from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";
 declare class IeMouseEventSequenceSimulator_ extends Disposable {
     /**
      * @param {!MouseEvent} e
@@ -1057,16 +1151,7 @@ declare class IeMouseEventSequenceSimulator_ extends Disposable {
      * @return {!MouseEvent}
      * @private
      */
-    static makeLeftMouseEvent_(e: MouseEvent, typeArg: string | null): MouseEvent;
-    /**
-     * Whether this browser supports synthetic MouseEvents.
-     *
-     * See https://msdn.microsoft.com/library/dn905219(v=vs.85).aspx for details.
-     *
-     * @private {boolean}
-     * @const
-     */
-    static SYNTHETIC_EVENTS_: boolean;
+    private static makeLeftMouseEvent_;
     /**
      * A singleton that helps Control instances play well with screen
      * readers.  It necessitated by shortcomings in IE, and need not be
@@ -1088,26 +1173,24 @@ declare class IeMouseEventSequenceSimulator_ extends Disposable {
      * @param {!Control} control
      * @private
      */
-    constructor(control: Control<any>);
+    private constructor();
     /** @private {Control}*/
-    control_: Control<any>;
+    private control_;
     /** @private {boolean} */
-    clickExpected_: boolean;
+    private clickExpected_;
     /** @private @const {!EventHandler<
      *                       !Control.IeMouseEventSequenceSimulator_>}
      */
-    handler_: any;
+    private handler_;
     /** @private */
-    handleMouseDown_(): void;
+    private handleMouseDown_;
     /** @private */
-    handleMouseUp_(): void;
+    private handleMouseUp_;
     /**
      * @param {!EventsEvent} e
      * @private
      */
-    handleClick_(e: EventsEvent): void;
+    private handleClick_;
 }
-import { State } from "./component.js";
-import { State as AriaState } from "../a11y/aria/attributes.js";
 import { Disposable } from "../disposable/disposable.js";
 export {};

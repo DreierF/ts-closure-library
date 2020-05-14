@@ -19,7 +19,7 @@ export class HTML5WebStorage extends IterableMechanism {
      * The web storage object (window.localStorage or window.sessionStorage).
      * @private {Storage}
      */
-    storage_: Storage | null;
+    private storage_;
     /**
      * Determines whether or not the mechanism is available.
      * It works only if the provided web storage object exists and is enabled.
@@ -27,14 +27,6 @@ export class HTML5WebStorage extends IterableMechanism {
      * @return {boolean} True if the mechanism is available.
      */
     isAvailable(): boolean;
-    /** @override */
-    set(key: any, value: any): void;
-    /** @override */
-    get(key: any): string | null;
-    /** @override */
-    remove(key: any): void;
-    /** @override */
-    __iterator__(opt_keys?: any): Iterator<any>;
     /**
      * Gets the key for a given key index. If an index outside of
      * [0..this.getCount()) is specified, this function returns null.
@@ -48,4 +40,3 @@ export namespace HTML5WebStorage {
     export const STORAGE_AVAILABLE_KEY_: string;
 }
 import { IterableMechanism } from "./iterablemechanism.js";
-import { Iterator } from "../../iter/iter.js";

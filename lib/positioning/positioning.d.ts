@@ -149,7 +149,7 @@ export function getOffsetParentPageOffset(movableElement: Element): Coordinate;
  * @return {{rect:!Rect, status:number}}
  *     Object containing the computed position and status bitmap.
  */
-export function getPositionAtCoordinate(absolutePos: Coordinate, elementSize: Size, elementCorner: Corner | null, opt_margin?: Box | undefined, opt_viewport?: Box | undefined, opt_overflow?: number | null | undefined): {
+export function getPositionAtCoordinate(absolutePos: Coordinate, elementSize: Size, elementCorner: Corner | null, opt_margin?: Box | undefined, opt_viewport?: Box | undefined, opt_overflow?: (number | null) | undefined): {
     rect: Rect;
     status: number;
 };
@@ -189,7 +189,7 @@ export function getPositionAtCoordinate(absolutePos: Coordinate, elementSize: Si
  * @return {?number} Status bitmap,
  *     {@see number}.
  */
-export function positionAtAnchor(anchorElement: Element | null, anchorElementCorner: Corner | null, movableElement: Element | null, movableElementCorner: Corner | null, opt_offset?: Coordinate | undefined, opt_margin?: Box | undefined, opt_overflow?: number | null | undefined, opt_preferredSize?: Size | undefined, opt_viewport?: Box | undefined): number | null;
+export function positionAtAnchor(anchorElement: Element | null, anchorElementCorner: Corner | null, movableElement: Element | null, movableElementCorner: Corner | null, opt_offset?: Coordinate | undefined, opt_margin?: Box | undefined, opt_overflow?: (number | null) | undefined, opt_preferredSize?: Size | undefined, opt_viewport?: Box | undefined): number | null;
 /**
  * Positions the specified corner of the movable element at the
  * specified coordinate.
@@ -212,7 +212,7 @@ export function positionAtAnchor(anchorElement: Element | null, anchorElementCor
  *     movableElement. Defaults to the current size.
  * @return {?number} Status bitmap.
  */
-export function positionAtCoordinate(absolutePos: Coordinate | null, movableElement: Element | null, movableElementCorner: Corner | null, opt_margin?: Box | undefined, opt_viewport?: Box | undefined, opt_overflow?: number | null | undefined, opt_preferredSize?: Size | undefined): number | null;
+export function positionAtCoordinate(absolutePos: Coordinate | null, movableElement: Element | null, movableElementCorner: Corner | null, opt_margin?: Box | undefined, opt_viewport?: Box | undefined, opt_overflow?: (number | null) | undefined, opt_preferredSize?: Size | undefined): number | null;
 import { Coordinate } from "../math/coordinate.js";
 import { Size } from "../math/size.js";
 import { Box } from "../math/box.js";

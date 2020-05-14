@@ -14,13 +14,13 @@ export class StringBuffer {
      * @param {...*} var_args Other initial items to
      *     append, e.g., new StringBuffer('foo', 'bar').
      */
-    constructor(opt_a1?: any, ...args: any[]);
+    constructor(opt_a1?: any | undefined, ...args: any[]);
     /**
      * Internal buffer for the string to be concatenated.
      * @type {string}
      * @private
      */
-    buffer_: string;
+    private buffer_;
     /**
      * Sets the contents of the string buffer object, replacing what's currently
      * there.
@@ -40,7 +40,7 @@ export class StringBuffer {
      * @return {!StringBuffer} This same StringBuffer object.
      * @suppress {duplicate}
      */
-    append(a1: any, opt_a2?: any, ...args: any[]): StringBuffer;
+    append(a1: any, opt_a2?: any | undefined, ...args: any[]): StringBuffer;
     /**
      * Clears the internal buffer.
      */

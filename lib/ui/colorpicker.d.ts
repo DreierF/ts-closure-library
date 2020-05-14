@@ -1,5 +1,5 @@
 /**
- * Constants for event names.
+ * *
  */
 export type EventType = string;
 /**
@@ -22,6 +22,13 @@ export type EventType = string;
  */
 export class ColorPicker extends Component {
     /**
+     * Returns an unrendered instance of the color picker.  The colors and layout
+     * are a simple color grid, the same as the old Gmail color picker.
+     * @param {DomHelper=} opt_domHelper Optional DOM helper.
+     * @return {!ColorPicker} The unrendered instance.
+     */
+    static createSimpleColorGrid(opt_domHelper?: DomHelper | undefined): ColorPicker;
+    /**
      * Create a new, empty color picker.
      *
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
@@ -34,36 +41,36 @@ export class ColorPicker extends Component {
      * @type {boolean}
      * @private
      */
-    focusable_: boolean;
+    private focusable_;
     /**
      * The color palette used inside the color picker.
      * @type {ColorPalette?}
      * @private
      */
-    colorPalette_: ColorPalette | null;
+    private colorPalette_;
     /**
      * Gets the array of colors displayed by the color picker.
      * Modifying this array will lead to unexpected behavior.
      * @return {Array<string>?} The colors displayed by this widget.
      */
-    getColors(): string[] | null;
+    getColors(): Array<string> | null;
     /**
      * Sets the array of colors to be displayed by the color picker.
      * @param {Array<string>} colors The array of colors to be added.
      */
-    setColors(colors: string[]): void;
+    setColors(colors: Array<string>): void;
     /**
      * Sets the array of colors to be displayed by the color picker.
      * @param {Array<string>} colors The array of colors to be added.
      * @deprecated Use setColors.
      */
-    addColors(colors: string[]): void;
+    addColors(colors: Array<string>): void;
     /**
      * Sets the size of the palette.  Will throw an error after the picker has been
      * rendered.
      * @param {Size|number} size The size of the grid.
      */
-    setSize(size: number | Size): void;
+    setSize(size: Size | number): void;
     /**
      * Gets the number of columns displayed.
      * @return {Size?} The size of the grid.
@@ -122,14 +129,13 @@ export class ColorPicker extends Component {
      * @param {?EventsEvent} e The event.
      * @private
      */
-    onColorPaletteAction_(e: EventsEvent | null): void;
+    private onColorPaletteAction_;
     /**
      * Create a color palette for the color picker.
      * @param {Array<string>} colors Array of colors.
      * @private
      */
-    createColorPalette_(colors: string[]): void;
-    actualEventTarget_: ColorPicker;
+    private createColorPalette_;
 }
 export namespace ColorPicker {
     export const DEFAULT_NUM_COLS: number;
@@ -139,7 +145,6 @@ export namespace EventType {
     export const CHANGE: string;
 }
 import { Component } from "./component.js";
-import { ColorPalette } from "./colorpalette.js";
 import { Size } from "../math/size.js";
-import { Event as EventsEvent } from "../events/event.js";
 import { DomHelper } from "../dom/dom.js";
+import { ColorPalette } from "./colorpalette.js";

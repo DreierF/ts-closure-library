@@ -88,7 +88,126 @@
  * @class
  * @implements {TypedString}
  */
-export class SafeStyle {
+export class SafeStyle implements TypedString {
+    /**
+     * Creates a SafeStyle object from a compile-time constant string.
+     *
+     * `style` should be in the format
+     * {@code name: value; [name: value; ...]} and must not have any < or >
+     * characters in it. This is so that SafeStyle's contract is preserved,
+     * allowing the SafeStyle to correctly be interpreted as a sequence of CSS
+     * declarations and without affecting the syntactic structure of any
+     * surrounding CSS and HTML.
+     *
+     * This method performs basic sanity checks on the format of `style`
+     * but does not constrain the format of `name` and `value`, except
+     * for disallowing tag characters.
+     *
+     * @param {!Const} style A compile-time-constant string from which
+     *     to create a SafeStyle.
+     * @return {!SafeStyle} A SafeStyle object initialized to
+     *     `style`.
+     */
+    static fromConstant(style: Const): SafeStyle;
+    /**
+     * Performs a runtime check that the provided object is indeed a
+     * SafeStyle object, and returns its value.
+     *
+     * @param {!SafeStyle} safeStyle The object to extract from.
+     * @return {string} The safeStyle object's contained string, unless
+     *     the run-time type check fails. In that case, `unwrap` returns an
+     *     innocuous string, or, if assertions are enabled, throws
+     *     `AssertionError`.
+     */
+    static unwrap(safeStyle: SafeStyle): string;
+    /**
+     * Package-internal utility method to create SafeStyle instances.
+     *
+     * @param {string} style The string to initialize the SafeStyle object with.
+     * @return {!SafeStyle} The initialized SafeStyle object.
+     * @package
+     */
+    static createSafeStyleSecurityPrivateDoNotAccessOrElse(style: string): SafeStyle;
+    /**
+     * Creates a new SafeStyle object from the properties specified in the map.
+     * @param {SafeStyle.PropertyMap} map Mapping of property names to
+     *     their values, for example {'margin': '1px'}. Names must consist of
+     *     [-_a-zA-Z0-9]. Values might be strings consisting of
+     *     [-,.'"%_!# a-zA-Z0-9[\]], where ", ', and [] must be properly balanced.
+     *     We also allow simple functions like rgb() and url() which sanitizes its
+     *     contents. Other values must be wrapped in Const. URLs might
+     *     be passed as SafeUrl which will be wrapped into url(""). We
+     *     also support array whose elements are joined with ' '. Null value causes
+     *     skipping the property.
+     * @return {!SafeStyle}
+     * @throws {Error} If invalid name is provided.
+     * @suppress{checkTypes}
+     * @throws {AssertionError} If invalid value is provided. With
+     *     disabled assertions, invalid value is replaced by
+     *     SafeStyle.INNOCUOUS_STRING.
+     */
+    static create(map: SafeStyle.PropertyMap): SafeStyle;
+    /**
+     * Checks and converts value to string.
+     * @param {!SafeStyle.PropertyValue} value
+     * @return {string}
+     * @private
+     */
+    private static sanitizePropertyValue_;
+    /**
+     * Checks string value.
+     * @param {string} value
+     * @return {string}
+     * @private
+     */
+    private static sanitizePropertyValueString_;
+    /**
+     * Checks that quotes (" and ') are properly balanced inside a string. Assumes
+     * that neither escape (\) nor any other character that could result in
+     * breaking out of a string parsing context are allowed;
+     * see http://www.w3.org/TR/css3-syntax/#string-token-diagram.
+     * @param {string} value Untrusted CSS property value.
+     * @return {boolean} True if property value is safe with respect to quote
+     *     balancedness.
+     * @private
+     */
+    private static hasBalancedQuotes_;
+    /**
+     * Checks that square brackets ([ and ]) are properly balanced inside a string,
+     * and that the content in the square brackets is one ident-token;
+     * see https://www.w3.org/TR/css-syntax-3/#ident-token-diagram.
+     * For practicality, and in line with other restrictions posed on SafeStyle
+     * strings, we restrict the character set allowable in the ident-token to
+     * [-_a-zA-Z0-9].
+     * @param {string} value Untrusted CSS property value.
+     * @return {boolean} True if property value is safe with respect to square
+     *     bracket balancedness.
+     * @private
+     */
+    private static hasBalancedSquareBrackets_;
+    /**
+     * Sanitize URLs inside url().
+     *
+     * NOTE: We could also consider using CSS.escape once that's available in the
+     * browsers. However, loosely matching URL e.g. with url\(.*\) and then escaping
+     * the contents would result in a slightly different language than CSS leading
+     * to confusion of users. E.g. url(")") is valid in CSS but it would be invalid
+     * as seen by our parser. On the other hand, url(\) is invalid in CSS but our
+     * parser would be fine with it.
+     *
+     * @param {string} value Untrusted CSS property value.
+     * @return {string}
+     * @private
+     */
+    private static sanitizeUrl_;
+    /**
+     * Creates a new SafeStyle object by concatenating the values.
+     * @suppress{checkTypes}
+     * @param {...(!SafeStyle|!Array<!SafeStyle>)} var_args
+     *     SafeStyles to concatenate.
+     * @return {!SafeStyle}
+     */
+    static concat(...args: (SafeStyle | SafeStyle[])[]): SafeStyle;
     /**
      * @override
      * @const
@@ -100,14 +219,14 @@ export class SafeStyle {
      * field stand out.
      * @private {string}
      */
-    privateDoNotAccessOrElseSafeStyleWrappedValue_: string;
+    private privateDoNotAccessOrElseSafeStyleWrappedValue_;
     /**
      * A type marker used to implement additional run-time type checking.
      * @see SafeStyle#unwrap
      * @const {!Object}
      * @private
      */
-    SAFE_STYLE_TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
+    private SAFE_STYLE_TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_;
     /**
      * Returns this SafeStyle's value as a string.
      *
@@ -138,7 +257,7 @@ export class SafeStyle {
      * @return {!SafeStyle}
      * @private
      */
-    initSecurityPrivateDoNotAccessOrElse_(style: string): SafeStyle;
+    private initSecurityPrivateDoNotAccessOrElse_;
 }
 export namespace SafeStyle {
     export const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
@@ -165,5 +284,6 @@ export namespace SafeStyle {
         [x: string]: string | Const | SafeUrl | (string | Const | SafeUrl)[] | null;
     };
 }
+import { TypedString } from "../string/typedstring.js";
 import { Const } from "../string/const.js";
 import { SafeUrl } from "./safeurl.js";

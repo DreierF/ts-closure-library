@@ -20,14 +20,14 @@ export class CustomRenderer {
      * @param {?Array} rows
      * @param {string} token
      */
-    render(renderer: Renderer | null, element: Element | null, rows: any[] | null, token: string): void;
+    render(renderer: Renderer | null, element: Element | null, rows: Array | null, token: string): void;
     /**
      * Generic function that takes a row and renders a DOM structure for that row.
      * @param {?Object} row Object representing row.
      * @param {string} token Token to highlight.
      * @param {?Node} node The node to render into.
      */
-    renderRow(row: any, token: string, node: Node | null): void;
+    renderRow(row: any | null, token: string, node: Node | null): void;
 }
 /**
  * @fileoverview Class for rendering the results of an auto complete and
@@ -63,111 +63,111 @@ export class Renderer extends goog_events.EventTarget {
      *     default.
      * @suppress {underscore}
      */
-    constructor(opt_parentNode?: Element | null | undefined, opt_customRenderer?: {
-        renderRow: any;
+    constructor(opt_parentNode?: (Element | null) | undefined, opt_customRenderer?: (({
+        renderRow;
     } | {
-        render: any;
-    } | null | undefined, opt_rightAlign?: boolean | undefined, opt_useStandardHighlighting?: boolean | undefined);
+        render;
+    }) | null) | undefined, opt_rightAlign?: boolean | undefined, opt_useStandardHighlighting?: boolean | undefined);
     /**
      * The anchor element to position the rendered autocompleter against.
      * @type {?Element}
      * @private
      */
-    anchorElement_: Element | null;
+    private anchorElement_;
     /**
      * The anchor element to position the rendered autocompleter against.
      * @protected
       * @type {?Element|undefined}
      */
-    target_: (Element | undefined) | null;
+    protected target_: (Element | undefined) | null;
     /**
      * The element on which to base the width of the autocomplete.
      * @protected
       * @type {?Node}
      */
-    widthProvider_: Node | null;
+    protected widthProvider_: Node | null;
     /**
      * The element on which to base the max width of the autocomplete.
      * @protected
       * @type {!Node|undefined}
      */
-    maxWidthProvider_: Node | undefined;
+    protected maxWidthProvider_: Node | undefined;
     /**
      * The border width of the autocomplete dropdown, only used in calculating the
      * dropdown width.
      * @private
       * @type {number}
      */
-    borderWidth_: number;
+    private borderWidth_;
     /**
      * A flag used to make sure we highlight only one match in the rendered row.
      * @private
       * @type {boolean|null}
      */
-    wasHighlightedAtLeastOnce_: boolean | null;
+    private wasHighlightedAtLeastOnce_;
     /**
      * Reference to the parent element that will hold the autocomplete elements
      * @type {?Element}
      * @private
      */
-    parent_: Element | null;
+    private parent_;
     /**
      * Dom helper for the parent element's document.
      * @type {?DomHelper}
      * @private
      */
-    dom_: DomHelper | null;
+    private dom_;
     /**
      * Whether to reposition the autocomplete UI below the target node
      * @type {boolean}
      * @private
      */
-    reposition_: boolean;
+    private reposition_;
     /**
      * Reference to the main element that controls the rendered autocomplete
      * @type {Element|null}
      * @private
      */
-    element_: Element | null;
+    private element_;
     /**
      * The current token that has been entered
      * @type {string}
      * @private
      */
-    token_: string;
+    private token_;
     /**
      * Array used to store the current set of rows being displayed
      * @type {Array<!Object>}
      * @private
      */
-    rows_: Array<Object>;
+    private rows_;
     /**
      * Array of the node divs that hold each result that is being displayed.
      * @type {Array<Element>}
      * @protected
      * @suppress {underscore|visibility}
      */
-    rowDivs_: Array<Element>;
+    protected rowDivs_: Array<Element>;
     /**
      * The index of the currently highlighted row
      * @type {number}
      * @protected
      * @suppress {underscore|visibility}
      */
-    hilitedRow_: number;
+    protected hilitedRow_: number;
     /**
      * The time that the rendering of the menu rows started
      * @type {number}
      * @protected
      * @suppress {underscore|visibility}
      */
-    startRenderingRows_: number;
+    protected startRenderingRows_: number;
     /**
      * Store the current state for the renderer
      * @type {boolean}
      * @private
      */
-    visible_: boolean;
+    private visible_;
     /**
      * Classname for the main element.  This must be a single valid class name.
      * @type {string}
@@ -187,7 +187,7 @@ export class Renderer extends goog_events.EventTarget {
      * @type {string}
      * @private
      */
-    legacyActiveClassName_: string;
+    private legacyActiveClassName_;
     /**
      * Class name for active row div.  This must be a single valid class name.
      * Active row will have rowClassName & activeClassName &
@@ -205,7 +205,7 @@ export class Renderer extends goog_events.EventTarget {
      * @type {?({renderRow}|{render})}
      * @private
      */
-    customRenderer_: any;
+    private customRenderer_;
     /**
      * Flag to indicate whether standard highlighting should be applied.
      * this is set to true if left unspecified to retain existing
@@ -213,46 +213,46 @@ export class Renderer extends goog_events.EventTarget {
      * @type {boolean}
      * @private
      */
-    useStandardHighlighting_: boolean;
+    private useStandardHighlighting_;
     /**
      * Flag to indicate whether matches should be done on whole words instead
      * of any string.
      * @type {boolean}
      * @private
      */
-    matchWordBoundary_: boolean;
+    private matchWordBoundary_;
     /**
      * Flag to set all tokens as highlighted in the autocomplete row.
      * @type {boolean}
      * @private
      */
-    highlightAllTokens_: boolean;
+    private highlightAllTokens_;
     /**
      * Determines if the autocomplete will always be right aligned
      * @type {boolean}
      * @private
      */
-    rightAlign_: boolean;
+    private rightAlign_;
     /**
      * Whether to align with top of target field
      * @type {boolean}
      * @private
      */
-    topAlign_: boolean;
+    private topAlign_;
     /**
      * Duration (in msec) of fade animation when menu is shown/hidden.
      * Setting to 0 (default) disables animation entirely.
      * @type {number}
      * @private
      */
-    menuFadeDuration_: number;
+    private menuFadeDuration_;
     /**
      * Whether we should limit the dropdown from extending past the bottom of the
      * screen and instead show a scrollbar on the dropdown.
      * @type {boolean}
      * @private
      */
-    showScrollbarsIfTooLarge_: boolean;
+    private showScrollbarsIfTooLarge_;
     /**
      * Animation in progress, if any.
      * @type {Animation|undefined}
@@ -332,7 +332,7 @@ export class Renderer extends goog_events.EventTarget {
      * @return {?Element} The anchor element.
      * @protected
      */
-    getAnchorElement(): Element | null;
+    protected getAnchorElement(): Element | null;
     /**
      * Render the autocomplete UI
      *
@@ -341,7 +341,7 @@ export class Renderer extends goog_events.EventTarget {
      * @param {?Element=} opt_target Current HTML node, will position popup beneath
      *     this node.
      */
-    renderRows(rows: any[], token: string, opt_target?: Element | null | undefined): void;
+    renderRows(rows: Array<any>, token: string, opt_target?: (Element | null) | undefined): void;
     /**
      * Hide the object.
      */
@@ -356,7 +356,7 @@ export class Renderer extends goog_events.EventTarget {
      * @param {boolean} isShown Whether the menu is being shown.
      * @private
      */
-    toggleAriaMarkup_(isShown: boolean): void;
+    private toggleAriaMarkup_;
     /**
      * @return {boolean} True if the object is visible.
      */
@@ -384,13 +384,13 @@ export class Renderer extends goog_events.EventTarget {
      * @param {?Element} elem The container element.
      * @private
      */
-    setMenuClasses_(elem: Element | null): void;
+    private setMenuClasses_;
     /**
      * If the main HTML element hasn't been made yet, creates it and appends it
      * to the parent.
      * @private
      */
-    maybeCreateElement_(): void;
+    private maybeCreateElement_;
     /**
      * Redraw (or draw if this is the first call) the rendered auto-complete drop
      * down.
@@ -401,7 +401,7 @@ export class Renderer extends goog_events.EventTarget {
      * @return {?Corner} The anchor corner to position the popup at.
      * @protected
      */
-    getAnchorCorner(): goog_positioning.Corner | null;
+    protected getAnchorCorner(): Corner | null;
     /**
      * Repositions the auto complete popup relative to the location node, if it
      * exists and the auto position has been set.
@@ -417,12 +417,12 @@ export class Renderer extends goog_events.EventTarget {
      * @return {boolean} Whether the drop down will be autopositioned.
      * @protected
      */
-    getAutoPosition(): boolean;
+    protected getAutoPosition(): boolean;
     /**
      * @return {?Element} The target element.
      * @protected
      */
-    getTarget(): Element | null;
+    protected getTarget(): Element | null;
     /**
      * Generic function that takes a row and renders a DOM structure for that row.
      *
@@ -434,7 +434,7 @@ export class Renderer extends goog_events.EventTarget {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    renderRowContents_(row: any, token: string, node: Node | null): void;
+    private renderRowContents_;
     /**
      * Goes through a node and all of its child nodes, replacing HTML text that
      * matches a token with <b>token</b>.
@@ -448,14 +448,14 @@ export class Renderer extends goog_events.EventTarget {
      *     word, in whatever order and however many times, will be highlighted.
      * @private
      */
-    startHiliteMatchingText_(node: Node | null, tokenOrArray: string | string[]): void;
+    private startHiliteMatchingText_;
     /**
      * @param {?Node} node Node to match.
      * @param {string|Array<string>} tokenOrArray Token to match or array of tokens
      *     to match.
      * @private
      */
-    hiliteMatchingText_(node: Node | null, tokenOrArray: string | string[]): void;
+    private hiliteMatchingText_;
     /**
      * Transforms a token into a string ready to be put into the regular expression
      * in hiliteMatchingText_.
@@ -465,7 +465,7 @@ export class Renderer extends goog_events.EventTarget {
      * @suppress{checkTypes}
      * @private
      */
-    getTokenRegExp_(tokenOrArray: string | string[]): string;
+    private getTokenRegExp_;
     /**
      * Render a row by creating a div and then calling row rendering callback or
      * default row handler
@@ -474,7 +474,7 @@ export class Renderer extends goog_events.EventTarget {
      * @param {string} token Token to highlight.
      * @return {!Element} An element with the rendered HTML.
      */
-    renderRowHtml(row: any, token: string): Element;
+    renderRowHtml(row: any | null, token: string): Element;
     /**
      * Given an event target looks up through the parents till it finds a div.  Once
      * found it will then look to see if that is one of the childnodes, if it is
@@ -483,7 +483,7 @@ export class Renderer extends goog_events.EventTarget {
      * @return {number} Index corresponding to event target.
      * @private
      */
-    getRowFromEventTarget_(et: Element | null): number;
+    private getRowFromEventTarget_;
     /**
      * Handle the click events.  These are redirected to the AutoComplete object
      * which then makes a callback to select the correct row.
@@ -491,13 +491,13 @@ export class Renderer extends goog_events.EventTarget {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    handleClick_(e: EventsEvent | null): void;
+    private handleClick_;
     /**
      * Handle the mousedown event and prevent the AC from losing focus.
      * @param {?EventsEvent} e Browser event object.
      * @private
      */
-    handleMouseDown_(e: EventsEvent | null): void;
+    private handleMouseDown_;
     /**
      * Handle the mousing events.  These are redirected to the AutoComplete object
      * which then makes a callback to set the correctly highlighted row.  This is
@@ -507,14 +507,11 @@ export class Renderer extends goog_events.EventTarget {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    handleMouseOver_(e: EventsEvent | null): void;
-    actualEventTarget_: Renderer;
+    private handleMouseOver_;
 }
 export namespace Renderer {
     export const DELAY_BEFORE_MOUSEOVER: number;
 }
 import * as goog_events from "../../events/eventhandler.js";
-import { DomHelper } from "../../dom/dom.js";
 import { Animation } from "../../fx/animation.js";
-import * as goog_positioning from "../../positioning/positioning.js";
-import { Event as EventsEvent } from "../../events/event.js";
+import { Corner } from "../../positioning/positioning.js";

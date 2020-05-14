@@ -2,7 +2,7 @@
  * Removes all the elements from the collection.
  * @param {?Object} col The collection-like object.
  */
-export function clear(col: any): void;
+export function clear(col: any | null): void;
 /**
  * Whether the collection contains the given value. This is O(n) and uses
  * equals (==) to test the existence.
@@ -10,7 +10,7 @@ export function clear(col: any): void;
  * @param {*} val The value to check for.
  * @return {boolean} True if the map contains the value.
  */
-export function contains(col: any, val: any): boolean;
+export function contains(col: any | null, val: any): boolean;
 /**
  * Calls f for each value in a collection. If all calls return true this return
  * true this returns true. If any returns false this returns false at this point
@@ -26,7 +26,7 @@ export function contains(col: any, val: any): boolean;
  * @return {boolean} True if all key-value pairs pass the test.
  * @template T,S
  */
-export function every<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => boolean, opt_obj?: T | undefined): boolean;
+export function every<T, S>(col: S, f: (this: T, arg1: unknown, arg2: unknown, arg3: S) => boolean, opt_obj?: T | undefined): boolean;
 /**
  * Calls a function for every value in the collection. When a call returns true,
  * adds the value to a new collection (Array is returned by default).
@@ -45,7 +45,7 @@ export function every<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) 
  *     has keys and values a plain old JS object is returned.
  * @template T,S
  */
-export function filter<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => boolean, opt_obj?: T | undefined): any;
+export function filter<T, S>(col: S, f: (this: T, arg1: unknown, arg2: unknown, arg3: S) => boolean, opt_obj?: T | undefined): any | Array<unknown>;
 /**
  * Calls a function for each value in a collection. The function takes
  * three arguments; the value, the key and the collection.
@@ -61,7 +61,7 @@ export function filter<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S)
  * @deprecated Use a more specific method, e.g. googarray.forEach,
  *     goog_object.forEach, or for-of.
  */
-export function forEach<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => any, opt_obj?: T | undefined): void;
+export function forEach<T, S>(col: S, f: (this: T, arg1: unknown, arg2: unknown, arg3: S) => unknown, opt_obj?: T | undefined): void;
 /**
  * @fileoverview Generics method for collection-like classes and objects.
  *
@@ -76,26 +76,26 @@ export function forEach<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S
  * @param {?Object} col The collection-like object.
  * @return {number} The number of values in the collection-like object.
  */
-export function getCount(col: any): number;
+export function getCount(col: any | null): number;
 /**
  * Returns the keys of the collection. Some collections have no notion of
  * keys/indexes and this function will return undefined in those cases.
  * @param {?Object} col The collection-like object.
  * @return {!Array|undefined} The keys in the collection.
  */
-export function getKeys(col: any): any[] | undefined;
+export function getKeys(col: any | null): Array | undefined;
 /**
  * Returns the values of the collection-like object.
  * @param {?Object} col The collection-like object.
  * @return {!Array<?>} The values in the collection-like object.
  */
-export function getValues(col: any): any[];
+export function getValues(col: any | null): Array<unknown>;
 /**
  * Whether the collection is empty.
  * @param {?Object} col The collection-like object.
  * @return {boolean} True if empty.
  */
-export function isEmpty(col: any): boolean;
+export function isEmpty(col: any | null): boolean;
 /**
  * Calls a function for every value in the collection and adds the result into a
  * new collection (defaults to creating a new Array).
@@ -112,7 +112,7 @@ export function isEmpty(col: any): boolean;
  *     values a plain old JS object is returned.
  * @template T,S,V
  */
-export function map<T, S, V>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => V, opt_obj?: T | undefined): any;
+export function map<T, S, V>(col: S, f: (this: T, arg1: unknown, arg2: unknown, arg3: S) => V, opt_obj?: T | undefined): any;
 /**
  * Calls f for each value in a collection. If any call returns true this returns
  * true (without checking the rest). If all returns false this returns false.
@@ -127,4 +127,4 @@ export function map<T, S, V>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S)
  * @return {boolean} True if any value passes the test.
  * @template T,S
  */
-export function some<T, S>(col: S, f: (this: T, arg1: any, arg2: any, arg3: S) => boolean, opt_obj?: T | undefined): boolean;
+export function some<T, S>(col: S, f: (this: T, arg1: unknown, arg2: unknown, arg3: S) => boolean, opt_obj?: T | undefined): boolean;

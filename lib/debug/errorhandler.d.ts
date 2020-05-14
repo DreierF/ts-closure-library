@@ -16,7 +16,7 @@
  * @extends {Disposable}
  * @implements {EntryPointMonitor}
  */
-export class ErrorHandler extends Disposable {
+export class ErrorHandler extends Disposable implements EntryPointMonitor {
     /**
      * The ErrorHandler can be used to to wrap functions with a try/catch
      * statement. If an exception is thrown, the given error handler function will
@@ -37,20 +37,20 @@ export class ErrorHandler extends Disposable {
      * @type {boolean}
      * @private
      */
-    addTracersToProtectedFunctions_: boolean;
+    private addTracersToProtectedFunctions_;
     /**
      * Handler for exceptions, which can do logging, reporting, etc.
      * @type {?Function}
      * @private
      */
-    errorHandlerFn_: Function | null;
+    private errorHandlerFn_;
     /**
      * Whether errors should be wrapped in
      * ProtectedFunctionError before rethrowing.
      * @type {boolean}
      * @private
      */
-    wrapErrors_: boolean;
+    private wrapErrors_;
     /**
      * Whether to add a prefix to all error messages. The prefix is
      * ProtectedFunctionError.MESSAGE_PREFIX. This option
@@ -58,7 +58,7 @@ export class ErrorHandler extends Disposable {
      * @type {boolean}
      * @private
      */
-    prefixErrorMessages_: boolean;
+    private prefixErrorMessages_;
     /**
      * Enable tracers when instrumenting entry points.
      * @param {boolean} newVal See above.
@@ -76,7 +76,7 @@ export class ErrorHandler extends Disposable {
      * @return {string} A span which can be clicked on to show the stack trace.
      * @private
      */
-    getStackTraceHolder_(stackTrace: string): string;
+    private getStackTraceHolder_;
     /**
      * Get the index for a function. Used for internal indexing.
      * @param {boolean} wrapper True for the wrapper; false for the wrapped.
@@ -84,7 +84,7 @@ export class ErrorHandler extends Disposable {
      *     wrapper/wrapped function.
      * @private
      */
-    getFunctionIndex_(wrapper: boolean): string;
+    private getFunctionIndex_;
     /**
      * Installs exception protection for an entry point function. When an exception
      * is thrown from a protected function, a handler will be invoked to handle it.
@@ -104,13 +104,13 @@ export class ErrorHandler extends Disposable {
      * @return {!Function} protected wrapper function.
      * @protected
      */
-    getProtectedFunction(fn: Function): Function;
+    protected getProtectedFunction(fn: Function): Function;
     /**
      * Internal error handler.
      * @param {?} e The error string or an Error-like object.
      * @private
      */
-    handleError_(e: any): void;
+    private handleError_;
     /**
      * Installs exception protection for window.setTimeout to handle exceptions.
      */
@@ -136,7 +136,7 @@ export class ErrorHandler extends Disposable {
      * @param {string} fnName The name of the function to protect.
      * @private
      */
-    protectWindowFunctionsHelper_(fnName: string): void;
+    private protectWindowFunctionsHelper_;
     /**
      * Set whether to wrap errors that occur in protected functions in a
      * ProtectedFunctionError.
@@ -174,4 +174,5 @@ export namespace ProtectedFunctionError {
     export const MESSAGE_PREFIX: string;
 }
 import { Disposable } from "../disposable/disposable.js";
+import { EntryPointMonitor } from "./entrypointregistry.js";
 import { Error as DebugError } from "./error.js";

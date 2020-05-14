@@ -25,17 +25,7 @@
  *     The tag and attribute names are case-insensitive.
  * @return {!Builder}
  */
-export function alsoAllowAttributes(justification: Const, builder: Builder, attrs: (string | {
-    tagName: string;
-    attributeName: string;
-    policy: ((arg0: string, arg1?: {
-        tagName: string | undefined;
-        attributeName: string | undefined;
-        cssProperty: string | undefined;
-    } | undefined, arg2?: {
-        cssStyle: CSSStyleDeclaration | null | undefined;
-    } | undefined, arg3?: ((arg0: string, arg1?: any, arg2?: any, arg3?: any) => string | null) | undefined) => string | null) | null;
-})[]): Builder;
+export function alsoAllowAttributes(justification: Const, builder: Builder, attrs: Array<(string | HtmlSanitizerAttributePolicy)>): Builder;
 /**
  * @fileoverview Potentially unsafe API for the HTML sanitizer.
  *
@@ -66,6 +56,7 @@ export function alsoAllowAttributes(justification: Const, builder: Builder, attr
  *     sanitizer. The tag names are case-insensitive.
  * @return {!Builder}
  */
-export function alsoAllowTags(justification: Const, builder: Builder, tags: string[]): Builder;
+export function alsoAllowTags(justification: Const, builder: Builder, tags: Array<string>): Builder;
 import { Const } from "../../string/const.js";
 import { Builder } from "./htmlsanitizer.js";
+import { HtmlSanitizerAttributePolicy } from "./htmlsanitizer.js";

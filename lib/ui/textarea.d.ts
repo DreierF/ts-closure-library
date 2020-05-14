@@ -1,5 +1,5 @@
 /**
- * Constants for event names.
+ * *
  */
 export type EventType = string;
 export namespace EventType {
@@ -31,13 +31,13 @@ export class Textarea extends Control<TextareaRenderer> {
      * @param {DomHelper=} opt_domHelper Optional DOM helper, used for
      *     document interaction.
      */
-    constructor(content: string, opt_renderer?: TextareaRenderer | undefined, opt_domHelper?: goog_dom.DomHelper | undefined);
+    constructor(content: string, opt_renderer?: TextareaRenderer | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * True if the resizing function is executing, false otherwise.
      * @type {boolean}
      * @private
      */
-    isResizing_: boolean;
+    private isResizing_;
     /**
      * Represents if we have focus on the textarea element, used only
      * to render the placeholder if we don't have native placeholder
@@ -45,32 +45,32 @@ export class Textarea extends Control<TextareaRenderer> {
      * @type {boolean}
      * @private
      */
-    hasFocusForPlaceholder_: boolean;
+    private hasFocusForPlaceholder_;
     /**
      * @type {boolean}
      * @private
      */
-    hasUserInput_: boolean;
+    private hasUserInput_;
     /**
      * The height of the textarea as last measured.
      * @type {number}
      * @private
      */
-    height_: number;
+    private height_;
     /**
      * A maximum height for the textarea. When set to 0, the default, there is no
      * enforcement of this value during resize.
      * @type {number}
      * @private
      */
-    maxHeight_: number;
+    private maxHeight_;
     /**
      * A minimum height for the textarea. When set to 0, the default, there is no
      * enforcement of this value during resize.
      * @type {number}
      * @private
      */
-    minHeight_: number;
+    private minHeight_;
     /**
      * Whether or not textarea rendering characteristics have been discovered.
      * Specifically we determine, at runtime:
@@ -83,7 +83,7 @@ export class Textarea extends Control<TextareaRenderer> {
      * @type {boolean}
      * @private
      */
-    hasDiscoveredTextareaCharacteristics_: boolean;
+    private hasDiscoveredTextareaCharacteristics_;
     /**
      * If a user agent doesn't correctly support the box-sizing:border-box CSS
      * value then we'll need to adjust our height calculations.
@@ -91,19 +91,19 @@ export class Textarea extends Control<TextareaRenderer> {
      * @type {boolean}
      * @private
      */
-    needsPaddingBorderFix_: boolean;
+    private needsPaddingBorderFix_;
     /**
      * Whether or not scrollHeight of a textarea includes the padding box.
      * @type {boolean}
      * @private
      */
-    scrollHeightIncludesPadding_: boolean;
+    private scrollHeightIncludesPadding_;
     /**
      * Whether or not scrollHeight of a textarea includes the border box.
      * @type {boolean}
      * @private
      */
-    scrollHeightIncludesBorder_: boolean;
+    private scrollHeightIncludesBorder_;
     /**
      * For storing the padding box size during enterDocument, to prevent possible
      * measurement differences that can happen after text zooming.
@@ -111,7 +111,7 @@ export class Textarea extends Control<TextareaRenderer> {
      * @type {?Box}
      * @private
      */
-    paddingBox_: Box | null;
+    private paddingBox_;
     /**
      * For storing the border box size during enterDocument, to prevent possible
      * measurement differences that can happen after text zooming.
@@ -119,7 +119,7 @@ export class Textarea extends Control<TextareaRenderer> {
      * @type {?Box}
      * @private
      */
-    borderBox_: Box | null;
+    private borderBox_;
     /**
      * Default text content for the textarea when it is unchanged and unfocussed.
      * We use the placeholder attribute for all browsers that have support for
@@ -137,7 +137,7 @@ export class Textarea extends Control<TextareaRenderer> {
      * @type {string}
      * @private
      */
-    placeholderText_: string;
+    private placeholderText_;
     /**
      * Sets the default text for the textarea.
      * @param {string} text The default text for the textarea.
@@ -147,7 +147,7 @@ export class Textarea extends Control<TextareaRenderer> {
      * @return {number} The padding plus the border box height.
      * @private
      */
-    getPaddingBorderBoxHeight_(): number;
+    private getPaddingBorderBoxHeight_;
     /**
      * @return {number} The minHeight value.
      */
@@ -156,7 +156,7 @@ export class Textarea extends Control<TextareaRenderer> {
      * @return {number} The minHeight value with a potential padding fix.
      * @private
      */
-    getMinHeight_(): number;
+    private getMinHeight_;
     /**
      * Sets a minimum height for the textarea, and calls resize if rendered.
      * @param {number} height New minHeight value.
@@ -170,7 +170,7 @@ export class Textarea extends Control<TextareaRenderer> {
      * @return {number} The maxHeight value with a potential padding fix.
      * @private
      */
-    getMaxHeight_(): number;
+    private getMaxHeight_;
     /**
      * Sets a maximum height for the textarea, and calls resize if rendered.
      * @param {number} height New maxHeight value.
@@ -188,13 +188,6 @@ export class Textarea extends Control<TextareaRenderer> {
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
     getValue(): string;
-    /** @override */
-    setContent(content: any): void;
-    /**
-     * @override *
-     * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
-     */
-    setEnabled(enable: any): void;
     /**
      * Resizes the textarea vertically.
      */
@@ -203,13 +196,13 @@ export class Textarea extends Control<TextareaRenderer> {
      * @return {boolean} True if the element supports the placeholder attribute.
      * @private
      */
-    supportsNativePlaceholder_(): boolean;
+    private supportsNativePlaceholder_;
     /**
      * Sets the value of the textarea element to the default text.
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    restorePlaceholder_(): void;
+    private restorePlaceholder_;
     /**
      * Gets the textarea's content height + padding height + border height.
      * This is done by getting the scrollHeight and adjusting from there.
@@ -217,13 +210,13 @@ export class Textarea extends Control<TextareaRenderer> {
      * @return {number} The height of the textarea.
      * @private
      */
-    getHeight_(): number;
+    private getHeight_;
     /**
      * Sets the textarea's height.
      * @param {number} height The height to set.
      * @private
      */
-    setHeight_(height: number): void;
+    private setHeight_;
     /**
      * Sets the textarea's rows attribute to be the number of newlines + 1.
      * This is necessary when the textarea is hidden, in which case scrollHeight
@@ -231,13 +224,13 @@ export class Textarea extends Control<TextareaRenderer> {
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    setHeightToEstimate_(): void;
+    private setHeightToEstimate_;
     /**
      * Gets the the height of (possibly present) horizontal scrollbar.
      * @return {number} The height of the horizontal scrollbar.
      * @private
      */
-    getHorizontalScrollBarHeight_(): number;
+    private getHorizontalScrollBarHeight_;
     /**
      * In order to assess the correct height for a textarea, we need to know
      * whether the scrollHeight (the full height of the text) property includes
@@ -248,21 +241,21 @@ export class Textarea extends Control<TextareaRenderer> {
      * impact should be very small.
      * @private
      */
-    discoverTextareaCharacteristics_(): void;
+    private discoverTextareaCharacteristics_;
     /**
      * Called when the element goes out of focus.
      * @param {EventsEvent=} opt_e The browser event.
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    blur_(opt_e?: EventsEvent | undefined): void;
+    private blur_;
     /**
      * Resizes the textarea to grow/shrink to match its contents.
      * @param {EventsEvent=} opt_e The browser event.
      * @private
      * @suppress {strictMissingProperties} Part of the go/strict_warnings_migration
      */
-    grow_(opt_e?: EventsEvent | undefined): void;
+    private grow_;
     /**
      * Resizes the textarea to shrink to fit its contents. The way this works is
      * by increasing the padding of the textarea by 1px (it's important here that
@@ -271,7 +264,7 @@ export class Textarea extends Control<TextareaRenderer> {
      * If it doesn't change, then we can shrink.
      * @private
      */
-    shrink_(): void;
+    private shrink_;
     /**
      * We use this listener to check if the textarea has been natively resized
      * and if so we reset minHeight so that we don't ever shrink smaller than
@@ -281,8 +274,7 @@ export class Textarea extends Control<TextareaRenderer> {
      * @param {?EventsBrowserEvent} e The mousedown event.
      * @private
      */
-    mouseUpListener_(e: EventsBrowserEvent | null): void;
-    actualEventTarget_: Textarea;
+    private mouseUpListener_;
 }
 export namespace Textarea {
     export const NEEDS_HELP_SHRINKING_: boolean;
@@ -290,7 +282,4 @@ export namespace Textarea {
 }
 import { TextareaRenderer } from "./textarearenderer.js";
 import { Control } from "./control.js";
-import { Box } from "../math/box.js";
-import { Event as EventsEvent } from "../events/event.js";
-import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
-import * as goog_dom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";

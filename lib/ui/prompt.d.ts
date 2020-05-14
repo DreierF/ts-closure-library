@@ -40,65 +40,65 @@ export class Prompt extends Dialog {
      * @param {DomHelper=} opt_domHelper Optional DOM helper; see {@link
      *    Component} for semantics.
      */
-    constructor(promptTitle: string, promptBody: string | SafeHtml, callback: Function | null, opt_defaultValue?: string | undefined, opt_class?: string | undefined, opt_useIframeForIE?: boolean | undefined, opt_domHelper?: goog_dom.DomHelper | undefined);
+    constructor(promptTitle: string, promptBody: string | SafeHtml, callback: Function | null, opt_defaultValue?: string | undefined, opt_class?: string | undefined, opt_useIframeForIE?: boolean | undefined, opt_domHelper?: DomHelper | undefined);
     /**
      * Callback function which is invoked with the response to the prompt
      * @type {?Function}
      * @private
      */
-    callback_: Function | null;
+    private callback_;
     /**
      * Default value to display in prompt window
      * @type {string}
      * @private
      */
-    defaultValue_: string;
+    private defaultValue_;
     /**
      * Element in which user enters response (HTML <input> text box)
      * @type {?HTMLInputElement|?HTMLTextAreaElement}
      * @private
      */
-    userInputEl_: (HTMLInputElement | (HTMLTextAreaElement | null)) | null;
+    private userInputEl_;
     /**
      * Tracks whether the prompt is in the process of closing to prevent multiple
      * calls to the callback when the user presses enter.
      * @type {boolean}
      * @private
      */
-    isClosing_: boolean;
+    private isClosing_;
     /**
      * Number of rows in the user input element.
      * The default is 1 which means use an <input> element.
      * @type {number}
      * @private
      */
-    rows_: number;
+    private rows_;
     /**
      * Number of cols in the user input element.
      * The default is 0 which means use browser default.
      * @type {number}
      * @private
      */
-    cols_: number;
+    private cols_;
     /**
      * The input decorator function.
      * @type {?function(?Element)}
      * @private
      */
-    inputDecoratorFn_: ((arg0: Element | null) => void) | null;
+    private inputDecoratorFn_;
     /**
      * A validation function that takes a string and returns true if the string is
      * accepted, false otherwise.
      * @type {function(string):boolean}
      * @private
      */
-    validationFn_: (arg0: string) => boolean;
+    private validationFn_;
     /**
      * The id of the input element.
      * @type {string}
      * @private
      */
-    inputElementId_: string;
+    private inputElementId_;
     /**
      * Sets the validation function that takes a string and returns true if the
      * string is accepted, false otherwise.
@@ -110,7 +110,7 @@ export class Prompt extends Dialog {
      * @return {?HTMLInputElement|?HTMLTextAreaElement} The user input element. May
      *     be null if the Prompt has not been rendered.
      */
-    getInputElement(): HTMLInputElement | HTMLTextAreaElement | null;
+    getInputElement(): (HTMLInputElement | (HTMLTextAreaElement | null)) | null;
     /**
      * Sets an input decorator function.  This function will be called in
      * #enterDocument and will be passed the input element.  This is useful for
@@ -119,7 +119,7 @@ export class Prompt extends Dialog {
      * @param {function(?Element)} inputDecoratorFn A function to call on the input
      *     element on #enterDocument.
      */
-    setInputDecoratorFn(inputDecoratorFn: (arg0: Element | null) => any): void;
+    setInputDecoratorFn(inputDecoratorFn: (arg0: Element | null) => void): void;
     /**
      * Set the number of rows in the user input element.
      * A values of 1 means use an `<input>` element.  If the prompt is already
@@ -148,12 +148,12 @@ export class Prompt extends Dialog {
      * validation fails on the new input value.
      * @private
      */
-    handleInputChanged_(): void;
+    private handleInputChanged_;
     /**
      * Set OK button enabled/disabled state based on input.
      * @private
      */
-    updateOkButtonState_(): void;
+    private updateOkButtonState_;
     /**
      * Sets the default value of the prompt when it is displayed.
      * @param {string} defaultValue The default value to display.
@@ -165,10 +165,8 @@ export class Prompt extends Dialog {
      * @param {?DialogEvent} e The dialog's selection event.
      * @private
      */
-    onPromptExit_(e: DialogEvent | null): void;
-    actualEventTarget_: Prompt;
+    private onPromptExit_;
 }
 import { Dialog } from "./dialog.js";
-import { Event as DialogEvent } from "./dialog.js";
 import { SafeHtml } from "../html/safehtml.js";
-import * as goog_dom from "../dom/dom.js";
+import { DomHelper } from "../dom/dom.js";

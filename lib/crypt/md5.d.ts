@@ -28,25 +28,25 @@ export class Md5 extends Hash {
      * @type {!Array<number>}
      * @private
      */
-    chain_: Array<number>;
+    private chain_;
     /**
      * A buffer holding the data until the whole block can be processed.
      * @type {!Array<number>}
      * @private
      */
-    block_: Array<number>;
+    private block_;
     /**
      * The length of yet-unprocessed data as collected in the block.
      * @type {number}
      * @private
      */
-    blockLength_: number;
+    private blockLength_;
     /**
      * The total length of the message so far.
      * @type {number}
      * @private
      */
-    totalLength_: number;
+    private totalLength_;
     /**
      * Internal compress helper function. It takes a block of data (64 bytes)
      * and updates the accumulator.
@@ -54,10 +54,6 @@ export class Md5 extends Hash {
      * @param {number=} opt_offset Offset of the block in the buffer.
      * @private
      */
-    compress_(buf: string | number[] | Uint8Array, opt_offset?: number | undefined): void;
-    /** @override */
-    update(bytes: any, opt_length?: any): void;
-    /** @override */
-    digest(): any[];
+    private compress_;
 }
 import { Hash } from "./hash.js";

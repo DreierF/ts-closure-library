@@ -21,7 +21,7 @@ export class Storage {
      *
      * @protected {Mechanism}
      */
-    mechanism: Mechanism;
+    protected mechanism: Mechanism;
     /**
      * Sets an item in the data storage.
      *
