@@ -177,7 +177,7 @@ export function findValue<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: string,
  * @param {T=} opt_obj This is used as the 'this' object within f.
  * @template T,K,V
  */
-export function forEach<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: any, arg3: any) => any, opt_obj?: T | undefined): void;
+export function forEach<T = unknown, K = unknown, V = unknown>(obj: Record<K, V> | object, f: (this: T, arg1: V, arg2: K, arg3: any) => any, opt_obj?: T | undefined): void;
 /**
  * Returns the value for the given key.
  *
