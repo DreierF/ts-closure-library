@@ -7,17 +7,17 @@
  *
  *
  */
-export class Corner {
-    TOP_LEFT: number;
-    TOP_RIGHT: number;
-    BOTTOM_LEFT: number;
-    BOTTOM_RIGHT: number;
-    TOP_START: number;
-    TOP_END: number;
-    BOTTOM_START: number;
-    BOTTOM_END: number;
-    TOP_CENTER: number;
-    BOTTOM_CENTER: number;
+export enum Corner {
+    TOP_LEFT,
+    TOP_RIGHT,
+    BOTTOM_LEFT,
+    BOTTOM_RIGHT,
+    TOP_START,
+    TOP_END,
+    BOTTOM_START,
+    BOTTOM_END,
+    TOP_CENTER,
+    BOTTOM_CENTER,
 }
 /**
  * @fileoverview Common positioning code.
@@ -27,11 +27,11 @@ export class Corner {
  *
  *
  */
-export class CornerBit {
-    BOTTOM: number;
-    CENTER: number;
-    RIGHT: number;
-    FLIP_RTL: number;
+export enum CornerBit {
+    BOTTOM,
+    CENTER,
+    RIGHT,
+    FLIP_RTL,
 }
 /**
  * Enum for representing position handling in cases where the element would be
@@ -39,53 +39,52 @@ export class CornerBit {
  *
  *
  */
-export class Overflow {
+export enum Overflow {
     /** Ignore overflow */
-    IGNORE: number;
+    IGNORE,
     /** Try to fit horizontally in the viewport at all costs. */
-    ADJUST_X: number;
+    ADJUST_X,
     /** If the element can't fit horizontally, report positioning failure. */
-    FAIL_X: number;
+    FAIL_X,
     /** Try to fit vertically in the viewport at all costs. */
-    ADJUST_Y: number;
+    ADJUST_Y,
     /** If the element can't fit vertically, report positioning failure. */
-    FAIL_Y: number;
+    FAIL_Y,
     /** Resize the element's width to fit in the viewport. */
-    RESIZE_WIDTH: number;
+    RESIZE_WIDTH,
     /** Resize the element's height to fit in the viewport. */
-    RESIZE_HEIGHT: number;
+    RESIZE_HEIGHT,
     /**
      * If the anchor goes off-screen in the x-direction, position the movable
      * element off-screen. Otherwise, try to fit horizontally in the viewport.
      */
-    ADJUST_X_EXCEPT_OFFSCREEN: number;
+    ADJUST_X_EXCEPT_OFFSCREEN,
     /**
      * If the anchor goes off-screen in the y-direction, position the movable
      * element off-screen. Otherwise, try to fit vertically in the viewport.
      */
-    ADJUST_Y_EXCEPT_OFFSCREEN: number;
+    ADJUST_Y_EXCEPT_OFFSCREEN,
 }
 /**
  * Enum for representing the outcome of a positioning call.
  *
  *
  */
-export class OverflowStatus {
-    NONE: number;
-    ADJUSTED_X: number;
-    ADJUSTED_Y: number;
-    WIDTH_ADJUSTED: number;
-    HEIGHT_ADJUSTED: number;
-    FAILED_LEFT: number;
-    FAILED_RIGHT: number;
-    FAILED_TOP: number;
-    FAILED_BOTTOM: number;
-    FAILED_OUTSIDE_VIEWPORT: number;
-}
-export namespace OverflowStatus {
-    export const FAILED: number;
-    export const FAILED_HORIZONTAL: number;
-    export const FAILED_VERTICAL: number;
+export enum OverflowStatus {
+    NONE,
+    ADJUSTED_X,
+    ADJUSTED_Y,
+    WIDTH_ADJUSTED,
+    HEIGHT_ADJUSTED,
+    FAILED_LEFT,
+    FAILED_RIGHT,
+    FAILED_TOP,
+    FAILED_BOTTOM,
+    FAILED_OUTSIDE_VIEWPORT,
+
+    FAILED,
+    FAILED_HORIZONTAL,
+    FAILED_VERTICAL,
 }
 /**
  * Returns the corner opposite the given one horizontally and vertically.
