@@ -1,10 +1,17 @@
 {
   "name": "ts-closure-library",
-  "version": "2019.11.11.12",
+  "version": "2019.11.11.13",
   "description": "A stripped down fork of the closure library that has been converted to ES6 Modules in order to work without the google closure compiler and ships with Typescript declaration files",
   "main": "lib/google.js",
   "typings": "lib/google.d.ts",
   "author": { "name" : "Florian Dreier" },
   "contributors": [{"name": "Daniel Veihelmann"}],
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "sideEffects": [
+  	"./lib/async/nexttick.js",
+  	"./lib/dom/animationframe/animationframe.js",
+  	"./lib/ui/menuheader.js",
+  	"./lib/ui/menuseparator.js",
+  	"./lib/ui/separator.js"
+  ]
 }
