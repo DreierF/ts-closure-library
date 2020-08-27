@@ -37,13 +37,13 @@ export class Timer extends EventsEventTarget {
     static clear(timerId: number | null): void;
     /**
      * @param {number} delay Milliseconds to wait.
-     * @param {(RESULT|Thenable<RESULT>|Thenable)=} opt_result The value
+     * @param {(RESULT|Thenable)=} opt_result The value
      *     with which the promise will be resolved.
-     * @return {!GoogPromise<RESULT>} A promise that will be resolved after
+     * @return {!Promise<RESULT>} A promise that will be resolved after
      *     the specified delay, unless it is canceled first.
      * @template RESULT
      */
-    static promise<RESULT>(delay: number, opt_result?: Thenable<any> | RESULT | Thenable<RESULT> | undefined): GoogPromise<RESULT, any>;
+    static promise<RESULT>(delay: number, opt_result?: any): Promise<RESULT>;
     /**
      * Class for handling timing events.
      *
@@ -131,5 +131,3 @@ export namespace Timer {
     export const TICK: string;
 }
 import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";
-import { Thenable } from "../promise/promise.js";
-import { Promise as GoogPromise } from "../promise/promise.js";
