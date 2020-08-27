@@ -11,7 +11,7 @@ export type TaskSet_ = {
     measureTask: Task_;
     mutateTask: Task_;
     state: (any | undefined);
-    args: (Array | undefined);
+    args: (any[] | undefined);
     isScheduled: boolean;
 };
 /**
@@ -47,7 +47,7 @@ export class State {
 export function createTask<THIS>(spec: {
     measure: ((this: THIS, arg1: State) => any) | undefined;
     mutate: ((this: THIS, arg1: State) => any) | undefined;
-}, opt_context?: THIS | undefined): (...args: unknown[]) => void;
+}, opt_context?: THIS | undefined): (...args: unknown[]) => any;
 /**
  * @return {boolean} Whether the animationframe is currently running. For use
  *     by callers who need not to delay tasks scheduled during runTasks_ for an

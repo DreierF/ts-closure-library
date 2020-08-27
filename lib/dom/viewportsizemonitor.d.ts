@@ -105,7 +105,7 @@ export class ViewportSizeMonitor extends events.EventTarget {
     private handleResize_;
 }
 export namespace ViewportSizeMonitor {
-    export const windowInstanceMap_: {
+    const windowInstanceMap_: {
         [x: number]: ViewportSizeMonitor;
     };
 }

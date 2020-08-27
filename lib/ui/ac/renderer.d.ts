@@ -20,7 +20,7 @@ export class CustomRenderer {
      * @param {?Array} rows
      * @param {string} token
      */
-    render(renderer: Renderer | null, element: Element | null, rows: Array | null, token: string): void;
+    render(renderer: Renderer | null, element: Element | null, rows: any[] | null, token: string): void;
     /**
      * Generic function that takes a row and renders a DOM structure for that row.
      * @param {?Object} row Object representing row.
@@ -510,7 +510,7 @@ export class Renderer extends goog_events.EventTarget {
     private handleMouseOver_;
 }
 export namespace Renderer {
-    export const DELAY_BEFORE_MOUSEOVER: number;
+    const DELAY_BEFORE_MOUSEOVER: number;
 }
 import * as goog_events from "../../events/eventhandler.js";
 import { Animation } from "../../fx/animation.js";

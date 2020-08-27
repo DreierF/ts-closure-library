@@ -439,32 +439,32 @@ export class DateTimeFormat {
     private formatField_;
 }
 export namespace DateTimeFormat {
-    export const TOKENS_: Array<RegExp>;
-    export namespace PartTypes_ {
-        export const QUOTED_STRING: number;
-        export const FIELD: number;
-        export const LITERAL: number;
+    const TOKENS_: Array<RegExp>;
+    namespace PartTypes_ {
+        const QUOTED_STRING: number;
+        const FIELD: number;
+        const LITERAL: number;
     }
     /**
      * *
      */
-    export type PartTypes_ = number;
-    export const enforceAsciiDigits_: boolean;
-    export const removeRlmInPatterns_: boolean;
+    type PartTypes_ = number;
+    const enforceAsciiDigits_: boolean;
+    const removeRlmInPatterns_: boolean;
 }
 export namespace Format {
-    export const FULL_DATE: number;
-    export const LONG_DATE: number;
-    export const MEDIUM_DATE: number;
-    export const SHORT_DATE: number;
-    export const FULL_TIME: number;
-    export const LONG_TIME: number;
-    export const MEDIUM_TIME: number;
-    export const SHORT_TIME: number;
-    export const FULL_DATETIME: number;
-    export const LONG_DATETIME: number;
-    export const MEDIUM_DATETIME: number;
-    export const SHORT_DATETIME: number;
+    const FULL_DATE: number;
+    const LONG_DATE: number;
+    const MEDIUM_DATE: number;
+    const SHORT_DATE: number;
+    const FULL_TIME: number;
+    const LONG_TIME: number;
+    const MEDIUM_TIME: number;
+    const SHORT_TIME: number;
+    const FULL_DATETIME: number;
+    const LONG_DATETIME: number;
+    const MEDIUM_DATETIME: number;
+    const SHORT_DATETIME: number;
 }
 import { DateLike } from "../date/date.js";
 import { TimeZone } from "./timezone.js";

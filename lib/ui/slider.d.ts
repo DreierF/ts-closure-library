@@ -63,8 +63,8 @@ export class Slider extends SliderBase {
     private createThumb_;
 }
 export namespace Slider {
-    export const CSS_CLASS_PREFIX: string;
-    export const THUMB_CSS_CLASS: string;
+    const CSS_CLASS_PREFIX: string;
+    const THUMB_CSS_CLASS: string;
 }
 import { SliderBase } from "./sliderbase.js";
 import { DomHelper } from "../dom/dom.js";

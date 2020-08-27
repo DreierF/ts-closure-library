@@ -51,11 +51,11 @@ export class ElementTooltipPosition extends AnchoredPosition {
     constructor(element: Element | null);
 }
 export namespace State {
-    export const INACTIVE: number;
-    export const WAITING_TO_SHOW: number;
-    export const SHOWING: number;
-    export const WAITING_TO_HIDE: number;
-    export const UPDATING: number;
+    const INACTIVE: number;
+    const WAITING_TO_SHOW: number;
+    const SHOWING: number;
+    const WAITING_TO_HIDE: number;
+    const UPDATING: number;
 }
 /**
  * @fileoverview Tooltip widget implementation.
@@ -297,7 +297,7 @@ export class Tooltip extends Popup {
      * @return {?StructsSet} Elements this widget is attached to.
      * @protected
      */
-    protected getElements(): StructsSet | null;
+    protected getElements(): StructsSet<any> | null;
     /**
      * @return {?Element} Active element reference.
      */
@@ -440,15 +440,15 @@ export class Tooltip extends Popup {
     protected clearHideTimer(): void;
 }
 export namespace Tooltip {
-    export const activeInstances_: Array<Tooltip>;
-    export namespace Activation {
-        export const CURSOR: number;
-        export const FOCUS: number;
+    const activeInstances_: Array<Tooltip>;
+    namespace Activation {
+        const CURSOR: number;
+        const FOCUS: number;
     }
     /**
      * Popup activation types. Used to select a positioning strategy.
      */
-    export type Activation = number;
+    type Activation = number;
 }
 import { ViewportPosition } from "../positioning/viewportposition.js";
 import { Coordinate } from "../math/coordinate.js";

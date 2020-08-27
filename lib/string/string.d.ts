@@ -18,7 +18,7 @@ export const DETECT_DOUBLE_ESCAPING: boolean;
  */
 export const FORCE_NON_DOM_HTML_UNESCAPING: boolean;
 export namespace Unicode {
-    export const NBSP: string;
+    const NBSP: string;
 }
 /**
  * Parse a string in decimal or hexidecimal ('0xFFFF') form.

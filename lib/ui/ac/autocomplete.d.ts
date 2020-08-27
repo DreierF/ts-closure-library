@@ -445,19 +445,19 @@ export class AutoComplete extends events.EventTarget {
     update(opt_force?: boolean | undefined): void;
 }
 export namespace AutoComplete {
-    export type Matcher = {
+    type Matcher = {
         requestMatchingRows: Function | undefined;
         isRowDisabled: Function | undefined;
     };
 }
 export namespace EventType {
-    export const ROW_HILITE: string;
-    export const HILITE: string;
-    export const SELECT: string;
-    export const DISMISS: string;
-    export const CANCEL_DISMISS: string;
-    export const UPDATE: string;
-    export const SUGGESTIONS_UPDATE: string;
+    const ROW_HILITE: string;
+    const HILITE: string;
+    const SELECT: string;
+    const DISMISS: string;
+    const CANCEL_DISMISS: string;
+    const UPDATE: string;
+    const SUGGESTIONS_UPDATE: string;
 }
 import * as events from "../../events/eventhandler.js";
 import { Renderer } from "./renderer.js";

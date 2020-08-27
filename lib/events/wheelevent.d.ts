@@ -78,23 +78,23 @@ export class WheelEvent extends EventsBrowserEvent {
     pixelDeltaZ: number;
 }
 export namespace WheelEvent {
-    export namespace EventType {
-        export const WHEEL: string;
+    namespace EventType {
+        const WHEEL: string;
     }
     /**
      * Enum type for the events fired by the wheel handler.
      */
-    export type EventType = string;
-    export namespace DeltaMode {
-        export const PIXEL: number;
-        export const LINE: number;
-        export const PAGE: number;
+    type EventType = string;
+    namespace DeltaMode {
+        const PIXEL: number;
+        const LINE: number;
+        const PAGE: number;
     }
     /**
      * Units for the deltas in a WheelEvent.
      */
-    export type DeltaMode = number;
-    export const PIXELS_PER_LINE_: number;
-    export const PIXELS_PER_PAGE_: number;
+    type DeltaMode = number;
+    const PIXELS_PER_LINE_: number;
+    const PIXELS_PER_PAGE_: number;
 }
 import { BrowserEvent as EventsBrowserEvent } from "./browserevent.js";

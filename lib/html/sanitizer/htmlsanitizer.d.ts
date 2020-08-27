@@ -446,10 +446,10 @@ export class HtmlSanitizer extends SafeDomTreeProcessor {
     private getStyleContainerId_;
 }
 export namespace HtmlSanitizer {
-    export const defaultUrlPolicy_: typeof SafeUrl.sanitize;
-    export const defaultNetworkRequestUrlPolicy_: typeof goog_functions.NULL;
-    export const defaultNamePolicy_: typeof goog_functions.NULL;
-    export const defaultTokenPolicy_: typeof goog_functions.NULL;
+    const defaultUrlPolicy_: typeof SafeUrl.sanitize;
+    const defaultNetworkRequestUrlPolicy_: typeof goog_functions.NULL;
+    const defaultNamePolicy_: typeof goog_functions.NULL;
+    const defaultTokenPolicy_: typeof goog_functions.NULL;
 }
 /**
  * Type for a policy function.

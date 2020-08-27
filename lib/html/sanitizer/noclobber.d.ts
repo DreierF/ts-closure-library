@@ -150,21 +150,21 @@ export function getCssPropertyValue(cssStyle: CSSStyleDeclaration, propName: str
  */
 export function setCssProperty(cssStyle: CSSStyleDeclaration, propName: string, sanitizedValue: string): void;
 export namespace Methods {
-    export const ATTRIBUTES_GETTER: Function | null;
-    export const HAS_ATTRIBUTE: Function | null;
-    export const GET_ATTRIBUTE: Function | null;
-    export const SET_ATTRIBUTE: Function | null;
-    export const REMOVE_ATTRIBUTE: Function | null;
-    export const INNER_HTML_GETTER: Function | null;
-    export const GET_ELEMENTS_BY_TAG_NAME: Function | null;
-    export const MATCHES: Function | null;
-    export const NODE_NAME_GETTER: Function | null;
-    export const NODE_TYPE_GETTER: Function | null;
-    export const PARENT_NODE_GETTER: Function | null;
-    export const CHILD_NODES_GETTER: Function | null;
-    export const APPEND_CHILD: Function | null;
-    export const STYLE_GETTER: Function | null;
-    export const SHEET_GETTER: Function | null;
-    export const GET_PROPERTY_VALUE: Function | null;
-    export const SET_PROPERTY: Function | null;
+    const ATTRIBUTES_GETTER: Function | null;
+    const HAS_ATTRIBUTE: Function | null;
+    const GET_ATTRIBUTE: Function | null;
+    const SET_ATTRIBUTE: Function | null;
+    const REMOVE_ATTRIBUTE: Function | null;
+    const INNER_HTML_GETTER: Function | null;
+    const GET_ELEMENTS_BY_TAG_NAME: Function | null;
+    const MATCHES: Function | null;
+    const NODE_NAME_GETTER: Function | null;
+    const NODE_TYPE_GETTER: Function | null;
+    const PARENT_NODE_GETTER: Function | null;
+    const CHILD_NODES_GETTER: Function | null;
+    const APPEND_CHILD: Function | null;
+    const STYLE_GETTER: Function | null;
+    const SHEET_GETTER: Function | null;
+    const GET_PROPERTY_VALUE: Function | null;
+    const SET_PROPERTY: Function | null;
 }

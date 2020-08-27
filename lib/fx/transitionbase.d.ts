@@ -3,9 +3,9 @@
  */
 export type State = number;
 export namespace State {
-    export const STOPPED: number;
-    export const PAUSED: number;
-    export const PLAYING: number;
+    const STOPPED: number;
+    const PAUSED: number;
+    const PLAYING: number;
 }
 /**
  * @fileoverview An abstract base class for transitions. This is a simple
@@ -144,5 +144,5 @@ export class TransitionBase extends EventsEventTarget implements FxTransition {
      */
     protected dispatchAnimationEvent(type: string): void;
 }
-import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";
 import { Transition as FxTransition } from "./transition.js";
+import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";

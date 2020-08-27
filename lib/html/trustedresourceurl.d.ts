@@ -269,12 +269,12 @@ export class TrustedResourceUrl implements DirectionalString, TypedString {
     } | null)) | undefined): TrustedResourceUrl;
 }
 export namespace TrustedResourceUrl {
-    export const FORMAT_MARKER_: RegExp;
-    export const BASE_URL_: RegExp;
-    export const URL_PARAM_PARSER_: RegExp;
-    export const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
-    export function createTrustedResourceUrlSecurityPrivateDoNotAccessOrElse(url: string): TrustedResourceUrl;
-    export const CONSTRUCTOR_TOKEN_PRIVATE_: {};
+    const FORMAT_MARKER_: RegExp;
+    const BASE_URL_: RegExp;
+    const URL_PARAM_PARSER_: RegExp;
+    const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
+    function createTrustedResourceUrlSecurityPrivateDoNotAccessOrElse(url: string): TrustedResourceUrl;
+    const CONSTRUCTOR_TOKEN_PRIVATE_: {};
 }
 import { DirectionalString } from "../i18n/bidi.js";
 import { TypedString } from "../string/typedstring.js";

@@ -4,8 +4,8 @@
  */
 export type Offset = number;
 export namespace Offset {
-    export const DOWN: number;
-    export const UP: number;
+    const DOWN: number;
+    const UP: number;
 }
 /**
  * @fileoverview Provides the typeahead functionality for the tree class.

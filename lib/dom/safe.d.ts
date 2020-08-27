@@ -1,9 +1,9 @@
 export type InsertAdjacentHtmlPosition = string;
 export namespace InsertAdjacentHtmlPosition {
-    export const AFTERBEGIN: string;
-    export const AFTEREND: string;
-    export const BEFOREBEGIN: string;
-    export const BEFOREEND: string;
+    const AFTERBEGIN: string;
+    const AFTEREND: string;
+    const BEFOREBEGIN: string;
+    const BEFOREEND: string;
 }
 /**
  * Safely assigns the URL of a Location object.

@@ -228,16 +228,16 @@ export class TimeZone {
     getGenericLocation(date: DateLike): string;
 }
 export namespace TimeZone {
-    export const MILLISECONDS_PER_HOUR_: number;
-    export namespace NameType {
-        export const STD_SHORT_NAME: number;
-        export const STD_LONG_NAME: number;
-        export const DLT_SHORT_NAME: number;
-        export const DLT_LONG_NAME: number;
+    const MILLISECONDS_PER_HOUR_: number;
+    namespace NameType {
+        const STD_SHORT_NAME: number;
+        const STD_LONG_NAME: number;
+        const DLT_SHORT_NAME: number;
+        const DLT_LONG_NAME: number;
     }
     /**
      * Indices into the array of time zone names.
      */
-    export type NameType = number;
+    type NameType = number;
 }
 import { DateLike } from "../date/date.js";

@@ -41,24 +41,24 @@ export function hasGraphemeBreak(a: number, b: number, opt_extended?: boolean | 
  */
 export function hasGraphemeBreakStrings(a: string, b: string, opt_extended?: boolean | undefined): boolean;
 export namespace property {
-    export const OTHER: number;
-    export const CONTROL: number;
-    export const EXTEND: number;
-    export const PREPEND: number;
-    export const SPACING_MARK: number;
-    export const INDIC_LETTER: number;
-    export const VIRAMA: number;
-    export const L: number;
-    export const V: number;
-    export const T: number;
-    export const LV: number;
-    export const LVT: number;
-    export const CR: number;
-    export const LF: number;
-    export const REGIONAL_INDICATOR: number;
-    export const ZWJ: number;
-    export const E_BASE: number;
-    export const GLUE_AFTER_ZWJ: number;
-    export const E_MODIFIER: number;
-    export const E_BASE_GAZ: number;
+    const OTHER: number;
+    const CONTROL: number;
+    const EXTEND: number;
+    const PREPEND: number;
+    const SPACING_MARK: number;
+    const INDIC_LETTER: number;
+    const VIRAMA: number;
+    const L: number;
+    const V: number;
+    const T: number;
+    const LV: number;
+    const LVT: number;
+    const CR: number;
+    const LF: number;
+    const REGIONAL_INDICATOR: number;
+    const ZWJ: number;
+    const E_BASE: number;
+    const GLUE_AFTER_ZWJ: number;
+    const E_MODIFIER: number;
+    const E_BASE_GAZ: number;
 }

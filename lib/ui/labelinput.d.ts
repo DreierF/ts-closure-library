@@ -219,7 +219,7 @@ export class LabelInput extends Component {
     private restoreLabel_;
 }
 export namespace LabelInput {
-    export const supportsPlaceholder_: boolean | null;
+    const supportsPlaceholder_: boolean | null;
 }
 import { Component } from "./component.js";
 import { DomHelper } from "../dom/dom.js";

@@ -7,14 +7,14 @@ export type MouseButton = number;
  */
 export type PointerType = string;
 export namespace MouseButton {
-    export const LEFT: number;
-    export const MIDDLE: number;
-    export const RIGHT: number;
+    const LEFT: number;
+    const MIDDLE: number;
+    const RIGHT: number;
 }
 export namespace PointerType {
-    export const MOUSE: string;
-    export const PEN: string;
-    export const TOUCH: string;
+    const MOUSE: string;
+    const PEN: string;
+    const TOUCH: string;
 }
 /**
  * @fileoverview A patched, standardized event object for browser events.

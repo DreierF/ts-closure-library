@@ -19,8 +19,8 @@ export class AnimationFactory {
     createAnimations(previousValue: number, newValue: number, interval: number): Array<TransitionBase>;
 }
 export namespace Orientation {
-    export const VERTICAL: string;
-    export const HORIZONTAL: string;
+    const VERTICAL: string;
+    const HORIZONTAL: string;
 }
 /**
  * @fileoverview Implementation of a basic slider control.
@@ -627,24 +627,24 @@ export class SliderBase extends Component {
     private MOUSE_DOWN_DELAY_;
 }
 export namespace SliderBase {
-    export namespace EventType {
-        export const DRAG_VALUE_START: string;
-        export const DRAG_VALUE_END: string;
-        export const DRAG_EXTENT_START: string;
-        export const DRAG_EXTENT_END: string;
-        export const DRAG_START: string;
-        export const DRAG_END: string;
-        export const ANIMATION_END: string;
+    namespace EventType {
+        const DRAG_VALUE_START: string;
+        const DRAG_VALUE_END: string;
+        const DRAG_EXTENT_START: string;
+        const DRAG_EXTENT_END: string;
+        const DRAG_START: string;
+        const DRAG_END: string;
+        const ANIMATION_END: string;
     }
     /**
      * *
      */
-    export type EventType = string;
-    export const MOUSE_DOWN_INCREMENT_INTERVAL_: number;
-    export const ANIMATION_INTERVAL_: number;
-    export const SLIDER_DRAGGING_CSS_CLASS_: string;
-    export const THUMB_DRAGGING_CSS_CLASS_: string;
-    export const DISABLED_CSS_CLASS_: string;
+    type EventType = string;
+    const MOUSE_DOWN_INCREMENT_INTERVAL_: number;
+    const ANIMATION_INTERVAL_: number;
+    const SLIDER_DRAGGING_CSS_CLASS_: string;
+    const THUMB_DRAGGING_CSS_CLASS_: string;
+    const DISABLED_CSS_CLASS_: string;
 }
 import { TransitionBase } from "../fx/transitionbase.js";
 import { Component } from "./component.js";

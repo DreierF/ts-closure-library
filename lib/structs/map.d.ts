@@ -159,7 +159,7 @@ declare class structs_Map<K, V> {
      * Clones a map and returns a new map.
      * @return {!structs_Map} A new map with the same key-value pairs.
      */
-    clone(): structs_Map;
+    clone(): structs_Map<any, any>;
     /**
      * Returns a new map in which all the keys and values are interchanged
      * (keys become values and values become keys). If multiple keys map to the
@@ -169,7 +169,7 @@ declare class structs_Map<K, V> {
      *
      * @return {!structs_Map} The transposed map.
      */
-    transpose(): structs_Map;
+    transpose(): structs_Map<any, any>;
     /**
      * @return {!Object} Object representation of the map.
      */
@@ -179,13 +179,13 @@ declare class structs_Map<K, V> {
      * while iterating might have undesired side effects.
      * @return {!Iterator} An iterator over the keys in the map.
      */
-    getKeyIterator(): Iterator;
+    getKeyIterator(): Iterator<any>;
     /**
      * Returns an iterator that iterates over the values in the map.  Removal of
      * keys while iterating might have undesired side effects.
      * @return {!Iterator} An iterator over the values in the map.
      */
-    getValueIterator(): Iterator;
+    getValueIterator(): Iterator<any>;
     /**
      * Returns an iterator that iterates over the values or the keys in the map.
      * This throws an exception if the map was mutated since the iterator was
@@ -194,6 +194,6 @@ declare class structs_Map<K, V> {
      *     over the values.  The default value is false.
      * @return {!Iterator} An iterator over the values or keys in the map.
      */
-    __iterator__(opt_keys?: boolean | undefined): Iterator;
+    __iterator__(opt_keys?: boolean | undefined): Iterator<any>;
 }
 import { Iterator } from "../iter/iter.js";

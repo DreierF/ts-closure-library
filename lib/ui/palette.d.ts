@@ -185,13 +185,13 @@ export class Palette extends Control<PaletteRenderer> {
     private adjustSize_;
 }
 export namespace Palette {
-    export namespace EventType {
-        export const AFTER_HIGHLIGHT: string;
+    namespace EventType {
+        const AFTER_HIGHLIGHT: string;
     }
     /**
      * *
      */
-    export type EventType = string;
+    type EventType = string;
 }
 import { PaletteRenderer } from "./paletterenderer.js";
 import { Control } from "./control.js";

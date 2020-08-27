@@ -18,7 +18,7 @@ export function isHtmlElement(value: any): boolean;
  * @param {!TagName} tagName
  * @return {boolean}
  */
-export function isHtmlElementOfType(value: any, tagName: TagName): boolean;
+export function isHtmlElementOfType(value: any, tagName: TagName<any>): boolean;
 /**
  * Determines if a value is an <A> Element.
  * @param {*} value

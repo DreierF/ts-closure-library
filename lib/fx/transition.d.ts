@@ -3,13 +3,13 @@
  */
 export type EventType = string;
 export namespace EventType {
-    export const PLAY: string;
-    export const BEGIN: string;
-    export const RESUME: string;
-    export const END: string;
-    export const STOP: string;
-    export const FINISH: string;
-    export const PAUSE: string;
+    const PLAY: string;
+    const BEGIN: string;
+    const RESUME: string;
+    const END: string;
+    const STOP: string;
+    const FINISH: string;
+    const PAUSE: string;
 }
 /**
  * @fileoverview An interface for transition animation. This is a simple

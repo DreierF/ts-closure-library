@@ -3,7 +3,7 @@
  */
 export type EventType = string;
 export namespace EventType {
-    export const RESIZE: string;
+    const RESIZE: string;
 }
 /**
  * @fileoverview A content-aware textarea control that grows and shrinks
@@ -277,8 +277,8 @@ export class Textarea extends Control<TextareaRenderer> {
     private mouseUpListener_;
 }
 export namespace Textarea {
-    export const NEEDS_HELP_SHRINKING_: boolean;
-    export const TEXTAREA_PLACEHOLDER_CLASS: string;
+    const NEEDS_HELP_SHRINKING_: boolean;
+    const TEXTAREA_PLACEHOLDER_CLASS: string;
 }
 import { TextareaRenderer } from "./textarearenderer.js";
 import { Control } from "./control.js";

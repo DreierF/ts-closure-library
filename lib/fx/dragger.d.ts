@@ -393,14 +393,14 @@ export class Dragger extends goog_events.EventTarget {
     isDragging(): boolean;
 }
 export namespace Dragger {
-    export const HAS_SET_CAPTURE_: boolean;
+    const HAS_SET_CAPTURE_: boolean;
 }
 export namespace EventType {
-    export const EARLY_CANCEL: string;
-    export const START: string;
-    export const BEFOREDRAG: string;
-    export const DRAG: string;
-    export const END: string;
+    const EARLY_CANCEL: string;
+    const START: string;
+    const BEFOREDRAG: string;
+    const DRAG: string;
+    const END: string;
 }
 import { Event as EventsEvent } from "../events/event.js";
 import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";

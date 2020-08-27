@@ -7,9 +7,9 @@ export type Dir = number;
  */
 export type Format = string;
 export namespace Dir {
-    export const LTR: number;
-    export const RTL: number;
-    export const NEUTRAL: number;
+    const LTR: number;
+    const RTL: number;
+    const NEUTRAL: number;
 }
 /**
  * Strings that have an (optional) known direction.
@@ -50,11 +50,11 @@ export class DirectionalString {
  */
 export const FORCE_RTL: boolean;
 export namespace Format {
-    export const LRE: string;
-    export const RLE: string;
-    export const PDF: string;
-    export const LRM: string;
-    export const RLM: string;
+    const LRE: string;
+    const RLE: string;
+    const PDF: string;
+    const LRM: string;
+    const RLM: string;
 }
 /**
  * 'right' if locale is RTL, 'left' if not.

@@ -3,7 +3,7 @@
  */
 export type EventType = string;
 export namespace EventType {
-    export const INPUT: string;
+    const INPUT: string;
 }
 /**
  * @fileoverview An object that encapsulates text changed events for textareas

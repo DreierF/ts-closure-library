@@ -215,34 +215,34 @@ export let DateTimeSymbols_en_IE: DateTimeSymbolsType;
  */
 export let DateTimeSymbols_en_IN: DateTimeSymbolsType;
 export namespace DateTimeSymbols_en_ISO {
-    export const ERAS: string[];
-    export const ERANAMES: string[];
-    export const NARROWMONTHS: string[];
-    export const STANDALONENARROWMONTHS: string[];
-    export const MONTHS: string[];
-    export const STANDALONEMONTHS: string[];
-    export const SHORTMONTHS: string[];
-    export const STANDALONESHORTMONTHS: string[];
-    export const WEEKDAYS: string[];
-    export const STANDALONEWEEKDAYS: string[];
-    export const SHORTWEEKDAYS: string[];
-    export const STANDALONESHORTWEEKDAYS: string[];
-    export const NARROWWEEKDAYS: string[];
-    export const STANDALONENARROWWEEKDAYS: string[];
-    export const SHORTQUARTERS: string[];
-    export const QUARTERS: string[];
-    export const AMPMS: string[];
-    export const DATEFORMATS: string[];
-    export const TIMEFORMATS: string[];
-    export const DATETIMEFORMATS: string[];
-    export namespace AVAILABLEFORMATS {
-        export const Md: string;
-        export const MMMMd: string;
-        export const MMMd: string;
+    const ERAS: string[];
+    const ERANAMES: string[];
+    const NARROWMONTHS: string[];
+    const STANDALONENARROWMONTHS: string[];
+    const MONTHS: string[];
+    const STANDALONEMONTHS: string[];
+    const SHORTMONTHS: string[];
+    const STANDALONESHORTMONTHS: string[];
+    const WEEKDAYS: string[];
+    const STANDALONEWEEKDAYS: string[];
+    const SHORTWEEKDAYS: string[];
+    const STANDALONESHORTWEEKDAYS: string[];
+    const NARROWWEEKDAYS: string[];
+    const STANDALONENARROWWEEKDAYS: string[];
+    const SHORTQUARTERS: string[];
+    const QUARTERS: string[];
+    const AMPMS: string[];
+    const DATEFORMATS: string[];
+    const TIMEFORMATS: string[];
+    const DATETIMEFORMATS: string[];
+    namespace AVAILABLEFORMATS {
+        const Md: string;
+        const MMMMd: string;
+        const MMMd: string;
     }
-    export const FIRSTDAYOFWEEK: number;
-    export const WEEKENDRANGE: number[];
-    export const FIRSTWEEKCUTOFFDAY: number;
+    const FIRSTDAYOFWEEK: number;
+    const WEEKENDRANGE: number[];
+    const FIRSTWEEKCUTOFFDAY: number;
 }
 /**
  * Date/time formatting symbols for locale en_SG.

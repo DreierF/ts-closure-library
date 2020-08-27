@@ -135,11 +135,11 @@ export class KeyCodes {
     static PHANTOM: number;
 }
 export namespace KeyCodes {
-    export function isTextModifyingKeyEvent(e: EventsBrowserEvent | null): boolean;
-    export function firesKeyPressEvent(keyCode: number, opt_heldKeyCode?: number | undefined, opt_shiftKey?: boolean | undefined, opt_ctrlKey?: boolean | undefined, opt_altKey?: boolean | undefined, opt_metaKey?: boolean | undefined): boolean;
-    export function isCharacterKey(keyCode: number): boolean;
-    export function normalizeKeyCode(keyCode: number): number;
-    export function normalizeGeckoKeyCode(keyCode: number): number;
-    export function normalizeMacWebKitKeyCode(keyCode: number): number;
+    function isTextModifyingKeyEvent(e: EventsBrowserEvent | null): boolean;
+    function firesKeyPressEvent(keyCode: number, opt_heldKeyCode?: number | undefined, opt_shiftKey?: boolean | undefined, opt_ctrlKey?: boolean | undefined, opt_altKey?: boolean | undefined, opt_metaKey?: boolean | undefined): boolean;
+    function isCharacterKey(keyCode: number): boolean;
+    function normalizeKeyCode(keyCode: number): number;
+    function normalizeGeckoKeyCode(keyCode: number): number;
+    function normalizeMacWebKitKeyCode(keyCode: number): number;
 }
 import { BrowserEvent as EventsBrowserEvent } from "./browserevent.js";

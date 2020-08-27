@@ -55,37 +55,37 @@ export class SanitizedContent {
     toSafeUrl(): SafeUrl;
 }
 export namespace SanitizedContentKind {
-    export const HTML: {
+    const HTML: {
         sanitizedContentKindHtml: boolean;
     } | {
         sanitizedContentKindHtml?: undefined;
     };
-    export const JS: {
+    const JS: {
         sanitizedContentJsChars: boolean;
     } | {
         sanitizedContentJsChars?: undefined;
     };
-    export const URI: {
+    const URI: {
         sanitizedContentUri: boolean;
     } | {
         sanitizedContentUri?: undefined;
     };
-    export const TRUSTED_RESOURCE_URI: {
+    const TRUSTED_RESOURCE_URI: {
         sanitizedContentTrustedResourceUri: boolean;
     } | {
         sanitizedContentTrustedResourceUri?: undefined;
     };
-    export const ATTRIBUTES: {
+    const ATTRIBUTES: {
         sanitizedContentHtmlAttribute: boolean;
     } | {
         sanitizedContentHtmlAttribute?: undefined;
     };
-    export const STYLE: {
+    const STYLE: {
         sanitizedContentStyle: boolean;
     } | {
         sanitizedContentStyle?: undefined;
     };
-    export const CSS: {
+    const CSS: {
         sanitizedContentCss: boolean;
     } | {
         sanitizedContentCss?: undefined;

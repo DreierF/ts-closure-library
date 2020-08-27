@@ -22,7 +22,7 @@ export let MAX_STACK_DEPTH: number;
  * @suppress {strictMissingProperties} onerror is not defined as a property
  *    on Object.
  */
-export function catchErrors(logFunc: (arg0: any) => , opt_cancel?: boolean | undefined, opt_target?: any | undefined): void;
+export function catchErrors(logFunc: (arg0: any) => any, opt_cancel?: boolean | undefined, opt_target?: any | undefined): void;
 /**
  * Creates a string representing a given primitive or object, and for an
  * object, all its properties and nested objects. NOTE: The output will include

@@ -8,12 +8,12 @@ export type EventType = string;
  */
 export type FullscreenNavigationUI = string;
 export namespace EventType {
-    export const CHANGE: string;
+    const CHANGE: string;
 }
 export namespace FullscreenNavigationUI {
-    export const AUTO: string;
-    export const HIDE: string;
-    export const SHOW: string;
+    const AUTO: string;
+    const HIDE: string;
+    const SHOW: string;
 }
 /**
  * @interface

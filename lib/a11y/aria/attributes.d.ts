@@ -51,16 +51,16 @@ export type SortValues = string;
  */
 export type State = string;
 export namespace AutoCompleteValues {
-    export const INLINE: string;
-    export const LIST: string;
-    export const BOTH: string;
-    export const NONE: string;
+    const INLINE: string;
+    const LIST: string;
+    const BOTH: string;
+    const NONE: string;
 }
 export namespace CheckedValues {
-    export const TRUE: string;
-    export const FALSE: string;
-    export const MIXED: string;
-    export const UNDEFINED: string;
+    const TRUE: string;
+    const FALSE: string;
+    const MIXED: string;
+    const UNDEFINED: string;
 }
 export namespace DropEffectValues {
     export const COPY: string;
@@ -96,13 +96,13 @@ export namespace InvalidValues {
     export const SPELLING: string;
 }
 export namespace LivePriority {
-    export const OFF: string;
-    export const POLITE: string;
-    export const ASSERTIVE: string;
+    const OFF: string;
+    const POLITE: string;
+    const ASSERTIVE: string;
 }
 export namespace OrientationValues {
-    export const VERTICAL: string;
-    export const HORIZONTAL: string;
+    const VERTICAL: string;
+    const HORIZONTAL: string;
 }
 export namespace PressedValues {
     const TRUE_4: string;
@@ -115,10 +115,10 @@ export namespace PressedValues {
     export { UNDEFINED_3 as UNDEFINED };
 }
 export namespace RelevantValues {
-    export const ADDITIONS: string;
-    export const REMOVALS: string;
-    export const TEXT: string;
-    export const ALL: string;
+    const ADDITIONS: string;
+    const REMOVALS: string;
+    const TEXT: string;
+    const ALL: string;
 }
 export namespace SelectedValues {
     const TRUE_5: string;
@@ -136,41 +136,41 @@ export namespace SortValues {
     export const OTHER: string;
 }
 export namespace State {
-    export const ACTIVEDESCENDANT: string;
-    export const ATOMIC: string;
-    export const AUTOCOMPLETE: string;
-    export const BUSY: string;
-    export const CHECKED: string;
-    export const COLINDEX: string;
-    export const CONTROLS: string;
-    export const DESCRIBEDBY: string;
-    export const DISABLED: string;
-    export const DROPEFFECT: string;
-    export const EXPANDED: string;
-    export const FLOWTO: string;
-    export const GRABBED: string;
-    export const HASPOPUP: string;
-    export const HIDDEN: string;
-    export const INVALID: string;
-    export const LABEL: string;
-    export const LABELLEDBY: string;
-    export const LEVEL: string;
-    export const LIVE: string;
-    export const MULTILINE: string;
-    export const MULTISELECTABLE: string;
-    export const ORIENTATION: string;
-    export const OWNS: string;
-    export const POSINSET: string;
-    export const PRESSED: string;
-    export const READONLY: string;
-    export const RELEVANT: string;
-    export const REQUIRED: string;
-    export const ROWINDEX: string;
-    export const SELECTED: string;
-    export const SETSIZE: string;
-    export const SORT: string;
-    export const VALUEMAX: string;
-    export const VALUEMIN: string;
-    export const VALUENOW: string;
-    export const VALUETEXT: string;
+    const ACTIVEDESCENDANT: string;
+    const ATOMIC: string;
+    const AUTOCOMPLETE: string;
+    const BUSY: string;
+    const CHECKED: string;
+    const COLINDEX: string;
+    const CONTROLS: string;
+    const DESCRIBEDBY: string;
+    const DISABLED: string;
+    const DROPEFFECT: string;
+    const EXPANDED: string;
+    const FLOWTO: string;
+    const GRABBED: string;
+    const HASPOPUP: string;
+    const HIDDEN: string;
+    const INVALID: string;
+    const LABEL: string;
+    const LABELLEDBY: string;
+    const LEVEL: string;
+    const LIVE: string;
+    const MULTILINE: string;
+    const MULTISELECTABLE: string;
+    const ORIENTATION: string;
+    const OWNS: string;
+    const POSINSET: string;
+    const PRESSED: string;
+    const READONLY: string;
+    const RELEVANT: string;
+    const REQUIRED: string;
+    const ROWINDEX: string;
+    const SELECTED: string;
+    const SETSIZE: string;
+    const SORT: string;
+    const VALUEMAX: string;
+    const VALUEMIN: string;
+    const VALUENOW: string;
+    const VALUETEXT: string;
 }

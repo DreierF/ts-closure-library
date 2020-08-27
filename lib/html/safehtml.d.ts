@@ -171,7 +171,7 @@ export class SafeHtml implements DirectionalString, TypedString {
      *     provided.
      * @throws {AssertionError} If content for void tag is provided.
      */
-    static create(tagName: TagName | string, opt_attributes?: ({
+    static create(tagName: TagName<any> | string, opt_attributes?: ({
         [x: string]: SafeHtml.AttributeValue | null;
     } | null) | undefined, opt_content?: (SafeHtml.TextOrHtml_ | Array<SafeHtml.TextOrHtml_>) | undefined): SafeHtml;
     /**
@@ -493,19 +493,19 @@ export class SafeHtml implements DirectionalString, TypedString {
     private initSecurityPrivateDoNotAccessOrElse_;
 }
 export namespace SafeHtml {
-    export const VALID_NAMES_IN_TAG_: RegExp;
-    export const URL_ATTRIBUTES_: any;
-    export const NOT_ALLOWED_TAG_NAMES_: any;
-    export const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
-    export const DOCTYPE_HTML: SafeHtml;
-    export const EMPTY: SafeHtml;
-    export const BR: SafeHtml;
+    const VALID_NAMES_IN_TAG_: RegExp;
+    const URL_ATTRIBUTES_: any;
+    const NOT_ALLOWED_TAG_NAMES_: any;
+    const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
+    const DOCTYPE_HTML: SafeHtml;
+    const EMPTY: SafeHtml;
+    const BR: SafeHtml;
     /**
      * Shorthand for union of types that can sensibly be converted to strings
      * or might already be SafeHtml (as SafeHtml is a TypedString).
      */
-    export type TextOrHtml_ = string | number | boolean | DirectionalString | TypedString;
-    export type AttributeValue = string | number | TypedString | {
+    type TextOrHtml_ = string | number | boolean | DirectionalString | TypedString;
+    type AttributeValue = string | number | TypedString | {
         [x: string]: string | Const | Html_SafeUrl | (string | Const | Html_SafeUrl)[] | null;
     } | undefined;
 }

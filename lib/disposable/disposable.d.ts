@@ -110,16 +110,16 @@ export class Disposable {
     protected disposeInternal(): void;
 }
 export namespace Disposable {
-    export namespace MonitoringMode {
-        export const OFF: number;
-        export const PERMANENT: number;
-        export const INTERACTIVE: number;
+    namespace MonitoringMode {
+        const OFF: number;
+        const PERMANENT: number;
+        const INTERACTIVE: number;
     }
     /**
      * Different monitoring modes for Disposable.
      */
-    export type MonitoringMode = number;
-    export const instances_: {
+    type MonitoringMode = number;
+    const instances_: {
         [x: number]: Disposable;
     };
 }

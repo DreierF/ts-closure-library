@@ -237,11 +237,11 @@ export function createTrustedTypesPolicy(name: string): any | null;
  */
 export function defineClass(superClass: Function | null, def: defineClass.ClassDescriptor): Function;
 export namespace defineClass {
-    export function createSealingConstructor_(ctr: Function, superClass: Function | null): Function;
-    export function isUnsealable_(ctr: Function | null): boolean;
-    export const OBJECT_PROTOTYPE_FIELDS_: Array<string>;
-    export function applyProperties_(target: any, source: any): void;
-    export type ClassDescriptor = {
+    function createSealingConstructor_(ctr: Function, superClass: Function | null): Function;
+    function isUnsealable_(ctr: Function | null): boolean;
+    const OBJECT_PROTOTYPE_FIELDS_: Array<string>;
+    function applyProperties_(target: any, source: any): void;
+    type ClassDescriptor = {
         constructor: Function | undefined;
         statics: any;
     };

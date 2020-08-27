@@ -138,11 +138,11 @@ export class ColorPicker extends Component {
     private createColorPalette_;
 }
 export namespace ColorPicker {
-    export const DEFAULT_NUM_COLS: number;
-    export const SIMPLE_GRID_COLORS: Array<string>;
+    const DEFAULT_NUM_COLS: number;
+    const SIMPLE_GRID_COLORS: Array<string>;
 }
 export namespace EventType {
-    export const CHANGE: string;
+    const CHANGE: string;
 }
 import { Component } from "./component.js";
 import { Size } from "../math/size.js";

@@ -36,5 +36,5 @@ export class IdGenerator {
     getNextUniqueId(): string;
 }
 export namespace IdGenerator {
-    export const instance_: undefined | IdGenerator;
+    const instance_: undefined | IdGenerator;
 }

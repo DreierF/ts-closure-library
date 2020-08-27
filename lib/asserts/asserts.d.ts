@@ -231,5 +231,5 @@ export function fail(opt_message?: string, ...args: any[]): never;
  * messages.
  * @param {function(!AssertionError)} errorHandler
  */
-export function setErrorHandler(errorHandler: (arg0: AssertionError) => void): void;
+export function setErrorHandler(errorHandler: (arg0: AssertionError) => any): void;
 import { Error as DebugError } from "../debug/error.js";

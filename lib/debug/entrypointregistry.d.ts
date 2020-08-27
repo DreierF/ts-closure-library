@@ -59,7 +59,7 @@ export function monitorAll(monitor: EntryPointMonitor): void;
  *     is responsible for wrapping the relevant entry point with the
  *     transforming function.
  */
-export function register(callback: (arg0: Function) => void): void;
+export function register(callback: (arg0: Function) => any): void;
 /**
  * Try to unmonitor all the entry points that have already been registered. If
  * an entry point is registered in the future, it will not be wrapped by the

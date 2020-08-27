@@ -275,8 +275,8 @@ export class MenuItem extends Control<Ui_MenuItemRenderer> {
     getMnemonic(): KeyCodes | null;
 }
 export namespace MenuItem {
-    export const MNEMONIC_WRAPPER_CLASS_: string;
-    export const ACCELERATOR_CLASS: string;
+    const MNEMONIC_WRAPPER_CLASS_: string;
+    const ACCELERATOR_CLASS: string;
 }
 /**
  * @fileoverview Renderer for {@link Menu}s.

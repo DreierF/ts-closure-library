@@ -83,7 +83,7 @@ export function getCount(col: any | null): number;
  * @param {?Object} col The collection-like object.
  * @return {!Array|undefined} The keys in the collection.
  */
-export function getKeys(col: any | null): Array | undefined;
+export function getKeys(col: any | null): any[] | undefined;
 /**
  * Returns the values of the collection-like object.
  * @param {?Object} col The collection-like object.

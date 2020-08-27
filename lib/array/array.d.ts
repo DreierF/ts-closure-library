@@ -673,7 +673,7 @@ export function removeAt(arr: ArrayLike<unknown>, i: number): boolean;
  *     value for each item in the array it should consider unique.
  * @template T
  */
-export function removeDuplicates<T>(arr: ArrayLike<T>, opt_rv?: Array | undefined, opt_hashFn?: ((arg0: T) => string) | undefined): void;
+export function removeDuplicates<T>(arr: ArrayLike<T>, opt_rv?: any[] | undefined, opt_hashFn?: ((arg0: T) => string) | undefined): void;
 /**
  * Removes the first value that satisfies the given condition.
  * @param {ArrayLike<T>} arr Array or array

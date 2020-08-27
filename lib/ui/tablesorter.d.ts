@@ -3,8 +3,8 @@
  */
 export type EventType = string;
 export namespace EventType {
-    export const BEFORESORT: string;
-    export const SORT: string;
+    const BEFORESORT: string;
+    const SORT: string;
 }
 /**
  * @fileoverview A table sorting decorator.

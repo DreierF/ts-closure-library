@@ -82,12 +82,12 @@ export class Animation extends TransitionBase implements fx_anim.Animated, Trans
      * Percent of the way through the animation.
      * @protected {number}
      */
-    protected progress: any;
+    protected progress: number;
     /**
      * Timestamp for when last frame was run.
      * @protected {?number}
      */
-    protected lastFrame: any;
+    protected lastFrame: number | null;
     /**
      * @return {number} The duration of this animation in milliseconds.
      */
@@ -154,7 +154,7 @@ export class Animation extends TransitionBase implements fx_anim.Animated, Trans
     protected onDestroy(): void;
 }
 export namespace Animation {
-    export const TIMEOUT: number;
+    const TIMEOUT: number;
 }
 /**
  * Class for an animation event object.
@@ -220,15 +220,15 @@ export class AnimationEvent extends EventsEvent {
     coordsAsInts(): Array<number>;
 }
 export namespace EventType {
-    export const PLAY: any;
-    export const BEGIN: any;
-    export const RESUME: any;
-    export const END: any;
-    export const STOP: any;
-    export const FINISH: any;
-    export const PAUSE: any;
-    export const ANIMATE: string;
-    export const DESTROY: string;
+    const PLAY: any;
+    const BEGIN: any;
+    const RESUME: any;
+    const END: any;
+    const STOP: any;
+    const FINISH: any;
+    const PAUSE: any;
+    const ANIMATE: string;
+    const DESTROY: string;
 }
 /**
  * Enum for the possible states of an animation.
@@ -236,7 +236,7 @@ export namespace EventType {
  * @enum {number}
  */
 export let State: any;
-import { TransitionBase } from "./transitionbase.js";
 import * as fx_anim from "./anim/anim.js";
 import { Transition } from "./transition.js";
+import { TransitionBase } from "./transitionbase.js";
 import { Event as EventsEvent } from "../events/event.js";

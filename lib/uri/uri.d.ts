@@ -427,7 +427,7 @@ export class Uri {
      * @private {boolean}
      */
     private ignoreCase_;
-    queryData_: QueryData;
+    queryData_: QueryData | undefined;
     /**
      * @return {string} The string form of the url.
      * @override
@@ -684,11 +684,11 @@ export class Uri {
     getIgnoreCase(): boolean;
 }
 export namespace Uri {
-    export const RANDOM_PARAM: string;
-    export const reDisallowedInSchemeOrUserInfo_: RegExp | null;
-    export const reDisallowedInRelativePath_: RegExp | null;
-    export const reDisallowedInAbsolutePath_: RegExp | null;
-    export const reDisallowedInQuery_: RegExp | null;
-    export const reDisallowedInFragment_: RegExp | null;
+    const RANDOM_PARAM: string;
+    const reDisallowedInSchemeOrUserInfo_: RegExp | null;
+    const reDisallowedInRelativePath_: RegExp | null;
+    const reDisallowedInAbsolutePath_: RegExp | null;
+    const reDisallowedInQuery_: RegExp | null;
+    const reDisallowedInFragment_: RegExp | null;
 }
 import { Map as StructsMap } from "../structs/map.js";

@@ -83,8 +83,8 @@ export class Serializer {
     private serializeObject_;
 }
 export namespace Serializer {
-    export const charToJsonCharCache_: any;
-    export const charsToReplace_: RegExp;
+    const charToJsonCharCache_: any;
+    const charsToReplace_: RegExp;
 }
 /**
  * @type {boolean} If true, try the native JSON parsing API first. If it
@@ -120,4 +120,4 @@ export function serialize(object: any, opt_replacer?: any): string;
  * @param {function(string, !Error)} errorLogger The first parameter is the
  *     error message, the second is the exception thrown by `JSON.parse`.
  */
-export function setErrorLogger(errorLogger: (arg0: string, arg1: Error) => void): void;
+export function setErrorLogger(errorLogger: (arg0: string, arg1: Error) => any): void;

@@ -40,13 +40,13 @@ export type StandardQueryParam = string;
  */
 export type CharCode_ = number;
 export namespace ComponentIndex {
-    export const SCHEME: number;
-    export const USER_INFO: number;
-    export const DOMAIN: number;
-    export const PORT: number;
-    export const PATH: number;
-    export const QUERY_DATA: number;
-    export const FRAGMENT: number;
+    const SCHEME: number;
+    const USER_INFO: number;
+    const DOMAIN: number;
+    const PORT: number;
+    const PATH: number;
+    const QUERY_DATA: number;
+    const FRAGMENT: number;
 }
 /**
  * An array representing a set of query parameters with alternating keys
@@ -82,7 +82,7 @@ export let QueryArray: any;
  */
 export let QueryValue: any;
 export namespace StandardQueryParam {
-    export const RANDOM: string;
+    const RANDOM: string;
 }
 /**
  * Appends a single URI parameter.
@@ -336,7 +336,7 @@ export function makeUnique(uri: string): string;
  *     second will.  If the parameter has no value (i.e. “=” was not present)
  *     the second argument (value) will be an empty string.
  */
-export function parseQueryData(encodedQuery: string, callback: (arg0: string, arg1: string) => void): void;
+export function parseQueryData(encodedQuery: string, callback: (arg0: string, arg1: string) => any): void;
 /**
  * Gets the URI with the fragment identifier removed.
  * @param {string} uri The URI to examine.

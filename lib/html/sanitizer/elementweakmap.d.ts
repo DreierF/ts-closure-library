@@ -9,7 +9,7 @@ export class ElementWeakMap<T> {
      * available.
      * @return {!ElementWeakMap|!WeakMap}
      */
-    static newWeakMap(): ElementWeakMap | any;
+    static newWeakMap(): ElementWeakMap<any> | any;
     /** @private {!Array<!Element>} */
     private keys_;
     /** @private {!Array<!T>} */
@@ -22,7 +22,7 @@ export class ElementWeakMap<T> {
      * @param {!T} value
      * @return {!ElementWeakMap}
      */
-    set(elementKey: Element, value: T): ElementWeakMap;
+    set(elementKey: Element, value: T): ElementWeakMap<any>;
     /**
      * Gets the value previously stored for `elementKey`, or undefined if no
      * value was stored for such key.

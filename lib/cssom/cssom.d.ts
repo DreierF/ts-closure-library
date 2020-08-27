@@ -3,12 +3,12 @@
  */
 export type CssRuleType = number;
 export namespace CssRuleType {
-    export const STYLE: number;
-    export const IMPORT: number;
-    export const MEDIA: number;
-    export const FONT_FACE: number;
-    export const PAGE: number;
-    export const NAMESPACE: number;
+    const STYLE: number;
+    const IMPORT: number;
+    const MEDIA: number;
+    const FONT_FACE: number;
+    const PAGE: number;
+    const NAMESPACE: number;
 }
 /**
  * Cross browser function to add a CSSRule into a StyleSheet, optionally

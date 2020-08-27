@@ -28,7 +28,7 @@ export class TreeControl extends BaseNode {
      * @param {DomHelper=} opt_domHelper Optional DOM helper.
      */
     constructor(content: string | SafeHtml, opt_config?: any | undefined, opt_domHelper?: DomHelper | undefined);
-    selectedItem_: any;
+    selectedItem_: TreeControl;
     /**
      * Used for typeahead support.
      * @private {!TypeAhead}
@@ -203,7 +203,7 @@ export class TreeControl extends BaseNode {
     clearTypeAhead(): void;
 }
 export namespace TreeControl {
-    export const defaultConfig: {
+    const defaultConfig: {
         indentWidth: number;
         cssRoot: string;
         cssHideRoot: string;

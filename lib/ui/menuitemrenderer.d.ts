@@ -56,7 +56,7 @@ export class MenuItemRenderer extends ControlRenderer<UiMenuItem> {
      *     item hasn't been rendered yet).
      * @param {boolean} selectable Whether the item should be selectable.
      */
-    setSelectable(item: Control | null, element: Element | null, selectable: boolean): void;
+    setSelectable(item: Control<any> | null, element: Element | null, selectable: boolean): void;
     /**
      * Enables/disables checkbox semantics on the menu item.
      * @param {?Control} item Menu item to update.
@@ -64,7 +64,7 @@ export class MenuItemRenderer extends ControlRenderer<UiMenuItem> {
      *     item hasn't been rendered yet).
      * @param {boolean} checkable Whether the item should be checkable.
      */
-    setCheckable(item: Control | null, element: Element | null, checkable: boolean): void;
+    setCheckable(item: Control<any> | null, element: Element | null, checkable: boolean): void;
     /**
      * Determines whether the item contains a checkbox element.
      * @param {?Element} element Menu item root element.
@@ -81,20 +81,20 @@ export class MenuItemRenderer extends ControlRenderer<UiMenuItem> {
      * @param {boolean} enable Whether to add or remove the checkbox structure.
      * @protected
      */
-    protected setEnableCheckBoxStructure(item: Control, element: Element, enable: boolean): void;
+    protected setEnableCheckBoxStructure(item: Control<any>, element: Element, enable: boolean): void;
 }
 export namespace MenuItemRenderer {
-    export const instance_: MenuItemRenderer | null;
-    export const CSS_CLASS: string;
-    export namespace CompositeCssClassIndex_ {
-        export const HOVER: number;
-        export const CHECKBOX: number;
-        export const CONTENT: number;
+    const instance_: MenuItemRenderer | null;
+    const CSS_CLASS: string;
+    namespace CompositeCssClassIndex_ {
+        const HOVER: number;
+        const CHECKBOX: number;
+        const CONTENT: number;
     }
     /**
      * *
      */
-    export type CompositeCssClassIndex_ = number;
+    type CompositeCssClassIndex_ = number;
 }
 import { MenuItem as UiMenuItem } from "./menu.js";
 import { ControlRenderer } from "./control.js";

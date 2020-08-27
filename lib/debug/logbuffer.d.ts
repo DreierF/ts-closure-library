@@ -59,7 +59,7 @@ export class LogBuffer {
      * oldest one.
      * @param {function(!DebugLogRecord)} func The function to call.
      */
-    forEachRecord(func: (arg0: DebugLogRecord) => void): void;
+    forEachRecord(func: (arg0: DebugLogRecord) => any): void;
 }
 import { Level } from "./logger.js";
 import { LogRecord as DebugLogRecord } from "./logrecord.js";

@@ -169,8 +169,8 @@ export class SafeScript implements TypedString {
     private initSecurityPrivateDoNotAccessOrElse_;
 }
 export namespace SafeScript {
-    export const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
-    export const EMPTY: SafeScript;
+    const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
+    const EMPTY: SafeScript;
 }
 import { TypedString } from "../string/typedstring.js";
 import { Const as String_Const } from "../string/const.js";

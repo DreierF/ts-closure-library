@@ -10,8 +10,8 @@ export class MenuHeaderRenderer extends ControlRenderer<UiMenuHeader> {
     static getInstance(): MenuHeaderRenderer;
 }
 export namespace MenuHeaderRenderer {
-    export const instance_: MenuHeaderRenderer | null;
-    export const CSS_CLASS: string;
+    const instance_: MenuHeaderRenderer | null;
+    const CSS_CLASS: string;
 }
 import { MenuHeader as UiMenuHeader } from "./menuheader.js";
 import { ControlRenderer } from "./control.js";

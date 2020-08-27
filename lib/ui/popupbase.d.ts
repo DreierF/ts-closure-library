@@ -7,10 +7,10 @@ export type EventType = string;
  */
 export type Type = string;
 export namespace EventType {
-    export const BEFORE_SHOW: string;
-    export const SHOW: string;
-    export const BEFORE_HIDE: string;
-    export const HIDE: string;
+    const BEFORE_SHOW: string;
+    const SHOW: string;
+    const BEFORE_HIDE: string;
+    const HIDE: string;
 }
 /**
  * @fileoverview Definition of the PopupBase class.
@@ -403,11 +403,11 @@ export class PopupBase extends events.EventTarget {
     private shouldDebounce_;
 }
 export namespace PopupBase {
-    export const DEBOUNCE_DELAY_MS: number;
+    const DEBOUNCE_DELAY_MS: number;
 }
 export namespace Type {
-    export const TOGGLE_DISPLAY: string;
-    export const MOVE_OFFSCREEN: string;
+    const TOGGLE_DISPLAY: string;
+    const MOVE_OFFSCREEN: string;
 }
 import * as events from "../events/eventhandler.js";
 import { Transition } from "../fx/transition.js";

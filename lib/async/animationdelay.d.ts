@@ -123,7 +123,7 @@ export class AnimationDelay<THIS> extends Disposable {
     private getCancelRaf_;
 }
 export namespace AnimationDelay {
-    export const TIMEOUT: number;
-    export const MOZ_BEFORE_PAINT_EVENT_: string;
+    const TIMEOUT: number;
+    const MOZ_BEFORE_PAINT_EVENT_: string;
 }
 import { Disposable } from "../disposable/disposable.js";

@@ -3,8 +3,8 @@
  */
 export type EventType = string;
 export namespace EventType {
-    export const FOCUSIN: string;
-    export const FOCUSOUT: string;
+    const FOCUSIN: string;
+    const FOCUSOUT: string;
 }
 /**
  * @fileoverview This event handler allows you to catch focusin and focusout

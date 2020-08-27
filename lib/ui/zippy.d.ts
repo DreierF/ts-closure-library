@@ -3,8 +3,8 @@
  */
 export type Events = string;
 export namespace Events {
-    export const ACTION: string;
-    export const TOGGLE: string;
+    const ACTION: string;
+    const TOGGLE: string;
 }
 /**
  * @fileoverview Zippy widget implementation.

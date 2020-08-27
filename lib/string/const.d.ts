@@ -113,8 +113,8 @@ export class Const implements TypedString {
     getTypedStringValue(): string;
 }
 export namespace Const {
-    export const TYPE_MARKER_: {};
-    export const GOOG_STRING_CONSTRUCTOR_TOKEN_PRIVATE_: any;
-    export const EMPTY: Const;
+    const TYPE_MARKER_: {};
+    const GOOG_STRING_CONSTRUCTOR_TOKEN_PRIVATE_: any;
+    const EMPTY: Const;
 }
 import { TypedString } from "./typedstring.js";

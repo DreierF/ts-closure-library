@@ -3,7 +3,7 @@
  */
 export type EventType = string;
 export namespace EventType {
-    export const KEY: string;
+    const KEY: string;
 }
 /**
  * This class is used for the EventType.KEY event and
@@ -222,10 +222,10 @@ export class KeyHandler extends goog_events.EventTarget {
     detach(): void;
 }
 export namespace KeyHandler {
-    export const safariKey_: any | null;
-    export const keyIdentifier_: any | null;
-    export const USES_KEYDOWN_: boolean;
-    export const SAVE_ALT_FOR_KEYPRESS_: boolean;
+    const safariKey_: any | null;
+    const keyIdentifier_: any | null;
+    const USES_KEYDOWN_: boolean;
+    const SAVE_ALT_FOR_KEYPRESS_: boolean;
 }
 import { BrowserEvent as EventsBrowserEvent } from "./browserevent.js";
 import * as goog_events from "./eventhandler.js";

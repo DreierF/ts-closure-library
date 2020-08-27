@@ -3,7 +3,7 @@
  */
 export type EventType = string;
 export namespace EventType {
-    export const MOUSEWHEEL: string;
+    const MOUSEWHEEL: string;
 }
 /**
  * A base class for mouse wheel events. This is used with the

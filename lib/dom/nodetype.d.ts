@@ -12,16 +12,16 @@
  */
 export type NodeType = number;
 export namespace NodeType {
-    export const ELEMENT: number;
-    export const ATTRIBUTE: number;
-    export const TEXT: number;
-    export const CDATA_SECTION: number;
-    export const ENTITY_REFERENCE: number;
-    export const ENTITY: number;
-    export const PROCESSING_INSTRUCTION: number;
-    export const COMMENT: number;
-    export const DOCUMENT: number;
-    export const DOCUMENT_TYPE: number;
-    export const DOCUMENT_FRAGMENT: number;
-    export const NOTATION: number;
+    const ELEMENT: number;
+    const ATTRIBUTE: number;
+    const TEXT: number;
+    const CDATA_SECTION: number;
+    const ENTITY_REFERENCE: number;
+    const ENTITY: number;
+    const PROCESSING_INSTRUCTION: number;
+    const COMMENT: number;
+    const DOCUMENT: number;
+    const DOCUMENT_TYPE: number;
+    const DOCUMENT_FRAGMENT: number;
+    const NOTATION: number;
 }

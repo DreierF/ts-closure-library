@@ -467,21 +467,21 @@ export type NumberFormatSymbols_zh_TW = string;
  */
 export type NumberFormatSymbols_zu = string;
 export namespace NumberFormatSymbols {
-    export const DECIMAL_SEP: string;
-    export const GROUP_SEP: string;
-    export const PERCENT: string;
-    export const ZERO_DIGIT: string;
-    export const PLUS_SIGN: string;
-    export const MINUS_SIGN: string;
-    export const EXP_SYMBOL: string;
-    export const PERMILL: string;
-    export const INFINITY: string;
-    export const NAN: string;
-    export const DECIMAL_PATTERN: string;
-    export const SCIENTIFIC_PATTERN: string;
-    export const PERCENT_PATTERN: string;
-    export const CURRENCY_PATTERN: string;
-    export const DEF_CURRENCY_CODE: string;
+    const DECIMAL_SEP: string;
+    const GROUP_SEP: string;
+    const PERCENT: string;
+    const ZERO_DIGIT: string;
+    const PLUS_SIGN: string;
+    const MINUS_SIGN: string;
+    const EXP_SYMBOL: string;
+    const PERMILL: string;
+    const INFINITY: string;
+    const NAN: string;
+    const DECIMAL_PATTERN: string;
+    const SCIENTIFIC_PATTERN: string;
+    const PERCENT_PATTERN: string;
+    const CURRENCY_PATTERN: string;
+    const DEF_CURRENCY_CODE: string;
 }
 export namespace NumberFormatSymbols_af {
     const DECIMAL_SEP_1: string;

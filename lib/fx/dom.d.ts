@@ -80,8 +80,8 @@ export class Fade extends PredefinedEffect {
     hide(): void;
 }
 export namespace Fade {
-    export const TOLERANCE_: number;
-    export const OPACITY_UNSET_: number;
+    const TOLERANCE_: number;
+    const OPACITY_UNSET_: number;
 }
 /**
  * Fades an element in from completely transparent to fully opacity.
@@ -377,6 +377,6 @@ export class Swipe extends PredefinedEffect {
  * @param {EventHandler=} opt_eventHandler Optional event handler
  *     to use when listening for events.
  */
-export function bgColorFadeIn(element: Element | null, start: Array<number>, time: number, opt_eventHandler?: EventHandler | undefined): void;
+export function bgColorFadeIn(element: Element | null, start: Array<number>, time: number, opt_eventHandler?: goog_events.EventHandler<any> | undefined): void;
 import { Animation } from "./animation.js";
-import { EventHandler } from "../events/eventhandler.js";
+import * as goog_events from "../events/eventhandler.js";

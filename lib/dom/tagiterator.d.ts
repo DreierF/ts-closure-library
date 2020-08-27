@@ -203,8 +203,8 @@ export class TagIterator extends Iterator<Node> {
     splice(...args: any[]): void;
 }
 export namespace TagWalkType {
-    export const START_TAG: number;
-    export const OTHER: number;
-    export const END_TAG: number;
+    const START_TAG: number;
+    const OTHER: number;
+    const END_TAG: number;
 }
 import { Iterator } from "../iter/iter.js";

@@ -337,7 +337,7 @@ export class ComboBox extends Component {
     private isItemSticky_;
 }
 export namespace ComboBox {
-    export const BLUR_DISMISS_TIMER_MS: number;
+    const BLUR_DISMISS_TIMER_MS: number;
 }
 /**
  * Class for combo box items.

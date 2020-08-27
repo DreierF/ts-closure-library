@@ -100,10 +100,10 @@ export class PaletteRenderer extends ControlRenderer<UiPalette> {
     selectCell(palette: UiPalette | null, node: Node | null, select: boolean): void;
 }
 export namespace PaletteRenderer {
-    export const instance_: PaletteRenderer | null;
-    export const cellId_: number;
-    export const CSS_CLASS: string;
-    export const GRID_WIDTH_ATTRIBUTE: string;
+    const instance_: PaletteRenderer | null;
+    const cellId_: number;
+    const CSS_CLASS: string;
+    const GRID_WIDTH_ATTRIBUTE: string;
 }
 import { Palette as UiPalette } from "./palette.js";
 import { ControlRenderer } from "./control.js";

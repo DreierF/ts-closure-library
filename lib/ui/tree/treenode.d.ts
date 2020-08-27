@@ -467,41 +467,41 @@ export class BaseNode extends Component {
     setTreeInternal(tree: TreeControl | null): void;
 }
 export namespace BaseNode {
-    export const allNodes: any | null;
-    export const EMPTY_CHILDREN_: Array<BaseNode>;
-    export namespace defaultConfig {
-        export const indentWidth: number;
-        export const cssRoot: string;
-        export const cssHideRoot: string;
-        export const cssItem: string;
-        export const cssChildren: string;
-        export const cssChildrenNoLines: string;
-        export const cssTreeRow: string;
-        export const cssItemLabel: string;
-        export const cssTreeIcon: string;
-        export const cssExpandTreeIcon: string;
-        export const cssExpandTreeIconPlus: string;
-        export const cssExpandTreeIconMinus: string;
-        export const cssExpandTreeIconTPlus: string;
-        export const cssExpandTreeIconTMinus: string;
-        export const cssExpandTreeIconLPlus: string;
-        export const cssExpandTreeIconLMinus: string;
-        export const cssExpandTreeIconT: string;
-        export const cssExpandTreeIconL: string;
-        export const cssExpandTreeIconBlank: string;
-        export const cssExpandedFolderIcon: string;
-        export const cssCollapsedFolderIcon: string;
-        export const cssFileIcon: string;
-        export const cssExpandedRootIcon: string;
-        export const cssCollapsedRootIcon: string;
-        export const cssSelectedRow: string;
+    const allNodes: any | null;
+    const EMPTY_CHILDREN_: Array<BaseNode>;
+    namespace defaultConfig {
+        const indentWidth: number;
+        const cssRoot: string;
+        const cssHideRoot: string;
+        const cssItem: string;
+        const cssChildren: string;
+        const cssChildrenNoLines: string;
+        const cssTreeRow: string;
+        const cssItemLabel: string;
+        const cssTreeIcon: string;
+        const cssExpandTreeIcon: string;
+        const cssExpandTreeIconPlus: string;
+        const cssExpandTreeIconMinus: string;
+        const cssExpandTreeIconTPlus: string;
+        const cssExpandTreeIconTMinus: string;
+        const cssExpandTreeIconLPlus: string;
+        const cssExpandTreeIconLMinus: string;
+        const cssExpandTreeIconT: string;
+        const cssExpandTreeIconL: string;
+        const cssExpandTreeIconBlank: string;
+        const cssExpandedFolderIcon: string;
+        const cssCollapsedFolderIcon: string;
+        const cssFileIcon: string;
+        const cssExpandedRootIcon: string;
+        const cssCollapsedRootIcon: string;
+        const cssSelectedRow: string;
     }
 }
 export namespace EventType {
-    export const BEFORE_EXPAND: string;
-    export const EXPAND: string;
-    export const BEFORE_COLLAPSE: string;
-    export const COLLAPSE: string;
+    const BEFORE_EXPAND: string;
+    const EXPAND: string;
+    const BEFORE_COLLAPSE: string;
+    const COLLAPSE: string;
 }
 /**
  * @fileoverview Definition of the TreeNode class.

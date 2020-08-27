@@ -171,8 +171,8 @@ export class DateRange {
     iterator(): Iterator;
 }
 export namespace DateRange {
-    export const MINIMUM_DATE: DateDate | null;
-    export const MAXIMUM_DATE: DateDate | null;
+    const MINIMUM_DATE: DateDate | null;
+    const MAXIMUM_DATE: DateDate | null;
 }
 /**
  * Creates an iterator over the dates in a {@link DateRange}.
@@ -200,15 +200,15 @@ export class Iterator extends IterIterator<DateDate> {
     private endDate_;
 }
 export namespace StandardDateRangeKeys {
-    export const YESTERDAY: string;
-    export const TODAY: string;
-    export const LAST_7_DAYS: string;
-    export const THIS_MONTH: string;
-    export const LAST_MONTH: string;
-    export const THIS_WEEK: string;
-    export const LAST_WEEK: string;
-    export const LAST_BUSINESS_WEEK: string;
-    export const ALL_TIME: string;
+    const YESTERDAY: string;
+    const TODAY: string;
+    const LAST_7_DAYS: string;
+    const THIS_MONTH: string;
+    const LAST_MONTH: string;
+    const THIS_WEEK: string;
+    const LAST_WEEK: string;
+    const LAST_BUSINESS_WEEK: string;
+    const ALL_TIME: string;
 }
 import { Date as DateDate } from "./date.js";
 import { Iterator as IterIterator } from "../iter/iter.js";

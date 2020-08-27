@@ -59,7 +59,7 @@ export class Control<T> extends Ui_Component {
      * @deprecated Use {@link getDecorator} instead.
      * @suppress {checkTypes}
      */
-    static getDecorator(element: Element | null): Control | null;
+    static getDecorator(element: Element | null): Control<any> | null;
     /**
      * Checks if a mouse event (mouseover or mouseout) occurred below an element.
      * @param {?EventsBrowserEvent} e Mouse event (should be mouseover or
@@ -711,7 +711,7 @@ export namespace Control {
  */
 export class ControlRenderer<CONTROL> {
     /** @return {!ControlRenderer} @suppress {checkTypes} */
-    static getInstance(): ControlRenderer;
+    static getInstance(): ControlRenderer<any>;
     /**
      * Constructs a new renderer and sets the CSS class that the renderer will use
      * as the base CSS class to apply to all elements rendered by that renderer.
@@ -752,7 +752,7 @@ export class ControlRenderer<CONTROL> {
      *     its getCssClass() method overridden to return the supplied custom CSS
      *     class name.
      */
-    static getCustomRenderer(ctor: Function | null, cssClassName: string): ControlRenderer | null;
+    static getCustomRenderer(ctor: Function | null, cssClassName: string): ControlRenderer<any> | null;
     /**
      * Returns the appropriate ARIA attribute based on ARIA role if the ARIA
      * attribute is an ARIA state.
@@ -853,7 +853,7 @@ export class ControlRenderer<CONTROL> {
      * @param {!Control} control Control whose ARIA state will be updated.
      * @param {!Element} element Element whose ARIA state is to be updated.
      */
-    setAriaStates(control: Control, element: Element): void;
+    setAriaStates(control: Control<any>, element: Element): void;
     /**
      * Sets the element's ARIA label. This should be overriden by subclasses that
      * don't apply the role directly on control.element_.
@@ -1072,11 +1072,11 @@ export class ControlRenderer<CONTROL> {
     private stateByClass_;
 }
 export namespace ControlRenderer {
-    export const instance_: undefined | ControlRenderer;
-    export const CSS_CLASS: string;
-    export const IE6_CLASS_COMBINATIONS: Array<Array<string>>;
-    export const ariaAttributeMap_: any;
-    export const TOGGLE_ARIA_STATE_MAP_: any;
+    const instance_: undefined | ControlRenderer<any>;
+    const CSS_CLASS: string;
+    const IE6_CLASS_COMBINATIONS: Array<Array<string>>;
+    const ariaAttributeMap_: any;
+    const TOGGLE_ARIA_STATE_MAP_: any;
 }
 /**
  * Returns an instance of {@link Ui_Component} or a subclass suitable to
@@ -1110,7 +1110,7 @@ export function getDecoratorByClassName(className: string): Ui_Component | null;
  *     singleton instance of `goog.ui.ButtonRenderer`), or null if
  *     no default renderer was found.
  */
-export function getDefaultRenderer(componentCtor: Function | null): ControlRenderer | null;
+export function getDefaultRenderer(componentCtor: Function | null): ControlRenderer<any> | null;
 /**
  * Resets the global renderer and decorator registry.
  */

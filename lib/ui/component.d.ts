@@ -100,14 +100,6 @@ export class Component extends EventsEventTarget {
      */
     private element_;
     /**
-     * Event handler.
-     * TODO(user): rename it to handler_ after all component subclasses in
-     * inside Google have been cleaned up.
-     * Code search: http://go/component_code_search
-     * @private {EventHandler|undefined}
-     */
-    private googUiComponentHandler_;
-    /**
      * Arbitrary data object associated with the component.  Such as meta-data.
      * @private {*}
      */
@@ -579,17 +571,17 @@ export class Component extends EventsEventTarget {
     setPointerEventsEnabled(enable: boolean): void;
 }
 export namespace Component {
-    export const defaultRightToLeft_: boolean | null;
+    const defaultRightToLeft_: boolean | null;
 }
 declare namespace Component_Error {
-    export const NOT_SUPPORTED: string;
-    export const DECORATE_INVALID: string;
-    export const ALREADY_RENDERED: string;
-    export const PARENT_UNABLE_TO_BE_SET: string;
-    export const CHILD_INDEX_OUT_OF_BOUNDS: string;
-    export const NOT_OUR_CHILD: string;
-    export const NOT_IN_DOCUMENT: string;
-    export const STATE_INVALID: string;
+    const NOT_SUPPORTED: string;
+    const DECORATE_INVALID: string;
+    const ALREADY_RENDERED: string;
+    const PARENT_UNABLE_TO_BE_SET: string;
+    const CHILD_INDEX_OUT_OF_BOUNDS: string;
+    const NOT_OUR_CHILD: string;
+    const NOT_IN_DOCUMENT: string;
+    const STATE_INVALID: string;
 }
 /**
  * @type {number} Defines the default BIDI directionality.
@@ -599,37 +591,37 @@ declare namespace Component_Error {
  */
 export const DEFAULT_BIDI_DIR: number;
 export namespace EventType {
-    export const BEFORE_SHOW: string;
-    export const SHOW: string;
-    export const HIDE: string;
-    export const DISABLE: string;
-    export const ENABLE: string;
-    export const HIGHLIGHT: string;
-    export const UNHIGHLIGHT: string;
-    export const ACTIVATE: string;
-    export const DEACTIVATE: string;
-    export const SELECT: string;
-    export const UNSELECT: string;
-    export const CHECK: string;
-    export const UNCHECK: string;
-    export const FOCUS: string;
-    export const BLUR: string;
-    export const OPEN: string;
-    export const CLOSE: string;
-    export const ENTER: string;
-    export const LEAVE: string;
-    export const ACTION: string;
-    export const CHANGE: string;
+    const BEFORE_SHOW: string;
+    const SHOW: string;
+    const HIDE: string;
+    const DISABLE: string;
+    const ENABLE: string;
+    const HIGHLIGHT: string;
+    const UNHIGHLIGHT: string;
+    const ACTIVATE: string;
+    const DEACTIVATE: string;
+    const SELECT: string;
+    const UNSELECT: string;
+    const CHECK: string;
+    const UNCHECK: string;
+    const FOCUS: string;
+    const BLUR: string;
+    const OPEN: string;
+    const CLOSE: string;
+    const ENTER: string;
+    const LEAVE: string;
+    const ACTION: string;
+    const CHANGE: string;
 }
 export namespace State {
-    export const ALL: number;
-    export const DISABLED: number;
-    export const HOVER: number;
-    export const ACTIVE: number;
-    export const SELECTED: number;
-    export const CHECKED: number;
-    export const FOCUSED: number;
-    export const OPENED: number;
+    const ALL: number;
+    const DISABLED: number;
+    const HOVER: number;
+    const ACTIVE: number;
+    const SELECTED: number;
+    const CHECKED: number;
+    const FOCUSED: number;
+    const OPENED: number;
 }
 import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";
 import * as goog_dom from "../dom/dom.js";

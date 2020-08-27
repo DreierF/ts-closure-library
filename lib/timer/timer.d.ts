@@ -28,7 +28,7 @@ export class Timer extends EventsEventTarget {
      * @suppress{checkTypes}
      */
     static callOnce<SCOPE>(listener: {
-        handleEvent: () => void;
+        handleEvent: () => any;
     } | ((this: SCOPE) => any) | null, opt_delay?: number | undefined, opt_handler?: SCOPE | undefined): number;
     /**
      * Clears a timeout initiated by {@link #callOnce}.
@@ -121,13 +121,13 @@ export class Timer extends EventsEventTarget {
     stop(): void;
 }
 export namespace Timer {
-    export const MAX_TIMEOUT_: number;
-    export const INVALID_TIMEOUT_ID_: number;
-    export const defaultTimerObject: {
+    const MAX_TIMEOUT_: number;
+    const INVALID_TIMEOUT_ID_: number;
+    const defaultTimerObject: {
         setTimeout;
         clearTimeout;
     };
-    export const intervalScale: number;
-    export const TICK: string;
+    const intervalScale: number;
+    const TICK: string;
 }
 import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";

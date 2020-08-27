@@ -143,7 +143,7 @@ declare class debug_LogRecord {
     getSequenceNumber(): number;
 }
 declare namespace debug_LogRecord {
-    export const nextSequenceNumber_: number;
+    const nextSequenceNumber_: number;
 }
 import { Level as Logger_Level } from "./logger.js";
 export { debug_LogRecord as LogRecord };

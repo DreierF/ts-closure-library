@@ -260,9 +260,9 @@ declare class Trace_ {
 }
 declare namespace Trace_ {
     export namespace EventType {
-        export const START: number;
-        export const STOP: number;
-        export const COMMENT: number;
+        const START: number;
+        const STOP: number;
+        const COMMENT: number;
     }
     /**
      * Event type supported by tracer
@@ -272,7 +272,7 @@ declare namespace Trace_ {
     export const NORMAL_STOP_: {};
 }
 declare namespace TracerCallbacks {
-    export function sequence_(fn1: Function | undefined, fn2: Function | undefined): Function | undefined;
+    function sequence_(fn1: Function | undefined, fn2: Function | undefined): Function | undefined;
 }
 declare class Stat_ {
     /**

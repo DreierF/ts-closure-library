@@ -82,7 +82,7 @@ export class RemoteArrayMatcher extends Disposable {
      * @param {Object|StructsMap} headers Map of headers to add to the
      *     request.
      */
-    setHeaders(headers: any | StructsMap): void;
+    setHeaders(headers: any | StructsMap<any, any>): void;
     /**
      * Set the timeout interval.
      * @param {number} interval Number of milliseconds after which an

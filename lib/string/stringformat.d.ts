@@ -19,11 +19,11 @@
  */
 export function format(formatString: string, ...args: (string | number | undefined)[]): string;
 export namespace format {
-    export namespace demuxes_ {
-        export function s(value: string, flags: string, width: string, dotp: string, precision: string, type: string, offset: string, wholeString: string): string;
-        export function f(value: string, flags: string, width: string, dotp: string, precision: string, type: string, offset: string, wholeString: string): string;
-        export function d(value: string, flags: string, width: string, dotp: string, precision: string, type: string, offset: string, wholeString: string): string;
-        export function i(value: string, flags: string, width: string, dotp: string, precision: string, type: string, offset: string, wholeString: string): string;
-        export function u(value: string, flags: string, width: string, dotp: string, precision: string, type: string, offset: string, wholeString: string): string;
+    namespace demuxes_ {
+        function s(value: string, flags: string, width: string, dotp: string, precision: string, type: string, offset: string, wholeString: string): string;
+        function f(value: string, flags: string, width: string, dotp: string, precision: string, type: string, offset: string, wholeString: string): string;
+        function d(value: string, flags: string, width: string, dotp: string, precision: string, type: string, offset: string, wholeString: string): string;
+        function i(value: string, flags: string, width: string, dotp: string, precision: string, type: string, offset: string, wholeString: string): string;
+        function u(value: string, flags: string, width: string, dotp: string, precision: string, type: string, offset: string, wholeString: string): string;
     }
 }

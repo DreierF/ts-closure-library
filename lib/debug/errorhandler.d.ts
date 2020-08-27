@@ -171,8 +171,8 @@ export class ProtectedFunctionError extends DebugError {
     cause: any;
 }
 export namespace ProtectedFunctionError {
-    export const MESSAGE_PREFIX: string;
+    const MESSAGE_PREFIX: string;
 }
-import { Disposable } from "../disposable/disposable.js";
 import { EntryPointMonitor } from "./entrypointregistry.js";
+import { Disposable } from "../disposable/disposable.js";
 import { Error as DebugError } from "./error.js";

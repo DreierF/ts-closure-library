@@ -260,19 +260,19 @@ export class SafeStyle implements TypedString {
     private initSecurityPrivateDoNotAccessOrElse_;
 }
 export namespace SafeStyle {
-    export const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
-    export const EMPTY: SafeStyle;
-    export const INNOCUOUS_STRING: string;
-    export const VALUE_ALLOWED_CHARS_: string;
-    export const VALUE_RE_: RegExp;
-    export const URL_RE_: RegExp;
-    export const ALLOWED_FUNCTIONS_: string[];
-    export const FUNCTIONS_RE_: RegExp;
-    export const COMMENT_RE_: RegExp;
+    const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
+    const EMPTY: SafeStyle;
+    const INNOCUOUS_STRING: string;
+    const VALUE_ALLOWED_CHARS_: string;
+    const VALUE_RE_: RegExp;
+    const URL_RE_: RegExp;
+    const ALLOWED_FUNCTIONS_: string[];
+    const FUNCTIONS_RE_: RegExp;
+    const COMMENT_RE_: RegExp;
     /**
      * A single property value.
      */
-    export type PropertyValue = string | Const | SafeUrl;
+    type PropertyValue = string | Const | SafeUrl;
     /**
      * Mapping of property names to their values.
      * We don't support numbers even though some values might be numbers (e.g.
@@ -280,7 +280,7 @@ export namespace SafeStyle {
      * units (e.g. '1px') and allowing numbers could cause users forgetting about
      * them.
      */
-    export type PropertyMap = {
+    type PropertyMap = {
         [x: string]: string | Const | SafeUrl | (string | Const | SafeUrl)[] | null;
     };
 }

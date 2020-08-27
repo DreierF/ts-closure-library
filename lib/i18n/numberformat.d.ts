@@ -7,17 +7,17 @@ export type CurrencyStyle = number;
  */
 export type Format = number;
 export namespace CurrencyStyle {
-    export const LOCAL: number;
-    export const PORTABLE: number;
-    export const GLOBAL: number;
+    const LOCAL: number;
+    const PORTABLE: number;
+    const GLOBAL: number;
 }
 export namespace Format {
-    export const DECIMAL: number;
-    export const SCIENTIFIC: number;
-    export const PERCENT: number;
-    export const CURRENCY: number;
-    export const COMPACT_SHORT: number;
-    export const COMPACT_LONG: number;
+    const DECIMAL: number;
+    const SCIENTIFIC: number;
+    const PERCENT: number;
+    const CURRENCY: number;
+    const COMPACT_SHORT: number;
+    const COMPACT_LONG: number;
 }
 /**
  * @fileoverview Number format/parse library with locale support.
@@ -504,36 +504,36 @@ export class NumberFormat {
     isCurrencyCodeBeforeValue(): boolean;
 }
 export namespace NumberFormat {
-    export namespace CompactStyle {
-        export const NONE: number;
-        export const SHORT: number;
-        export const LONG: number;
+    namespace CompactStyle {
+        const NONE: number;
+        const SHORT: number;
+        const LONG: number;
     }
     /**
      * Compacting styles.
      */
-    export type CompactStyle = number;
-    export const enforceAsciiDigits_: boolean;
-    export const PATTERN_ZERO_DIGIT_: string;
-    export const PATTERN_GROUPING_SEPARATOR_: string;
-    export const PATTERN_DECIMAL_SEPARATOR_: string;
-    export const PATTERN_PER_MILLE_: string;
-    export const PATTERN_PERCENT_: string;
-    export const PATTERN_DIGIT_: string;
-    export const PATTERN_SEPARATOR_: string;
-    export const PATTERN_EXPONENT_: string;
-    export const PATTERN_PLUS_: string;
-    export const PATTERN_CURRENCY_SIGN_: string;
-    export const QUOTE_: string;
-    export namespace NULL_UNIT_ {
-        export const prefix: string;
-        export const suffix: string;
-        export const divisorBase: number;
+    type CompactStyle = number;
+    const enforceAsciiDigits_: boolean;
+    const PATTERN_ZERO_DIGIT_: string;
+    const PATTERN_GROUPING_SEPARATOR_: string;
+    const PATTERN_DECIMAL_SEPARATOR_: string;
+    const PATTERN_PER_MILLE_: string;
+    const PATTERN_PERCENT_: string;
+    const PATTERN_DIGIT_: string;
+    const PATTERN_SEPARATOR_: string;
+    const PATTERN_EXPONENT_: string;
+    const PATTERN_PLUS_: string;
+    const PATTERN_CURRENCY_SIGN_: string;
+    const QUOTE_: string;
+    namespace NULL_UNIT_ {
+        const prefix: string;
+        const suffix: string;
+        const divisorBase: number;
     }
     /**
      * Alias for the compact format 'unit' object.
      */
-    export type CompactNumberUnit = {
+    type CompactNumberUnit = {
         prefix: string;
         suffix: string;
         divisorBase: number;

@@ -119,7 +119,7 @@ export class Prompt extends Dialog {
      * @param {function(?Element)} inputDecoratorFn A function to call on the input
      *     element on #enterDocument.
      */
-    setInputDecoratorFn(inputDecoratorFn: (arg0: Element | null) => void): void;
+    setInputDecoratorFn(inputDecoratorFn: (arg0: Element | null) => any): void;
     /**
      * Set the number of rows in the user input element.
      * A values of 1 means use an `<input>` element.  If the prompt is already

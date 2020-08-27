@@ -616,9 +616,9 @@ export class InputHandler extends Disposable {
     private splitInput_;
 }
 export namespace InputHandler {
-    export const REQUIRES_ASYNC_BLUR_: boolean;
-    export const STANDARD_LIST_SEPARATORS: string;
-    export const QUOTE_LITERALS: string;
+    const REQUIRES_ASYNC_BLUR_: boolean;
+    const STANDARD_LIST_SEPARATORS: string;
+    const QUOTE_LITERALS: string;
 }
 import { Disposable } from "../../disposable/disposable.js";
 import { AutoComplete } from "./autocomplete.js";

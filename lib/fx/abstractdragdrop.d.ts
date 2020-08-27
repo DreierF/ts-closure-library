@@ -430,9 +430,9 @@ export class AbstractDragDrop extends goog_events.EventTarget {
     protected getEventPosition(event: DragEvent | null): Coordinate;
 }
 export namespace AbstractDragDrop {
-    export const DUMMY_TARGET_MIN_SIZE_: number;
-    export const initDragDistanceThreshold: number;
-    export namespace TEST_ONLY {
+    const DUMMY_TARGET_MIN_SIZE_: number;
+    const initDragDistanceThreshold: number;
+    namespace TEST_ONLY {
         export { ActiveDropTarget_ as ActiveDropTarget };
     }
 }
@@ -632,12 +632,12 @@ export class DragDropItem extends goog_events.EventTarget {
     private mouseUp_;
 }
 export namespace EventType {
-    export const DRAGOVER: string;
-    export const DRAGOUT: string;
-    export const DRAG: string;
-    export const DROP: string;
-    export const DRAGSTART: string;
-    export const DRAGEND: string;
+    const DRAGOVER: string;
+    const DRAGOUT: string;
+    const DRAG: string;
+    const DROP: string;
+    const DRAGSTART: string;
+    const DRAGEND: string;
 }
 import * as goog_events from "../events/eventhandler.js";
 import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";

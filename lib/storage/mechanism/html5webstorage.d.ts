@@ -37,6 +37,6 @@ export class HTML5WebStorage extends IterableMechanism {
     key(index: number): string | null;
 }
 export namespace HTML5WebStorage {
-    export const STORAGE_AVAILABLE_KEY_: string;
+    const STORAGE_AVAILABLE_KEY_: string;
 }
 import { IterableMechanism } from "./iterablemechanism.js";

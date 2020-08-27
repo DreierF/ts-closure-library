@@ -121,7 +121,7 @@ declare class structs_Set<T> implements Collection<T> {
      *     (primitives or objects) present in this set but not in the given
      *     collection.
      */
-    difference(col: any): structs_Set;
+    difference(col: any): structs_Set<any>;
     /**
      * Returns an array containing all the elements in this set.
      * @return {!Array<T>} An array containing all the elements in this set.
@@ -157,10 +157,10 @@ declare class structs_Set<T> implements Collection<T> {
      * @param {boolean=} opt_keys This argument is ignored.
      * @return {!Iterator} An iterator over the elements in this set.
      */
-    __iterator__(opt_keys?: boolean | undefined): Iterator;
+    __iterator__(opt_keys?: boolean | undefined): Iterator<any>;
 }
 declare namespace structs_Set {
-    export const getUid_: typeof google.getUid;
+    const getUid_: typeof google.getUid;
 }
 import { Collection } from "./collection.js";
 import { Map as StructsMap } from "./map.js";

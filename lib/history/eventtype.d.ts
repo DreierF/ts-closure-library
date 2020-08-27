@@ -3,5 +3,5 @@
  */
 export type EventType = string;
 export namespace EventType {
-    export const NAVIGATE: string;
+    const NAVIGATE: string;
 }

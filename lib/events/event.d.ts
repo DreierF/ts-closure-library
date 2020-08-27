@@ -57,7 +57,7 @@ declare class events_Event {
      *     this event. It has to implement the `EventTarget` interface
      *     declared at {@link http://developer.mozilla.org/en/DOM/EventTarget}.
      */
-    constructor(type: string | EventId, opt_target?: any | undefined);
+    constructor(type: string | EventId<any>, opt_target?: any | undefined);
     /**
      * Event type.
      * @type {string}

@@ -158,8 +158,8 @@ export class SafeStyleSheet implements TypedString {
     private initSecurityPrivateDoNotAccessOrElse_;
 }
 export namespace SafeStyleSheet {
-    export const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
-    export const EMPTY: SafeStyleSheet;
+    const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
+    const EMPTY: SafeStyleSheet;
 }
 import { TypedString } from "../string/typedstring.js";
 import { SafeStyle as HtmlSafeStyle } from "./safestyle.js";

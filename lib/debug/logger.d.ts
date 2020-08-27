@@ -104,32 +104,32 @@ export class Level {
     toString(): string;
 }
 export namespace Level {
-    export const OFF: Level;
-    export const SHOUT: Level;
-    export const SEVERE: Level;
-    export const WARNING: Level;
-    export const INFO: Level;
-    export const CONFIG: Level;
-    export const FINE: Level;
-    export const FINER: Level;
-    export const FINEST: Level;
-    export const ALL: Level;
-    export const PREDEFINED_LEVELS: Array<Level>;
-    export const predefinedLevelsCache_: any | null;
+    const OFF: Level;
+    const SHOUT: Level;
+    const SEVERE: Level;
+    const WARNING: Level;
+    const INFO: Level;
+    const CONFIG: Level;
+    const FINE: Level;
+    const FINER: Level;
+    const FINEST: Level;
+    const ALL: Level;
+    const PREDEFINED_LEVELS: Array<Level>;
+    const predefinedLevelsCache_: any | null;
 }
 export namespace LogManager {
-    export const loggers_: {
+    const loggers_: {
         [x: string]: debug_Logger;
     };
-    export const rootLogger_: debug_Logger | null;
-    export function initialize(): void;
-    export function getLoggers(): {
+    const rootLogger_: debug_Logger | null;
+    function initialize(): void;
+    function getLoggers(): {
         [x: string]: debug_Logger;
     };
-    export function getRoot(): debug_Logger;
-    export function getLogger(name: string): debug_Logger;
-    export function createFunctionForCatchErrors(opt_logger?: debug_Logger | undefined): (arg0: any) => any;
-    export function createLogger_(name: string): debug_Logger;
+    function getRoot(): debug_Logger;
+    function getLogger(name: string): debug_Logger;
+    function createFunctionForCatchErrors(opt_logger?: debug_Logger | undefined): (arg0: any) => any;
+    function createLogger_(name: string): debug_Logger;
 }
 /**
  * @fileoverview Definition of the Logger class. Please minimize dependencies
@@ -409,8 +409,8 @@ declare class debug_Logger {
     private addChild_;
 }
 declare namespace debug_Logger {
-    export const ROOT_LOGGER_NAME: string;
-    export const rootHandlers_: Array<Function>;
+    const ROOT_LOGGER_NAME: string;
+    const rootHandlers_: Array<Function>;
 }
 import { LogRecord as DebugLogRecord } from "./logrecord.js";
 export { debug_Logger as Logger };

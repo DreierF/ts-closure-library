@@ -613,12 +613,12 @@ export class Interval {
     add(interval: Interval | null): void;
 }
 export namespace Interval {
-    export const YEARS: string;
-    export const MONTHS: string;
-    export const DAYS: string;
-    export const HOURS: string;
-    export const MINUTES: string;
-    export const SECONDS: string;
+    const YEARS: string;
+    const MONTHS: string;
+    const DAYS: string;
+    const HOURS: string;
+    const MINUTES: string;
+    const SECONDS: string;
 }
 /**
  * Number of milliseconds in a day.
@@ -722,18 +722,18 @@ export function max<T, S>(date1: T, date2: S): T | S;
  */
 export function min<T, S>(date1: T, date2: S): T | S;
 export namespace month {
-    export const JAN: number;
-    export const FEB: number;
-    export const MAR: number;
-    export const APR: number;
-    export const MAY: number;
-    export const JUN: number;
-    export const JUL: number;
-    export const AUG: number;
-    export const SEP: number;
-    export const OCT: number;
-    export const NOV: number;
-    export const DEC: number;
+    const JAN: number;
+    const FEB: number;
+    const MAR: number;
+    const APR: number;
+    const MAY: number;
+    const JUN: number;
+    const JUL: number;
+    const AUG: number;
+    const SEP: number;
+    const OCT: number;
+    const NOV: number;
+    const DEC: number;
 }
 /**
  * Parses a datetime string expressed in ISO 8601 format. Overwrites the date
@@ -745,12 +745,12 @@ export namespace month {
  */
 export function setIso8601DateTime(dateTime: DateTime, formatted: string): boolean;
 export namespace weekDay {
-    export const MON: number;
-    export const TUE: number;
-    export const WED: number;
-    export const THU: number;
-    export const FRI: number;
-    export const SAT: number;
-    export const SUN: number;
+    const MON: number;
+    const TUE: number;
+    const WED: number;
+    const THU: number;
+    const FRI: number;
+    const SAT: number;
+    const SUN: number;
 }
 export { date_Date as Date };

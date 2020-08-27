@@ -174,12 +174,12 @@ export class ButtonSet extends UiMap<any, any> {
     setAllButtonsEnabled(enabled: boolean): void;
 }
 export namespace DefaultButtonCaptions {
-    export const OK: string;
-    export const CANCEL: string;
-    export const YES: string;
-    export const NO: string;
-    export const SAVE: string;
-    export const CONTINUE: string;
+    const OK: string;
+    const CANCEL: string;
+    const YES: string;
+    const NO: string;
+    const SAVE: string;
+    const CONTINUE: string;
 }
 export namespace DefaultButtonKeys {
     const OK_1: string;
@@ -196,17 +196,45 @@ export namespace DefaultButtonKeys {
     export { CONTINUE_1 as CONTINUE };
 }
 export namespace DefaultButtons {
-    const OK_2: any;
+    export namespace OK_2 {
+        const key: string;
+        const caption: string;
+    }
     export { OK_2 as OK };
-    const CANCEL_2: any;
+    export namespace CANCEL_2 {
+        const key_1: string;
+        export { key_1 as key };
+        const caption_1: string;
+        export { caption_1 as caption };
+    }
     export { CANCEL_2 as CANCEL };
-    const YES_2: any;
+    export namespace YES_2 {
+        const key_2: string;
+        export { key_2 as key };
+        const caption_2: string;
+        export { caption_2 as caption };
+    }
     export { YES_2 as YES };
-    const NO_2: any;
+    export namespace NO_2 {
+        const key_3: string;
+        export { key_3 as key };
+        const caption_3: string;
+        export { caption_3 as caption };
+    }
     export { NO_2 as NO };
-    const SAVE_2: any;
+    export namespace SAVE_2 {
+        const key_4: string;
+        export { key_4 as key };
+        const caption_4: string;
+        export { caption_4 as caption };
+    }
     export { SAVE_2 as SAVE };
-    const CONTINUE_2: any;
+    export namespace CONTINUE_2 {
+        const key_5: string;
+        export { key_5 as key };
+        const caption_5: string;
+        export { caption_5 as caption };
+    }
     export { CONTINUE_2 as CONTINUE };
 }
 /**
@@ -620,14 +648,14 @@ export class Dialog extends ModalPopup {
     private onKey_;
 }
 export namespace Dialog {
-    export const SELECT_EVENT: string;
-    export const MSG_DIALOG_OK_: string;
-    export const MSG_DIALOG_CANCEL_: string;
-    export const MSG_DIALOG_YES_: string;
-    export const MSG_DIALOG_NO_: string;
-    export const MSG_DIALOG_SAVE_: string;
-    export const MSG_DIALOG_CONTINUE_: string;
-    export const MSG_GOOG_UI_DIALOG_CLOSE_: string;
+    const SELECT_EVENT: string;
+    const MSG_DIALOG_OK_: string;
+    const MSG_DIALOG_CANCEL_: string;
+    const MSG_DIALOG_YES_: string;
+    const MSG_DIALOG_NO_: string;
+    const MSG_DIALOG_SAVE_: string;
+    const MSG_DIALOG_CONTINUE_: string;
+    const MSG_GOOG_UI_DIALOG_CLOSE_: string;
 }
 /**
  * Dialog event class.
@@ -646,9 +674,9 @@ declare class Dialog_Event extends EventsEvent {
     caption: string | Element | null;
 }
 export namespace EventType {
-    export const SELECT: string;
-    export const AFTER_HIDE: string;
-    export const AFTER_SHOW: string;
+    const SELECT: string;
+    const AFTER_HIDE: string;
+    const AFTER_SHOW: string;
 }
 import { Map as UiMap } from "./map.js";
 import * as googdom from "../dom/dom.js";

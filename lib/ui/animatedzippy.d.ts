@@ -77,14 +77,14 @@ export class AnimatedZippy extends Zippy {
     private onAnimationCompleted_;
 }
 export namespace AnimatedZippy {
-    export namespace Events {
-        export const TOGGLE_ANIMATION_BEGIN: string;
-        export const TOGGLE_ANIMATION_END: string;
+    namespace Events {
+        const TOGGLE_ANIMATION_BEGIN: string;
+        const TOGGLE_ANIMATION_END: string;
     }
     /**
      * Constants for event names.
      */
-    export type Events = string;
+    type Events = string;
 }
 import { Zippy } from "./zippy.js";
 import { DomHelper } from "../dom/dom.js";

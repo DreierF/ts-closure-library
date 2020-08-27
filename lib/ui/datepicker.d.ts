@@ -563,9 +563,9 @@ export class DatePicker extends Component {
     private getKeyHandlerForElement_;
 }
 export namespace DatePicker {
-    export const BASE_CSS_CLASS_: string;
-    export const YEAR_MENU_RANGE_: number;
-    export const MAX_NUM_WEEKS_: number;
+    const BASE_CSS_CLASS_: string;
+    const YEAR_MENU_RANGE_: number;
+    const MAX_NUM_WEEKS_: number;
 }
 /**
  * Object representing a date picker event.
@@ -589,10 +589,10 @@ export class DatePickerEvent extends EventsEvent {
     date: DateDate | null;
 }
 export namespace Events {
-    export const CHANGE: string;
-    export const CHANGE_ACTIVE_MONTH: string;
-    export const GRID_SIZE_INCREASE: string;
-    export const SELECT: string;
+    const CHANGE: string;
+    const CHANGE_ACTIVE_MONTH: string;
+    const GRID_SIZE_INCREASE: string;
+    const SELECT: string;
 }
 import { Component } from "./component.js";
 import { DateTimeFormat } from "../i18n/datetimeformat.js";
