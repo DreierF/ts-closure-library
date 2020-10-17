@@ -17,11 +17,11 @@ export function clear(obj: any | null): void;
 /**
  * Returns a shallow clone of the object.
  *
- * @param {Object<K,V>} obj Object to clone.
- * @return {!Object<K,V>} Clone of the input object.
- * @template K,V
+ * @param {T} obj Object to clone.
+ * @return {T} Clone of the input object.
+ * @template T
  */
-export function clone<K, V>(obj: any): any;
+export function clone<T>(obj: T): T;
 /**
  * Whether the object/hash/map contains the given object as a value.
  * An alias for containsValue(obj, val).
