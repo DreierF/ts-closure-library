@@ -20,6 +20,7 @@ export function clear(obj: any | null): void;
  * @param {T} obj Object to clone.
  * @return {T} Clone of the input object.
  * @template T
+ * @deprecated Use Object.assign({}, obj) instead
  */
 export function clone<T>(obj: T): T;
 /**
@@ -38,6 +39,7 @@ export function contains<K, V>(obj: any, val: V): boolean;
  * @param {?Object} obj The object in which to look for key.
  * @param {?} key The key for which to check.
  * @return {boolean} true If the map contains the key.
+ * @deprecated Use the in operator instead
  */
 export function containsKey(obj: any | null, key: unknown): boolean;
 /**
@@ -57,6 +59,7 @@ export function containsValue<K, V>(obj: any, val: V): boolean;
  * @return {!Object} The new object.
  * @throws {Error} If there are uneven number of arguments or there is only one
  *     non array argument.
+ * @deprecated Use Object literals instead
  */
 export function create(...args: any[]): any;
 /**
@@ -176,6 +179,7 @@ export function findValue<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: string,
  *     key and the object) and the return value is ignored.
  * @param {T=} opt_obj This is used as the 'this' object within f.
  * @template T,K,V
+ * @deprecated Use a for .. in loop instead
  */
 export function forEach<T = unknown, K = unknown, V = unknown>(obj: Record<K, V> | object, f: (this: T, arg1: V, arg2: K, arg3: any) => any, opt_obj?: T | undefined): void;
 /**
@@ -187,6 +191,7 @@ export function forEach<T = unknown, K = unknown, V = unknown>(obj: Record<K, V>
  *     key (default is undefined).
  * @return {V|R|undefined} The value for the given key.
  * @template K,V,R
+ * @deprecated Use obj[key] ?? opt_val instead
  */
 export function get<K, V, R>(obj: any, key: string, opt_val?: R | undefined): V | R | undefined;
 /**
@@ -230,6 +235,7 @@ export function getAnyValue<K, V>(obj: any): V | undefined;
  * @param {?Object} obj The object for which to get the number of key-value
  *     pairs.
  * @return {number} The number of key-value pairs in the object map.
+ * @deprecated Use Object.keys(obj).length instead
  */
 export function getCount(obj: any | null): number;
 /**
@@ -275,6 +281,7 @@ export function getValueByKeys(obj: any, ...args: (string | number | ArrayLike<s
  * @param {Object<K,V>} obj The object from which to get the values.
  * @return {!Array<V>} The values in the object/map/hash.
  * @template K,V
+ * @deprecated Use Object.values(obj) instead
  */
 export function getValues<T = unknown>(obj: Record<string, T> | ArrayLike<T> | object): T[];
 /**
@@ -335,6 +342,7 @@ export function remove(obj: any | null, key: unknown): boolean;
  * @param {string} key The key to add.
  * @param {V} value The value to add.
  * @template K,V
+ * @deprecated Use obj[key] = value instead
  */
 export function set<K, V>(obj: any, key: string, value: V): void;
 /**
