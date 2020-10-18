@@ -14,5 +14,8 @@
   	"./lib/ui/menuheader.js",
   	"./lib/ui/menuseparator.js",
   	"./lib/ui/separator.js"
-  ]
+  ],
+  "dependencies": {
+    "classlist": "github:eligrey/classList.js",
+  }
 }

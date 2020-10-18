@@ -11,7 +11,7 @@
  * Override this define at build-time if you know your target supports it.
  * @type {boolean} Whether to use the classList property (DOMTokenList).
  */
-export const ALWAYS_USE_DOM_TOKEN_LIST: boolean;
+export let ALWAYS_USE_DOM_TOKEN_LIST: boolean;
 /**
  * Adds a class to an element.  Does not add multiples of class names.  This
  * method may throw a DOM exception for an invalid or empty class name if
