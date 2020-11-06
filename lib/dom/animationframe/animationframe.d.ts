@@ -2,18 +2,6 @@ export type Spec = {
     measure: (Function | undefined);
     mutate: (Function | undefined);
 };
-export type Task_ = {
-    id: number;
-    fn: Function;
-    context: (any | undefined);
-};
-export type TaskSet_ = {
-    measureTask: Task_;
-    mutateTask: Task_;
-    state: (any | undefined);
-    args: (any[] | undefined);
-    isScheduled: boolean;
-};
 /**
  * @typedef {{
  *   measure: (!Function|undefined),
@@ -54,13 +42,3 @@ export function createTask<THIS>(spec: {
  *     additional frame.
  */
 export function isRunning(): boolean;
-/**
- * @typedef {{
- *   id: number,
- *   fn: !Function,
- *   context: (!Object|undefined)
- * }}
- * @private
- */
-declare let Task_: any;
-export {};

@@ -9,7 +9,10 @@ export type Orientation = string;
  *
  * @enum {string}
  */
-export let Orientation: any;
+export let Orientation: {
+    VERTICAL: string;
+    HORIZONTAL: string;
+};
 /**
  * @fileoverview A slider implementation that allows to select a value within a
  * range by dragging a thumb. The selected value is exposed through getValue().

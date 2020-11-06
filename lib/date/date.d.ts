@@ -1,12 +1,306 @@
 export type DateLike = Date | date_Date;
 /**
- * Constants for months.
+ * @fileoverview Typedefs for working with dates.
  */
-export type month = number;
 /**
- * Constants for weekdays.
+ * @typedef {(Date|date_Date)}
  */
-export type weekDay = number;
+export let DateLike: any;
+/**
+ * Class representing a date and time. Defaults to current date and time if none
+ * is specified.
+ *
+ * Implements most methods of the native js Date object and can be used
+ * interchangeably with it just as if DateTime was a subclass of Date.
+ *
+ *     object. If not set, the created object will contain the date determined
+ *     by google.now().
+ * @class
+ * @extends {date_Date}
+ */
+export class DateTime extends date_Date {
+    /**
+     * @param {number} timestamp Number of milliseconds since Epoch.
+     * @return {!DateTime}
+     */
+    static fromTimestamp(timestamp: number): DateTime;
+    /**
+     * Creates a DateTime from a datetime string expressed in RFC 822 format.
+     *
+     * @param {string} formatted A date or datetime expressed in RFC 822 format.
+     * @return {?DateTime} Parsed date or null if parse fails.
+     */
+    static fromRfc822String(formatted: string): DateTime | null;
+    /**
+     * Parses an ISO 8601 string as a `DateTime`.
+     * @param {string} formatted ISO 8601 string to parse.
+     * @return {?DateTime} Parsed date or null if parse fails.
+     * @override
+     */
+    static fromIsoString(formatted: string): DateTime | null;
+    /**
+     * Class representing a date and time. Defaults to current date and time if none
+     * is specified.
+     *
+     * Implements most methods of the native js Date object and can be used
+     * interchangeably with it just as if DateTime was a subclass of Date.
+     *
+     * @param {(number|{getTime:?}|null)=} opt_year Four digit year or a date-like
+     *     object. If not set, the created object will contain the date determined
+     *     by google.now().
+     * @param {number=} opt_month Month, 0 = Jan, 11 = Dec.
+     * @param {number=} opt_date Date of month, 1 - 31.
+     * @param {number=} opt_hours Hours, 0 - 23.
+     * @param {number=} opt_minutes Minutes, 0 - 59.
+     * @param {number=} opt_seconds Seconds, 0 - 61.
+     * @param {number=} opt_milliseconds Milliseconds, 0 - 999.
+     */
+    constructor(opt_year?: (number | {
+        getTime: unknown;
+    } | null) | undefined, opt_month?: number | undefined, opt_date?: number | undefined, opt_hours?: number | undefined, opt_minutes?: number | undefined, opt_seconds?: number | undefined, opt_milliseconds?: number | undefined);
+    /**
+     * Returns the hours part of the datetime.
+     *
+     * @return {number} An integer between 0 and 23, representing the hour.
+     */
+    getHours(): number;
+    /**
+     * Returns the minutes part of the datetime.
+     *
+     * @return {number} An integer between 0 and 59, representing the minutes.
+     */
+    getMinutes(): number;
+    /**
+     * Returns the seconds part of the datetime.
+     *
+     * @return {number} An integer between 0 and 59, representing the seconds.
+     */
+    getSeconds(): number;
+    /**
+     * Returns the milliseconds part of the datetime.
+     *
+     * @return {number} An integer between 0 and 999, representing the milliseconds.
+     */
+    getMilliseconds(): number;
+    /**
+     * Returns the seconds part of the datetime according to universal time.
+     *
+     * @return {number} An integer between 0 and 59, representing the seconds.
+     */
+    getUTCSeconds(): number;
+    /**
+     * Returns the milliseconds part of the datetime according to universal time.
+     *
+     * @return {number} An integer between 0 and 999, representing the milliseconds.
+     */
+    getUTCMilliseconds(): number;
+    /**
+     * Sets the hours part of the datetime.
+     *
+     * @param {number} hours An integer between 0 and 23, representing the hour.
+     */
+    setHours(hours: number): void;
+    /**
+     * Sets the minutes part of the datetime.
+     *
+     * @param {number} minutes Integer between 0 and 59, representing the minutes.
+     */
+    setMinutes(minutes: number): void;
+    /**
+     * Sets the seconds part of the datetime.
+     *
+     * @param {number} seconds Integer between 0 and 59, representing the seconds.
+     */
+    setSeconds(seconds: number): void;
+    /**
+     * Sets the milliseconds part of the datetime.
+     *
+     * @param {number} ms Integer between 0 and 999, representing the milliseconds.
+     */
+    setMilliseconds(ms: number): void;
+    /**
+     * Sets the hours part of the datetime according to universal time.
+     *
+     * @param {number} hours An integer between 0 and 23, representing the hour.
+     */
+    setUTCHours(hours: number): void;
+    /**
+     * Sets the minutes part of the datetime according to universal time.
+     *
+     * @param {number} minutes Integer between 0 and 59, representing the minutes.
+     */
+    setUTCMinutes(minutes: number): void;
+    /**
+     * Sets the seconds part of the datetime according to universal time.
+     *
+     * @param {number} seconds Integer between 0 and 59, representing the seconds.
+     */
+    setUTCSeconds(seconds: number): void;
+    /**
+     * Sets the seconds part of the datetime according to universal time.
+     *
+     * @param {number} ms Integer between 0 and 999, representing the milliseconds.
+     */
+    setUTCMilliseconds(ms: number): void;
+    /**
+     * @return {boolean} Whether the datetime is aligned to midnight.
+     */
+    isMidnight(): boolean;
+    /**
+     * Returns XML Schema 2 string representation of date/time.
+     * The return value is also ISO 8601 compliant.
+     *
+     * @param {boolean=} opt_timezone Should the timezone offset be included in the
+     *     string?.
+     * @return {string} XML Schema 2 string representation of date/time.
+     */
+    toXmlDateTime(opt_timezone?: boolean | undefined): string;
+    /**
+     * Returns RFC 3339 string representation of datetime in UTC.
+     *
+     * @return {string} A UTC datetime expressed in RFC 3339 format.
+     */
+    toUTCRfc3339String(): string;
+    /**
+     * Generates time label for the datetime, e.g., '5:30 AM'.
+     * By default this does not pad hours (e.g., to '05:30') and it does add
+     * an am/pm suffix.
+     * TODO(user): i18n -- hardcoding time format like this is bad.  E.g., in CJK
+     *               locales, need Chinese characters for hour and minute units.
+     * @param {boolean=} opt_padHours Whether to pad hours, e.g., '05:30' vs '5:30'.
+     * @param {boolean=} opt_showAmPm Whether to show the 'am' and 'pm' suffix.
+     * @param {boolean=} opt_omitZeroMinutes E.g., '5:00pm' becomes '5pm',
+     *                                      but '5:01pm' remains '5:01pm'.
+     * @return {string} The time label.
+     * @deprecated Use goog.i18n.DateTimeFormat with
+     *     goog.i18n.DateTimeFormat.Format.FULL_TIME or
+     *     goog.i18n.DateTimeFormat.Format.LONG_TIME or
+     *     goog.i18n.DateTimeFormat.Format.MEDIUM_TIME or
+     *     goog.i18n.DateTimeFormat.Format.SHORT_TIME.
+     */
+    toUsTimeString(opt_padHours?: boolean | undefined, opt_showAmPm?: boolean | undefined, opt_omitZeroMinutes?: boolean | undefined): string;
+    /**
+     * Generates time label for the datetime in standard ISO 24-hour time format.
+     * E.g., '06:00:00' or '23:30:15'.
+     * @param {boolean=} opt_showSeconds Whether to shows seconds. Defaults to TRUE.
+     * @return {string} The time label.
+     */
+    toIsoTimeString(opt_showSeconds?: boolean | undefined): string;
+}
+/**
+ * Class representing a date/time interval. Used for date calculations.
+ * <pre>
+ * new Interval(0, 1) // One month
+ * new Interval(0, 0, 3, 1) // Three days and one hour
+ * new Interval(Interval.DAYS, 1) // One day
+ * </pre>
+ *
+ *     by first parameter.
+ * @class
+ * @final
+ */
+export class Interval {
+    /**
+     * Parses an XML Schema duration (ISO 8601 extended).
+     * @see http://www.w3.org/TR/xmlschema-2/#duration
+     *
+     * @param  {string} duration An XML schema duration in textual format.
+     *     Recurring durations and weeks are not supported.
+     * @return {?Interval} The duration as a Interval or null
+     *     if the parse fails.
+     */
+    static fromIsoString(duration: string): Interval | null;
+    /**
+     * Class representing a date/time interval. Used for date calculations.
+     * <pre>
+     * new Interval(0, 1) // One month
+     * new Interval(0, 0, 3, 1) // Three days and one hour
+     * new Interval(Interval.DAYS, 1) // One day
+     * </pre>
+     *
+     * @param {number|string=} opt_years Years or string representing date part.
+     * @param {number=} opt_months Months or number of whatever date part specified
+     *     by first parameter.
+     * @param {number=} opt_days Days.
+     * @param {number=} opt_hours Hours.
+     * @param {number=} opt_minutes Minutes.
+     * @param {number=} opt_seconds Seconds.
+     */
+    constructor(opt_years?: (number | string) | undefined, opt_months?: number | undefined, opt_days?: number | undefined, opt_hours?: number | undefined, opt_minutes?: number | undefined, opt_seconds?: number | undefined);
+    /** @type {number} */
+    years: number;
+    /** @type {number} */
+    months: number;
+    /** @type {number} */
+    days: number;
+    /** @type {number} */
+    hours: number;
+    /** @type {number} */
+    minutes: number;
+    /** @type {number} */
+    seconds: number;
+    /**
+     * Serializes Interval into XML Schema duration (ISO 8601 extended).
+     * @see http://www.w3.org/TR/xmlschema-2/#duration
+     *
+     * @param {boolean=} opt_verbose Include zero fields in the duration string.
+     * @return {?string} An XML schema duration in ISO 8601 extended format,
+     *     or null if the interval contains both positive and negative fields.
+     */
+    toIsoString(opt_verbose?: boolean | undefined): string | null;
+    /**
+     * Tests whether the given interval is equal to this interval.
+     * Note, this is a simple field-by-field comparison, it doesn't
+     * account for comparisons like "12 months == 1 year".
+     *
+     * @param {?Interval} other The interval to test.
+     * @return {boolean} Whether the intervals are equal.
+     */
+    equals(other: Interval | null): boolean;
+    /**
+     * @return {!Interval} A clone of the interval object.
+     */
+    clone(): Interval;
+    /**
+     * @return {boolean} Whether all fields of the interval are zero.
+     */
+    isZero(): boolean;
+    /**
+     * @return {!Interval} Negative of this interval.
+     */
+    getInverse(): Interval;
+    /**
+     * Calculates n * (this interval) by memberwise multiplication.
+     * @param {number} n An integer.
+     * @return {!Interval} n * this.
+     */
+    times(n: number): Interval;
+    /**
+     * Gets the total number of seconds in the time interval. Assumes that months
+     * and years are empty.
+     * @return {number} Total number of seconds in the interval.
+     */
+    getTotalSeconds(): number;
+    /**
+     * Adds the Interval in the argument to this Interval field by field.
+     *
+     * @param {?Interval} interval The Interval to add.
+     */
+    add(interval: Interval | null): void;
+}
+export namespace Interval {
+    const YEARS: string;
+    const MONTHS: string;
+    const DAYS: string;
+    const HOURS: string;
+    const MINUTES: string;
+    const SECONDS: string;
+}
+/**
+ * Number of milliseconds in a day.
+ * @type {number}
+ */
+export let MS_PER_DAY: number;
 /**
  * Class representing a date. Defaults to current date if none is specified.
  *
@@ -324,308 +618,6 @@ declare class date_Date {
     valueOf(): number;
 }
 /**
- * @fileoverview Typedefs for working with dates.
- */
-/**
- * @typedef {(Date|date_Date)}
- */
-export let DateLike: any;
-/**
- * Class representing a date and time. Defaults to current date and time if none
- * is specified.
- *
- * Implements most methods of the native js Date object and can be used
- * interchangeably with it just as if DateTime was a subclass of Date.
- *
- *     object. If not set, the created object will contain the date determined
- *     by google.now().
- * @class
- * @extends {date_Date}
- */
-export class DateTime extends date_Date {
-    /**
-     * @param {number} timestamp Number of milliseconds since Epoch.
-     * @return {!DateTime}
-     */
-    static fromTimestamp(timestamp: number): DateTime;
-    /**
-     * Creates a DateTime from a datetime string expressed in RFC 822 format.
-     *
-     * @param {string} formatted A date or datetime expressed in RFC 822 format.
-     * @return {?DateTime} Parsed date or null if parse fails.
-     */
-    static fromRfc822String(formatted: string): DateTime | null;
-    /**
-     * Parses an ISO 8601 string as a `DateTime`.
-     * @param {string} formatted ISO 8601 string to parse.
-     * @return {?DateTime} Parsed date or null if parse fails.
-     * @override
-     */
-    static fromIsoString(formatted: string): DateTime | null;
-    /**
-     * Class representing a date and time. Defaults to current date and time if none
-     * is specified.
-     *
-     * Implements most methods of the native js Date object and can be used
-     * interchangeably with it just as if DateTime was a subclass of Date.
-     *
-     * @param {(number|{getTime:?}|null)=} opt_year Four digit year or a date-like
-     *     object. If not set, the created object will contain the date determined
-     *     by google.now().
-     * @param {number=} opt_month Month, 0 = Jan, 11 = Dec.
-     * @param {number=} opt_date Date of month, 1 - 31.
-     * @param {number=} opt_hours Hours, 0 - 23.
-     * @param {number=} opt_minutes Minutes, 0 - 59.
-     * @param {number=} opt_seconds Seconds, 0 - 61.
-     * @param {number=} opt_milliseconds Milliseconds, 0 - 999.
-     */
-    constructor(opt_year?: (number | {
-        getTime: unknown;
-    } | null) | undefined, opt_month?: number | undefined, opt_date?: number | undefined, opt_hours?: number | undefined, opt_minutes?: number | undefined, opt_seconds?: number | undefined, opt_milliseconds?: number | undefined);
-    /**
-     * Returns the hours part of the datetime.
-     *
-     * @return {number} An integer between 0 and 23, representing the hour.
-     */
-    getHours(): number;
-    /**
-     * Returns the minutes part of the datetime.
-     *
-     * @return {number} An integer between 0 and 59, representing the minutes.
-     */
-    getMinutes(): number;
-    /**
-     * Returns the seconds part of the datetime.
-     *
-     * @return {number} An integer between 0 and 59, representing the seconds.
-     */
-    getSeconds(): number;
-    /**
-     * Returns the milliseconds part of the datetime.
-     *
-     * @return {number} An integer between 0 and 999, representing the milliseconds.
-     */
-    getMilliseconds(): number;
-    /**
-     * Returns the seconds part of the datetime according to universal time.
-     *
-     * @return {number} An integer between 0 and 59, representing the seconds.
-     */
-    getUTCSeconds(): number;
-    /**
-     * Returns the milliseconds part of the datetime according to universal time.
-     *
-     * @return {number} An integer between 0 and 999, representing the milliseconds.
-     */
-    getUTCMilliseconds(): number;
-    /**
-     * Sets the hours part of the datetime.
-     *
-     * @param {number} hours An integer between 0 and 23, representing the hour.
-     */
-    setHours(hours: number): void;
-    /**
-     * Sets the minutes part of the datetime.
-     *
-     * @param {number} minutes Integer between 0 and 59, representing the minutes.
-     */
-    setMinutes(minutes: number): void;
-    /**
-     * Sets the seconds part of the datetime.
-     *
-     * @param {number} seconds Integer between 0 and 59, representing the seconds.
-     */
-    setSeconds(seconds: number): void;
-    /**
-     * Sets the milliseconds part of the datetime.
-     *
-     * @param {number} ms Integer between 0 and 999, representing the milliseconds.
-     */
-    setMilliseconds(ms: number): void;
-    /**
-     * Sets the hours part of the datetime according to universal time.
-     *
-     * @param {number} hours An integer between 0 and 23, representing the hour.
-     */
-    setUTCHours(hours: number): void;
-    /**
-     * Sets the minutes part of the datetime according to universal time.
-     *
-     * @param {number} minutes Integer between 0 and 59, representing the minutes.
-     */
-    setUTCMinutes(minutes: number): void;
-    /**
-     * Sets the seconds part of the datetime according to universal time.
-     *
-     * @param {number} seconds Integer between 0 and 59, representing the seconds.
-     */
-    setUTCSeconds(seconds: number): void;
-    /**
-     * Sets the seconds part of the datetime according to universal time.
-     *
-     * @param {number} ms Integer between 0 and 999, representing the milliseconds.
-     */
-    setUTCMilliseconds(ms: number): void;
-    /**
-     * @return {boolean} Whether the datetime is aligned to midnight.
-     */
-    isMidnight(): boolean;
-    /**
-     * Returns XML Schema 2 string representation of date/time.
-     * The return value is also ISO 8601 compliant.
-     *
-     * @param {boolean=} opt_timezone Should the timezone offset be included in the
-     *     string?.
-     * @return {string} XML Schema 2 string representation of date/time.
-     */
-    toXmlDateTime(opt_timezone?: boolean | undefined): string;
-    /**
-     * Returns RFC 3339 string representation of datetime in UTC.
-     *
-     * @return {string} A UTC datetime expressed in RFC 3339 format.
-     */
-    toUTCRfc3339String(): string;
-    /**
-     * Generates time label for the datetime, e.g., '5:30 AM'.
-     * By default this does not pad hours (e.g., to '05:30') and it does add
-     * an am/pm suffix.
-     * TODO(user): i18n -- hardcoding time format like this is bad.  E.g., in CJK
-     *               locales, need Chinese characters for hour and minute units.
-     * @param {boolean=} opt_padHours Whether to pad hours, e.g., '05:30' vs '5:30'.
-     * @param {boolean=} opt_showAmPm Whether to show the 'am' and 'pm' suffix.
-     * @param {boolean=} opt_omitZeroMinutes E.g., '5:00pm' becomes '5pm',
-     *                                      but '5:01pm' remains '5:01pm'.
-     * @return {string} The time label.
-     * @deprecated Use goog.i18n.DateTimeFormat with
-     *     goog.i18n.DateTimeFormat.Format.FULL_TIME or
-     *     goog.i18n.DateTimeFormat.Format.LONG_TIME or
-     *     goog.i18n.DateTimeFormat.Format.MEDIUM_TIME or
-     *     goog.i18n.DateTimeFormat.Format.SHORT_TIME.
-     */
-    toUsTimeString(opt_padHours?: boolean | undefined, opt_showAmPm?: boolean | undefined, opt_omitZeroMinutes?: boolean | undefined): string;
-    /**
-     * Generates time label for the datetime in standard ISO 24-hour time format.
-     * E.g., '06:00:00' or '23:30:15'.
-     * @param {boolean=} opt_showSeconds Whether to shows seconds. Defaults to TRUE.
-     * @return {string} The time label.
-     */
-    toIsoTimeString(opt_showSeconds?: boolean | undefined): string;
-}
-/**
- * Class representing a date/time interval. Used for date calculations.
- * <pre>
- * new Interval(0, 1) // One month
- * new Interval(0, 0, 3, 1) // Three days and one hour
- * new Interval(Interval.DAYS, 1) // One day
- * </pre>
- *
- *     by first parameter.
- * @class
- * @final
- */
-export class Interval {
-    /**
-     * Parses an XML Schema duration (ISO 8601 extended).
-     * @see http://www.w3.org/TR/xmlschema-2/#duration
-     *
-     * @param  {string} duration An XML schema duration in textual format.
-     *     Recurring durations and weeks are not supported.
-     * @return {?Interval} The duration as a Interval or null
-     *     if the parse fails.
-     */
-    static fromIsoString(duration: string): Interval | null;
-    /**
-     * Class representing a date/time interval. Used for date calculations.
-     * <pre>
-     * new Interval(0, 1) // One month
-     * new Interval(0, 0, 3, 1) // Three days and one hour
-     * new Interval(Interval.DAYS, 1) // One day
-     * </pre>
-     *
-     * @param {number|string=} opt_years Years or string representing date part.
-     * @param {number=} opt_months Months or number of whatever date part specified
-     *     by first parameter.
-     * @param {number=} opt_days Days.
-     * @param {number=} opt_hours Hours.
-     * @param {number=} opt_minutes Minutes.
-     * @param {number=} opt_seconds Seconds.
-     */
-    constructor(opt_years?: (number | string) | undefined, opt_months?: number | undefined, opt_days?: number | undefined, opt_hours?: number | undefined, opt_minutes?: number | undefined, opt_seconds?: number | undefined);
-    /** @type {number} */
-    years: number;
-    /** @type {number} */
-    months: number;
-    /** @type {number} */
-    days: number;
-    /** @type {number} */
-    hours: number;
-    /** @type {number} */
-    minutes: number;
-    /** @type {number} */
-    seconds: number;
-    /**
-     * Serializes Interval into XML Schema duration (ISO 8601 extended).
-     * @see http://www.w3.org/TR/xmlschema-2/#duration
-     *
-     * @param {boolean=} opt_verbose Include zero fields in the duration string.
-     * @return {?string} An XML schema duration in ISO 8601 extended format,
-     *     or null if the interval contains both positive and negative fields.
-     */
-    toIsoString(opt_verbose?: boolean | undefined): string | null;
-    /**
-     * Tests whether the given interval is equal to this interval.
-     * Note, this is a simple field-by-field comparison, it doesn't
-     * account for comparisons like "12 months == 1 year".
-     *
-     * @param {?Interval} other The interval to test.
-     * @return {boolean} Whether the intervals are equal.
-     */
-    equals(other: Interval | null): boolean;
-    /**
-     * @return {!Interval} A clone of the interval object.
-     */
-    clone(): Interval;
-    /**
-     * @return {boolean} Whether all fields of the interval are zero.
-     */
-    isZero(): boolean;
-    /**
-     * @return {!Interval} Negative of this interval.
-     */
-    getInverse(): Interval;
-    /**
-     * Calculates n * (this interval) by memberwise multiplication.
-     * @param {number} n An integer.
-     * @return {!Interval} n * this.
-     */
-    times(n: number): Interval;
-    /**
-     * Gets the total number of seconds in the time interval. Assumes that months
-     * and years are empty.
-     * @return {number} Total number of seconds in the interval.
-     */
-    getTotalSeconds(): number;
-    /**
-     * Adds the Interval in the argument to this Interval field by field.
-     *
-     * @param {?Interval} interval The Interval to add.
-     */
-    add(interval: Interval | null): void;
-}
-export namespace Interval {
-    const YEARS: string;
-    const MONTHS: string;
-    const DAYS: string;
-    const HOURS: string;
-    const MINUTES: string;
-    const SECONDS: string;
-}
-/**
- * Number of milliseconds in a day.
- * @type {number}
- */
-export let MS_PER_DAY: number;
-/**
  * Formats a month/year string.
  * Example: "January 2008"
  *
@@ -721,6 +713,10 @@ export function max<T, S>(date1: T, date2: S): T | S;
  * @template T,S
  */
 export function min<T, S>(date1: T, date2: S): T | S;
+/**
+ * Constants for months.
+ */
+export type month = number;
 export namespace month {
     const JAN: number;
     const FEB: number;
@@ -744,6 +740,10 @@ export namespace month {
  * @return {boolean} Whether the parsing succeeded.
  */
 export function setIso8601DateTime(dateTime: DateTime, formatted: string): boolean;
+/**
+ * Constants for weekdays.
+ */
+export type weekDay = number;
 export namespace weekDay {
     const MON: number;
     const TUE: number;

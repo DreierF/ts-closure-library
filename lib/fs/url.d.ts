@@ -1,7 +1,3 @@
-export type UrlObject_ = {
-    createObjectURL: ((arg0: Blob) => string);
-    revokeObjectURL: (arg0: string) => void;
-};
 /**
  * Checks whether this browser supports Object Urls. If not, calls to
  * createObjectUrl and revokeObjectUrl will result in an error.

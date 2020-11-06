@@ -2,15 +2,15 @@
  * Normalized button constants for the mouse.
  */
 export type MouseButton = number;
-/**
- * Normalized pointer type constants for pointer events.
- */
-export type PointerType = string;
 export namespace MouseButton {
     const LEFT: number;
     const MIDDLE: number;
     const RIGHT: number;
 }
+/**
+ * Normalized pointer type constants for pointer events.
+ */
+export type PointerType = string;
 export namespace PointerType {
     const MOUSE: string;
     const PEN: string;

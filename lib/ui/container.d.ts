@@ -1,12 +1,4 @@
 /**
- * *
- */
-export type EventType = string;
-/**
- * Container orientation constants.
- */
-export type Orientation = string;
-/**
  * @fileoverview Base class for containers that host {@link Control}s,
  * such as menus and toolbars.  Provides default keyboard and mouse event
  * handling and child management, based on a generalized version of
@@ -629,10 +621,18 @@ export namespace ContainerRenderer {
     const instance_: undefined | ContainerRenderer;
     const CSS_CLASS: string;
 }
+/**
+ * *
+ */
+export type EventType = string;
 export namespace EventType {
     const AFTER_SHOW: string;
     const AFTER_HIDE: string;
 }
+/**
+ * Container orientation constants.
+ */
+export type Orientation = string;
 export namespace Orientation {
     const HORIZONTAL: string;
     const VERTICAL: string;

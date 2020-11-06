@@ -249,7 +249,7 @@ export class TrustedResourceUrl implements DirectionalString, TypedString {
      * Returns this URLs directionality, which is always `LTR`.
      * @override
      */
-    getDirection(): any;
+    getDirection(): number;
     /**
      * Creates a new TrustedResourceUrl with params added to URL. Both search and
      * hash params can be specified.

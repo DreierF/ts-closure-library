@@ -45,14 +45,6 @@ export const ENABLE_CHROME_APP_SAFE_SCRIPT_LOADING: boolean;
  */
 export const FEATURESET_YEAR: number;
 /**
- * @type {boolean} Whether to load google.modules using `eval` when using
- * the debug loader.  This provides a better debugging experience as the
- * source is unmodified and can be edited using Chrome Workspaces or similar.
- * However in some environments the use of `eval` is banned
- * so we provide an alternative.
- */
-export const LOAD_MODULE_USING_EVAL: boolean;
-/**
  * @type {string} LOCALE defines the locale being used for compilation. It is
  * used to select locale specific data to be compiled in js binary. BUILD rule
  * can specify this value by "--define LOCALE=<locale_name>" as a compiler
@@ -82,11 +74,6 @@ export const LOCALE: string;
  */
 export const SEAL_CLASS_INSTANCES: boolean;
 /**
- * @type {boolean} Whether the exports of google.modules should be sealed when
- * possible.
- */
-export const SEAL_MODULE_EXPORTS: boolean;
-/**
  * @type {boolean} Whether a project is expected to be running in strict mode.
  *
  * This define can be used to trigger alternate implementations compatible with
@@ -112,26 +99,6 @@ export const TRUSTED_SITE: boolean;
  * use Trusted Types.
  */
 export const TRUSTED_TYPES_POLICY_NAME: string;
-/**
- * When defining a class Foo with an abstract method bar(), you can do:
- * Foo.prototype.bar = abstractMethod
- *
- * Now if a subclass of Foo fails to override bar(), an error will be thrown
- * when bar() is invoked.
- *
- * @type {!Function}
- * @throws {Error} when invoked to indicate the method should be overridden.
- */
-export function abstractMethod(): void;
-/**
- * Adds a `getInstance` static method that always returns the same
- * instance object.
- * @param {!Function} ctor The constructor for the class to add the static
- *     method to.
- * @suppress {missingProperties} 'instance_' isn't a property on 'Function'
- *     but we don't have a better type to use here.
- */
-export function addSingletonGetter(ctor: Function): void;
 /**
  * Call up to the superclass.
  *
@@ -428,20 +395,6 @@ export function getUid(obj: any | null): number;
  */
 export function globalEval(script: string): void;
 /**
- * Globalizes a whole namespace, such as goog or goog.lang.
- *
- * @param {!Object} obj The namespace to globalize.
- * @param {Object=} opt_global The object to add the properties to.
- * @deprecated Properties may be explicitly exported to the global scope, but
- *     this should no longer be done in bulk.
- */
-export function globalize(obj: any, opt_global?: any | undefined): void;
-/**
- * @package {?boolean}
- * Visible for testing.
- */
-export let hasBadLetScoping: any;
-/**
  * Whether the given object is already assigned a unique ID.
  *
  * This does not modify the object.
@@ -716,14 +669,3 @@ export function tagUnsealableClass(ctr: Function): void;
  * @return {string} The name of the type.
  */
 export function typeOf(value: unknown): string;
-/**
- * @return {boolean}
- * @package Visible for testing.
- */
-export function useSafari10Workaround(): boolean;
-/**
- * @param {string} moduleDef
- * @return {string}
- * @package Visible for testing.
- */
-export function workaroundSafari10EvalBug(moduleDef: string): string;

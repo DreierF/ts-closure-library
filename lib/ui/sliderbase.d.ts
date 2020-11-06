@@ -1,8 +1,4 @@
 /**
- * Enum for representing the orientation of the slider.
- */
-export type Orientation = string;
-/**
  * The factory for creating additional animations to be played when animating to
  * a new value.
  * @interface
@@ -18,6 +14,10 @@ export class AnimationFactory {
      */
     createAnimations(previousValue: number, newValue: number, interval: number): Array<TransitionBase>;
 }
+/**
+ * Enum for representing the orientation of the slider.
+ */
+export type Orientation = string;
 export namespace Orientation {
     const VERTICAL: string;
     const HORIZONTAL: string;

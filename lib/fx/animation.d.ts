@@ -1,12 +1,4 @@
 /**
- * Events fired by the animation.
- */
-export type EventType = string;
-/**
- * Enum for the possible states of an animation.
- */
-export type State = number;
-/**
  * @fileoverview Classes for doing animations and visual effects.
  *
  * (Based loosly on my animation code for 13thparallel.org, with extra
@@ -219,23 +211,35 @@ export class AnimationEvent extends EventsEvent {
      */
     coordsAsInts(): Array<number>;
 }
+/**
+ * Events fired by the animation.
+ */
+export type EventType = string;
 export namespace EventType {
-    const PLAY: any;
-    const BEGIN: any;
-    const RESUME: any;
-    const END: any;
-    const STOP: any;
-    const FINISH: any;
-    const PAUSE: any;
+    const PLAY: string;
+    const BEGIN: string;
+    const RESUME: string;
+    const END: string;
+    const STOP: string;
+    const FINISH: string;
+    const PAUSE: string;
     const ANIMATE: string;
     const DESTROY: string;
 }
 /**
  * Enum for the possible states of an animation.
+ */
+export type State = number;
+/**
+ * Enum for the possible states of an animation.
  * @deprecated Use Transition.State instead.
  * @enum {number}
  */
-export let State: any;
+export let State: {
+    STOPPED: number;
+    PAUSED: number;
+    PLAYING: number;
+};
 import * as fx_anim from "./anim/anim.js";
 import { Transition } from "./transition.js";
 import { TransitionBase } from "./transitionbase.js";

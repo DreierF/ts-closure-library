@@ -1,8 +1,4 @@
 /**
- * Enum to identify predefined Date/Time format pattern.
- */
-export type Format = number;
-/**
  * @fileoverview Functions for dealing with date/time formatting.
  */
 /**
@@ -452,6 +448,10 @@ export namespace DateTimeFormat {
     const enforceAsciiDigits_: boolean;
     const removeRlmInPatterns_: boolean;
 }
+/**
+ * Enum to identify predefined Date/Time format pattern.
+ */
+export type Format = number;
 export namespace Format {
     const FULL_DATE: number;
     const LONG_DATE: number;

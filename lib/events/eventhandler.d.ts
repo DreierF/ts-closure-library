@@ -1,14 +1,12 @@
 /**
- * Different capture simulation mode for IE8-.
- */
-export type CaptureSimulationMode = number;
-export type Key = number | ListenableKey;
-export type ListenableType = EventTarget | Listenable;
-/**
  * @type {number} The capture simulation mode for IE8-. By default,
  *     this is ON.
  */
 export const CAPTURE_SIMULATION_MODE: number;
+/**
+ * Different capture simulation mode for IE8-.
+ */
+export type CaptureSimulationMode = number;
 export namespace CaptureSimulationMode {
     const OFF_AND_FAIL: number;
     const OFF_AND_SILENT: number;
@@ -355,53 +353,7 @@ export class EventWrapper {
         handleEvent: (arg0: unknown) => unknown;
     } | null, opt_capt?: boolean | undefined, opt_scope?: any | undefined, opt_eventHandler?: EventHandler<any> | undefined): void;
 }
-/**
- * An interface that describes a single registered listener.
- * @interface
- */
-export class ListenableKey {
-    /**
-     * Reserves a key to be used for ListenableKey#key field.
-     * @return {number} A number to be used to fill ListenableKey#key
-     *     field.
-     */
-    static reserveKey(): number;
-    /**
-     * The source event target.
-     * @type {Object|Listenable|events_EventTarget}
-     */
-    src: any | Listenable | events_EventTarget;
-    /**
-     * The event type the listener is listening to.
-     * @type {string|null}
-     */
-    type: string | null;
-    /**
-     * The listener function.
-     * @type {function(?):?|{handleEvent:function(?):?}|null}
-     */
-    listener: (arg0: unknown) => unknown | {
-        handleEvent: (arg0: unknown) => unknown;
-    } | null;
-    /**
-     * Whether the listener works on capture phase.
-     * @type {boolean|null}
-     */
-    capture: boolean | null;
-    /**
-     * The 'this' object for the listener function's scope.
-     * @type {Object|undefined}
-     */
-    handler: any | undefined;
-    /**
-     * A globally unique number to identify the key.
-     * @type {number|null}
-     */
-    key: number | null;
-}
-export namespace ListenableKey {
-    const counter_: number;
-}
+export type Key = number | ListenableKey;
 /**
  * @fileoverview An event manager for both native browser event
  * targets and custom JavaScript event targets
@@ -642,6 +594,54 @@ export class Listenable {
 export namespace Listenable {
     const IMPLEMENTED_BY_PROP: string;
 }
+/**
+ * An interface that describes a single registered listener.
+ * @interface
+ */
+export class ListenableKey {
+    /**
+     * Reserves a key to be used for ListenableKey#key field.
+     * @return {number} A number to be used to fill ListenableKey#key
+     *     field.
+     */
+    static reserveKey(): number;
+    /**
+     * The source event target.
+     * @type {Object|Listenable|events_EventTarget}
+     */
+    src: any | Listenable | events_EventTarget;
+    /**
+     * The event type the listener is listening to.
+     * @type {string|null}
+     */
+    type: string | null;
+    /**
+     * The listener function.
+     * @type {function(?):?|{handleEvent:function(?):?}|null}
+     */
+    listener: (arg0: unknown) => unknown | {
+        handleEvent: (arg0: unknown) => unknown;
+    } | null;
+    /**
+     * Whether the listener works on capture phase.
+     * @type {boolean|null}
+     */
+    capture: boolean | null;
+    /**
+     * The 'this' object for the listener function's scope.
+     * @type {Object|undefined}
+     */
+    handler: any | undefined;
+    /**
+     * A globally unique number to identify the key.
+     * @type {number|null}
+     */
+    key: number | null;
+}
+export namespace ListenableKey {
+    const counter_: number;
+}
+export type ListenableType = EventTarget | Listenable;
 /**
  * @typedef {?EventTarget|Listenable}
  */

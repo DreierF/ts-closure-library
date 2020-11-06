@@ -361,7 +361,7 @@ export class SafeHtml implements DirectionalString, TypedString {
      *     !Array<!SafeHtml.TextOrHtml_>)} var_args Values to concatenate.
      * @return {!SafeHtml}
      */
-    static concat(...args: (string | number | boolean | DirectionalString | TypedString | (string | number | boolean | DirectionalString | TypedString)[])[]): SafeHtml;
+    static concat(...args: (string | number | boolean | DirectionalString | TypedString | SafeHtml.TextOrHtml_[])[]): SafeHtml;
     /**
      * Creates a new SafeHtml object with known directionality by concatenating the
      * values.
@@ -371,7 +371,7 @@ export class SafeHtml implements DirectionalString, TypedString {
      *     arguments would be processed recursively.
      * @return {!SafeHtml}
      */
-    static concatWithDir(dir: Dir, ...args: (string | number | boolean | DirectionalString | TypedString | (string | number | boolean | DirectionalString | TypedString)[])[]): SafeHtml;
+    static concatWithDir(dir: Dir, ...args: (string | number | boolean | DirectionalString | TypedString | SafeHtml.TextOrHtml_[])[]): SafeHtml;
     /**
      * Package-internal utility method to create SafeHtml instances.
      *
@@ -506,7 +506,7 @@ export namespace SafeHtml {
      */
     type TextOrHtml_ = string | number | boolean | DirectionalString | TypedString;
     type AttributeValue = string | number | TypedString | {
-        [x: string]: string | Const | Html_SafeUrl | (string | Const | Html_SafeUrl)[] | null;
+        [x: string]: string | Const | Html_SafeUrl | SafeStyle.PropertyValue[] | null;
     } | undefined;
 }
 import { DirectionalString } from "../i18n/bidi.js";
@@ -518,3 +518,4 @@ import { SafeScript } from "./safescript.js";
 import { SafeStyleSheet } from "./safestylesheet.js";
 import { Dir } from "../i18n/bidi.js";
 import { Const } from "../string/const.js";
+import { SafeStyle } from "./safestyle.js";

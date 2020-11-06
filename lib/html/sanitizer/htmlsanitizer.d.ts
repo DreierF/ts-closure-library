@@ -1,34 +1,4 @@
 /**
- * Type for attribute policy configuration.
- */
-export type HtmlSanitizerAttributePolicy = {
-    tagName: string;
-    attributeName: string;
-    policy: HtmlSanitizerPolicy | null;
-};
-/**
- * Type for a policy function.
- */
-export type HtmlSanitizerPolicy = (arg0: string, arg1?: HtmlSanitizerPolicyHints | undefined, arg2?: HtmlSanitizerPolicyContext | undefined, arg3?: ((arg0: string, arg1: unknown | undefined, arg2: unknown | undefined, arg3: unknown | undefined) => string | null) | undefined) => string | null;
-/**
- * Type for optional context objects to the policy handler functions.
- */
-export type HtmlSanitizerPolicyContext = {
-    cssStyle: ((CSSStyleDeclaration | undefined) | null);
-};
-/**
- * Type for optional hints to policy handler functions.
- */
-export type HtmlSanitizerPolicyHints = {
-    tagName: (string | undefined);
-    attributeName: (string | undefined);
-    cssProperty: (string | undefined);
-};
-/**
- * Type for a URL policy function.
- */
-export type HtmlSanitizerUrlPolicy = (arg0: string, arg1?: HtmlSanitizerPolicyHints | undefined) => SafeUrl | null;
-/**
  * The builder for the HTML Sanitizer. All methods except build return
  * `this`.
  * @final @class
@@ -452,12 +422,13 @@ export namespace HtmlSanitizer {
     const defaultTokenPolicy_: typeof goog_functions.NULL;
 }
 /**
- * Type for a policy function.
- * @typedef {function(string, HtmlSanitizerPolicyHints=,
- *     HtmlSanitizerPolicyContext=,
- *     (function(string, ?=, ?=, ?=):?string)=):?string}
+ * Type for attribute policy configuration.
  */
-export let HtmlSanitizerPolicy: any;
+export type HtmlSanitizerAttributePolicy = {
+    tagName: string;
+    attributeName: string;
+    policy: HtmlSanitizerPolicy | null;
+};
 /**
  * Type for attribute policy configuration.
  * @typedef {{
@@ -467,6 +438,38 @@ export let HtmlSanitizerPolicy: any;
  * }}
  */
 export let HtmlSanitizerAttributePolicy: any;
+/**
+ * Type for a policy function.
+ */
+export type HtmlSanitizerPolicy = (arg0: string, arg1?: HtmlSanitizerPolicyHints | undefined, arg2?: HtmlSanitizerPolicyContext | undefined, arg3?: ((arg0: string, arg1: unknown | undefined, arg2: unknown | undefined, arg3: unknown | undefined) => string | null) | undefined) => string | null;
+/**
+ * Type for a policy function.
+ * @typedef {function(string, HtmlSanitizerPolicyHints=,
+ *     HtmlSanitizerPolicyContext=,
+ *     (function(string, ?=, ?=, ?=):?string)=):?string}
+ */
+export let HtmlSanitizerPolicy: any;
+/**
+ * Type for optional context objects to the policy handler functions.
+ */
+export type HtmlSanitizerPolicyContext = {
+    cssStyle: ((CSSStyleDeclaration | undefined) | null);
+};
+/**
+ * Type for optional context objects to the policy handler functions.
+ * @typedef {{
+ *     cssStyle: (?CSSStyleDeclaration|undefined)
+ *     }}
+ */
+export let HtmlSanitizerPolicyContext: any;
+/**
+ * Type for optional hints to policy handler functions.
+ */
+export type HtmlSanitizerPolicyHints = {
+    tagName: (string | undefined);
+    attributeName: (string | undefined);
+    cssProperty: (string | undefined);
+};
 /**
  * @fileoverview An HTML sanitizer that can satisfy a variety of security
  * policies.
@@ -492,13 +495,9 @@ export let HtmlSanitizerAttributePolicy: any;
  */
 export let HtmlSanitizerPolicyHints: any;
 /**
- * Type for optional context objects to the policy handler functions.
- * @typedef {{
- *     cssStyle: (?CSSStyleDeclaration|undefined)
- *     }}
+ * Type for a URL policy function.
  */
-export let HtmlSanitizerPolicyContext: any;
-import { SafeUrl } from "../safeurl.js";
+export type HtmlSanitizerUrlPolicy = (arg0: string, arg1?: HtmlSanitizerPolicyHints | undefined) => SafeUrl | null;
 /**
  * Type for a URL policy function.
  *
@@ -508,4 +507,5 @@ import { SafeUrl } from "../safeurl.js";
 export let HtmlSanitizerUrlPolicy: any;
 import { SafeDomTreeProcessor } from "./safedomtreeprocessor.js";
 import { SafeHtml } from "../safehtml.js";
+import { SafeUrl } from "../safeurl.js";
 import * as goog_functions from "../../functions/functions.js";

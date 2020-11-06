@@ -1,8 +1,4 @@
 /**
- * Typedef for use with createDom and append.
- */
-export type Appendable = any;
-/**
  * Gets an element from the current document by element id.
  *
  * If an Element is passed in, it is returned.
@@ -91,6 +87,10 @@ export const ASSUME_QUIRKS_MODE: boolean;
  * standards compliance mode.
  */
 export const ASSUME_STANDARDS_MODE: boolean;
+/**
+ * Typedef for use with createDom and append.
+ */
+export type Appendable = any;
 /**
  * Typedef for use with createDom and append.
  * @typedef {Object|string|Array|NodeList}

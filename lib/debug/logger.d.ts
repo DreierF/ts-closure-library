@@ -1,12 +1,4 @@
 /**
- * A message value that can be handled by a Logger.
- *
- * Functions are treated like callbacks, but are only called when the event's
- * log level is enabled. This is useful for logging messages that are expensive
- * to construct.
- */
-export type Loggable = string | (() => string);
-/**
  * @type {boolean} Toggles whether loggers other than the root logger can have
  *     log handlers attached to them and whether they can have their log level
  *     set. Logging is a bit faster when this is set to false.
@@ -131,6 +123,14 @@ export namespace LogManager {
     function createFunctionForCatchErrors(opt_logger?: debug_Logger | undefined): (arg0: any) => any;
     function createLogger_(name: string): debug_Logger;
 }
+/**
+ * A message value that can be handled by a Logger.
+ *
+ * Functions are treated like callbacks, but are only called when the event's
+ * log level is enabled. This is useful for logging messages that are expensive
+ * to construct.
+ */
+export type Loggable = string | (() => string);
 /**
  * @fileoverview Definition of the Logger class. Please minimize dependencies
  * this file has on other closure classes as any dependency it takes won't be

@@ -1,8 +1,4 @@
 /**
- * *
- */
-export type EventType = string;
-/**
  * @fileoverview A color picker component.  A color picker can compose several
  * instances of ColorPalette.
  *
@@ -141,6 +137,10 @@ export namespace ColorPicker {
     const DEFAULT_NUM_COLS: number;
     const SIMPLE_GRID_COLORS: Array<string>;
 }
+/**
+ * *
+ */
+export type EventType = string;
 export namespace EventType {
     const CHANGE: string;
 }

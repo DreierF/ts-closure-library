@@ -1,23 +1,4 @@
 /**
- * The default captions for the default buttons.
- */
-export type DefaultButtonCaptions = string;
-/**
- * The keys used to identify standard buttons in events.
- */
-export type DefaultButtonKeys = string;
-/**
- * The standard buttons (keys associated with captions).
- */
-export type DefaultButtons = {
-    key: string;
-    caption: string;
-};
-/**
- * *
- */
-export type EventType = string;
-/**
  * A button set defines the behaviour of a set of buttons that the dialog can
  * show.  Uses the {@link goog.structs.Map} interface.
  *    goog.ui.Component} for semantics.
@@ -173,6 +154,10 @@ export class ButtonSet extends UiMap<any, any> {
      */
     setAllButtonsEnabled(enabled: boolean): void;
 }
+/**
+ * The default captions for the default buttons.
+ */
+export type DefaultButtonCaptions = string;
 export namespace DefaultButtonCaptions {
     const OK: string;
     const CANCEL: string;
@@ -181,6 +166,10 @@ export namespace DefaultButtonCaptions {
     const SAVE: string;
     const CONTINUE: string;
 }
+/**
+ * The keys used to identify standard buttons in events.
+ */
+export type DefaultButtonKeys = string;
 export namespace DefaultButtonKeys {
     const OK_1: string;
     export { OK_1 as OK };
@@ -195,6 +184,13 @@ export namespace DefaultButtonKeys {
     const CONTINUE_1: string;
     export { CONTINUE_1 as CONTINUE };
 }
+/**
+ * The standard buttons (keys associated with captions).
+ */
+export type DefaultButtons = {
+    key: string;
+    caption: string;
+};
 export namespace DefaultButtons {
     export namespace OK_2 {
         const key: string;
@@ -673,6 +669,10 @@ declare class Dialog_Event extends EventsEvent {
     /** @const */
     caption: string | Element | null;
 }
+/**
+ * *
+ */
+export type EventType = string;
 export namespace EventType {
     const SELECT: string;
     const AFTER_HIDE: string;

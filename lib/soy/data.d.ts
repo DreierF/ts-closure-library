@@ -1,10 +1,4 @@
 /**
- * A type of textual content.
- *
- * This is an enum of type Object so that these values are unforgeable.
- */
-export type SanitizedContentKind = any;
-/**
  * A string-like object that carries a content-type and a content direction.
  *
  * IMPORTANT! Do not create these directly, nor instantiate the subclasses.
@@ -54,6 +48,12 @@ export class SanitizedContent {
      */
     toSafeUrl(): SafeUrl;
 }
+/**
+ * A type of textual content.
+ *
+ * This is an enum of type Object so that these values are unforgeable.
+ */
+export type SanitizedContentKind = any;
 export namespace SanitizedContentKind {
     const HTML: {
         sanitizedContentKindHtml: boolean;

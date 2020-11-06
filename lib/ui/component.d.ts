@@ -1,21 +1,4 @@
 /**
- * Common events fired by components so that event propagation is useful.  Not
- * all components are expected to dispatch or listen for all event types.
- * Events dispatched before a state transition should be cancelable to prevent
- * the corresponding state change.
- */
-export type EventType = string;
-/**
- * Common component states.  Components may have distinct appearance depending
- * on what state(s) apply to them.  Not all components are expected to support
- * all states.
- */
-export type State = number;
-/**
- * Errors thrown by the component.
- */
-export type Component_Error = string;
-/**
  * @type {boolean} Whether to support calling decorate with an element that is
  *     not yet in the document. If true, we check if the element is in the
  *     document, and avoid calling enterDocument if it isn't. If false, we
@@ -573,6 +556,10 @@ export class Component extends EventsEventTarget {
 export namespace Component {
     const defaultRightToLeft_: boolean | null;
 }
+/**
+ * Errors thrown by the component.
+ */
+type Component_Error = string;
 declare namespace Component_Error {
     const NOT_SUPPORTED: string;
     const DECORATE_INVALID: string;
@@ -590,6 +577,13 @@ declare namespace Component_Error {
  *     -1: Right-to-left.
  */
 export const DEFAULT_BIDI_DIR: number;
+/**
+ * Common events fired by components so that event propagation is useful.  Not
+ * all components are expected to dispatch or listen for all event types.
+ * Events dispatched before a state transition should be cancelable to prevent
+ * the corresponding state change.
+ */
+export type EventType = string;
 export namespace EventType {
     const BEFORE_SHOW: string;
     const SHOW: string;
@@ -613,6 +607,12 @@ export namespace EventType {
     const ACTION: string;
     const CHANGE: string;
 }
+/**
+ * Common component states.  Components may have distinct appearance depending
+ * on what state(s) apply to them.  Not all components are expected to support
+ * all states.
+ */
+export type State = number;
 export namespace State {
     const ALL: number;
     const DISABLED: number;

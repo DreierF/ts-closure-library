@@ -1,11 +1,4 @@
 /**
- * Enum for all Grapheme Cluster Break properties.
- * These enums directly corresponds to Grapheme_Cluster_Break property values
- * mentioned in http://unicode.org/reports/tr29 table 2. VIRAMA and
- * INDIC_LETTER are for the Virama × Base tailoring mentioned in the notes.
- */
-export type property = number;
-/**
  * Indicates if there is a grapheme cluster boundary between a and b.
  *
  * Legacy function. Does not cover cases where a sequence of code points is
@@ -40,6 +33,13 @@ export function hasGraphemeBreak(a: number, b: number, opt_extended?: boolean | 
  *     a and b; False otherwise.
  */
 export function hasGraphemeBreakStrings(a: string, b: string, opt_extended?: boolean | undefined): boolean;
+/**
+ * Enum for all Grapheme Cluster Break properties.
+ * These enums directly corresponds to Grapheme_Cluster_Break property values
+ * mentioned in http://unicode.org/reports/tr29 table 2. VIRAMA and
+ * INDIC_LETTER are for the Virama × Base tailoring mentioned in the notes.
+ */
+export type property = number;
 export namespace property {
     const OTHER: number;
     const CONTROL: number;

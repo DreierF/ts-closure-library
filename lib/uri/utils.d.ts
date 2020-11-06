@@ -2,6 +2,15 @@
  * The index of each URI component in the return value of split.
  */
 export type ComponentIndex = number;
+export namespace ComponentIndex {
+    const SCHEME: number;
+    const USER_INFO: number;
+    const DOMAIN: number;
+    const PORT: number;
+    const PATH: number;
+    const QUERY_DATA: number;
+    const FRAGMENT: number;
+}
 /**
  * An array representing a set of query parameters with alternating keys
  * and values.
@@ -12,42 +21,16 @@ export type ComponentIndex = number;
  * Example:
  * <pre>
  * var data = [
- *    // Simple param: ?name=BobBarker
- *    'name', 'BobBarker',
- *    // Conditional param -- may be omitted entirely.
- *    'specialDietaryNeeds', hasDietaryNeeds() ? getDietaryNeeds() : null,
- *    // Multi-valued param: &house=LosAngeles&house=NewYork&house=null
- *    'house', ['LosAngeles', 'NewYork', null]
+ *   // Simple param: ?name=BobBarker
+ *   'name', 'BobBarker',
+ *   // Conditional param -- may be omitted entirely.
+ *   'specialDietaryNeeds', hasDietaryNeeds() ? getDietaryNeeds() : null,
+ *   // Multi-valued param: &house=LosAngeles&house=NewYork&house=null
+ *   'house', ['LosAngeles', 'NewYork', null]
  * ];
  * </pre>
  */
 export type QueryArray = any[];
-/**
- * Supported query parameter values by the parameter serializing utilities.
- *
- * If a value is null or undefined, the key-value pair is skipped, as an easy
- * way to omit parameters conditionally.  Non-array parameters are converted
- * to a string and URI encoded.  Array values are expanded into multiple
- * &key=value pairs, with each element stringized and URI-encoded.
- */
-export type QueryValue = any;
-/**
- * Standard supported query parameters.
- */
-export type StandardQueryParam = string;
-/**
- * *
- */
-export type CharCode_ = number;
-export namespace ComponentIndex {
-    const SCHEME: number;
-    const USER_INFO: number;
-    const DOMAIN: number;
-    const PORT: number;
-    const PATH: number;
-    const QUERY_DATA: number;
-    const FRAGMENT: number;
-}
 /**
  * An array representing a set of query parameters with alternating keys
  * and values.
@@ -77,10 +60,23 @@ export let QueryArray: any;
  * way to omit parameters conditionally.  Non-array parameters are converted
  * to a string and URI encoded.  Array values are expanded into multiple
  * &key=value pairs, with each element stringized and URI-encoded.
+ */
+export type QueryValue = any;
+/**
+ * Supported query parameter values by the parameter serializing utilities.
+ *
+ * If a value is null or undefined, the key-value pair is skipped, as an easy
+ * way to omit parameters conditionally.  Non-array parameters are converted
+ * to a string and URI encoded.  Array values are expanded into multiple
+ * &key=value pairs, with each element stringized and URI-encoded.
  *
  * @typedef {*}
  */
 export let QueryValue: any;
+/**
+ * Standard supported query parameters.
+ */
+export type StandardQueryParam = string;
 export namespace StandardQueryParam {
     const RANDOM: string;
 }

@@ -3,10 +3,6 @@
  */
 export type Replacer = (this: any, arg1: string, arg2: any) => any;
 /**
- * JSON reviver, as defined in Section 15.12.2 of the ES5 spec.
- */
-export type Reviver = (this: any, arg1: string, arg2: any) => any;
-/**
  * JSON replacer, as defined in Section 15.12.3 of the ES5 spec.
  * @see http://ecma-international.org/ecma-262/5.1/#sec-15.12.3
  *
@@ -15,6 +11,10 @@ export type Reviver = (this: any, arg1: string, arg2: any) => any;
  * @typedef {function(this:Object, string, *): *}
  */
 export let Replacer: any;
+/**
+ * JSON reviver, as defined in Section 15.12.2 of the ES5 spec.
+ */
+export type Reviver = (this: any, arg1: string, arg2: any) => any;
 /**
  * JSON reviver, as defined in Section 15.12.2 of the ES5 spec.
  * @see http://ecma-international.org/ecma-262/5.1/#sec-15.12.3

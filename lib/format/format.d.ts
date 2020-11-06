@@ -1,8 +1,4 @@
 /**
- * Tokens used within insertWordBreaks.
- */
-export type WbrToken_ = number;
-/**
  * Constant for the WBR replacement used by insertWordBreaks.  Safari requires
  * &lt;wbr&gt;&lt;/wbr&gt;, Opera needs the &shy; entity, though this will give
  * a visible hyphen at breaks.  IE8 uses a zero width space. Other browsers just

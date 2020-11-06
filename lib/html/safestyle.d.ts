@@ -281,7 +281,7 @@ export namespace SafeStyle {
      * them.
      */
     type PropertyMap = {
-        [x: string]: string | Const | SafeUrl | (string | Const | SafeUrl)[] | null;
+        [x: string]: string | Const | SafeUrl | PropertyValue[] | null;
     };
 }
 import { TypedString } from "../string/typedstring.js";

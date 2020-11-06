@@ -1,9 +1,4 @@
 /**
- * Standard date range keys. Equivalent to the enum IDs in
- * DateRange.java http://go/datarange.java
- */
-export type StandardDateRangeKeys = string;
-/**
  * @fileoverview Date range data structure. Based loosely on
  * com.google.common.util.DateRange.
  */
@@ -199,6 +194,11 @@ export class Iterator extends IterIterator<DateDate> {
      */
     private endDate_;
 }
+/**
+ * Standard date range keys. Equivalent to the enum IDs in
+ * DateRange.java http://go/datarange.java
+ */
+export type StandardDateRangeKeys = string;
 export namespace StandardDateRangeKeys {
     const YESTERDAY: string;
     const TODAY: string;

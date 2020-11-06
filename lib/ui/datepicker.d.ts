@@ -1,8 +1,4 @@
 /**
- * Constants for event names
- */
-export type Events = string;
-/**
  * @fileoverview Date picker implementation.
  *
  * @see ../demos/datepicker.html
@@ -588,6 +584,10 @@ export class DatePickerEvent extends EventsEvent {
      */
     date: DateDate | null;
 }
+/**
+ * Constants for event names
+ */
+export type Events = string;
 export namespace Events {
     const CHANGE: string;
     const CHANGE_ACTIVE_MONTH: string;

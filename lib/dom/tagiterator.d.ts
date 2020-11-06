@@ -1,15 +1,4 @@
 /**
- * There are three types of token:
- *   <ol>
- *     <li>`START_TAG` - The beginning of a tag.
- *     <li>`OTHER` - Any non-element node position.
- *     <li>`END_TAG` - The end of a tag.
- *   </ol>
- * Users of this enumeration can rely on {@code START_TAG + END_TAG = 0} and
- * that {@code OTHER = 0}.
- */
-export type TagWalkType = number;
-/**
  * A DOM tree traversal iterator.
  *
  * Starting with the given node, the iterator walks the DOM in order, reporting
@@ -202,6 +191,17 @@ export class TagIterator extends Iterator<Node> {
      */
     splice(...args: any[]): void;
 }
+/**
+ * There are three types of token:
+ *  <ol>
+ *    <li>`START_TAG` - The beginning of a tag.
+ *    <li>`OTHER` - Any non-element node position.
+ *    <li>`END_TAG` - The end of a tag.
+ *  </ol>
+ * Users of this enumeration can rely on {@code START_TAG + END_TAG = 0} and
+ * that {@code OTHER = 0}.
+ */
+export type TagWalkType = number;
 export namespace TagWalkType {
     const START_TAG: number;
     const OTHER: number;

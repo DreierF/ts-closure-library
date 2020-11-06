@@ -1,8 +1,4 @@
 /**
- * Possible states for the tooltip to be in.
- */
-export type State = number;
-/**
  * Popup position implementation that positions the popup (the tooltip in this
  * case) based on the cursor position. It's positioned below the cursor to the
  * right if there's enough room to fit all of it inside the Viewport. Otherwise
@@ -50,6 +46,10 @@ export class ElementTooltipPosition extends AnchoredPosition {
      */
     constructor(element: Element | null);
 }
+/**
+ * Possible states for the tooltip to be in.
+ */
+export type State = number;
 export namespace State {
     const INACTIVE: number;
     const WAITING_TO_SHOW: number;

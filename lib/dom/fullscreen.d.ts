@@ -2,14 +2,14 @@
  * Event types for full screen.
  */
 export type EventType = string;
+export namespace EventType {
+    const CHANGE: string;
+}
 /**
  * Options for fullscreen navigation UI:
  * https://fullscreen.spec.whatwg.org/#dictdef-fullscreenoptions
  */
 export type FullscreenNavigationUI = string;
-export namespace EventType {
-    const CHANGE: string;
-}
 export namespace FullscreenNavigationUI {
     const AUTO: string;
     const HIDE: string;

@@ -353,7 +353,7 @@ export class SafeUrl implements DirectionalString, TypedString {
      * Returns this URLs directionality, which is always `LTR`.
      * @override
      */
-    getDirection(): any;
+    getDirection(): number;
 }
 export namespace SafeUrl {
     export const INNOCUOUS_STRING: string;

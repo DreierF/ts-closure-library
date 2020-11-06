@@ -1,8 +1,4 @@
 /**
- * *
- */
-export type EventType = string;
-/**
  * @fileoverview Definition of the BaseNode class.
  *
  *
@@ -497,6 +493,10 @@ export namespace BaseNode {
         const cssSelectedRow: string;
     }
 }
+/**
+ * *
+ */
+export type EventType = string;
 export namespace EventType {
     const BEFORE_EXPAND: string;
     const EXPAND: string;

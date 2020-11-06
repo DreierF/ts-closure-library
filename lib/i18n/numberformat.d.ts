@@ -2,15 +2,15 @@
  * Currency styles.
  */
 export type CurrencyStyle = number;
-/**
- * Standard number formatting patterns.
- */
-export type Format = number;
 export namespace CurrencyStyle {
     const LOCAL: number;
     const PORTABLE: number;
     const GLOBAL: number;
 }
+/**
+ * Standard number formatting patterns.
+ */
+export type Format = number;
 export namespace Format {
     const DECIMAL: number;
     const SCIENTIFIC: number;

@@ -1,8 +1,4 @@
 /**
- * Constants for event names.
- */
-export type EventType = string;
-/**
  * Object representing a drag event
  *   representing the browser event that caused this drag event.
  * @class
@@ -395,6 +391,10 @@ export class Dragger extends goog_events.EventTarget {
 export namespace Dragger {
     const HAS_SET_CAPTURE_: boolean;
 }
+/**
+ * Constants for event names.
+ */
+export type EventType = string;
 export namespace EventType {
     const EARLY_CANCEL: string;
     const START: string;

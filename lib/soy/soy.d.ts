@@ -1,24 +1,4 @@
 /**
- * Type definition for strict Soy HTML templates. Very useful when passing
- * a template as an argument.
- */
-export type StrictHtmlTemplate = (arg0?: unknown | undefined, arg1?: (CompatibleIj_ | null) | undefined) => SanitizedHtml;
-/**
- * Type definition for strict Soy templates. Very useful when passing a template
- * as an argument.
- */
-export type StrictTemplate = (arg0?: unknown | undefined, arg1?: (CompatibleIj_ | null) | undefined) => (string | SanitizedContent);
-/**
- * Type definition for text templates.
- */
-export type TextTemplate = (arg0?: unknown | undefined, arg1?: (CompatibleIj_ | null) | undefined) => string;
-/**
- * Helper typedef for ij parameters.  This is what soy generates.
- */
-export type CompatibleIj_ = typeof IjData | {
-    [x: string]: any;
-};
-/**
  * @fileoverview Provides utility methods to render soy template.
  */
 /**
@@ -30,12 +10,10 @@ export type CompatibleIj_ = typeof IjData | {
  */
 export function IjData(): void;
 /**
- * Helper typedef for ij parameters.  This is what soy generates.
- * @private
- * @typedef {!IjData|!Object<string, *>}
+ * Type definition for strict Soy HTML templates. Very useful when passing
+ * a template as an argument.
  */
-declare let CompatibleIj_: any;
-import { SanitizedHtml } from "./data.js";
+export type StrictHtmlTemplate = (arg0?: unknown | undefined, arg1?: (CompatibleIj_ | null) | undefined) => SanitizedHtml;
 /**
  * Type definition for strict Soy HTML templates. Very useful when passing
  * a template as an argument.
@@ -43,7 +21,11 @@ import { SanitizedHtml } from "./data.js";
  * ?CompatibleIj_=):!SanitizedHtml}
  */
 export let StrictHtmlTemplate: any;
-import { SanitizedContent } from "./data.js";
+/**
+ * Type definition for strict Soy templates. Very useful when passing a template
+ * as an argument.
+ */
+export type StrictTemplate = (arg0?: unknown | undefined, arg1?: (CompatibleIj_ | null) | undefined) => (string | SanitizedContent);
 /**
  * Type definition for strict Soy templates. Very useful when passing a template
  * as an argument.
@@ -51,6 +33,10 @@ import { SanitizedContent } from "./data.js";
  * ?CompatibleIj_=):(string|!SanitizedContent)}
  */
 export let StrictTemplate: any;
+/**
+ * Type definition for text templates.
+ */
+export type TextTemplate = (arg0?: unknown | undefined, arg1?: (CompatibleIj_ | null) | undefined) => string;
 /**
  * Type definition for text templates.
  * @typedef {function(?=, ?CompatibleIj_=):string}
@@ -134,5 +120,19 @@ export function renderElement<ARG_TYPES>(element: Element | null, template: ((ar
  * @template ARG_TYPES
  */
 export function renderHtml<ARG_TYPES>(element: Element | null, templateResult: SanitizedContent): void;
+/**
+ * Helper typedef for ij parameters.  This is what soy generates.
+ */
+type CompatibleIj_ = typeof IjData | {
+    [x: string]: any;
+};
+/**
+ * Helper typedef for ij parameters.  This is what soy generates.
+ * @private
+ * @typedef {!IjData|!Object<string, *>}
+ */
+declare let CompatibleIj_: any;
+import { SanitizedHtml } from "./data.js";
+import { SanitizedContent } from "./data.js";
 import { DomHelper } from "../dom/dom.js";
 export {};

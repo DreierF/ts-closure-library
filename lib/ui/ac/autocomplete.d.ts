@@ -1,8 +1,4 @@
 /**
- * Events associated with the autocomplete
- */
-export type EventType = string;
-/**
  * @fileoverview Gmail-like AutoComplete logic.
  *
  * @see ../../demos/autocomplete-basic.html
@@ -450,6 +446,10 @@ export namespace AutoComplete {
         isRowDisabled: Function | undefined;
     };
 }
+/**
+ * Events associated with the autocomplete
+ */
+export type EventType = string;
 export namespace EventType {
     const ROW_HILITE: string;
     const HILITE: string;

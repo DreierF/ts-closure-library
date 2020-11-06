@@ -2,10 +2,6 @@
  * Directionality enum.
  */
 export type Dir = number;
-/**
- * Unicode formatting characters and directionality string constants.
- */
-export type Format = string;
 export namespace Dir {
     const LTR: number;
     const RTL: number;
@@ -49,6 +45,10 @@ export class DirectionalString {
  * {@see IS_RTL}
  */
 export const FORCE_RTL: boolean;
+/**
+ * Unicode formatting characters and directionality string constants.
+ */
+export type Format = string;
 export namespace Format {
     const LRE: string;
     const RLE: string;

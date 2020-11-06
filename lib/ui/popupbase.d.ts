@@ -2,10 +2,6 @@
  * Constants for event type fired by Popup
  */
 export type EventType = string;
-/**
- * Constants for type of Popup
- */
-export type Type = string;
 export namespace EventType {
     const BEFORE_SHOW: string;
     const SHOW: string;
@@ -405,6 +401,10 @@ export class PopupBase extends events.EventTarget {
 export namespace PopupBase {
     const DEBOUNCE_DELAY_MS: number;
 }
+/**
+ * Constants for type of Popup
+ */
+export type Type = string;
 export namespace Type {
     const TOGGLE_DISPLAY: string;
     const MOVE_OFFSCREEN: string;

@@ -2,36 +2,6 @@
  * Constants for event names.
  */
 export type EventType = string;
-/**
- * Mapping of mouse event names to underlying browser event names.
- */
-export type MouseEvents = {
-    MOUSEDOWN: string;
-    MOUSEUP: string;
-    MOUSECANCEL: string;
-    MOUSEMOVE: string;
-    MOUSEOVER: string;
-    MOUSEOUT: string;
-    MOUSEENTER: string;
-    MOUSELEAVE: string;
-};
-/**
- * An alias for `EventType.TOUCH*` event types that is overridden by
- * corresponding `POINTER*` event types.
- */
-export type PointerAsTouchEventType = string;
-/**
- * Constants for pointer event names that fall back to corresponding mouse event
- * names on unsupported platforms. These are intended to be drop-in replacements
- * for corresponding values in `EventType`.
- */
-export type PointerFallbackEventType = string;
-/**
- * Constants for pointer event names that fall back to corresponding touch event
- * names on unsupported platforms. These are intended to be drop-in replacements
- * for corresponding values in `EventType`.
- */
-export type PointerTouchFallbackEventType = string;
 export namespace EventType {
     const CLICK: string;
     const RIGHTCLICK: string;
@@ -217,6 +187,19 @@ export namespace MouseAsMouseEventType {
 }
 /**
  * Mapping of mouse event names to underlying browser event names.
+ */
+export type MouseEvents = {
+    MOUSEDOWN: string;
+    MOUSEUP: string;
+    MOUSECANCEL: string;
+    MOUSEMOVE: string;
+    MOUSEOVER: string;
+    MOUSEOUT: string;
+    MOUSEENTER: string;
+    MOUSELEAVE: string;
+};
+/**
+ * Mapping of mouse event names to underlying browser event names.
  * @typedef {{
  *     MOUSEDOWN: string,
  *     MOUSEUP: string,
@@ -247,6 +230,11 @@ export namespace PointerAsMouseEventType {
     import MOUSELEAVE_2 = PointerFallbackEventType.POINTERLEAVE;
     export { MOUSELEAVE_2 as MOUSELEAVE };
 }
+/**
+ * An alias for `EventType.TOUCH*` event types that is overridden by
+ * corresponding `POINTER*` event types.
+ */
+export type PointerAsTouchEventType = string;
 export namespace PointerAsTouchEventType {
     import TOUCHCANCEL_1 = PointerTouchFallbackEventType.POINTERCANCEL;
     export { TOUCHCANCEL_1 as TOUCHCANCEL };
@@ -257,6 +245,12 @@ export namespace PointerAsTouchEventType {
     import TOUCHSTART_1 = PointerTouchFallbackEventType.POINTERDOWN;
     export { TOUCHSTART_1 as TOUCHSTART };
 }
+/**
+ * Constants for pointer event names that fall back to corresponding mouse event
+ * names on unsupported platforms. These are intended to be drop-in replacements
+ * for corresponding values in `EventType`.
+ */
+export type PointerFallbackEventType = string;
 export namespace PointerFallbackEventType {
     const POINTERDOWN_1: string;
     export { POINTERDOWN_1 as POINTERDOWN };
@@ -275,6 +269,12 @@ export namespace PointerFallbackEventType {
     const POINTERLEAVE_1: string;
     export { POINTERLEAVE_1 as POINTERLEAVE };
 }
+/**
+ * Constants for pointer event names that fall back to corresponding touch event
+ * names on unsupported platforms. These are intended to be drop-in replacements
+ * for corresponding values in `EventType`.
+ */
+export type PointerTouchFallbackEventType = string;
 export namespace PointerTouchFallbackEventType {
     const POINTERDOWN_2: string;
     export { POINTERDOWN_2 as POINTERDOWN };

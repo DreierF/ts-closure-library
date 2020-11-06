@@ -1,4 +1,3 @@
-export type Methods = Function | null;
 /**
  * Returns an element's attributes without falling prey to things like
  * <form><input name="attributes"></form>. Equivalent to
@@ -149,6 +148,7 @@ export function getCssPropertyValue(cssStyle: CSSStyleDeclaration, propName: str
  * @supported IE8 and newer.
  */
 export function setCssProperty(cssStyle: CSSStyleDeclaration, propName: string, sanitizedValue: string): void;
+export type Methods = Function | null;
 export namespace Methods {
     const ATTRIBUTES_GETTER: Function | null;
     const HAS_ATTRIBUTE: Function | null;

@@ -1,8 +1,4 @@
 /**
- * Common Unicode string characters.
- */
-export type Unicode = string;
-/**
  * @fileoverview Utilities for string manipulation.
  */
 /**
@@ -17,6 +13,10 @@ export const DETECT_DOUBLE_ESCAPING: boolean;
  * @type {boolean} Whether to force non-dom html unescaping.
  */
 export const FORCE_NON_DOM_HTML_UNESCAPING: boolean;
+/**
+ * Common Unicode string characters.
+ */
+export type Unicode = string;
 export namespace Unicode {
     const NBSP: string;
 }
