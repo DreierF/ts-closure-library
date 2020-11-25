@@ -746,6 +746,7 @@ export function shuffle(arr: Array<unknown>, opt_randFn?: (() => number) | undef
  * @return {!Array<T>} A new array containing the specified segment of the
  *     original array.
  * @template T
+ * @deprecated Use arr.slice(start, opt_end) instead
  */
 export function slice<T>(arr: string | ArrayLike<T>, start: number, opt_end?: number | undefined, ...args: any[]): T[];
 /**
@@ -837,6 +838,7 @@ export function sortObjectsByKey(arr: Array<any>, key: string, opt_compareFn?: F
  *     array.
  * @return {!Array<T>} the removed elements.
  * @template T
+ * @deprecated Use arr.splice(index, howMany, var_args) instead
  */
 export function splice<T>(arr: ArrayLike<T>, index: number | undefined, howMany: number, ...args: T[]): T[];
 /**
