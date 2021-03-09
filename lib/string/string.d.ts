@@ -174,6 +174,8 @@ export function editDistance(a: string, b: string): number;
  * @param {string} str The string to check.
  * @param {string} suffix A string to look for at the end of `str`.
  * @return {boolean} True if `str` ends with `suffix`.
+ *
+ * @deprecated use str.endsWith(suffix) directly
  */
 export function endsWith(str: string, suffix: string): boolean;
 /**
@@ -496,7 +498,17 @@ export function removeAll(s: string, ss: string): string;
  *     string if nothing is removed or the input is invalid.
  */
 export function removeAt(s: string, index: number, stringLength: number): string;
-export function repeat(string: any, length: any): any;
+    
+/**
+ * Repeats a string n times.
+ *
+ * @param {string} str The input string.
+ * @param {number} times how often the input should be repeated.
+ * 
+ * @deprecated use str.repeat(times) directly
+ */
+export function repeat(str: string, times: number): string;
+    
 /**
  *  Replaces all occurrences of a substring of a string with a new substring.
  *  @param {string} s The base string from which to remove.
@@ -530,6 +542,8 @@ export function splitLimit(str: string, separator: string, limit: number): Array
  * @param {string} str The string to check.
  * @param {string} prefix A string to look for at the start of `str`.
  * @return {boolean} True if `str` begins with `prefix`.
+ * 
+ * @deprecated use str.startsWith(prefix) directly
  */
 export function startsWith(str: string, prefix: string): boolean;
 /**
@@ -628,6 +642,8 @@ export function toTitleCase(str: string, opt_delimiters?: string | undefined): s
  * Trims white spaces to the left and right of a string.
  * @param {string} str The string to trim.
  * @return {string} A trimmed copy of `str`.
+ *
+ * @deprecated use str.trim() directly
  */
 export function trim(str: string): string;
 /**
