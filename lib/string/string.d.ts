@@ -174,6 +174,8 @@ export function editDistance(a: string, b: string): number;
  * @param {string} str The string to check.
  * @param {string} suffix A string to look for at the end of `str`.
  * @return {boolean} True if `str` ends with `suffix`.
+ *
+ * @deprecated use str.endsWith(suffix) directly
  */
 export function endsWith(str: string, suffix: string): boolean;
 /**
@@ -496,7 +498,16 @@ export function removeAll(s: string, ss: string): string;
  *     string if nothing is removed or the input is invalid.
  */
 export function removeAt(s: string, index: number, stringLength: number): string;
-export function repeat(string: any, length: any): any;
+/**
+ * Repeats a string n times.
+ * @param {string} string The string to repeat.
+ * @param {number} length The number of times to repeat.
+ * @return {string} A string containing `length` repetitions of
+ *     `string`.
+ *
+ * @deprecated use str.repeat(times) directly
+ */
+export function repeat(string: string, length: number): string;
 /**
  *  Replaces all occurrences of a substring of a string with a new substring.
  *  @param {string} s The base string from which to remove.
@@ -530,6 +541,8 @@ export function splitLimit(str: string, separator: string, limit: number): Array
  * @param {string} str The string to check.
  * @param {string} prefix A string to look for at the start of `str`.
  * @return {boolean} True if `str` begins with `prefix`.
+ *
+ * @deprecated use str.startsWith(prefix) directly
  */
 export function startsWith(str: string, prefix: string): boolean;
 /**
@@ -628,18 +641,24 @@ export function toTitleCase(str: string, opt_delimiters?: string | undefined): s
  * Trims white spaces to the left and right of a string.
  * @param {string} str The string to trim.
  * @return {string} A trimmed copy of `str`.
+ *
+ * @deprecated use str.trim() directly
  */
 export function trim(str: string): string;
 /**
  * Trims whitespaces at the left end of a string.
  * @param {string} str The string to left trim.
  * @return {string} A trimmed copy of `str`.
+ *
+ * @deprecated use str.trimStart() directly
  */
 export function trimLeft(str: string): string;
 /**
  * Trims whitespaces at the right end of a string.
  * @param {string} str The string to right trim.
  * @return {string} A trimmed copy of `str`.
+ *
+ * @deprecated use str.trimEnd() directly
  */
 export function trimRight(str: string): string;
 /**
