@@ -123,6 +123,14 @@ export class Palette extends Control<PaletteRenderer> {
      */
     setHighlightedIndex(index: number): void;
     /**
+     * @param {number} index 0-based index of the item to highlight.
+     * @param {boolean} scrollIntoView Whether to bring the highlighted item into
+     *     view by potentially scrolling the palette's container. This has no effect
+     *     if the palette is not in a scrollbale container.
+     * @private
+     */
+    private setHighlightedIndexInternal_;
+    /**
      * Highlights the given item, or removes the highlight if the argument is null
      * or invalid.  Any previously-highlighted item will be un-highlighted.
      * @param {Node|undefined} item Item to highlight.

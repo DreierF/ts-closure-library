@@ -112,6 +112,13 @@ export class Builder {
      */
     allowCustomElementTags(customElementTagWhitelist: Array<string>): Builder;
     /**
+     * Extends the list of allowed custom element tags.
+     * @param {string} customElementTagName
+     * @param {!Array<string>=} customElementAttributes
+     * @return {!Builder}
+     */
+    allowCustomElementTag(customElementTagName: string, customElementAttributes?: Array<string> | undefined): Builder;
+    /**
      * Allows form tags in the HTML. Without this all form tags and content will be
      * dropped.
      * @return {!Builder}

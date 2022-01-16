@@ -239,6 +239,7 @@ export class AutoComplete extends events.EventTarget {
     /**
      * Generic event handler that handles any events this object is listening to.
      * @param {?EventsEvent} e Event Object.
+     * @suppress {missingProperties} e.row
      */
     handleEvent(e: EventsEvent | null): void;
     /**

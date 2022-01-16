@@ -730,6 +730,7 @@ export class Listener implements ListenableKey {
  * `events_EventTarget`.
  *
  * WARNING: Do not use this class from outside google.events package.
+ *
  */
 /**
  * Creates a new listener map.

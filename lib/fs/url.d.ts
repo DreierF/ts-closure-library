@@ -6,6 +6,11 @@
  */
 export function browserSupportsObjectUrls(): boolean;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Wrapper for URL and its createObjectUrl and revokeObjectUrl
  * methods that are part of the HTML5 File API.
  */

@@ -36,6 +36,11 @@ export function cache<K, V>(cacheObj: any, key: unknown, valueFn: (arg0: unknown
  */
 export function canAccessProperty(obj: any | null, prop: string): boolean;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Useful compiler idioms.
  */
 /**

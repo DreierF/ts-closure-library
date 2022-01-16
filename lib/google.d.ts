@@ -100,35 +100,6 @@ export const TRUSTED_SITE: boolean;
  */
 export const TRUSTED_TYPES_POLICY_NAME: string;
 /**
- * Call up to the superclass.
- *
- * If this is called from a constructor, then this calls the superclass
- * constructor with arguments 1-N.
- *
- * If this is called from a prototype method, then you must pass the name of the
- * method as the second argument to this function. If you do not, you will get a
- * runtime error. This calls the superclass' method with arguments 2-N.
- *
- * This function only works if you use inherits to express inheritance
- * relationships between your classes.
- *
- * This function is a compiler primitive. At compile-time, the compiler will do
- * macro expansion to remove a lot of the extra overhead that this function
- * introduces. The compiler will also enforce a lot of the assumptions that this
- * function makes, and treat it as a compiler error if you break them.
- *
- * @param {!Object} me Should always be "this".
- * @param {*=} opt_methodName The method name if calling a super method.
- * @param {...*} var_args The rest of the arguments.
- * @return {*} The return value of the superclass method.
- * @suppress {es5Strict} This method can not be used in strict mode, but
- *     all Closure Library consumers must depend on this file.
- * @deprecated base is not strict mode compatible.  Prefer the static
- *     "base" method added to the constructor by inherits
- *     or ES6 classes and the "super" keyword.
- */
-export function base(me: any, opt_methodName?: any | undefined, ...args: any[]): any;
-/**
  * Partially applies this function to a particular 'this object' and zero or
  * more arguments. The result is a new function with some arguments of the first
  * function pre-filled and the value of this 'pre-specified'.
@@ -443,13 +414,6 @@ export function isArray(val: unknown): val is unknown[];
  */
 export function isArrayLike(val: unknown): boolean;
 /**
- * Returns true if the specified value is a boolean.
- * @param {?} val Variable to test.
- * @return {boolean} Whether variable is boolean.
- * @deprecated Use `typeof val === 'boolean'` instead.
- */
-export function isBoolean(val: unknown): val is boolean;
-/**
  * Returns true if the object looks like a Date. To qualify as Date-like the
  * value needs to be an object and have a getFullYear() function.
  * @param {?} val Variable to test.
@@ -457,97 +421,11 @@ export function isBoolean(val: unknown): val is boolean;
  */
 export function isDateLike(val: unknown): boolean;
 /**
- * @fileoverview Bootstrap for the Google JS Library (Closure).
- *
- * In uncompiled mode base.js will attempt to load Closure's deps file, unless
- * the global <code>CLOSURE_NO_DEPS</code> is set to true.  This allows projects
- * to include their own deps file(s) from different locations.
- *
- * Avoid including base.js more than once. This is strictly discouraged and not
- * supported. google.require(...) won't work properly in that case.
- *
- * @provideGoog
- */
-/**
- * Reference to the global context.  In most cases this will be 'window'.
- * @const
- */
-/**
- * A hook for overriding the define values in uncompiled mode.
- *
- * In uncompiled mode, `CLOSURE_UNCOMPILED_DEFINES` may be defined before
- * loading base.js.  If a key is defined in `CLOSURE_UNCOMPILED_DEFINES`,
- * `google.define` will use the value instead of the default value.  This
- * allows flags to be overwritten without compilation (this is normally
- * accomplished with the compiler's "define" flag).
- *
- * Example:
- * <pre>
- *   var CLOSURE_UNCOMPILED_DEFINES = {'goog.DEBUG': false};
- * </pre>
- *
- * @type {Object<string, (string|number|boolean)>|undefined}
- */
-/**
- * A hook for overriding the define values in uncompiled or compiled mode,
- * like CLOSURE_UNCOMPILED_DEFINES but effective in compiled code.  In
- * uncompiled code CLOSURE_UNCOMPILED_DEFINES takes precedence.
- *
- * Also unlike CLOSURE_UNCOMPILED_DEFINES the values must be number, boolean or
- * string literals or the compiler will emit an error.
- *
- * While any @define value may be set, only those set with google.define will be
- * effective for uncompiled code.
- *
- * Example:
- * <pre>
- *   var CLOSURE_DEFINES = {'goog.DEBUG': false} ;
- * </pre>
- *
- * @type {Object<string, (string|number|boolean)>|undefined}
- */
-/**
- * Returns true if the specified value is not undefined.
- *
- * @param {?} val Variable to test.
- * @return {boolean} Whether variable is defined.
- * @deprecated Use `val !== undefined` instead.
- */
-export function isDef<T>(val: T): val is Exclude<typeof val, undefined>;
-/**
- * Returns true if the specified value is defined and not null.
- * @param {?} val Variable to test.
- * @return {boolean} Whether variable is defined and not null.
- * @deprecated Try to avoid having a variable use null and
- * undefined at the same time by:
- * - Using default parameter values
- * - Nullish coalescing operator
- * - Optional chaining
- *
- * If none of the above is appicable use `!= null` to check for
- * null and undefined
- */
-export function isDefAndNotNull<T>(val: T): val is Exclude<typeof val, (undefined | null)>;
-/**
  * Returns true if the specified value is a function.
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is a function.
  */
 export function isFunction(val: unknown): boolean;
-/**
- * Returns true if the specified value is null.
- * @param {?} val Variable to test.
- * @return {boolean} Whether variable is null.
- * @deprecated Use `val === null` instead.
- */
-export function isNull(val: unknown): val is null;
-/**
- * Returns true if the specified value is a number.
- * @param {?} val Variable to test.
- * @return {boolean} Whether variable is a number.
- * @deprecated Use `typeof val === 'number'` instead.
- */
-export function isNumber(val: unknown): val is number;
 /**
  * Returns true if the specified value is an object.  This includes arrays and
  * functions.
@@ -555,13 +433,6 @@ export function isNumber(val: unknown): val is number;
  * @return {boolean} Whether variable is an object.
  */
 export function isObject(val: unknown): val is object;
-/**
- * Returns true if the specified value is a string.
- * @param {?} val Variable to test.
- * @return {boolean} Whether variable is a string.
- * @deprecated Use `typeof val === 'string'` instead.
- */
-export function isString(val: unknown): val is string;
 /**
  * Copies all the members of a source object to a target object. This method
  * does not work on all browsers for all objects that contain keys such as
