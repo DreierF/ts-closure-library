@@ -4,9 +4,10 @@
  */
 /**
  * Class that provides the basic implementation for disposable objects. If your
- * class holds one or more references to COM objects, DOM nodes, or other
- * disposable objects, it should extend this class or implement the disposable
- * interface (defined in IDisposable).
+ * class holds references or resources that can't be collected by standard GC,
+ * it should extend this class or implement the disposable interface (defined
+ * in IDisposable). See description of
+ * IDisposable for examples of cleanup.
  * @implements {IDisposable}
  */
 export class Disposable {
@@ -58,8 +59,8 @@ export class Disposable {
     /**
      * Disposes of the object. If the object hasn't already been disposed of, calls
      * {@link #disposeInternal}. Classes that extend `Disposable` should
-     * override {@link #disposeInternal} in order to delete references to COM
-     * objects, DOM nodes, and other disposable objects. Reentrant.
+     * override {@link #disposeInternal} in order to cleanup references, resources
+     * and other disposable objects. Reentrant.
      *
      * @return {void} Nothing.
      * @override
@@ -82,16 +83,15 @@ export class Disposable {
      */
     addOnDisposeCallback<T>(callback: (this: T) => unknown, opt_scope?: T | undefined): void;
     /**
-     * Deletes or nulls out any references to COM objects, DOM nodes, or other
-     * disposable objects. Classes that extend `Disposable` should
-     * override this method.
-     * Not reentrant. To avoid calling it twice, it must only be called from the
-     * subclass' `disposeInternal` method. Everywhere else the public
-     * `dispose` method must be used.
-     * For example:
+     * Performs appropriate cleanup. See description of IDisposable
+     * for examples. Classes that extend `Disposable` should override this
+     * method. Not reentrant. To avoid calling it twice, it must only be called from
+     * the subclass' `disposeInternal` method. Everywhere else the public `dispose`
+     * method must be used. For example:
+     *
      * <pre>
-     *   mypackage.MyClass = function() {
-     *     mypackage.MyClass.base(this, 'constructor');
+     * mypackage.MyClass = function() {
+     * mypackage.MyClass.base(this, 'constructor');
      *     // Constructor logic specific to MyClass.
      *     ...
      *   };
@@ -105,6 +105,7 @@ export class Disposable {
      *     mypackage.MyClass.base(this, 'disposeInternal');
      *   };
      * </pre>
+     *
      * @protected
      */
     protected disposeInternal(): void;
