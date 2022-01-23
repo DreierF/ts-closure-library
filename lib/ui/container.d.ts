@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Base class for containers that host {@link Control}s,
  * such as menus and toolbars.  Provides default keyboard and mouse event
  * handling and child management, based on a generalized version of
@@ -442,6 +447,11 @@ export class Container<T> extends Ui_Component {
     setMouseButtonPressed(pressed: boolean): void;
     setOrientation(orientation: Orientation | null): void;
 }
+/**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 /**
  * @fileoverview Base class for container renderers.
  */

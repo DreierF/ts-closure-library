@@ -6,6 +6,11 @@ export namespace EventType {
     const RESIZE: string;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A content-aware textarea control that grows and shrinks
  * automatically. This implementation extends {@link Control}.
  * This code is inspired by Dojo Dijit's Textarea implementation with

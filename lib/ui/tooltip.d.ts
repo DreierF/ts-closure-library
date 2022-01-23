@@ -58,6 +58,11 @@ export namespace State {
     const UPDATING: number;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Tooltip widget implementation.
  *
  * @see ../demos/tooltip.html

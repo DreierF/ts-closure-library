@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Popup Color Picker implementation.  This is intended to be
  * less general than ColorPicker and presents a default set of colors
  * that CCC apps currently use in their color pickers.

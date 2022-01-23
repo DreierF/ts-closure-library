@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A base menu class that supports key and mouse events. The menu
  * can be bound to an existing HTML structure or can generate its own DOM.
  *
@@ -184,6 +189,11 @@ export namespace Menu {
     export { CSS_CLASS };
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A class for representing items in menus.
  * @see Menu
  *
@@ -278,6 +288,11 @@ export namespace MenuItem {
     const MNEMONIC_WRAPPER_CLASS_: string;
     const ACCELERATOR_CLASS: string;
 }
+/**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 /**
  * @fileoverview Renderer for {@link Menu}s.
  */

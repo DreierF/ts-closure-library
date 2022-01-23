@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A control for representing a palette of colors, that the user
  * can highlight or select via the keyboard or the mouse.
  */

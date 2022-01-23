@@ -9,6 +9,11 @@ export namespace EventType {
     const HIDE: string;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Definition of the PopupBase class.
  */
 /**

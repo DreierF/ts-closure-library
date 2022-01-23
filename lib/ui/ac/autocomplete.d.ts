@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Gmail-like AutoComplete logic.
  *
  * @see ../../demos/autocomplete-basic.html

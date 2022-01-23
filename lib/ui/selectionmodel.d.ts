@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Single-selection model implemenation.
  *
  * TODO(attila): Add keyboard & mouse event hooks?

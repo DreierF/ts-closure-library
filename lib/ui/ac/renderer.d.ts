@@ -30,6 +30,11 @@ export class CustomRenderer {
     renderRow(row: any | null, token: string, node: Node | null): void;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Class for rendering the results of an auto complete and
  * allow the user to select an row.
  */

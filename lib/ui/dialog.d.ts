@@ -234,6 +234,11 @@ export namespace DefaultButtons {
     export { CONTINUE_2 as CONTINUE };
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Class for showing simple modal dialog boxes.
  *
  * TODO(user):

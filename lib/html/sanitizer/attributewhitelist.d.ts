@@ -39,9 +39,13 @@ export let AttributeWhitelist: {
     '* ARIA-CHECKED': boolean;
     '* ARIA-COLCOUNT': boolean;
     '* ARIA-COLINDEX': boolean;
+    '* ARIA-CONTROLS': boolean;
     '* ARIA-DESCRIBEDBY': boolean;
     '* ARIA-DISABLED': boolean;
+    '* ARIA-EXPANDED': boolean;
     '* ARIA-GOOG-EDITABLE': boolean;
+    '* ARIA-HASPOPUP': boolean;
+    '* ARIA-HIDDEN': boolean;
     '* ARIA-LABEL': boolean;
     '* ARIA-LABELLEDBY': boolean;
     '* ARIA-MULTILINE': boolean;

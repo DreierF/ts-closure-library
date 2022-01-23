@@ -8,6 +8,11 @@ export namespace Offset {
     const UP: number;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Provides the typeahead functionality for the tree class.
  */
 /**

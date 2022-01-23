@@ -1,5 +1,10 @@
 export { UiMap as Map };
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Datastructure: Hash Map.
  *
  * This file provides a goog.structs.Map interface based on native Map.

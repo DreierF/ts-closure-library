@@ -20,6 +20,11 @@ export namespace Format {
     const COMPACT_LONG: number;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Number format/parse library with locale support.
  */
 /**

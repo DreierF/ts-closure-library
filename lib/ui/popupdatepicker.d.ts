@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Popup Date Picker implementation.  Pairs a Ui_DatePicker
  * with a UiPopup allowing the DatePicker to be attached to elements.
  *

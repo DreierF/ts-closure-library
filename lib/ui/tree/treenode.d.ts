@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Definition of the BaseNode class.
  *
  *
@@ -503,6 +508,11 @@ export namespace EventType {
     const BEFORE_COLLAPSE: string;
     const COLLAPSE: string;
 }
+/**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 /**
  * @fileoverview Definition of the TreeNode class.
  *

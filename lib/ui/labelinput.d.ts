@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview This behavior is applied to a text input and it shows a text
  * message inside the element if the user hasn't entered any text.
  *

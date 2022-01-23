@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A menu class for showing popups.  A single popup can be
  * attached to multiple anchor points.  The menu will try to reposition itself
  * if it goes outside the viewport.

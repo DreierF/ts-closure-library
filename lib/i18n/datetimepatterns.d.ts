@@ -4,6 +4,11 @@
  */
 export let DateTimePatterns: DateTimePatternsType;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Extended date/time patterns.
  *
  * File generated from CLDR ver. 36

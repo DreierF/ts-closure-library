@@ -7,6 +7,11 @@ export namespace EventType {
     const SORT: string;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A table sorting decorator.
  *
  * @see ../demos/tablesorter.html

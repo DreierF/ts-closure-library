@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Implementation of a range model. This is an implementation of
  * the BoundedRangeModel as described by Java at
  * http://java.sun.com/javase/6/docs/api/javax/swing/BoundedRangeModel.html.

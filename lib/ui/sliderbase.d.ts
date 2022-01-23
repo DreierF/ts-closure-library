@@ -23,6 +23,11 @@ export namespace Orientation {
     const HORIZONTAL: string;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Implementation of a basic slider control.
  *
  * Models a control that allows to select a sub-range within a given

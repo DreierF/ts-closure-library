@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview The renderer interface for {@link goog.ui.DatePicker}.
  *
  * @see ../demos/datepicker.html

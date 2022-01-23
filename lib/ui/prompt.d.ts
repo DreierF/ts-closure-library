@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview DHTML prompt to replace javascript's prompt().
  *
  * @see ../demos/prompt.html

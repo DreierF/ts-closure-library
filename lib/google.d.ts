@@ -176,7 +176,6 @@ export function createTrustedTypesPolicy(name: string): any | null;
 export function defineClass(superClass: Function | null, def: defineClass.ClassDescriptor): Function;
 export namespace defineClass {
     function createSealingConstructor_(ctr: Function, superClass: Function | null): Function;
-    function isUnsealable_(ctr: Function | null): boolean;
     const OBJECT_PROTOTYPE_FIELDS_: Array<string>;
     function applyProperties_(target: any, source: any): void;
     type ClassDescriptor = {
@@ -360,8 +359,8 @@ export function getScriptNonce(opt_window?: (Window | null) | undefined): string
 export function getUid(obj: any | null): number;
 /**
  * Evals JavaScript in the global scope.  In IE this uses execScript, other
- * browsers use window.eval. If window.eval does not evaluate in the
- * global scope (for example, in Safari), appends a script tag instead.
+ * browsers use window.eval. If window.eval does not evaluate,
+ * appends a script tag instead.
  * Throws an exception if neither execScript or eval is defined.
  * @param {string} script JavaScript string.
  */

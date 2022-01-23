@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Base class for UI controls such as buttons, menus, menu items,
  * toolbar buttons, etc.  The implementation is based on a generalized version
  * of {@link goog.ui.MenuItem}.
@@ -687,6 +692,11 @@ export namespace Control {
     export { IeMouseEventSequenceSimulator_ };
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Base class for control renderers.
  * TODO(attila):  If the renderer framework works well, pull it into Component.
  */
@@ -1097,6 +1107,11 @@ export function getDecorator(element: Element | null): Ui_Component | null;
  * @return {Ui_Component?} Component instance.
  */
 export function getDecoratorByClassName(className: string): Ui_Component | null;
+/**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 /**
  * @fileoverview Global renderer and decorator registry.
  */

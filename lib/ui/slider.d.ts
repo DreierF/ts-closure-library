@@ -14,6 +14,11 @@ export let Orientation: {
     HORIZONTAL: string;
 };
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A slider implementation that allows to select a value within a
  * range by dragging a thumb. The selected value is exposed through getValue().
  *
