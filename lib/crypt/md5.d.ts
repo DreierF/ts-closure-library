@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview MD5 cryptographic hash.
  * Implementation of http://tools.ietf.org/html/rfc1321 with common
  * optimizations and tweaks (see http://en.wikipedia.org/wiki/MD5).

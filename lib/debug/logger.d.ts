@@ -132,6 +132,11 @@ export namespace LogManager {
  */
 export type Loggable = string | (() => string);
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Definition of the Logger class. Please minimize dependencies
  * this file has on other closure classes as any dependency it takes won't be
  * able to use the logging infrastructure.

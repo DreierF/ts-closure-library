@@ -12,6 +12,11 @@ export class AnimationParallelQueue extends AnimationQueue {
     private finishedCounter_;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A class which automatically plays through a queue of
  * animations.  AnimationParallelQueue and AnimationSerialQueue provide
  * specific implementations of the abstract class AnimationQueue.

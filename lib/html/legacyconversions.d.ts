@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Transitional utilities to unsafely trust random strings as
  * google.html types. Intended for temporary use when upgrading a library that
  * used to accept plain strings to use safe types, but where it's not

@@ -8,6 +8,11 @@ export namespace State {
     const PLAYING: number;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview An abstract base class for transitions. This is a simple
  * interface that allows for playing, pausing and stopping an animation. It adds
  * a simple event model, and animation status.

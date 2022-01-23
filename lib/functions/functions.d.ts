@@ -54,6 +54,11 @@ export function cacheReturnValue<T>(fn: () => T): () => T;
  */
 export function compose<T>(fn: (...arg0: unknown[]) => T, ...args: Function[]): (...arg0: unknown[]) => T;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Utilities for creating functions. Loosely inspired by these
  * java classes from the Guava library:
  * com.google.common.base.Functions

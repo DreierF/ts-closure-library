@@ -285,6 +285,11 @@ export function getValueByKeys(obj: any, ...args: (string | number | ArrayLike<s
  */
 export function getValues<T = unknown>(obj: Record<string, T> | ArrayLike<T> | object): T[];
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Utilities for manipulating objects/maps/hashes.
  */
 /**

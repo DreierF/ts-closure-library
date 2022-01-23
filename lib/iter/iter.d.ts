@@ -4,6 +4,11 @@ export type Iterable = {
     __iterator__: any;
 };
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Python style iteration utilities.
  */
 /**

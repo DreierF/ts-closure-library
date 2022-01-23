@@ -11,6 +11,11 @@ export function findFirstEmail(text: string): string;
  */
 export function findFirstUrl(text: string): string;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Utility function for linkifying text.
  */
 /**

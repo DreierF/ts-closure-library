@@ -226,6 +226,11 @@ export class QueryData {
     extend(...args: any[]): void;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Class for parsing and formatting URIs.
  *
  * Use Uri(string) to parse a URI string.  Use Uri.create(...) to

@@ -1,5 +1,10 @@
 export { debug_Error as Error };
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Provides a base class for custom Error objects such that the
  * stack is correctly maintained.
  *

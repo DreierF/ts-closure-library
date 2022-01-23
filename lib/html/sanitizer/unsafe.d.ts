@@ -27,6 +27,11 @@
  */
 export function alsoAllowAttributes(justification: Const, builder: Builder, attrs: Array<(string | HtmlSanitizerAttributePolicy)>): Builder;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Potentially unsafe API for the HTML sanitizer.
  *
  * The HTML sanitizer enforces a default a safe policy, and also limits how the

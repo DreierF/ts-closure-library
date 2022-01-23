@@ -23,10 +23,6 @@ export const ASSUME_EDGE: boolean;
  */
 export const ASSUME_GECKO: boolean;
 /**
- * @type {boolean} Whether the user agent is running on Go2Phone.
- */
-export const ASSUME_GO2PHONE: boolean;
-/**
  * @fileoverview Rendering engine detection.
  * @see <a href="http://www.useragentstring.com/">User agent strings</a>
  * For information on the browser brand (such as Safari versus Chrome), see
@@ -116,11 +112,6 @@ export let EDGE_OR_IE: boolean;
  * @type {boolean}
  */
 export let GECKO: boolean;
-/**
- * Whether the user agent is running on Go2Phone.
- * @type {boolean}
- */
-export let GO2PHONE: boolean;
 /**
  * Whether the user agent is Internet Explorer.
  * @type {boolean}

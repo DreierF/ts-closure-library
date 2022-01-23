@@ -7,6 +7,11 @@
  */
 export let WORD_BREAK_HTML: string;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Provides utility functions for formatting strings, numbers etc.
  */
 /**

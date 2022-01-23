@@ -1,6 +1,11 @@
 /** @type {boolean} Whether to force "sloppy" stack building. */
 export const FORCE_SLOPPY_STACKS: boolean;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Logging and debugging utilities.
  *
  * @see ../demos/debug.html

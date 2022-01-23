@@ -1,5 +1,10 @@
 export type DateLike = Date | date_Date;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Typedefs for working with dates.
  */
 /**

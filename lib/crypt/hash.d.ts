@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Abstract cryptographic hash interface.
  *
  * See goog.crypt.Sha1 and goog.crypt.Md5 for sample implementations.

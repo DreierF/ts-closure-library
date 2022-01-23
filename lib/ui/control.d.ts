@@ -1104,13 +1104,13 @@ export function getDecoratorByClassName(className: string): Ui_Component | null;
  * Given a {@link Ui_Component} constructor, returns an instance of its
  * default renderer.  If the default renderer is a singleton, returns the
  * singleton instance; otherwise returns a new instance of the renderer class.
- * @param {?Function} componentCtor Component constructor function (for example
+ * @param {!Function} componentCtor Component constructor function (for example
  *     `goog.ui.Button`).
- * @return {ControlRenderer?} Renderer instance (for example the
+ * @return {?ControlRenderer} Renderer instance (for example the
  *     singleton instance of `goog.ui.ButtonRenderer`), or null if
  *     no default renderer was found.
  */
-export function getDefaultRenderer(componentCtor: Function | null): ControlRenderer<any> | null;
+export function getDefaultRenderer(componentCtor: Function): ControlRenderer<any> | null;
 /**
  * Resets the global renderer and decorator registry.
  */

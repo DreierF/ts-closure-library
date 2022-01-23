@@ -28,10 +28,6 @@ export function isChromeOS(): boolean;
  */
 export function isChromecast(): boolean;
 /**
- * @return {boolean} Whether the platform is Go2Phone.
- */
-export function isGo2Phone(): boolean;
-/**
  * @return {boolean} Whether the platform is iOS.
  */
 export function isIos(): boolean;

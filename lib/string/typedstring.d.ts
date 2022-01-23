@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * Wrapper for strings that conform to a data type or language.
  *
  * Implementations of this interface are wrappers for strings, and typically

@@ -35,6 +35,11 @@ export let Hsv: any;
  */
 export type Rgb = number[];
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Utilities related to color and color conversion.
  */
 /**

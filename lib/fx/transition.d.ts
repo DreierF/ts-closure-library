@@ -12,6 +12,11 @@ export namespace EventType {
     const PAUSE: string;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview An interface for transition animation. This is a simple
  * interface that allows for playing and stopping a transition. It adds
  * a simple event model with BEGIN and END event.

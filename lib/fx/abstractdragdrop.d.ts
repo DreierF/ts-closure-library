@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Abstract Base Class for Drag and Drop.
  *
  * Provides functionality for implementing drag and drop classes. Also provides

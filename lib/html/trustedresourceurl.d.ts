@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview The TrustedResourceUrl type and its builders.
  *
  * TODO(xtof): Link to document stating type contract.
@@ -149,6 +154,23 @@ export class TrustedResourceUrl implements DirectionalString, TypedString {
      */
     static fromConstants(parts: Array<Const>): TrustedResourceUrl;
     /**
+     * Creates a TrustedResourceUrl object by generating a Blob from a SafeScript
+     * object and then calling createObjectURL with that blob.
+     *
+     * SafeScript objects are trusted to contain executable JavaScript code.
+     *
+     * Caller must call fsurl.revokeObjectUrl() on the unwrapped url to
+     * release the underlying blob.
+     *
+     * Throws if browser doesn't support blob construction.
+     *
+     * @param {!SafeScript} safeScript A script from which to create a
+     *     TrustedResourceUrl.
+     * @return {!TrustedResourceUrl} A TrustedResourceUrl object
+     *     initialized to a new blob URL.
+     */
+    static fromSafeScript(safeScript: SafeScript): TrustedResourceUrl;
+    /**
      * Stringifies the passed params to be used as either a search or hash field of
      * a URL.
      *
@@ -279,3 +301,4 @@ export namespace TrustedResourceUrl {
 import { DirectionalString } from "../i18n/bidi.js";
 import { TypedString } from "../string/typedstring.js";
 import { Const } from "../string/const.js";
+import { SafeScript } from "./safescript.js";

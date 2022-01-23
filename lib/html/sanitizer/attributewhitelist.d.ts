@@ -22,6 +22,11 @@ export let AttributeSanitizedWhitelist: {
     '* STYLE': boolean;
 };
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Contains the attribute whitelists for use in the Html
  * sanitizer.
  */

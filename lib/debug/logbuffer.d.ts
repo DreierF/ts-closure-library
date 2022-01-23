@@ -4,6 +4,11 @@
  */
 export const CAPACITY: number;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A buffer for log records. The purpose of this is to improve
  * logging performance by re-using old objects when the buffer becomes full and
  * to eliminate the need for each app to implement their own log buffer. The

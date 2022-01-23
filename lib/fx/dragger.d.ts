@@ -63,6 +63,11 @@ export class DragEvent extends EventsEvent {
     dragCanceled: boolean;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Drag Utilities.
  *
  * Provides extensible functionality for drag & drop behaviour.

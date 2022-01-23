@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Classes for doing animations and visual effects.
  *
  * (Based loosly on my animation code for 13thparallel.org, with extra

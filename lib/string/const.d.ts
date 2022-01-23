@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * Wrapper for compile-time-constant strings.
  *
  * Const is a wrapper for strings that can only be created from program

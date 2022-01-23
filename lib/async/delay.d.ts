@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Defines a class useful for handling functions that must be
  * invoked after a delay, especially when that delay is frequently restarted.
  * Examples include delaying before displaying a tooltip, menu hysteresis,

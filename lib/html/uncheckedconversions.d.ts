@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Unchecked conversions to create values of google.html types from
  * plain strings.  Use of these functions could potentially result in instances
  * of google.html types that violate their type contracts, and hence result in

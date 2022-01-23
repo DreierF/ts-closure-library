@@ -17,6 +17,11 @@ export class StopTraceDetail {
  */
 export let Trace: Trace_ | null;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Definition of the Tracer class and associated classes.
  *
  * @see ../demos/tracer.html

@@ -1,5 +1,10 @@
 export { structs_Set as Set };
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Datastructure: Set.
  *
  *

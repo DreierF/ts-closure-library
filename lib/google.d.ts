@@ -233,6 +233,7 @@ export function exportSymbol(publicPath: string, object: any, opt_objectToExport
  *
  * @param {string} name The namespace to forward declare in the form of
  *     "goog.package.part".
+ * @deprecated See go/noforwarddeclaration, Use `google.requireType` instead.
  */
 export function forwardDeclare(name: string): void;
 /**

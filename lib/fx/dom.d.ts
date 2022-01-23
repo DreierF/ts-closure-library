@@ -152,6 +152,11 @@ export class FadeOutAndHide extends Fade {
     constructor(element: Element | null, time: number, opt_acc?: Function | undefined);
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Predefined DHTML animations such as slide, resize and fade.
  *
  * @see ../demos/effects.html

@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview The SafeStyleSheet type and its builders.
  *
  * TODO(xtof): Link to document stating type contract.

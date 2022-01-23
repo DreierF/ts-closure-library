@@ -63,6 +63,11 @@ export function filter<T, S>(col: S, f: (this: T, arg1: unknown, arg2: unknown, 
  */
 export function forEach<T, S>(col: S, f: (this: T, arg1: unknown, arg2: unknown, arg3: S) => unknown, opt_obj?: T | undefined): void;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Generics method for collection-like classes and objects.
  *
  *

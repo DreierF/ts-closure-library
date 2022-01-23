@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Provides data persistence using HTML5 session storage
  * mechanism. Session storage must be available under window.sessionStorage,
  * see: http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute.

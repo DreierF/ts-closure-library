@@ -22,10 +22,6 @@ export let EventLike: any;
  * A base class for event objects, so that they can support preventDefault and
  * stopPropagation.
  *
- * @suppress {underscore} Several properties on this class are technically
- *     public, but referencing these properties outside this package is strongly
- *     discouraged.
- *
  *     this event. It has to implement the `EventTarget` interface
  *     declared at {@link http://developer.mozilla.org/en/DOM/EventTarget}.
  */
@@ -47,10 +43,6 @@ declare class events_Event {
     /**
      * A base class for event objects, so that they can support preventDefault and
      * stopPropagation.
-     *
-     * @suppress {underscore} Several properties on this class are technically
-     *     public, but referencing these properties outside this package is strongly
-     *     discouraged.
      *
      * @param {string|!EventId} type Event Type.
      * @param {Object=} opt_target Reference to the object that is the target of
@@ -79,9 +71,9 @@ declare class events_Event {
     /**
      * Whether to cancel the event in internal capture/bubble processing for IE.
      * @type {boolean}
-     * @public
+     * @private
      */
-    public propagationStopped_: boolean;
+    private propagationStopped_;
     /**
      * Whether the default action has been prevented.
      * This is a property to match the W3C specification at
@@ -92,11 +84,9 @@ declare class events_Event {
      */
     defaultPrevented: boolean;
     /**
-     * Return value for in internal capture/bubble processing for IE.
-     * @type {boolean}
-     * @public
+     * @return {boolean} true iff internal propagation has been stopped.
      */
-    public returnValue_: boolean;
+    hasPropagationStopped(): boolean;
     /**
      * Stops event propagation.
      */

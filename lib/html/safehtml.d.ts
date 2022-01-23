@@ -10,6 +10,11 @@ export const ENABLE_ERROR_MESSAGES: boolean;
  */
 export const SUPPORT_STYLE_ATTRIBUTE: boolean;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview The SafeHtml type and its builders.
  *
  * TODO(xtof): Link to document stating type contract.

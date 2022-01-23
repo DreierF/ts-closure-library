@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A timer class to which other classes and objects can listen on.
  * This is only an abstraction above `setInterval`.
  *

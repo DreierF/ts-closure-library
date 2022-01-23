@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A global registry for entry points into a program,
  * so that they can be instrumented. Each module should register their
  * entry points with this registry. Designed to be compiled out

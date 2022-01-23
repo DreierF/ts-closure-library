@@ -99,6 +99,11 @@ export function isEmptyOrWhitespace(str: string): boolean;
  */
 export function newLineToBr(str: string, opt_xml?: boolean | undefined): string;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview String functions called from Closure packages that couldn't
  * depend on each other. Outside Closure, use goog_strings function which
  * delegate to these.

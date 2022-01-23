@@ -13,6 +13,11 @@ export class InjectedDataSupplier {
     getData(): unknown;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Provides a soy renderer that allows registration of
  * injected data ("globals") that will be passed into the rendered
  * templates.

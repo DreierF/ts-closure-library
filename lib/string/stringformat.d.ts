@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Implementation of sprintf-like, python-%-operator-like,
  * .NET-String.Format-like functionality. Uses JS string's replace method to
  * extract format specifiers and sends those specifiers to a handler function,
