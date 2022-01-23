@@ -9,6 +9,11 @@
  */
 export function getVersion(): string;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Closure user agent platform detection.
  * @see <a href="http://www.useragentstring.com/">User agent strings</a>
  * For more information on browser brand, rendering engine, or device see the

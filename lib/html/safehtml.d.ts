@@ -125,6 +125,17 @@ export class SafeHtml implements DirectionalString, TypedString {
      */
     static from(textOrHtml: SafeHtml.TextOrHtml_): SafeHtml;
     /**
+     * Converts an arbitrary string into an HTML comment by HTML-escaping the
+     * contents and embedding the result between HTML comment markers.
+     *
+     * Escaping is needed because Internet Explorer supports conditional comments
+     * and so may render HTML markup within comments.
+     *
+     * @param {string} text
+     * @return {!SafeHtml}
+     */
+    static comment(text: string): SafeHtml;
+    /**
      * Creates a SafeHtml content consisting of a tag with optional attributes and
      * optional content.
      *

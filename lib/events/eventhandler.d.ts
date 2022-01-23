@@ -627,9 +627,9 @@ export class ListenableKey {
     static reserveKey(): number;
     /**
      * The source event target.
-     * @type {Object|Listenable|events_EventTarget}
+     * @type {?Object|?Listenable}
      */
-    src: any | Listenable | events_EventTarget;
+    src: (any | (Listenable | null)) | null;
     /**
      * The event type the listener is listening to.
      * @type {string|null}
@@ -1122,7 +1122,7 @@ export function getListener<EVENTOBJ = BrowserEvent>(src: (EventTarget | Listena
  * @param {?Object} obj Object to get listeners for.
  * @param {string|!EventId} type Event type.
  * @param {boolean} capture Capture phase?.
- * @return {Array<!Listener>} Array of listener objects.
+ * @return {!Array<!Listener>} Array of listener objects.
  */
 export function getListeners(obj: any | null, type: string | EventId<any>, capture: boolean): Array<Listener>;
 /**

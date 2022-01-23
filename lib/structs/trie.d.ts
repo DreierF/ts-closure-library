@@ -99,12 +99,13 @@ export class Trie<VALUE> {
      *     prefixes of the key are retrieved.
      * @param {?number=} opt_keyStartIndex Optional position in key to start lookup
      *     from. Defaults to 0 if not specified.
-     * @return {!Object<string, VALUE>} Map of end index of matching prefixes and
-     *     corresponding values. Empty if no match found.
+     * @return {!Object<VALUE>} Map of end index of matching prefixes and
+     *     corresponding values. Empty if no match found.  Note that the key is the
+     *     index of the final character of the entry, rather than the length, so
+     *     entries with a single character will clobber an empty-string entry with
+     *     key '0'.
      */
-    getKeyAndPrefixes(key: string, opt_keyStartIndex?: (number | null) | undefined): {
-        [x: string]: VALUE;
-    };
+    getKeyAndPrefixes(key: string, opt_keyStartIndex?: (number | null) | undefined): any;
     /**
      * Gets the values of the trie.  Not returned in any reliable order.  O(N) where
      * N is the number of nodes in the trie.  Calls getValuesInternal_.

@@ -97,6 +97,12 @@ export class SafeUrl implements DirectionalString, TypedString {
      */
     static fromBlob(blob: Blob): SafeUrl;
     /**
+     * Creates a SafeUrl wrapping a blob URL created for a MediaSource.
+     * @param {!MediaSource} mediaSource
+     * @return {!SafeUrl} The blob URL.
+     */
+    static fromMediaSource(mediaSource: MediaSource): SafeUrl;
+    /**
      * Creates a SafeUrl wrapping a data: URL, after validating it matches a
      * known-safe audio, image or video MIME type.
      *
@@ -335,7 +341,7 @@ export class SafeUrl implements DirectionalString, TypedString {
      */
     private SAFE_URL_TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_;
     /**
-     * Returns this SafeUrl's value a string.
+     * Returns this SafeUrl's value as a string.
      *
      * IMPORTANT: In code where it is security relevant that an object's type is
      * indeed `SafeUrl`, use `SafeUrl.unwrap` instead of this

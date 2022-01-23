@@ -45,10 +45,10 @@ export class MenuItemRenderer extends ControlRenderer<UiMenuItem> {
      * containing the menu item's contents.
      * @param {?ControlContent} content Menu item contents.
      * @param {?DomHelper} dom DOM helper for document interaction.
-     * @return {?Element} Menu item content element.
+     * @return {!Element} Menu item content element.
      * @protected
      */
-    protected createContent(content: ControlContent | null, dom: DomHelper | null): Element | null;
+    protected createContent(content: ControlContent | null, dom: DomHelper | null): Element;
     /**
      * Enables/disables radio button semantics on the menu item.
      * @param {?Control} item Menu item to update.

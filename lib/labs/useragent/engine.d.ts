@@ -12,6 +12,11 @@ export function isEdge(): boolean;
  */
 export function isGecko(): boolean;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Closure user agent detection.
  * @see http://en.wikipedia.org/wiki/User_agent
  * For more information on browser brand, platform, or device see the other

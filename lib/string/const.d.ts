@@ -106,7 +106,7 @@ export class Const implements TypedString {
      */
     private STRING_CONST_TYPE_MARKER__GOOG_STRING_SECURITY_PRIVATE_;
     /**
-     * Returns this Const's value a string.
+     * Returns this Const's value as a string.
      *
      * IMPORTANT: In code where it is security-relevant that an object's type is
      * indeed `Const`, use `Const.unwrap`

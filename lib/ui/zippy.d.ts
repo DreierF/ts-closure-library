@@ -126,9 +126,9 @@ export class Zippy extends EventsEventTarget {
      */
     getAriaRole(): Role | null;
     /**
-     * @return {?HTMLElement} The content element.
+     * @return {!HTMLElement} The content element.
      */
-    getContentElement(): HTMLElement | null;
+    getContentElement(): HTMLElement;
     /**
      * @return {?Element} The visible header element.
      */

@@ -402,6 +402,7 @@ export function inherits(childCtor: Function, parentCtor: Function): void;
  * Returns true if the specified value is an array.
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is an array.
+ * @deprecated Use Array.isArray instead.
  */
 export function isArray(val: unknown): val is unknown[];
 /**

@@ -80,6 +80,7 @@ export namespace CurrencyInfoTier2 {
     const BYN: (string | number)[];
     const BYR: (string | number)[];
     const BZD: (string | number)[];
+    const CLF: (string | number)[];
     const CNH: (string | number)[];
     const CUC: (string | number)[];
     const CUP: (string | number)[];
