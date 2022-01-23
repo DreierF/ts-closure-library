@@ -274,6 +274,14 @@ export function setImageSrc(imageElement: HTMLImageElement, url: string | Html_S
  */
 export function setInnerHtml(elem: Element, html: Html_SafeHtml): void;
 /**
+ * Assigns constant HTML to an element's innerHTML property.
+ * @param {!Element} element The element whose innerHTML is to be assigned to.
+ * @param {!Const} constHtml The known-safe HTML to assign.
+ * @throws {!Error} If called with one of these tags: math, script, style, svg,
+ *     template.
+ */
+export function setInnerHtmlFromConstant(element: Element, constHtml: Const): void;
+/**
  * Safely assigns a URL to an input element's formaction property.
  *
  * If url is of type Html_SafeUrl, its value is unwrapped and assigned to

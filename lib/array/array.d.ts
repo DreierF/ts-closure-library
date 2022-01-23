@@ -240,15 +240,17 @@ export function defaultCompareEquality(a: any, b: any): boolean;
  * have the same length and their corresponding elements are equal according to
  * the comparison function.
  *
- * @param {ArrayLike<?>} arr1 The first array to compare.
- * @param {ArrayLike<?>} arr2 The second array to compare.
- * @param {Function=} opt_equalsFn Optional comparison function.
+ * @param {ArrayLike<A>} arr1 The first array to compare.
+ * @param {ArrayLike<B>} arr2 The second array to compare.
+ * @param {?function(A,B):boolean=} opt_equalsFn Optional comparison function.
  *     Should take 2 arguments to compare, and return true if the arguments
  *     are equal. Defaults to {@link defaultCompareEquality} which
  *     compares the elements using the built-in '===' operator.
  * @return {boolean} Whether the two arrays are equal.
+ * @template A
+ * @template B
  */
-export function equals(arr1: ArrayLike<unknown>, arr2: ArrayLike<unknown>, opt_equalsFn?: Function | undefined): boolean;
+export function equals<A, B>(arr1: ArrayLike<A>, arr2: ArrayLike<B>, opt_equalsFn?: ((arg0: A, arg1: B) => boolean) | null | undefined): boolean;
 /**
  * Call f for each element of an array. If all calls return true, every()
  * returns true. If any call returns false, every() returns false and

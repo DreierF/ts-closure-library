@@ -55,11 +55,15 @@ export function isSupported(opt_domHelper?: DomHelper | undefined): boolean;
  * @param {!Element} element The element to put full screen.
  * @param {!FullscreenOptions=} opt_options Options for full
  *     screen. This field will be ignored on older browsers.
+   @return {!Promise<undefined>|undefined} A promise in later versions of Chrome
+       and undefined otherwise.
  */
-export function requestFullScreen(element: Element, opt_options?: FullscreenOptions | undefined): void;
+export function requestFullScreen(element: Element, opt_options?: FullscreenOptions | undefined): Promise<undefined> | undefined;
 /**
  * Requests putting the element in full screen with full keyboard access.
  * @param {!Element} element The element to put full screen.
+   @return {!Promise<undefined>|undefined} A promise in later versions of Chrome
+       and undefined otherwise.
  */
-export function requestFullScreenWithKeys(element: Element): void;
+export function requestFullScreenWithKeys(element: Element): Promise<undefined> | undefined;
 import { DomHelper } from "./dom.js";

@@ -26,6 +26,9 @@
  * initialize with non-empty values. Anyone else calling constructor will
  * get default instance with empty value.
  *
+ * Creating TrustedResourceUrl objects HAS SIDE-EFFECTS due to calling
+ * Trusted Types Web API.
+ *
  * @see TrustedResourceUrl#fromConstant
  * @final
  * @class
@@ -212,6 +215,9 @@ export class TrustedResourceUrl implements DirectionalString, TypedString {
      * is organized in a way that only methods from that file can call it and
      * initialize with non-empty values. Anyone else calling constructor will
      * get default instance with empty value.
+     *
+     * Creating TrustedResourceUrl objects HAS SIDE-EFFECTS due to calling
+     * Trusted Types Web API.
      *
      * @see TrustedResourceUrl#fromConstant
      * @param {!Object=} opt_token package-internal implementation detail.

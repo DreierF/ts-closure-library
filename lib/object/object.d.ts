@@ -303,6 +303,7 @@ export function getValues<T = unknown>(obj: Record<string, T> | ArrayLike<T> | o
  * @param {*} v2 The second value to compare.
  * @return {boolean} Whether two values are not observably distinguishable.
  * @see http://wiki.ecmascript.org/doku.php?id=harmony:egal
+ * @deprecated Use Object.is
  */
 export function is(v: any, v2: any): boolean;
 /**

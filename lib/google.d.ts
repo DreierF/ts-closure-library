@@ -74,15 +74,6 @@ export const LOCALE: string;
  */
 export const SEAL_CLASS_INSTANCES: boolean;
 /**
- * @type {boolean} Whether a project is expected to be running in strict mode.
- *
- * This define can be used to trigger alternate implementations compatible with
- * running in EcmaScript Strict mode or warn about unavailable functionality.
- * @see https://goo.gl/PudQ4y
- *
- */
-export const STRICT_MODE_COMPATIBLE: boolean;
-/**
  * @type {boolean} Whether this code is running on trusted sites.
  *
  * On untrusted sites, several native functions can be defined or overridden by
@@ -122,7 +113,7 @@ export const TRUSTED_TYPES_POLICY_NAME: string;
  *     invoked as a method of.
  * @template T
  * @suppress {deprecated} See above.
- * @deprecated Use an arrow function or fn.bind(selfObj[, args])
+ * @deprecated use `=> {}` or Function.prototype.bind instead.
  */
 export function bind<T>(fn: ((this: T, ...arg1: any[]) => any) | null, selfObj: T, ...args: any[]): Function;
 /**
@@ -171,7 +162,7 @@ export function createTrustedTypesPolicy(name: string): any | null;
  *        be added.
  *     all other properties are added to the prototype.
  * @return {!Function} The class constructor.
- * @deprecated Use ES6 class syntax instead.
+ * @deprecated Use ECMAScript class syntax instead.
  */
 export function defineClass(superClass: Function | null, def: defineClass.ClassDescriptor): Function;
 export namespace defineClass {
@@ -268,14 +259,6 @@ export function forwardDeclare(name: string): void;
  */
 export function getCssName(className: string, opt_modifier?: string | undefined): string;
 /**
- * Adds a hash code field to an object. The hash code is unique for the
- * given object.
- * @param {?Object} obj The object to get the hash code for.
- * @return {number} The hash code for the object.
- * @deprecated Use getUid instead.
- */
-export function getHashCode(obj: any | null): number;
-/**
  * Gets a localized message.
  *
  * This function is a compiler primitive. If you give the compiler a localized
@@ -358,9 +341,8 @@ export function getScriptNonce(opt_window?: (Window | null) | undefined): string
  */
 export function getUid(obj: any | null): number;
 /**
- * Evals JavaScript in the global scope.  In IE this uses execScript, other
- * browsers use window.eval. If window.eval does not evaluate,
- * appends a script tag instead.
+ * Evals JavaScript in the global scope.
+ *
  * Throws an exception if neither execScript or eval is defined.
  * @param {string} script JavaScript string.
  */
@@ -395,6 +377,7 @@ export function hasUid(obj: any): boolean;
  * @param {!Function} parentCtor Parent class.
  * @suppress {strictMissingProperties} superClass_ and base is not defined on
  *    Function.
+ * @deprecated Use ECMAScript class syntax instead.
  */
 export function inherits(childCtor: Function, parentCtor: Function): void;
 /**
@@ -425,6 +408,7 @@ export function isDateLike(val: unknown): boolean;
  * Returns true if the specified value is a function.
  * @param {?} val Variable to test.
  * @return {boolean} Whether variable is a function.
+ * @deprecated use "typeof val === 'function'" instead.
  */
 export function isFunction(val: unknown): boolean;
 /**
@@ -459,6 +443,7 @@ export let now: () => number;
 /**
  * Null function used for default values of callbacks, etc.
  * @return {void} Nothing.
+ * @deprecated use '()=>{}' or 'function(){}' instead.
  */
 export function nullFunction(): void;
 /**
@@ -475,13 +460,6 @@ export function nullFunction(): void;
  *     was invoked as a method of.
  */
 export function partial(fn: Function | null, ...args: any[]): Function;
-/**
- * Removes the unique ID from an object. This is useful if the object was
- * previously mutated using `getUid` in which case the mutation is
- * undone.
- * @param {?Object} obj The object to remove the unique ID field from.
- */
-export function removeHashCode(obj: any | null): void;
 /**
  * Removes the unique ID from an object. This is useful if the object was
  * previously mutated using `getUid` in which case the mutation is

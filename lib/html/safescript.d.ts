@@ -42,6 +42,9 @@
  * such as "&lt;" are not allowed. See
  * http://www.w3.org/TR/html5/scripting-1.html#restrictions-for-contents-of-script-elements.
  *
+ * Creating SafeScript objects HAS SIDE-EFFECTS due to calling Trusted Types Web
+ * API.
+ *
  * @see SafeScript#fromConstant
  * @final
  * @class
