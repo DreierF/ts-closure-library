@@ -22,6 +22,9 @@ export let Iterable: any;
  * It is recommended to always use the helper functions to iterate over the
  * iterator or in case you are only targeting JavaScript 1.7 for in loops.
  * @template VALUE
+ * @deprecated Use objects implementing JavaScript iterable protocol introduced
+ *     in ES6.
+ *     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
  */
 export class Iterator<VALUE> {
     /**

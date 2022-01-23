@@ -1,3 +1,7 @@
+/**
+ * @type {boolean} TODO(user): Remove this hack once bug is resolved.
+ */
+export const CHECK_FOR_THROWN_EVENT: boolean;
 /** @type {boolean} Whether to force "sloppy" stack building. */
 export const FORCE_SLOPPY_STACKS: boolean;
 /**

@@ -171,6 +171,14 @@ export function findKey<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: string, a
  */
 export function findValue<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: string, arg3: any) => boolean, opt_this?: T | undefined): V;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @fileoverview Utilities for manipulating objects/maps/hashes.
+ */
+/**
  * Calls a function for each element in an object/map/hash.
  *
  * @param {Object<K,V>} obj The object over which to iterate.
@@ -284,28 +292,6 @@ export function getValueByKeys(obj: any, ...args: (string | number | ArrayLike<s
  * @deprecated Use Object.values(obj) instead
  */
 export function getValues<T = unknown>(obj: Record<string, T> | ArrayLike<T> | object): T[];
-/**
- * @license
- * Copyright The Closure Library Authors.
- * SPDX-License-Identifier: Apache-2.0
- */
-/**
- * @fileoverview Utilities for manipulating objects/maps/hashes.
- */
-/**
- * Whether two values are not observably distinguishable. This
- * correctly detects that 0 is not the same as -0 and two NaNs are
- * practically equivalent.
- *
- * The implementation is as suggested by harmony:egal proposal.
- *
- * @param {*} v The first value to compare.
- * @param {*} v2 The second value to compare.
- * @return {boolean} Whether two values are not observably distinguishable.
- * @see http://wiki.ecmascript.org/doku.php?id=harmony:egal
- * @deprecated Use Object.is
- */
-export function is(v: any, v2: any): boolean;
 /**
  * Whether the object/map/hash is empty.
  *

@@ -201,10 +201,10 @@ export function exportProperty(object: any | null, publicName: string, symbol: a
  *
  * @param {string} publicPath Unobfuscated name to export.
  * @param {*} object Object the name should point to.
- * @param {Object=} opt_objectToExportTo The object to add the path to; default
+ * @param {?Object=} objectToExportTo The object to add the path to; default
  *     is window.
  */
-export function exportSymbol(publicPath: string, object: any, opt_objectToExportTo?: any | undefined): void;
+export function exportSymbol(publicPath: string, object: any, objectToExportTo?: (any | null) | undefined): void;
 /**
  * Forward declares a symbol. This is an indication to the compiler that the
  * symbol may be used in the source yet is not required and may not be provided
@@ -381,13 +381,6 @@ export function hasUid(obj: any): boolean;
  */
 export function inherits(childCtor: Function, parentCtor: Function): void;
 /**
- * Returns true if the specified value is an array.
- * @param {?} val Variable to test.
- * @return {boolean} Whether variable is an array.
- * @deprecated Use Array.isArray instead.
- */
-export function isArray(val: unknown): val is unknown[];
-/**
  * Returns true if the object looks like an array. To qualify as array like
  * the value needs to be either a NodeList or an object with a Number length
  * property. Note that for this function neither strings nor functions are
@@ -439,7 +432,7 @@ export function mixin(target: any | null, source: any | null): void;
  *     between midnight, January 1, 1970 and the current time.
  * @deprecated Use Date.now
  */
-export let now: () => number;
+export function now(): number;
 /**
  * Null function used for default values of callbacks, etc.
  * @return {void} Nothing.

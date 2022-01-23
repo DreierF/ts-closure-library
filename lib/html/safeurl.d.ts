@@ -111,13 +111,24 @@ export class SafeUrl implements DirectionalString, TypedString {
      */
     static fromMediaSource(mediaSource: MediaSource): SafeUrl;
     /**
-     * Creates a SafeUrl wrapping a data: URL, after validating it matches a
-     * known-safe media MIME type.
+     * Attempts to create a SafeUrl wrapping a `data:` URL, after validating it
+     * matches a known-safe media MIME type. If it doesn't match, return `null`.
      *
      * @param {string} dataUrl A valid base64 data URL with one of the whitelisted
      *     media MIME types.
-     * @return {!SafeUrl} A matching safe URL, or {@link INNOCUOUS_STRING}
-     *     wrapped as a SafeUrl if it does not pass.
+     * @return {?SafeUrl} A matching safe URL, or `null` if it does not
+     *     pass.
+     */
+    static tryFromDataUrl(dataUrl: string): SafeUrl | null;
+    /**
+     * Creates a SafeUrl wrapping a `data:` URL, after validating it matches a
+     * known-safe media MIME type. If it doesn't match, return
+     * `SafeUrl.INNOCUOUS_URL`.
+     *
+     * @param {string} dataUrl A valid base64 data URL with one of the whitelisted
+     *     media MIME types.
+     * @return {!SafeUrl} A matching safe URL, or
+     *     `SafeUrl.INNOCUOUS_URL` if it does not pass.
      */
     static fromDataUrl(dataUrl: string): SafeUrl;
     /**
@@ -247,11 +258,27 @@ export class SafeUrl implements DirectionalString, TypedString {
      */
     static fromTrustedResourceUrl(trustedResourceUrl: Html_TrustedResourceUrl): SafeUrl;
     /**
-     * Creates a SafeUrl object from `url`. If `url` is a
-     * SafeUrl then it is simply returned. Otherwise the input string is
-     * validated to match a pattern of commonly used safe URLs.
+     * Attempts to create a SafeUrl object from `url`. The input string is validated
+     * to match a pattern of commonly used safe URLs. If validation fails, `null` is
+     * returned.
      *
-     * `url` may be a URL with the http, https, mailto or ftp scheme,
+     * `url` may be a URL with the `http:`, `https:`, `mailto:`, or `ftp:` scheme,
+     * or a relative URL (i.e., a URL without a scheme; specifically, a
+     * scheme-relative, absolute-path-relative, or path-relative URL).
+     *
+     * @see http://url.spec.whatwg.org/#concept-relative-url
+     * @param {string|!TypedString} url The URL to validate.
+     * @return {?SafeUrl} The validated URL, wrapped as a SafeUrl, or null
+     *     if validation fails.
+     */
+    static trySanitize(url: string | TypedString): SafeUrl | null;
+    /**
+     * Creates a SafeUrl object from `url`. If `url` is a
+     * `SafeUrl` then it is simply returned. Otherwise the input string is
+     * validated to match a pattern of commonly used safe URLs. If validation fails,
+     * `SafeUrl.INNOCUOUS_URL` is returned.
+     *
+     * `url` may be a URL with the `http:`, `https:`, `mailto:` or `ftp:` scheme,
      * or a relative URL (i.e., a URL without a scheme; specifically, a
      * scheme-relative, absolute-path-relative, or path-relative URL).
      *
@@ -262,7 +289,7 @@ export class SafeUrl implements DirectionalString, TypedString {
     static sanitize(url: string | TypedString): SafeUrl;
     /**
      * Creates a SafeUrl object from `url`. If `url` is a
-     * SafeUrl then it is simply returned. Otherwise the input string is
+     * `SafeUrl` then it is simply returned. Otherwise the input string is
      * validated to match a pattern of commonly used safe URLs.
      *
      * `url` may be a URL with the http, https, mailto or ftp scheme,
@@ -270,7 +297,7 @@ export class SafeUrl implements DirectionalString, TypedString {
      * scheme-relative, absolute-path-relative, or path-relative URL).
      *
      * This function asserts (using goog_asserts) that the URL matches this pattern.
-     * If it does not, in addition to failing the assert, an innocous URL will be
+     * If it does not, in addition to failing the assert, an innocuous URL will be
      * returned.
      *
      * @see http://url.spec.whatwg.org/#concept-relative-url
@@ -378,6 +405,7 @@ export namespace SafeUrl {
     export const INNOCUOUS_STRING: string;
     export { SAFE_URL_PATTERN_ as SAFE_URL_PATTERN };
     export const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
+    export const INNOCUOUS_URL: SafeUrl;
     export const ABOUT_BLANK: SafeUrl;
     export const CONSTRUCTOR_TOKEN_PRIVATE_: {};
 }

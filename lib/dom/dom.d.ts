@@ -398,6 +398,15 @@ export class DomHelper {
      */
     replaceNode(newNode: Node | null, oldNode: Node | null): void;
     /**
+     * Replaces child nodes of `target` with child nodes of `source`. This is
+     * roughly equivalent to `target.innerHTML = source.innerHTML` which is not
+     * compatible with Trusted Types.
+     * @param {?Node} target Node to clean and replace its children.
+     * @param {?Node} source Node to get the children from. The nodes will be cloned
+     *     so they will stay in source.
+     */
+    copyContents(target: Node | null, source: Node | null): void;
+    /**
      * Flattens an element. That is, removes it and replace it with its children.
      * @param {?Element} element The element to flatten.
      * @return {?Element|undefined} The original element, detached from the document
@@ -796,6 +805,15 @@ export function constHtmlToNode(...args: Const[]): Node;
  * @return {boolean} Whether the parent node contains the descendant node.
  */
 export function contains(parent: (Node | undefined) | null, descendant: (Node | undefined) | null): boolean;
+/**
+ * Replaces child nodes of `target` with child nodes of `source`. This is
+ * roughly equivalent to `target.innerHTML = source.innerHTML` which is not
+ * compatible with Trusted Types.
+ * @param {?Node} target Node to clean and replace its children.
+ * @param {?Node} source Node to get the children from. The nodes will be cloned
+ *     so they will stay in source.
+ */
+export function copyContents(target: Node | null, source: Node | null): void;
 /**
  * Returns a dom node with a set of attributes.  This function accepts varargs
  * for subsequent nodes to be added.  Subsequent nodes will be added to the
