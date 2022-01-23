@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Defines the TagName class. Its constants enumerate
  * all HTML tag names specified in either the W3C HTML 4.01 index of elements
  * or the HTML5.1 specification.

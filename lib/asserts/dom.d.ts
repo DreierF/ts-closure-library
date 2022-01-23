@@ -1,5 +1,10 @@
 type Include<T, U> = T extends U ? T : never;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * Checks if the value is a DOM Element if goog.asserts.ENABLE_ASSERTS is true.
  * @param {*} value The value to check.
  * @return {!Element} The value, likely to be a DOM Element when asserts are

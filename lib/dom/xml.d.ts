@@ -10,6 +10,11 @@ export let ACTIVEX_SUPPORT: boolean;
  */
 export let MAX_ELEMENT_DEPTH: number;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview
  * XML utilities.
  */

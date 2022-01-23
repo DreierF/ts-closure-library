@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Defines a 2-element vector class that can be used for
  * coordinate math, useful for animation systems and point manipulation.
  *

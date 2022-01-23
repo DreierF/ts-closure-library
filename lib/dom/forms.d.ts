@@ -80,6 +80,11 @@ export function setValue(el: Element | null, opt_value?: any | undefined): void;
  */
 export function submitFormDataInNewWindow(actionUri: string, method: string, formData: StructsMap<string, Array<string>>): boolean;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Utilities for manipulating a form and elements.
  *
  * @suppress {strictMissingProperties}

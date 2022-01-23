@@ -23,6 +23,11 @@ export class AssertionError extends DebugError {
  */
 export function DEFAULT_ERROR_HANDLER(e: AssertionError): void;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Utilities to check the preconditions, postconditions and
  * invariants runtime.
  *

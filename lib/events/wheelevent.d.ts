@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview This class aims to smooth out inconsistencies between browser
  * handling of wheel events by providing an event that is similar to that
  * defined in the standard, but also easier to consume.

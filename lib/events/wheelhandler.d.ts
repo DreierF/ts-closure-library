@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview This event wrapper will dispatch an event when the user uses
  * the wheel on an element. The event provides details of the unit type (pixel /
  * line / page) and deltas in those units in up to 3 dimensions. Additionally,

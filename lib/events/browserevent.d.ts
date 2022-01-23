@@ -17,6 +17,11 @@ export namespace PointerType {
     const TOUCH: string;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A patched, standardized event object for browser events.
  *
  * <pre>

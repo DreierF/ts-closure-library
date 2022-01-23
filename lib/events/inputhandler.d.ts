@@ -6,6 +6,11 @@ export namespace EventType {
     const INPUT: string;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview An object that encapsulates text changed events for textareas
  * and input element of type text and password. The event occurs after the value
  * has been changed. The event does not occur if value was changed

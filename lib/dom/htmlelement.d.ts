@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * This subclass of HTMLElement is used when only a HTMLElement is possible and
  * not any of its subclasses. Normally, a type can refer to an instance of
  * itself or an instance of any subtype. More concretely, if HTMLElement is used

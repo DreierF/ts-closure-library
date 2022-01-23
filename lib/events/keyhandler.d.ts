@@ -29,6 +29,11 @@ export class KeyEvent extends EventsBrowserEvent {
     repeat: boolean;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview This file contains a class for working with keyboard events
  * that repeat consistently across browsers and platforms. It also unifies the
  * key code so that it is the same in all browsers and platforms.

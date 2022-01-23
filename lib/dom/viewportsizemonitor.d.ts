@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Utility class that monitors viewport size changes.
  *
  * @see ../demos/viewportsizemonitor.html

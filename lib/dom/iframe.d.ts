@@ -38,6 +38,11 @@ export let BLANK_SOURCE_NEW_FRAME: string;
  */
 export let BLANK_SOURCE_NEW_FRAME_URL: TrustedResourceUrl;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Utilities for creating and working with iframes
  * cross-browser.
  */

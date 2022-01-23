@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A polyfill for window.requestAnimationFrame and
  * window.cancelAnimationFrame.
  * Code based on https://gist.github.com/paulirish/1579671

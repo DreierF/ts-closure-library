@@ -144,6 +144,11 @@ export function modulo(a: number, b: number): number;
  */
 export function nearlyEquals(a: number, b: number, opt_tolerance?: number | undefined): boolean;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Additional mathematical functions.
  */
 /**

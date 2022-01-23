@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A record declaration to allow ClientRect and other rectangle
  * like objects to be used with goog.math.Rect.
  */

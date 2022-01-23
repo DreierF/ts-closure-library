@@ -12,6 +12,11 @@ export function getPrefixedEventType(eventType: string): string;
  */
 export function getPrefixedPropertyName(propertyName: string, opt_object?: any | undefined): string | null;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Vendor prefix getters.
  */
 /**

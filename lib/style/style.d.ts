@@ -499,7 +499,7 @@ export function setPreWrap(el: Element | null): void;
  * style element.  This element will have its content completely replaced by
  * the safeStyleSheet.
  * @param {!Element|!StyleSheet} element A stylesheet element as returned by
- *     installStyles.
+ *     installSafeStyleSheet.
  * @param {!SafeStyleSheet} safeStyleSheet The new content of the
  *     stylesheet.
  */
@@ -518,6 +518,11 @@ export function setSafeStyleSheet(element: Element | StyleSheet, safeStyleSheet:
  *     size object.
  */
 export function setSize(element: Element | null, w: string | number | Size, opt_h?: (string | number) | undefined): void;
+/**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 /**
  * @fileoverview Utilities for element styles.
  *
@@ -630,9 +635,9 @@ export function toStyleAttribute(obj: any | null): string;
  */
 export function translateRectForAnotherFrame(rect: Rect | null, origBase: DomHelper | null, newBase: DomHelper | null): void;
 /**
- * Removes the styles added by {@link #installStyles}.
+ * Removes the styles added by {@link #installSafeStyleSheet}.
  * @param {?Element|StyleSheet} styleSheet The value returned by
- *     {@link #installStyles}.
+ *     {@link #installSafeStyleSheet}.
  */
 export function uninstallStyles(styleSheet: (Element | StyleSheet) | null): void;
 import { Box } from "../math/box.js";

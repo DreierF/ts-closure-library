@@ -7,6 +7,11 @@ export namespace EventType {
     const FOCUSOUT: string;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview This event handler allows you to catch focusin and focusout
  * events on  descendants. Unlike the "focus" and "blur" events which do not
  * propagate consistently, and therefore must be added to the element that is

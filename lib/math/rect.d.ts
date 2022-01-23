@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview A utility class for representing rectangles. Some of these
  * functions should be migrated over to non-nullable params.
  */

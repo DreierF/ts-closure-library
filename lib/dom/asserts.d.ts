@@ -165,6 +165,11 @@ export function assertIsHTMLTextAreaElement(o: any | null): HTMLTextAreaElement;
  */
 export function assertIsHTMLVideoElement(o: any | null): HTMLVideoElement;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Custom assertions to ensure that an element has the appropriate
  * type.
  *

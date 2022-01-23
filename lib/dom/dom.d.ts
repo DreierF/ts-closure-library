@@ -68,6 +68,11 @@ export function $$<T>(opt_tag?: TagName<T> | null | undefined, opt_class?: (stri
 export function $dom(tagName: string, opt_attributes?: ((any | ((Array<string> | string) | null)) | null) | undefined, ...args: any[]): Element;
 export function $dom<T>(tagName: TagName<T>, opt_attributes?: ((any | ((Array<string> | string) | null)) | null) | undefined, ...args: any[]): T;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Utilities for manipulating the browser's Document Object Model
  * Inspiration taken *heavily* from mochikit (http://mochikit.com/).
  *

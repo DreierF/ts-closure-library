@@ -21,6 +21,11 @@ export namespace CaptureSimulationMode {
  */
 export const ENABLE_MONITORING: boolean;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Class to create objects which want to handle multiple events
  * and have their listeners easily cleaned up via a dispose method.
  *
@@ -313,6 +318,11 @@ export namespace EventHandler {
     const typeArray_: Array<string>;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Definition of the EventWrapper interface.
  */
 /**
@@ -355,6 +365,11 @@ export class EventWrapper {
 }
 export type Key = number | ListenableKey;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview An event manager for both native browser event
  * targets and custom JavaScript event targets
  * (`Listenable`). This provides an abstraction
@@ -389,6 +404,11 @@ export type Key = number | ListenableKey;
  * @typedef {number|ListenableKey}
  */
 export let Key: any;
+/**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 /**
  * @fileoverview An interface for a listenable JavaScript object.
  */
@@ -647,6 +667,11 @@ export type ListenableType = EventTarget | Listenable;
  */
 export let ListenableType: any;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Listener object.
  * @see ../demos/events.html
  */
@@ -724,6 +749,11 @@ export class Listener implements ListenableKey {
      */
     markAsRemoved(): void;
 }
+/**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 /**
  * @fileoverview A map of listeners that provides utility functions to
  * deal with listeners on an event target. Used by
@@ -871,6 +901,11 @@ export class ListenerMap {
  *     true.
  */
 export function dispatchEvent(src: Listenable | null, e: EventLike | null): boolean;
+/**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 /**
  * @fileoverview A disposable implementation of a custom
  * listenable/event target. See also: documentation for

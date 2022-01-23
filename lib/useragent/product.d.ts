@@ -15,6 +15,11 @@ export const ASSUME_ANDROID: boolean;
  */
 export const ASSUME_CHROME: boolean;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Detects the specific browser and not just the rendering engine.
  */
 /**

@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * A templated class that is used when registering for events. Typical usage:
  *
  *    /** @type {EventId<MyEventObj>} *\

@@ -54,6 +54,11 @@ export class MouseWheelEvent extends EventsBrowserEvent {
     deltaY: number;
 }
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview This event wrapper will dispatch an event when the user uses
  * the mouse wheel to scroll an element. You can get the direction by checking
  * the deltaX and deltaY properties of the event.

@@ -1,4 +1,9 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Utilities for detecting, adding and removing classes.  Prefer
  * this over goog.dom.classes for new code since it attempts to use classList
  * (DOMTokenList: http://dom.spec.whatwg.org/#domtokenlist) which is faster

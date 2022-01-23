@@ -23,6 +23,11 @@ export const ASSUME_EDGE: boolean;
  */
 export const ASSUME_GECKO: boolean;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Rendering engine detection.
  * @see <a href="http://www.useragentstring.com/">User agent strings</a>
  * For information on the browser brand (such as Safari versus Chrome), see

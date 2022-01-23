@@ -46,6 +46,11 @@ export function setCursorPosition(textfield: Element | null, pos: number): void;
  */
 export function setEnd(textfield: Element | null, pos: number): void;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Utilities for working with selections in input boxes and text
  * areas.
  *

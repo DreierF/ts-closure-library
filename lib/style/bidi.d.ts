@@ -30,6 +30,11 @@
  */
 export function getOffsetStart(element: Element | null): number;
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
  * @fileoverview Bidi utility functions.
  */
 /**
