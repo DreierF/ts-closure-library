@@ -526,15 +526,6 @@ export function setCssNameMapping(mapping: any, opt_style?: string | undefined):
  */
 export function setTestOnly(opt_message?: string | undefined): void;
 /**
- * Sealing classes breaks the older idiom of assigning properties on the
- * prototype rather than in the constructor. As such, defineClass
- * must not seal subclasses of these old-style classes until they are fixed.
- * Until then, this marks a class as "broken", instructing defineClass
- * not to seal subclasses.
- * @param {!Function} ctr The legacy constructor to tag as unsealable.
- */
-export function tagUnsealableClass(ctr: Function): void;
-/**
  * This is a "fixed" version of the typeof operator.  It differs from the typeof
  * operator in such a way that null returns 'null' and arrays return 'array'.
  * @param {?} value The value to get the type of.

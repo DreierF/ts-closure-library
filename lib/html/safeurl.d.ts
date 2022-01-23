@@ -90,12 +90,20 @@ export class SafeUrl implements DirectionalString, TypedString {
      * for `blob` is not of a known safe audio, image or video MIME type,
      * then the SafeUrl will wrap {@link #INNOCUOUS_STRING}.
      *
+     * Note: Call {@link revokeObjectUrl} on the URL after it's used
+     * to prevent memory leaks.
+     *
      * @see http://www.w3.org/TR/FileAPI/#url
      * @param {!Blob} blob
      * @return {!SafeUrl} The blob URL, or an innocuous string wrapped
      *   as a SafeUrl.
      */
     static fromBlob(blob: Blob): SafeUrl;
+    /**
+     * Revokes an object URL created for a safe URL created {@link fromBlob()}.
+     * @param {!SafeUrl} safeUrl SafeUrl wrapping a blob object.
+     */
+    static revokeObjectUrl(safeUrl: SafeUrl): void;
     /**
      * Creates a SafeUrl wrapping a blob URL created for a MediaSource.
      * @param {!MediaSource} mediaSource

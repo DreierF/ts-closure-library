@@ -231,7 +231,7 @@ export class Textarea extends Control<TextareaRenderer> {
      */
     private setHeightToEstimate_;
     /**
-     * Gets the the height of (possibly present) horizontal scrollbar.
+     * Gets the height of (possibly present) horizontal scrollbar.
      * @return {number} The height of the horizontal scrollbar.
      * @private
      */

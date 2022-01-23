@@ -6,7 +6,10 @@
 /**
  * @fileoverview Policy to convert strings to Trusted Types. See
  * https://github.com/WICG/trusted-types for details.
- *
  */
-/** @package @const {?TrustedTypePolicy} */
-export let PRIVATE_DO_NOT_ACCESS_OR_ELSE_POLICY: any;
+/**
+ * Creates a (singleton) Trusted Type Policy for Safe HTML Types.
+ * @return {?TrustedTypePolicy}
+ * @package
+ */
+export function getPolicyPrivateDoNotAccessOrElse(): any | null;

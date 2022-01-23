@@ -57,7 +57,7 @@ export class TransitionBase extends EventsEventTarget implements FxTransition {
     /**
      * Stops the animation.
      *
-     * @param {boolean=} opt_gotoEnd Optional boolean parameter to go the the end of
+     * @param {boolean=} opt_gotoEnd Optional boolean parameter to go the end of
      *     the animation.
      * @override
      * @abstract

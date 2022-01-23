@@ -69,7 +69,7 @@ export namespace State {
  */
 /**
  * Tooltip widget. Can be attached to one or more elements and is shown, with a
- * slight delay, when the the cursor is over the element or the element gains
+ * slight delay, when the cursor is over the element or the element gains
  * focus.
  *
  *     element reference or string id.
@@ -78,7 +78,7 @@ export namespace State {
 export class Tooltip extends Popup {
     /**
      * Tooltip widget. Can be attached to one or more elements and is shown, with a
-     * slight delay, when the the cursor is over the element or the element gains
+     * slight delay, when the cursor is over the element or the element gains
      * focus.
      *
      * @param {?Element|string=} opt_el Element to display tooltip for, either

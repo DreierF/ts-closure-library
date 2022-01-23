@@ -391,6 +391,12 @@ export function setParamsFromMap(uri: string, params: {
  */
 export function setPath(uri: string, path: string): string;
 /**
+ * @param {?function(string)} handler The handler function to call when a URI
+ *     with a protocol that is better supported by the Closure URL package is
+ *     detected.
+ */
+export function setUrlPackageSupportLoggingHandler(handler: ((arg0: string) => any) | null): void;
+/**
  * Splits a URI into its component parts.
  *
  * Each component can be accessed via the component indices; for example:

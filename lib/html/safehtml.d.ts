@@ -507,12 +507,14 @@ export class SafeHtml implements DirectionalString, TypedString {
      * @private
      */
     private initSecurityPrivateDoNotAccessOrElse_;
+    private initSecurityFromTrustedHtmlPrivateDoNotAccessOrElse_;
 }
 export namespace SafeHtml {
     const VALID_NAMES_IN_TAG_: RegExp;
     const URL_ATTRIBUTES_: any;
     const NOT_ALLOWED_TAG_NAMES_: any;
     const TYPE_MARKER_GOOG_HTML_SECURITY_PRIVATE_: {};
+    function createSafeHtmlFromTrustedHtmlSecurityPrivateDoNotAccessOrElse(trustedHtml: any): SafeHtml;
     const DOCTYPE_HTML: SafeHtml;
     const EMPTY: SafeHtml;
     const BR: SafeHtml;

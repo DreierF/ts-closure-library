@@ -189,7 +189,7 @@ export class Box {
      * and y dimension values.
      *
      * @param {number|Math_Coordinate} tx The value to translate the x
-     *     dimension values by or the the coordinate to translate this box by.
+     *     dimension values by or the coordinate to translate this box by.
      * @param {number=} opt_ty The value to translate y dimension values by.
      * @return {!Box} This box after translating.
      */

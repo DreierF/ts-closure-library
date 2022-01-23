@@ -531,16 +531,20 @@ export namespace NumberFormat {
     const PATTERN_CURRENCY_SIGN_: string;
     const QUOTE_: string;
     namespace NULL_UNIT_ {
+        const divisorBase: number;
+        const negative_prefix: string;
+        const negative_suffix: string;
         const prefix: string;
         const suffix: string;
-        const divisorBase: number;
     }
     /**
      * Alias for the compact format 'unit' object.
      */
     type CompactNumberUnit = {
+        divisorBase: number;
+        negative_prefix: string;
+        negative_suffix: string;
         prefix: string;
         suffix: string;
-        divisorBase: number;
     };
 }
