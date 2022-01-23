@@ -5,8 +5,6 @@
  * Has the same interface as the collections in structs.
  *
  *     the object.
- *     cache invalidated when this object updates. Deprecated -- this
- *     is no longer required.
  *     name in #get.
  * @class
  * @final
@@ -19,13 +17,11 @@ export class QueryData {
      *     names to parameter value. If parameter value is an array, it is
      *     treated as if the key maps to each individual value in the
      *     array.
-     * @param {Uri=} opt_uri URI object that should have its cache
-     *     invalidated when this object updates.
      * @param {boolean=} opt_ignoreCase If true, ignore the case of the parameter
      *     name in #get.
      * @return {!QueryData} The populated query data instance.
      */
-    static createFromMap(map: StructsMap<string, unknown> | any, opt_uri?: Uri | undefined, opt_ignoreCase?: boolean | undefined): QueryData;
+    static createFromMap(map: StructsMap<string, unknown> | any, opt_ignoreCase?: boolean | undefined): QueryData;
     /**
      * Creates a new query data instance from parallel arrays of parameter names
      * and values. Allows for duplicate parameter names. Throws an error if the
@@ -33,13 +29,11 @@ export class QueryData {
      *
      * @param {!Array<string>} keys Parameter names.
      * @param {!Array<?>} values Parameter values.
-     * @param {Uri=} opt_uri URI object that should have its cache
-     *     invalidated when this object updates.
      * @param {boolean=} opt_ignoreCase If true, ignore the case of the parameter
      *     name in #get.
      * @return {!QueryData} The populated query data instance.
      */
-    static createFromKeysValues(keys: Array<string>, values: Array<unknown>, opt_uri?: Uri | undefined, opt_ignoreCase?: boolean | undefined): QueryData;
+    static createFromKeysValues(keys: Array<string>, values: Array<unknown>, opt_ignoreCase?: boolean | undefined): QueryData;
     /**
      * Class used to represent URI query parameters.  It is essentially a hash of
      * name-value pairs, though a name can be present more than once.
@@ -48,13 +42,10 @@ export class QueryData {
      *
      * @param {?string=} opt_query Optional encoded query string to parse into
      *     the object.
-     * @param {Uri=} opt_uri Optional uri object that should have its
-     *     cache invalidated when this object updates. Deprecated -- this
-     *     is no longer required.
      * @param {boolean=} opt_ignoreCase If true, ignore the case of the parameter
      *     name in #get.
      */
-    constructor(opt_query?: (string | null) | undefined, opt_uri?: Uri | undefined, opt_ignoreCase?: boolean | undefined);
+    constructor(opt_query?: (string | null) | undefined, opt_ignoreCase?: boolean | undefined);
     /**
      * The map containing name/value or name/array-of-values pairs.
      * May be null if it requires parsing from the query string.
@@ -527,7 +518,7 @@ export class Uri {
      */
     hasPort(): boolean;
     /**
-      * @return {string} The decoded path.
+     * @return {string} The decoded path.
      */
     getPath(): string;
     /**

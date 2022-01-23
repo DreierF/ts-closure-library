@@ -1,14 +1,6 @@
-export type DateLike = Date | date_Date;
+export type DateLike = Date | date_Date | null;
 /**
- * @license
- * Copyright The Closure Library Authors.
- * SPDX-License-Identifier: Apache-2.0
- */
-/**
- * @fileoverview Typedefs for working with dates.
- */
-/**
- * @typedef {(Date|date_Date)}
+ * @typedef {(?Date|?date_Date)}
  */
 export let DateLike: any;
 /**

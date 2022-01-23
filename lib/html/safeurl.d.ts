@@ -104,10 +104,10 @@ export class SafeUrl implements DirectionalString, TypedString {
     static fromMediaSource(mediaSource: MediaSource): SafeUrl;
     /**
      * Creates a SafeUrl wrapping a data: URL, after validating it matches a
-     * known-safe audio, image or video MIME type.
+     * known-safe media MIME type.
      *
      * @param {string} dataUrl A valid base64 data URL with one of the whitelisted
-     *     audio, image or video MIME types.
+     *     media MIME types.
      * @return {!SafeUrl} A matching safe URL, or {@link INNOCUOUS_STRING}
      *     wrapped as a SafeUrl if it does not pass.
      */

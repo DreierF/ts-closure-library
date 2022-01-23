@@ -69,21 +69,22 @@ export function insertAdjacentHtml(node: Node, position: InsertAdjacentHtmlPosit
  *   openInWindow(url);
  * which is a safe alternative to
  *   window.open(url);
- * The latter can result in XSS vulnerabilities if redirectUrl is a
+ * The latter can result in XSS vulnerabilities if url is a
  * user-/attacker-controlled value.
  *
  * @param {string|!Html_SafeUrl} url The URL to open.
  * @param {Window=} opt_openerWin Window of which to call the .open() method.
  *     Defaults to the global window.
- * @param {!Const=} opt_name Name of the window to open in. Can be
- *     _top, etc as allowed by window.open().
+ * @param {!Const|string=} opt_name Name of the window to open in.
+ *     Can be _top, etc as allowed by window.open(). This accepts string for
+ *     legacy reasons. Pass Const if possible.
  * @param {string=} opt_specs Comma-separated list of specifications, same as
  *     in window.open().
  * @param {boolean=} opt_replace Whether to replace the current entry in browser
  *     history, same as in window.open().
  * @return {?Window} Window the url was opened in.
  */
-export function openInWindow(url: string | Html_SafeUrl, opt_openerWin?: Window | undefined, opt_name?: Const | undefined, opt_specs?: string | undefined, opt_replace?: boolean | undefined): Window | null;
+export function openInWindow(url: string | Html_SafeUrl, opt_openerWin?: Window | undefined, opt_name?: (Const | string) | undefined, opt_specs?: string | undefined, opt_replace?: boolean | undefined): Window | null;
 /**
  * Parses the string.
  * @param {!DOMParser} parser
