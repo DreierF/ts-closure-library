@@ -66,13 +66,13 @@ declare class Trace_ {
     private logger_;
     /**
      * Events in order.
-     * @private {!Array<!Event_>}
+     * @private {!Array<!Trace_.Event_>}
      */
     private events_;
     /**
      * Outstanding events that have started but haven't yet ended. The keys are
-     * numeric ids and the values are Event_ objects.
-     * @private {!StructsMap<number, !Event_>}
+     * numeric ids and the values are Trace_.Event_ objects.
+     * @private {!StructsMap<number, !Trace_.Event_>}
      */
     private outstandingEvents_;
     /**
@@ -97,7 +97,7 @@ declare class Trace_ {
     private tracerOverheadComment_;
     /**
      * Keeps stats on different types of tracers. The keys are strings and the
-     * values are goog.debug.Stat
+     * values are debug.Stat
      * @private {!StructsMap}
      */
     private stats_;
@@ -122,7 +122,7 @@ declare class Trace_ {
      */
     private gcTracer_;
     /**
-     * A pool for Event_ objects so we don't keep creating and
+     * A pool for Trace_.Event_ objects so we don't keep creating and
      * garbage collecting these (which is very expensive in IE6).
      * @private {!SimplePool}
      */
@@ -274,6 +274,10 @@ declare namespace Trace_ {
      */
     export type EventType = number;
     export { Stat_ };
+    export { Event_ };
+    export namespace TRACE_CANCELLED_ {
+        const wasCancelled: boolean;
+    }
     export const NORMAL_STOP_: {};
 }
 declare namespace TracerCallbacks {
@@ -301,6 +305,55 @@ declare class Stat_ {
     varAlloc: number;
     /**
      * @return {string} A string describing the tracer stat.
+     * @override
+     */
+    toString(): string;
+}
+declare class Event_ {
+    /**
+     * @type {string|null|undefined}
+     */
+    type: string | null | undefined;
+    /**
+     * @type {Trace_.EventType|undefined}
+     */
+    eventType: Trace_.EventType | undefined;
+    /**
+     * @type {number|undefined}
+     */
+    id: number | undefined;
+    /**
+     * @type {string|undefined}
+     */
+    comment: string | undefined;
+    /**
+     * @type {number|undefined}
+     */
+    eventTime: number | undefined;
+    /**
+     * @type {number|undefined}
+     */
+    startTime: number | undefined;
+    /**
+     * @type {number|undefined}
+     */
+    stopTime: number | undefined;
+    /**
+     * @type {number|undefined}
+     */
+    totalVarAlloc: number | undefined;
+    /**
+     * Returns a formatted string for the event.
+     * @param {number} startTime The start time of the trace to generate relative
+     * times.
+     * @param {number} prevTime The completion time of the previous event or -1.
+     * @param {string} indent Extra indent for the message
+     *     if there was no previous event.
+     * @return {string} The formatted tracer string.
+     */
+    toTraceString(startTime: number, prevTime: number, indent: string): string;
+    /**
+     * @return {string} A string describing the tracer event.
      * @override
      */
     toString(): string;

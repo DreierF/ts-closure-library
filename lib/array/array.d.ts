@@ -576,6 +576,9 @@ export function range(startOrEnd: number, opt_end?: number | undefined, opt_step
  * Passes every element of an array into a function and accumulates the result.
  *
  * See {@link http://tinyurl.com/developer-mozilla-org-array-reduce}
+ * Note that this implementation differs from the native Array.prototype.reduce
+ * in that the initial value is assumed to be defined (the MDN docs linked above
+ * recommend not omitting this parameter, although it is technically optional).
  *
  * For example:
  * var a = [1, 2, 3, 4];
