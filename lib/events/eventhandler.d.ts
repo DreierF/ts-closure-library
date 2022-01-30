@@ -537,11 +537,11 @@ export class Listenable {
      * it will only remove listeners of the particular type. otherwise all
      * registered listeners will be removed.
      *
-     * @param {string=} opt_type Type of event to remove, default is to
-     *     remove all types.
+     * @param {string|!EventId=} opt_type Type of event to remove,
+     *     default is to remove all types.
      * @return {number} Number of listeners removed.
      */
-    removeAllListeners(opt_type?: string | undefined): number;
+    removeAllListeners(opt_type?: (string | EventsEventId<any>) | undefined): number;
     /**
      * Returns the parent of this event target to use for capture/bubble
      * mechanism.
@@ -1021,7 +1021,7 @@ declare class events_EventTarget extends GoogDisposable implements Listenable {
      * same object as the one added. If the handler has not been added then
      * nothing is done.
      *
-     * @param {string} type The type of the event to listen for.
+     * @param {string|!EventId} type The type of the event to listen for
      * @param {function(?):?|{handleEvent:function(?):?}|null} handler The function
      *     to handle the event. The handler can also be an object that implements
      *     the handleEvent method which takes the event object as argument.
@@ -1034,7 +1034,7 @@ declare class events_EventTarget extends GoogDisposable implements Listenable {
      *     `unlisten` if you are passing Object
      *     (instead of Function) as handler.
      */
-    removeEventListener(type: string, handler: (arg0: unknown) => unknown | {
+    removeEventListener(type: string | EventsEventId<any>, handler: (arg0: unknown) => unknown | {
         handleEvent: (arg0: unknown) => unknown;
     } | null, opt_capture?: boolean | undefined, opt_handlerScope?: any | undefined): void;
     /**
@@ -1091,12 +1091,12 @@ declare class events_EventTarget extends GoogDisposable implements Listenable {
      */
     unlistenByKey(key: ListenableKey): boolean;
     /**
-     * @param {string=} opt_type Type of event to remove, default is to
-     *     remove all types.
+     * @param {string|!EventId=} opt_type Type of event to remove,
+     *     default is to remove all types.
      * @return {number} Number of listeners removed.
      * @override
      */
-    removeAllListeners(opt_type?: string | undefined): number;
+    removeAllListeners(opt_type?: (string | EventsEventId<any>) | undefined): number;
     /**
      * @param {string|!EventId<EVENTOBJ>} type The type of the
      *     listeners to fire.

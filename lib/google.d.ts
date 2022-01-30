@@ -276,17 +276,22 @@ export function getCssName(className: string, opt_modifier?: string | undefined)
  *
  * @param {string} str Translatable string, places holders in the form {$foo}.
  * @param {Object<string, string>=} opt_values Maps place holder name to value.
- * @param {{html: boolean}=} opt_options Options:
+ * @param {{html: (boolean|undefined),
+ *         unescapeHtmlEntities: (boolean|undefined)}=} opt_options Options:
  *     html: Escape '<' in str to '&lt;'. Used by Closure Templates where the
  *     generated code size and performance is critical which is why {@link
  *     goog.html.SafeHtmlFormatter} is not used. The value must be literal true
  *     or false.
+ *     unescapeHtmlEntities: Unescape common html entities: &gt;, &lt;, &apos;,
+ *     &quot; and &amp;. Used for messages not in HTML context, such as with
+ *     `textContent` property.
  * @return {string} message with placeholders filled.
  */
 export function getMsg(str: string, opt_values?: {
     [x: string]: string;
 } | undefined, opt_options?: {
-    html: boolean;
+    html: (boolean | undefined);
+    unescapeHtmlEntities: (boolean | undefined);
 } | undefined): string;
 /**
  * Gets a localized message. If the message does not have a translation, gives a
@@ -397,13 +402,6 @@ export function isArrayLike(val: unknown): boolean;
  * @return {boolean} Whether variable is a like a Date.
  */
 export function isDateLike(val: unknown): boolean;
-/**
- * Returns true if the specified value is a function.
- * @param {?} val Variable to test.
- * @return {boolean} Whether variable is a function.
- * @deprecated use "typeof val === 'function'" instead.
- */
-export function isFunction(val: unknown): boolean;
 /**
  * Returns true if the specified value is an object.  This includes arrays and
  * functions.
