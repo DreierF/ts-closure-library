@@ -207,7 +207,7 @@ export namespace Menu {
  *     document interactions.
  * @extends {Control<Ui_MenuItemRenderer>}
  */
-export class MenuItem extends Control<Ui_MenuItemRenderer> {
+export class MenuItem extends UiControl<Ui_MenuItemRenderer> {
     /**
      * Class representing an item in a menu.
      *
@@ -329,7 +329,7 @@ import { MenuHeader } from "./menuheader.js";
 import { MenuSeparator } from "./menuseparator.js";
 import { DomHelper } from "../dom/dom.js";
 import { MenuItemRenderer as Ui_MenuItemRenderer } from "./menuitemrenderer.js";
-import { Control } from "./control.js";
+import { Control as UiControl } from "./control.js";
 import { KeyCodes } from "../events/keycodes.js";
 import { ControlContent } from "./controlcontent.js";
 import { ContainerRenderer } from "./container.js";

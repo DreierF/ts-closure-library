@@ -91,6 +91,12 @@ export function getLogRecord(logger: typeof DebugLogger | null, level: LoggerLev
  */
 export function getLogger(name: string, opt_level?: typeof LoggerLevel | undefined): typeof DebugLogger;
 /**
+ * Returns the root logger.
+ *
+ * @return {?log_Logger} The root logger, or null if logging is disabled.
+ */
+export function getRootLogger(): typeof DebugLogger | null;
+/**
  * Logs a message at the Level.INFO level.
  * If the logger is currently enabled for the given message level then the
  * given message is forwarded to all the registered output Handler objects.

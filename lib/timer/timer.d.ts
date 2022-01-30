@@ -48,7 +48,7 @@ export class Timer extends EventsEventTarget {
      *     the specified delay, unless it is canceled first.
      * @template RESULT
      */
-    static promise<RESULT>(delay: number, opt_result?: any): Promise<RESULT>;
+    static promise<RESULT>(delay: number, opt_result?: Thenable<any> | RESULT | undefined): Promise<RESULT>;
     /**
      * Class for handling timing events.
      *
@@ -136,3 +136,4 @@ export namespace Timer {
     const TICK: string;
 }
 import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";
+import { Thenable } from "../promise/thenable.js";

@@ -195,7 +195,7 @@ export class DomHelper {
      * @template T
      * @template R := cond(isUnknown(T), 'Element', T) =:
      */
-    getElementByTagNameAndClass<T, R_4>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: (string | null) | undefined, opt_el?: (Document | (Element | null)) | undefined): R_4 | null;
+    getElementByTagNameAndClass<T, R>(opt_tag?: string | TagName<T> | null | undefined, opt_class?: (string | null) | undefined, opt_el?: (Document | (Element | null)) | undefined): R | null;
     /**
      * Returns an array of all the elements with the provided className.
      * @param {string} className the name of the class to look for.
@@ -269,7 +269,7 @@ export class DomHelper {
      * @template T
      * @template R := cond(isUnknown(T), 'Element', T) =:
      */
-    createDom<T_4, R_6>(tagName: string | TagName<T_4>, opt_attributes?: ((any | ((Array<string> | string) | null)) | null) | undefined, ...args: any[]): R_6;
+    createDom<T, R>(tagName: string | TagName<T>, opt_attributes?: ((any | ((Array<string> | string) | null)) | null) | undefined, ...args: any[]): R;
     /**
      * Creates a new element.
      * @param {string|!TagName<T>} name Tag to create.
@@ -279,7 +279,7 @@ export class DomHelper {
      * @template T
      * @template R := cond(isUnknown(T), 'Element', T) =:
      */
-    createElement<T_5, R_8>(name: string | TagName<T_5>): R_8;
+    createElement<T, R>(name: string | TagName<T>): R;
     /**
      * Creates a new text node.
      * @param {number|string} content Content.
@@ -657,7 +657,7 @@ export class DomHelper {
      * @template T
      * @template R := cond(isUnknown(T), 'Element', T) =:
      */
-    getAncestorByTagNameAndClass<T_6, R_10>(element: Node | null, opt_tag?: string | TagName<T_6> | null | undefined, opt_class?: (string | null) | undefined, opt_maxSearchSteps?: number | undefined): R_10 | null;
+    getAncestorByTagNameAndClass<T, R_10>(element: Node | null, opt_tag?: string | TagName<T> | null | undefined, opt_class?: (string | null) | undefined, opt_maxSearchSteps?: number | undefined): R_10 | null;
     /**
      * Walks up the DOM hierarchy returning the first ancestor that has the passed
      * class name. If the passed element matches the specified criteria, the
@@ -732,7 +732,7 @@ export class DomHelper {
      * @template R := cond(isUnknown(T), 'Element', T) =:
      * @deprecated Use {@link DomHelper.prototype.createDom} instead.
      */
-    $dom: <T_4, R_6>(tagName: string | TagName<T_4>, opt_attributes?: ((any | ((Array<string> | string) | null)) | null) | undefined, ...args: any[]) => R_6;
+    $dom: <T, R>(tagName: string | TagName<T>, opt_attributes?: ((any | ((Array<string> | string) | null)) | null) | undefined, ...args: any[]) => R;
 }
 /**
  * Appends a node with text or other nodes.

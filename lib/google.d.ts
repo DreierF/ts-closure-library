@@ -135,7 +135,7 @@ export function cloneObject(obj: any): any;
 /**
  * Creates Trusted Types policy if Trusted Types are supported by the browser.
  * The policy just blesses any string as a Trusted Type. It is not visibility
- * restricted because anyone can also call TrustedTypes.createPolicy directly.
+ * restricted because anyone can also call trustedTypes.createPolicy directly.
  * However, the allowed names should be restricted by a HTTP header and the
  * reference to the created policy should be visibility restricted.
  * @param {string} name

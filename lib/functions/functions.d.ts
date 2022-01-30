@@ -148,6 +148,12 @@ export function fail(err: any): Function;
  */
 export function identity<T>(opt_returnValue?: T | undefined, ...var_args: any[]): T;
 /**
+ * Returns true if the specified value is a function.
+ * @param {*} val Variable to test.
+ * @return {boolean} Whether variable is a function.
+ */
+export function isFunction(val: any): boolean;
+/**
  * Given a function, create a function that keeps opt_numArgs arguments and
  * silently discards all additional arguments.
  * @param {?Function} f The original function.

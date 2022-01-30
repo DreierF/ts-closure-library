@@ -267,12 +267,13 @@ export function setIframeSrcdoc(iframe: HTMLIFrameElement, html: Html_SafeHtml):
 export function setImageSrc(imageElement: HTMLImageElement, url: string | Html_SafeUrl): void;
 /**
  * Assigns known-safe HTML to an element's innerHTML property.
- * @param {!Element} elem The element whose innerHTML is to be assigned to.
+ * @param {!Element|!ShadowRoot} elem The element whose innerHTML is to be
+ *     assigned to.
  * @param {!Html_SafeHtml} html The known-safe HTML to assign.
  * @throws {Error} If called with one of these tags: math, script, style, svg,
  *     template.
  */
-export function setInnerHtml(elem: Element, html: Html_SafeHtml): void;
+export function setInnerHtml(elem: Element | ShadowRoot, html: Html_SafeHtml): void;
 /**
  * Assigns constant HTML to an element's innerHTML property.
  * @param {!Element} element The element whose innerHTML is to be assigned to.
@@ -421,10 +422,11 @@ export function setVideoSrc(videoElement: HTMLVideoElement, url: string | Html_S
 /**
  * Assigns HTML to an element's innerHTML property. Helper to use only here and
  * in soy.js.
- * @param {Element|null} elem The element whose innerHTML is to be assigned to.
+ * @param {?Element|?ShadowRoot} elem The element whose innerHTML is to be
+ *     assigned to.
  * @param {!Html_SafeHtml} html
  */
-export function unsafeSetInnerHtmlDoNotUseOrElse(elem: Element | null, html: Html_SafeHtml): void;
+export function unsafeSetInnerHtmlDoNotUseOrElse(elem: (Element | (ShadowRoot | null)) | null, html: Html_SafeHtml): void;
 import { SafeUrl as Html_SafeUrl } from "../html/safeurl.js";
 import { SafeHtml as Html_SafeHtml } from "../html/safehtml.js";
 import { Const } from "../string/const.js";

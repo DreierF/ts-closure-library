@@ -105,7 +105,7 @@ export class EventHandler<SCOPE> extends GoogDisposable {
      * @template EVENTOBJ, THIS
      * @suppress{checkTypes}
      */
-    listen<EVENTOBJ, THIS>(src: ListenableType | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], opt_fn?: ((this: SCOPE, arg1: EVENTOBJ) => unknown | {
+    listen<EVENTOBJ, THIS>(src: ListenableType | null, type: string | string[] | EventsEventId<EVENTOBJ> | EventsEventId<EVENTOBJ>[], opt_fn?: ((this: SCOPE, arg1: EVENTOBJ) => unknown | {
         handleEvent: (arg0: unknown) => unknown;
     } | null) | undefined, opt_options?: (boolean | AddEventListenerOptions) | undefined): THIS | null;
     /**
@@ -124,7 +124,7 @@ export class EventHandler<SCOPE> extends GoogDisposable {
      * @this {THIS}
      * @template T, EVENTOBJ, THIS
      */
-    listenWithScope<T, EVENTOBJ, THIS>(src: ListenableType | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], fn: (this: T, arg1: EVENTOBJ) => any, options: boolean | AddEventListenerOptions | undefined, scope: T): THIS | null;
+    listenWithScope<T, EVENTOBJ, THIS>(src: ListenableType | null, type: string | string[] | EventsEventId<EVENTOBJ> | EventsEventId<EVENTOBJ>[], fn: (this: T, arg1: EVENTOBJ) => any, options: boolean | AddEventListenerOptions | undefined, scope: T): THIS | null;
     /**
      * Listen to an event on a Listenable.  If the function is omitted then the
      * EventHandler's handleEvent method will be used.
@@ -163,9 +163,9 @@ export class EventHandler<SCOPE> extends GoogDisposable {
      * @template EVENTOBJ, THIS
      * @suppress{checkTypes}
      */
-    listenOnce<EVENTOBJ, THIS_4>(src: ListenableType | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], opt_fn?: ((this: SCOPE, arg1: EVENTOBJ) => unknown | {
+    listenOnce<EVENTOBJ, THIS>(src: ListenableType | null, type: string | string[] | EventsEventId<EVENTOBJ> | EventsEventId<EVENTOBJ>[], opt_fn?: ((this: SCOPE, arg1: EVENTOBJ) => unknown | {
         handleEvent: (arg0: unknown) => unknown;
-    } | null) | undefined, opt_options?: (boolean | AddEventListenerOptions) | undefined): THIS_4 | null;
+    } | null) | undefined, opt_options?: (boolean | AddEventListenerOptions) | undefined): THIS | null;
     /**
      * Listen to an event on a Listenable.  If the function is omitted, then the
      * EventHandler's handleEvent method will be used. After the event has fired the
@@ -184,7 +184,7 @@ export class EventHandler<SCOPE> extends GoogDisposable {
      * @this {THIS}
      * @template T, EVENTOBJ, THIS
      */
-    listenOnceWithScope<T, EVENTOBJ, THIS_6>(src: ListenableType | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], fn: (this: T, arg1: EVENTOBJ) => any, capture: boolean | undefined, scope: T): THIS_6 | null;
+    listenOnceWithScope<T, EVENTOBJ, THIS>(src: ListenableType | null, type: string | string[] | EventsEventId<EVENTOBJ> | EventsEventId<EVENTOBJ>[], fn: (this: T, arg1: EVENTOBJ) => any, capture: boolean | undefined, scope: T): THIS | null;
     /**
      * Listen to an event on a Listenable.  If the function is omitted, then the
      * EventHandler's handleEvent method will be used. After the event has fired
@@ -222,9 +222,9 @@ export class EventHandler<SCOPE> extends GoogDisposable {
      * @this {THIS}
      * @template THIS
      */
-    listenWithWrapper<THIS_8>(src: (EventTarget | events_EventTarget) | null, wrapper: EventWrapper | null, listener: (this: SCOPE, arg1: unknown) => unknown | {
+    listenWithWrapper<THIS>(src: (EventTarget | events_EventTarget) | null, wrapper: EventWrapper | null, listener: (this: SCOPE, arg1: unknown) => unknown | {
         handleEvent: (arg0: unknown) => unknown;
-    } | null, opt_capt?: boolean | undefined): THIS_8 | null;
+    } | null, opt_capt?: boolean | undefined): THIS | null;
     /**
      * Adds an event listener with a specific event wrapper on a DOM Node or an
      * object that has implemented {@link events_EventTarget}. A listener can
@@ -242,7 +242,7 @@ export class EventHandler<SCOPE> extends GoogDisposable {
      * @this {THIS}
      * @template T, THIS
      */
-    listenWithWrapperAndScope<T_4, THIS_10>(src: (EventTarget | events_EventTarget) | null, wrapper: EventWrapper | null, listener: (this: T_4, arg1: unknown) => any, capture: boolean | undefined, scope: T_4): THIS_10 | null;
+    listenWithWrapperAndScope<T, THIS_10>(src: (EventTarget | events_EventTarget) | null, wrapper: EventWrapper | null, listener: (this: T, arg1: unknown) => any, capture: boolean | undefined, scope: T): THIS_10 | null;
     /**
      * Adds an event listener with a specific event wrapper on a DOM Node or an
      * object that has implemented {@link events_EventTarget}. A listener can
@@ -282,7 +282,7 @@ export class EventHandler<SCOPE> extends GoogDisposable {
      * @template EVENTOBJ, THIS
      * @suppress{checkTypes}
      */
-    unlisten<EVENTOBJ_4, THIS_12>(src: ListenableType | null, type: string | string[] | EventId<EVENTOBJ_4> | EventId<EVENTOBJ_4>[], opt_fn?: ((this: unknown, arg1: EVENTOBJ_4) => unknown | {
+    unlisten<EVENTOBJ, THIS_12>(src: ListenableType | null, type: string | string[] | EventsEventId<EVENTOBJ> | EventsEventId<EVENTOBJ>[], opt_fn?: ((this: unknown, arg1: EVENTOBJ) => unknown | {
         handleEvent: (arg0: unknown) => unknown;
     } | null) | undefined, opt_options?: (boolean | EventListenerOptions) | undefined, opt_scope?: any | undefined): THIS_12 | null;
     /**
@@ -472,7 +472,7 @@ export class Listenable {
      * @return {!ListenableKey} Unique key for the listener.
      * @template SCOPE,EVENTOBJ
      */
-    listen<SCOPE, EVENTOBJ>(type: string | EventId<EVENTOBJ>, listener: (this: SCOPE, arg1: EVENTOBJ) => (boolean | undefined), opt_useCapture?: boolean | undefined, opt_listenerScope?: SCOPE | undefined): ListenableKey;
+    listen<SCOPE, EVENTOBJ>(type: string | EventsEventId<EVENTOBJ>, listener: (this: SCOPE, arg1: EVENTOBJ) => (boolean | undefined | void), opt_useCapture?: boolean | undefined, opt_listenerScope?: SCOPE | undefined): ListenableKey;
     /**
      * Adds an event listener that is removed automatically after the
      * listener fired once.
@@ -494,7 +494,7 @@ export class Listenable {
      * @return {!ListenableKey} Unique key for the listener.
      * @template SCOPE,EVENTOBJ
      */
-    listenOnce<SCOPE, EVENTOBJ>(type: string | EventId<EVENTOBJ>, listener: (this: SCOPE, arg1: EVENTOBJ) => (boolean | undefined), opt_useCapture?: boolean | undefined, opt_listenerScope?: SCOPE | undefined): ListenableKey;
+    listenOnce<SCOPE, EVENTOBJ>(type: string | EventsEventId<EVENTOBJ>, listener: (this: SCOPE, arg1: EVENTOBJ) => (boolean | undefined | void), opt_useCapture?: boolean | undefined, opt_listenerScope?: SCOPE | undefined): ListenableKey;
     /**
      * Removes an event listener which was added with listen() or listenOnce().
      *
@@ -508,7 +508,7 @@ export class Listenable {
      * @return {boolean} Whether any listener was removed.
      * @template SCOPE,EVENTOBJ
      */
-    unlisten<SCOPE, EVENTOBJ>(type: string | EventId<EVENTOBJ>, listener: (this: SCOPE, arg1: EVENTOBJ) => (boolean | undefined), opt_useCapture?: boolean | undefined, opt_listenerScope?: SCOPE | undefined): boolean;
+    unlisten<SCOPE, EVENTOBJ>(type: string | EventsEventId<EVENTOBJ>, listener: (this: SCOPE, arg1: EVENTOBJ) => (boolean | undefined | void), opt_useCapture?: boolean | undefined, opt_listenerScope?: SCOPE | undefined): boolean;
     /**
      * Removes an event listener which was added with listen() by the key
      * returned by listen().
@@ -570,7 +570,7 @@ export class Listenable {
      *     false.
      * @template EVENTOBJ
      */
-    fireListeners<EVENTOBJ = BrowserEvent>(type: string | EventId<EVENTOBJ>, capture: boolean, eventObject: EVENTOBJ | null): boolean;
+    fireListeners<EVENTOBJ = BrowserEvent>(type: string | EventsEventId<EVENTOBJ>, capture: boolean, eventObject: EVENTOBJ | null): boolean;
     /**
      * Gets all listeners in this listenable for the given type and
      * capture mode.
@@ -581,7 +581,7 @@ export class Listenable {
      *     listeners.
      * @template EVENTOBJ
      */
-    getListeners<EVENTOBJ_4>(type: string | EventId<any>, capture: boolean): Array<ListenableKey>;
+    getListeners<EVENTOBJ = BrowserEvent>(type: string | EventsEventId<any>, capture: boolean): Array<ListenableKey>;
     /**
      * Gets the ListenableKey for the event or null if no such
      * listener is in use.
@@ -596,7 +596,7 @@ export class Listenable {
      * @return {?ListenableKey} the found listener or null if not found.
      * @template SCOPE,EVENTOBJ
      */
-    getListener<SCOPE, EVENTOBJ_5>(type: string | EventId<EVENTOBJ_5>, listener: (this: SCOPE, arg1: EVENTOBJ_5) => (boolean | undefined), capture: boolean, opt_listenerScope?: SCOPE | undefined): ListenableKey | null;
+    getListener<SCOPE, EVENTOBJ>(type: string | EventsEventId<EVENTOBJ>, listener: (this: SCOPE, arg1: EVENTOBJ) => (boolean | undefined | void), capture: boolean, opt_listenerScope?: SCOPE | undefined): ListenableKey | null;
     /**
      * Whether there is any active listeners matching the specified
      * signature. If either the type or capture parameters are
@@ -609,7 +609,7 @@ export class Listenable {
      *     the requested type and/or capture phase.
      * @template EVENTOBJ
      */
-    hasListener<EVENTOBJ_6>(opt_type?: string | EventId<EVENTOBJ_6> | undefined, opt_capture?: boolean | undefined): boolean;
+    hasListener<EVENTOBJ = BrowserEvent>(opt_type?: string | EventsEventId<EVENTOBJ> | undefined, opt_capture?: boolean | undefined): boolean;
 }
 export namespace Listenable {
     const IMPLEMENTED_BY_PROP: string;
@@ -825,7 +825,7 @@ export class ListenerMap {
      *     listener.
      * @return {!ListenableKey} Unique key for the listener.
      */
-    add(type: string | EventId<any>, listener: Function, callOnce: boolean, opt_useCapture?: boolean | undefined, opt_listenerScope?: any | undefined): ListenableKey;
+    add(type: string | EventsEventId<any>, listener: Function, callOnce: boolean, opt_useCapture?: boolean | undefined, opt_listenerScope?: any | undefined): ListenableKey;
     /**
      * Removes a matching listener.
      * @param {string|!EventId} type The listener event type.
@@ -835,7 +835,7 @@ export class ListenerMap {
      *     listener.
      * @return {boolean} Whether any listener was removed.
      */
-    remove(type: string | EventId<any>, listener: Function, opt_useCapture?: boolean | undefined, opt_listenerScope?: any | undefined): boolean;
+    remove(type: string | EventsEventId<any>, listener: Function, opt_useCapture?: boolean | undefined, opt_listenerScope?: any | undefined): boolean;
     /**
      * Removes the given listener object.
      * @param {!ListenableKey} listener The listener to remove.
@@ -848,7 +848,7 @@ export class ListenerMap {
      * @param {string|!EventId=} opt_type Type of event to remove.
      * @return {number} Number of listeners removed.
      */
-    removeAll(opt_type?: (string | EventId<any>) | undefined): number;
+    removeAll(opt_type?: (string | EventsEventId<any>) | undefined): number;
     /**
      * Gets all listeners that match the given type and capture mode. The
      * returned array is a copy (but the listener objects are not).
@@ -858,7 +858,7 @@ export class ListenerMap {
      * @return {!Array<!ListenableKey>} An array of matching
      *     listeners.
      */
-    getListeners(type: string | EventId<any>, capture: boolean): Array<ListenableKey>;
+    getListeners(type: string | EventsEventId<any>, capture: boolean): Array<ListenableKey>;
     /**
      * Gets the ListenableKey for the event or null if no such
      * listener is in use.
@@ -871,7 +871,7 @@ export class ListenerMap {
      *     listener.
      * @return {?ListenableKey} the found listener or null if not found.
      */
-    getListener(type: string | EventId<any>, listener: Function, capture: boolean, opt_listenerScope?: any | undefined): ListenableKey | null;
+    getListener(type: string | EventsEventId<any>, listener: Function, capture: boolean, opt_listenerScope?: any | undefined): ListenableKey | null;
     /**
      * Whether there is a matching listener. If either the type or capture
      * parameters are unspecified, the function will match on the
@@ -882,7 +882,7 @@ export class ListenerMap {
      * @return {boolean} Whether there is an active listener matching
      *     the requested type and/or capture phase.
      */
-    hasListener(opt_type?: (string | EventId<any>) | undefined, opt_capture?: boolean | undefined): boolean;
+    hasListener(opt_type?: (string | EventsEventId<any>) | undefined, opt_capture?: boolean | undefined): boolean;
 }
 /**
  * Dispatches an event (or event like object) and calls all listeners
@@ -1013,7 +1013,7 @@ declare class events_EventTarget extends GoogDisposable implements Listenable {
      *     `listen` if you are passing Object
      *     (instead of Function) as handler.
      */
-    addEventListener(type: string | EventId<any>, handler: (arg0: unknown) => unknown | {
+    addEventListener(type: string | EventsEventId<any>, handler: (arg0: unknown) => unknown | {
         handleEvent: (arg0: unknown) => unknown;
     } | null, opt_capture?: boolean | undefined, opt_handlerScope?: any | undefined): void;
     /**
@@ -1037,26 +1037,111 @@ declare class events_EventTarget extends GoogDisposable implements Listenable {
     removeEventListener(type: string, handler: (arg0: unknown) => unknown | {
         handleEvent: (arg0: unknown) => unknown;
     } | null, opt_capture?: boolean | undefined, opt_handlerScope?: any | undefined): void;
-    /** @override */
-    dispatchEvent(e: any): any;
-    /** @override */
-    listen(type: any, listener: any, opt_useCapture?: any, opt_listenerScope?: any): any;
-    /** @override */
-    listenOnce(type: any, listener: any, opt_useCapture?: any, opt_listenerScope?: any): any;
-    /** @override */
-    unlisten(type: any, listener: any, opt_useCapture?: any, opt_listenerScope?: any): any;
-    /** @override */
-    unlistenByKey(key: any): any;
-    /** @override */
-    removeAllListeners(opt_type?: any): any;
-    /** @override */
-    fireListeners(type: any, capture: any, eventObject: any): boolean;
-    /** @override */
-    getListeners(type: any, capture: any): any;
-    /** @override */
-    getListener(type: any, listener: any, capture: any, opt_listenerScope?: any): any;
-    /** @override */
-    hasListener(opt_type?: any, opt_capture?: any): any;
+    /**
+     * @param {?EventLike} e Event object.
+     * @return {boolean} If anyone called preventDefault on the event object (or
+     *     if any of the listeners returns false) this will also return false.
+     * @override
+     */
+    dispatchEvent(e: EventLike | null): boolean;
+    /**
+     * @param {string|!EventId<EVENTOBJ>} type The event type id.
+     * @param {function(this:SCOPE, EVENTOBJ):(boolean|undefined)} listener Callback
+     *     method.
+     * @param {boolean=} opt_useCapture Whether to fire in capture phase
+     *     (defaults to false).
+     * @param {SCOPE=} opt_listenerScope Object in whose scope to call the
+     *     listener.
+     * @return {!ListenableKey} Unique key for the listener.
+     * @template SCOPE,EVENTOBJ
+     * @override
+     */
+    listen<SCOPE, EVENTOBJ>(type: string | EventsEventId<EVENTOBJ>, listener: (this: SCOPE, arg1: EVENTOBJ) => (boolean | undefined | void), opt_useCapture?: boolean | undefined, opt_listenerScope?: SCOPE | undefined): ListenableKey;
+    /**
+     * @param {string|!EventId<EVENTOBJ>} type The event type id.
+     * @param {function(this:SCOPE, EVENTOBJ):(boolean|undefined)} listener Callback
+     *     method.
+     * @param {boolean=} opt_useCapture Whether to fire in capture phase
+     *     (defaults to false).
+     * @param {SCOPE=} opt_listenerScope Object in whose scope to call the
+     *     listener.
+     * @return {!ListenableKey} Unique key for the listener.
+     * @template SCOPE,EVENTOBJ
+     * @override
+     */
+    listenOnce<SCOPE, EVENTOBJ>(type: string | EventsEventId<EVENTOBJ>, listener: (this: SCOPE, arg1: EVENTOBJ) => (boolean | undefined | void), opt_useCapture?: boolean | undefined, opt_listenerScope?: SCOPE | undefined): ListenableKey;
+    /**
+     * @param {string|!EventId<EVENTOBJ>} type The event type id.
+     * @param {function(this:SCOPE, EVENTOBJ):(boolean|undefined)} listener Callback
+     *     method.
+     * @param {boolean=} opt_useCapture Whether to fire in capture phase
+     *     (defaults to false).
+     * @param {SCOPE=} opt_listenerScope Object in whose scope to call
+     *     the listener.
+     * @return {boolean} Whether any listener was removed.
+     * @template SCOPE,EVENTOBJ
+     * @override
+     */
+    unlisten<SCOPE, EVENTOBJ>(type: string | EventsEventId<EVENTOBJ>, listener: (this: SCOPE, arg1: EVENTOBJ) => (boolean | undefined | void), opt_useCapture?: boolean | undefined, opt_listenerScope?: SCOPE | undefined): boolean;
+    /**
+     * @param {!ListenableKey} key The key returned by
+     *     listen() or listenOnce().
+     * @return {boolean} Whether any listener was removed.
+     * @override
+     */
+    unlistenByKey(key: ListenableKey): boolean;
+    /**
+     * @param {string=} opt_type Type of event to remove, default is to
+     *     remove all types.
+     * @return {number} Number of listeners removed.
+     * @override
+     */
+    removeAllListeners(opt_type?: string | undefined): number;
+    /**
+     * @param {string|!EventId<EVENTOBJ>} type The type of the
+     *     listeners to fire.
+     * @param {boolean} capture The capture mode of the listeners to fire.
+     * @param {?EVENTOBJ} eventObject The event object to fire.
+     * @return {boolean} Whether all listeners succeeded without
+     *     attempting to prevent default behavior. If any listener returns
+     *     false or called EventsEvent#preventDefault, this returns
+     *     false.
+     * @template EVENTOBJ
+     * @override
+     */
+    fireListeners<EVENTOBJ = BrowserEvent>(type: string | EventsEventId<EVENTOBJ>, capture: boolean, eventObject: EVENTOBJ | null): boolean;
+    /**
+     * @param {string|!EventId} type The type of the listeners to fire.
+     * @param {boolean} capture The capture mode of the listeners to fire.
+     * @return {!Array<!ListenableKey>} An array of registered
+     *     listeners.
+     * @template EVENTOBJ
+     * @override
+     */
+    getListeners<EVENTOBJ = BrowserEvent>(type: string | EventsEventId<any>, capture: boolean): Array<ListenableKey>;
+    /**
+     * @param {string|!EventId<EVENTOBJ>} type The name of the event
+     *     without the 'on' prefix.
+     * @param {function(this:SCOPE, EVENTOBJ):(boolean|undefined)} listener The
+     *     listener function to get.
+     * @param {boolean} capture Whether the listener is a capturing listener.
+     * @param {SCOPE=} opt_listenerScope Object in whose scope to call the
+     *     listener.
+     * @return {?ListenableKey} the found listener or null if not found.
+     * @template SCOPE,EVENTOBJ
+     * @override
+     */
+    getListener<SCOPE, EVENTOBJ>(type: string | EventsEventId<EVENTOBJ>, listener: (this: SCOPE, arg1: EVENTOBJ) => (boolean | undefined | void), capture: boolean, opt_listenerScope?: SCOPE | undefined): ListenableKey | null;
+    /**
+     * @param {string|!EventId<EVENTOBJ>=} opt_type Event type.
+     * @param {boolean=} opt_capture Whether to check for capture or bubble
+     *     listeners.
+     * @return {boolean} Whether there is any active listeners matching
+     *     the requested type and/or capture phase.
+     * @template EVENTOBJ
+     * @override
+     */
+    hasListener<EVENTOBJ = BrowserEvent>(opt_type?: string | EventsEventId<EVENTOBJ> | undefined, opt_capture?: boolean | undefined): boolean;
     /**
      * Sets the target to be used for `event.target` when firing
      * event. Mainly used for testing. For example, see
@@ -1096,7 +1181,7 @@ export function fireListener(listener: Listener | null, eventObject: any | null)
  * @param {?Object} eventObject Event object to be passed to listener.
  * @return {boolean} True if all listeners returned true else false.
  */
-export function fireListeners(obj: any | null, type: string | EventId<any>, capture: boolean, eventObject: any | null): boolean;
+export function fireListeners(obj: any | null, type: string | EventsEventId<any>, capture: boolean, eventObject: any | null): boolean;
 /**
  * Gets the Listener for the event or null if no such listener is
  * in use.
@@ -1113,7 +1198,7 @@ export function fireListeners(obj: any | null, type: string | EventId<any>, capt
  * @return {?ListenableKey} the found listener or null if not found.
  * @template EVENTOBJ
  */
-export function getListener<EVENTOBJ = BrowserEvent>(src: (EventTarget | Listenable) | null, type: string | EventId<EVENTOBJ> | null, listener: (arg0: EVENTOBJ) => unknown | {
+export function getListener<EVENTOBJ = BrowserEvent>(src: (EventTarget | Listenable) | null, type: string | EventsEventId<EVENTOBJ> | null, listener: (arg0: EVENTOBJ) => unknown | {
     handleEvent: (arg0: unknown) => unknown;
 } | null, opt_capt?: boolean | undefined, opt_handler?: any | undefined): ListenableKey | null;
 /**
@@ -1124,7 +1209,7 @@ export function getListener<EVENTOBJ = BrowserEvent>(src: (EventTarget | Listena
  * @param {boolean} capture Capture phase?.
  * @return {!Array<!Listener>} Array of listener objects.
  */
-export function getListeners(obj: any | null, type: string | EventId<any>, capture: boolean): Array<Listener>;
+export function getListeners(obj: any | null, type: string | EventsEventId<any>, capture: boolean): Array<Listener>;
 /**
  * Helper function for returning a proxy function.
  * @return {!Function} A new or reused function object.
@@ -1160,7 +1245,7 @@ export function getUniqueId(identifier: string): string;
  * @return {boolean} Whether an event target has one or more listeners matching
  *     the requested type and/or capture phase.
  */
-export function hasListener(obj: (EventTarget | Listenable) | null, opt_type?: (string | EventId<any>) | undefined, opt_capture?: boolean | undefined): boolean;
+export function hasListener(obj: (EventTarget | Listenable) | null, opt_type?: (string | EventsEventId<any>) | undefined, opt_capture?: boolean | undefined): boolean;
 /**
  * Adds an event listener for a specific event on a native event
  * target (such as a DOM element) or an object that has implemented
@@ -1184,7 +1269,7 @@ export function hasListener(obj: (EventTarget | Listenable) | null, opt_type?: (
  * @template T,EVENTOBJ
  * @suppress{checkTypes}
  */
-export function listen<T = any, EVENTOBJ = BrowserEvent>(src: (EventTarget | Listenable) | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => unknown | {
+export function listen<T = any, EVENTOBJ = BrowserEvent>(src: (EventTarget | Listenable) | null, type: string | string[] | EventsEventId<EVENTOBJ> | EventsEventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => unknown | {
     handleEvent: (arg0: unknown) => unknown;
 } | null, opt_options?: (boolean | AddEventListenerOptions) | undefined, opt_handler?: T | undefined): Key | null;
 /**
@@ -1213,7 +1298,7 @@ export function listen<T = any, EVENTOBJ = BrowserEvent>(src: (EventTarget | Lis
  * @template T,EVENTOBJ
  * @suppress{checkTypes}
  */
-export function listenOnce<T = any, EVENTOBJ = BrowserEvent>(src: (EventTarget | Listenable) | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => unknown | {
+export function listenOnce<T = any, EVENTOBJ = BrowserEvent>(src: (EventTarget | Listenable) | null, type: string | string[] | EventsEventId<EVENTOBJ> | EventsEventId<EVENTOBJ>[], listener: (this: T, arg1: EVENTOBJ) => unknown | {
     handleEvent: (arg0: unknown) => unknown;
 } | null, opt_options?: (boolean | AddEventListenerOptions) | undefined, opt_handler?: T | undefined): Key | null;
 /**
@@ -1252,7 +1337,7 @@ export function protectBrowserEventEntryPoint(errorHandler: ErrorHandler | null)
  *     Default is all types.
  * @return {number} Number of listeners removed.
  */
-export function removeAll(obj: any | undefined, opt_type?: (string | EventId<any>) | undefined): number;
+export function removeAll(obj: any | undefined, opt_type?: (string | EventsEventId<any>) | undefined): number;
 /**
  * Removes an event listener which was added with listen().
  *
@@ -1271,7 +1356,7 @@ export function removeAll(obj: any | undefined, opt_type?: (string | EventId<any
  * @suppress{checkTypes}
  * @template EVENTOBJ
  */
-export function unlisten<EVENTOBJ = BrowserEvent>(src: (EventTarget | Listenable) | null, type: string | string[] | EventId<EVENTOBJ> | EventId<EVENTOBJ>[], listener: (...arg0: any[]) => unknown | {
+export function unlisten<EVENTOBJ = BrowserEvent>(src: (EventTarget | Listenable) | null, type: string | string[] | EventsEventId<EVENTOBJ> | EventsEventId<EVENTOBJ>[], listener: (arg0: unknown) => unknown | {
     handleEvent: (arg0: unknown) => unknown;
 } | null, opt_options?: (boolean | EventListenerOptions) | undefined, opt_handler?: any | undefined): boolean | null;
 /**
@@ -1311,9 +1396,10 @@ export function unlistenWithWrapper(src: (EventTarget | Listenable) | null, wrap
  */
 export function wrapListener(listener: any | Function): Function;
 import { Disposable as GoogDisposable } from "../disposable/disposable.js";
-import { EventId } from "./eventid.js";
+import { EventId as EventsEventId } from "./eventid.js";
 import { Event as EventsEvent } from "./event.js";
 import { EventLike } from "./event.js";
+import { EventId } from "./eventid.js";
 import { ErrorHandler } from "../debug/errorhandler.js";
 export { events_EventTarget as EventTarget };
 

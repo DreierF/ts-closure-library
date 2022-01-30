@@ -1,16 +1,44 @@
 /**
- * Enum of browser capabilities.
+ * Whether the button attribute of the event is W3C compliant.  False in
+ * Internet Explorer prior to version 9; document-version dependent.
  */
-export type BrowserFeature = boolean;
-export namespace BrowserFeature {
-    const HAS_W3C_BUTTON: boolean;
-    const HAS_W3C_EVENT_SUPPORT: boolean;
-    const SET_KEY_CODE_TO_PREVENT_DEFAULT: boolean;
-    const HAS_NAVIGATOR_ONLINE_PROPERTY: boolean;
-    const HAS_HTML5_NETWORK_EVENT_SUPPORT: boolean;
-    const HTML5_NETWORK_EVENTS_FIRE_ON_BODY: boolean;
-    const TOUCH_ENABLED: boolean;
-    const POINTER_EVENTS: boolean;
-    const MSPOINTER_EVENTS: boolean;
-    const PASSIVE_EVENTS: boolean;
-}
+export const HAS_W3C_BUTTON: true;
+/**
+ * Whether the browser supports full W3C event model.
+ */
+export const HAS_W3C_EVENT_SUPPORT: true;
+/**
+ * To prevent default in IE7-8 for certain keydown events we need set the
+ * keyCode to -1.
+ */
+export const SET_KEY_CODE_TO_PREVENT_DEFAULT: false;
+/**
+ * Whether the `navigator.onLine` property is supported.
+ */
+export const HAS_NAVIGATOR_ONLINE_PROPERTY: true;
+export const HAS_HTML5_NETWORK_EVENT_SUPPORT: true;
+/**
+ * Whether HTML5 network events fire on document.body, or otherwise the
+ * window.
+ */
+export const HTML5_NETWORK_EVENTS_FIRE_ON_BODY: false;
+/**
+ * Whether touch is enabled in the browser.
+ */
+export const TOUCH_ENABLED: boolean;
+/**
+ * Whether addEventListener supports W3C standard pointer events.
+ * http://www.w3.org/TR/pointerevents/
+ */
+export const POINTER_EVENTS: true;
+/**
+ * Whether addEventListener supports MSPointer events (only used in IE10).
+ * http://msdn.microsoft.com/en-us/library/ie/hh772103(v=vs.85).aspx
+ * http://msdn.microsoft.com/library/hh673557(v=vs.85).aspx
+ */
+export const MSPOINTER_EVENTS: false;
+/**
+ * Whether addEventListener supports {passive: true}.
+ * https://developers.google.com/web/updates/2016/06/passive-event-listeners
+ */
+export const PASSIVE_EVENTS: boolean;
