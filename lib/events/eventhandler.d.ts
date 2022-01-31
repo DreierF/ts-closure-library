@@ -363,7 +363,7 @@ export class EventWrapper {
         handleEvent: (arg0: unknown) => unknown;
     } | null, opt_capt?: boolean | undefined, opt_scope?: any | undefined, opt_eventHandler?: EventHandler<any> | undefined): void;
 }
-export type Key = number | ListenableKey;
+export type Key = number | EventsListenableKey;
 /**
  * @license
  * Copyright The Closure Library Authors.
@@ -412,7 +412,6 @@ export let Key: any;
 /**
  * @fileoverview An interface for a listenable JavaScript object.
  */
-/**  */
 /**
  * A listenable interface. A listenable is an object with the ability
  * to dispatch/broadcast events to "event listeners" registered via
@@ -614,53 +613,6 @@ export class Listenable {
 export namespace Listenable {
     const IMPLEMENTED_BY_PROP: string;
 }
-/**
- * An interface that describes a single registered listener.
- * @interface
- */
-export class ListenableKey {
-    /**
-     * Reserves a key to be used for ListenableKey#key field.
-     * @return {number} A number to be used to fill ListenableKey#key
-     *     field.
-     */
-    static reserveKey(): number;
-    /**
-     * The source event target.
-     * @type {?Object|?Listenable}
-     */
-    src: (any | (Listenable | null)) | null;
-    /**
-     * The event type the listener is listening to.
-     * @type {string|null}
-     */
-    type: string | null;
-    /**
-     * The listener function.
-     * @type {function(?):?|{handleEvent:function(?):?}|null}
-     */
-    listener: (arg0: unknown) => unknown | {
-        handleEvent: (arg0: unknown) => unknown;
-    } | null;
-    /**
-     * Whether the listener works on capture phase.
-     * @type {boolean|null}
-     */
-    capture: boolean | null;
-    /**
-     * The 'this' object for the listener function's scope.
-     * @type {Object|undefined}
-     */
-    handler: any | undefined;
-    /**
-     * A globally unique number to identify the key.
-     * @type {number|null}
-     */
-    key: number | null;
-}
-export namespace ListenableKey {
-    const counter_: number;
-}
 export type ListenableType = EventTarget | Listenable;
 /**
  * @typedef {?EventTarget|Listenable}
@@ -680,7 +632,7 @@ export let ListenableType: any;
  *     the event.
  * @implements {ListenableKey}
  */
-export class Listener implements ListenableKey {
+export class Listener implements EventsListenableKey {
     /**
      * Simple class that stores information about a listener
      * @param {function(?):?} listener Callback function.
@@ -1398,7 +1350,9 @@ export function wrapListener(listener: any | Function): Function;
 import { Disposable as GoogDisposable } from "../disposable/disposable.js";
 import { EventId as EventsEventId } from "./eventid.js";
 import { Event as EventsEvent } from "./event.js";
-import { EventLike } from "./event.js";
+import { ListenableKey as EventsListenableKey } from "./listenablekey.js";
+import { ListenableKey } from "./listenablekey.js";
+import { EventLike } from "./eventlike.js";
 import { EventId } from "./eventid.js";
 import { ErrorHandler } from "../debug/errorhandler.js";
 export { events_EventTarget as EventTarget };

@@ -86,9 +86,11 @@ export enum OverflowStatus {
     FAILED_TOP,
     FAILED_BOTTOM,
     FAILED_OUTSIDE_VIEWPORT,
-
+    /** Shorthand to check if a status code contains any fail code. */
     FAILED,
+    /** Shorthand to check if horizontal positioning failed. */
     FAILED_HORIZONTAL,
+    /** Shorthand to check if vertical positioning failed. */
     FAILED_VERTICAL,
 }
 /**

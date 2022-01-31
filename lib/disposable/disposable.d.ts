@@ -4,8 +4,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 /**
- * @fileoverview Implements the disposable interface. The dispose method is used
- * to clean up references and resources.
+ * @fileoverview Implements the disposable interface.
+ */
+/**
+ * TODO(user): Remove this require.
+ *
  */
 /**
  * Class that provides the basic implementation for disposable objects. If your
@@ -142,18 +145,4 @@ export const INCLUDE_STACK_ON_CREATION: boolean;
  *     compiles down to 0 bytes.
  */
 export const MONITORING_MODE: number;
-/**
- * Calls `dispose` on the argument if it supports it. If obj is not an
- *     object with a dispose() method, this is a no-op.
- * @param {*} obj The object to dispose of.
- */
-export function dispose(obj: any): void;
-/**
- * Calls `dispose` on each member of the list that supports it. (If the
- * member is an ArrayLike, then `disposeAll()` will be called
- * recursively on each of its members.) If the member is not an object with a
- * `dispose()` method, then it is ignored.
- * @param {...*} var_args The list.
- */
-export function disposeAll(...args: any[]): void;
 import { IDisposable } from "./idisposable.js";

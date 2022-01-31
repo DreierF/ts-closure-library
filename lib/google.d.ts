@@ -349,9 +349,9 @@ export function getUid(obj: any | null): number;
  * Evals JavaScript in the global scope.
  *
  * Throws an exception if neither execScript or eval is defined.
- * @param {string} script JavaScript string.
+ * @param {string|!TrustedScript} script JavaScript string.
  */
-export function globalEval(script: string): void;
+export function globalEval(script: string | any): void;
 /**
  * Whether the given object is already assigned a unique ID.
  *

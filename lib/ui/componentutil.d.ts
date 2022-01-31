@@ -5,6 +5,7 @@
  */
 /**
  * @fileoverview Static utility methods for UI components.
+ * @suppress {missingRequire} TODO(user): this shouldn't be needed
  */
 /**
  * @param {!Component} component

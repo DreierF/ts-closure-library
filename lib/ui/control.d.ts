@@ -699,6 +699,7 @@ export namespace Control {
 /**
  * @fileoverview Base class for control renderers.
  * TODO(attila):  If the renderer framework works well, pull it into Component.
+ * @suppress {missingRequire} TODO(user): this shouldn't be needed
  */
 /**
  * Default renderer for {@link Control}s.  Can be used as-is, but

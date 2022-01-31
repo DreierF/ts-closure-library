@@ -50,6 +50,7 @@ export namespace PointerType {
  * NOTE: The keyCode member contains the raw browser keyCode. For normalized
  * key and character code use {@link goog.events.KeyHandler}.
  * </pre>
+ * @suppress {missingRequire} TODO(user): this shouldn't be needed
  */
 /**
  * @type {boolean} If true, use the layerX and layerY properties of a native

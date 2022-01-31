@@ -682,10 +682,12 @@ declare class CallbackEntry_ {
     reset(): void;
 }
 import { FreeList } from "../async/freelist.js";
-import { throwException } from "../async/nexttick.js";
+import { throwException } from "../async/throwexception.js";
 declare class CancellationError extends DebugError {
     /**
-     * Error used as a rejection reason for canceled Promises.
+     * Error used as a rejection reason for canceled Promises.  This will still be
+     * a rejection, but should generally be ignored by other error handlers (because
+     * cancellation should not be a reportable error).
      *
      * @param {string=} opt_message
      */

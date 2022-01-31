@@ -152,6 +152,7 @@ export class SafeScript implements TypedString {
      * @override
      */
     getTypedStringValue(): any;
+    toString(): string;
 }
 export namespace SafeScript {
     const EMPTY: SafeScript;

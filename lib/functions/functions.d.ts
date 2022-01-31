@@ -4,12 +4,17 @@
  */
 export const CACHE_RETURN_VALUE: boolean;
 /**
+ * Always returns `undefined` (loosely-typed version).
+ * @type {!Function}
+ */
+export let EMPTY: unknown;
+/**
  * Always returns false.
  * @type {function(...): boolean}
  */
 export function FALSE(): boolean;
 /**
- * Always returns NULL.
+ * Always returns `null`.
  * @type {function(...): null}
  */
 export function NULL(): null;
@@ -18,6 +23,11 @@ export function NULL(): null;
  * @type {function(...): boolean}
  */
 export function TRUE(): boolean;
+/**
+ * Always returns `undefined`.
+ * @type {function(...): undefined}
+ */
+export function UNDEFINED(): undefined;
 /**
  * Creates a function that returns true if each of its components evaluates
  * to true. The components are evaluated in order, and the evaluation will be

@@ -112,6 +112,7 @@ export class SafeStyle implements TypedString {
      */
     implementsGoogStringTypedString: boolean;
     getTypedStringValue(): string;
+    toString(): string;
 }
 export namespace SafeStyle {
     function fromConstant(style: Const): SafeStyle;

@@ -454,6 +454,7 @@ export class Container<T> extends Ui_Component {
  */
 /**
  * @fileoverview Base class for container renderers.
+ * @suppress {missingRequire} TODO(user): this shouldn't be needed
  */
 /**
  * Default renderer for {@link Container}.  Can be used as-is, but
