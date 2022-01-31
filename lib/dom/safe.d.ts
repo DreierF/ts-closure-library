@@ -99,16 +99,16 @@ export function openInWindow(url: string | Html_SafeUrl, opt_openerWin?: Window 
  * @param {!Html_SafeHtml} content Note: We don't have a special type for
  *     XML or SVG supported by this function so we use SafeHtml.
  * @param {string} type
- * @return {?Document}
+ * @return {!Document}
  */
-export function parseFromString(parser: DOMParser, content: Html_SafeHtml, type: string): Document | null;
+export function parseFromString(parser: DOMParser, content: Html_SafeHtml, type: string): Document;
 /**
  * Parses the HTML as 'text/html'.
  * @param {!DOMParser} parser
  * @param {!Html_SafeHtml} html The HTML to be parsed.
- * @return {?Document}
+ * @return {!Document}
  */
-export function parseFromStringHtml(parser: DOMParser, html: Html_SafeHtml): Document | null;
+export function parseFromStringHtml(parser: DOMParser, html: Html_SafeHtml): Document;
 /**
  * Safely replaces the URL of a Location object.
  *

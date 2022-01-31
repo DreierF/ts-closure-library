@@ -389,7 +389,7 @@ import { Component } from "./component.js";
 import { MenuItem } from "./menu.js";
 import { Menu } from "./menu.js";
 import { LabelInput } from "./labelinput.js";
-import { KeyEvent } from "../events/keyhandler.js";
+import { KeyEvent } from "../events/keyevent.js";
 import { DomHelper } from "../dom/dom.js";
 import { ControlContent } from "./controlcontent.js";
 import { MenuItemRenderer as Ui_MenuItemRenderer } from "./menuitemrenderer.js";

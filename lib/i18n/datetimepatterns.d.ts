@@ -588,39 +588,4 @@ export let DateTimePatterns_zh_TW: DateTimePatternsType;
  * @type {!DateTimePatternsType}
  */
 export let DateTimePatterns_zu: DateTimePatternsType;
-/**
- * @interface
- * @struct
- */
-declare function DateTimePatternsType(): void;
-declare class DateTimePatternsType {
-    /** @type {string} */
-    YEAR_FULL: string;
-    /** @type {string} */
-    YEAR_FULL_WITH_ERA: string;
-    /** @type {string} */
-    YEAR_MONTH_ABBR: string;
-    /** @type {string} */
-    YEAR_MONTH_FULL: string;
-    /** @type {string} */
-    YEAR_MONTH_SHORT: string;
-    /** @type {string} */
-    MONTH_DAY_ABBR: string;
-    /** @type {string} */
-    MONTH_DAY_FULL: string;
-    /** @type {string} */
-    MONTH_DAY_SHORT: string;
-    /** @type {string} */
-    MONTH_DAY_MEDIUM: string;
-    /** @type {string} */
-    MONTH_DAY_YEAR_MEDIUM: string;
-    /** @type {string} */
-    WEEKDAY_MONTH_DAY_MEDIUM: string;
-    /** @type {string} */
-    WEEKDAY_MONTH_DAY_YEAR_MEDIUM: string;
-    /** @type {string} */
-    DAY_ABBR: string;
-    /** @type {string} */
-    MONTH_DAY_TIME_ZONE_SHORT: string;
-}
-export {};
+import { DateTimePatternsType } from "./datetimepatternstype.js";

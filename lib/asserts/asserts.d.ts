@@ -196,11 +196,6 @@ export function assertNumber(value: any, opt_message?: string | undefined, ...ar
  */
 export function assertObject<T>(value: T, opt_message?: string, ...args: any[]): T extends NonNullable<T> ? NonNullable<T> : never;
 /**
- * Checks that no enumerable keys are present in Object.prototype. Such keys
- * would break most code that use {@code for (var ... in ...)} loops.
- */
-export function assertObjectPrototypeIsIntact(): void;
-/**
  * Checks if the value is a string if ENABLE_ASSERTS is true.
  * @param {*} value The value to check.
  * @param {string=} opt_message Error message in case of failure.

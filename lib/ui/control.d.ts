@@ -1158,7 +1158,7 @@ import { ControlContent } from "./controlcontent.js";
 import { State } from "./component.js";
 import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
 import { Event as EventsEvent } from "../events/event.js";
-import { KeyEvent } from "../events/keyhandler.js";
+import { KeyEvent } from "../events/keyevent.js";
 import { DomHelper } from "../dom/dom.js";
 declare class IeMouseEventSequenceSimulator_ extends Disposable {
     /**

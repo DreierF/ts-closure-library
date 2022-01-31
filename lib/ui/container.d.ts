@@ -653,5 +653,5 @@ import { KeyHandler } from "../events/keyhandler.js";
 import { Event as EventsEvent } from "../events/event.js";
 import { BrowserEvent as EventsBrowserEvent } from "../events/browserevent.js";
 import { Control as UiControl } from "./control.js";
-import { KeyEvent } from "../events/keyhandler.js";
+import { KeyEvent } from "../events/keyevent.js";
 import { DomHelper } from "../dom/dom.js";
