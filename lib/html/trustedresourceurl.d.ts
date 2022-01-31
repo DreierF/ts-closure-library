@@ -66,7 +66,6 @@ export class TrustedResourceUrl implements DirectionalString, TypedString {
     } | undefined) | null), opt_hashParams?: (string | ({
         [x: string]: any;
     } | null)) | undefined): TrustedResourceUrl;
-    toString(): string;
 }
 export namespace TrustedResourceUrl {
     function unwrap(trustedResourceUrl: TrustedResourceUrl): string;

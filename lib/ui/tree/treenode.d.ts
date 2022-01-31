@@ -10,7 +10,6 @@
  * This is a based on the webfx tree control. It since been updated to add
  * typeahead support, as well as accessibility support using ARIA framework.
  * See file comment in treecontrol.js.
- * @suppress {missingRequire} TODO(user): this shouldn't be needed
  */
 /**
  * An abstract base class for a node in the tree.
@@ -520,7 +519,6 @@ export namespace EventType {
  *
  * This is a based on the webfx tree control. See file comment in
  * treecontrol.js.
- * @suppress {missingRequire} TODO(user): this shouldn't be needed
  */
 /**
  * A single node in the tree.

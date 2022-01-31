@@ -194,11 +194,6 @@ export class SanitizedJs extends SanitizedContent {
      * @return {boolean}
      */
     static isCompatibleWithStrict(value: any): boolean;
-    /**
-     * Converts sanitized content of kind JS into SafeScript without modification.
-     * @return {!SafeScript}
-     */
-    toSafeScript(): SafeScript;
 }
 /**
  * Content of type
@@ -256,5 +251,4 @@ import { Dir } from "../i18n/bidi.js";
 import { SafeHtml } from "../html/safehtml.js";
 import { SafeUrl } from "../html/safeurl.js";
 import { SafeStyleSheet as Html_SafeStyleSheet } from "../html/safestylesheet.js";
-import { SafeScript } from "../html/safescript.js";
 import { TrustedResourceUrl } from "../html/trustedresourceurl.js";

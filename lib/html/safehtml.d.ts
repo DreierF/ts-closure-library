@@ -92,7 +92,6 @@ export class SafeHtml implements DirectionalString, TypedString {
      */
     implementsGoogStringTypedString: boolean;
     getTypedStringValue(): any;
-    toString(): string;
 }
 export namespace SafeHtml {
     export function unwrap(safeHtml: SafeHtml): string;
