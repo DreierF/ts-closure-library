@@ -48,29 +48,6 @@ export class SafeScript implements TypedString {
      */
     static fromConstant(script: Const): SafeScript;
     /**
-     * Creates a SafeScript from a compile-time constant string but with arguments
-     * that can vary at run-time. The code argument should be formatted as an
-     * inline function (see example below). The arguments will be JSON-encoded and
-     * provided as input to the function specified in code.
-     *
-     * Example Usage:
-     *
-     *     let safeScript = SafeScript.fromConstantAndArgs(
-     *         Const.from('function(arg1, arg2) { doSomething(arg1, arg2); }'),
-     *         arg1,
-     *         arg2);
-     *
-     * This produces a SafeScript equivalent to the following:
-     *
-     *     (function(arg1, arg2) { doSomething(arg1, arg2); })("value1",
-     * "value2");
-     *
-     * @param {!Const} code
-     * @param {...*} var_args
-     * @return {!SafeScript}
-     */
-    static fromConstantAndArgs(code: Const, ...args: any[]): SafeScript;
-    /**
      * Creates a SafeScript JSON representation from anything that could be passed
      * to JSON.stringify.
      * @param {*} val

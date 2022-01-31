@@ -1,18 +1,4 @@
 /**
- * An interface for a supplier that provides Soy injected data.
- * @interface
- */
-export class InjectedDataSupplier {
-    /**
-     * Gets the injected data. Implementation may assume that
-     * `Renderer` will treat the returned data as
-     * immutable.  The renderer will call this every time one of its
-     * `render*` methods is called.
-     * @return {?} A key-value pair representing the injected data.
-     */
-    getData(): unknown;
-}
-/**
  * @license
  * Copyright The Closure Library Authors.
  * SPDX-License-Identifier: Apache-2.0
@@ -21,17 +7,6 @@ export class InjectedDataSupplier {
  * @fileoverview Provides a soy renderer that allows registration of
  * injected data ("globals") that will be passed into the rendered
  * templates.
- *
- * There is also an interface {@link InjectedDataSupplier} that
- * user should implement to provide the injected data for a specific
- * application. The injected data format is a JavaScript object:
- * <pre>
- * {'dataKey': 'value', 'otherDataKey': 'otherValue'}
- * </pre>
- *
- * The injected data can then be referred to in any soy templates as
- * part of a magic "ij" parameter. For example, `$ij.dataKey`
- * will evaluate to 'value' with the above injected data.
  */
 /**
  * Creates a new soy renderer. Note that the renderer will only be
@@ -236,3 +211,4 @@ import { SafeHtml as Html_SafeHtml } from "../html/safehtml.js";
 import { SanitizedCss } from "./data.js";
 import { SafeStyleSheet } from "../html/safestylesheet.js";
 import { DomHelper } from "../dom/dom.js";
+import { InjectedDataSupplier } from "./injecteddatasupplier.js";

@@ -140,34 +140,27 @@ export class DateTimeParse {
      */
     private applyStandardPattern_;
     /**
-     * Parse the given string and fill info into date object. This version does
-     * not validate the input.
+     * Parse the given string and fill parsed values into date object. The existing
+     * values of any temporal fields of `date` not parsed from `text` are unchanged.
+     * This version does not validate that the result is a valid date/time.
      * @param {string} text The string being parsed.
      * @param {?DateLike} date The Date object to hold the parsed date.
-     * @param {number=} opt_start The position from where parse should begin.
+     * @param {!{validate: boolean}=} options The options object.
      * @return {number} How many characters parser advanced.
      */
-    parse(text: string, date: DateLike | null, opt_start?: number | undefined): number;
+    parse(text: string, date: DateLike | null, options?: {
+        validate: boolean;
+    } | undefined): number;
     /**
      * Parse the given string and fill info into date object. This version will
-     * validate the input and make sure it is a valid date/time.
+     * validate that the result is a valid date/time.
      * @param {string} text The string being parsed.
      * @param {?DateLike} date The Date object to hold the parsed date.
-     * @param {number=} opt_start The position from where parse should begin.
      * @return {number} How many characters parser advanced.
+     * @deprecated Use DateTimeParse.parse with the validate option
+     *     instead.
      */
-    strictParse(text: string, date: DateLike | null, opt_start?: number | undefined): number;
-    /**
-     * Parse the given string and fill info into date object.
-     * @param {string} text The string being parsed.
-     * @param {?DateLike} date The Date object to hold the parsed date.
-     * @param {number} start The position from where parse should begin.
-     * @param {boolean} validation If true, input string need to be a valid
-     *     date/time string.
-     * @return {number} How many characters parser advanced.
-     * @private
-     */
-    private internalParse_;
+    strictParse(text: string, date: DateLike | null): number;
     /**
      * Calculate character repeat count in pattern.
      *
@@ -342,6 +335,7 @@ export namespace DateTimeParse {
     export const ambiguousYearCenturyStart: number;
     export const PATTERN_CHARS_: string;
     export const NUMERIC_FORMAT_CHARS_: string;
+    export function ParseOptions(): void;
     export { MyDate_ };
 }
 import { DateLike } from "../date/date.js";
@@ -423,7 +417,7 @@ declare class MyDate_ {
      * set, use the passed in date object's value.
      *
      * @param {?DateLike} date Date object to be filled.
-     * @param {boolean} validation If true, input string will be checked to make
+     * @param {boolean} validation If true, input date will be checked to make
      *     sure it is valid.
      *
      * @return {boolean} false if fields specify a invalid date.

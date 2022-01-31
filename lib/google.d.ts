@@ -89,7 +89,7 @@ export const TRUSTED_SITE: boolean;
  * @type {string} Trusted Types policy name. If non-empty then Closure will
  * use Trusted Types.
  */
-export const TRUSTED_TYPES_POLICY_NAME: string;
+export let TRUSTED_TYPES_POLICY_NAME: string;
 /**
  * Partially applies this function to a particular 'this object' and zero or
  * more arguments. The result is a new function with some arguments of the first
