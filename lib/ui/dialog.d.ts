@@ -402,6 +402,13 @@ export class Dialog extends ModalPopup {
      */
     private preferredAriaRole_;
     /**
+     * Whether the dialog sets the aria-describedby element to point to the content
+     * element.
+     * @type {boolean}
+     * @private
+     */
+    private isAriaDescribedByContent_;
+    /**
      * CSS class name for the dialog element, also used as a class name prefix for
      * related elements.  Defaults to google.getCssName('modal-dialog').
      * @type {string}
@@ -464,6 +471,17 @@ export class Dialog extends ModalPopup {
      * @param {?Role} role This dialog's preferred ARIA role.
      */
     setPreferredAriaRole(role: Role | null): void;
+    /**
+     * @return {boolean} Whether the dialog sets the aria-describedby element to
+     *     point to the content element.
+     */
+    isAriaDescribedByContent(): boolean;
+    /**
+     * Sets whether the dialog sets the aria-describedby element to point to the
+     * content element. This must be set prior to `createDom`.
+     * @param {boolean} isAriaDescribedByContent
+     */
+    setIsAriaDescribedByContent(isAriaDescribedByContent: boolean): void;
     /**
      * Renders if the DOM is not created.
      * @private

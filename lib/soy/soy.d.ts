@@ -100,26 +100,28 @@ export function renderAsFragment<ARG_TYPES>(template: (arg0: ARG_TYPES, arg1?: (
  * instead of directly setting innerHTML in your hand-written code, so that it
  * will be easier to audit the code for cross-site scripting vulnerabilities.
  *
- * @param {?Element} element The element whose content we are rendering into.
+ * @param {?Element|?ShadowRoot} element The element whose content we are
+ *     rendering into.
  * @param {function(ARG_TYPES, ?CompatibleIj_=): *} template The Soy
  *     template defining the element's content.
  * @param {ARG_TYPES=} opt_templateData The data for the template.
  * @param {Object=} opt_injectedData The injected data for the template.
  * @template ARG_TYPES
  */
-export function renderElement<ARG_TYPES>(element: Element | null, template: (arg0: ARG_TYPES, arg1?: (CompatibleIj_ | null) | undefined) => any, opt_templateData?: ARG_TYPES | undefined, opt_injectedData?: any | undefined): void;
+export function renderElement<ARG_TYPES>(element: (Element | (ShadowRoot | null)) | null, template: (arg0: ARG_TYPES, arg1?: (CompatibleIj_ | null) | undefined) => any, opt_templateData?: ARG_TYPES | undefined, opt_injectedData?: any | undefined): void;
 /**
  * Sets the processed template as the innerHTML of an element. It is recommended
  * to use this helper function instead of directly setting innerHTML in your
  * hand-written code, so that it will be easier to audit the code for cross-site
  * scripting vulnerabilities.
  *
- * @param {Element|null} element The element whose content we are rendering into.
+ * @param {?Element|?ShadowRoot} element The element whose content we are
+ *     rendering into.
  * @param {!SanitizedContent} templateResult The processed
  *     template of kind HTML or TEXT (which will be escaped).
  * @template ARG_TYPES
  */
-export function renderHtml<ARG_TYPES>(element: Element | null, templateResult: SanitizedContent): void;
+export function renderHtml<ARG_TYPES>(element: (Element | (ShadowRoot | null)) | null, templateResult: SanitizedContent): void;
 /**
  * Helper typedef for ij parameters.  This is what soy generates.
  */

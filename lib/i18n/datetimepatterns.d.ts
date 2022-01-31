@@ -11,7 +11,7 @@ export let DateTimePatterns: DateTimePatternsType;
 /**
  * @fileoverview Extended date/time patterns.
  *
- * File generated from CLDR ver. 37
+ * File generated from CLDR ver. 38
  *
  * To reduce the file size (which may cause issues in some JS
  * developing environments), this file will only contain locales
@@ -21,7 +21,7 @@ export let DateTimePatterns: DateTimePatternsType;
  * "datetimepatternsext.js", which will be generated at
  * the same time together with this file.
  *
- * @suppress {const}
+ * @suppress {const,useOfGoogProvide}
  */
 /**
  * Only locales that can be enumerated in ICU are supported. For the rest

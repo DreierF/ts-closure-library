@@ -97,7 +97,7 @@ export function openInWindow(url: string | Html_SafeUrl, opt_openerWin?: Window 
  * Parses the string.
  * @param {!DOMParser} parser
  * @param {!Html_SafeHtml} content Note: We don't have a special type for
- *     XML od SVG supported by this function so we use SafeHtml.
+ *     XML or SVG supported by this function so we use SafeHtml.
  * @param {string} type
  * @return {?Document}
  */
@@ -354,6 +354,7 @@ export function setLinkHrefAndRel(link: HTMLLinkElement, url: string | Html_Safe
  *     assigned to.
  * @param {string|!Html_SafeUrl} url The URL to assign.
  * @see Html_SafeUrl#sanitize
+
  */
 export function setLocationHref(loc: Location, url: string | Html_SafeUrl): void;
 /**

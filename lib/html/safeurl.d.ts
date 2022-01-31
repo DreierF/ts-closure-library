@@ -71,6 +71,7 @@ export class SafeUrl implements DirectionalString, TypedString {
      */
     implementsGoogI18nBidiDirectionalString: boolean;
     getDirection(): number;
+    toString(): string;
 }
 export namespace SafeUrl {
     export const INNOCUOUS_STRING: string;

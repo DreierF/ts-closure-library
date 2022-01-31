@@ -1,11 +1,4 @@
-/**
- * A typedef for event like objects that are dispatchable via the
- * goog.events.dispatchEvent function. strings are treated as the type for a
- * events_Event. Objects are treated as an extension of a new
- * events_Event with the type property of the object being used as the type
- * of the Event.
- */
-export type EventLike = any;
+export { events_Event as Event };
 /**
  * @license
  * Copyright The Closure Library Authors.
@@ -19,15 +12,6 @@ export type EventLike = any;
  * Disposable here to not break projects which assume this dependency.
  *
  */
-/**
- * A typedef for event like objects that are dispatchable via the
- * goog.events.dispatchEvent function. strings are treated as the type for a
- * events_Event. Objects are treated as an extension of a new
- * events_Event with the type property of the object being used as the type
- * of the Event.
- * @typedef {string|Object|events_Event|EventId}
- */
-export let EventLike: any;
 /**
  * A base class for event objects, so that they can support preventDefault and
  * stopPropagation.
@@ -107,4 +91,3 @@ declare class events_Event {
     preventDefault(): void;
 }
 import { EventId } from "./eventid.js";
-export { events_Event as Event };

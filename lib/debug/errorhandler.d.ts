@@ -38,12 +38,6 @@ export class ErrorHandler extends Disposable implements EntryPointMonitor {
      */
     constructor(handler: Function | null);
     /**
-     * Whether to add tracers when instrumenting entry points.
-     * @type {boolean}
-     * @private
-     */
-    private addTracersToProtectedFunctions_;
-    /**
      * Handler for exceptions, which can do logging, reporting, etc.
      * @type {?Function}
      * @private
@@ -64,24 +58,10 @@ export class ErrorHandler extends Disposable implements EntryPointMonitor {
      * @private
      */
     private prefixErrorMessages_;
-    /**
-     * Enable tracers when instrumenting entry points.
-     * @param {boolean} newVal See above.
-     */
-    setAddTracersToProtectedFunctions(newVal: boolean): void;
     /** @override */
     wrap(fn: any): Function;
     /** @override */
     unwrap(fn: any): any;
-    /**
-     * Private helper function to return a span that can be clicked on to display
-     * an alert with the current stack trace. Newlines are replaced with a
-     * placeholder so that they will not be html-escaped.
-     * @param {string} stackTrace The stack trace to create a span for.
-     * @return {string} A span which can be clicked on to show the stack trace.
-     * @private
-     */
-    private getStackTraceHolder_;
     /**
      * Get the index for a function. Used for internal indexing.
      * @param {boolean} wrapper True for the wrapper; false for the wrapped.

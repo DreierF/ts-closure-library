@@ -1,41 +1,18 @@
 /**
- * A whitelist for attributes that are not safe to allow unrestricted, but are
- * made safe by default policies installed by the sanitizer in
- * goog.html.sanitizer.HtmlSanitizer.Builder.prototype.build, and thus allowed
- * by default under these policies.
- * @const @dict {boolean}
- */
-export let AttributeSanitizedWhitelist: {
-    '* USEMAP': boolean;
-    '* ACTION': boolean;
-    '* CITE': boolean;
-    '* HREF': boolean;
-    '* LONGDESC': boolean;
-    '* SRC': boolean;
-    'LINK HREF': boolean;
-    '* FOR': boolean;
-    '* HEADERS': boolean;
-    '* NAME': boolean;
-    'A TARGET': boolean;
-    '* CLASS': boolean;
-    '* ID': boolean;
-    '* STYLE': boolean;
-};
-/**
  * @license
  * Copyright The Closure Library Authors.
  * SPDX-License-Identifier: Apache-2.0
  */
 /**
- * @fileoverview Contains the attribute whitelists for use in the Html
+ * @fileoverview Contains the attribute allowlists for use in the Html
  * sanitizer.
  */
 /**
- * A whitelist for attributes that are always safe and allowed by default.
+ * An allowlist for attributes that are always safe and allowed by default.
  * The sanitizer only applies whitespace trimming to these.
  * @const @dict {boolean}
  */
-export let AttributeWhitelist: {
+export const AllowedAttributes: {
     '* ARIA-CHECKED': boolean;
     '* ARIA-COLCOUNT': boolean;
     '* ARIA-COLINDEX': boolean;
@@ -120,4 +97,27 @@ export let AttributeWhitelist: {
     '* VALUE': boolean;
     '* VSPACE': boolean;
     '* WIDTH': boolean;
+};
+/**
+ * An allowlist for attributes that are not safe to allow unrestricted, but are
+ * made safe by default policies installed by the sanitizer in
+ * goog.html.sanitizer.HtmlSanitizer.Builder.prototype.build, and thus allowed
+ * by default under these policies.
+ * @const @dict {boolean}
+ */
+export const SanitizedAttributeAllowlist: {
+    '* USEMAP': boolean;
+    '* ACTION': boolean;
+    '* CITE': boolean;
+    '* HREF': boolean;
+    '* LONGDESC': boolean;
+    '* SRC': boolean;
+    'LINK HREF': boolean;
+    '* FOR': boolean;
+    '* HEADERS': boolean;
+    '* NAME': boolean;
+    'A TARGET': boolean;
+    '* CLASS': boolean;
+    '* ID': boolean;
+    '* STYLE': boolean;
 };

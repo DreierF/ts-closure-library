@@ -137,6 +137,7 @@ export class SafeStyleSheet implements TypedString {
      * @override
      */
     getTypedStringValue(): string;
+    toString(): string;
 }
 export namespace SafeStyleSheet {
     const EMPTY: SafeStyleSheet;
