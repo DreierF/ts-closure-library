@@ -9,18 +9,6 @@
  */
 export function getVersion(): string;
 /**
- * @license
- * Copyright The Closure Library Authors.
- * SPDX-License-Identifier: Apache-2.0
- */
-/**
- * @fileoverview Closure user agent platform detection.
- * @see <a href="http://www.useragentstring.com/">User agent strings</a>
- * For more information on browser brand, rendering engine, or device see the
- * other sub-namespaces in goog.labs.userAgent (browser, engine, and device
- * respectively).
- */
-/**
  * @return {boolean} Whether the platform is Android.
  */
 export function isAndroid(): boolean;
@@ -56,6 +44,8 @@ export function isIpad(): boolean;
 export function isIphone(): boolean;
 /**
  * @return {boolean} Whether the platform is iPod.
+ * TODO(user): Combine iPod/iPhone detection since they may become
+ * indistinguishable if we begin relying on userAgentdata in iOS.
  */
 export function isIpod(): boolean;
 /**
@@ -82,3 +72,10 @@ export function isVersionOrHigher(version: string | number): boolean;
  * @return {boolean} Whether the platform is Windows.
  */
 export function isWindows(): boolean;
+/**
+ * The platform version, a high-entropy value.
+ * @type {!AsyncValue<!Version>}
+ */
+export const version: AsyncValue<Version>;
+import { AsyncValue } from "./highentropy/highentropyvalue.js";
+import { Version } from "./highentropy/highentropyvalue.js";

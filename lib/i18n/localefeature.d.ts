@@ -27,12 +27,17 @@ export const ECMASCRIPT_INTL_OPT_OUT: boolean;
  */
 export const ECMASCRIPT_COMMON_LOCALES_2019: boolean;
 /**
- * @type {boolean} USE_ECMASCRIPT_I18N Evaluated at compile to select
+ * @type {boolean} USE_ECMASCRIPT_I18N_2020 Evaluated to select
  * ECMAScript Intl object (when true) or JavaScript implementation (false) for
- * I18N purposes.  This set of locales is common across all of the modern
- * browsers and Android implementations available in 2019.
+ * I18N purposes. It depends on browser implementation in January 2020.
  */
-export const USE_ECMASCRIPT_I18N: boolean;
+export const USE_ECMASCRIPT_I18N_2020: boolean;
+/**
+ * @type {boolean} USE_ECMASCRIPT_I18N_2021 Evaluated to select
+ * ECMAScript Intl object (when true) or JavaScript implementation (false) for
+ * I18N purposes. It depends on browser implementation in January 2021.
+ */
+export const USE_ECMASCRIPT_I18N_2021: boolean;
 /**
  * @type {boolean} USE_ECMASCRIPT_I18N_RDTF is evaluated to enable
  * ECMAScript support for Intl.RelativeTimeFormat support in
@@ -67,6 +72,6 @@ export const USE_ECMASCRIPT_I18N_PLURALRULES: boolean;
  * @type {boolean} USE_ECMASCRIPT_I18N_DATETIMEF is evaluted to enable
  * ECMAScript support for Intl.DateTimeFormat support in
  * browsers based on the locale. Browsers that are considered include:
- * Chrome, Firefox, Edge, and Safari.
+ * Chrome, Firefox 85 and above, Edge, and Safari.
  */
 export const USE_ECMASCRIPT_I18N_DATETIMEF: boolean;

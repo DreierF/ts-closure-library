@@ -11,7 +11,7 @@ export let DateTimePatterns: DateTimePatternsType;
 /**
  * @fileoverview Extended date/time patterns.
  *
- * File generated from CLDR ver. 39
+ * File generated from CLDR ver. 40
  *
  * To reduce the file size (which may cause issues in some JS
  * developing environments), this file will only contain locales

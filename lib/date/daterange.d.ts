@@ -166,9 +166,9 @@ export class DateRange {
      */
     contains(date: DateDate | null): boolean;
     /**
-     * @return {!Iterator} An iterator over the date range.
+     * @return {!DateRange_Iterator} An iterator over the date range.
      */
-    iterator(): Iterator;
+    iterator(): DateRange_Iterator;
 }
 export namespace DateRange {
     const MINIMUM_DATE: DateDate | null;
@@ -180,7 +180,7 @@ export namespace DateRange {
  * @extends {IterIterator<DateDate>}
  * @final
  */
-export class Iterator extends IterIterator<DateDate> {
+declare class DateRange_Iterator extends goog_iter.Iterator<DateDate> {
     /**
      * Creates an iterator over the dates in a {@link DateRange}.
      * @param {?DateRange} dateRange The date range to iterate.
@@ -216,4 +216,5 @@ export namespace StandardDateRangeKeys {
     const ALL_TIME: string;
 }
 import { Date as DateDate } from "./date.js";
-import { Iterator as IterIterator } from "../iter/iter.js";
+import * as goog_iter from "../iter/iter.js";
+export { DateRange_Iterator as Iterator };

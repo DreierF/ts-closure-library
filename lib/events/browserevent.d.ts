@@ -17,6 +17,13 @@ export namespace PointerType {
     const TOUCH: string;
 }
 /**
+ * @type {boolean} If true, use the layerX and layerY properties of a native
+ * browser event over the offsetX and offsetY properties, which cause expensive
+ * reflow. If layerX or layerY is not defined, offsetX and offsetY will be used
+ * as usual.
+ */
+export const USE_LAYER_XY_AS_OFFSET_XY: boolean;
+/**
  * @license
  * Copyright The Closure Library Authors.
  * SPDX-License-Identifier: Apache-2.0
@@ -51,13 +58,6 @@ export namespace PointerType {
  * key and character code use {@link goog.events.KeyHandler}.
  * </pre>
  */
-/**
- * @type {boolean} If true, use the layerX and layerY properties of a native
- * browser event over the offsetX and offsetY properties, which cause expensive
- * reflow. If layerX or layerY is not defined, offsetX and offsetY will be used
- * as usual.
- */
-export const USE_LAYER_XY_AS_OFFSET_XY: boolean;
 /**
  * Accepts a browser event object and creates a patched, cross browser event
  * object.

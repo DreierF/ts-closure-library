@@ -40,9 +40,9 @@
  *     to the starting node and its children.
  *     Defaults to the start of the given node for forward iterators, and
  *     the end of the node for reverse iterators.
- * @extends {Iterator<Node>}
+ * @extends {IterIterator<Node>}
  */
-export class TagIterator extends Iterator<Node> {
+export class TagIterator extends goog_iter.Iterator<Node> {
     /**
      * A DOM tree traversal iterator.
      *
@@ -207,4 +207,4 @@ export namespace TagWalkType {
     const OTHER: number;
     const END_TAG: number;
 }
-import { Iterator } from "../iter/iter.js";
+import * as goog_iter from "../iter/iter.js";

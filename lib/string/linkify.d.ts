@@ -30,10 +30,12 @@ export function findFirstUrl(text: string): string;
  *     target=''.
  * @param {boolean=} opt_preserveNewlines Whether to preserve newlines with
  *     &lt;br&gt;.
+ * @param {boolean=} opt_preserveSpacesAndTabs Whether to preserve spaces with
+ *     non-breaking spaces and tabs with <span style="white-space:pre">
  * @return {!SafeHtml} Linkified HTML. Any text that is not part of a
  *      link will be HTML-escaped.
  */
 export function linkifyPlainTextAsHtml(text: string, opt_attributes?: {
     [x: string]: SafeHtml.AttributeValue | null;
-} | undefined, opt_preserveNewlines?: boolean | undefined): SafeHtml;
+} | undefined, opt_preserveNewlines?: boolean | undefined, opt_preserveSpacesAndTabs?: boolean | undefined): SafeHtml;
 import { SafeHtml } from "../html/safehtml.js";

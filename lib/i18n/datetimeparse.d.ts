@@ -39,10 +39,12 @@
  * E        day of week             (Text)              Tuesday
  * D        day in year             (Number)            189
  * a        am/pm marker            (Text)              PM
+ * b        am/pm/noon/midnight     (Text)              Noon
+ * B        flexible day periods     (Text)              de l’après-midi'
  * k        hour in day (1~24)      (Number)            24
  * K        hour in am/pm (0~11)    (Number)            0
  * z        time zone               (Text)              Pacific Standard Time
- * Z        time zone (RFC 822)     (Number)            -0800
+ * Z        time zone (RFC 822)     (Number) -0800
  * v        time zone (generic)     (Text)              Pacific Time
  * '        escape for text         (Delimiter)         'Date='
  * ''       single quote            (Literal)           'o''clock'
@@ -193,16 +195,6 @@ export class DateTimeParse {
      * @return {number} How many characters parser advanced.
      */
     parse(text: string, date: DateLike | null, options?: any | undefined): number;
-    /**
-     * Parse the given string and fill info into date object. This version will
-     * validate that the result is a valid date/time.
-     * @param {string} text The string being parsed.
-     * @param {?DateLike} date The Date object to hold the parsed date.
-     * @return {number} How many characters parser advanced.
-     * @deprecated Use DateTimeParse.parse with the validate option
-     *     instead.
-     */
-    strictParse(text: string, date: DateLike | null): number;
     /**
      * Parse a run of abutting numeric pattern parts. Take the pattern "HHmmss" as
      * an example. We will try to parse 2/2/2 characters of the input text, then if

@@ -207,11 +207,11 @@ declare class structs_Set<T> implements Collection<T> {
     /**
      * Returns an iterator that iterates over the elements in this set.
      * @param {boolean=} opt_keys This argument is ignored.
-     * @return {!Iterator} An iterator over the elements in this set.
+     * @return {!IterIterator} An iterator over the elements in this set.
      * @deprecated Call `values` and use native iteration, for alignment with ES6
      *     Set.
      */
-    __iterator__(opt_keys?: boolean | undefined): Iterator<any>;
+    __iterator__(opt_keys?: boolean | undefined): IterIterator<any>;
     /**
      * Assigns to the size property to isolate supressions of const assignment
      * to only where they are needed.
@@ -226,5 +226,5 @@ declare namespace structs_Set {
 }
 import { Collection } from "./collection.js";
 import { Map as StructsMap } from "./map.js";
-import { Iterator } from "../iter/iter.js";
+import { Iterator as IterIterator } from "../iter/iter.js";
 import * as google from "../google.js";

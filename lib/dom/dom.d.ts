@@ -1144,6 +1144,23 @@ export function getFrameContentDocument(frame: Element | null): Document;
  */
 export function getFrameContentWindow(frame: Element | null): Window | null;
 /**
+ * Gets an HTML element from the current document by element id.
+ *
+ * @param {string} id
+ * @return {?HTMLElement} The element with the given ID or null if no such
+ *     element exists.
+ */
+export function getHTMLElement(id: string): HTMLElement | null;
+/**
+ * Returns the first element with the provided className and asserts that it is
+ * an HTML element.
+ *
+ * @param {string} className the name of the class to look for.
+ * @param {!Element|!Document=} opt_parent Optional element to look in.
+ * @return {?HTMLElement} The first item with the class name provided.
+ */
+export function getHTMLElementByClass(className: string, opt_parent?: (Element | Document) | undefined): HTMLElement | null;
+/**
  * Returns the last child node that is an element.
  * @param {?Node} node The node to get the last child element of.
  * @return {?Element} The last child node of `node` that is an element.
@@ -1282,6 +1299,27 @@ export function getRequiredElement(id: string): Element;
  * @throws {AssertionError} Thrown if no element is found.
  */
 export function getRequiredElementByClass(className: string, opt_root?: (Element | Document) | undefined): Element;
+/**
+ * Gets an HTML element by id, asserting that the element is found.
+ *
+ * This is used when an element is expected to exist, and should fail with
+ * an assertion error if it does not (if assertions are enabled).
+ *
+ * @param {string} id Element ID.
+ * @return {!HTMLElement} The element with the given ID, if it exists.
+ */
+export function getRequiredHTMLElement(id: string): HTMLElement;
+/**
+ * Ensures an element with the given className exists, and then returns the
+ * first element with the provided className after asserting that it is an
+ * HTML element.
+ *
+ * @param {string} className the name of the class to look for.
+ * @param {!Element|!Document=} opt_parent Optional element or document to look
+ *     in.
+ * @return {!HTMLElement} The first item with the class name provided.
+ */
+export function getRequiredHTMLElementByClass(className: string, opt_parent?: (Element | Document) | undefined): HTMLElement;
 /**
  * Returns the text content of the current node, without markup and invisible
  * symbols. New lines are stripped and whitespace is collapsed,

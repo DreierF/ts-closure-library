@@ -10,8 +10,8 @@
  */
 /**
  * @const {boolean} If true, use navigator.userAgentData without check.
- * TODO(user) FEATURESET_YEAR >= 2022 if it supports mobile and all the
- * brands we need.
+ * TODO(user): FEATURESET_YEAR >= 2022 if it supports mobile and all the
+ * brands we need.  See https://caniuse.com/mdn-api_navigator_useragentdata.
  */
 export const ASSUME_CLIENT_HINTS_SUPPORT: false;
 /**

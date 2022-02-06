@@ -566,13 +566,17 @@ declare class date_Date {
      */
     add(interval: Interval | null): void;
     /**
-     * Returns ISO 8601 string representation of date.
+     * Returns ISO 8601 string representation of date. Consistent with the
+     * standard built-in Date#toISOString method, the year is either four digits
+     * (YYYY) or six with a sign prefix (±YYYYYY), since ISO 8601 requires the
+     * number of digits in the year to be agreed upon in advance.
      *
      * @param {boolean=} opt_verbose Whether the verbose format should be used
      *     instead of the default compact one.
      * @param {boolean=} opt_tz Whether the timezone offset should be included
      *     in the string.
      * @return {string} ISO 8601 string representation of date.
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
      */
     toIsoString(opt_verbose?: boolean | undefined, opt_tz?: boolean | undefined): string;
     /**

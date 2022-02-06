@@ -216,11 +216,11 @@ declare class structs_Map<K, V> {
     /**
      * Returns an iterator that iterates over the keys in the map.  Removal of keys
      * while iterating might have undesired side effects.
-     * @return {!Iterator} An iterator over the keys in the map.
+     * @return {!IterIterator} An iterator over the keys in the map.
      * @deprecated Use `keys()` with native iteration protocols, for alignment
      *     with ES6 Map.
      */
-    getKeyIterator(): Iterator<any>;
+    getKeyIterator(): googiter.Iterator<any>;
     /**
      * @return {!IteratorIterable<K>} An ES6 Iterator that iterates over the maps
      *     keys.
@@ -229,11 +229,11 @@ declare class structs_Map<K, V> {
     /**
      * Returns an iterator that iterates over the values in the map.  Removal of
      * keys while iterating might have undesired side effects.
-     * @return {!Iterator} An iterator over the values in the map.
+     * @return {!IterIterator} An iterator over the values in the map.
      * @deprecated Use `values()` with native iteration protocols, for alignment
      *     with ES6 Map.
      */
-    getValueIterator(): Iterator<any>;
+    getValueIterator(): googiter.Iterator<any>;
     /**
      * @return {!IteratorIterable<V>} An ES6 Iterator that iterates over the maps
      *     values.
@@ -251,11 +251,11 @@ declare class structs_Map<K, V> {
      * created.
      * @param {boolean=} opt_keys True to iterate over the keys. False to iterate
      *     over the values.  The default value is false.
-     * @return {!Iterator} An iterator over the values or keys in the map.
+     * @return {!IterIterator} An iterator over the values or keys in the map.
      * @deprecated Call either `keys` or `values` and use native iteration, for
      *     alignment with ES6 Map.
      */
-    __iterator__(opt_keys?: boolean | undefined): Iterator<any>;
+    __iterator__(opt_keys?: boolean | undefined): googiter.Iterator<any>;
     /**
      * Assigns to the size property to isolate supressions of const assignment to
      * only where they are needed.
@@ -264,4 +264,4 @@ declare class structs_Map<K, V> {
      */
     private setSizeInternal_;
 }
-import { Iterator } from "../iter/iter.js";
+import * as googiter from "../iter/iter.js";

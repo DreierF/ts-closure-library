@@ -460,6 +460,9 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> implements Goog_Thenable<TYPE
      * Adds a callback that will be invoked only if the Promise is rejected. This
      * is equivalent to `then(null, onRejected)`.
      *
+     * Note: Prefer using `catch` which is interoperable with native browser
+     * Promises.
+     *
      * @param {function(this:THIS, *): *} onRejected A function that will be
      *     invoked with the rejection reason if this Promise is rejected.
      * @param {THIS=} opt_context An optional context object that will be the
@@ -471,6 +474,21 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> implements Goog_Thenable<TYPE
      * @template THIS
      */
     thenCatch<THIS>(onRejected: (this: THIS, arg1: any) => any, opt_context?: THIS | undefined): goog_Promise<any, any>;
+    /**
+     * Adds a callback that will be invoked only if the Promise is rejected. This
+     * is equivalent to `then(null, onRejected)`.
+     *
+     * @param {function(this:THIS, *): *} onRejected A function that will be
+     *     invoked with the rejection reason if this Promise is rejected.
+     * @param {THIS=} opt_context An optional context object that will be the
+     *     execution context for the callbacks. By default, functions are executed
+     *     in the global scope.
+     * @return {!goog_Promise} A new Promise that will resolve either to the
+     *     value of this promise, or if this promise is rejected, the result of
+     *     `onRejected`. The returned Promise will reject if `onRejected` throws.
+     * @template THIS
+     */
+    catch<THIS>(onRejected: (this: THIS, arg1: any) => any, opt_context?: THIS | undefined): goog_Promise<any, any>;
     /**
      * Cancels the Promise if it is still pending by rejecting it with a cancel
      * Error. No action is performed if the Promise is already resolved.

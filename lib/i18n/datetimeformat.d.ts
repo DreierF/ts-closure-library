@@ -56,6 +56,8 @@
  * w        week in year               (Number)           27
  * W*       week in month              (Number)           2
  * a        am/pm marker               (Text)             PM
+ * b        am/pm/noon/midnight        (Text)             Noon
+ * B        flexible day periods        (Text)             de l’après-midi'
  * k        hour in day (1~24)         (Number)           24
  * K        hour in am/pm (0~11)       (Number)           0
  * z        time zone                  (Text)             Pacific Standard Time
@@ -328,6 +330,30 @@ export class DateTimeFormat {
      * @private
      */
     private formatAmPm_;
+    /**
+     * Formats am/pm/noon/midnight field according to pattern specified with 'b'
+     * TODO: b/206042104  Handle noon and midnight when data is added.
+     * Currently falls back to "a".
+     *
+     * @param {number} count Number of time pattern char repeats, it controls
+     *     how a field should be formatted.
+     * @param {!DateLike} date It holds the date object to be formatted.
+     * @return {string} Formatted string that represent this field.
+     * @private
+     */
+    private formatAmPmNoonMidnight_;
+    /**
+     * Formats flexible day periods according to pattern specified with 'B'.
+     * TODO: b/206042104  Handle flexible day periods when data is added.
+     * Currently falls back to "a".
+     *
+     * @param {number} count Number of time pattern char repeats, it controls
+     *     how a field should be formatted.
+     * @param {!DateLike} date It holds the date object to be formatted.
+     * @return {string} Formatted string that represent this field.
+     * @private
+     */
+    private formatFlexibleDayPeriods_;
     /**
      * Formats (1..12) Hours field according to pattern specified
      *
