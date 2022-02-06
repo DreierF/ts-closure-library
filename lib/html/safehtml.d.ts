@@ -270,7 +270,7 @@ export class SafeHtml implements DirectionalString, TypedString {
      * @return {!SafeHtml} The SafeHtml content with the tag.
      * @throws {!Error} If invalid attribute name or attribute value is provided.
      *     If attributes  contains the
-     *     language, src, text or type attribute.
+     *     language, src or text attribute.
      */
     static createScript(script: SafeScript | Array<SafeScript>, attributes?: ({
         [x: string]: SafeHtml.AttributeValue | null;

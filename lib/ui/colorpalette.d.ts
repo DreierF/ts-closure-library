@@ -69,6 +69,13 @@ export class ColorPalette extends Palette {
      */
     getColors(): Array<string>;
     /**
+     * Returns the array of tooltip labels for the colors in the color palette.
+     * @return {?Array<string>} Array of labels.
+     * @protected
+     * @final
+     */
+    protected getLabels(): Array<string> | null;
+    /**
      * Sets the colors that are contained in the palette.
      * @param {Array<string>} colors Array of colors in any valid CSS color format.
      * @param {Array<string>=} opt_labels The array of labels to be used as

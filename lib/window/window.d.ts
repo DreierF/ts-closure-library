@@ -1,12 +1,4 @@
 /**
- * @license
- * Copyright The Closure Library Authors.
- * SPDX-License-Identifier: Apache-2.0
- */
-/**
- * @fileoverview Utilities for window manipulation.
- */
-/**
  * Default height for popup windows
  * @type {number}
  */
@@ -21,6 +13,23 @@ export let DEFAULT_POPUP_TARGET: string;
  * @type {number}
  */
 export let DEFAULT_POPUP_WIDTH: number;
+/**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @fileoverview Utilities for window manipulation.
+ */
+/**
+ * Whether we should enforce COOP by avoiding document.write in certain
+ * situations (see https://github.com/google/closure-library/issues/1137).
+ * This is a temporary flag because some products rely on the legacy noreferrer
+ * behavior for CSP reasons, but it will be removed in the near future.  Please
+ * do not rely on setting this to false.
+ * @type {boolean}
+ */
+export const ENFORCE_COOP: boolean;
 /**
  * Opens a new window.
  *
