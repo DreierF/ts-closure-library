@@ -454,7 +454,8 @@ export namespace DateTimeFormat {
     const removeRlmInPatterns_: boolean;
 }
 /**
- * Enum to identify predefined Date/Time format pattern.
+ * Enum to identify predefined Date/Time format pattern. The format pattern to
+ * output mapping can be found at go/closure-localization#fconst.
  */
 export type Format = number;
 export namespace Format {

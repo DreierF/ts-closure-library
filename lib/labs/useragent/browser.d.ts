@@ -8,13 +8,11 @@
  *     details.)
  */
 export function getVersion(): string;
-/**
- * @return {boolean} Whether the user's browser is the Android browser.
- */
+/** @return {boolean} Whether the user's browser is the Android browser. */
 export function isAndroidBrowser(): boolean;
 /**
  * @return {boolean} Whether the user's browser is any Chromium based browser (
- * Chrome, Blink-based Opera (15+) and Edge Chromium).
+ *     Chrome, Blink-based Opera (15+) and Edge Chromium).
  */
 export function isChrome(): boolean;
 /**
@@ -22,37 +20,21 @@ export function isChrome(): boolean;
  *     iOS browser).
  */
 export function isCoast(): boolean;
-/**
- * @return {boolean} Whether the user's browser is EdgeHTML based Edge.
- */
+/** @return {boolean} Whether the user's browser is EdgeHTML based Edge. */
 export function isEdge(): boolean;
-/**
- * @return {boolean} Whether the user's browser is Chromium based Edge.
- */
+/** @return {boolean} Whether the user's browser is Chromium based Edge. */
 export function isEdgeChromium(): boolean;
-/**
- * @return {boolean} Whether the user's browser is Firefox.
- */
+/** @return {boolean} Whether the user's browser is Firefox. */
 export function isFirefox(): boolean;
-/**
- * @return {boolean} Whether the user's browser is IE.
- */
+/** @return {boolean} Whether the user's browser is IE. */
 export function isIE(): boolean;
-/**
- * @return {boolean} Whether the user's browser is iOS Webview.
- */
+/** @return {boolean} Whether the user's browser is iOS Webview. */
 export function isIosWebview(): boolean;
-/**
- * @return {boolean} Whether the user's browser is Opera.
- */
+/** @return {boolean} Whether the user's browser is Opera. */
 export function isOpera(): boolean;
-/**
- * @return {boolean} Whether the user's browser is Chromium based Opera.
- */
+/** @return {boolean} Whether the user's browser is Chromium based Opera. */
 export function isOperaChromium(): boolean;
-/**
- * @return {boolean} Whether the user's browser is Safari.
- */
+/** @return {boolean} Whether the user's browser is Safari. */
 export function isSafari(): boolean;
 /**
  * For more information, see:

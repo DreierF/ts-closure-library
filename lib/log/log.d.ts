@@ -194,20 +194,18 @@ export function addHandler(logger: log_Logger | null, handler: LogRecordHandler)
  * given message is forwarded to all the registered output Handler objects.
  * @param {?log_Logger} logger
  * @param {!Loggable} msg The message to log.
- * @param {?Error|?Object=} exception An exception associated with the
- *     message.
+ * @param {*=} exception An exception associated with the message.
  */
-export function error(logger: log_Logger | null, msg: Loggable, exception?: ((Error | (any | null)) | null) | undefined): void;
+export function error(logger: log_Logger | null, msg: Loggable, exception?: any | undefined): void;
 /**
  * Logs a message at the Level.FINE level.
  * If the logger is currently enabled for the given message level then the
  * given message is forwarded to all the registered output Handler objects.
  * @param {?log_Logger} logger
  * @param {!Loggable} msg The message to log.
- * @param {?Error|?Object=} exception An exception associated with the
- *     message.
+ * @param {*=} exception An exception associated with the message.
  */
-export function fine(logger: log_Logger | null, msg: Loggable, exception?: ((Error | (any | null)) | null) | undefined): void;
+export function fine(logger: log_Logger | null, msg: Loggable, exception?: any | undefined): void;
 /**
  * Gets a list of all loggers.
  * @return {!Array<!log_Logger>}
@@ -238,11 +236,10 @@ export function getLevel(logger: log_Logger | null): Level | null;
  * @param {?log_Logger} logger
  * @param {?Level} level One of the level identifiers.
  * @param {string} msg The message to log.
- * @param {?Error|?Object=} exception An exception associated with the
- *     message.
+ * @param {*=} exception An exception associated with the message.
  * @return {!log_LogRecord}
  */
-export function getLogRecord(logger: log_Logger | null, level: Level | null, msg: string, exception?: ((Error | (any | null)) | null) | undefined): log_LogRecord;
+export function getLogRecord(logger: log_Logger | null, level: Level | null, msg: string, exception?: any | undefined): log_LogRecord;
 /**
  * Finds or creates a logger for a named subsystem. If a logger has already been
  * created with the given name it is returned. Otherwise, a new logger is
@@ -273,10 +270,9 @@ export function getRootLogger(): log_Logger | null;
  * given message is forwarded to all the registered output Handler objects.
  * @param {?log_Logger} logger
  * @param {!Loggable} msg The message to log.
- * @param {?Error|?Object=} exception An exception associated with the
- *     message.
+ * @param {*=} exception An exception associated with the message.
  */
-export function info(logger: log_Logger | null, msg: Loggable, exception?: ((Error | (any | null)) | null) | undefined): void;
+export function info(logger: log_Logger | null, msg: Loggable, exception?: any | undefined): void;
 /**
  * Checks if a message of the given level would actually be logged by this
  * logger. This check is based on the goog.log.Loggers effective level, which
@@ -294,10 +290,9 @@ export function isLoggable(logger: log_Logger | null, level: Level | null): bool
  * @param {?log_Logger} logger
  * @param {?Level} level One of the level identifiers.
  * @param {!Loggable} msg The message to log.
- * @param {?Error|?Object=} exception An exception associated with the
- *     message.
+ * @param {*=} exception An exception associated with the message.
  */
-export function log(logger: log_Logger | null, level: Level | null, msg: Loggable, exception?: ((Error | (any | null)) | null) | undefined): void;
+export function log(logger: log_Logger | null, level: Level | null, msg: Loggable, exception?: any | undefined): void;
 /**
  * LogRecord objects are used to pass logging requests between the logging
  * framework and individual log handlers. These objects should not be
@@ -348,7 +343,7 @@ declare class log_LogRecord {
     private sequenceNumber_;
     /**
      * Exception associated with the record
-     * @type {?Object}
+     * @type {*}
      * @private
      */
     private exception_;
@@ -379,14 +374,14 @@ declare class log_LogRecord {
     /**
      * Gets the exception that is part of the log record.
      *
-     * @return {?Object} the exception.
+     * @return {*} the exception.
      */
-    getException(): any | null;
+    getException(): any;
     /**
      * Sets the exception that is part of the log record.
-     * @param {?Object} exception the exception.
+     * @param {*} exception the exception.
      */
-    setException(exception: any | null): void;
+    setException(exception: any): void;
     /**
      * Gets the logging message level, for example Level.SEVERE.
      * @return {!Level} the logging message level.
@@ -475,8 +470,7 @@ export function setLevel(logger: log_Logger | null, level: Level | null): void;
  * given message is forwarded to all the registered output Handler objects.
  * @param {?log_Logger} logger
  * @param {!Loggable} msg The message to log.
- * @param {?Error|?Object=} exception An exception associated with the
- *     message.
+ * @param {*=} exception An exception associated with the message.
  */
-export function warning(logger: log_Logger | null, msg: Loggable, exception?: ((Error | (any | null)) | null) | undefined): void;
+export function warning(logger: log_Logger | null, msg: Loggable, exception?: any | undefined): void;
 export { log_LogRecord as LogRecord, log_Logger as Logger };

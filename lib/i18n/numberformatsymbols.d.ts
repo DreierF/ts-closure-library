@@ -15,10 +15,6 @@ export namespace NumberFormatSymbols {
     const CURRENCY_PATTERN: string;
     const DEF_CURRENCY_CODE: string;
 }
-/**
- * Number formatting symbols for locale af.
- */
-export type NumberFormatSymbols_af = string;
 export namespace NumberFormatSymbols_af {
     const DECIMAL_SEP_1: string;
     export { DECIMAL_SEP_1 as DECIMAL_SEP };
@@ -51,10 +47,6 @@ export namespace NumberFormatSymbols_af {
     const DEF_CURRENCY_CODE_1: string;
     export { DEF_CURRENCY_CODE_1 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale am.
- */
-export type NumberFormatSymbols_am = string;
 export namespace NumberFormatSymbols_am {
     const DECIMAL_SEP_2: string;
     export { DECIMAL_SEP_2 as DECIMAL_SEP };
@@ -87,10 +79,6 @@ export namespace NumberFormatSymbols_am {
     const DEF_CURRENCY_CODE_2: string;
     export { DEF_CURRENCY_CODE_2 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ar.
- */
-export type NumberFormatSymbols_ar = string;
 export namespace NumberFormatSymbols_ar {
     const DECIMAL_SEP_3: string;
     export { DECIMAL_SEP_3 as DECIMAL_SEP };
@@ -123,10 +111,6 @@ export namespace NumberFormatSymbols_ar {
     const DEF_CURRENCY_CODE_3: string;
     export { DEF_CURRENCY_CODE_3 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ar_DZ.
- */
-export type NumberFormatSymbols_ar_DZ = string;
 export namespace NumberFormatSymbols_ar_DZ {
     const DECIMAL_SEP_4: string;
     export { DECIMAL_SEP_4 as DECIMAL_SEP };
@@ -159,10 +143,6 @@ export namespace NumberFormatSymbols_ar_DZ {
     const DEF_CURRENCY_CODE_4: string;
     export { DEF_CURRENCY_CODE_4 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ar_EG.
- */
-export type NumberFormatSymbols_ar_EG = string;
 export namespace NumberFormatSymbols_ar_EG {
     const DECIMAL_SEP_5: string;
     export { DECIMAL_SEP_5 as DECIMAL_SEP };
@@ -195,10 +175,6 @@ export namespace NumberFormatSymbols_ar_EG {
     const DEF_CURRENCY_CODE_5: string;
     export { DEF_CURRENCY_CODE_5 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ar_EG_u_nu_latn.
- */
-export type NumberFormatSymbols_ar_EG_u_nu_latn = string;
 export namespace NumberFormatSymbols_ar_EG_u_nu_latn {
     const DECIMAL_SEP_6: string;
     export { DECIMAL_SEP_6 as DECIMAL_SEP };
@@ -231,10 +207,6 @@ export namespace NumberFormatSymbols_ar_EG_u_nu_latn {
     const DEF_CURRENCY_CODE_6: string;
     export { DEF_CURRENCY_CODE_6 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale az.
- */
-export type NumberFormatSymbols_az = string;
 export namespace NumberFormatSymbols_az {
     const DECIMAL_SEP_7: string;
     export { DECIMAL_SEP_7 as DECIMAL_SEP };
@@ -267,10 +239,6 @@ export namespace NumberFormatSymbols_az {
     const DEF_CURRENCY_CODE_7: string;
     export { DEF_CURRENCY_CODE_7 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale be.
- */
-export type NumberFormatSymbols_be = string;
 export namespace NumberFormatSymbols_be {
     const DECIMAL_SEP_8: string;
     export { DECIMAL_SEP_8 as DECIMAL_SEP };
@@ -303,10 +271,6 @@ export namespace NumberFormatSymbols_be {
     const DEF_CURRENCY_CODE_8: string;
     export { DEF_CURRENCY_CODE_8 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale bg.
- */
-export type NumberFormatSymbols_bg = string;
 export namespace NumberFormatSymbols_bg {
     const DECIMAL_SEP_9: string;
     export { DECIMAL_SEP_9 as DECIMAL_SEP };
@@ -339,10 +303,6 @@ export namespace NumberFormatSymbols_bg {
     const DEF_CURRENCY_CODE_9: string;
     export { DEF_CURRENCY_CODE_9 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale bn.
- */
-export type NumberFormatSymbols_bn = string;
 export namespace NumberFormatSymbols_bn {
     const DECIMAL_SEP_10: string;
     export { DECIMAL_SEP_10 as DECIMAL_SEP };
@@ -375,10 +335,6 @@ export namespace NumberFormatSymbols_bn {
     const DEF_CURRENCY_CODE_10: string;
     export { DEF_CURRENCY_CODE_10 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale bn_u_nu_latn.
- */
-export type NumberFormatSymbols_bn_u_nu_latn = string;
 export namespace NumberFormatSymbols_bn_u_nu_latn {
     const DECIMAL_SEP_11: string;
     export { DECIMAL_SEP_11 as DECIMAL_SEP };
@@ -411,10 +367,6 @@ export namespace NumberFormatSymbols_bn_u_nu_latn {
     const DEF_CURRENCY_CODE_11: string;
     export { DEF_CURRENCY_CODE_11 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale br.
- */
-export type NumberFormatSymbols_br = string;
 export namespace NumberFormatSymbols_br {
     const DECIMAL_SEP_12: string;
     export { DECIMAL_SEP_12 as DECIMAL_SEP };
@@ -447,10 +399,6 @@ export namespace NumberFormatSymbols_br {
     const DEF_CURRENCY_CODE_12: string;
     export { DEF_CURRENCY_CODE_12 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale bs.
- */
-export type NumberFormatSymbols_bs = string;
 export namespace NumberFormatSymbols_bs {
     const DECIMAL_SEP_13: string;
     export { DECIMAL_SEP_13 as DECIMAL_SEP };
@@ -483,10 +431,6 @@ export namespace NumberFormatSymbols_bs {
     const DEF_CURRENCY_CODE_13: string;
     export { DEF_CURRENCY_CODE_13 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ca.
- */
-export type NumberFormatSymbols_ca = string;
 export namespace NumberFormatSymbols_ca {
     const DECIMAL_SEP_14: string;
     export { DECIMAL_SEP_14 as DECIMAL_SEP };
@@ -519,10 +463,6 @@ export namespace NumberFormatSymbols_ca {
     const DEF_CURRENCY_CODE_14: string;
     export { DEF_CURRENCY_CODE_14 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale chr.
- */
-export type NumberFormatSymbols_chr = string;
 export namespace NumberFormatSymbols_chr {
     const DECIMAL_SEP_15: string;
     export { DECIMAL_SEP_15 as DECIMAL_SEP };
@@ -555,10 +495,6 @@ export namespace NumberFormatSymbols_chr {
     const DEF_CURRENCY_CODE_15: string;
     export { DEF_CURRENCY_CODE_15 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale cs.
- */
-export type NumberFormatSymbols_cs = string;
 export namespace NumberFormatSymbols_cs {
     const DECIMAL_SEP_16: string;
     export { DECIMAL_SEP_16 as DECIMAL_SEP };
@@ -591,10 +527,6 @@ export namespace NumberFormatSymbols_cs {
     const DEF_CURRENCY_CODE_16: string;
     export { DEF_CURRENCY_CODE_16 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale cy.
- */
-export type NumberFormatSymbols_cy = string;
 export namespace NumberFormatSymbols_cy {
     const DECIMAL_SEP_17: string;
     export { DECIMAL_SEP_17 as DECIMAL_SEP };
@@ -627,10 +559,6 @@ export namespace NumberFormatSymbols_cy {
     const DEF_CURRENCY_CODE_17: string;
     export { DEF_CURRENCY_CODE_17 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale da.
- */
-export type NumberFormatSymbols_da = string;
 export namespace NumberFormatSymbols_da {
     const DECIMAL_SEP_18: string;
     export { DECIMAL_SEP_18 as DECIMAL_SEP };
@@ -663,10 +591,6 @@ export namespace NumberFormatSymbols_da {
     const DEF_CURRENCY_CODE_18: string;
     export { DEF_CURRENCY_CODE_18 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale de.
- */
-export type NumberFormatSymbols_de = string;
 export namespace NumberFormatSymbols_de {
     const DECIMAL_SEP_19: string;
     export { DECIMAL_SEP_19 as DECIMAL_SEP };
@@ -699,10 +623,6 @@ export namespace NumberFormatSymbols_de {
     const DEF_CURRENCY_CODE_19: string;
     export { DEF_CURRENCY_CODE_19 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale de_AT.
- */
-export type NumberFormatSymbols_de_AT = string;
 export namespace NumberFormatSymbols_de_AT {
     const DECIMAL_SEP_20: string;
     export { DECIMAL_SEP_20 as DECIMAL_SEP };
@@ -735,10 +655,6 @@ export namespace NumberFormatSymbols_de_AT {
     const DEF_CURRENCY_CODE_20: string;
     export { DEF_CURRENCY_CODE_20 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale de_CH.
- */
-export type NumberFormatSymbols_de_CH = string;
 export namespace NumberFormatSymbols_de_CH {
     const DECIMAL_SEP_21: string;
     export { DECIMAL_SEP_21 as DECIMAL_SEP };
@@ -771,10 +687,6 @@ export namespace NumberFormatSymbols_de_CH {
     const DEF_CURRENCY_CODE_21: string;
     export { DEF_CURRENCY_CODE_21 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale el.
- */
-export type NumberFormatSymbols_el = string;
 export namespace NumberFormatSymbols_el {
     const DECIMAL_SEP_22: string;
     export { DECIMAL_SEP_22 as DECIMAL_SEP };
@@ -807,15 +719,7 @@ export namespace NumberFormatSymbols_el {
     const DEF_CURRENCY_CODE_22: string;
     export { DEF_CURRENCY_CODE_22 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale en.
- */
-export type NumberFormatSymbols_en = string;
 export namespace NumberFormatSymbols_en { }
-/**
- * Number formatting symbols for locale en_AU.
- */
-export type NumberFormatSymbols_en_AU = string;
 export namespace NumberFormatSymbols_en_AU {
     const DECIMAL_SEP_23: string;
     export { DECIMAL_SEP_23 as DECIMAL_SEP };
@@ -848,10 +752,6 @@ export namespace NumberFormatSymbols_en_AU {
     const DEF_CURRENCY_CODE_23: string;
     export { DEF_CURRENCY_CODE_23 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale en_CA.
- */
-export type NumberFormatSymbols_en_CA = string;
 export namespace NumberFormatSymbols_en_CA {
     const DECIMAL_SEP_24: string;
     export { DECIMAL_SEP_24 as DECIMAL_SEP };
@@ -884,10 +784,6 @@ export namespace NumberFormatSymbols_en_CA {
     const DEF_CURRENCY_CODE_24: string;
     export { DEF_CURRENCY_CODE_24 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale en_GB.
- */
-export type NumberFormatSymbols_en_GB = string;
 export namespace NumberFormatSymbols_en_GB {
     const DECIMAL_SEP_25: string;
     export { DECIMAL_SEP_25 as DECIMAL_SEP };
@@ -920,10 +816,6 @@ export namespace NumberFormatSymbols_en_GB {
     const DEF_CURRENCY_CODE_25: string;
     export { DEF_CURRENCY_CODE_25 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale en_IE.
- */
-export type NumberFormatSymbols_en_IE = string;
 export namespace NumberFormatSymbols_en_IE {
     const DECIMAL_SEP_26: string;
     export { DECIMAL_SEP_26 as DECIMAL_SEP };
@@ -956,10 +848,6 @@ export namespace NumberFormatSymbols_en_IE {
     const DEF_CURRENCY_CODE_26: string;
     export { DEF_CURRENCY_CODE_26 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale en_IN.
- */
-export type NumberFormatSymbols_en_IN = string;
 export namespace NumberFormatSymbols_en_IN {
     const DECIMAL_SEP_27: string;
     export { DECIMAL_SEP_27 as DECIMAL_SEP };
@@ -992,10 +880,6 @@ export namespace NumberFormatSymbols_en_IN {
     const DEF_CURRENCY_CODE_27: string;
     export { DEF_CURRENCY_CODE_27 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale en_SG.
- */
-export type NumberFormatSymbols_en_SG = string;
 export namespace NumberFormatSymbols_en_SG {
     const DECIMAL_SEP_28: string;
     export { DECIMAL_SEP_28 as DECIMAL_SEP };
@@ -1028,15 +912,7 @@ export namespace NumberFormatSymbols_en_SG {
     const DEF_CURRENCY_CODE_28: string;
     export { DEF_CURRENCY_CODE_28 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale en_US.
- */
-export type NumberFormatSymbols_en_US = string;
 export namespace NumberFormatSymbols_en_US { }
-/**
- * Number formatting symbols for locale en_ZA.
- */
-export type NumberFormatSymbols_en_ZA = string;
 export namespace NumberFormatSymbols_en_ZA {
     const DECIMAL_SEP_29: string;
     export { DECIMAL_SEP_29 as DECIMAL_SEP };
@@ -1069,10 +945,6 @@ export namespace NumberFormatSymbols_en_ZA {
     const DEF_CURRENCY_CODE_29: string;
     export { DEF_CURRENCY_CODE_29 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale es.
- */
-export type NumberFormatSymbols_es = string;
 export namespace NumberFormatSymbols_es {
     const DECIMAL_SEP_30: string;
     export { DECIMAL_SEP_30 as DECIMAL_SEP };
@@ -1105,10 +977,6 @@ export namespace NumberFormatSymbols_es {
     const DEF_CURRENCY_CODE_30: string;
     export { DEF_CURRENCY_CODE_30 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale es_419.
- */
-export type NumberFormatSymbols_es_419 = string;
 export namespace NumberFormatSymbols_es_419 {
     const DECIMAL_SEP_31: string;
     export { DECIMAL_SEP_31 as DECIMAL_SEP };
@@ -1141,15 +1009,7 @@ export namespace NumberFormatSymbols_es_419 {
     const DEF_CURRENCY_CODE_31: string;
     export { DEF_CURRENCY_CODE_31 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale es_ES.
- */
-export type NumberFormatSymbols_es_ES = string;
 export namespace NumberFormatSymbols_es_ES { }
-/**
- * Number formatting symbols for locale es_MX.
- */
-export type NumberFormatSymbols_es_MX = string;
 export namespace NumberFormatSymbols_es_MX {
     const DECIMAL_SEP_32: string;
     export { DECIMAL_SEP_32 as DECIMAL_SEP };
@@ -1182,10 +1042,6 @@ export namespace NumberFormatSymbols_es_MX {
     const DEF_CURRENCY_CODE_32: string;
     export { DEF_CURRENCY_CODE_32 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale es_US.
- */
-export type NumberFormatSymbols_es_US = string;
 export namespace NumberFormatSymbols_es_US {
     const DECIMAL_SEP_33: string;
     export { DECIMAL_SEP_33 as DECIMAL_SEP };
@@ -1218,10 +1074,6 @@ export namespace NumberFormatSymbols_es_US {
     const DEF_CURRENCY_CODE_33: string;
     export { DEF_CURRENCY_CODE_33 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale et.
- */
-export type NumberFormatSymbols_et = string;
 export namespace NumberFormatSymbols_et {
     const DECIMAL_SEP_34: string;
     export { DECIMAL_SEP_34 as DECIMAL_SEP };
@@ -1254,10 +1106,6 @@ export namespace NumberFormatSymbols_et {
     const DEF_CURRENCY_CODE_34: string;
     export { DEF_CURRENCY_CODE_34 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale eu.
- */
-export type NumberFormatSymbols_eu = string;
 export namespace NumberFormatSymbols_eu {
     const DECIMAL_SEP_35: string;
     export { DECIMAL_SEP_35 as DECIMAL_SEP };
@@ -1290,10 +1138,6 @@ export namespace NumberFormatSymbols_eu {
     const DEF_CURRENCY_CODE_35: string;
     export { DEF_CURRENCY_CODE_35 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale fa.
- */
-export type NumberFormatSymbols_fa = string;
 export namespace NumberFormatSymbols_fa {
     const DECIMAL_SEP_36: string;
     export { DECIMAL_SEP_36 as DECIMAL_SEP };
@@ -1326,10 +1170,6 @@ export namespace NumberFormatSymbols_fa {
     const DEF_CURRENCY_CODE_36: string;
     export { DEF_CURRENCY_CODE_36 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale fa_u_nu_latn.
- */
-export type NumberFormatSymbols_fa_u_nu_latn = string;
 export namespace NumberFormatSymbols_fa_u_nu_latn {
     const DECIMAL_SEP_37: string;
     export { DECIMAL_SEP_37 as DECIMAL_SEP };
@@ -1362,10 +1202,6 @@ export namespace NumberFormatSymbols_fa_u_nu_latn {
     const DEF_CURRENCY_CODE_37: string;
     export { DEF_CURRENCY_CODE_37 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale fi.
- */
-export type NumberFormatSymbols_fi = string;
 export namespace NumberFormatSymbols_fi {
     const DECIMAL_SEP_38: string;
     export { DECIMAL_SEP_38 as DECIMAL_SEP };
@@ -1398,10 +1234,6 @@ export namespace NumberFormatSymbols_fi {
     const DEF_CURRENCY_CODE_38: string;
     export { DEF_CURRENCY_CODE_38 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale fil.
- */
-export type NumberFormatSymbols_fil = string;
 export namespace NumberFormatSymbols_fil {
     const DECIMAL_SEP_39: string;
     export { DECIMAL_SEP_39 as DECIMAL_SEP };
@@ -1434,10 +1266,6 @@ export namespace NumberFormatSymbols_fil {
     const DEF_CURRENCY_CODE_39: string;
     export { DEF_CURRENCY_CODE_39 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale fr.
- */
-export type NumberFormatSymbols_fr = string;
 export namespace NumberFormatSymbols_fr {
     const DECIMAL_SEP_40: string;
     export { DECIMAL_SEP_40 as DECIMAL_SEP };
@@ -1470,10 +1298,6 @@ export namespace NumberFormatSymbols_fr {
     const DEF_CURRENCY_CODE_40: string;
     export { DEF_CURRENCY_CODE_40 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale fr_CA.
- */
-export type NumberFormatSymbols_fr_CA = string;
 export namespace NumberFormatSymbols_fr_CA {
     const DECIMAL_SEP_41: string;
     export { DECIMAL_SEP_41 as DECIMAL_SEP };
@@ -1506,10 +1330,6 @@ export namespace NumberFormatSymbols_fr_CA {
     const DEF_CURRENCY_CODE_41: string;
     export { DEF_CURRENCY_CODE_41 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ga.
- */
-export type NumberFormatSymbols_ga = string;
 export namespace NumberFormatSymbols_ga {
     const DECIMAL_SEP_42: string;
     export { DECIMAL_SEP_42 as DECIMAL_SEP };
@@ -1542,10 +1362,6 @@ export namespace NumberFormatSymbols_ga {
     const DEF_CURRENCY_CODE_42: string;
     export { DEF_CURRENCY_CODE_42 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale gl.
- */
-export type NumberFormatSymbols_gl = string;
 export namespace NumberFormatSymbols_gl {
     const DECIMAL_SEP_43: string;
     export { DECIMAL_SEP_43 as DECIMAL_SEP };
@@ -1578,10 +1394,6 @@ export namespace NumberFormatSymbols_gl {
     const DEF_CURRENCY_CODE_43: string;
     export { DEF_CURRENCY_CODE_43 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale gsw.
- */
-export type NumberFormatSymbols_gsw = string;
 export namespace NumberFormatSymbols_gsw {
     const DECIMAL_SEP_44: string;
     export { DECIMAL_SEP_44 as DECIMAL_SEP };
@@ -1614,10 +1426,6 @@ export namespace NumberFormatSymbols_gsw {
     const DEF_CURRENCY_CODE_44: string;
     export { DEF_CURRENCY_CODE_44 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale gu.
- */
-export type NumberFormatSymbols_gu = string;
 export namespace NumberFormatSymbols_gu {
     const DECIMAL_SEP_45: string;
     export { DECIMAL_SEP_45 as DECIMAL_SEP };
@@ -1650,10 +1458,6 @@ export namespace NumberFormatSymbols_gu {
     const DEF_CURRENCY_CODE_45: string;
     export { DEF_CURRENCY_CODE_45 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale haw.
- */
-export type NumberFormatSymbols_haw = string;
 export namespace NumberFormatSymbols_haw {
     const DECIMAL_SEP_46: string;
     export { DECIMAL_SEP_46 as DECIMAL_SEP };
@@ -1686,10 +1490,6 @@ export namespace NumberFormatSymbols_haw {
     const DEF_CURRENCY_CODE_46: string;
     export { DEF_CURRENCY_CODE_46 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale he.
- */
-export type NumberFormatSymbols_he = string;
 export namespace NumberFormatSymbols_he {
     const DECIMAL_SEP_47: string;
     export { DECIMAL_SEP_47 as DECIMAL_SEP };
@@ -1722,10 +1522,6 @@ export namespace NumberFormatSymbols_he {
     const DEF_CURRENCY_CODE_47: string;
     export { DEF_CURRENCY_CODE_47 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale hi.
- */
-export type NumberFormatSymbols_hi = string;
 export namespace NumberFormatSymbols_hi {
     const DECIMAL_SEP_48: string;
     export { DECIMAL_SEP_48 as DECIMAL_SEP };
@@ -1758,10 +1554,6 @@ export namespace NumberFormatSymbols_hi {
     const DEF_CURRENCY_CODE_48: string;
     export { DEF_CURRENCY_CODE_48 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale hr.
- */
-export type NumberFormatSymbols_hr = string;
 export namespace NumberFormatSymbols_hr {
     const DECIMAL_SEP_49: string;
     export { DECIMAL_SEP_49 as DECIMAL_SEP };
@@ -1794,10 +1586,6 @@ export namespace NumberFormatSymbols_hr {
     const DEF_CURRENCY_CODE_49: string;
     export { DEF_CURRENCY_CODE_49 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale hu.
- */
-export type NumberFormatSymbols_hu = string;
 export namespace NumberFormatSymbols_hu {
     const DECIMAL_SEP_50: string;
     export { DECIMAL_SEP_50 as DECIMAL_SEP };
@@ -1830,10 +1618,6 @@ export namespace NumberFormatSymbols_hu {
     const DEF_CURRENCY_CODE_50: string;
     export { DEF_CURRENCY_CODE_50 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale hy.
- */
-export type NumberFormatSymbols_hy = string;
 export namespace NumberFormatSymbols_hy {
     const DECIMAL_SEP_51: string;
     export { DECIMAL_SEP_51 as DECIMAL_SEP };
@@ -1866,10 +1650,6 @@ export namespace NumberFormatSymbols_hy {
     const DEF_CURRENCY_CODE_51: string;
     export { DEF_CURRENCY_CODE_51 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale id.
- */
-export type NumberFormatSymbols_id = string;
 export namespace NumberFormatSymbols_id {
     const DECIMAL_SEP_52: string;
     export { DECIMAL_SEP_52 as DECIMAL_SEP };
@@ -1902,10 +1682,6 @@ export namespace NumberFormatSymbols_id {
     const DEF_CURRENCY_CODE_52: string;
     export { DEF_CURRENCY_CODE_52 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale in.
- */
-export type NumberFormatSymbols_in = string;
 export namespace NumberFormatSymbols_in {
     const DECIMAL_SEP_53: string;
     export { DECIMAL_SEP_53 as DECIMAL_SEP };
@@ -1938,10 +1714,6 @@ export namespace NumberFormatSymbols_in {
     const DEF_CURRENCY_CODE_53: string;
     export { DEF_CURRENCY_CODE_53 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale is.
- */
-export type NumberFormatSymbols_is = string;
 export namespace NumberFormatSymbols_is {
     const DECIMAL_SEP_54: string;
     export { DECIMAL_SEP_54 as DECIMAL_SEP };
@@ -1974,10 +1746,6 @@ export namespace NumberFormatSymbols_is {
     const DEF_CURRENCY_CODE_54: string;
     export { DEF_CURRENCY_CODE_54 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale it.
- */
-export type NumberFormatSymbols_it = string;
 export namespace NumberFormatSymbols_it {
     const DECIMAL_SEP_55: string;
     export { DECIMAL_SEP_55 as DECIMAL_SEP };
@@ -2010,10 +1778,6 @@ export namespace NumberFormatSymbols_it {
     const DEF_CURRENCY_CODE_55: string;
     export { DEF_CURRENCY_CODE_55 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale iw.
- */
-export type NumberFormatSymbols_iw = string;
 export namespace NumberFormatSymbols_iw {
     const DECIMAL_SEP_56: string;
     export { DECIMAL_SEP_56 as DECIMAL_SEP };
@@ -2046,10 +1810,6 @@ export namespace NumberFormatSymbols_iw {
     const DEF_CURRENCY_CODE_56: string;
     export { DEF_CURRENCY_CODE_56 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ja.
- */
-export type NumberFormatSymbols_ja = string;
 export namespace NumberFormatSymbols_ja {
     const DECIMAL_SEP_57: string;
     export { DECIMAL_SEP_57 as DECIMAL_SEP };
@@ -2082,10 +1842,6 @@ export namespace NumberFormatSymbols_ja {
     const DEF_CURRENCY_CODE_57: string;
     export { DEF_CURRENCY_CODE_57 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ka.
- */
-export type NumberFormatSymbols_ka = string;
 export namespace NumberFormatSymbols_ka {
     const DECIMAL_SEP_58: string;
     export { DECIMAL_SEP_58 as DECIMAL_SEP };
@@ -2118,10 +1874,6 @@ export namespace NumberFormatSymbols_ka {
     const DEF_CURRENCY_CODE_58: string;
     export { DEF_CURRENCY_CODE_58 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale kk.
- */
-export type NumberFormatSymbols_kk = string;
 export namespace NumberFormatSymbols_kk {
     const DECIMAL_SEP_59: string;
     export { DECIMAL_SEP_59 as DECIMAL_SEP };
@@ -2154,10 +1906,6 @@ export namespace NumberFormatSymbols_kk {
     const DEF_CURRENCY_CODE_59: string;
     export { DEF_CURRENCY_CODE_59 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale km.
- */
-export type NumberFormatSymbols_km = string;
 export namespace NumberFormatSymbols_km {
     const DECIMAL_SEP_60: string;
     export { DECIMAL_SEP_60 as DECIMAL_SEP };
@@ -2190,10 +1938,6 @@ export namespace NumberFormatSymbols_km {
     const DEF_CURRENCY_CODE_60: string;
     export { DEF_CURRENCY_CODE_60 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale kn.
- */
-export type NumberFormatSymbols_kn = string;
 export namespace NumberFormatSymbols_kn {
     const DECIMAL_SEP_61: string;
     export { DECIMAL_SEP_61 as DECIMAL_SEP };
@@ -2226,10 +1970,6 @@ export namespace NumberFormatSymbols_kn {
     const DEF_CURRENCY_CODE_61: string;
     export { DEF_CURRENCY_CODE_61 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ko.
- */
-export type NumberFormatSymbols_ko = string;
 export namespace NumberFormatSymbols_ko {
     const DECIMAL_SEP_62: string;
     export { DECIMAL_SEP_62 as DECIMAL_SEP };
@@ -2262,10 +2002,6 @@ export namespace NumberFormatSymbols_ko {
     const DEF_CURRENCY_CODE_62: string;
     export { DEF_CURRENCY_CODE_62 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ky.
- */
-export type NumberFormatSymbols_ky = string;
 export namespace NumberFormatSymbols_ky {
     const DECIMAL_SEP_63: string;
     export { DECIMAL_SEP_63 as DECIMAL_SEP };
@@ -2298,10 +2034,6 @@ export namespace NumberFormatSymbols_ky {
     const DEF_CURRENCY_CODE_63: string;
     export { DEF_CURRENCY_CODE_63 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ln.
- */
-export type NumberFormatSymbols_ln = string;
 export namespace NumberFormatSymbols_ln {
     const DECIMAL_SEP_64: string;
     export { DECIMAL_SEP_64 as DECIMAL_SEP };
@@ -2334,10 +2066,6 @@ export namespace NumberFormatSymbols_ln {
     const DEF_CURRENCY_CODE_64: string;
     export { DEF_CURRENCY_CODE_64 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale lo.
- */
-export type NumberFormatSymbols_lo = string;
 export namespace NumberFormatSymbols_lo {
     const DECIMAL_SEP_65: string;
     export { DECIMAL_SEP_65 as DECIMAL_SEP };
@@ -2370,10 +2098,6 @@ export namespace NumberFormatSymbols_lo {
     const DEF_CURRENCY_CODE_65: string;
     export { DEF_CURRENCY_CODE_65 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale lt.
- */
-export type NumberFormatSymbols_lt = string;
 export namespace NumberFormatSymbols_lt {
     const DECIMAL_SEP_66: string;
     export { DECIMAL_SEP_66 as DECIMAL_SEP };
@@ -2406,10 +2130,6 @@ export namespace NumberFormatSymbols_lt {
     const DEF_CURRENCY_CODE_66: string;
     export { DEF_CURRENCY_CODE_66 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale lv.
- */
-export type NumberFormatSymbols_lv = string;
 export namespace NumberFormatSymbols_lv {
     const DECIMAL_SEP_67: string;
     export { DECIMAL_SEP_67 as DECIMAL_SEP };
@@ -2442,10 +2162,6 @@ export namespace NumberFormatSymbols_lv {
     const DEF_CURRENCY_CODE_67: string;
     export { DEF_CURRENCY_CODE_67 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale mk.
- */
-export type NumberFormatSymbols_mk = string;
 export namespace NumberFormatSymbols_mk {
     const DECIMAL_SEP_68: string;
     export { DECIMAL_SEP_68 as DECIMAL_SEP };
@@ -2478,10 +2194,6 @@ export namespace NumberFormatSymbols_mk {
     const DEF_CURRENCY_CODE_68: string;
     export { DEF_CURRENCY_CODE_68 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ml.
- */
-export type NumberFormatSymbols_ml = string;
 export namespace NumberFormatSymbols_ml {
     const DECIMAL_SEP_69: string;
     export { DECIMAL_SEP_69 as DECIMAL_SEP };
@@ -2514,10 +2226,6 @@ export namespace NumberFormatSymbols_ml {
     const DEF_CURRENCY_CODE_69: string;
     export { DEF_CURRENCY_CODE_69 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale mn.
- */
-export type NumberFormatSymbols_mn = string;
 export namespace NumberFormatSymbols_mn {
     const DECIMAL_SEP_70: string;
     export { DECIMAL_SEP_70 as DECIMAL_SEP };
@@ -2550,10 +2258,6 @@ export namespace NumberFormatSymbols_mn {
     const DEF_CURRENCY_CODE_70: string;
     export { DEF_CURRENCY_CODE_70 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale mo.
- */
-export type NumberFormatSymbols_mo = string;
 export namespace NumberFormatSymbols_mo {
     const DECIMAL_SEP_71: string;
     export { DECIMAL_SEP_71 as DECIMAL_SEP };
@@ -2586,10 +2290,6 @@ export namespace NumberFormatSymbols_mo {
     const DEF_CURRENCY_CODE_71: string;
     export { DEF_CURRENCY_CODE_71 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale mr.
- */
-export type NumberFormatSymbols_mr = string;
 export namespace NumberFormatSymbols_mr {
     const DECIMAL_SEP_72: string;
     export { DECIMAL_SEP_72 as DECIMAL_SEP };
@@ -2622,10 +2322,6 @@ export namespace NumberFormatSymbols_mr {
     const DEF_CURRENCY_CODE_72: string;
     export { DEF_CURRENCY_CODE_72 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale mr_u_nu_latn.
- */
-export type NumberFormatSymbols_mr_u_nu_latn = string;
 export namespace NumberFormatSymbols_mr_u_nu_latn {
     const DECIMAL_SEP_73: string;
     export { DECIMAL_SEP_73 as DECIMAL_SEP };
@@ -2658,10 +2354,6 @@ export namespace NumberFormatSymbols_mr_u_nu_latn {
     const DEF_CURRENCY_CODE_73: string;
     export { DEF_CURRENCY_CODE_73 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ms.
- */
-export type NumberFormatSymbols_ms = string;
 export namespace NumberFormatSymbols_ms {
     const DECIMAL_SEP_74: string;
     export { DECIMAL_SEP_74 as DECIMAL_SEP };
@@ -2694,10 +2386,6 @@ export namespace NumberFormatSymbols_ms {
     const DEF_CURRENCY_CODE_74: string;
     export { DEF_CURRENCY_CODE_74 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale mt.
- */
-export type NumberFormatSymbols_mt = string;
 export namespace NumberFormatSymbols_mt {
     const DECIMAL_SEP_75: string;
     export { DECIMAL_SEP_75 as DECIMAL_SEP };
@@ -2730,10 +2418,6 @@ export namespace NumberFormatSymbols_mt {
     const DEF_CURRENCY_CODE_75: string;
     export { DEF_CURRENCY_CODE_75 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale my.
- */
-export type NumberFormatSymbols_my = string;
 export namespace NumberFormatSymbols_my {
     const DECIMAL_SEP_76: string;
     export { DECIMAL_SEP_76 as DECIMAL_SEP };
@@ -2766,10 +2450,6 @@ export namespace NumberFormatSymbols_my {
     const DEF_CURRENCY_CODE_76: string;
     export { DEF_CURRENCY_CODE_76 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale my_u_nu_latn.
- */
-export type NumberFormatSymbols_my_u_nu_latn = string;
 export namespace NumberFormatSymbols_my_u_nu_latn {
     const DECIMAL_SEP_77: string;
     export { DECIMAL_SEP_77 as DECIMAL_SEP };
@@ -2802,10 +2482,6 @@ export namespace NumberFormatSymbols_my_u_nu_latn {
     const DEF_CURRENCY_CODE_77: string;
     export { DEF_CURRENCY_CODE_77 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale nb.
- */
-export type NumberFormatSymbols_nb = string;
 export namespace NumberFormatSymbols_nb {
     const DECIMAL_SEP_78: string;
     export { DECIMAL_SEP_78 as DECIMAL_SEP };
@@ -2838,10 +2514,6 @@ export namespace NumberFormatSymbols_nb {
     const DEF_CURRENCY_CODE_78: string;
     export { DEF_CURRENCY_CODE_78 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ne.
- */
-export type NumberFormatSymbols_ne = string;
 export namespace NumberFormatSymbols_ne {
     const DECIMAL_SEP_79: string;
     export { DECIMAL_SEP_79 as DECIMAL_SEP };
@@ -2874,10 +2546,6 @@ export namespace NumberFormatSymbols_ne {
     const DEF_CURRENCY_CODE_79: string;
     export { DEF_CURRENCY_CODE_79 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ne_u_nu_latn.
- */
-export type NumberFormatSymbols_ne_u_nu_latn = string;
 export namespace NumberFormatSymbols_ne_u_nu_latn {
     const DECIMAL_SEP_80: string;
     export { DECIMAL_SEP_80 as DECIMAL_SEP };
@@ -2910,10 +2578,6 @@ export namespace NumberFormatSymbols_ne_u_nu_latn {
     const DEF_CURRENCY_CODE_80: string;
     export { DEF_CURRENCY_CODE_80 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale nl.
- */
-export type NumberFormatSymbols_nl = string;
 export namespace NumberFormatSymbols_nl {
     const DECIMAL_SEP_81: string;
     export { DECIMAL_SEP_81 as DECIMAL_SEP };
@@ -2946,10 +2610,6 @@ export namespace NumberFormatSymbols_nl {
     const DEF_CURRENCY_CODE_81: string;
     export { DEF_CURRENCY_CODE_81 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale no.
- */
-export type NumberFormatSymbols_no = string;
 export namespace NumberFormatSymbols_no {
     const DECIMAL_SEP_82: string;
     export { DECIMAL_SEP_82 as DECIMAL_SEP };
@@ -2982,15 +2642,7 @@ export namespace NumberFormatSymbols_no {
     const DEF_CURRENCY_CODE_82: string;
     export { DEF_CURRENCY_CODE_82 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale no_NO.
- */
-export type NumberFormatSymbols_no_NO = string;
 export namespace NumberFormatSymbols_no_NO { }
-/**
- * Number formatting symbols for locale or.
- */
-export type NumberFormatSymbols_or = string;
 export namespace NumberFormatSymbols_or {
     const DECIMAL_SEP_83: string;
     export { DECIMAL_SEP_83 as DECIMAL_SEP };
@@ -3023,10 +2675,6 @@ export namespace NumberFormatSymbols_or {
     const DEF_CURRENCY_CODE_83: string;
     export { DEF_CURRENCY_CODE_83 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale pa.
- */
-export type NumberFormatSymbols_pa = string;
 export namespace NumberFormatSymbols_pa {
     const DECIMAL_SEP_84: string;
     export { DECIMAL_SEP_84 as DECIMAL_SEP };
@@ -3059,10 +2707,6 @@ export namespace NumberFormatSymbols_pa {
     const DEF_CURRENCY_CODE_84: string;
     export { DEF_CURRENCY_CODE_84 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale pl.
- */
-export type NumberFormatSymbols_pl = string;
 export namespace NumberFormatSymbols_pl {
     const DECIMAL_SEP_85: string;
     export { DECIMAL_SEP_85 as DECIMAL_SEP };
@@ -3095,10 +2739,6 @@ export namespace NumberFormatSymbols_pl {
     const DEF_CURRENCY_CODE_85: string;
     export { DEF_CURRENCY_CODE_85 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale pt.
- */
-export type NumberFormatSymbols_pt = string;
 export namespace NumberFormatSymbols_pt {
     const DECIMAL_SEP_86: string;
     export { DECIMAL_SEP_86 as DECIMAL_SEP };
@@ -3131,15 +2771,7 @@ export namespace NumberFormatSymbols_pt {
     const DEF_CURRENCY_CODE_86: string;
     export { DEF_CURRENCY_CODE_86 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale pt_BR.
- */
-export type NumberFormatSymbols_pt_BR = string;
 export namespace NumberFormatSymbols_pt_BR { }
-/**
- * Number formatting symbols for locale pt_PT.
- */
-export type NumberFormatSymbols_pt_PT = string;
 export namespace NumberFormatSymbols_pt_PT {
     const DECIMAL_SEP_87: string;
     export { DECIMAL_SEP_87 as DECIMAL_SEP };
@@ -3172,10 +2804,6 @@ export namespace NumberFormatSymbols_pt_PT {
     const DEF_CURRENCY_CODE_87: string;
     export { DEF_CURRENCY_CODE_87 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ro.
- */
-export type NumberFormatSymbols_ro = string;
 export namespace NumberFormatSymbols_ro {
     const DECIMAL_SEP_88: string;
     export { DECIMAL_SEP_88 as DECIMAL_SEP };
@@ -3208,10 +2836,6 @@ export namespace NumberFormatSymbols_ro {
     const DEF_CURRENCY_CODE_88: string;
     export { DEF_CURRENCY_CODE_88 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ru.
- */
-export type NumberFormatSymbols_ru = string;
 export namespace NumberFormatSymbols_ru {
     const DECIMAL_SEP_89: string;
     export { DECIMAL_SEP_89 as DECIMAL_SEP };
@@ -3244,10 +2868,6 @@ export namespace NumberFormatSymbols_ru {
     const DEF_CURRENCY_CODE_89: string;
     export { DEF_CURRENCY_CODE_89 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale sh.
- */
-export type NumberFormatSymbols_sh = string;
 export namespace NumberFormatSymbols_sh {
     const DECIMAL_SEP_90: string;
     export { DECIMAL_SEP_90 as DECIMAL_SEP };
@@ -3280,10 +2900,6 @@ export namespace NumberFormatSymbols_sh {
     const DEF_CURRENCY_CODE_90: string;
     export { DEF_CURRENCY_CODE_90 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale si.
- */
-export type NumberFormatSymbols_si = string;
 export namespace NumberFormatSymbols_si {
     const DECIMAL_SEP_91: string;
     export { DECIMAL_SEP_91 as DECIMAL_SEP };
@@ -3316,10 +2932,6 @@ export namespace NumberFormatSymbols_si {
     const DEF_CURRENCY_CODE_91: string;
     export { DEF_CURRENCY_CODE_91 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale sk.
- */
-export type NumberFormatSymbols_sk = string;
 export namespace NumberFormatSymbols_sk {
     const DECIMAL_SEP_92: string;
     export { DECIMAL_SEP_92 as DECIMAL_SEP };
@@ -3352,10 +2964,6 @@ export namespace NumberFormatSymbols_sk {
     const DEF_CURRENCY_CODE_92: string;
     export { DEF_CURRENCY_CODE_92 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale sl.
- */
-export type NumberFormatSymbols_sl = string;
 export namespace NumberFormatSymbols_sl {
     const DECIMAL_SEP_93: string;
     export { DECIMAL_SEP_93 as DECIMAL_SEP };
@@ -3388,10 +2996,6 @@ export namespace NumberFormatSymbols_sl {
     const DEF_CURRENCY_CODE_93: string;
     export { DEF_CURRENCY_CODE_93 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale sq.
- */
-export type NumberFormatSymbols_sq = string;
 export namespace NumberFormatSymbols_sq {
     const DECIMAL_SEP_94: string;
     export { DECIMAL_SEP_94 as DECIMAL_SEP };
@@ -3424,10 +3028,6 @@ export namespace NumberFormatSymbols_sq {
     const DEF_CURRENCY_CODE_94: string;
     export { DEF_CURRENCY_CODE_94 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale sr.
- */
-export type NumberFormatSymbols_sr = string;
 export namespace NumberFormatSymbols_sr {
     const DECIMAL_SEP_95: string;
     export { DECIMAL_SEP_95 as DECIMAL_SEP };
@@ -3460,15 +3060,7 @@ export namespace NumberFormatSymbols_sr {
     const DEF_CURRENCY_CODE_95: string;
     export { DEF_CURRENCY_CODE_95 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale sr_Latn.
- */
-export type NumberFormatSymbols_sr_Latn = string;
 export namespace NumberFormatSymbols_sr_Latn { }
-/**
- * Number formatting symbols for locale sv.
- */
-export type NumberFormatSymbols_sv = string;
 export namespace NumberFormatSymbols_sv {
     const DECIMAL_SEP_96: string;
     export { DECIMAL_SEP_96 as DECIMAL_SEP };
@@ -3501,10 +3093,6 @@ export namespace NumberFormatSymbols_sv {
     const DEF_CURRENCY_CODE_96: string;
     export { DEF_CURRENCY_CODE_96 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale sw.
- */
-export type NumberFormatSymbols_sw = string;
 export namespace NumberFormatSymbols_sw {
     const DECIMAL_SEP_97: string;
     export { DECIMAL_SEP_97 as DECIMAL_SEP };
@@ -3537,10 +3125,6 @@ export namespace NumberFormatSymbols_sw {
     const DEF_CURRENCY_CODE_97: string;
     export { DEF_CURRENCY_CODE_97 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ta.
- */
-export type NumberFormatSymbols_ta = string;
 export namespace NumberFormatSymbols_ta {
     const DECIMAL_SEP_98: string;
     export { DECIMAL_SEP_98 as DECIMAL_SEP };
@@ -3573,10 +3157,6 @@ export namespace NumberFormatSymbols_ta {
     const DEF_CURRENCY_CODE_98: string;
     export { DEF_CURRENCY_CODE_98 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale te.
- */
-export type NumberFormatSymbols_te = string;
 export namespace NumberFormatSymbols_te {
     const DECIMAL_SEP_99: string;
     export { DECIMAL_SEP_99 as DECIMAL_SEP };
@@ -3609,10 +3189,6 @@ export namespace NumberFormatSymbols_te {
     const DEF_CURRENCY_CODE_99: string;
     export { DEF_CURRENCY_CODE_99 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale th.
- */
-export type NumberFormatSymbols_th = string;
 export namespace NumberFormatSymbols_th {
     const DECIMAL_SEP_100: string;
     export { DECIMAL_SEP_100 as DECIMAL_SEP };
@@ -3645,10 +3221,6 @@ export namespace NumberFormatSymbols_th {
     const DEF_CURRENCY_CODE_100: string;
     export { DEF_CURRENCY_CODE_100 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale tl.
- */
-export type NumberFormatSymbols_tl = string;
 export namespace NumberFormatSymbols_tl {
     const DECIMAL_SEP_101: string;
     export { DECIMAL_SEP_101 as DECIMAL_SEP };
@@ -3681,10 +3253,6 @@ export namespace NumberFormatSymbols_tl {
     const DEF_CURRENCY_CODE_101: string;
     export { DEF_CURRENCY_CODE_101 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale tr.
- */
-export type NumberFormatSymbols_tr = string;
 export namespace NumberFormatSymbols_tr {
     const DECIMAL_SEP_102: string;
     export { DECIMAL_SEP_102 as DECIMAL_SEP };
@@ -3718,10 +3286,6 @@ export namespace NumberFormatSymbols_tr {
     export { DEF_CURRENCY_CODE_102 as DEF_CURRENCY_CODE };
 }
 export namespace NumberFormatSymbols_u_nu_latn { }
-/**
- * Number formatting symbols for locale uk.
- */
-export type NumberFormatSymbols_uk = string;
 export namespace NumberFormatSymbols_uk {
     const DECIMAL_SEP_103: string;
     export { DECIMAL_SEP_103 as DECIMAL_SEP };
@@ -3754,10 +3318,6 @@ export namespace NumberFormatSymbols_uk {
     const DEF_CURRENCY_CODE_103: string;
     export { DEF_CURRENCY_CODE_103 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale ur.
- */
-export type NumberFormatSymbols_ur = string;
 export namespace NumberFormatSymbols_ur {
     const DECIMAL_SEP_104: string;
     export { DECIMAL_SEP_104 as DECIMAL_SEP };
@@ -3790,10 +3350,6 @@ export namespace NumberFormatSymbols_ur {
     const DEF_CURRENCY_CODE_104: string;
     export { DEF_CURRENCY_CODE_104 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale uz.
- */
-export type NumberFormatSymbols_uz = string;
 export namespace NumberFormatSymbols_uz {
     const DECIMAL_SEP_105: string;
     export { DECIMAL_SEP_105 as DECIMAL_SEP };
@@ -3826,10 +3382,6 @@ export namespace NumberFormatSymbols_uz {
     const DEF_CURRENCY_CODE_105: string;
     export { DEF_CURRENCY_CODE_105 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale vi.
- */
-export type NumberFormatSymbols_vi = string;
 export namespace NumberFormatSymbols_vi {
     const DECIMAL_SEP_106: string;
     export { DECIMAL_SEP_106 as DECIMAL_SEP };
@@ -3862,10 +3414,6 @@ export namespace NumberFormatSymbols_vi {
     const DEF_CURRENCY_CODE_106: string;
     export { DEF_CURRENCY_CODE_106 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale zh.
- */
-export type NumberFormatSymbols_zh = string;
 export namespace NumberFormatSymbols_zh {
     const DECIMAL_SEP_107: string;
     export { DECIMAL_SEP_107 as DECIMAL_SEP };
@@ -3898,15 +3446,7 @@ export namespace NumberFormatSymbols_zh {
     const DEF_CURRENCY_CODE_107: string;
     export { DEF_CURRENCY_CODE_107 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale zh_CN.
- */
-export type NumberFormatSymbols_zh_CN = string;
 export namespace NumberFormatSymbols_zh_CN { }
-/**
- * Number formatting symbols for locale zh_HK.
- */
-export type NumberFormatSymbols_zh_HK = string;
 export namespace NumberFormatSymbols_zh_HK {
     const DECIMAL_SEP_108: string;
     export { DECIMAL_SEP_108 as DECIMAL_SEP };
@@ -3939,10 +3479,6 @@ export namespace NumberFormatSymbols_zh_HK {
     const DEF_CURRENCY_CODE_108: string;
     export { DEF_CURRENCY_CODE_108 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale zh_TW.
- */
-export type NumberFormatSymbols_zh_TW = string;
 export namespace NumberFormatSymbols_zh_TW {
     const DECIMAL_SEP_109: string;
     export { DECIMAL_SEP_109 as DECIMAL_SEP };
@@ -3975,10 +3511,6 @@ export namespace NumberFormatSymbols_zh_TW {
     const DEF_CURRENCY_CODE_109: string;
     export { DEF_CURRENCY_CODE_109 as DEF_CURRENCY_CODE };
 }
-/**
- * Number formatting symbols for locale zu.
- */
-export type NumberFormatSymbols_zu = string;
 export namespace NumberFormatSymbols_zu {
     const DECIMAL_SEP_110: string;
     export { DECIMAL_SEP_110 as DECIMAL_SEP };

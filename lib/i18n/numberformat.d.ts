@@ -37,9 +37,9 @@ export namespace Format {
  *     not given, the currency code for the current locale will be used.
  *     CurrencyStyle. If not given, the currency style
  *     for the current locale will be used.
- *     map, analogous to I18n_NumberFormatSymbols. If present, this
- *     overrides the symbols from the current locale, such as the percent sign
- *     and minus sign.
+ *     format symbols map, analogous to I18n_NumberFormatSymbols. If
+ *     present, this overrides the symbols from the current locale, such as the
+ *     percent sign and minus sign.
  */
 export class NumberFormat {
     /**
@@ -102,14 +102,21 @@ export class NumberFormat {
      * @param {number=} opt_currencyStyle currency style, value defined in
      *     CurrencyStyle. If not given, the currency style
      *     for the current locale will be used.
-     * @param {!Object<string, string>=} opt_symbols Optional number format symbols
-     *     map, analogous to I18n_NumberFormatSymbols. If present, this
-     *     overrides the symbols from the current locale, such as the percent sign
-     *     and minus sign.
+     * @param {!NumberFormatSymbolsType.Type=} opt_symbols Optional number
+     *     format symbols map, analogous to I18n_NumberFormatSymbols. If
+     *     present, this overrides the symbols from the current locale, such as the
+     *     percent sign and minus sign.
      */
-    constructor(pattern: number | string, opt_currency?: string | undefined, opt_currencyStyle?: number | undefined, opt_symbols?: {
-        [x: string]: string;
-    } | undefined);
+    constructor(pattern: number | string, opt_currency?: string | undefined, opt_currencyStyle?: number | undefined, opt_symbols?: NumberFormatSymbolsType.Type | undefined);
+    /**
+     * Remember if the implementation is ECMAScript
+     * @private {?Intl.NumberFormat}
+     */
+    private intlFormatter_;
+    /** @private {boolean} */
+    private resetSignificantDigits_;
+    /** @private {boolean} */
+    private resetFractionDigits_;
     /** @const @private {?string} */
     private intlCurrencyCode_;
     /** @const @private {number} */
@@ -163,7 +170,7 @@ export class NumberFormat {
     private decimalSeparatorAlwaysShown_;
     /** @private {boolean} */
     private useExponentialNotation_;
-    /** @private {NumberFormat.CompactStyle} */
+    /** @private {!NumberFormat.CompactStyle} */
     private compactStyle_;
     /**
      * The number to base the formatting on when using compact styles, or null
@@ -172,6 +179,10 @@ export class NumberFormat {
      * @private
      */
     private baseFormattingNumber_;
+    /** @private {number} */
+    private inputPattern_;
+    /** @private {string} */
+    private pattern_;
     /**
      * Returns the current NumberFormatSymbols.
      * @return {?}
@@ -253,13 +264,20 @@ export class NumberFormat {
      */
     getBaseFormatting(): number | null;
     /**
+     * Set formatter to polyfill mode when Intl doesn't support Closure features.
+     * Called when setting some formatter behavior after constructing the Intl
+     * object.
+     * @param {number|string} pattern Value to initialize object in JavaScript.
+     * @private
+     */
+    private setFormatterToPolyfill_;
+    /**
      * Apply provided pattern, result are stored in member variables.
      *
      * @param {string} pattern String pattern being applied.
      * @private
      */
     private applyPattern_;
-    pattern_: string | undefined;
     /**
      * Apply a predefined pattern to NumberFormat object.
      * @param {number} patternType The number that indicates a predefined number
@@ -269,7 +287,7 @@ export class NumberFormat {
     private applyStandardPattern_;
     /**
      * Apply a predefined pattern for shorthand formats.
-     * @param {NumberFormat.CompactStyle} style the compact style to
+     * @param {!NumberFormat.CompactStyle} style the compact style to
      *     set defaults for.
      * @private
      */
@@ -283,17 +301,17 @@ export class NumberFormat {
      * parsing stops after the call. If an error occurs, opt_pos won't be updated.
      *
      * @param {string} text The string to be parsed.
-     * @param {Array<number>=} opt_pos Position to pass in and get back.
+     * @param {?Array<number>=} opt_pos Position to pass in and get back.
      * @return {number} Parsed number. This throws an error if the text cannot be
      *     parsed.
      */
-    parse(text: string, opt_pos?: Array<number> | undefined): number;
+    parse(text: string, opt_pos?: (Array<number> | null) | undefined): number;
     /**
      * This function will parse a "localized" text into a Number. It needs to
      * handle locale specific decimal, grouping, exponent and digits.
      *
      * @param {string} text The text that need to be parsed.
-     * @param {Array<number>} pos  In/out parsing position. In case of failure,
+     * @param {!Array<number>} pos  In/out parsing position. In case of failure,
      *    pos value won't be changed.
      * @return {number} Number value, or NaN if nothing can be parsed.
      * @private
@@ -306,6 +324,14 @@ export class NumberFormat {
      * @return {string} The formatted number string.
      */
     format(number: number): string;
+    /**
+     * Formats a Number to produce a string using Intl NumberFormat class.
+     *
+     * @param {number} number The Number to be formatted.
+     * @return {string} The formatted number string.
+     * @private
+     */
+    private formatUsingNativeMode_;
     /**
      * Round a number into an integer and fractional part
      * based on the rounding rules for this NumberFormat.
@@ -389,7 +415,7 @@ export class NumberFormat {
      *
      * @param {number} number
      * @param {number} minIntDigits Minimum integer digits.
-     * @param {Array<string>} parts
+     * @param {!Array<string>} parts
      *     This array holds the pieces of formatted string.
      *     This function will add its formatted pieces to the array.
      * @private
@@ -399,7 +425,7 @@ export class NumberFormat {
      * Formats exponent part of a Number.
      *
      * @param {number} exponent Exponential value.
-     * @param {Array<string>} parts The array that holds the pieces of formatted
+     * @param {!Array<string>} parts The array that holds the pieces of formatted
      *     string. This function will append more formatted pieces to the array.
      * @private
      */
@@ -417,7 +443,7 @@ export class NumberFormat {
      * Formats Number in exponential format.
      *
      * @param {number} number Value need to be formatted.
-     * @param {Array<string>} parts The array that holds the pieces of formatted
+     * @param {!Array<string>} parts The array that holds the pieces of formatted
      *     string. This function will append more formatted pieces to the array.
      * @private
      */
@@ -435,7 +461,7 @@ export class NumberFormat {
      * Parses affix part of pattern.
      *
      * @param {string} pattern Pattern string that need to be parsed.
-     * @param {Array<number>} pos One element position array to set and receive
+     * @param {!Array<number>} pos One element position array to set and receive
      *     parsing position.
      *
      * @return {string} Affix received from parsing.
@@ -446,7 +472,7 @@ export class NumberFormat {
      * Parses the trunk part of a pattern.
      *
      * @param {string} pattern Pattern string that need to be parsed.
-     * @param {Array<number>} pos One element position array to set and receive
+     * @param {!Array<number>} pos One element position array to set and receive
      *     parsing position.
      * @private
      */
@@ -507,8 +533,11 @@ export class NumberFormat {
      * @return {boolean} true if currency is before value.
      */
     isCurrencyCodeBeforeValue(): boolean;
+    private SetUpIntlFormatter_;
+    NativeOptionsChanged_(): boolean;
 }
 export namespace NumberFormat {
+    const USE_ECMASCRIPT_I18N_NUMFORMAT: boolean;
     namespace CompactStyle {
         const NONE: number;
         const SHORT: number;
@@ -519,6 +548,15 @@ export namespace NumberFormat {
      */
     type CompactStyle = number;
     const enforceAsciiDigits_: boolean;
+    const NativeLocaleDigits_: {
+        ar: string;
+        'ar-EG': string;
+        bn: string;
+        fa: string;
+        mr: string;
+        my: string;
+        ne: string;
+    };
     const PATTERN_ZERO_DIGIT_: string;
     const PATTERN_GROUPING_SEPARATOR_: string;
     const PATTERN_DECIMAL_SEPARATOR_: string;
@@ -547,4 +585,32 @@ export namespace NumberFormat {
         prefix: string;
         suffix: string;
     };
+    /**
+     * Parameters to Intl.NumberFormat constructor
+     */
+    type IntlOptions = {
+        localeMatcher: string | undefined;
+        signDisplay: string | undefined;
+        notation: string | undefined;
+        useGrouping: boolean | undefined;
+        numberingSystem: string | undefined;
+        style: string | undefined;
+        currency: string | undefined;
+        currencyDisplay: string | undefined;
+        minimumIntegerDigits: number | undefined;
+        minimumFractionDigits: number | undefined;
+        maximumFractionDigits: number | undefined;
+        minimumSignificantDigits: number | undefined;
+        maximumSignificantDigits: number | undefined;
+        compactDisplay: string | undefined;
+        locale: string | undefined;
+    };
+    /**
+     * Return results from formatToParts
+     */
+    type FormattedPart = {
+        type: string;
+        value: string;
+    };
 }
+import * as NumberFormatSymbolsType from "./numberformatsymbolstype.js";

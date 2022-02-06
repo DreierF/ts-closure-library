@@ -114,7 +114,8 @@ export class DateTimeParse {
      *     instance rather than the global symbols.
      */
     constructor(pattern: string | number, opt_dateTimeSymbols?: any | undefined);
-    patternParts_: any[];
+    /** @const @private {!Array<!DateTimeParse.PatternPart>}; */
+    private patternParts_;
     /**
      * Data structure with all the locale info needed for date formatting.
      * (day/month names, most common patterns, rules for week-end, etc.)
@@ -211,9 +212,9 @@ export class DateTimeParse {
      * 1/2/2.
      *
      * @param {string} text the text to be parsed.
-     * @param {Array<number>} pos parse position
+     * @param {!Array<number>} pos parse position
      * @param {number} abutStart the index of the pattern part starting the run
-     * @param {DateTimeParse.MyDate_} cal object that holds parsed value
+     * @param {!DateTimeParse.MyDate_} cal object that holds parsed value
      *
      * @return {number} how many pattern parts the parser advanced
      * @private
@@ -224,10 +225,10 @@ export class DateTimeParse {
      * numeric field value.
      *
      * @param {string} text the text to be parsed.
-     * @param {Array<number>} pos Parse position.
-     * @param {?Object} part the pattern part for this field.
+     * @param {!Array<number>} pos Parse position.
+     * @param {!DateTimeParse.PatternPart} part the pattern part for this field.
      * @param {number} digitCount when > 0, numeric parsing must obey the count.
-     * @param {DateTimeParse.MyDate_} cal object that holds parsed value.
+     * @param {!DateTimeParse.MyDate_} cal object that holds parsed value.
      * @param {boolean} predictive whether to apply predictive parsing rules.
      *
      * @return {boolean} True if it parses successfully.
@@ -241,10 +242,10 @@ export class DateTimeParse {
      * 3) year field participate in abut processing.
      *
      * @param {string} text the text to be parsed.
-     * @param {Array<number>} pos Parse position.
-     * @param {?Object} part the pattern part for this field.
+     * @param {!Array<number>} pos Parse position.
+     * @param {!DateTimeParse.PatternPart} part the pattern part for this field.
      * @param {number} digitCount when > 0, numeric parsing must obey the count.
-     * @param {DateTimeParse.MyDate_} cal object to hold parsed value.
+     * @param {!DateTimeParse.MyDate_} cal object to hold parsed value.
      *
      * @return {boolean} True if successful.
      * @private
@@ -254,10 +255,10 @@ export class DateTimeParse {
      * Parse Month field.
      *
      * @param {string} text the text to be parsed.
-     * @param {Array<number>} pos Parse position.
+     * @param {!Array<number>} pos Parse position.
      * @param {number} digitCount when > 0, numeric parsing must obey the count.
-     * @param {?Object} part the pattern part
-     * @param {DateTimeParse.MyDate_} cal object to hold parsed value.
+     * @param {!DateTimeParse.PatternPart} part the pattern part
+     * @param {!DateTimeParse.MyDate_} cal object to hold parsed value.
      *
      * @return {boolean} True if parsing successful.
      * @private
@@ -267,9 +268,9 @@ export class DateTimeParse {
      * Parse fractional seconds field.
      *
      * @param {string} text the text to be parsed.
-     * @param {Array<number>} pos current parse position.
+     * @param {!Array<number>} pos current parse position.
      * @param {number} digitCount when > 0, numeric parsing must obey the count.
-     * @param {DateTimeParse.MyDate_} cal object to hold parsed value.
+     * @param {!DateTimeParse.MyDate_} cal object to hold parsed value.
      *
      * @return {boolean} True if successful.
      * @private
@@ -279,8 +280,8 @@ export class DateTimeParse {
      * Parse GMT type timezone.
      *
      * @param {string} text the text to be parsed.
-     * @param {Array<number>} pos Parse position.
-     * @param {DateTimeParse.MyDate_} cal object to hold parsed value.
+     * @param {!Array<number>} pos Parse position.
+     * @param {!DateTimeParse.MyDate_} cal object to hold parsed value.
      *
      * @return {boolean} True if successful.
      * @private
@@ -291,8 +292,8 @@ export class DateTimeParse {
      * date.
      *
      * @param {string} text the text to be parsed.
-     * @param {Array<number>} pos parse position
-     * @param {?Object} part the pattern part for this field.
+     * @param {!Array<number>} pos parse position
+     * @param {!DateTimeParse.PatternPart} part the pattern part for this field.
      * @param {number} maxChars when > 0, at most this many characters are parsed.
      * @param {function(number)} callback function to record the parsed value.
      * @param {boolean=} predictive whether to apply predictive parsing rules.
@@ -307,8 +308,8 @@ export class DateTimeParse {
      * such as 'E' for day of week.
      *
      * @param {string} text the text to be parsed.
-     * @param {Array<number>} pos parse position
-     * @param {Array<Array<string>>} data Arrays of strings to match against,
+     * @param {!Array<number>} pos parse position
+     * @param {!Array<!Array<string>>} data Arrays of strings to match against,
      *     sequentially.
      * @param {function(number)} callback function to record the parsed value.
      * @param {boolean=} predictive whether to apply predictive parsing rules.
@@ -324,8 +325,8 @@ export class DateTimeParse {
      * alphabetic unquoted characters.
      *
      * @param {string} text the text to be parsed.
-     * @param {Array<number>} pos parse position
-     * @param {?Object} part the pattern part
+     * @param {!Array<number>} pos parse position
+     * @param {!DateTimeParse.PatternPart} part the pattern part
      * @param {boolean} predictive whether to apply predictive parsing rules.
      *
      * @return {boolean} True if it parses successfully.
@@ -336,7 +337,7 @@ export class DateTimeParse {
      * Skip space in the string.
      *
      * @param {string} text input string.
-     * @param {Array<number>} pos where skip start, and return back where the skip
+     * @param {!Array<number>} pos where skip start, and return back where the skip
      *     stops.
      * @private
      */
@@ -345,7 +346,7 @@ export class DateTimeParse {
      * Parse an integer string and return integer value.
      *
      * @param {string} text string being parsed.
-     * @param {Array<number>} pos parse position.
+     * @param {!Array<number>} pos parse position.
      * @param {number} maxChars when > 0, at most this many characters are parsed.
      * @param {boolean=} allowSigned if true allows a single leading sign character
      *     (+|-) in the input. defaults to false
@@ -361,8 +362,8 @@ export class DateTimeParse {
      * longest match is returned.
      *
      * @param {string} text The string to match to.
-     * @param {Array<number>} pos parsing position.
-     * @param {Array<string>} data The string array of matching patterns.
+     * @param {!Array<number>} pos parsing position.
+     * @param {!Array<string>} data The string array of matching patterns.
      * @param {boolean} predictive whether to apply predictive parsing rules.
      *
      * @return {?number} the index of the best match in the array, or null
@@ -378,6 +379,15 @@ export namespace DateTimeParse {
     export const PREDICTIVE_FORMAT_CHARS_: string;
     export function ParseOptions(): void;
     export { MyDate_ };
+    /**
+     * Components of patternParts_ object.
+     */
+    export type PatternPart = {
+        text: string | undefined;
+        count: number;
+        numeric: boolean | undefined;
+        abutStart: boolean | undefined;
+    };
 }
 import { DateLike } from "../date/date.js";
 declare class MyDate_ {
@@ -437,6 +447,13 @@ declare class MyDate_ {
      */
     dayOfWeek: number | null;
     /**
+     * Flag indicating if a provided two digit year needs to
+     * be disambiguated
+     *
+     * @type {boolean}
+     */
+    ambiguousYear: boolean;
+    /**
      * 2 digit year special handling. Assuming for example that the
      * defaultCenturyStart is 6/18/1903. This means that two-digit years will be
      * forced into the range 6/18/1903 to 6/17/2003. As a result, years 00, 01, and
@@ -452,7 +469,6 @@ declare class MyDate_ {
      * @suppress {checkTypes}
      */
     private setTwoDigitYear_;
-    ambiguousYear: boolean | undefined;
     /**
      * Based on the fields set, fill a Date object. For those fields that not
      * set, use the passed in date object's value.

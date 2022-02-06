@@ -154,7 +154,7 @@ export class Component extends EventsEventTarget {
     setId(id: string): void;
     /**
      * Gets the component's element.
-     * @return {?Element} The element for the component.
+     * @return {Element|null} The element for the component.
      */
     getElement(): Element | null;
     /**
