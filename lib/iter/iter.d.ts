@@ -140,11 +140,11 @@ export function combinationsWithReplacement<VALUE>(iterable: {
 } | Iterator<VALUE>, length: number): Iterator<VALUE[]>;
 /**
  * Creates an iterator that filters `iterable` based on a series of
- * `selectors`. On each call to `next()`, one item is taken from
+ * `selectors`. On each call to `nextValueOrThrow()`, one item is taken from
  * both the `iterable` and `selectors` iterators. If the item from
  * `selectors` evaluates to true, the item from `iterable` is given.
  * Otherwise, it is skipped. Once either `iterable` or `selectors`
- * is exhausted, subsequent calls to `next()` will throw
+ * is exhausted, subsequent calls to `nextValueOrThrow()` will throw
  * `StopIteration`.
  * @see http://docs.python.org/2/library/itertools.html#itertools.compress
  * @param {!Iterator<VALUE>|!Iterable} iterable The
@@ -170,7 +170,7 @@ export function compress<VALUE>(iterable: {
  * Creates an iterator that is advanced `count` steps ahead. Consumed
  * values are silently discarded. If `count` is greater than the number
  * of elements in `iterable`, an empty iterator is returned. Subsequent
- * calls to `next()` will throw `StopIteration`.
+ * calls to `nextValueOrThrow()` will throw `StopIteration`.
  * @param {!Iterator<VALUE>|!Iterable} iterable The
  *     iterable to consume.
  * @param {number} count  The number of elements to consume from the iterator.
@@ -659,7 +659,7 @@ export function toIterator<VALUE>(iterable: {
  * Creates an iterator that returns arrays containing the ith elements from the
  * provided iterables. The returned arrays will be the same size as the number
  * of iterables given in `var_args`. Once the shortest iterable is
- * exhausted, subsequent calls to `next()` will throw
+ * exhausted, subsequent calls to `nextValueOrThrow()` will throw
  * `StopIteration`.
  * @see http://docs.python.org/2/library/itertools.html#itertools.izip
  * @param {...!Iterator<VALUE>|!Iterable} var_args Any
@@ -678,7 +678,7 @@ export function zip<VALUE>(...args: ({
  * provided iterables. The returned arrays will be the same size as the number
  * of iterables given in `var_args`. Shorter iterables will be extended
  * with `fillValue`. Once the longest iterable is exhausted, subsequent
- * calls to `next()` will throw `StopIteration`.
+ * calls to `nextValueOrThrow()` will throw `StopIteration`.
  * @see http://docs.python.org/2/library/itertools.html#itertools.izip_longest
  * @param {?VALUE} fillValue The object or value used to fill shorter iterables.
  * @param {...!Iterator<VALUE>|!Iterable} var_args Any

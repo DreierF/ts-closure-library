@@ -148,6 +148,13 @@ export function getCssPropertyValue(cssStyle: CSSStyleDeclaration, propName: str
  * @supported IE8 and newer.
  */
 export function setCssProperty(cssStyle: CSSStyleDeclaration, propName: string, sanitizedValue: string): void;
+/**
+ * Returns an element's namespace URI without falling prey to things like
+ * <form><input name="namespaceURI"></form>.
+ * @param {!Element} element
+ * @return {string}
+ */
+export function getElementNamespaceURI(element: Element): string;
 export type Methods = Function | null;
 export namespace Methods {
     const ATTRIBUTES_GETTER: Function | null;
@@ -167,4 +174,5 @@ export namespace Methods {
     const SHEET_GETTER: Function | null;
     const GET_PROPERTY_VALUE: Function | null;
     const SET_PROPERTY: Function | null;
+    const NAMESPACE_URI_GETTER: Function | null;
 }

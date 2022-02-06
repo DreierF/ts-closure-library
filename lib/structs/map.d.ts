@@ -170,9 +170,8 @@ declare class structs_Map<K, V> {
      * Adds a key-value pair to the map.
      * @param {*} key The key.
      * @param {V} value The value to add.
-     * @return {*} Some subclasses return a value.
      */
-    set(key: any, value: V): any;
+    set(key: any, value: V): void;
     /**
      * Adds multiple key-value pairs from another structs_Map or Object.
      * @param {?Object} map Object containing the data to add.

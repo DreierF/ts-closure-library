@@ -105,11 +105,9 @@ export function insertAdjacentHtml(node: Node, position: InsertAdjacentHtmlPosit
  *     legacy reasons. Pass Const if possible.
  * @param {string=} opt_specs Comma-separated list of specifications, same as
  *     in window.open().
- * @param {boolean=} opt_replace Whether to replace the current entry in browser
- *     history, same as in window.open().
  * @return {?Window} Window the url was opened in.
  */
-export function openInWindow(url: string | Html_SafeUrl, opt_openerWin?: Window | undefined, opt_name?: (Const | string) | undefined, opt_specs?: string | undefined, opt_replace?: boolean | undefined): Window | null;
+export function openInWindow(url: string | Html_SafeUrl, opt_openerWin?: Window | undefined, opt_name?: (Const | string) | undefined, opt_specs?: string | undefined): Window | null;
 /**
  * Parses the string.
  * @param {!DOMParser} parser

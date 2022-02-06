@@ -70,6 +70,7 @@ export class LabelInput extends Component {
     /**
      * The CSS class name to add to the input when the user has not entered a
      * value.
+     * @type {string}
      */
     labelCssClassName: string;
     /**

@@ -1,14 +1,4 @@
 /**
- * @license
- * Copyright The Closure Library Authors.
- * SPDX-License-Identifier: Apache-2.0
- */
-/**
- * @fileoverview The SafeStyle type and its builders.
- *
- * TODO(xtof): Link to document stating type contract.
- */
-/**
  * A string-like object which represents a sequence of CSS declarations
  * (`propertyName1: propertyvalue1; propertyName2: propertyValue2; ...`)
  * and that carries the security type contract that its value, as a string,
@@ -95,6 +85,72 @@
  */
 export class SafeStyle implements TypedString {
     /**
+     * Creates a SafeStyle object from a compile-time constant string.
+     *
+     * `style` should be in the format
+     * `name: value; [name: value; ...]` and must not have any < or >
+     * characters in it. This is so that SafeStyle's contract is preserved,
+     * allowing the SafeStyle to correctly be interpreted as a sequence of CSS
+     * declarations and without affecting the syntactic structure of any
+     * surrounding CSS and HTML.
+     *
+     * This method performs basic sanity checks on the format of `style`
+     * but does not constrain the format of `name` and `value`, except
+     * for disallowing tag characters.
+     *
+     * @param {!Const} style A compile-time-constant string from which
+     *     to create a SafeStyle.
+     * @return {!SafeStyle} A SafeStyle object initialized to
+     *     `style`.
+     */
+    static fromConstant(style: Const): SafeStyle;
+    /**
+     * Performs a runtime check that the provided object is indeed a
+     * SafeStyle object, and returns its value.
+     *
+     * @param {!SafeStyle} safeStyle The object to extract from.
+     * @return {string} The safeStyle object's contained string, unless
+     *     the run-time type check fails. In that case, `unwrap` returns an
+     *     innocuous string, or, if assertions are enabled, throws
+     *     `AssertionError`.
+     */
+    static unwrap(safeStyle: SafeStyle): string;
+    /**
+     * Package-internal utility method to create SafeStyle instances.
+     *
+     * @param {string} style The string to initialize the SafeStyle object with.
+     * @return {!SafeStyle} The initialized SafeStyle object.
+     * @package
+     */
+    static createSafeStyleSecurityPrivateDoNotAccessOrElse(style: string): SafeStyle;
+    /**
+     * Creates a new SafeStyle object from the properties specified in the map.
+     * @param {!SafeStyle.PropertyMap} map Mapping of property names to
+     *     their values, for example {'margin': '1px'}. Names must consist of
+     *     [-_a-zA-Z0-9]. Values might be strings consisting of
+     *     [-,.'"%_!# a-zA-Z0-9[\]], where ", ', and [] must be properly balanced.
+     *     We also allow simple functions like rgb() and url() which sanitizes its
+     *     contents. Other values must be wrapped in Const. URLs might
+     *     be passed as SafeUrl which will be wrapped into url(""). We
+     *     also support array whose elements are joined with ' '. Null value
+     * causes skipping the property.
+     * @return {!SafeStyle}
+     * @throws {!Error} If invalid name is provided.
+   * @suppress{checkTypes}
+     * @throws {!AssertionError} If invalid value is provided. With
+     *     disabled assertions, invalid value is replaced by
+     *     SafeStyle.INNOCUOUS_STRING.
+     */
+    static create(map: SafeStyle.PropertyMap): SafeStyle;
+    /**
+     * Creates a new SafeStyle object by concatenating the values.
+   * @suppress{checkTypes}
+     * @param {...(!SafeStyle|!Array<!SafeStyle>)} var_args
+     *     SafeStyles to concatenate.
+     * @return {!SafeStyle}
+     */
+    static concat(...args: (SafeStyle | SafeStyle[])[]): SafeStyle;
+    /**
      * @param {string} value
      * @param {!Object} token package-internal implementation detail.
      */
@@ -111,31 +167,44 @@ export class SafeStyle implements TypedString {
      * @const {boolean}
      */
     implementsGoogStringTypedString: boolean;
+    /**
+     * Returns this SafeStyle's value as a string.
+     *
+     * IMPORTANT: In code where it is security relevant that an object's type is
+     * indeed `SafeStyle`, use `SafeStyle.unwrap` instead of
+     * this method. If in doubt, assume that it's security relevant. In
+     * particular, note that google.html functions which return a google.html type do
+     * not guarantee the returned instance is of the right type. For example:
+     *
+     * <pre>
+     * var fakeSafeHtml = new String('fake');
+     * fakeSafeHtml.__proto__ = goog.html.SafeHtml.prototype;
+     * var newSafeHtml = goog.html.SafeHtml.htmlEscape(fakeSafeHtml);
+     * // newSafeHtml is just an alias for fakeSafeHtml, it's passed through by
+     * // goog.html.SafeHtml.htmlEscape() as fakeSafeHtml
+     * // instanceof goog.html.SafeHtml.
+     * </pre>
+     *
+     * @return {string}
+     * @see SafeStyle#unwrap
+     * @override
+     */
     getTypedStringValue(): string;
+    /**
+     * Returns a string-representation of this value.
+     *
+     * To obtain the actual string value wrapped in a SafeStyle, use
+     * `SafeStyle.unwrap`.
+     *
+     * @return {string}
+     * @see SafeStyle#unwrap
+     * @override
+     */
     toString(): string;
 }
 export namespace SafeStyle {
-    function fromConstant(style: Const): SafeStyle;
-    function unwrap(safeStyle: SafeStyle): string;
-    const CONSTRUCTOR_TOKEN_PRIVATE_: {};
-    function createSafeStyleSecurityPrivateDoNotAccessOrElse(style: string): SafeStyle;
     const EMPTY: SafeStyle;
     const INNOCUOUS_STRING: string;
-    function create(map: {
-        [x: string]: string | Const | SafeUrl | PropertyValue[] | null;
-    }): SafeStyle;
-    function sanitizePropertyValue_(value: PropertyValue): string;
-    function sanitizePropertyValueString_(value: string): string;
-    function hasBalancedQuotes_(value: string): boolean;
-    function hasBalancedSquareBrackets_(value: string): boolean;
-    const VALUE_ALLOWED_CHARS_: string;
-    const VALUE_RE_: RegExp;
-    const URL_RE_: RegExp;
-    const ALLOWED_FUNCTIONS_: string[];
-    const FUNCTIONS_RE_: RegExp;
-    const COMMENT_RE_: RegExp;
-    function sanitizeUrl_(value: string): string;
-    function concat(...args: (SafeStyle | SafeStyle[])[]): SafeStyle;
     /**
      * A single property value.
      */

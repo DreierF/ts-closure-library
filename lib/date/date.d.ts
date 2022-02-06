@@ -615,18 +615,6 @@ declare class date_Date {
     valueOf(): number;
 }
 /**
- * Formats a month/year string.
- * Example: "January 2008"
- *
- * @param {string} monthName The month name to use in the result.
- * @param {number} yearNum The numeric year to use in the result.
- * @return {string} A formatted month/year string.
- * @deprecated Use goog.i18n.DateTimeFormat with
- *     goog.i18n.DateTimeFormat.Format.YEAR_MONTH_ABBR or
- *     goog.i18n.DateTimeFormat.Format.YEAR_MONTH_FULL.
- */
-export function formatMonthAndYear(monthName: string, yearNum: number): string;
-/**
  * Returns the number of days for a given month.
  *
  * @param {number} year Year part of date.

@@ -49,11 +49,6 @@ export let CAN_USE_PARENT_ELEMENT_PROPERTY: boolean;
  */
 export let INNER_HTML_NEEDS_SCOPED_ELEMENT: boolean;
 /**
- * Whether we use legacy IE range API.
- * @const {boolean}
- */
-export let LEGACY_IE_RANGES: boolean;
-/**
  * Whether the browser supports OffscreenCanvas 2D context.
  * @const {boolean}
  */

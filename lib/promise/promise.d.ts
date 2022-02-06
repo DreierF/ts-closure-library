@@ -180,6 +180,7 @@ declare class goog_Promise<TYPE, RESOLVER_CONTEXT> implements Goog_Thenable<TYPE
      *     resolve / reject functions. Resolving or rejecting the resolver
      *     resolves or rejects the promise.
      * @template TYPE
+     * @see {@link goog.promise.NativeResolver} for native Promises
      */
     static withResolver<TYPE>(): Resolver<TYPE>;
     /**

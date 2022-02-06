@@ -76,7 +76,6 @@
  * If you need to change this algorithm, please note the OS, browser, language,
  * and behavior above so that we can avoid regressions. Contact mpd or yuzo
  * if you have questions or concerns.
- * @suppress {missingRequire} TODO(user): this shouldn't be needed
  */
 /**
  * Class for managing the interaction between an auto-complete object and a

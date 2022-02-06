@@ -308,6 +308,7 @@ export class AutoComplete extends events.EventTarget {
     setTarget(target: Element | null): void;
     /**
      * @return {boolean} Whether the autocomplete's renderer is open.
+     * @suppress {missingProperties}
      */
     isOpen(): boolean;
     /**
@@ -400,6 +401,7 @@ export class AutoComplete extends events.EventTarget {
      * @param {(boolean|RenderOptions)=} opt_options If true,
      *     keeps the currently hilited (by index) element hilited. If false not.
      *     Otherwise a RenderOptions object.
+     * @suppress {missingProperties}
      */
     renderRows(rows: Array<unknown>, opt_options?: (boolean | RenderOptions) | undefined): void;
     /**

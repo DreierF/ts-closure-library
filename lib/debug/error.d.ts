@@ -72,14 +72,8 @@ declare class DebugError {
     stack: string | undefined;
     /** @override */
     message: string | undefined;
-    cause: {
-        message: (unknown | undefined);
-        name: (unknown | undefined);
-        lineNumber: (unknown | undefined);
-        fileName: (unknown | undefined);
-        stack: (unknown | undefined);
-        cause: (unknown | undefined);
-    } | undefined;
+    /** @type {?} */
+    cause: unknown;
     /**
      * Whether to report this error to the server. Setting this to false will
      * cause the error reporter to not report the error back to the server,

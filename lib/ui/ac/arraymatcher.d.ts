@@ -52,7 +52,8 @@ export class ArrayMatcher {
      *     input token against the dictionary.
      */
     constructor(rows: Array<unknown>, opt_noSimilar?: boolean | undefined);
-    rows_: any[];
+    /** @type {!Array<?>} */
+    rows_: Array<unknown>;
     useSimilar_: boolean;
     /**
      * Replaces the rows that this object searches over.

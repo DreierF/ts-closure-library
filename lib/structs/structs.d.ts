@@ -60,8 +60,8 @@ export function filter<T, S>(col: S, f: (this: T, arg1: unknown, arg2: unknown, 
  *     within `f`.
  * @return {void}
  * @template T,S
- * @deprecated Use a more specific method, e.g. googarray.forEach,
- *     goog_object.forEach, or for-of.
+ * @deprecated Use a more specific method, e.g. native Array.prototype.forEach,
+ *     or for-of.
  */
 export function forEach<T, S>(col: S, f: (this: T, arg1: unknown, arg2: unknown, arg3: S) => unknown, opt_obj?: T | undefined): void;
 /**

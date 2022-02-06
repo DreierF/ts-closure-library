@@ -207,7 +207,6 @@ export class KeyHandler extends goog_events.EventTarget {
 export namespace KeyHandler {
     const safariKey_: any | null;
     const keyIdentifier_: any | null;
-    const USES_KEYDOWN_: boolean;
     const SAVE_ALT_FOR_KEYPRESS_: boolean;
 }
 import * as goog_events from "./eventhandler.js";

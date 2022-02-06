@@ -42,44 +42,38 @@ export class Renderer {
      * Renders a Soy template into a single node or a document fragment.
      * Delegates to `soy.renderAsFragment`.
      *
-     * @param {function(ARG_TYPES, ?Object<string, *>=): *} template The Soy
+     * @param {function(ARG_TYPES, ?soy.CompatibleIj=): *} template The Soy
      *     template defining the element's content.
      * @param {ARG_TYPES=} opt_templateData The data for the template.
      * @return {!Node} The resulting node or document fragment.
      * @template ARG_TYPES
      */
-    renderAsFragment<ARG_TYPES>(template: (arg0: ARG_TYPES, arg1?: ({
-        [x: string]: any;
-    } | null) | undefined) => any, opt_templateData?: ARG_TYPES | undefined): Node;
+    renderAsFragment<ARG_TYPES>(template: (arg0: ARG_TYPES, arg1?: (soy.CompatibleIj | null) | undefined) => any, opt_templateData?: ARG_TYPES | undefined): Node;
     /**
      * Renders a Soy template into a single node. If the rendered HTML
      * string represents a single node, then that node is returned.
      * Otherwise, a DIV element is returned containing the rendered nodes.
      * Delegates to `soy.renderAsElement`.
      *
-     * @param {function(ARG_TYPES, ?Object<string, *>=): *} template The Soy
+     * @param {function(ARG_TYPES, ?soy.CompatibleIj=): *} template The Soy
      *     template defining the element's content.
      * @param {ARG_TYPES=} opt_templateData The data for the template.
      * @return {!Element} Rendered template contents, wrapped in a parent DIV
      *     element if necessary.
      * @template ARG_TYPES
      */
-    renderAsElement<ARG_TYPES_1>(template: (arg0: ARG_TYPES_1, arg1?: ({
-        [x: string]: any;
-    } | null) | undefined) => any, opt_templateData?: ARG_TYPES_1 | undefined): Element;
+    renderAsElement<ARG_TYPES_1>(template: (arg0: ARG_TYPES_1, arg1?: (soy.CompatibleIj | null) | undefined) => any, opt_templateData?: ARG_TYPES_1 | undefined): Element;
     /**
      * Renders a Soy template and then set the output string as the
      * innerHTML of the given element. Delegates to `soy.renderElement`.
      *
      * @param {Element|null} element The element whose content we are rendering.
-     * @param {function(ARG_TYPES, ?Object<string, *>=): *} template The Soy
+     * @param {function(ARG_TYPES, ?soy.CompatibleIj=): *} template The Soy
      *     template defining the element's content.
      * @param {ARG_TYPES=} opt_templateData The data for the template.
      * @template ARG_TYPES
      */
-    renderElement<ARG_TYPES_2>(element: Element | null, template: (arg0: ARG_TYPES_2, arg1?: ({
-        [x: string]: any;
-    } | null) | undefined) => any, opt_templateData?: ARG_TYPES_2 | undefined): void;
+    renderElement<ARG_TYPES_2>(element: Element | null, template: (arg0: ARG_TYPES_2, arg1?: (soy.CompatibleIj | null) | undefined) => any, opt_templateData?: ARG_TYPES_2 | undefined): void;
     /**
      * Renders a Soy template and returns the output string.
      * If the template is strict, it must be of kind HTML. To render strict
@@ -204,6 +198,7 @@ export class Renderer {
      */
     private getInjectedData_;
 }
+import * as soy from "./soy.js";
 import { SanitizedHtml } from "./data.js";
 import { SanitizedUri } from "./data.js";
 import { SanitizedContentKind } from "./data.js";
