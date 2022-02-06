@@ -7,9 +7,8 @@
  * Resolver interface for promises. The resolver is a convenience interface that
  * bundles the promise and its associated resolve and reject functions together,
  * for cases where the resolver needs to be persisted internally.
- *
- * @interface
  * @template TYPE
+ * @interface
  * @suppress {checkTypes}
  */
 export class Resolver<TYPE> {
@@ -20,7 +19,7 @@ export class Resolver<TYPE> {
     promise: GoogPromise<TYPE, any>;
     /**
      * Resolves this resolver with the specified value.
-     * @type {function((TYPE|GoogPromise<TYPE>|Thenable)=)}
+     * @type {function((TYPE|GoogPromise<TYPE>|Promise<TYPE>|IThenable|Thenable)=)}
      */
     resolve: (arg0?: any) => any;
     /**
@@ -30,3 +29,4 @@ export class Resolver<TYPE> {
     reject: () => void;
 }
 import { Promise as GoogPromise } from "./promise.js";
+import { Thenable } from "./thenable.js";
