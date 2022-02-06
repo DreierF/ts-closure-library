@@ -5,6 +5,7 @@
  * @param {Object<K,V>} obj The object to which to add the key-value pair.
  * @param {string} key The key to add.
  * @param {V} val The value to add.
+ * @return {void}
  * @template K,V
  */
 export function add<K, V>(obj: any, key: string, val: V): void;
@@ -12,6 +13,7 @@ export function add<K, V>(obj: any, key: string, val: V): void;
  * Removes all key value pairs from the object/map/hash.
  *
  * @param {?Object} obj The object to clear.
+ * @return {void}
  */
 export function clear(obj: any | null): void;
 /**
@@ -124,6 +126,7 @@ export function every<T, K, V>(obj: any, f: ((this: T, arg1: V, arg2: unknown, a
  *     `var_args`.
  * @param {...(Object|null|undefined)} var_args The objects from which values
  *     will be copied.
+ * @return {void}
  * @deprecated Prefer Object.assign
  */
 export function extend(target: any | null, ...args: any[]): void;
@@ -186,6 +189,7 @@ export function findValue<T, K, V>(obj: any, f: (this: T, arg1: V, arg2: string,
  *     for every element. This function takes 3 arguments (the value, the
  *     key and the object) and the return value is ignored.
  * @param {T=} opt_obj This is used as the 'this' object within f.
+ * @return {void}
  * @template T,K,V
  * @deprecated Use a for .. in loop instead
  */
@@ -334,6 +338,7 @@ export function remove(obj: any | null, key: unknown): boolean;
  * @param {string} key The key to add.
  * @param {V} value The value to add.
  * @template K,V
+ * @return {void}
  * @deprecated Use obj[key] = value instead
  */
 export function set<K, V>(obj: any, key: string, value: V): void;

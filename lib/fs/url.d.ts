@@ -28,5 +28,6 @@ export function createObjectUrl(obj: File | Blob | MediaSource | MediaStream): s
  * Throws an error if the browser does not support Object Urls.
  *
  * @param {string} url The URL to revoke.
+ * @return {void}
  */
 export function revokeObjectUrl(url: string): void;

@@ -114,6 +114,7 @@ export class Const implements TypedString {
      *
      * @see Const#unwrap
      * @override
+     * @return {string}
      */
     getTypedStringValue(): string;
 }

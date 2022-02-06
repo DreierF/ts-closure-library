@@ -108,7 +108,7 @@ export class SafeStyle implements TypedString {
     private privateDoNotAccessOrElseSafeStyleWrappedValue_;
     /**
      * @override
-     * @const
+     * @const {boolean}
      */
     implementsGoogStringTypedString: boolean;
     getTypedStringValue(): string;

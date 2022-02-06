@@ -37,6 +37,7 @@ export class EventId<T> {
     /** @const */ id: string;
     /**
      * @override
+     * @return {string}
      */
     toString(): string;
 }

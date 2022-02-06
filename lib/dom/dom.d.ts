@@ -1375,6 +1375,7 @@ export function getWindow(opt_doc?: Document | undefined): Window;
  * @param {?Node} child The element to insert.
  * @param {number} index The index at which to insert the new child node. Must
  *     not be negative.
+ * @return {void}
  */
 export function insertChildAt(parent: Element | null, child: Node | null, index: number): void;
 /**
@@ -1382,6 +1383,7 @@ export function insertChildAt(parent: Element | null, child: Node | null, index:
  * sibling). If the reference node has no parent, then does nothing.
  * @param {?Node} newNode Node to insert.
  * @param {?Node} refNode Reference node to insert after.
+ * @return {void}
  */
 export function insertSiblingAfter(newNode: Node | null, refNode: Node | null): void;
 /**
@@ -1454,6 +1456,7 @@ export function isWindow(obj: unknown): boolean;
 /**
  * Removes all the child nodes on a DOM node.
  * @param {?Node} node Node to remove children from.
+ * @return {void}
  */
 export function removeChildren(node: Node | null): void;
 /**
@@ -1485,6 +1488,7 @@ export function safeHtmlToNode(html: SafeHtml): Node;
  * @param {?Element} element Element whose tab index is to be changed.
  * @param {boolean} enable Whether to set or remove a tab index on the element
  *     that supports keyboard focus.
+ * @return {void}
  */
 export function setFocusableTabIndex(element: Element | null, enable: boolean): void;
 /**
@@ -1517,6 +1521,7 @@ export function setProperties(element: Element | null, properties: any | null): 
  * Sets the text content of a node, with cross-browser support.
  * @param {?Node} node The node to change the text content of.
  * @param {string|number} text The value that should replace the node's content.
+ * @return {void}
  */
 export function setTextContent(node: Node | null, text: string | number): void;
 import { TagName } from "./tagname.js";

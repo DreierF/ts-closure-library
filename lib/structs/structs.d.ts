@@ -1,6 +1,7 @@
 /**
  * Removes all the elements from the collection.
  * @param {?Object} col The collection-like object.
+ * @return {void}
  */
 export function clear(col: any | null): void;
 /**
@@ -57,6 +58,7 @@ export function filter<T, S>(col: S, f: (this: T, arg1: unknown, arg2: unknown, 
  *     notion of keys, and the collection) and the return value is irrelevant.
  * @param {T=} opt_obj The object to be used as the value of 'this'
  *     within `f`.
+ * @return {void}
  * @template T,S
  * @deprecated Use a more specific method, e.g. googarray.forEach,
  *     goog_object.forEach, or for-of.

@@ -60,7 +60,7 @@ export class TrustedResourceUrl implements DirectionalString, TypedString {
      * @const
      */
     implementsGoogI18nBidiDirectionalString: boolean;
-    getDirection(): number;
+    getDirection(): Dir;
     cloneWithParams(searchParams: string | (({
         [x: string]: any;
     } | undefined) | null), opt_hashParams?: (string | ({
@@ -95,5 +95,6 @@ export namespace TrustedResourceUrl {
 }
 import { DirectionalString } from "../i18n/bidi.js";
 import { TypedString } from "../string/typedstring.js";
+import { Dir } from "../i18n/bidi.js";
 import { Const } from "../string/const.js";
 import { SafeScript } from "./safescript.js";

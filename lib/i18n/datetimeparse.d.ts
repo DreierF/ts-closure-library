@@ -140,28 +140,6 @@ export class DateTimeParse {
      */
     private applyStandardPattern_;
     /**
-     * Parse the given string and fill parsed values into date object. The existing
-     * values of any temporal fields of `date` not parsed from `text` are unchanged.
-     * This version does not validate that the result is a valid date/time.
-     * @param {string} text The string being parsed.
-     * @param {?DateLike} date The Date object to hold the parsed date.
-     * @param {!{validate: boolean}=} options The options object.
-     * @return {number} How many characters parser advanced.
-     */
-    parse(text: string, date: DateLike | null, options?: {
-        validate: boolean;
-    } | undefined): number;
-    /**
-     * Parse the given string and fill info into date object. This version will
-     * validate that the result is a valid date/time.
-     * @param {string} text The string being parsed.
-     * @param {?DateLike} date The Date object to hold the parsed date.
-     * @return {number} How many characters parser advanced.
-     * @deprecated Use DateTimeParse.parse with the validate option
-     *     instead.
-     */
-    strictParse(text: string, date: DateLike | null): number;
-    /**
      * Calculate character repeat count in pattern.
      *
      * @param {string} pattern It describes the format of date string that need to
@@ -172,15 +150,6 @@ export class DateTimeParse {
      * @private
      */
     private getNextCharCount_;
-    /**
-     * Check if the pattern part is a numeric field.
-     *
-     * @param {?Object} part pattern part to be examined.
-     *
-     * @return {boolean} true if the pattern part is numeric field.
-     * @private
-     */
-    private isNumericField_;
     /**
      * Identify the start of an abutting numeric fields' run. Taking pattern
      * "HHmmss" as an example. It will try to parse 2/2/2 characters of the input
@@ -195,23 +164,71 @@ export class DateTimeParse {
      */
     private markAbutStart_;
     /**
-     * Skip space in the string.
+     * Check if the pattern part is a numeric field.
      *
-     * @param {string} text input string.
-     * @param {Array<number>} pos where skip start, and return back where the skip
-     *     stops.
+     * @param {string} ch pattern character
+     * @param {number} count pattern character count
+     *
+     * @return {boolean} true if the pattern part is numeric field.
      * @private
      */
-    private skipSpace_;
+    private isNumericField_;
+    /**
+     * Assert this object's pattern supports predictive parsing.
+     * @private
+     */
+    private assertPatternSupportsPredictive_;
+    /**
+     * Parse the given string and fill parsed values into date object.
+     *
+     * The existing values of any temporal fields of `date` not parsed from `text`
+     * are not directly changed, but may be affected by overflow. E.g. if a minutes
+     * value of 70 is parsed, the implementation of `date` may increment the value
+     * of its hours field by 1 while setting its minutes value to 10.
+     *
+     * @param {string} text The string being parsed.
+     * @param {?DateLike} date The Date object to hold the parsed date.
+     * @param {!Object=} options The options object.
+     * @return {number} How many characters parser advanced.
+     */
+    parse(text: string, date: DateLike | null, options?: any | undefined): number;
+    /**
+     * Parse the given string and fill info into date object. This version will
+     * validate that the result is a valid date/time.
+     * @param {string} text The string being parsed.
+     * @param {?DateLike} date The Date object to hold the parsed date.
+     * @return {number} How many characters parser advanced.
+     * @deprecated Use DateTimeParse.parse with the validate option
+     *     instead.
+     */
+    strictParse(text: string, date: DateLike | null): number;
+    /**
+     * Parse a run of abutting numeric pattern parts. Take the pattern "HHmmss" as
+     * an example. We will try to parse 2/2/2 characters of the input text, then if
+     * that fails, 1/2/2. We only adjust the width of the leftmost field; the others
+     * remain fixed. This allows "123456" => 12:34:56, but "12345" => 1:23:45.
+     * Likewise, for the pattern "yyyyMMdd" we try 4/2/2, 3/2/2, 2/2/2, and finally
+     * 1/2/2.
+     *
+     * @param {string} text the text to be parsed.
+     * @param {Array<number>} pos parse position
+     * @param {number} abutStart the index of the pattern part starting the run
+     * @param {DateTimeParse.MyDate_} cal object that holds parsed value
+     *
+     * @return {number} how many pattern parts the parser advanced
+     * @private
+     */
+    private subParseAbut_;
     /**
      * Protected method that converts one field of the input string into a
      * numeric field value.
      *
-     * @param {string} text the time text to be parsed.
+     * @param {string} text the text to be parsed.
      * @param {Array<number>} pos Parse position.
      * @param {?Object} part the pattern part for this field.
      * @param {number} digitCount when > 0, numeric parsing must obey the count.
      * @param {DateTimeParse.MyDate_} cal object that holds parsed value.
+     * @param {boolean} predictive whether to apply predictive parsing rules.
      *
      * @return {boolean} True if it parses successfully.
      * @private
@@ -223,11 +240,10 @@ export class DateTimeParse {
      * 2) we allow year to take a sign.
      * 3) year field participate in abut processing.
      *
-     * @param {string} text the time text to be parsed.
+     * @param {string} text the text to be parsed.
      * @param {Array<number>} pos Parse position.
-     * @param {number} start where this field start.
-     * @param {number} value integer value of year.
      * @param {?Object} part the pattern part for this field.
+     * @param {number} digitCount when > 0, numeric parsing must obey the count.
      * @param {DateTimeParse.MyDate_} cal object to hold parsed value.
      *
      * @return {boolean} True if successful.
@@ -237,45 +253,22 @@ export class DateTimeParse {
     /**
      * Parse Month field.
      *
-     * @param {string} text the time text to be parsed.
+     * @param {string} text the text to be parsed.
      * @param {Array<number>} pos Parse position.
+     * @param {number} digitCount when > 0, numeric parsing must obey the count.
+     * @param {?Object} part the pattern part
      * @param {DateTimeParse.MyDate_} cal object to hold parsed value.
-     * @param {number} value numeric value if this field is expressed using
-     *      numeric pattern, or -1 if not.
      *
      * @return {boolean} True if parsing successful.
      * @private
      */
     private subParseMonth_;
     /**
-     * Parse Quarter field.
-     *
-     * @param {string} text the time text to be parsed.
-     * @param {Array<number>} pos Parse position.
-     * @param {DateTimeParse.MyDate_} cal object to hold parsed value.
-     * @param {number} value numeric value if this field is expressed using
-     *      numeric pattern, or -1 if not.
-     *
-     * @return {boolean} True if parsing successful.
-     * @private
-     */
-    private subParseQuarter_;
-    /**
-     * Parse Day of week field.
-     * @param {string} text the time text to be parsed.
-     * @param {Array<number>} pos Parse position.
-     * @param {DateTimeParse.MyDate_} cal object to hold parsed value.
-     *
-     * @return {boolean} True if successful.
-     * @private
-     */
-    private subParseDayOfWeek_;
-    /**
      * Parse fractional seconds field.
      *
-     * @param {number} value parsed numeric value.
+     * @param {string} text the text to be parsed.
      * @param {Array<number>} pos current parse position.
-     * @param {number} start where this field start.
+     * @param {number} digitCount when > 0, numeric parsing must obey the count.
      * @param {DateTimeParse.MyDate_} cal object to hold parsed value.
      *
      * @return {boolean} True if successful.
@@ -285,33 +278,79 @@ export class DateTimeParse {
     /**
      * Parse GMT type timezone.
      *
-     * @param {string} text the time text to be parsed.
+     * @param {string} text the text to be parsed.
      * @param {Array<number>} pos Parse position.
      * @param {DateTimeParse.MyDate_} cal object to hold parsed value.
      *
      * @return {boolean} True if successful.
      * @private
      */
-    private subparseTimeZoneInGMT_;
+    private subParseTimeZoneInGMT_;
     /**
-     * Parse time zone offset.
+     * Parse unsigned integer pattern characters. These are symbols such as 'd' for
+     * date.
      *
-     * @param {string} text the time text to be parsed.
-     * @param {Array<number>} pos Parse position.
-     * @param {DateTimeParse.MyDate_} cal object to hold parsed value.
+     * @param {string} text the text to be parsed.
+     * @param {Array<number>} pos parse position
+     * @param {?Object} part the pattern part for this field.
+     * @param {number} maxChars when > 0, at most this many characters are parsed.
+     * @param {function(number)} callback function to record the parsed value.
+     * @param {boolean=} predictive whether to apply predictive parsing rules.
+     *     defaults to false
      *
-     * @return {boolean} True if successful.
+     * @return {boolean} True if it parses successfully.
      * @private
      */
-    private parseTimeZoneOffset_;
+    private subParseInt_;
+    /**
+     * Parse string pattern characters. These are symbols matching a set of strings
+     * such as 'E' for day of week.
+     *
+     * @param {string} text the text to be parsed.
+     * @param {Array<number>} pos parse position
+     * @param {Array<Array<string>>} data Arrays of strings to match against,
+     *     sequentially.
+     * @param {function(number)} callback function to record the parsed value.
+     * @param {boolean=} predictive whether to apply predictive parsing rules.
+     *     defaults to false
+     *
+     * @return {boolean} True iff the input matches any of the strings in the data
+     *     arrays.
+     * @private
+     */
+    private subParseString_;
+    /**
+     * Parse literal pattern characters. These are any quoted characters and non-
+     * alphabetic unquoted characters.
+     *
+     * @param {string} text the text to be parsed.
+     * @param {Array<number>} pos parse position
+     * @param {?Object} part the pattern part
+     * @param {boolean} predictive whether to apply predictive parsing rules.
+     *
+     * @return {boolean} True if it parses successfully.
+     * @private
+     */
+    private subParseLiteral_;
+    /**
+     * Skip space in the string.
+     *
+     * @param {string} text input string.
+     * @param {Array<number>} pos where skip start, and return back where the skip
+     *     stops.
+     * @private
+     */
+    private skipSpace_;
     /**
      * Parse an integer string and return integer value.
      *
      * @param {string} text string being parsed.
      * @param {Array<number>} pos parse position.
+     * @param {number} maxChars when > 0, at most this many characters are parsed.
+     * @param {boolean=} allowSigned if true allows a single leading sign character
+     *     (+|-) in the input. defaults to false
      *
-     * @return {number} Converted integer value or -1 if the integer cannot be
-     *     parsed.
+     * @return {?number} integer value, or null if the integer cannot be parsed
      * @private
      */
     private parseInt_;
@@ -324,9 +363,10 @@ export class DateTimeParse {
      * @param {string} text The string to match to.
      * @param {Array<number>} pos parsing position.
      * @param {Array<string>} data The string array of matching patterns.
+     * @param {boolean} predictive whether to apply predictive parsing rules.
      *
-     * @return {number} the new start position if matching succeeded; a negative
-     *     number indicating matching failure.
+     * @return {?number} the index of the best match in the array, or null
+     *     indicating matching failure.
      * @private
      */
     private matchString_;
@@ -335,6 +375,7 @@ export namespace DateTimeParse {
     export const ambiguousYearCenturyStart: number;
     export const PATTERN_CHARS_: string;
     export const NUMERIC_FORMAT_CHARS_: string;
+    export const PREDICTIVE_FORMAT_CHARS_: string;
     export function ParseOptions(): void;
     export { MyDate_ };
 }

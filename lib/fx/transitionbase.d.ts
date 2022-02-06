@@ -1,13 +1,4 @@
 /**
- * Enum for the possible states of an animation.
- */
-export type State = number;
-export namespace State {
-    const STOPPED: number;
-    const PAUSED: number;
-    const PLAYING: number;
-}
-/**
  * @license
  * Copyright The Closure Library Authors.
  * SPDX-License-Identifier: Apache-2.0
@@ -29,7 +20,7 @@ export namespace State {
 export class TransitionBase extends EventsEventTarget implements FxTransition {
     /**
      * The internal state of the animation.
-     * @type {?State}
+     * @type {TransitionBase.State}
      * @private
      */
     private state_;
@@ -70,9 +61,9 @@ export class TransitionBase extends EventsEventTarget implements FxTransition {
     pause(): void;
     /**
      * Returns the current state of the animation.
-     * @return {?State} State of the animation.
+     * @return {TransitionBase.State} State of the animation.
      */
-    getStateInternal(): State | null;
+    getStateInternal(): TransitionBase.State;
     /**
      * Sets the current state of the animation to playing.
      * @protected
@@ -148,6 +139,17 @@ export class TransitionBase extends EventsEventTarget implements FxTransition {
      * @protected
      */
     protected dispatchAnimationEvent(type: string): void;
+}
+export namespace TransitionBase {
+    namespace State {
+        const STOPPED: number;
+        const PAUSED: number;
+        const PLAYING: number;
+    }
+    /**
+     * Enum for the possible states of an animation.
+     */
+    type State = number;
 }
 import { Transition as FxTransition } from "./transition.js";
 import { EventTarget as EventsEventTarget } from "../events/eventhandler.js";

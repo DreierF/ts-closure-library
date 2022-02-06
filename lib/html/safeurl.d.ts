@@ -67,10 +67,10 @@ export class SafeUrl implements DirectionalString, TypedString {
     getTypedStringValue(): string;
     /**
      * @override
-     * @const
+     * @const {boolean}
      */
     implementsGoogI18nBidiDirectionalString: boolean;
-    getDirection(): number;
+    getDirection(): Dir;
     toString(): string;
 }
 export namespace SafeUrl {
@@ -106,6 +106,7 @@ export namespace SafeUrl {
 }
 import { DirectionalString } from "../i18n/bidi.js";
 import { TypedString } from "../string/typedstring.js";
+import { Dir } from "../i18n/bidi.js";
 import { Const } from "../string/const.js";
 import { TrustedResourceUrl as Html_TrustedResourceUrl } from "./trustedresourceurl.js";
 /**

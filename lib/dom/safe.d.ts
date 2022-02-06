@@ -24,6 +24,7 @@ export namespace InsertAdjacentHtmlPosition {
  *
  * @param {!Location} loc The Location object which is to be assigned.
  * @param {string|!Html_SafeUrl} url The URL to assign.
+ * @return {void}
  * @see Html_SafeUrl#sanitize
  */
 export function assignLocation(loc: Location, url: string | Html_SafeUrl): void;
@@ -53,8 +54,17 @@ export function createImageFromBlob(blob: Blob): HTMLImageElement;
  * Writes known-safe HTML to a document.
  * @param {!Document} doc The document to be written to.
  * @param {!Html_SafeHtml} html The known-safe HTML to assign.
+ * @return {void}
  */
 export function documentWrite(doc: Document, html: Html_SafeHtml): void;
+/**
+ * Returns CSP style nonce, if set for any <style> or <link rel="stylesheet">
+ * tag.
+ * @param {?Window=} opt_window The window context used to retrieve the nonce.
+ *     Defaults to global context.
+ * @return {string} CSP nonce or empty string if no nonce is present.
+ */
+export function getStyleNonce(opt_window?: (Window | null) | undefined): string;
 /**
  * Inserts known-safe HTML into a Node, at the specified position.
  * @param {!Node} node The node on which to call insertAdjacentHTML.
@@ -125,6 +135,7 @@ export function parseFromStringHtml(parser: DOMParser, html: Html_SafeHtml): Doc
  *
  * @param {!Location} loc The Location object which is to be replaced.
  * @param {string|!Html_SafeUrl} url The URL to assign.
+ * @return {void}
  * @see Html_SafeUrl#sanitize
  */
 export function replaceLocation(loc: Location, url: string | Html_SafeUrl): void;
@@ -145,6 +156,7 @@ export function replaceLocation(loc: Location, url: string | Html_SafeUrl): void
  * @param {!HTMLAnchorElement} anchor The anchor element whose href property
  *     is to be assigned to.
  * @param {string|!Html_SafeUrl} url The URL to assign.
+ * @return {void}
  * @see Html_SafeUrl#sanitize
  */
 export function setAnchorHref(anchor: HTMLAnchorElement, url: string | Html_SafeUrl): void;
@@ -158,6 +170,7 @@ export function setAnchorHref(anchor: HTMLAnchorElement, url: string | Html_Safe
  * @param {!HTMLAudioElement} audioElement The audio element whose src property
  *     is to be assigned to.
  * @param {string|!Html_SafeUrl} url The URL to assign.
+ * @return {void}
  * @see Html_SafeUrl#sanitize
  */
 export function setAudioSrc(audioElement: HTMLAudioElement, url: string | Html_SafeUrl): void;
@@ -178,6 +191,7 @@ export function setAudioSrc(audioElement: HTMLAudioElement, url: string | Html_S
  * @param {!Element} button The button element whose action property
  *     is to be assigned to.
  * @param {string|!Html_SafeUrl} url The URL to assign.
+ * @return {void}
  * @see Html_SafeUrl#sanitize
  */
 export function setButtonFormAction(button: Element, url: string | Html_SafeUrl): void;
@@ -213,6 +227,7 @@ export function setEmbedSrc(embed: HTMLEmbedElement, url: TrustedResourceUrl): v
  * @param {!Element} form The form element whose action property
  *     is to be assigned to.
  * @param {string|!Html_SafeUrl} url The URL to assign.
+ * @return {void}
  * @see Html_SafeUrl#sanitize
  */
 export function setFormElementAction(form: Element, url: string | Html_SafeUrl): void;
@@ -229,6 +244,7 @@ export function setFormElementAction(form: Element, url: string | Html_SafeUrl):
  * @param {!HTMLFrameElement} frame The frame element whose src property
  *     is to be assigned to.
  * @param {!TrustedResourceUrl} url The URL to assign.
+ * @return {void}
  */
 export function setFrameSrc(frame: HTMLFrameElement, url: TrustedResourceUrl): void;
 /**
@@ -244,6 +260,7 @@ export function setFrameSrc(frame: HTMLFrameElement, url: TrustedResourceUrl): v
  * @param {!HTMLIFrameElement} iframe The iframe element whose src property
  *     is to be assigned to.
  * @param {!TrustedResourceUrl} url The URL to assign.
+ * @return {void}
  */
 export function setIframeSrc(iframe: HTMLIFrameElement, url: TrustedResourceUrl): void;
 /**
@@ -258,6 +275,7 @@ export function setIframeSrc(iframe: HTMLIFrameElement, url: TrustedResourceUrl)
  * @param {!HTMLIFrameElement} iframe The iframe element whose srcdoc property
  *     is to be assigned to.
  * @param {!Html_SafeHtml} html The HTML to assign.
+ * @return {void}
  */
 export function setIframeSrcdoc(iframe: HTMLIFrameElement, html: Html_SafeHtml): void;
 /**
@@ -270,6 +288,7 @@ export function setIframeSrcdoc(iframe: HTMLIFrameElement, html: Html_SafeHtml):
  * @param {!HTMLImageElement} imageElement The image element whose src property
  *     is to be assigned to.
  * @param {string|!Html_SafeUrl} url The URL to assign.
+ * @return {void}
  * @see Html_SafeUrl#sanitize
  */
 export function setImageSrc(imageElement: HTMLImageElement, url: string | Html_SafeUrl): void;
@@ -307,6 +326,7 @@ export function setInnerHtmlFromConstant(element: Element, constHtml: Const): vo
  * @param {!Element} input The input element whose action property
  *     is to be assigned to.
  * @param {string|!Html_SafeUrl} url The URL to assign.
+ * @return {void}
  * @see Html_SafeUrl#sanitize
  */
 export function setInputFormAction(input: Element, url: string | Html_SafeUrl): void;
@@ -331,6 +351,7 @@ export function setInputFormAction(input: Element, url: string | Html_SafeUrl): 
  *     value assigned to rel contains "stylesheet". A string value is
  *     sanitized with Html_SafeUrl.sanitize.
  * @param {string} rel The value to assign to the rel property.
+ * @return {void}
  * @throws {Error} if rel contains "stylesheet" and url is not a
  *     TrustedResourceUrl
  * @see Html_SafeUrl#sanitize
@@ -353,6 +374,7 @@ export function setLinkHrefAndRel(link: HTMLLinkElement, url: string | Html_Safe
  * @param {!Location} loc The Location object whose href property is to be
  *     assigned to.
  * @param {string|!Html_SafeUrl} url The URL to assign.
+ * @return {void}
  * @see Html_SafeUrl#sanitize
 
  */
@@ -370,6 +392,7 @@ export function setLocationHref(loc: Location, url: string | Html_SafeUrl): void
  * @param {!HTMLObjectElement} object The object element whose data property
  *     is to be assigned to.
  * @param {!TrustedResourceUrl} url The URL to assign.
+ * @return {void}
  */
 export function setObjectData(object: HTMLObjectElement, url: TrustedResourceUrl): void;
 /**
@@ -391,6 +414,7 @@ export function setOuterHtml(elem: Element, html: Html_SafeHtml): void;
  * @param {!HTMLScriptElement} script The script element whose content is being
  *     set.
  * @param {!SafeScript} content The content to assign.
+ * @return {void}
  */
 export function setScriptContent(script: HTMLScriptElement, content: SafeScript): void;
 /**
@@ -406,6 +430,7 @@ export function setScriptContent(script: HTMLScriptElement, content: SafeScript)
  * @param {!HTMLScriptElement} script The script element whose src property
  *     is to be assigned to.
  * @param {!TrustedResourceUrl} url The URL to assign.
+ * @return {void}
  */
 export function setScriptSrc(script: HTMLScriptElement, url: TrustedResourceUrl): void;
 /**
@@ -413,6 +438,7 @@ export function setScriptSrc(script: HTMLScriptElement, url: TrustedResourceUrl)
  * SafeStyle object.
  * @param {!Element} elem
  * @param {!SafeStyle} style
+ * @return {void}
  */
 export function setStyle(elem: Element, style: SafeStyle): void;
 /**
@@ -425,6 +451,7 @@ export function setStyle(elem: Element, style: SafeStyle): void;
  * @param {!HTMLVideoElement} videoElement The video element whose src property
  *     is to be assigned to.
  * @param {string|!Html_SafeUrl} url The URL to assign.
+ * @return {void}
  * @see Html_SafeUrl#sanitize
  */
 export function setVideoSrc(videoElement: HTMLVideoElement, url: string | Html_SafeUrl): void;

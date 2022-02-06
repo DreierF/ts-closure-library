@@ -150,11 +150,6 @@ export class ProtectedFunctionError extends DebugError {
      * @param {*} cause The error thrown by the entry point.
      */
     constructor(cause: any);
-    /**
-     * The error thrown by the entry point.
-     * @type {*}
-     */
-    cause: any;
 }
 export namespace ProtectedFunctionError {
     const MESSAGE_PREFIX: string;

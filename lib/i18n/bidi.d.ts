@@ -333,12 +333,14 @@ export function normalizeHebrewQuote(str: string): string;
  *     2. A number (positive = LRT, negative = RTL, 0 = neutral).
  *     3. A boolean (true = RTL, false = LTR).
  *     4. A null for unknown directionality.
+ * @return {void}
  */
 export function setElementDirAndAlign(element: Element | null, dir: Dir | number | boolean | null): void;
 /**
  * Sets element dir based on estimated directionality of the given text.
  * @param {!Element} element
  * @param {string} text
+ * @return {void}
  */
 export function setElementDirByTextDirectionality(element: Element, text: string): void;
 /**

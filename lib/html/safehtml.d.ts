@@ -88,7 +88,7 @@ export class SafeHtml implements DirectionalString, TypedString {
     getDirection(): number | null;
     /**
      * @override
-     * @const
+     * @const {boolean}
      */
     implementsGoogStringTypedString: boolean;
     getTypedStringValue(): any;

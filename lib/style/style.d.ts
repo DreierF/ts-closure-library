@@ -432,6 +432,7 @@ export function setContentBoxSize(element: Element | null, size: Size | null): v
  * @param {?Element} el Element to show or hide.
  * @param {*} isShown True to render the element in its default style,
  *     false to disable rendering the element.
+ * @return {void}
  */
 export function setElementShown(el: Element | null, isShown: any): void;
 /**
@@ -451,6 +452,7 @@ export function setHeight(element: Element | null, height: string | number): voi
  * Sets 'display: inline-block' for an element (cross-browser).
  * @param {?Element} el Element to which the inline-block display style is to be
  *    applied.
+ * @return {void}
  * @see ../demos/inline_block_quirks.html
  * @see ../demos/inline_block_standards.html
  */
@@ -460,6 +462,7 @@ export function setInlineBlock(el: Element | null): void;
  * @param {?Element} el Elements whose opacity has to be set.
  * @param {number|string} alpha Opacity between 0 and 1 or an empty string
  *     {@code ''} to clear the opacity.
+ * @return {void}
  */
 export function setOpacity(el: Element | null, alpha: number | string): void;
 /**
@@ -469,6 +472,7 @@ export function setOpacity(el: Element | null, alpha: number | string): void;
  * @param {number|Coordinate} x Left position of the element's margin
  *     box or a coordinate object.
  * @param {number=} opt_y Top position of the element's margin box.
+ * @return {void}
  */
 export function setPageOffset(el: Element | null, x: number | Coordinate, opt_y?: number | undefined): void;
 /**
@@ -479,6 +483,7 @@ export function setPageOffset(el: Element | null, x: number | Coordinate, opt_y?
  * @param {?Element} el Element to move.
  * @param {string|number|Coordinate} arg1 Left position or coordinate.
  * @param {string|number=} opt_arg2 Top position.
+ * @return {void}
  */
 export function setPosition(el: Element | null, arg1: string | number | Coordinate, opt_arg2?: (string | number) | undefined): void;
 /**
@@ -502,6 +507,7 @@ export function setPreWrap(el: Element | null): void;
  *     installSafeStyleSheet.
  * @param {!SafeStyleSheet} safeStyleSheet The new content of the
  *     stylesheet.
+ * @return {void}
  */
 export function setSafeStyleSheet(element: Element | StyleSheet, safeStyleSheet: SafeStyleSheet): void;
 /**
@@ -516,6 +522,7 @@ export function setSafeStyleSheet(element: Element | StyleSheet, safeStyleSheet:
  *     size object.
  * @param {string|number=} opt_h Height of the element. Required if w is not a
  *     size object.
+ * @return {void}
  */
 export function setSize(element: Element | null, w: string | number | Size, opt_h?: (string | number) | undefined): void;
 /**
@@ -545,6 +552,7 @@ export function setSize(element: Element | null, w: string | number | Size, opt_
  *     of style names to style values.
  * @param {string|number|boolean=} opt_value If style was a string, then this
  *     should be the value.
+ * @return {void}
  */
 export function setStyle(element: Element | null, style: string | any, opt_value?: (string | number | boolean) | undefined): void;
 /**
@@ -558,6 +566,7 @@ export function setStyle(element: Element | null, style: string | any, opt_value
  *
  * @param {?Element} el The element to set background on.
  * @param {string} src The image source URL.
+ * @return {void}
  */
 export function setTransparentBackgroundImage(el: Element | null, src: string): void;
 /**
@@ -597,6 +606,7 @@ export function setWidth(element: Element | null, width: string | number): void;
  * @param {?Element} el Element to show or hide.
  * @param {*} display True to render the element in its default style,
  *     false to disable rendering the element.
+ * @return {void}
  * @deprecated Use setElementShown instead.
  */
 export function showElement(el: Element | null, display: any): void;

@@ -132,7 +132,7 @@ export function makeWhitespaceVisible(string: string): string;
  *    lineNumber: (?|undefined),
  *    fileName: (?|undefined),
  *    stack: (?|undefined)
- * }} Normalized error object.
+ * }} Representation of err as an Object. It will never return err.
  * @suppress {strictMissingProperties} properties not defined on err
  */
 export function normalizeErrorObject(err: any): {

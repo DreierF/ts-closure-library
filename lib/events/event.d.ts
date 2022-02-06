@@ -25,6 +25,7 @@ declare class events_Event {
      * `e.stopPropagation()`, but can be used as the callback argument of
      * {@link goog.events.listen} without declaring another function.
      * @param {!events_Event} e An event.
+     * @return {void}
      */
     static stopPropagation(e: events_Event): void;
     /**
@@ -32,6 +33,7 @@ declare class events_Event {
      * `e.preventDefault()`, but can be used as the callback argument of
      * {@link goog.events.listen} without declaring another function.
      * @param {!events_Event} e An event.
+     * @return {void}
      */
     static preventDefault(e: events_Event): void;
     /**
@@ -83,10 +85,12 @@ declare class events_Event {
     hasPropagationStopped(): boolean;
     /**
      * Stops event propagation.
+     * @return {void}
      */
     stopPropagation(): void;
     /**
      * Prevents the default action, for example a link redirecting to a url.
+     * @return {void}
      */
     preventDefault(): void;
 }

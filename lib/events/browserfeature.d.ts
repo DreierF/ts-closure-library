@@ -16,6 +16,9 @@ export const SET_KEY_CODE_TO_PREVENT_DEFAULT: false;
  * Whether the `navigator.onLine` property is supported.
  */
 export const HAS_NAVIGATOR_ONLINE_PROPERTY: true;
+/**
+ * Whether HTML5 network online/offline events are supported.
+ */
 export const HAS_HTML5_NETWORK_EVENT_SUPPORT: true;
 /**
  * Whether HTML5 network events fire on document.body, or otherwise the

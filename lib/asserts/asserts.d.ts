@@ -20,6 +20,7 @@ export class AssertionError extends DebugError {
 /**
  * The default error handler.
  * @param {!AssertionError} e The exception to be handled.
+ * @return {void}
  */
 export function DEFAULT_ERROR_HANDLER(e: AssertionError): void;
 /**
@@ -221,6 +222,7 @@ export function assertString(value: any, opt_message?: string | undefined, ...ar
  *
  * @param {string=} opt_message Error message in case of failure.
  * @param {...*} var_args The items to substitute into the failure message.
+ * @return {void}
  * @throws {AssertionError} Failure.
  * @closurePrimitive {asserts.fail}
  */
@@ -230,6 +232,7 @@ export function fail(opt_message?: string, ...args: any[]): never;
  * assertion failures, for example by turning all assertion failures into log
  * messages.
  * @param {function(!AssertionError)} errorHandler
+ * @return {void}
  */
 export function setErrorHandler(errorHandler: (arg0: AssertionError) => any): void;
 import { Error as DebugError } from "../debug/error.js";

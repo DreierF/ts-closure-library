@@ -13,11 +13,26 @@ export { DebugError as Error };
  */
 /**
  * Base class for custom error objects.
- * @param {*=} opt_msg The message associated with the error.
+ * @param {*=} msg The message associated with the error.
+ * @param {{
+ *    message: (?|undefined),
+ *    name: (?|undefined),
+ *    lineNumber: (?|undefined),
+ *    fileName: (?|undefined),
+ *    stack: (?|undefined),
+ *    cause: (?|undefined),
+ * }=} cause The original error object to chain with.
  * @constructor
  * @extends {Error}
  */
-declare function DebugError(opt_msg?: any | undefined): void;
+declare function DebugError(msg?: any | undefined, cause?: {
+    message: (unknown | undefined);
+    name: (unknown | undefined);
+    lineNumber: (unknown | undefined);
+    fileName: (unknown | undefined);
+    stack: (unknown | undefined);
+    cause: (unknown | undefined);
+} | undefined): void;
 declare class DebugError {
     /**
      * @license
@@ -33,15 +48,38 @@ declare class DebugError {
      */
     /**
      * Base class for custom error objects.
-     * @param {*=} opt_msg The message associated with the error.
+     * @param {*=} msg The message associated with the error.
+     * @param {{
+     *    message: (?|undefined),
+     *    name: (?|undefined),
+     *    lineNumber: (?|undefined),
+     *    fileName: (?|undefined),
+     *    stack: (?|undefined),
+     *    cause: (?|undefined),
+     * }=} cause The original error object to chain with.
      * @constructor
      * @extends {Error}
      */
-    constructor(opt_msg?: any | undefined);
+    constructor(msg?: any | undefined, cause?: {
+        message: (unknown | undefined);
+        name: (unknown | undefined);
+        lineNumber: (unknown | undefined);
+        fileName: (unknown | undefined);
+        stack: (unknown | undefined);
+        cause: (unknown | undefined);
+    } | undefined);
     /** @override */
     stack: string | undefined;
     /** @override */
     message: string | undefined;
+    cause: {
+        message: (unknown | undefined);
+        name: (unknown | undefined);
+        lineNumber: (unknown | undefined);
+        fileName: (unknown | undefined);
+        stack: (unknown | undefined);
+        cause: (unknown | undefined);
+    } | undefined;
     /**
      * Whether to report this error to the server. Setting this to false will
      * cause the error reporter to not report the error back to the server,
@@ -50,6 +88,6 @@ declare class DebugError {
      * @type {boolean}
      */
     reportErrorToServer: boolean;
-    /** @override */
+    /** @override @type {string} */
     name: string;
 }
