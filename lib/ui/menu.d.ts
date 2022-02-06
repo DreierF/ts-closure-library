@@ -197,7 +197,6 @@ export namespace Menu {
  * @fileoverview A class for representing items in menus.
  * @see Menu
  * @see ../demos/menuitem.html
- * @suppress {missingRequire} TODO(user): this shouldn't be needed
  */
 /**
  * Class representing an item in a menu.
@@ -295,7 +294,6 @@ export namespace MenuItem {
  */
 /**
  * @fileoverview Renderer for {@link Menu}s.
- * @suppress {missingRequire} TODO(user): this shouldn't be needed
  */
 /**
  * Default renderer for {@link Menu}s, based on {@link

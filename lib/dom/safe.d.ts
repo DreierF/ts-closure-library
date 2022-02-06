@@ -58,6 +58,13 @@ export function createImageFromBlob(blob: Blob): HTMLImageElement;
  */
 export function documentWrite(doc: Document, html: Html_SafeHtml): void;
 /**
+ * Returns CSP script nonce, if set for any <script> tag.
+ * @param {?Window=} opt_window The window context used to retrieve the nonce.
+ *     Defaults to global context.
+ * @return {string} CSP nonce or empty string if no nonce is present.
+ */
+export function getScriptNonce(opt_window?: (Window | null) | undefined): string;
+/**
  * Returns CSP style nonce, if set for any <style> or <link rel="stylesheet">
  * tag.
  * @param {?Window=} opt_window The window context used to retrieve the nonce.

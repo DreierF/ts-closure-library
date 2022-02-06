@@ -776,6 +776,19 @@ export function binaryRemove<VALUE>(array: ArrayLike<VALUE>, value: VALUE | null
  */
 export function bucket<T, S>(array: ArrayLike<T>, sorter: (this: S, arg1: T, arg2: number, arg3: ArrayLike<T>) => unknown, opt_obj?: S | undefined): any;
 /**
+ * Splits an array into disjoint buckets according to a splitting function.
+ * @param {!ArrayLike<V>} array The array.
+ * @param {function(V, number, !ArrayLike<V>):(K|undefined)} sorter Function to
+ *     call for every element.  This takes 3 arguments (the element, the index,
+ *     and the array) and must return a value to use as a key, or undefined, if
+ *     that object should not be placed in a bucket.
+ * @return {!Map<K, !Array<V>>} A map, with keys being all of the unique
+ *     return values of sorter, and values being arrays containing the items for
+ *     which the splitter returned that key.
+ * @template K,V
+ */
+export function bucketToMap<K, V>(array: ArrayLike<V>, sorter: (arg0: V, arg1: number, arg2: ArrayLike<V>) => K | undefined): any;
+/**
  * Creates a new object built from the provided array and the key-generation
  * function.
  * @param {ArrayLike<T>} arr Array or array like object over
@@ -792,6 +805,20 @@ export function bucket<T, S>(array: ArrayLike<T>, sorter: (this: S, arg1: T, arg
  * @template T,S
  */
 export function toObject<T, S>(arr: ArrayLike<T>, keyFunc: ((this: S, arg1: T, arg2: number, arg3: unknown) => string) | null, opt_obj?: S | undefined): any;
+/**
+ * Creates a new ES6 Map built from the provided array and the key-generation
+ * function.
+ * @param {!ArrayLike<V>} arr Array or array like object over which to iterate
+ *     whose elements will be the values in the new object.
+ * @param {?function(V, number, ?) : K} keyFunc The function to call for every
+ *     element. This function takes 3 arguments (the element, the index, and the
+ *     array) and should return a value that will be used as the key for the
+ *     element in the new object. If the function returns the same key for more
+ *     than one element, the value for that key is implementation-defined.
+ * @return {!Map<K, V>} The new map.
+ * @template K,V
+ */
+export function toMap<K, V>(arr: ArrayLike<V>, keyFunc: ((arg0: V, arg1: number, arg2: unknown) => K) | null): any;
 /**
  * Creates a range of numbers in an arithmetic progression.
  *

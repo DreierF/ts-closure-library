@@ -31,8 +31,16 @@ export class Iterator<VALUE> {
      * Returns the next value of the iteration.  This will throw the object
      * {@see StopIteration} when the iteration passes the end.
      * @return {?VALUE} Any object or value.
+     * @deprecated To ease migration to the ES6 Iteration Protocol, this method is
+     *     now called `nextValueOrThrow`.
      */
     next(): VALUE | null;
+    /**
+     * Returns the next value of the iteration.  This will throw the object
+     * {@see StopIteration} when the iteration passes the end.
+     * @return {?VALUE} Any object or value
+     */
+    nextValueOrThrow(): VALUE | null;
     /**
      * Returns the `Iterator` object itself.  This is used to implement
      * the iterator protocol in JavaScript 1.7

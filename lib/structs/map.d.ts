@@ -12,6 +12,7 @@ export { structs_Map as Map };
  * of the methods used in google.structs so those functions work on hashes. This
  * is best suited for complex key types. For simple keys such as numbers and
  * strings consider using the lighter-weight utilities in goog.object.
+ * @deprecated structs_Map is deprecated in favour of ES6 Maps.
  */
 /**
  * Class for Hash Map datastructure.
@@ -66,9 +67,9 @@ declare class structs_Map<K, V> {
     private keys_;
     /**
      * The number of key value pairs in the map.
-     * @private {number}
+     * @const {number}
      */
-    private count_;
+    size: number;
     /**
      * Version used to detect changes while iterating.
      * @private {number}
@@ -76,24 +77,35 @@ declare class structs_Map<K, V> {
     private version_;
     /**
      * @return {number} The number of key-value pairs in the map.
+     * @deprecated Use the `size` property instead, for alignment with ES6 Map.
      */
     getCount(): number;
     /**
      * Returns the values of the map.
      * @return {!Array<V>} The values in the map.
+     * @deprecated Use `Array.from(map.values())` instead, for alignment with ES6
+     *     Map.
      */
     getValues(): V[];
     /**
      * Returns the keys of the map.
      * @return {!Array<string>} Array of string values.
+     * @deprecated Use `Array.from(map.keys())` instead, for alignment with ES6 Map.
      */
     getKeys(): Array<string>;
     /**
      * Whether the map contains the given key.
      * @param {*} key The key to check for.
      * @return {boolean} Whether the map contains the key.
+     * @deprecated Use `has` instead, for alignment with ES6 Map.
      */
     containsKey(key: any): boolean;
+    /**
+     * Whether the map contains the given key.
+     * @param {*} key The key to check for.
+     * @return {boolean} Whether the map contains the key.
+     */
+    has(key: any): boolean;
     /**
      * Whether the map contains the given value. This is O(n).
      * @param {V} val The value to check for.
@@ -107,10 +119,14 @@ declare class structs_Map<K, V> {
      *     to test equality of values. If not specified, this will test whether
      *     the values contained in each map are identical objects.
      * @return {boolean} Whether the maps are equal.
+     * @deprecated Use goog.collections.maps.equals(thisMap, otherMap,
+     *     opt_equalityFn) instead, for alignment with ES6 Map.
      */
     equals(otherMap: structs_Map<any, any>, opt_equalityFn?: ((arg0: V, arg1: V) => boolean) | undefined): boolean;
     /**
      * @return {boolean} Whether the map is empty.
+     * @deprecated Use the size property and compare against 0, for alignment with
+     *     ES6 Map.
      */
     isEmpty(): boolean;
     /**
@@ -123,8 +139,17 @@ declare class structs_Map<K, V> {
      * in the keys array.
      * @param {*} key  The key to remove.
      * @return {boolean} Whether object was removed.
+     * @deprecated Use `delete` instead, for alignment with ES6 Map.
      */
     remove(key: any): boolean;
+    /**
+     * Removes a key-value pair based on the key. This is O(logN) amortized due
+     * to updating the keys array whenever the count becomes half the size of
+     * the keys in the keys array.
+     * @param {*} key  The key to remove.
+     * @return {boolean} Whether object was removed.
+     */
+    delete(key: any): boolean;
     /**
      * Cleans up the temp keys array by removing entries that are no longer in the
      * map.
@@ -151,6 +176,9 @@ declare class structs_Map<K, V> {
     /**
      * Adds multiple key-value pairs from another structs_Map or Object.
      * @param {?Object} map Object containing the data to add.
+     * @deprecated Use goog.collections.maps.setAll(thisMap, map.entries()) if map
+     *     is an ES6 or google.structs Map, or
+     *     goog.collections.maps.setAll(thisMap, Object.entries(map)) otherwise.
      */
     addAll(map: any | null): void;
     /**
@@ -158,11 +186,14 @@ declare class structs_Map<K, V> {
      * @param {function(this:T, V, K, structs_Map<K,V>)} f
      * @param {T=} opt_obj The value of "this" inside f.
      * @template T
+     * @deprecated Use ES6 Iteration instead.
      */
     forEach<T>(f: (this: T, arg1: V, arg2: K, arg3: structs_Map<K, V>) => any, opt_obj?: T | undefined): void;
     /**
      * Clones a map and returns a new map.
      * @return {!structs_Map} A new map with the same key-value pairs.
+     * @deprecated Use `new Map(thisMap.entries())` instead, for alignment with
+     *     ES6 Map.
      */
     clone(): structs_Map<any, any>;
     /**
@@ -173,24 +204,48 @@ declare class structs_Map<K, V> {
      * It acts very similarly to {goog.object.transpose(Object)}.
      *
      * @return {!structs_Map} The transposed map.
+     * @deprecated Use goog.collections.maps.transpose instead, for alignment with
+     *     ES6 Maps.
      */
     transpose(): structs_Map<any, any>;
     /**
      * @return {!Object} Object representation of the map.
+     * @deprecated Use goog.collections.maps.toObject(thisMap) instead, for aligment
+     *     with ES6 Maps.
      */
     toObject(): any;
     /**
      * Returns an iterator that iterates over the keys in the map.  Removal of keys
      * while iterating might have undesired side effects.
      * @return {!Iterator} An iterator over the keys in the map.
+     * @deprecated Use `keys()` with native iteration protocols, for alignment
+     *     with ES6 Map.
      */
     getKeyIterator(): Iterator<any>;
+    /**
+     * @return {!IteratorIterable<K>} An ES6 Iterator that iterates over the maps
+     *     keys.
+     */
+    keys(): any;
     /**
      * Returns an iterator that iterates over the values in the map.  Removal of
      * keys while iterating might have undesired side effects.
      * @return {!Iterator} An iterator over the values in the map.
+     * @deprecated Use `values()` with native iteration protocols, for alignment
+     *     with ES6 Map.
      */
     getValueIterator(): Iterator<any>;
+    /**
+     * @return {!IteratorIterable<V>} An ES6 Iterator that iterates over the maps
+     *     values.
+     */
+    values(): any;
+    /**
+     * @return {!IteratorIterable<!Array<K|V>>} An iterator of entries in this map.
+     *     The type is actually Array<[K,V]> but this is not representable in the
+     *     Closure Type System.
+     */
+    entries(): any;
     /**
      * Returns an iterator that iterates over the values or the keys in the map.
      * This throws an exception if the map was mutated since the iterator was
@@ -198,7 +253,16 @@ declare class structs_Map<K, V> {
      * @param {boolean=} opt_keys True to iterate over the keys. False to iterate
      *     over the values.  The default value is false.
      * @return {!Iterator} An iterator over the values or keys in the map.
+     * @deprecated Call either `keys` or `values` and use native iteration, for
+     *     alignment with ES6 Map.
      */
     __iterator__(opt_keys?: boolean | undefined): Iterator<any>;
+    /**
+     * Assigns to the size property to isolate supressions of const assignment to
+     * only where they are needed.
+     * @param {number} newSize The size to update to.
+     * @private
+     */
+    private setSizeInternal_;
 }
 import { Iterator } from "../iter/iter.js";

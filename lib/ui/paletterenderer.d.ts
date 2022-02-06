@@ -5,7 +5,6 @@
  */
 /**
  * @fileoverview Renderer for {@link UiPalette}s.
- * @suppress {missingRequire} TODO(user): this shouldn't be needed
  */
 /**
  * Default renderer for {@link UiPalette}s.  Renders the palette as an

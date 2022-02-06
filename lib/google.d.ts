@@ -259,6 +259,18 @@ export function forwardDeclare(name: string): void;
  */
 export function getCssName(className: string, opt_modifier?: string | undefined): string;
 /**
+ * This method is intended to be used for bookkeeping purposes.  We would
+ * like to distinguish uses of LOCALE used for code stripping purposes
+ * and uses of LOCALE for other uses (such as URL parameters).
+ *
+ * This allows us to ban direct uses of LOCALE and to ensure that all
+ * code has been transformed to our new localization build scheme.
+ *
+ * @return {string}
+ *
+ */
+export function getLocale(): string;
+/**
  * Gets a localized message.
  *
  * This function is a compiler primitive. If you give the compiler a localized
@@ -326,13 +338,6 @@ export function getMsgWithFallback(a: string, b: string): string;
  * @return {?} The value (object or primitive) or, if not found, null.
  */
 export function getObjectByName(name: string, opt_obj?: any | undefined): unknown;
-/**
- * Returns CSP nonce, if set for any script tag.
- * @param {?Window=} opt_window The window context used to retrieve the nonce.
- *     Defaults to global context.
- * @return {string} CSP nonce or empty string if no nonce is present.
- */
-export function getScriptNonce(opt_window?: (Window | null) | undefined): string;
 /**
  * Gets a unique ID for an object. This mutates the object so that further calls
  * with the same object as a parameter returns the same value. The unique ID is

@@ -258,14 +258,6 @@ export function isDocumentMode(version: number): boolean;
  */
 export function isDocumentModeOrHigher(documentMode: number): boolean;
 /**
- * Deprecated alias to `isVersionOrHigher`.
- * @param {string|number} version The version to check.
- * @return {boolean} Whether the user agent version is higher or the same as
- *     the given version.
- * @deprecated Use isVersionOrHigher().
- */
-export function isVersion(version: string | number): boolean;
-/**
  * Whether the user agent version is higher or the same as the given version.
  * NOTE: When checking the version numbers for Firefox and Safari, be sure to
  * use the engine's version, not the browser's version number.  For example,

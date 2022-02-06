@@ -5,7 +5,6 @@
  */
 /**
  * @fileoverview Native browser textarea renderer for {@link UiTextarea}s.
- * @suppress {missingRequire} TODO(user): this shouldn't be needed
  */
 /**
  * Renderer for {@link UiTextarea}s.  Renders and decorates native HTML

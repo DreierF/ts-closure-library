@@ -5,7 +5,6 @@
  */
 /**
  * @fileoverview Renderer for {@link UiMenuItem}s.
- * @suppress {missingRequire} TODO(user): this shouldn't be needed
  */
 /**
  * Default renderer for {@link UiMenuItem}s.  Each item has the following

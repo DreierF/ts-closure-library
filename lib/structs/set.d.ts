@@ -24,6 +24,7 @@ export { structs_Set as Set };
  * structs_Set will be modified!  Because google.getUid() is used to
  * identify objects, every object in the set will be mutated.
  * @implements {Collection<T>}
+ * @implements {Iterable<T>}
  * @final
  * @template T
  * @deprecated This type is misleading: use ES6 Set instead.
@@ -55,8 +56,14 @@ declare class structs_Set<T> implements Collection<T> {
     constructor(opt_values?: any);
     map_: StructsMap<any, any>;
     /**
+     * The number of items in this set.
+     * @const {number}
+     */
+    size: number;
+    /**
      * @return {number} The number of elements in the set.
      * @override
+     * @deprecated Use the `size` property instead, for alignment with ES6 Set.
      */
     getCount(): number;
     /**
@@ -69,20 +76,33 @@ declare class structs_Set<T> implements Collection<T> {
      * Adds all the values in the given collection to this set.
      * @param {Array<T>|Collection<T>|Object<?,T>} col A collection
      *     containing the elements to add.
+     * @deprecated Use `goog.collections.sets.addAll(thisSet, col)` instead,
+     *     converting Objects to their values using `Object.values`, for alignment
+     *     with ES6 Set.
      */
     addAll(col: any): void;
     /**
      * Removes all values in the given collection from this set.
      * @param {Array<T>|Collection<T>|Object<?,T>} col A collection
      *     containing the elements to remove.
+     * @deprecated Use `goog.collections.sets.removeAll(thisSet, col)` instead,
+     *     converting Objects to their values using `Object.values`, for alignment
+     *     with ES6 Set.
      */
     removeAll(col: any): void;
     /**
      * Removes the given element from this set.
      * @param {T} element The primitive or object to remove.
      * @return {boolean} Whether the element was found and removed.
+     */
+    delete(element: T): boolean;
+    /**
+     * Removes the given element from this set.
+     * @param {T} element The primitive or object to remove.
+     * @return {boolean} Whether the element was found and removed.
      * @override
      * @suppress {checkTypes}
+     * @deprecated Use `delete`, for alignment with ES6 Set.
      */
     remove(element: T): boolean;
     /**
@@ -92,13 +112,22 @@ declare class structs_Set<T> implements Collection<T> {
     /**
      * Tests whether this set is empty.
      * @return {boolean} True if there are no elements in this set.
+     * @deprecated Use the size property and compare against 0, for alignment with
+     *     ES6 Set.
      */
     isEmpty(): boolean;
     /**
      * Tests whether this set contains the given element.
      * @param {T} element The primitive or object to test for.
      * @return {boolean} True if this set contains the given element.
+     */
+    has(element: T): boolean;
+    /**
+     * Tests whether this set contains the given element.
+     * @param {T} element The primitive or object to test for.
+     * @return {boolean} True if this set contains the given element.
      * @override
+     * @deprecated Use `has` instead, for alignment with ES6 Set.
      */
     contains(element: T): boolean;
     /**
@@ -107,6 +136,8 @@ declare class structs_Set<T> implements Collection<T> {
      * structs_Set([1, 2])).containsAll([1, 1]) is True.
      * @param {Collection<T>|Object} col A collection-like object.
      * @return {boolean} True if the set contains all elements.
+     * @deprecated Use `goog.collections.sets.hasAll(thisSet, col)`, converting
+     *     Objects to arrays using Object.values, for alignment with ES6 Set.
      */
     containsAll(col: any): boolean;
     /**
@@ -116,6 +147,9 @@ declare class structs_Set<T> implements Collection<T> {
      *     (primitives or objects) present in both this set and the given
      *     collection.
      * @template S
+     * @deprecated Use `goog.collections.sets.intersection(thisSet, col)`,
+     *     converting Objects to arrays using Object.values, instead for alignment
+     *     with ES6 Set.
      */
     intersection<S>(col: any): structs_Set<T | S>;
     /**
@@ -130,12 +164,20 @@ declare class structs_Set<T> implements Collection<T> {
     /**
      * Returns an array containing all the elements in this set.
      * @return {!Array<T>} An array containing all the elements in this set.
+     * @deprecated Use `Array.from(set.values())` instead, for alignment with ES6
+     *     Set.
      */
     getValues(): T[];
+    /**
+     * @returns {!IteratorIterable<T>} An ES6 Iterator that iterates over the values
+     *     in the set.
+     */
+    values(): any;
     /**
      * Creates a shallow clone of this set.
      * @return {!structs_Set<T>} A new set containing all the same elements as
      *     this set.
+     * @deprecated Use `new Set(thisSet.values())` for alignment with ES6 Set.
      */
     clone(): structs_Set<T>;
     /**
@@ -146,6 +188,8 @@ declare class structs_Set<T> implements Collection<T> {
      * @param {Collection<T>|Object} col A collection.
      * @return {boolean} True if the given collection consists of the same elements
      *     as this set, regardless of order, without repetition.
+     * @deprecated Use `goog.collections.equals(thisSet, col)`, converting Objects
+     *     to arrays using Object.values,  instead for alignment with ES6 Set.
      */
     equals(col: any): boolean;
     /**
@@ -155,14 +199,27 @@ declare class structs_Set<T> implements Collection<T> {
      * object.  This operation is O(n).
      * @param {Collection<T>|Object} col A collection.
      * @return {boolean} True if this set is a subset of the given collection.
+     * @deprecated Use `goog.collections.isSubsetOf(thisSet, col)`, converting
+     *     Objects to arrays using Object.values, instead for alignment with ES6
+     *     Set.
      */
     isSubsetOf(col: any): boolean;
     /**
      * Returns an iterator that iterates over the elements in this set.
      * @param {boolean=} opt_keys This argument is ignored.
      * @return {!Iterator} An iterator over the elements in this set.
+     * @deprecated Call `values` and use native iteration, for alignment with ES6
+     *     Set.
      */
     __iterator__(opt_keys?: boolean | undefined): Iterator<any>;
+    /**
+     * Assigns to the size property to isolate supressions of const assignment
+     * to only where they are needed.
+     * @param {number} newSize The size to update to.
+     * @private
+     */
+    private setSizeInternal_;
+    [Symbol.iterator](): any;
 }
 declare namespace structs_Set {
     const getUid_: typeof google.getUid;

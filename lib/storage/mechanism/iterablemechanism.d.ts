@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 /**
- * @fileoverview Interface for storing, retieving and scanning data using some
+ * @fileoverview Interface for storing, retrieving and scanning data using some
  * persistence mechanism.
  */
 /**
@@ -12,6 +12,7 @@
  *
  * @class
  * @extends {Mechanism}
+ * @implements {Iterable<!Array<string>>}
  * @abstract
  */
 export class IterableMechanism extends Mechanism {
@@ -30,17 +31,19 @@ export class IterableMechanism extends Mechanism {
      *
      * @param {boolean=} opt_keys True to iterate over the keys. False to iterate
      *     over the values.  The default value is false.
-     * @return {!Iterator} The iterator.
+     * @return {!GoogIterator} The iterator.
+     * @deprecated Use ES6 iteration protocols instead.
      * @abstract
      */
-    __iterator__(opt_keys?: boolean | undefined): goog_iter.Iterator<any>;
+    __iterator__(opt_keys?: boolean | undefined): GoogIterator<any>;
     /**
      * Remove all key-value pairs.
      *
-     * Could be overridden in a subclass, as the default implementation is not very
-     * efficient - it iterates over all keys.
+     * Could be overridden in a subclass, as the default implementation is not
+     * very efficient - it iterates over all keys.
      */
     clear(): void;
+    [Symbol.iterator](): any;
 }
 import { Mechanism } from "./mechanism.js";
-import * as goog_iter from "../../iter/iter.js";
+import { Iterator as GoogIterator } from "../../iter/iter.js";

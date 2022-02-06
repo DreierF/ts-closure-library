@@ -5,7 +5,6 @@
  */
 /**
  * @fileoverview Renderer for {@link UiMenuSeparator}s.
- * @suppress {missingRequire} TODO(user): this shouldn't be needed
  */
 /**
  * Renderer for menu separators.
