@@ -1,3 +1,7 @@
+export namespace ES6_ITERATOR_DONE {
+    const done: boolean;
+    const value: undefined;
+}
 export type Iterable = {
     length: number;
 } | {
@@ -27,14 +31,6 @@ export let Iterable: any;
  *     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
  */
 export class Iterator<VALUE> {
-    /**
-     * Returns the next value of the iteration.  This will throw the object
-     * {@see StopIteration} when the iteration passes the end.
-     * @return {?VALUE} Any object or value.
-     * @deprecated To ease migration to the ES6 Iteration Protocol, this method is
-     *     now called `nextValueOrThrow`.
-     */
-    next(): VALUE | null;
     /**
      * Returns the next value of the iteration.  This will throw the object
      * {@see StopIteration} when the iteration passes the end.
@@ -95,6 +91,15 @@ export function chain<VALUE>(...args: ({
  * @template VALUE
  */
 export function chainFromIterable<VALUE>(iterable: Iterator<unknown> | Iterable): Iterator<VALUE>;
+/**
+ * Checks whether an error is the `StopIteration` error, and if so
+ * throws a different error that warns that using StopIteration is
+ * problematic. ES4 iteration allows `StopIteration` to propagate up the
+ * callstack and terminate iteration far from where it started, but ES6
+ * iteration requires explicit passing and handling of termination signals.
+ * @param {!Error} ex The error to check.
+ */
+export function checkNoImplicitStopIterationInEs6(ex: Error): void;
 /**
  * Creates an iterator that returns combinations of elements from
  * `iterable`.
@@ -193,6 +198,15 @@ export function consume<VALUE>(iterable: {
  *     in the series.
  */
 export function count(opt_start?: number | undefined, opt_step?: number | undefined): Iterator<number>;
+/**
+ * Wraps a VALUE in the ES6 Iterator protocol's IIterableResult container,
+ * including the compiler-mandated 'done' key, set to false.
+ * @param {?VALUE} value
+ * @return {!IIterableResult<VALUE>} An ES6 Iteration Protocol compatible result
+ *     object, indicating iteration is not done.
+ * @template VALUE
+ */
+export function createEs6IteratorYield<VALUE>(value: VALUE | null): any;
 /**
  * Create an iterator to cycle over the iterable's elements indefinitely.
  * For example, ([1, 2, 3]) would return : 1, 2, 3, 1, 2, 3, ...
@@ -639,6 +653,15 @@ export function toArray<VALUE>(iterable: {
 } | {
     __iterator__: any;
 } | Iterator<VALUE>): VALUE[];
+/**
+ * Converts an ES6 IIterableResult into ES4 iteration semantics. If the result
+ * indicates it is finished iterating, will throw `StopIteration`.
+ * Otherwise, will unwrap the IIterableResult's value and return that.
+ * @param {!IIterableResult<VALUE>} es6NextValue
+ * @return {?VALUE}
+ * @template VALUE
+ */
+export function toEs4IteratorNext<VALUE>(es6NextValue: any): VALUE | null;
 /**
  * Returns an iterator that knows how to iterate over the values in the object.
  * @param {Iterator<VALUE>|Iterable} iterable  If the

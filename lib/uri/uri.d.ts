@@ -13,15 +13,15 @@ export class QueryData {
     /**
      * Creates a new query data instance from a map of names and values.
      *
-     * @param {!StructsMap<string, ?>|!Object} map Map of string parameter
-     *     names to parameter value. If parameter value is an array, it is
+     * @param {!maps.MapLike<string, ?>|!Object} map Map of string
+     *     parameter names to parameter value. If parameter value is an array, it is
      *     treated as if the key maps to each individual value in the
      *     array.
      * @param {boolean=} opt_ignoreCase If true, ignore the case of the parameter
      *     name in #get.
      * @return {!QueryData} The populated query data instance.
      */
-    static createFromMap(map: StructsMap<string, unknown> | any, opt_ignoreCase?: boolean | undefined): QueryData;
+    static createFromMap(map: maps.MapLike<string, unknown> | any, opt_ignoreCase?: boolean | undefined): QueryData;
     /**
      * Creates a new query data instance from parallel arrays of parameter names
      * and values. Allows for duplicate parameter names. Throws an error if the
@@ -53,7 +53,7 @@ export class QueryData {
      * We need to use a Map because we cannot guarantee that the key names will
      * not be problematic for IE.
      *
-     * @private {?StructsMap<string, !Array<*>>}
+     * @private {?Map<string, !Array<*>>}
      */
     private keyMap_;
     /**
@@ -208,9 +208,9 @@ export class QueryData {
      * Extends a query data object with another query data or map like object. This
      * operates 'in-place', it does not create a new QueryData object.
      *
-     * @param {...(?QueryData|?StructsMap<?, ?>|?Object)} var_args
-     *     The object from which key value pairs will be copied. Note: does not
-     *     accept null.
+     * @param {...(?QueryData|?maps.MapLike<?,
+     *     ?>|?Object)} var_args The object from which key value pairs will be
+     *     copied. Note: does not accept null.
      * @suppress {deprecated} Use deprecated structs.forEach to allow different
      * types of parameters.
      */
@@ -694,4 +694,4 @@ export namespace Uri {
     const reDisallowedInQuery_: RegExp | null;
     const reDisallowedInFragment_: RegExp | null;
 }
-import { Map as StructsMap } from "../structs/map.js";
+import * as maps from "../collections/maps.js";

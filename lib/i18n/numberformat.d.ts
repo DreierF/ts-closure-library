@@ -20,17 +20,6 @@ export namespace Format {
     const COMPACT_LONG: number;
 }
 /**
- * @license
- * Copyright The Closure Library Authors.
- * SPDX-License-Identifier: Apache-2.0
- */
-/**
- * @fileoverview Number format/parse library with locale support.
- */
-/**
- * Namespace for locale number format functions
- */
-/**
  * Constructor of NumberFormat.
  *     number format pattern.
  *     code. This determines the currency code/symbol used in format/parse. If
@@ -164,6 +153,7 @@ export class NumberFormat {
      * NumberFormat('#,##,###') should have [3,2] where 2 is the
      * repeated number group following a fixed number grouping of size 3.
      * @private {!Array<number>}
+     * @const
      */
     private groupingArray_;
     /** @private {boolean} */
@@ -179,7 +169,7 @@ export class NumberFormat {
      * @private
      */
     private baseFormattingNumber_;
-    /** @private {number} */
+    /** @const @private {number} */
     private inputPattern_;
     /** @private {string} */
     private pattern_;
@@ -548,15 +538,6 @@ export namespace NumberFormat {
      */
     type CompactStyle = number;
     const enforceAsciiDigits_: boolean;
-    const NativeLocaleDigits_: {
-        ar: string;
-        'ar-EG': string;
-        bn: string;
-        fa: string;
-        mr: string;
-        my: string;
-        ne: string;
-    };
     const PATTERN_ZERO_DIGIT_: string;
     const PATTERN_GROUPING_SEPARATOR_: string;
     const PATTERN_DECIMAL_SEPARATOR_: string;

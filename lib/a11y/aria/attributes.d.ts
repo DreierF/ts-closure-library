@@ -143,6 +143,7 @@ export namespace State {
     const CHECKED: string;
     const COLINDEX: string;
     const CONTROLS: string;
+    const CURRENT: string;
     const DESCRIBEDBY: string;
     const DISABLED: string;
     const DROPEFFECT: string;

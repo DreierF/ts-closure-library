@@ -92,10 +92,11 @@ export function openBlank(opt_message?: string | undefined, opt_options?: (any |
  *
  * (If your project is using GXPs, consider using {@link PopUpLink.gxp}.)
  *
-* @param {?Html_SafeUrl|string|?Object} linkRef If an Object with an 'href'
- *     attribute (such as HTMLAnchorElement) is passed then the value of 'href'
- *     is used, otherwise  otherwise its toString method is called. Note that
- *     if a string|Object is used, it will be sanitized with SafeUrl.sanitize().
+ * @param {?Html_SafeUrl|string|?Object} linkRef If an Object with an
+ *     'href' attribute (such as HTMLAnchorElement) is passed then the value of
+ *     'href' is used, otherwise  otherwise its toString method is called. Note
+ *     that if a string|Object is used, it will be sanitized with
+ *     SafeUrl.sanitize().
  *
  * @param {?Object=} opt_options Options to open window with.
  *     {@see open for exact option semantics}

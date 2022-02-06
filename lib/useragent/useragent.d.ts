@@ -221,7 +221,7 @@ export let X11: boolean;
  * @return {number}  1 if first argument is higher
  *                   0 if arguments are equal
  *                  -1 if second argument is higher.
- * @deprecated Use strings.compareVersions.
+ * @deprecated Use goog.string.compareVersions.
  */
 export function compare(v1: string, v2: string): number;
 /**

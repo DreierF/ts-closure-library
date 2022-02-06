@@ -1,17 +1,35 @@
 /**
- * @license
- * Copyright The Closure Library Authors.
- * SPDX-License-Identifier: Apache-2.0
- */
-/**
- * @fileoverview Functions for dealing with date/time formatting.
- */
-/**
- * Namespace for i18n date/time formatting functions
- */
-/**
- * Datetime formatting functions following the pattern specification as defined
+ * IMPORTANT: Datetime formatting results different between JavaScript and
+ * native ECMAScript implementations.
+ *
+ * Native mode accepts a set of options for styles and also for specifying
+ * a small set of choices for each individual field of a formatted output. These
+ * effectively specify skeletons which direct the formatting according to
+ * formats built into the ECMAScript DateTime implementation of
+ * Intl.DateTimeFormat.
+ *
+ * The ECMAScript DateTimeFormat constructor and options are defined here:
+ * {@link
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat}
+ *
+ * Datetime formatting functions in JavaScript mode are provided with
+ * options to use standard styles, predefined patterns such as YEAR_FULL,
+ * and other values in Format.
+ *
+ * Native mode date/time formatting is supported only for these standard
+ * patterns because they can be directly mapped to native mode options.
+ *
+ * Native mode does not support custom patterns, which are discouraged.
+ * Using such custom pattern strings will call the JavaScript (polyfill)
+ * version of DateTimeFormat rather than native ECMAScript.
+ *
+ * Custom patterns can be used using the symbols below for date/time.
+ * Other text can be included. However, standard patterns are preferred
+ * because native EMCAScript code is more efficient in download size and time.
+ *
+ * The following symbols may be used in pattern specification, as defined
  * in JDK, ICU and CLDR, with minor modification for typical usage in JS.
+ *
  * Pattern specification:
  * {@link http://userguide.icu-project.org/formatparse/datetime}
  * <pre>
@@ -79,9 +97,9 @@
  *     or the common patterns defined in goog.i18n.DateTimePatterns.
  *     Examples:
  *     <code><pre>
- *       var fmt = new DateTimeFormat(
+ *       let fmt = new DateTimeFormat(
  *           Format.FULL_DATE);
- *       var fmt = new DateTimeFormat(
+ *       let fmt = new DateTimeFormat(
  *           goog.i18n.DateTimePatterns.MONTH_DAY_YEAR_MEDIUM);
  *     </pre></code>
  *
@@ -146,9 +164,9 @@ export class DateTimeFormat {
      *     or the common patterns defined in goog.i18n.DateTimePatterns.
      *     Examples:
      *     <code><pre>
-     *       var fmt = new DateTimeFormat(
+     *       let fmt = new DateTimeFormat(
      *           Format.FULL_DATE);
-     *       var fmt = new DateTimeFormat(
+     *       let fmt = new DateTimeFormat(
      *           goog.i18n.DateTimePatterns.MONTH_DAY_YEAR_MEDIUM);
      *     </pre></code>
      *
@@ -156,11 +174,24 @@ export class DateTimeFormat {
      * {@see goog.i18n.DateTimePatterns}
      */
     constructor(pattern: string | number, opt_dateTimeSymbols?: any | undefined);
+    /**
+     * Remember if the implementation is ECMAScript
+     * @type {?Intl.DateTimeFormat}
+     * @private
+     */
+    private intlFormatter_;
+    /**
+     * Remember the pattern applied for resetting Intl formatter.
+     * @type {number|string}
+     * @private @constant
+     */
+    private originalPattern_;
     patternParts_: any[];
     /**
-     * Data structure that with all the locale info needed for date formatting.
-     * (day/month names, most common patterns, rules for week-end, etc.)
+     * Use polyfill implementation with data defining locale-specific data such
+     * as (day/month names, most common patterns, rules for week-end, etc.)
      * @private {!DateTimeSymbolsType}
+     * @const
      */
     private dateTimeSymbols_;
     /**
@@ -171,8 +202,9 @@ export class DateTimeFormat {
     private applyPattern_;
     /**
      * Format the given date object according to preset pattern and current locale.
-     * @param {?DateLike} date The Date object that is being formatted.
-     * @param {TimeZone=} opt_timeZone optional, if specified, time
+     * @param {?DateLike|undefined} date The Date object that is being
+     *     formatted.
+     * @param {?TimeZone=} opt_timeZone optional, if specified, time
      *    related fields will be formatted based on its setting. When this field
      *    is not specified, "undefined" will be pass around and those function
      *    that really need time zone service will create a default one.
@@ -180,7 +212,17 @@ export class DateTimeFormat {
      *    Throws an error if the date is null or if one tries to format a date-only
      *    object (for instance DateDate) using a pattern with time fields.
      */
-    format(date: DateLike | null, opt_timeZone?: TimeZone | undefined): string;
+    format(date: (DateLike | undefined) | null, opt_timeZone?: (TimeZone | null) | undefined): string;
+    /**
+     * Create an ECMAScript Intl.DateTimeFormat object based on
+     * a predefined skeleton of fields and settings.
+     * @param {number|string} formatType A number that identified the predefined
+     *     pattern.
+     * @param {boolean} isUtc Should values be fixed in UTC?
+     * @param {?TimeZone=} opt_timeZone explicit set time zone
+     * @private
+     */
+    private applyStandardEnumNative_;
     /**
      * Apply a predefined pattern as identified by formatType, which is stored in
      * locale specific repository.
@@ -392,7 +434,7 @@ export class DateTimeFormat {
      * @param {number} count Number of time pattern char repeats, it controls
      *     how a field should be formatted.
      * @param {!DateLike} date It holds the date object to be formatted.
-     * @param {TimeZone=} opt_timeZone This holds current time zone info.
+     * @param {?TimeZone=} opt_timeZone This holds current time zone info.
      * @return {string} Formatted string that represent this field.
      * @private
      */
@@ -402,7 +444,7 @@ export class DateTimeFormat {
      * @param {number} count Number of time pattern char repeats, it controls
      *     how a field should be formatted.
      * @param {!DateLike} date Whose value being evaluated.
-     * @param {TimeZone=} opt_timeZone This holds current time zone info.
+     * @param {?TimeZone=} opt_timeZone This holds current time zone info.
      * @return {string} GMT timeZone string.
      * @private
      */
@@ -410,7 +452,7 @@ export class DateTimeFormat {
     /**
      * Generate GMT timeZone string for given date
      * @param {!DateLike} date Whose value being evaluated.
-     * @param {TimeZone=} opt_timeZone This holds current time zone info.
+     * @param {?TimeZone=} opt_timeZone This holds current time zone info.
      * @return {string} GMT timeZone string.
      * @private
      */
@@ -420,7 +462,7 @@ export class DateTimeFormat {
      * @param {number} count Number of time pattern char repeats, it controls
      *     how a field should be formatted.
      * @param {!DateLike} date Whose value being evaluated.
-     * @param {TimeZone=} opt_timeZone This holds current time zone info.
+     * @param {?TimeZone=} opt_timeZone This holds current time zone info.
      * @return {string} GMT timeZone string.
      * @private
      */
@@ -433,7 +475,7 @@ export class DateTimeFormat {
      *     for formatting.
      * @param {!DateLike} dateForTime used to resolve time fields
      *     for formatting.
-     * @param {TimeZone=} opt_timeZone This holds current time zone info.
+     * @param {?TimeZone=} opt_timeZone This holds current time zone info.
      * @return {string} string representation for the given field.
      * @private
      */
@@ -451,7 +493,30 @@ export namespace DateTimeFormat {
      */
     type PartTypes_ = number;
     const enforceAsciiDigits_: boolean;
+    const resetEnforceAsciiDigits_: boolean;
     const removeRlmInPatterns_: boolean;
+    /**
+     * Parameters to Intl.DateTimeFormat constructor
+     */
+    type IntlOptions = {
+        calendar: string | undefined;
+        dateStyle: string | undefined;
+        timeStyle: string | undefined;
+        era: string | undefined;
+        formatMatcher: string | undefined;
+        localeMatcher: string | undefined;
+        year: string | undefined;
+        month: string | undefined;
+        day: string | undefined;
+        weekday: string | undefined;
+        hour: string | undefined;
+        hour12: boolean | undefined;
+        minute: string | undefined;
+        second: string | undefined;
+        timeZone: string | undefined;
+        numberingSystem: string | undefined;
+        timeZoneName: string | undefined;
+    };
 }
 /**
  * Enum to identify predefined Date/Time format pattern. The format pattern to
