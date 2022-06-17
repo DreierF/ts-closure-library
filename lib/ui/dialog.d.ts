@@ -330,6 +330,36 @@ export class Dialog extends ModalPopup {
      */
     private draggable_;
     /**
+     * Whether the dialog keeps track of its surrounding space. Defaults to false.
+     * @private
+      * @type {boolean}
+     */
+    private trackSurroundingSpace_;
+    /**
+     * The amount of space in pixels to the left of the dialog.
+     * @private
+      * @type {number}
+     */
+    private spaceOnLeft_;
+    /**
+     * The amount of space in pixels to the right of the dialog.
+     * @private
+      * @type {number}
+     */
+    private spaceOnRight_;
+    /**
+     * The amount of space in pixels above the dialog.
+     * @private
+      * @type {number}
+     */
+    private spaceOnTop_;
+    /**
+     * The amount of space in pixels below the dialog.
+     * @private
+      * @type {number}
+     */
+    private spaceOnBottom_;
+    /**
      * Opacity for background mask.  Defaults to 50%.
      * @type {number}
      * @private
@@ -562,6 +592,27 @@ export class Dialog extends ModalPopup {
      * @param {boolean} draggable Whether the dialog can be dragged.
      */
     setDraggable(draggable: boolean): void;
+    /**
+     * Sets whether the dialog keeps track of its surrounding space.
+     * @param {boolean} trackSurroundingSpace
+     */
+    setTrackSurroundingSpace(trackSurroundingSpace: boolean): void;
+    /** Handles the dialog being dragged. */
+    handleDrag(): void;
+    /** Updates the surrounding space fields if that behavior is enabled. */
+    maybeUpdateSurroundingSpace_(): void;
+    /**
+     * Gets an object containing fields for how many pixels of space there are on
+     * each side of the dialog, or null if this dialog isn't keeping track of that
+     * information.
+     * @return {?{left: number, right: number, top: number, bottom: number}}
+     */
+    getSurroundingSpace(): {
+        left: number;
+        right: number;
+        top: number;
+        bottom: number;
+    } | null;
     /**
      * Returns a dragger for moving the dialog and adds a class for the move cursor.
      * Defaults to allow dragging of the title only, but can be overridden if

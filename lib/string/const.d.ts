@@ -36,7 +36,7 @@ export class Const implements TypedString {
      * @return {string} The Const object's contained string, unless the run-time
      *     type check fails. In that case, `unwrap` returns an innocuous
      *     string, or, if assertions are enabled, throws
-     *     `AssertionError`.
+     *     `asserts.AssertionError`.
      */
     static unwrap(stringConst: Const): string;
     /**

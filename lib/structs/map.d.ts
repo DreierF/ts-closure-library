@@ -17,6 +17,7 @@ export { structs_Map as Map };
 /**
  * Class for Hash Map datastructure.
  *     will be used as key-value pairs.
+ * @final
  * @template K, V
  * @deprecated This type is misleading: use ES6 Map instead.
  */
