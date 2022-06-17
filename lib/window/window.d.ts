@@ -31,6 +31,15 @@ export let DEFAULT_POPUP_WIDTH: number;
  */
 export const ENFORCE_COOP: boolean;
 /**
+ * Whether to use an empty string as the URL value when opening a new blank page
+ * in `openBlank`. This is a temporary flag because some projects
+ * ran into issues when using an empty string as a URL within a meta tag.
+ * Please do not rely on setting this to false. This flag will be removed at the
+ * same time as `ENFORCE_COOP`.
+ * @type {boolean}
+ */
+export const USE_EMPTY_STRING_FOR_BLANK_URL: boolean;
+/**
  * Opens a new window.
  *
  * @param {!Html_SafeUrl|string|!Object|null} linkRef If an Object with an

@@ -217,7 +217,7 @@ export class DomHelper {
      * @param {(!Element|!Document)=} opt_root Optional element or document to look
      *     in.
      * @return {!Element} The first item found with the class name provided.
-     * @throws {AssertionError} Thrown if no element is found.
+     * @throws {asserts.AssertionError} Thrown if no element is found.
      */
     getRequiredElementByClass(className: string, opt_root?: (Element | Document) | undefined): Element;
     /**
@@ -1296,7 +1296,7 @@ export function getRequiredElement(id: string): Element;
  * @param {!Element|!Document=} opt_root Optional element or document to look
  *     in.
  * @return {!Element} The first item with the class name provided.
- * @throws {AssertionError} Thrown if no element is found.
+ * @throws {asserts.AssertionError} Thrown if no element is found.
  */
 export function getRequiredElementByClass(className: string, opt_root?: (Element | Document) | undefined): Element;
 /**

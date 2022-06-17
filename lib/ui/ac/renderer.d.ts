@@ -478,6 +478,7 @@ export class Renderer extends goog_events.EventTarget {
      * @param {?Object} row Object representing row.
      * @param {string} token Token to highlight.
      * @return {!Element} An element with the rendered HTML.
+     * @suppress {strictMissingProperties} this.customRenderer_ and renderRow
      */
     renderRowHtml(row: any | null, token: string): Element;
     /**
