@@ -516,6 +516,7 @@ export class ContainerRenderer {
      * valid tab index can receive focus.
      * @param {?Element} element Element whose tab index is to be changed.
      * @param {boolean} enable Whether to add or remove the element's tab index.
+     * @suppress {strictMissingProperties}
      */
     enableTabIndex(element: Element | null, enable: boolean): void;
     /**
@@ -616,6 +617,7 @@ export class ContainerRenderer {
      *     returned.
      * @return {!Array<string>} Array of CSS class names applicable to the
      *     container.
+     * @suppress {missingRequire} TODO(user): fix this
      */
     getClassNames(container: Container<any> | null): Array<string>;
     /**

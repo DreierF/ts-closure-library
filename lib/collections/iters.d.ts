@@ -1,15 +1,4 @@
 /**
- * Call a function with every value of an iterable.
- *
- * Warning: this function will never halt if given an iterable that
- * is never exhausted.
- *
- * @param {!Iterable<VALUE>} iterable
- * @param {function(VALUE) : *} f
- * @template VALUE
- */
-export function forEach<VALUE>(iterable: any, f: (arg0: VALUE) => any): void;
-/**
  * Maps the values of one iterable to create another iterable.
  *
  * When next() is called on the returned iterable, it will call the given
@@ -17,12 +6,12 @@ export function forEach<VALUE>(iterable: any, f: (arg0: VALUE) => any): void;
  * `iterable` until the given iterable is exhausted.
  *
  * @param {!Iterable<VALUE>} iterable
- * @param {function(VALUE, number): RESULT} f
+ * @param {function(VALUE): RESULT} f
  * @return {!IteratorIterable<RESULT>} The created iterable that gives the
  *     mapped values.
  * @template VALUE, RESULT
  */
-export function map<VALUE, RESULT>(iterable: any, f: (arg0: VALUE, arg1: number) => RESULT): any;
+export function map<VALUE, RESULT>(iterable: any, f: (arg0: VALUE) => RESULT): any;
 /**
  * Filter elements from one iterator to create another iterable.
  *
@@ -31,12 +20,12 @@ export function map<VALUE, RESULT>(iterable: any, f: (arg0: VALUE, arg1: number)
  * is returned or the given iterator is exhausted.
  *
  * @param {!Iterable<VALUE>} iterable
- * @param {function(VALUE, number): boolean} f
+ * @param {function(VALUE): boolean} f
  * @return {!IteratorIterable<VALUE>} The created iterable that gives the mapped
  *     values.
  * @template VALUE
  */
-export function filter<VALUE>(iterable: any, f: (arg0: VALUE, arg1: number) => boolean): any;
+export function filter<VALUE>(iterable: any, f: (arg0: VALUE) => boolean): any;
 /**
  * Concatenates multiple iterators to create a new iterable.
  *
@@ -54,6 +43,13 @@ export function filter<VALUE>(iterable: any, f: (arg0: VALUE, arg1: number) => b
  */
 export function concat<VALUE>(...iterables: any[]): any;
 /**
+ * Creates an array containing the values from the given iterator.
+ * @param {!Iterator<VALUE>} iterator
+ * @return {!Array<VALUE>}
+ * @template VALUE
+ */
+export function toArray<VALUE>(iterator: any): VALUE[];
+/**
  * @license
  * Copyright The Closure Library Authors.
  * SPDX-License-Identifier: Apache-2.0
@@ -64,6 +60,11 @@ export function concat<VALUE>(...iterables: any[]): any;
  * The goal is that this should be a replacement for google.iter which uses
  * a now non-standard approach to iterables.
  *
+ * This module's API should track the TC39 proposal as closely as possible to
+ * allow for eventual deprecation and migrations.
+ * https://github.com/tc39/proposal-iterator-helpers
+ *
+ * @see go/closure-iters-labs
  * @see https://goo.gl/Rok5YQ
  */
 /**
@@ -73,3 +74,14 @@ export function concat<VALUE>(...iterables: any[]): any;
  * @template VALUE
  */
 export function getIterator<VALUE>(iterable: any): any;
+/**
+ * Call a function with every value of an iterable.
+ *
+ * Warning: this function will never halt if given an iterable that
+ * is never exhausted.
+ *
+ * @param {!Iterator<VALUE>} iterator
+ * @param {function(VALUE) : *} f
+ * @template VALUE
+ */
+export function forEach<VALUE>(iterator: any, f: (arg0: VALUE) => any): void;

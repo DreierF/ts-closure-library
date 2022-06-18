@@ -154,6 +154,7 @@ export class TreeControl extends BaseNode {
     /**
      * Adds the event listeners to the tree.
      * @private
+     * @suppress {strictMissingProperties}
      */
     private attachEvents_;
     /**
@@ -179,6 +180,7 @@ export class TreeControl extends BaseNode {
      * @return {?BaseNode} The containing node or null if no node is
      *     found.
      * @private
+     * @suppress {strictMissingProperties}
      */
     private getNodeFromEvent_;
     /**
