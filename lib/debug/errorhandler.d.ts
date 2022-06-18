@@ -74,11 +74,11 @@ export class ErrorHandler extends Disposable implements EntryPointMonitor {
      * Installs exception protection for an entry point function. When an exception
      * is thrown from a protected function, a handler will be invoked to handle it.
      *
-     * @param {?Function} fn An entry point function to be protected.
+     * @param {!Function} fn An entry point function to be protected.
      * @return {!Function} A protected wrapper function that calls the entry point
      *     function.
      */
-    protectEntryPoint(fn: Function | null): Function;
+    protectEntryPoint(fn: Function): Function;
     /**
      * Helps {@link #protectEntryPoint} by actually creating the protected
      * wrapper function, after {@link #protectEntryPoint} determines that one does

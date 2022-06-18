@@ -20,11 +20,6 @@ export type Iterable = {
  */
 export let Iterable: any;
 /**
- * Singleton Error object that is used to terminate iterations.
- * @const {!Error}
- */
-export let StopIteration: any;
-/**
  * Creates an iterator that returns running totals from the numbers in
  * `iterable`. For example, the array {@code [1, 2, 3, 4, 5]} yields
  * {@code 1 -> 3 -> 6 -> 10 -> 15}.
@@ -61,15 +56,6 @@ export function chain<VALUE>(...args: ({
  * @template VALUE
  */
 export function chainFromIterable<VALUE>(iterable: iter_Iterator<unknown> | Iterable): iter_Iterator<VALUE>;
-/**
- * Checks whether an error is the `StopIteration` error, and if so
- * throws a different error that warns that using StopIteration is
- * problematic. ES4 iteration allows `StopIteration` to propagate up the
- * callstack and terminate iteration far from where it started, but ES6
- * iteration requires explicit passing and handling of termination signals.
- * @param {!Error} ex The error to check.
- */
-export function checkNoImplicitStopIterationInEs6(ex: Error): void;
 /**
  * Creates an iterator that returns combinations of elements from
  * `iterable`.
@@ -366,11 +352,7 @@ export function groupBy<KEY, VALUE>(iterable: {
     __iterator__: any;
 } | iter_Iterator<VALUE>, opt_keyFunc?: ((arg0: VALUE) => KEY) | undefined): iter_Iterator<Array<unknown>>;
 /**
- * Class/interface for iterators.  An iterator needs to implement a `next`
- * method and it needs to throw a `StopIteration` when the
- * iteration passes beyond the end.  Iterators have no `hasNext` method.
- * It is recommended to always use the helper functions to iterate over the
- * iterator or in case you are only targeting JavaScript 1.7 for in loops.
+ * Class/interface for iterators.
  * @template VALUE
  * @implements {Iterator<VALUE>}
  * @deprecated Use objects implementing JavaScript iterable protocol introduced
@@ -378,12 +360,6 @@ export function groupBy<KEY, VALUE>(iterable: {
  *     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
  */
 declare class iter_Iterator<VALUE> {
-    /**
-     * Returns the next value of the iteration.  This will throw the object
-     * {@see StopIteration} when the iteration passes the end.
-     * @return {?VALUE} Any object or value
-     */
-    nextValueOrThrow(): VALUE | null;
     /**
      * Returns the next value of the iteration as an an ES6 IIterableResult.
      * @return {!IIterableResult<VALUE>}
@@ -656,15 +632,6 @@ export function toArray<VALUE>(iterable: {
 } | {
     __iterator__: any;
 } | iter_Iterator<VALUE>): VALUE[];
-/**
- * Converts an ES6 IIterableResult into ES4 iteration semantics. If the result
- * indicates it is finished iterating, will throw `StopIteration`.
- * Otherwise, will unwrap the IIterableResult's value and return that.
- * @param {!IIterableResult<VALUE>} es6NextValue
- * @return {?VALUE}
- * @template VALUE
- */
-export function toEs4IteratorNext<VALUE>(es6NextValue: any): VALUE | null;
 /**
  * Returns an iterator that knows how to iterate over the values in the object.
  * @param {iter_Iterator<VALUE>|Iterable} iterable  If the

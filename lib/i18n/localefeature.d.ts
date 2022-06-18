@@ -39,6 +39,12 @@ export const USE_ECMASCRIPT_I18N_2020: boolean;
  */
 export const USE_ECMASCRIPT_I18N_2021: boolean;
 /**
+ * @type {boolean} USE_ECMASCRIPT_I18N_2022 Evaluated to select
+ * ECMAScript Intl object (when true) or JavaScript implementation (false) for
+ * I18N purposes. It depends on browser implementation in January 2022.
+ */
+export const USE_ECMASCRIPT_I18N_2022: boolean;
+/**
  * @type {boolean} USE_ECMASCRIPT_I18N_RDTF is evaluated to enable
  * ECMAScript support for Intl.RelativeTimeFormat support in
  * browsers based on the locale. Browsers that are considered include:
@@ -69,9 +75,30 @@ export const USE_ECMASCRIPT_I18N_NUMFORMAT: boolean;
  */
 export const USE_ECMASCRIPT_I18N_PLURALRULES: boolean;
 /**
- * @type {boolean} USE_ECMASCRIPT_I18N_DATETIMEF is evaluted to enable
+ * @type {boolean} USE_ECMASCRIPT_I18N_DATETIMEF is evaluated to enable
  * ECMAScript support for Intl.DateTimeFormat support in
  * browsers based on the locale. Browsers that are considered include:
  * Chrome, Firefox 85 and above, Edge, and Safari.
  */
 export const USE_ECMASCRIPT_I18N_DATETIMEF: boolean;
+/**
+ * The locales natively supported in ListFormat by all modern browsers.
+ * @const
+ * @type {!Array<string>} ECMASCRIPT_LISTFORMAT_LOCALES
+ */
+export const ECMASCRIPT_LISTFORMAT_LOCALES: Array<string>;
+/**
+ * @type {boolean} ECMASCRIPT_LISTFORMAT_COMMON_LOCALES_2022 is true if
+ * google.LOCALE is one of the locales below that are supported by
+ * modern browsers (Chrome, Firefox, Edge, Safari) as of January 2022.
+ */
+export const ECMASCRIPT_LISTFORMAT_COMMON_LOCALES_2022: boolean;
+/**
+ * @type {boolean} USE_ECMASCRIPT_I18N_LISTFORMAT is evaluated to enable
+ * ECMAScript support for Intl.ListFormat support in browsers based on the
+ * locale. As of January 2022, ListFormat is supported by Chrome, Edge,
+ * Firefox, and Safari.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/ListFormat
+ */
+export const USE_ECMASCRIPT_I18N_LISTFORMAT: boolean;

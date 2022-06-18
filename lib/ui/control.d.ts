@@ -609,7 +609,7 @@ export class Control<T> extends Ui_Component {
      * Handles contextmenu events.
      * @param {?EventsBrowserEvent} e Event to handle.
      */
-    handleContextMenu(e: EventsBrowserEvent | null): void;
+    handleContextMenu(e: EventsBrowserEvent | null): undefined;
     /**
      * Handles mousedown events.  If the component is enabled, highlights and
      * activates it.  If the component isn't configured for keyboard access,
