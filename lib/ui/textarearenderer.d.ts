@@ -5,6 +5,7 @@
  */
 /**
  * @fileoverview Native browser textarea renderer for {@link UiTextarea}s.
+ * @suppress {strictMissingProperties} legacy accesses off type 'Element'
  */
 /**
  * Renderer for {@link UiTextarea}s.  Renders and decorates native HTML

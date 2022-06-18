@@ -1,4 +1,12 @@
 /**
+ * @license
+ * Copyright The Closure Library Authors.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @fileoverview Utilities for window manipulation.
+ */
+/**
  * Default height for popup windows
  * @type {number}
  */
@@ -13,32 +21,6 @@ export let DEFAULT_POPUP_TARGET: string;
  * @type {number}
  */
 export let DEFAULT_POPUP_WIDTH: number;
-/**
- * @license
- * Copyright The Closure Library Authors.
- * SPDX-License-Identifier: Apache-2.0
- */
-/**
- * @fileoverview Utilities for window manipulation.
- */
-/**
- * Whether we should enforce COOP by avoiding document.write in certain
- * situations (see https://github.com/google/closure-library/issues/1137).
- * This is a temporary flag because some products rely on the legacy noreferrer
- * behavior for CSP reasons, but it will be removed in the near future.  Please
- * do not rely on setting this to false.
- * @type {boolean}
- */
-export const ENFORCE_COOP: boolean;
-/**
- * Whether to use an empty string as the URL value when opening a new blank page
- * in `openBlank`. This is a temporary flag because some projects
- * ran into issues when using an empty string as a URL within a meta tag.
- * Please do not rely on setting this to false. This flag will be removed at the
- * same time as `ENFORCE_COOP`.
- * @type {boolean}
- */
-export const USE_EMPTY_STRING_FOR_BLANK_URL: boolean;
 /**
  * Opens a new window.
  *
