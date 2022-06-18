@@ -235,11 +235,13 @@ export class BaseNode extends Component {
      * Creates HTML for the node.
      * @return {!SafeHtml}
      * @protected
+     * @suppress {strictMissingProperties}
      */
     protected toSafeHtml(): SafeHtml;
     /**
      * @return {number} The pixel indent of the row.
      * @private
+     * @suppress {strictMissingProperties}
      */
     private getPixelIndent_;
     /**
@@ -250,11 +252,13 @@ export class BaseNode extends Component {
     /**
      * @return {string} The class name for the row.
      * @protected
+     * @suppress {strictMissingProperties}
      */
     protected getRowClassName(): string;
     /**
      * @return {!SafeHtml} The html for the label.
      * @protected
+     * @suppress {strictMissingProperties}
      */
     protected getLabelSafeHtml(): SafeHtml;
     /**
@@ -296,6 +300,7 @@ export class BaseNode extends Component {
     /**
      * @return {string} The class names of the icon used for expanding the node.
      * @protected
+     * @suppress {strictMissingProperties}
      */
     protected getExpandIconClass(): string;
     /**
@@ -304,6 +309,7 @@ export class BaseNode extends Component {
     getLineStyle(): SafeStyle;
     /**
      * @return {string} The background position style value.
+     * @suppress {strictMissingProperties}
      */
     getBackgroundPosition(): string;
     /**
@@ -386,6 +392,7 @@ export class BaseNode extends Component {
     /**
      * Sets the text of the tooltip.
      * @param {string} s The tooltip text to set.
+     * @suppress {strictMissingProperties}
      */
     setToolTip(s: string): void;
     /**
@@ -410,6 +417,7 @@ export class BaseNode extends Component {
      * Handles mouse down event.
      * @param {!EventsBrowserEvent} e The browser event.
      * @protected
+     * @suppress {strictMissingProperties}
      */
     protected onMouseDown(e: EventsBrowserEvent): void;
     /**
@@ -423,7 +431,7 @@ export class BaseNode extends Component {
      * Handles a double click event.
      * @param {!EventsBrowserEvent} e The browser event.
      * @protected
-     * @suppress {underscore|visibility}
+     * @suppress {underscore|visibility|strictMissingProperties}
      */
     protected onDoubleClick_(e: EventsBrowserEvent): void;
     /**

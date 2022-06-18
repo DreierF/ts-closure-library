@@ -30,20 +30,10 @@ export function findFirstUrl(text: string): string;
  * _blank and it will have a rel=nofollow attribute applied to it so that links
  * created by linkify will not be of interest to search engines.
  * @param {string} text Plain text.
- * @param {!LinkifyOptions|
- *         !Object<string, ?SafeHtml.AttributeValue>=} opt_attributes
- *     Attributes to add to all links created. Default are rel=nofollow and
- *     target=_blank. To clear those default attributes set rel='' and
- *     target=''.
- * @param {boolean=} opt_preserveNewlines Whether to preserve newlines with
- *     &lt;br&gt;.
- * @param {boolean=} opt_preserveSpacesAndTabs Whether to preserve spaces with
- *     non-breaking spaces and tabs with <span style="white-space:pre">
+ * @param {!LinkifyOptions=} opt_options Options bag.
  * @return {!SafeHtml} Linkified HTML. Any text that is not part of a
  *      link will be HTML-escaped.
  * @suppress {strictMissingProperties} opt_attributes type is a union
  */
-export function linkifyPlainTextAsHtml(text: string, opt_attributes?: (LinkifyOptions | {
-    [x: string]: SafeHtml.AttributeValue | null;
-}) | undefined, opt_preserveNewlines?: boolean | undefined, opt_preserveSpacesAndTabs?: boolean | undefined): SafeHtml;
+export function linkifyPlainTextAsHtml(text: string, opt_options?: LinkifyOptions | undefined): SafeHtml;
 import { SafeHtml } from "../html/safehtml.js";
