@@ -45,6 +45,73 @@ export const ENABLE_CHROME_APP_SAFE_SCRIPT_LOADING: boolean;
  */
 export const FEATURESET_YEAR: number;
 /**
+ * Options bag type for `getMsg()` third argument.
+ *
+ * It is important to note that these options need to be known at compile time,
+ * so they must always be provided to `getMsg()` as an actual object
+ * literal in the function call. Otherwise, closure-compiler will report an
+ * error.
+ * @interface
+ */
+export function GetMsgOptions(): void;
+export class GetMsgOptions {
+    /**
+     * If `true`, escape '<' in the message string to '&lt;'.
+     *
+     * Used by Closure Templates where the generated code size and performance is
+     * critical which is why {@link goog.html.SafeHtmlFormatter} is not used.
+     * The value must be literal `true` or `false`.
+     * @type {boolean|undefined}
+     */
+    html: boolean | undefined;
+    /**
+     * If `true`, unescape common html entities: &gt;, &lt;, &apos;, &quot; and
+     * &amp;.
+     *
+     * Used for messages not in HTML context, such as with the `textContent`
+     * property.
+     * The value must be literal `true` or `false`.
+     * @type {boolean|undefined}
+     */
+    unescapeHtmlEntities: boolean | undefined;
+    /**
+     * Associates placeholder names with strings showing how their values are
+     * obtained.
+     *
+     * This field is intended for use in automatically generated JS code.
+     * Human-written code should use meaningful placeholder names instead.
+     *
+     * closure-compiler uses this as the contents of the `<ph>` tag in the
+     * XMB file it generates or defaults to `-` for historical reasons.
+     *
+     * Must be an object literal.
+     * Ignored at runtime.
+     * Keys are placeholder names.
+     * Values are string literals indicating how the value is obtained.
+     * Typically this is a snippet of source code.
+     * @type {!Object<string, string>|undefined}
+     */
+    original_code: {
+        [x: string]: string;
+    } | undefined;
+    /**
+     * Associates placeholder names with example values.
+     *
+     * closure-compiler uses this as the contents of the `<ex>` tag in the
+     * XMB file it generates or defaults to `-` for historical reasons.
+     *
+     * Must be an object literal.
+     * Ignored at runtime.
+     * Keys are placeholder names.
+     * Values are string literals containing example placeholder values.
+     * (e.g. "George McFly" for a name placeholder)
+     * @type {!Object<string, string>|undefined}
+     */
+    example: {
+        [x: string]: string;
+    } | undefined;
+}
+/**
  * @type {string} LOCALE defines the locale being used for compilation. It is
  * used to select locale specific data to be compiled in js binary. BUILD rule
  * can specify this value by "--define LOCALE=<locale_name>" as a compiler
@@ -259,15 +326,15 @@ export function forwardDeclare(name: string): void;
  */
 export function getCssName(className: string, opt_modifier?: string | undefined): string;
 /**
- * This method is intended to be used for bookkeeping purposes.  We would
- * like to distinguish uses of LOCALE used for code stripping purposes
- * and uses of LOCALE for other uses (such as URL parameters).
+ * Same as `LOCALE`, which should be used instead.
  *
- * This allows us to ban direct uses of LOCALE and to ensure that all
- * code has been transformed to our new localization build scheme.
+ * Using this method just makes it harder for closure-compiler to optimize
+ * your locale-specific code, since it has to take the extra step of inlining
+ * this function to discover and remove code that is not used for the target
+ * locale.
  *
  * @return {string}
- *
+ * @deprecated use `LOCALE`
  */
 export function getLocale(): string;
 /**
@@ -287,24 +354,13 @@ export function getLocale(): string;
  * produce SafeHtml.
  *
  * @param {string} str Translatable string, places holders in the form {$foo}.
- * @param {Object<string, string>=} opt_values Maps place holder name to value.
- * @param {{html: (boolean|undefined),
- *         unescapeHtmlEntities: (boolean|undefined)}=} opt_options Options:
- *     html: Escape '<' in str to '&lt;'. Used by Closure Templates where the
- *     generated code size and performance is critical which is why {@link
- *     goog.html.SafeHtmlFormatter} is not used. The value must be literal true
- *     or false.
- *     unescapeHtmlEntities: Unescape common html entities: &gt;, &lt;, &apos;,
- *     &quot; and &amp;. Used for messages not in HTML context, such as with
- *     `textContent` property.
+ * @param {!Object<string, string>=} opt_values Maps place holder name to value.
+ * @param {!GetMsgOptions=} opt_options see `GetMsgOptions`
  * @return {string} message with placeholders filled.
  */
 export function getMsg(str: string, opt_values?: {
     [x: string]: string;
-} | undefined, opt_options?: {
-    html: (boolean | undefined);
-    unescapeHtmlEntities: (boolean | undefined);
-} | undefined): string;
+} | undefined, opt_options?: GetMsgOptions | undefined): string;
 /**
  * Gets a localized message. If the message does not have a translation, gives a
  * fallback message.
@@ -414,22 +470,6 @@ export function isDateLike(val: unknown): boolean;
  * @return {boolean} Whether variable is an object.
  */
 export function isObject(val: unknown): val is object;
-/**
- * Copies all the members of a source object to a target object. This method
- * does not work on all browsers for all objects that contain keys such as
- * toString or hasOwnProperty. Use goog.object.extend for this purpose.
- *
- * NOTE: Some have advocated for the use of mixin to setup classes
- * with multiple inheritence (traits, mixins, etc).  However, as it simply
- * uses "for in", this is not compatible with ES6 classes whose methods are
- * non-enumerable.  Changing this, would break cases where non-enumerable
- * properties are not expected.
- *
- * @param {?Object} target Target.
- * @param {?Object} source Source.
- * @deprecated Prefer Object.assign
- */
-export function mixin(target: any | null, source: any | null): void;
 /**
  * @return {number} An integer value representing the number of milliseconds
  *     between midnight, January 1, 1970 and the current time.

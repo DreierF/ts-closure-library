@@ -311,6 +311,7 @@ export class SafeHtml implements DirectionalString, TypedString {
      * @param {!SafeHtml.TextOrHtml_|
      *     !Array<!SafeHtml.TextOrHtml_>=} content
      * @return {!SafeHtml} The SafeHtml content with the tag.
+     * @package
      */
     static createWithDir(dir: Dir, tagName: string, attributes?: ({
         [x: string]: SafeHtml.AttributeValue | null;

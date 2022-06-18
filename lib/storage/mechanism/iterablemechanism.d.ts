@@ -27,7 +27,7 @@ export class IterableMechanism extends Mechanism {
     getCount(): number;
     /**
      * Returns an iterator that iterates over the elements in the storage. Will
-     * throw StopIteration after the last element.
+     * throw goog.iter.StopIteration after the last element.
      *
      * @param {boolean=} opt_keys True to iterate over the keys. False to iterate
      *     over the values.  The default value is false.

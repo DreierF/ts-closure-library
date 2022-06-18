@@ -30,13 +30,10 @@
  *     number.
  * @param {string} html A string that is claimed to adhere to the SafeHtml
  *     contract.
- * @param {?Dir=} opt_dir The optional directionality of the
- *     SafeHtml to be constructed. A null or undefined value signifies an
- *     unknown directionality.
  * @return {!SafeHtml} The value of html, wrapped in a SafeHtml
  *     object.
  */
-export function safeHtmlFromStringKnownToSatisfyTypeContract(justification: Const, html: string, opt_dir?: (Dir | null) | undefined): SafeHtml;
+export function safeHtmlFromStringKnownToSatisfyTypeContract(justification: Const, html: string): SafeHtml;
 /**
  * Performs an "unchecked conversion" to SafeScript from a plain string that is
  * known to satisfy the SafeScript type contract.
@@ -123,7 +120,6 @@ export function safeUrlFromStringKnownToSatisfyTypeContract(justification: Const
  */
 export function trustedResourceUrlFromStringKnownToSatisfyTypeContract(justification: Const, url: string): Html_TrustedResourceUrl;
 import { Const } from "../string/const.js";
-import { Dir } from "../i18n/bidi.js";
 import { SafeHtml } from "./safehtml.js";
 import { SafeScript as Html_SafeScript } from "./safescript.js";
 import { SafeStyle as Html_SafeStyle } from "./safestyle.js";

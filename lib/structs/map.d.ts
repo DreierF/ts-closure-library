@@ -221,7 +221,7 @@ declare class structs_Map<K, V> {
      * @deprecated Use `keys()` with native iteration protocols, for alignment
      *     with ES6 Map.
      */
-    getKeyIterator(): googiter.Iterator<any>;
+    getKeyIterator(): goog_iter.Iterator<any>;
     /**
      * @return {!IteratorIterable<K>} An ES6 Iterator that iterates over the maps
      *     keys.
@@ -234,7 +234,7 @@ declare class structs_Map<K, V> {
      * @deprecated Use `values()` with native iteration protocols, for alignment
      *     with ES6 Map.
      */
-    getValueIterator(): googiter.Iterator<any>;
+    getValueIterator(): goog_iter.Iterator<any>;
     /**
      * @return {!IteratorIterable<V>} An ES6 Iterator that iterates over the maps
      *     values.
@@ -256,7 +256,7 @@ declare class structs_Map<K, V> {
      * @deprecated Call either `keys` or `values` and use native iteration, for
      *     alignment with ES6 Map.
      */
-    __iterator__(opt_keys?: boolean | undefined): googiter.Iterator<any>;
+    __iterator__(opt_keys?: boolean | undefined): goog_iter.Iterator<any>;
     /**
      * Assigns to the size property to isolate supressions of const assignment to
      * only where they are needed.
@@ -265,4 +265,4 @@ declare class structs_Map<K, V> {
      */
     private setSizeInternal_;
 }
-import * as googiter from "../iter/iter.js";
+import * as goog_iter from "../iter/iter.js";

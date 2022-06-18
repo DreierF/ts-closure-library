@@ -28,8 +28,8 @@
 export function nextTick<SCOPE>(callback: (this: SCOPE) => any, opt_context?: SCOPE | undefined, opt_useSetImmediate?: boolean | undefined): void;
 export namespace nextTick {
     function useSetImmediate_(): boolean;
-    const setImmediate_: (arg0: () => any) => any;
-    function getSetImmediateEmulator_(): (arg0: () => any) => any;
+    const nextTickImpl: (arg0: () => any) => any;
+    function getNextTickImpl_(): (arg0: () => any) => any;
     const wrapCallback_: typeof functions.identity;
 }
 import * as functions from "../functions/functions.js";

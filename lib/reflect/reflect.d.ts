@@ -86,7 +86,5 @@ export function objectProperty(prop: string, object: any): string;
  */
 export function sinkValue<T>(x: T): T;
 export namespace sinkValue {
-    const __: typeof google.nullFunction;
-    export { __ as   };
+    function __(): void;
 }
-import * as google from "../google.js";
