@@ -477,12 +477,6 @@ export function isObject(val: unknown): val is object;
  */
 export function now(): number;
 /**
- * Null function used for default values of callbacks, etc.
- * @return {void} Nothing.
- * @deprecated use '()=>{}' or 'function(){}' instead.
- */
-export function nullFunction(): void;
-/**
  * Like bind(), except that a 'this object' is not required. Useful when
  * the target function is already bound.
  *
