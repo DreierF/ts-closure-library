@@ -126,6 +126,7 @@
     "./lib/ui/tree/treenode": "./lib/ui/tree/treenode.js",
     "./lib/ui/zippy": "./lib/ui/zippy.js",
     "./lib/uri/uri": "./lib/uri/uri.js",
+    "./lib/uri/utils": "./lib/uri/utils.js",
     "./lib/useragent/useragent": "./lib/useragent/useragent.js"
   }
 }
