@@ -1,6 +1,6 @@
 {
   "name": "ts-closure-library",
-  "version": "2022.502.4",
+  "version": "2022.502.5",
   "description": "A stripped down fork of the closure library that has been converted to ES6 Modules in order to work without the google closure compiler and ships with Typescript declaration files",
   "main": "lib/google.js",
   "module": "lib/google.js",
@@ -31,6 +31,7 @@
     "./lib/crypt/md5": "./lib/crypt/md5.js",
     "./lib/cssom/cssom": "./lib/cssom/cssom.js",
     "./lib/date/date": "./lib/date/date.js",
+    "./lib/debug/debug": "./lib/debug/debug.js",
     "./lib/disposable/disposable": "./lib/disposable/disposable.js",
     "./lib/dom/asserts": "./lib/dom/asserts.js",
     "./lib/dom/dataset": "./lib/dom/dataset.js",
